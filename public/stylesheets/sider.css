@@ -72,3 +72,16 @@ ul {
 .member {
     margin-top: 200px;
 }
+
+.menu i {
+    margin-right: 20px;
+}
+
+.menuI .act {
+    color: var(--ddYellow);
+    background-color: #FFFFFF;
+}
+
+.menuI a {
+    padding-left: 84px;
+}
