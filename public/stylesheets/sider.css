@@ -1,0 +1,74 @@
+body {
+    background: var(--dLightGray);
+}
+
+.containerRight {
+    width: 100%;
+    padding-right: 140px;
+    padding-left: 480px;
+    margin-right: auto;
+    margin-left: auto;
+    height: 100vh;
+}
+
+.slider {
+    width: 400px;
+    height: 100vh;
+    background: rgb(255, 255, 255);
+    text-align: center;
+}
+
+.sliderLogo {
+    margin-top: 60px;
+}
+
+.sliderPhoto {
+    width: 100px;
+    height: 100px;
+    box-shadow: 0px 3px 6px #00000029;
+    border: 4px solid #FFFFFF;
+    border-radius: 50%;
+    margin-top: 56px;
+}
+
+.name {
+    margin-top: 40px;
+}
+
+.menu {
+    margin-top: 48px;
+}
+
+.menu .act {
+    color: white;
+    background-color: var(--ddYellow);
+    border-radius: 40px;
+}
+
+.menu a {
+    text-align: left;
+    width: 280px;
+    letter-spacing: 3px;
+    text-decoration-line: none;
+    color: black;
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 24px;
+    padding: 8px 30px 10px 30px;
+    letter-spacing: 8px;
+}
+
+ul {
+    padding-left: 0;
+}
+
+#signOut {
+    position: absolute;
+    bottom: 80px;
+    left: calc(50% - 140px);
+    margin-bottom: 0;
+}
+
+.member {
+    margin-top: 200px;
+}
