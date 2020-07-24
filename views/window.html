@@ -12,48 +12,63 @@
     <script src="../public/javascript//bootstrap.min.js"></script>
     <link rel="stylesheet" href="../public/stylesheets/style.css">
     <link rel="stylesheet" href="../public/stylesheets/fontello.css">
+    <link rel="stylesheet" href="../public/stylesheets/fontello.css">
 
 
     <title>Document</title>
 
-    <style>
-        .modal-content {
-            border-radius: 20px;
-        }
-        
-        .modal-header,
-        .modal-footer {
-            border: none;
-        }
-    </style>
 
 </head>
 
 <body>
-    <!-- Button trigger modal -->
+    <!-- 確認型彈跳框(2按鈕型) -->
     <button type="button" class="btnY dbtn" data-toggle="modal" data-target="#exampleModal">
         確認型彈跳框(2按鈕型)
     </button>
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModal">
+    <div class="modal fade sm2Btn" id="exampleModal">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title text28B">完成訂單</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
+                        <i class=" icon-close"></i>
                     </button>
                 </div>
                 <div class="modal-body text24R">
-                    請確認餐點無誤，我們將撥款給店家!!!！!
+                    請確認餐點無誤，我們將撥款給店家
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="dbtn btnW" data-dismiss="modal">取消返回</button>
-                    <button type="button" class="dbtn btnY">完成訂單</button>
+                    <button class="text20R dbtn btnW" data-dismiss="modal">取消返回</button>
+                    <button class="text20R dbtn btnY ml-3">完成訂單</button>
                 </div>
             </div>
         </div>
     </div>
+
+    <!-- 輸入型彈跳框(按鈕加長型)-->
+    <button type="button" class="btnY dbtn" data-toggle="modal" data-target="#exampleModal">
+        輸入型彈跳框(按鈕加長型)
+    </button>
+    <div class="modal fade sm2Btn" id="exampleModal">
+        <div class="modal- dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text28B">完成訂單</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <i class=" icon-close"></i>
+                    </button>
+                </div>
+                <div class="modal-body text24R">
+                    請確認餐點無誤，我們將撥款給店家
+                </div>
+                <div class="modal-footer">
+                    <button class="text20R dbtn btnW" data-dismiss="modal">取消返回</button>
+                    <button class="text20R dbtn btnY ml-3">完成訂單</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </body>
 
 </html>
