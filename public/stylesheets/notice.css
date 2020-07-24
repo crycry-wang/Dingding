@@ -146,6 +146,11 @@
 
 /* more功能 */
 
+#moreMenu {
+    left: -90px !important;
+    top: 8px !important;
+}
+
 .dropdown-menu a {
     line-height: 40px;
 }
@@ -155,6 +160,7 @@
     border: none;
     border-radius: 20px;
     box-shadow: 0px 1px 3px #00000029;
+    left: -90px;
 }
 
 .dropdown-menu::before {
