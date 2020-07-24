@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="../public/stylesheets/bootstrap.min.css">
+    <script src="../public/javascript/jquery-3.5.1.min.js"></script>
+    <script src="../public/javascript/popper.min.js"></script>
+    <script src="../public/javascript//bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../public/stylesheets/style.css">
+    <link rel="stylesheet" href="../public/stylesheets/fontello.css">
+    <title>Document</title>
+    <style>
+        input[type="checkbox"] {
+            -webkit-appearance: none;
+            vertical-align: center;
+            /* margin-top: 5px; */
+            background: var(--dWhite);
+            border: #c9c9c9 solid 1px;
+            border-radius: 5px;
+            min-height: 20px;
+            min-width: 20px;
+            position: relative;
+        }
+
+        /* input[type="checkbox"]:checked {
+            background: var(--dYellow);
+        } */
+
+        input[type=checkbox]:checked::after {
+            content: '';
+            top: 4px;
+            left: 4px;
+            position: absolute;
+            background: transparent;
+            border: var(--dYellow) solid 2px;
+            border-top: none;
+            border-right: none;
+            height: 6px;
+            width: 10px;
+            -moz-transform: rotate(-45deg);
+            -ms-transform: rotate(-45deg);
+            -webkit-transform: rotate(-45deg);
+            transform: rotate(-45deg);
+        }
+    </style>
+</head>
+
+<body>
+    <div style="background-color: #F8F8F8; height: 600px; padding: 50px;">
+        <div class="dblock" style="width:313px; height:190px; margin-left:50px; padding-left: 20px; padding-top: 22px;padding-right: 59px; padding-bottom: 15px; line-height: 0px;">
+
+            <input type="checkbox" class="text20BW" id="ww">
+            <label for="ww" >台中市</label>
+        </div>
+    </div>
+
+
+</body>
+
+</html>
