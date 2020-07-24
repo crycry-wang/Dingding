@@ -6,6 +6,7 @@
     padding-top: 48px;
     top: 0;
     padding-left: 40px;
+    padding-bottom: 16px;
 }
 
 .more {
@@ -14,6 +15,11 @@
     height: 32px;
     display: inline-block;
     margin-right: 40px;
+}
+
+.dblock {
+    margin-bottom: 40px;
+    margin-top: 24px;
 }
 
 
