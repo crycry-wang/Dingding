@@ -2,8 +2,14 @@ body {
     background: var(--dLightGray);
 }
 
-
-/* 左邊sider */
+.containerRight {
+    width: 100%;
+    padding-right: 140px;
+    padding-left: 480px;
+    margin-right: auto;
+    margin-left: auto;
+    height: 100vh;
+}
 
 .slider {
     width: 400px;
@@ -12,15 +18,9 @@ body {
     text-align: center;
 }
 
-
-/* LOGO */
-
 .sliderLogo {
     margin-top: 60px;
 }
-
-
-/* 照片 */
 
 .sliderPhoto {
     width: 100px;
@@ -31,15 +31,9 @@ body {
     margin-top: 56px;
 }
 
-
-/* 名子 */
-
 .name {
     margin-top: 40px;
 }
-
-
-/* menu */
 
 .menu {
     margin-top: 48px;
@@ -64,6 +58,10 @@ body {
     letter-spacing: 8px;
 }
 
+ul {
+    padding-left: 0;
+}
+
 #signOut {
     position: absolute;
     bottom: 80px;
@@ -84,37 +82,6 @@ body {
     background-color: #FFFFFF;
 }
 
-.act .icon-down-open::before {
-    transform: scaleY(-1);
-}
-
 .menuI a {
     padding-left: 84px;
-}
-
-.note {
-    text-align: right;
-    font-size: 20px;
-    padding-left: 8px;
-    border-radius: 20px;
-    background-color: var(--ddYellow);
-    color: #FFFFFF;
-    margin-left: 70px;
-}
-
-.act .note {
-    color: var(--ddYellow);
-    background-color: #FFFFFF;
-}
-
-
-/* 右邊內容放置區 */
-
-.containerRight {
-    width: 100%;
-    padding-right: 140px;
-    padding-left: 480px;
-    margin-right: auto;
-    margin-left: auto;
-    height: 100vh;
 }

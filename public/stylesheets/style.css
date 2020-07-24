@@ -1,663 +1,680 @@
-    /* 瀏覽器縮放 */
-    /* body {
-        transform: scale(0.67);
-        transform-origin: 0.0;
-    }
-     */
-    
-     :root {
-        /* 主色 */
-        --dYellow: #ECA72A;
-        /* 副色 */
-        --dBlue: #97D2D6;
-        /* 文字輸入框、背景色 */
-        --dLightGray: #F8F8F8;
-        /* 輸入框文字色 */
-        --dDeepGray: #777777;
-        /* 部分按鈕字色 */
-        --dWhite: #FFFFFF;
-        /* 取消的紅色 */
-        --dRed: #D9534F;
-        /* 按鈕hover */
-        --ddYellow: #D89316;
-        --ddBlue: #83BEC2;
-        --ddRed: #C53F3B;
-        --dBlack: #373A3C;
-    }
-    
-    * {
-        box-sizing: border-box;
-        font-family: 'Alata', 'Noto Sans TC' !important;
-        /* font-family: , sans-serif !important; */
-        /* Regular 是400，Bold是700 */
-    }
-    /* 字型 */
-    
-    @font-face {
-        font-family: Noto Sans TC;
-        src: url(../font/NotoSansTC-Regular.otf);
-    }
-    
-    @font-face {
-        font-family: Alata;
-        src: url(../font/Alata-Regular.ttf);
-    }
-    
-    button:hover,
-    a:hover,
-    .ddselect:hover {
-        cursor: pointer;
-    }
-    /* 消除預設 */
-    
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6,
-    p {
-        margin: 0;
-    }
-    
-    ol,
-    ul,
-    li {
-        list-style: none;
-    }
-    
-    [class*="col-"] {
-        padding-right: 0;
-        padding-left: 0;
-    }
-    /* 首頁背景 */
-    
-    .wrapper {
-        background-color: var(--dWhite);
-    }
-    /* 登入後、其他頁背景 */
-    
-    .inWrapper {
-        background-color: var(--dLightGray);
-    }
-    /* 首頁container */
-    
-    .mContainer {
-        width: 100%;
-        padding-right: 140px;
-        padding-left: 140px;
-        margin-right: auto;
-        margin-left: auto;
-    }
-    /* 一般頁面container */
-    
-    .dContainer {
-        width: 100%;
-        padding-right: 140px;
-        padding-left: 40px;
-        margin-right: auto;
-        margin-left: auto;
-    }
-    /* 內容區塊間隔 */
-    
-    .givePadding {
-        padding-top: 40px;
-    }
-    /* 文字設定 */
-    /* 28px Bold 黑色 */
-    
-    .text28B {
-        font-size: 1.75rem;
-        font-weight: 700;
-        color: var(--dBlack);
-        letter-spacing: 3.92px;
-    }
-    /* 24px Bold 黑色 */
-    
-    .text24B {
-        font-size: 1.5rem;
-        font-weight: 700;
-        color: var(--dBlack);
-        letter-spacing: 2.88px;
-    }
-    /* 24px Regular 黑色 */
-    
-    .text24R {
-        font-size: 1.5rem;
-        font-weight: 400;
-        color: var(--dBlack);
-        letter-spacing: 2.4px;
-    }
-    /* 24px Regular 灰色 */
-    
-    .text24RG {
-        font-size: 1.5rem;
-        font-weight: 400;
-        color: var(--dDeepGray);
-        letter-spacing: 2.88px;
-    }
-    /* 20px Bold 黑色 */
-    
-    .text20B {
-        font-size: 1.25rem;
-        font-weight: 700;
-        color: var(--dBlack);
-        letter-spacing: 2px;
-    }
-    /* 20px Bold 白色 */
-    
-    .text20BW {
-        font-size: 1.25rem;
-        font-weight: 700;
-        color: var(--dWhite);
-        letter-spacing: 2px;
-    }
-    /* 20px Regular 黑色 */
-    
-    .text20R {
-        font-size: 1.25rem;
-        font-weight: 400;
-        color: var(--dBlack);
-        letter-spacing: 2px;
-    }
-    /* 20px Regular 灰色 */
-    
-    .text20RG {
-        font-size: 1.25rem;
-        font-weight: 400;
-        color: var(--dDeepGray);
-        letter-spacing: 2px;
-    }
-    /* 英數字 24px 黑色 */
-    
-    .eng24R {
-        font-family: 'Alata';
-        font-size: 1.5rem;
-        color: var(--dBlack);
-        letter-spacing: 2.88px;
-    }
-    /* 英數字 20px 黑色 */
-    
-    .eng20R {
-        font-family: 'Alata';
-        font-size: 1.25rem;
-        color: var(--dBlack);
-        letter-spacing: 2px;
-    }
-    /* 按鈕區 */
-    /* 所有按鈕套用 */
-    
-    .dbtn {
-        height: auto;
-        width: auto;
-        /* 待確 */
-        padding-top: 8px;
-        padding-bottom: 8px;
-        padding-left: 24px;
-        padding-right: 24px;
-        border-radius: 30px;
-        border: none;
-        /* line-height: 1rem; */
-    }
-    /* 灰底白字按鈕 */
-    
-    .btnG {
-        color: var(--dBlack);
-        background-color: #DDDDDD;
-        margin-right: 16px;
-    }
-    /* 黃底白字按鈕(長度依字數決定) */
-    
-    .btnY {
-        color: var(--dWhite);
-        background-color: var(--dYellow);
-    }
-    /* 白底黃框黃字按鈕 */
-    
-    .btnW {
-        color: var(--dYellow);
-        background-color: var(--dWhite);
-        border: 1px solid var(--dYellow);
-    }
-    
-    .btnB {
-        color: var(--dWhite);
-        background-color: var(--dBlue);
-    }
-    
-    .btnR {
-        color: var(--dWhite);
-        background-color: var(--dRed);
-    }
-    /* 固定長度按鈕 */
-    
-    .btn398 {
-        width: 398px;
-        color: var(--dWhite);
-        background-color: var(--dYellow);
-    }
-    /* 左右按鈕 */
-    
-    .lrBtn {
-        width: 32px;
-        height: 32px;
-        border-radius: 100%;
-        background-color: var(--dYellow);
-        opacity: 60%;
-        text-align: center;
-        color: var(--dWhite);
-        font-size: 1rem;
-        line-height: 32px;
-        font-weight: 800;
-    }
-    /* 按鈕hover特效 */
-    
-    .btnY:hover,
-    .btn398:hover {
-        background-color: var(--ddYellow);
-        transition-duration: 0.5s;
-    }
-    
-    .btnW:hover {
-        color: var(--dWhite);
-        background-color: var(--dYellow);
-        transition-duration: 0.5s;
-    }
-    
-    .btnB:hover {
-        background-color: var(--ddBlue);
-        transition-duration: 0.5s;
-    }
-    
-    .btnR:hover {
-        background-color: var(--ddRed);
-        transition-duration: 0.5s;
-    }
-    
-    .btnG:hover {
-        color: var(--dWhite);
-        background-color: var(--dYellow);
-    }
-    /* focus狀態 */
-    
-    button,
-    input,
-    textarea,
-    select:focus {
-        outline: none !important;
-    }
-    /* 文字輸入框區 */
-    /* 提示字顏色 */
-    
-     ::placeholder {
-        color: var(--dDeepGray);
-    }
-    /* 關閉多行文字框縮放功能 */
-    
-    textarea {
-        resize: none;
-    }
-    /* 單行輸入框 */
-    
-    .singleText398 {
-        width: 398px;
-        height: auto;
-        padding: 10px 20px 10px 20px;
-        background-color: var(--dLightGray);
-        border: none;
-        border-radius: 24px;
-    }
-    /* 多行文字輸入框 */
-    
-    .multiText398 {
-        width: 398px;
-        height: 160px;
-        background-color: var(--dLightGray);
-        padding-top: 20px;
-        padding-right: 10px;
-        padding-left: 10px;
-        line-height: 1.75rem;
-        border: none;
-        border-radius: 4px;
-    }
-    /* 頁籤切換(待確) */
-    /* 頁籤名稱與右邊名稱的距離 */
-    
-    .dTag {
-        margin-right: 40px;
-        float: left;
-    }
-    /* 被點選的頁籤需增加的Class */
-    
-    .act {
-        font-weight: 700;
-        color: var(--dBlack);
-        padding-bottom: 7px;
-        margin-right: 40px;
-    }
-    /* 頁籤下方的黃色線透明度0% */
-    
-    .dTag::after {
-        content: "";
-        display: block;
-        border-radius: 2px;
-        background-color: var(--dYellow);
-        opacity: 0;
-        height: 4px;
-        width: auto;
-        margin-top: 7px;
-    }
-    /* 被點選的頁籤下方的黃色線透明度100% */
-    
-    .act.dTag::after {
-        opacity: 1;
-    }
-    /* 照片設定 */
-    /* 店家照片卡 */
-    
-    .imgCard {
-        position: relative;
-        width: 520px;
-        height: 358px;
-    }
-    /* 照片袋子 */
-    
-    .dingImgDiv {
-        width: 100%;
-        /* 改100%? */
-        /* height: 292px; */
-        /* overflow: hidden; */
-        /* position: relative; */
-    }
-    /* 照片 */
-    
-    .dingImg {
-        width: 520px;
-        /* 改100%? */
-        height: 292px;
-        opacity: 1;
-        display: block;
-        /* width: 100%; */
-        /* height: auto; */
-        transition: .5s ease;
-        border-radius: 4px;
-        /* backface-visibility: hidden; */
-        object-fit: cover;
-    }
-    /* 照片半透明遮罩 */
-    
-    .middle {
-        transition: .5s ease;
-        opacity: 0;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        -ms-transform: translate(-50%, -50%);
-        text-align: center;
-    }
-    /* 收藏 */
-    
-    .heart {
-        position: absolute;
-        bottom: 24px;
-        right: 16px;
-        width: 28px;
-        height: 25px;
-        opacity: 0.8;
-    }
-    /* 店家名稱 */
-    
-    .shopName {
-        width: 80%;
-        margin-top: 26px;
-        position: absolute;
-        overflow: hidden;
-        display: -webkit-box;
-        -webkit-box-orient: vertical;
-        -webkit-line-clamp: 1;
-    }
-    /* 評分 */
-    
-    .score {
-        position: absolute;
-        right: 36px;
-        /* bottom: 4px; */
-        margin-top: 26px;
-    }
-    
-    .dingImgDiv:hover .dingImg {
-        opacity: 0.5;
-    }
-    
-    .dingImgDiv:hover .middle {
-        opacity: 1;
-    }
-    
-    .imgCard::after {
-        content: "";
-        display: block;
-        border-radius: 1px;
-        background-color: #DDDDDD;
-        opacity: 1;
-        height: 2px;
-        width: auto;
-        margin-top: 64px;
-    }
-    
-    .mealsCard {
-        width: 344px;
-        height: 152px;
-        border: 1px solid #DDDDDD;
-        position: relative;
-    }
-    
-    .mealsName {
-        margin-left: 16px;
-        margin-top: 11px;
-    }
-    /* 自製下拉選單，長度記得另外設定 */
-    /* 下拉選單平常樣式(四個圓角) */
-    
-    .dSelect {
-        height: 48px;
-        color: var(--dBlack);
-        background-color: var(--dLightGray);
-        border-radius: 24px 24px 24px 24px;
-    }
-    /* 下拉選單展開樣式(左下佑下圓角消除) */
-    
-    .dSelectClick {
-        height: 48px;
-        color: var(--dBlack);
-        background-color: var(--dLightGray);
-        border-top-left-radius: 24px;
-        border-top-right-radius: 24px;
-    }
-    /* 下拉選單文字+倒三角形 */
-    
-    .dSelectText {
-        padding-top: 11px;
-        padding-bottom: 11px;
-        padding-left: 20px;
-        background: url("./icon/select.png")scroll transparent;
-        background-position: right 20px top 50%;
-        background-repeat: no-repeat;
-    }
-    /* 下拉選單選項設定 */
-    
-    .dOption {
-        padding-left: 20px;
-        padding-top: 10px;
-        padding-bottom: 10px;
-        height: 48px;
-        background-color: var(--dLightGray);
-    }
-    /* 下拉選單選項hover樣式 */
-    
-    .dOption:hover {
-        color: var(--dWhite);
-        background-color: var(--dYellow);
-    }
-    /* 下拉選單最後一項左下佑下圓角設定 */
-    
-    .dOption:nth-last-child(1) {
-        border-bottom-left-radius: 24px;
-        border-bottom-right-radius: 24px;
-    }
-    /* 下拉選單收合時設定 */
-    
-    .dOptionDivOff {
-        display: none;
-        position: absolute;
-    }
-    /* 下拉選單展開時設定 */
-    
-    .dOptionDivOn {
-        position: absolute;
-    }
-    /* 內容區塊圓角、背景色設定，長寬記得另外設定 */
-    
-    .dblock {
-        border-radius: 20px;
-        padding: 40px;
-        background-color: var(--dWhite);
-    }
-    /* margin */
-    
-    .mt-xs {
-        margin-top: 20px;
-    }
-    
-    .mt-s {
-        margin-top: 24px;
-    }
-    
-    .mt-m {
-        margin-top: 40px;
-    }
-    
-    .mt-l {
-        margin-top: 60px;
-    }
-    
-    .mt-xl {
-        margin-top: 80px;
-    }
-    
-    .mb-xs {
-        margin-bottom: 20px;
-    }
-    
-    .mb-s {
-        margin-bottom: 24px;
-    }
-    
-    .mb-m {
-        margin-bottom: 40px;
-    }
-    
-    .mb-l {
-        margin-bottom: 60px;
-    }
-    
-    .mb-xl {
-        margin-bottom: 80px;
-    }
-    /* 彈跳框 */
-    
-    .modal-content {
-        border-radius: 20px;
-        border: 0;
-    }
-    
-    .modal-header,
-    .modal-footer,
-    .modal-body {
-        border: none;
-        padding-left: 40px;
-        padding-right: 40px;
-    }
-    
-    .modal-header {
-        padding-top: 40px;
-        padding-bottom: 0;
-    }
-    
-    .modal-body {
-        padding-top: 0px;
-        margin-bottom: 64px;
-        margin-top: 21px;
-        ;
-        padding-bottom: 0;
-    }
-    
-    .modal-footer {
-        padding-top: 0;
-        padding-bottom: 40px;
-    }
-    
-    .modal-footer>* {
-        margin: 0;
-    }
-    
-    .modal .close {
-        position: absolute;
-        right: 24px;
-        top: 24px;
-    }
-    /* 彈框尺寸 */
-    
-    .sm2Btn .modal-dialog {
-        max-width: 536px;
-        margin-top: 270px;
-    }
-    
-    .m2Btn .modal-dialog {
-        max-width: 800px;
-    }
-    
-    .l2Btn .modal-dialog {
-        max-width: 1000px;
-    }
-    
-    .xl2Btn .modal-dialog {
-        max-width: 1340px;
-    }
-    
-    .redColor {
-        color: var(--dRed);
-    }
-    /* 輸入型彈框尺寸  */
-    
-    .modal-continer {
-        padding-left: 68px;
-        padding-right: 68px;
-        margin-top: 40px;
-    }
-    
-    #inputL .singleText398 {
-        display: block;
-        width: 100%;
-        margin-bottom: 40px;
-    }
-    
-    #inputS .modal-continer {
-        margin-top: 24px;
-        margin-bottom: 40px;
-    }
-    
-    #inputL .modal-dialog {
-        margin-top: 0;
-    }
-    /* 確認型彈跳框 */
-    
-    #comfirmBtn .modal-header {
-        padding-top: 56px;
-        padding-bottom: 40px;
-    }
-    /* 內建下拉選單 */
-    /* .dselect select{ 
+:root {
+    /* 主色 */
+    --dYellow: #ECA72A;
+    /* 副色 */
+    --dBlue: #97D2D6;
+    /* 文字輸入框、背景色 */
+    --dLightGray: #F8F8F8;
+    /* 輸入框文字色 */
+    --dDeepGray: #777777;
+    /* 部分按鈕字色 */
+    --dWhite: #FFFFFF;
+    /* 取消的紅色 */
+    --dRed: #D9534F;
+    /* 按鈕hover */
+    --ddYellow: #D89316;
+    --ddBlue: #83BEC2;
+    --ddRed: #C53F3B;
+    --dBlack: #373A3C;
+}
+
+* {
+    box-sizing: border-box;
+    font-family: 'Alata', 'Noto Sans TC' !important;
+    /* font-family: , sans-serif !important; */
+    /* Regular 是400，Bold是700 */
+}
+
+
+/* 字型 */
+
+@font-face {
+    font-family: Noto Sans TC;
+    src: url(../font/NotoSansTC-Regular.otf);
+}
+
+@font-face {
+    font-family: Alata;
+    src: url(../font/Alata-Regular.ttf);
+}
+
+button:hover,
+a:hover,
+.ddselect:hover {
+    cursor: pointer;
+}
+
+
+/* 消除預設 */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+    margin: 0;
+}
+
+ol,
+ul,
+li {
+    list-style: none;
+}
+
+[class*="col-"] {
+    padding-right: 0;
+    padding-left: 0;
+}
+
+
+/* 首頁背景 */
+
+.wrapper {
+    background-color: var(--dWhite);
+}
+
+
+/* 登入後、其他頁背景 */
+
+.inWrapper {
+    background-color: var(--dLightGray);
+}
+
+
+/* 首頁container */
+
+.mContainer {
+    width: 100%;
+    padding-right: 140px;
+    padding-left: 140px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+
+/* 一般頁面container */
+
+.dContainer {
+    width: 100%;
+    padding-right: 140px;
+    padding-left: 40px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+
+/* 內容區塊間隔 */
+
+.givePadding {
+    padding-top: 40px;
+}
+
+
+/* 文字設定 */
+
+
+/* 28px Bold 黑色 */
+
+.text28B {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--dBlack);
+    letter-spacing: 3.92px;
+}
+
+
+/* 24px Bold 黑色 */
+
+.text24B {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--dBlack);
+    letter-spacing: 2.88px;
+}
+
+
+/* 24px Regular 黑色 */
+
+.text24R {
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: var(--dBlack);
+    letter-spacing: 2.4px;
+}
+
+
+/* 24px Regular 灰色 */
+
+.text24RG {
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: var(--dDeepGray);
+    letter-spacing: 2.88px;
+}
+
+
+/* 20px Bold 黑色 */
+
+.text20B {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--dBlack);
+    letter-spacing: 2px;
+}
+
+
+/* 20px Bold 白色 */
+
+.text20BW {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--dWhite);
+    letter-spacing: 2px;
+}
+
+
+/* 20px Regular 黑色 */
+
+.text20R {
+    font-size: 1.25rem;
+    font-weight: 400;
+    color: var(--dBlack);
+    letter-spacing: 2px;
+}
+
+
+/* 20px Regular 灰色 */
+
+.text20RG {
+    font-size: 1.25rem;
+    font-weight: 400;
+    color: var(--dDeepGray);
+    letter-spacing: 2px;
+}
+
+
+/* 英數字 24px 黑色 */
+
+.eng24R {
+    font-family: 'Alata';
+    font-size: 1.5rem;
+    color: var(--dBlack);
+    letter-spacing: 2.88px;
+}
+
+
+/* 英數字 20px 黑色 */
+
+.eng20R {
+    font-family: 'Alata';
+    font-size: 1.25rem;
+    color: var(--dBlack);
+    letter-spacing: 2px;
+}
+
+
+/* 按鈕區 */
+
+
+/* 所有按鈕套用 */
+
+.dbtn {
+    height: auto;
+    width: auto;
+    /* 待確 */
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding-left: 24px;
+    padding-right: 24px;
+    border-radius: 30px;
+    border: none;
+    /* line-height: 1rem; */
+}
+
+
+/* 灰底白字按鈕 */
+
+.btnG {
+    color: var(--dBlack);
+    background-color: #DDDDDD;
+    margin-right: 16px;
+}
+
+
+/* 黃底白字按鈕(長度依字數決定) */
+
+.btnY {
+    color: var(--dWhite);
+    background-color: var(--dYellow);
+}
+
+
+/* 白底黃框黃字按鈕 */
+
+.btnW {
+    color: var(--dYellow);
+    background-color: var(--dWhite);
+    border: 1px solid var(--dYellow);
+}
+
+.btnB {
+    color: var(--dWhite);
+    background-color: var(--dBlue);
+}
+
+.btnR {
+    color: var(--dWhite);
+    background-color: var(--dRed);
+}
+
+
+/* 固定長度按鈕 */
+
+.btn398 {
+    width: 398px;
+    color: var(--dWhite);
+    background-color: var(--dYellow);
+}
+
+
+/* 左右按鈕 */
+
+.lrBtn {
+    width: 32px;
+    height: 32px;
+    border-radius: 100%;
+    background-color: var(--dYellow);
+    opacity: 60%;
+    text-align: center;
+    color: var(--dWhite);
+    font-size: 1rem;
+    line-height: 32px;
+    font-weight: 800;
+}
+
+
+/* 按鈕hover特效 */
+
+.btnY:hover,
+.btn398:hover {
+    background-color: var(--ddYellow);
+    transition-duration: 0.5s;
+}
+
+.btnW:hover {
+    color: var(--dWhite);
+    background-color: var(--dYellow);
+    transition-duration: 0.5s;
+}
+
+.btnB:hover {
+    background-color: var(--ddBlue);
+    transition-duration: 0.5s;
+}
+
+.btnR:hover {
+    background-color: var(--ddRed);
+    transition-duration: 0.5s;
+}
+
+.btnG:hover {
+    color: var(--dWhite);
+    background-color: var(--dYellow);
+}
+
+
+/* focus狀態 */
+
+button,
+input,
+textarea,
+select:focus {
+    outline: none !important;
+}
+
+
+/* 文字輸入框區 */
+
+
+/* 提示字顏色 */
+
+::placeholder {
+    color: var(--dDeepGray);
+}
+
+
+/* 關閉多行文字框縮放功能 */
+
+textarea {
+    resize: none;
+}
+
+
+/* 單行輸入框 */
+
+.singleText398 {
+    width: 398px;
+    height: auto;
+    padding: 10px 20px 10px 20px;
+    background-color: var(--dLightGray);
+    border: none;
+    border-radius: 24px;
+}
+
+
+/* 多行文字輸入框 */
+
+.multiText398 {
+    width: 398px;
+    height: 160px;
+    background-color: var(--dLightGray);
+    padding-top: 20px;
+    padding-right: 10px;
+    padding-left: 10px;
+    line-height: 1.75rem;
+    border: none;
+    border-radius: 4px;
+}
+
+
+/* 頁籤切換(待確) */
+
+
+/* 頁籤名稱與右邊名稱的距離 */
+
+.dTag {
+    margin-right: 40px;
+    float: left;
+}
+
+
+/* 被點選的頁籤需增加的Class */
+
+.act {
+    font-weight: 700;
+    color: var(--dBlack);
+    padding-bottom: 7px;
+    margin-right: 40px;
+}
+
+
+/* 頁籤下方的黃色線透明度0% */
+
+.dTag::after {
+    content: "";
+    display: block;
+    border-radius: 2px;
+    background-color: var(--dYellow);
+    opacity: 0;
+    height: 4px;
+    width: auto;
+    margin-top: 7px;
+}
+
+
+/* 被點選的頁籤下方的黃色線透明度100% */
+
+.act.dTag::after {
+    opacity: 1;
+}
+
+
+/* 照片設定 */
+
+
+/* 店家照片卡 */
+
+.imgCard {
+    position: relative;
+    width: 520px;
+    height: 358px;
+}
+
+
+/* 照片袋子 */
+
+.dingImgDiv {
+    width: 100%;
+    /* 改100%? */
+    /* height: 292px; */
+    /* overflow: hidden; */
+    /* position: relative; */
+}
+
+
+/* 照片 */
+
+.dingImg {
+    width: 520px;
+    /* 改100%? */
+    height: 292px;
+    opacity: 1;
+    display: block;
+    /* width: 100%; */
+    /* height: auto; */
+    transition: .5s ease;
+    border-radius: 4px;
+    /* backface-visibility: hidden; */
+    object-fit: cover;
+}
+
+
+/* 照片半透明遮罩 */
+
+.middle {
+    transition: .5s ease;
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+
+/* 收藏 */
+
+.heart {
+    position: absolute;
+    bottom: 24px;
+    right: 16px;
+    width: 28px;
+    height: 25px;
+    opacity: 0.8;
+}
+
+
+/* 店家名稱 */
+
+.shopName {
+    width: 80%;
+    margin-top: 26px;
+    position: absolute;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+}
+
+
+/* 評分 */
+
+.score {
+    position: absolute;
+    right: 36px;
+    /* bottom: 4px; */
+    margin-top: 26px;
+}
+
+.dingImgDiv:hover .dingImg {
+    opacity: 0.5;
+}
+
+.dingImgDiv:hover .middle {
+    opacity: 1;
+}
+
+.imgCard::after {
+    content: "";
+    display: block;
+    border-radius: 1px;
+    background-color: #DDDDDD;
+    opacity: 1;
+    height: 2px;
+    width: auto;
+    margin-top: 64px;
+}
+
+.mealsCard {
+    width: 344px;
+    height: 152px;
+    border: 1px solid #DDDDDD;
+    position: relative;
+}
+
+.mealsName {
+    margin-left: 16px;
+    margin-top: 11px;
+}
+
+
+/* 自製下拉選單，長度記得另外設定 */
+
+
+/* 下拉選單平常樣式(四個圓角) */
+
+.dSelect {
+    height: 48px;
+    color: var(--dBlack);
+    background-color: var(--dLightGray);
+    border-radius: 24px 24px 24px 24px;
+}
+
+
+/* 下拉選單展開樣式(左下佑下圓角消除) */
+
+.dSelectClick {
+    height: 48px;
+    color: var(--dBlack);
+    background-color: var(--dLightGray);
+    border-top-left-radius: 24px;
+    border-top-right-radius: 24px;
+}
+
+
+/* 下拉選單文字+倒三角形 */
+
+.dSelectText {
+    padding-top: 11px;
+    padding-bottom: 11px;
+    padding-left: 20px;
+    background: url("./icon/select.png")scroll transparent;
+    background-position: right 20px top 50%;
+    background-repeat: no-repeat;
+}
+
+
+/* 下拉選單選項設定 */
+
+.dOption {
+    padding-left: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    height: 48px;
+    background-color: var(--dLightGray);
+}
+
+
+/* 下拉選單選項hover樣式 */
+
+.dOption:hover {
+    color: var(--dWhite);
+    background-color: var(--dYellow);
+}
+
+
+/* 下拉選單最後一項左下佑下圓角設定 */
+
+.dOption:nth-last-child(1) {
+    border-bottom-left-radius: 24px;
+    border-bottom-right-radius: 24px;
+}
+
+
+/* 下拉選單收合時設定 */
+
+.dOptionDivOff {
+    display: none;
+    position: absolute;
+}
+
+
+/* 下拉選單展開時設定 */
+
+.dOptionDivOn {
+    position: absolute;
+}
+
+
+/* 內容區塊圓角、背景色設定，長寬記得另外設定 */
+
+.dblock {
+    border-radius: 20px;
+    padding: 40px;
+    background-color: var(--dWhite);
+}
+
+
+/* margin */
+
+.mt-xs {
+    margin-top: 20px;
+}
+
+.mt-s {
+    margin-top: 24px;
+}
+
+.mt-m {
+    margin-top: 40px;
+}
+
+.mt-l {
+    margin-top: 60px;
+}
+
+.mt-xl {
+    margin-top: 80px;
+}
+
+.mb-xs {
+    margin-bottom: 20px;
+}
+
+.mb-s {
+    margin-bottom: 24px;
+}
+
+.mb-m {
+    margin-bottom: 40px;
+}
+
+.mb-l {
+    margin-bottom: 60px;
+}
+
+.mb-xl {
+    margin-bottom: 80px;
+}
+
+
+/* 內建下拉選單 */
+
+
+/* .dselect select{ 
     height:48px;
     border: none;
     color: var(--dBlack);
@@ -682,23 +699,33 @@ option{
     -webkit-appearance:none;
     appearance:none;
 } */
-    /* .dtable{
+
+
+/* .dtable{
     border-collapse:collapse;
 } */
-    /* .dtr>th {
+
+
+/* .dtr>th {
     padding: 8px 32px 4px 32px;
     background-color: var(--dYellow);
     
 } */
-    /* .thB.dtr>th{
+
+
+/* .thB.dtr>th{
     background-color: var(--dBlue);
 } */
-    /* .thG.dtr>th{
+
+
+/* .thG.dtr>th{
     background-color: var(--dLightGray);
     color: var(--dBlack);
     padding: 11px 40px 11px 40px;
 } */
-    /* .dtrtd{
+
+
+/* .dtrtd{
     border: 1px solid #DDDDDD;
     border-radius: 10px;
     margin-top: 4px;
@@ -706,12 +733,16 @@ option{
      -moz-box-sizing: border-box;
           box-sizing: border-box;
 } */
-    /* .dtrtd>td{
+
+
+/* .dtrtd>td{
     padding-top: 15px;
     padding-bottom: 15px;
     
 } */
-    /* td {    
+
+
+/* td {    
      border-bottom: 1px solid #DDDDDD;
      border-top: 1px solid #DDDDDD;
      padding: 1rem;
