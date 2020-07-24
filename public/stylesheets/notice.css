@@ -1,0 +1,15 @@
+.topTag {
+    margin-top: 48px;
+}
+
+.more {
+    background: url(../image/more.png) no-repeat center;
+    width: 32px;
+    height: 32px;
+    display: inline-block;
+}
+
+.row {
+    margin-left: 0;
+    margin-right: 0;
+}

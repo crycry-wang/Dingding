@@ -47,7 +47,7 @@ body {
 
 .menu .act {
     color: white;
-    background-color: var(--ddYellow);
+    background-color: var(--dYellow);
     border-radius: 40px;
 }
 
@@ -80,7 +80,7 @@ body {
 }
 
 .menuI .act {
-    color: var(--ddYellow);
+    color: var(--dYellow);
     background-color: #FFFFFF;
 }
 
@@ -97,7 +97,7 @@ body {
     font-size: 20px;
     padding-left: 8px;
     border-radius: 20px;
-    background-color: var(--ddYellow);
+    background-color: var(--dYellow);
     color: #FFFFFF;
     margin-left: 70px;
 }
