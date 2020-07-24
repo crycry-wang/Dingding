@@ -62,7 +62,12 @@
 
 .noticeItem .content {
     display: inline-block;
-    width: 708px;
+    width: 662px;
+}
+
+.noticeItem.store .content {
+    display: inline-block;
+    width: 610px;
 }
 
 .noticeItem .icon-trash {
@@ -80,6 +85,10 @@
 .text16 {
     color: var(--dDeepGray);
     letter-spacing: 2px;
+}
+
+.Ycolor {
+    color: var( --dYellow);
 }
 
 
@@ -110,7 +119,11 @@
 
 .noticeItem .actionR p.text20R {
     margin: 0 0 0 40px;
-    color: var(--dDeepGray);
+}
+
+.noticeItem .actionR p.text20R,
+.noticeItem .actionR button {
+    margin: 0 0 0 40px;
 }
 
 

@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="../public/stylesheets/bootstrap.min.css">
+    <script src="../public/javascript/jquery-3.5.1.min.js"></script>
+    <script src="../public/javascript/popper.min.js"></script>
+    <script src="../public/javascript//bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../public/stylesheets/style.css">
+    <link rel="stylesheet" href="../public/stylesheets/fontello.css">
+    <link rel="stylesheet" href="../public/stylesheets/sider.css">
+    <link rel="stylesheet" href="../public/stylesheets/notice.css">
+
+    <title>Document</title>
+
+
+    <style>
+        /* 環境 */
+    </style>
+
+</head>
+
+<body>
+
+    <!-- 左邊sider -->
+    <div class="slider fixed-top">
+        <img src="../public/image/LOGO.png" class="sliderLogo">
+        <br>
+        <img src="../public/image/photo.jpg" class="sliderPhoto">
+        <p class="name text24B">尊品原汁牛肉麵</p>
+        <div class="menu text24R ">
+
+            <a href="" class="act"><i class="icon-order"></i>訂單管理</a>
+            <a href=""><i class="icon-menu"></i>餐點清單</a>
+            <a href=""><i class="icon-statistics"></i>營運統計</a>
+            <a href=""><i class="icon-evaluation"></i>店家評價</a>
+            <a href=""><i class="icon-message"></i>通知<span class="note">3</span></a>
+            <a href=""><i class="icon-about"></i>店家資訊</a>
+
+            <a href="" id="signOut"><i class="icon-logout"></i>登出</a>
+        </div>
+    </div>
+
+    <div class="containerRight">
+        <!-- 右邊內容放置區 -->
+
+        <nav class="topTag row inWrapper position-sticky">
+            <a class="more ml-auto" href="#" role="button" id="more" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            </a>
+            <div class="dropdown-menu text-center" aria-labelledby="more" id='moreMenu'>
+                <a class="dropdown-item text20R" href="#">全部已讀</a>
+                <a class="dropdown-item text20R" href="#">全部刪除</a>
+
+            </div>
+        </nav>
+        <div class="dblock mt-4">
+            <ul>
+                <!-- 新訊息 -->
+                <li class="noticeItem d-flex align-items-center store">
+                    <span class="photo"></span>
+                    <!-- <img src="../public/image/message.png"> -->
+                    <span class="content">
+                        <h2 class="text24B">新訂單通知</h2>
+                        <p class="text20R">有一筆來自阿信的新訂單，快去處理吧！</p>
+                        <p class="text16">3小時前</p>
+                    </span>
+                    <span class="ml-auto actionR">
+                        <p class="eng20R">4,000</p>
+                        <button class="text20R dbtn btnW d-none">查看訂單</button>
+                        <button class="text20R dbtn btnY " data-toggle="modal" data-target="#comfirm2Btn"> 處理訂單</button>
+                        <i class="icon-trash d-none"></i>
+                    </span>
+                </li>
+
+                <!-- 系統通知 -->
+                <li class="noticeItem d-flex align-items-center">
+                    <!-- <span class="photo"></span> -->
+                    <img src="../public/image/message.png">
+                    <span class="content">
+                        <h2 class="text24B">訂訂系統通知</h2>
+                        <p class="text20R">訂訂將於2020年06月26號(星期五)14:00至15:00進行系統升級。</p>
+                        <p class="text16">3小時前</p>
+                    </span>
+                    <span class="ml-auto actionR">
+                        <p class="eng20R d-none">4,000</p>
+                        <button class="text20R dbtn btnW d-none">查看訂單</button>
+                        <button class="text20R dbtn btnY  d-none" data-toggle="modal" data-target="#comfirm2Btn">
+                            處理訂單</button>
+                        <i class="icon-trash"></i>
+                    </span>
+                </li>
+
+                <!-- 拒絕訂單 -->
+                <li class="noticeItem d-flex align-items-center cancel store">
+                    <!-- <span class="photo"></span> -->
+                    <img src="../public/image/message.png">
+                    <span class="content">
+                        <h2 class="text24B">已拒絕 來自阿信的訂單</h2>
+                        <p class="text20R">您已拒絕來自阿信的訂單，已新增訂單至歷史訂單。</p>
+                        <p class="text16">3小時前</p>
+                    </span>
+                    <span class="ml-auto actionR">
+                        <p class="eng20R">4,000</p>
+                        <button class="text20R dbtn btnW">查看訂單</button>
+                        <button class="text20R dbtn btnY  d-none" data-toggle="modal" data-target="#comfirm2Btn">
+                            處理訂單</button>
+                        <i class="icon-trash"></i>
+                    </span>
+                </li>
+
+                <!-- 接受訂單 -->
+                <li class="noticeItem d-flex align-items-center store">
+                    <!-- <span class="photo"></span> -->
+                    <img src="../public/image/message.png">
+                    <span class="content">
+                        <h2 class="text24B">已接受 來自王小華的訂單</h2>
+                        <p class="text20R">已新增至訂單管理，請於<span class="Ycolor">2020/06/18 12:00</span>準時送達餐點。</p>
+                    <p class="text16">3小時前</p>
+                    </span>
+                    <span class="ml-auto actionR">
+                        <p class="eng20R">4,000</p>
+                        <button class="text20R dbtn btnW">查看訂單</button>
+                        <button class="text20R dbtn btnY  d-none" data-toggle="modal" data-target="#comfirm2Btn">
+                            處理訂單</button>
+                        <i class="icon-trash"></i>
+                    </span>
+                </li>
+
+                <!-- 已讀接受訂單 -->
+                <li class="noticeItem d-flex align-items-center read store">
+                    <!-- <span class="photo"></span> -->
+                    <img src="../public/image/message.png">
+                    <span class="content">
+                        <h2 class="text24B">已接受 來自王小華的訂單</h2>
+                        <p class="text20R">已新增至訂單管理，請於<span class="Ycolor">2020/06/18 12:00</span>準時送達餐點。</p>
+                    <p class="text16">3小時前</p>
+                    </span>
+                    <span class="ml-auto actionR">
+                        <p class="eng20R">4,000</p>
+                        <button class="text20R dbtn btnW">查看訂單</button>
+                        <button class="text20R dbtn btnY  d-none" data-toggle="modal" data-target="#comfirm2Btn">
+                            處理訂單</button>
+                        <i class="icon-trash"></i>
+                    </span>
+                </li>
+
+                <!-- 已讀拒絕訂單 -->
+                <li class="noticeItem d-flex align-items-center cancel store read">
+                    <!-- <span class="photo"></span> -->
+                    <img src="../public/image/message.png">
+                    <span class="content">
+                        <h2 class="text24B">已拒絕 來自阿信的訂單</h2>
+                        <p class="text20R">您已拒絕來自阿信的訂單，已新增訂單至歷史訂單。</p>
+                        <p class="text16">3小時前</p>
+                    </span>
+                    <span class="ml-auto actionR">
+                        <p class="eng20R">4,000</p>
+                        <button class="text20R dbtn btnW">查看訂單</button>
+                        <button class="text20R dbtn btnY  d-none" data-toggle="modal" data-target="#comfirm2Btn">
+                            處理訂單</button>
+                        <i class="icon-trash"></i>
+                    </span>
+                </li>
+
+
+            </ul>
+
+        </div>
+
+
+    </div>
+
+
+    <!-- 完成訂單) -->
+
+    <div class="modal fade sm2Btn" id="comfirm2Btn">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text28B">完成訂單</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <i class=" icon-close"></i>
+                    </button>
+                </div>
+                <p class="modal-body text24R">
+                    請確認餐點無誤，我們將撥款給店家
+                </p>
+                <div class="modal-footer">
+                    <button class="text20R dbtn btnW" data-dismiss="modal">取消返回</button>
+                    <button class="text20R dbtn btnY ml-3">完成訂單</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</body>
+
+</html>
