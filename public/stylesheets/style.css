@@ -105,6 +105,10 @@
         margin-left: auto;
     }
     /* 內容區塊間隔 */
+
+    .topBtnPadding{
+        padding-top: 60px;
+    }
     
     .givePadding {
         padding-top: 40px;
