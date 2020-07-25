@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="../public/stylesheets/bootstrap.min.css">
+    <script src="../public/javascript/jquery-3.5.1.min.js"></script>
+    <script src="../public/javascript/popper.min.js"></script>
+    <script src="../public/javascript//bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../public/stylesheets/style.css">
+    <link rel="stylesheet" href="../public/stylesheets/fontello.css">
+    <link rel="stylesheet" href="../public/stylesheets/sider.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <title>Document</title>
+
+    <!-- test -->
+    <style>
+        .information {
+            width: 856px;
+            height: 858px;
+            margin-top: 40px;
+            margin-right: 46px;
+            /* margin-bottom: 80px; */
+            display: inline-block;
+            padding-right: 108px;
+            padding-left: 74px;
+        }
+
+        .delivery {
+            display: inline-block;
+            width: 398px;
+            height: 856px;
+            margin-top: 40px;
+            float: right;
+        }
+
+        .rightbtn {
+            margin-top: 60px;
+            position: relative;
+            padding-left: 902px;
+        }
+
+        .rightbtn>.btn {
+            margin-right: 20px;
+        }
+
+        .storeTitleDiv {
+            margin-bottom: 60px;
+            padding-top: 32px;
+
+        }
+
+        .storeTitle {
+            margin-right: 52px;
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+    <!-- 左邊sider -->
+    <div class="slider fixed-top">
+        <img src="../public/image/LOGO.png" class="sliderLogo">
+        <br>
+        <img src="../public/image/photo.jpg" class="sliderPhoto">
+        <p class="name text24B">尊品原汁牛肉麵</p>
+        <div class="menu text24R">
+
+            <a href="" class="act"><i class="icon-order"></i>訂單管理</a>
+            <a href=""><i class="icon-menu"></i>餐點清單</a>
+            <a href=""><i class="icon-statistics"></i>營運統計</a>
+            <a href=""><i class="icon-evaluation"></i>店家評價</a>
+            <a href=""><i class="icon-message"></i>通知</a>
+            <a href=""><i class="icon-about"></i>店家資訊</a>
+            <a href="" id="signOut"><i class="icon-logout"></i>登出</a>
+        </div>
+    </div>
+
+    <div class="containerRight">
+        <!-- 右邊內容放置區 -->
+        <div class="rightbtn">
+            <button class="text20BW dbtn btnB" style="margin-right: 15px;">店家資訊預覽</button>
+            <button class="text20R dbtn btnW" style="margin-right: 5px;">取消</button>
+            <button class="text20R dbtn btnY">儲存</button>
+        </div>
+        <div class="dblock information">
+            <img src="" alt="">
+            <div class=" storeTitleDiv">
+                <span class="text20B storeTitle">店家名稱</span>
+                <input type="text" class="singleText398 text20R" placeholder="請輸入店家名稱">
+            </div>
+            <div class=" storeTitleDiv">
+                <span class="text20B storeTitle">店家照片</span>
+                <!-- <input type="text" class="singleText398 text20R" placeholder="請輸入店家名稱"> -->
+            </div>
+            <div class=" storeTitleDiv">
+                <span class="text20B storeTitle">店家電話</span>
+                <input type="text" class="singleText398 text20R" placeholder="04-24738082">
+            </div>
+            <div class=" storeTitleDiv">
+                <span class="text20B storeTitle">店家地址</span>
+                <input type="text" class="singleText398 text20R" placeholder="請填入完整地址">
+            </div>
+            <div class=" storeTitleDiv">
+                <span class="text20B storeTitle">營業時間</span>
+                <input type="text" class="singleText398 text20R" placeholder="08:00-20:00">
+            </div>
+            <div class=" storeTitleDiv">
+                <span class="text20B storeTitle">固定公休</span>
+                <input type="text" class="singleText398 text20R" placeholder="週三">
+            </div>
+            <div class=" storeTitleDiv" style="vertical-align: top;">
+                <span class="text20B storeTitle">店家簡介</span>
+                <input type="text" class="multiText398 text20R" placeholder="訂單滿200即可外送!">
+            </div>
+        </div>
+        <div class="dblock delivery"></div>
+    </div>
+
+    <script>
+        var information = new Vue({
+            el: "#information",
+            data: {
+                title: {
+                    name: "店家名稱",
+                    photo: "店家照片",
+                    phone: "店家電話",
+                    address: "店家地址",
+                    workTime: "營業時間",
+                    restTime: "固定公休",
+                    about: "店家簡介"
+                },
+                inputText:[
+                    { nameInput:"" , placeholder:"請輸入店家名稱" },
+                    { photoInput:"" , placeholder:"請輸入店家名稱" },
+                    { addressInput:"" , placeholder:"請輸入店家名稱" },
+                    { workTimeInput:"" , placeholder:"請輸入店家名稱" },
+                    { restTimeInput:"" , placeholder:"請輸入店家名稱" },
+                    { aboutInput:"" , placeholder:"請輸入店家名稱" }
+                ]
+
+            }
+        })
+    </script>
+
+</body>
+
+</html>
