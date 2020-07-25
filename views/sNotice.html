@@ -70,7 +70,7 @@
                     <span class="ml-auto actionR">
                         <p class="eng20R">4,000</p>
                         <button class="text20R dbtn btnW d-none">查看訂單</button>
-                        <button class="text20R dbtn btnY " data-toggle="modal" data-target="#comfirm2Btn"> 處理訂單</button>
+                        <button class="text20R dbtn btnY" data-toggle="modal" data-target="#orderAction"> 處理訂單</button>
                         <i class="icon-trash d-none"></i>
                     </span>
                 </li>
@@ -87,7 +87,7 @@
                     <span class="ml-auto actionR">
                         <p class="eng20R d-none">4,000</p>
                         <button class="text20R dbtn btnW d-none">查看訂單</button>
-                        <button class="text20R dbtn btnY  d-none" data-toggle="modal" data-target="#comfirm2Btn">
+                        <button class="text20R dbtn btnY  d-none" data-toggle="modal" data-target="#orderAction">
                             處理訂單</button>
                         <i class="icon-trash"></i>
                     </span>
@@ -105,7 +105,7 @@
                     <span class="ml-auto actionR">
                         <p class="eng20R">4,000</p>
                         <button class="text20R dbtn btnW">查看訂單</button>
-                        <button class="text20R dbtn btnY  d-none" data-toggle="modal" data-target="#comfirm2Btn">
+                        <button class="text20R dbtn btnY  d-none" data-toggle="modal" data-target="#orderAction">
                             處理訂單</button>
                         <i class="icon-trash"></i>
                     </span>
@@ -123,7 +123,7 @@
                     <span class="ml-auto actionR">
                         <p class="eng20R">4,000</p>
                         <button class="text20R dbtn btnW">查看訂單</button>
-                        <button class="text20R dbtn btnY  d-none" data-toggle="modal" data-target="#comfirm2Btn">
+                        <button class="text20R dbtn btnY  d-none" data-toggle="modal" data-target="#orderAction">
                             處理訂單</button>
                         <i class="icon-trash"></i>
                     </span>
@@ -141,7 +141,7 @@
                     <span class="ml-auto actionR">
                         <p class="eng20R">4,000</p>
                         <button class="text20R dbtn btnW">查看訂單</button>
-                        <button class="text20R dbtn btnY  d-none" data-toggle="modal" data-target="#comfirm2Btn">
+                        <button class="text20R dbtn btnY  d-none" data-toggle="modal" data-target="#orderAction">
                             處理訂單</button>
                         <i class="icon-trash"></i>
                     </span>
@@ -159,35 +159,57 @@
                     <span class="ml-auto actionR">
                         <p class="eng20R">4,000</p>
                         <button class="text20R dbtn btnW">查看訂單</button>
-                        <button class="text20R dbtn btnY  d-none" data-toggle="modal" data-target="#comfirm2Btn">
+                        <button class="text20R dbtn btnY  d-none" data-toggle="modal" data-target="#orderAction">
                             處理訂單</button>
                         <i class="icon-trash"></i>
+
                     </span>
                 </li>
 
 
             </ul>
 
+
+
+
         </div>
 
 
     </div>
 
-
-    <!-- 完成訂單) -->
-
-    <div class="modal fade sm2Btn" id="comfirm2Btn">
-        <div class="modal-dialog">
+    <!-- 處理訂單詳情 -->
+    <div class="modal fade xl2Btn" id="orderAction">
+        <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title text28B">完成訂單</h5>
+                    <h5 class="modal-title text28B w-100 text-center">搜尋團體</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <i class=" icon-close"></i>
                     </button>
                 </div>
-                <p class="modal-body text24R">
-                    請確認餐點無誤，我們將撥款給店家
-                </p>
+                <div class="letfContent modal-body">
+                    <dl>
+                        <dt class="text20B">餐點送達時間</dt>
+                        <dd class="text20R">2020/06/18 12:00</dd>
+                    </dl>
+                    <dl>
+                        <dt class="text20B">聯絡人</dt>
+                        <dd class="text20R">阿信</dd>
+                    </dl>
+                    <dl>
+                        <dt class="text20B">聯絡電話</dt>
+                        <dd class="text20R">0912345678</dd>
+                    </dl>
+                    <dl>
+                        <dt class="text20B">配送地址</dt>
+                        <dd class="text20R">台中市西區公益路二段81號</dd>
+                    </dl>
+                    <dl>
+                        <dt class="text20B">訂單建立日期</dt>
+                        <dd class="text20R">2020/06/16 12:00</dd>
+                    </dl>
+                </div>
+
                 <div class="modal-footer">
                     <button class="text20R dbtn btnW" data-dismiss="modal">取消返回</button>
                     <button class="text20R dbtn btnY ml-3">完成訂單</button>
