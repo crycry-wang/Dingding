@@ -1,4 +1,4 @@
-    /* 瀏覽器縮放 */
+/* 瀏覽器縮放 */
     /* body {
         transform: scale(0.67);
         transform-origin: 0.0;
@@ -715,7 +715,6 @@ select{
     background-repeat: no-repeat;
     
 }
-
 option::-ms-expand{ display: none; }
 option{
     -moz-appearance:none; 
