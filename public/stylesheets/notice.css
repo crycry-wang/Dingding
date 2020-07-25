@@ -1,0 +1,196 @@
+.row {
+    margin: 0;
+}
+
+.topTag {
+    padding-top: 48px;
+    top: 0;
+    padding-left: 40px;
+    padding-bottom: 16px;
+}
+
+.more {
+    background: url(../image/more.png) no-repeat center;
+    width: 32px;
+    height: 32px;
+    display: inline-block;
+    margin-right: 40px;
+}
+
+.dblock {
+    margin-bottom: 40px;
+    margin-top: 24px;
+}
+
+
+/* 通知項目 */
+
+.noticeItem {
+    width: 100%;
+    border: 1px solid var(--moreLightGray);
+    border-radius: 10px 20px 20px 10px;
+    padding: 14px 40px 16px 0;
+    display: block;
+    border-left: 10px solid var(--dBlue);
+    margin-bottom: 8px;
+}
+
+.noticeItem img,
+.noticeItem .photo {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin-left: 30px;
+    margin-right: 40px;
+}
+
+.noticeItem .photo {
+    background: #BFBFBF;
+    text-align: center;
+    line-height: 60px;
+}
+
+.noticeItem .photo::after {
+    content: '訂訂';
+    color: white;
+    font-size: 16px;
+    letter-spacing: 2px;
+}
+
+
+/* 中間內容 */
+
+.noticeItem .content {
+    display: inline-block;
+    width: 662px;
+}
+
+.noticeItem.store .content {
+    display: inline-block;
+    width: 610px;
+}
+
+.noticeItem .icon-trash {
+    font-size: 30px;
+    color: var(--moreLightGray);
+    margin-left: 40px;
+}
+
+.noticeItem .icon-trash:hover {
+    font-size: 30px;
+    color: var(--dBlack);
+    cursor: pointer;
+}
+
+.text16 {
+    color: var(--dDeepGray);
+    letter-spacing: 2px;
+}
+
+.Ycolor {
+    color: var( --dYellow);
+}
+
+
+/* 右邊功能 */
+
+.noticeItem .text24B {
+    margin-bottom: 2px;
+}
+
+.noticeItem .text20R {
+    margin-bottom: 6px;
+}
+
+.noticeItem .eng20R,
+.noticeItem .text20R {
+    display: inline-block;
+}
+
+.noticeItem .eng20R::before {
+    content: '';
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    background: url(../image/coin.png) no-repeat center;
+    background-size: cover;
+    margin-right: 16px;
+}
+
+.noticeItem .actionR p.text20R {
+    margin: 0 0 0 40px;
+}
+
+.noticeItem .actionR p.text20R,
+.noticeItem .actionR button {
+    margin: 0 0 0 40px;
+}
+
+
+/* 取消訂單 */
+
+.cancel.noticeItem {
+    border: 1px solid var(--dRed);
+    border-left: 10px solid var(--dRed);
+}
+
+.cancel.noticeItem h2 {
+    color: var(--dRed);
+}
+
+
+/* 已讀訊息 */
+
+.read.noticeItem {
+    border: 1px solid rgb(221, 221, 221, 0.4);
+}
+
+.read .content,
+.read .photo,
+.read img,
+.read .actionR p {
+    opacity: 0.4;
+}
+
+.read.noticeItem.cancel {
+    border: 1px solid rgb(216, 84, 79, 0.4)
+}
+
+
+/* more功能 */
+
+#moreMenu {
+    left: -90px !important;
+    top: 8px !important;
+}
+
+.dropdown-menu a {
+    line-height: 40px;
+}
+
+.dropdown-menu {
+    z-index: 1000;
+    border: none;
+    border-radius: 20px;
+    box-shadow: 0px 1px 3px #00000029;
+    left: -90px;
+}
+
+.dropdown-menu::before {
+    z-index: 1001;
+    width: 24px;
+    height: 16px;
+    top: -12px;
+    content: '';
+    background: white;
+    display: block;
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+    position: absolute;
+    right: 24px;
+}
+
+.dropdown-item:hover,
+.dropdown-item:focus {
+    color: white;
+    background-color: var(--dYellow);
+}
