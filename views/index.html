@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../public/stylesheets/bootstrap.min.css">
+    <script src="../public/javascript/jquery-3.5.1.min.js"></script>
+    <script src="../public/javascript/popper.min.js"></script>
+    <script src="../public/javascript//bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../public/stylesheets/style.css">
+    <link rel="stylesheet" href="../public/stylesheets/fontello.css">
+    <link rel="stylesheet" href="../public/stylesheets/sider.css">
+    <style>
+      
+        nav {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+            background-color: #FFFFFF;
+            height: 80px;
+            z-index: 999;
+        }
+        
+        .navItem {
+            line-height: 80px;
+            vertical-align: center;
+        }
+
+        .dBanner {
+            margin-top: 80px;
+            height: 416px;
+            background-image: url("../public/image/Banner.png");
+        }
+
+
+        .bannerText {
+            font-size: 2rem;
+            font-weight: 700;
+            line-height: 416px;
+            color: var(--dWhite);
+        }
+
+
+
+        .text28Padding {
+            padding-top: 20px;
+            padding-bottom: 20px;
+        }
+
+        .card {
+            border-top: none;
+            border-left: none;
+            border-right: none;
+        }
+
+        .dBannerM {
+            height: 406px;
+            background-image: url("../public/image/BannerM.png");
+        }
+
+        .bannerTextM {
+            line-height: 406px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--dWhite);
+        }
+
+        .footer {
+            margin-top: 260px;
+            height: 87px;
+            background-color: var(--dYellow);
+            line-height: 87px;
+            font-size: 16px;
+        }
+        .footer a {
+            color: var(--dWhite);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <!-- Navbar -->
+        <nav class="mContainer">
+            <div class="row navItem">
+                <div class="col-2">
+                    <a class="" href="#">
+                        <img src="../public/image/logo.png" width="106" height="32" class="d-inline-block align-middle" alt=""
+                            loading="lazy">
+                    </a>
+                </div>
+                <div class="col-2">
+                    <input type="text" class="form-control-sm" placeholder="輸入店家名稱">
+                </div>
+                <div class="col-1">
+                    <form action="">
+                        <span class="text20B">選擇送餐地址</span>
+                    </form>
+                </div>
+                <div class="col-2">
+                    <select class="form-control form-control-sm mt-4">
+                        <option>縣市</option>
+                    </select>
+                </div>
+                <div class="col-2">
+                    <select class="form-control form-control-sm mt-4">
+                        <option>區</option>
+                    </select>
+                </div>
+                <div class="col-2">
+                    <button class="btn dbtn btnY">尋找食物</button>
+                </div>
+                <div class="col-1">
+                    <a class="float-left text20B mr-3" href="#">登入</a>
+                    <span style="color:#ECA72A " class="float-left text20B mr-3"> | </span>
+                    <a class="float-left text20B " href="#">註冊</a>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Banner -->
+        <div class="dBanner">
+            <div class="bannerImage">
+                <div class="container">
+                    <p class="bannerText text-center">決「訂」您的每一餐
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section1 -->
+        <div class="mContainer givePadding">
+            <h3 class="text28B text28Padding">
+                最熱門店家
+                <div class="lrBtn float-right ml-2">&gt;</div>
+                <div class="lrBtn float-right">&lt;</div>
+            </h3>
+            <div class="row">
+                <div class="col-4 pr-3">
+                    <div class="card" style="width:  100%">
+                        <img src="../public/image/card1.png" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <span class="card-text text24B">麥當勞 五權西店</span>
+                            <span class="card-text text24B float-right">4.8</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4 pr-3">
+                    <div class="card" style="width: 100%">
+                        <img src="../public/image/card1.png" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <span class="card-text text24B">麥當勞 五權西店</span>
+                            <span class="card-text text24B float-right">4.8</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="card" style="width: 100%">
+                        <img src="../public/image/card1.png" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <span class="card-text text24B">麥當勞 五權西店</span>
+                            <span class="card-text text24B float-right">4.8</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Section2 -->
+        <div class="mContainer givePadding">
+            <h3 class="text28B text28Padding">
+                最新店家
+                <div class="lrBtn float-right ml-2">&gt;</div>
+                <div class="lrBtn float-right">&lt;</div>
+            </h3>
+            <div class="row">
+                <div class="col-4 pr-3">
+                    <div class="card" style="width:  100%">
+                        <img src="../public/image/card2.png" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <span class="card-text text24B">麥當勞 五權西店</span>
+                            <span class="card-text text24B float-right">4.8</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4 pr-3">
+                    <div class="card" style="width: 100%">
+                        <img src="../public/image/card2.png" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <span class="card-text text24B">麥當勞 五權西店</span>
+                            <span class="card-text text24B float-right">4.8</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="card" style="width: 100%">
+                        <img src="../public/image/card2.png" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <span class="card-text text24B">麥當勞 五權西店</span>
+                            <span class="card-text text24B float-right">4.8</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- JumbrotronM -->
+        <div class="mContainer givePadding">
+            <div class="dBannerM">
+                <div class="bannerImage">
+                    <div class="container">
+                        <p class="bannerTextM text-center text24B">決「訂」您的每一餐
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section3 -->
+        <div class="mContainer givePadding">
+            <h3 class="text28B text28Padding">
+                推薦店家
+                <div class="lrBtn float-right ml-2">&gt;</div>
+                <div class="lrBtn float-right">&lt;</div>
+            </h3>
+            <div class="row">
+                <div class="col-4 pr-3">
+                    <div class="card" style="width:  100%">
+                        <img src="../public/image/card3.png" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <span class="card-text text24B">麥當勞 五權西店</span>
+                            <span class="card-text text24B float-right">4.8</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4 pr-3">
+                    <div class="card" style="width: 100%">
+                        <img src="../public/image/card3.png" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <span class="card-text text24B">麥當勞 五權西店</span>
+                            <span class="card-text text24B float-right">4.8</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="card" style="width: 100%">
+                        <img src="../public/image/card3.png" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <span class="card-text text24B">麥當勞 五權西店</span>
+                            <span class="card-text text24B float-right">4.8</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- footer -->
+        <footer class="footer">
+            <div class="mContainer">
+                <ul>
+                    <li class="float-left mr-2"><a href="">關於訂訂</a></li>
+                    <li class="float-left mr-2"><a href="">取得協助</a></li>
+                    <li class="float-left mr-2"><a href="">閱讀常見問答</a></li>
+                    <li class="float-right"><a href="">© DingDingFood 2020</a></li>
+                </ul>
+            </div>
+
+        </footer>
+    </div>
+
+
+</body>
+
+</html>

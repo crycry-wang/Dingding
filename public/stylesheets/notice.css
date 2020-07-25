@@ -198,6 +198,75 @@
 
 /* 處理訂單詳情 */
 
-.letfContent {
-    width: 50%;
+.leftContent {
+    padding-right: 24px;
+    border-right: 2px solid var(--dYellow);
+}
+
+.rightContent {
+    padding-left: 24px;
+}
+
+.leftContent dt,
+.leftContent dd,
+.orderItem p,
+.totle p {
+    display: inline-block;
+}
+
+.leftContent dt {
+    width: 140px;
+    margin-right: 60px;
+}
+
+.leftContent dd {
+    width: 380px;
+    margin-bottom: 24px;
+}
+
+.leftContent dd:last-of-type {
+    margin-top: 36px;
+}
+
+.orderItem {
+    width: 100%;
+    background: var(--dLightGray);
+    padding: 2px;
+    margin-bottom: 8px;
+}
+
+.orderItem img {
+    width: 80px;
+    height: 80px;
+}
+
+.orderItem .text20B {
+    width: 240px;
+    margin-left: 16px;
+    letter-spacing: 4px;
+}
+
+.orderItem .price::before,
+.totle .price::before {
+    content: '';
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    background: url(../image/coin.png) no-repeat center;
+    background-size: cover;
+    vertical-align: middle;
+    margin-right: 16px;
+}
+
+.orderItem .price {
+    vertical-align: middle;
+    width: 140px;
+    margin-left: 16px;
+}
+
+.modal-bottom {
+    margin-top: 40px;
+    margin-bottom: 40px;
+    padding-left: 60px;
+    padding-right: 60px;
 }
