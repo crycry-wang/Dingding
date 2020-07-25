@@ -27,15 +27,15 @@
         --moreLightGray: #DDDDDD;
     }
     
+    ul {
+        padding-left: 0;
+    }
+    
     * {
         box-sizing: border-box;
         font-family: 'Alata', 'Noto Sans TC' !important;
         /* font-family: , sans-serif !important; */
         /* Regular 是400，Bold是700 */
-    }
-    
-    ul {
-        padding-left: 0;
     }
     /* 字型 */
     
@@ -405,12 +405,12 @@
     /* 收藏 */
     
     .heart {
+        color: var(--dWhite);
+        font-size: 30px;
         position: absolute;
         bottom: 24px;
         right: 16px;
-        width: 28px;
-        height: 25px;
-        opacity: 0.8;
+        opacity: 0.4;
     }
     /* 店家名稱 */
     
@@ -486,7 +486,7 @@
         padding-top: 11px;
         padding-bottom: 11px;
         padding-left: 20px;
-        background: url("./icon/select.png")scroll transparent;
+        background: url("../image/select.png")scroll transparent;
         background-position: right 20px top 50%;
         background-repeat: no-repeat;
     }
