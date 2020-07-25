@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 body {
     background: var(--dLightGray);
 }
@@ -72,8 +72,8 @@ ul {
 
 .member {
     margin-top: 200px;
-=======
-body {
+    
+body{
     background: var(--dLightGray);
 }
 
@@ -116,7 +116,14 @@ body {
 
 .menu .act {
     color: white;
-    background-color: var(--dYellow);
+    background-color: var(--ddYellow);
+    border-radius: 40px;
+}
+
+.menu a {
+    text-align: left;
+    width: 280px;
+     background-color: var(--dYellow);
     border-radius: 40px;
 }
 
@@ -192,4 +199,3 @@ ul {
     margin-left: auto;
 >>>>>>> 02c32151cc09e2ba2a2ce5e3d131ebc4a82f45e7
 >>>>>>> crycry
-}
