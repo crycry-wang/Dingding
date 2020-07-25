@@ -105,10 +105,6 @@
         margin-left: auto;
     }
     /* 內容區塊間隔 */
-
-    .topBtnPadding{
-        padding-top: 60px;
-    }
     
     .givePadding {
         padding-top: 40px;
@@ -209,9 +205,14 @@
         border: none;
         /* line-height: 1rem; */
     }
-    /* 灰底白字按鈕 */
-    
-    .btnG {
+    /* 灰底白字按鈕，hover變黃色 */
+    .btnGY {
+        color: var(--dBlack);
+        background-color: #DDDDDD;
+        margin-right: 16px;
+    }
+    /* 灰底白字按鈕，hover變藍色 */
+    .btnGB {
         color: var(--dBlack);
         background-color: #DDDDDD;
         margin-right: 16px;
@@ -260,6 +261,13 @@
         line-height: 32px;
         font-weight: 800;
     }
+
+    /* 上排按鈕與上距離 */
+    .topBtnPadding{
+        padding-top: 60px;
+    }
+
+
     /* 按鈕hover特效 */
     
     .btnY:hover,
@@ -284,10 +292,15 @@
         transition-duration: 0.5s;
     }
     
-    .btnG:hover {
+    .btnGY:hover {
         color: var(--dWhite);
         background-color: var(--dYellow);
     }
+    .btnGB:hover {
+        color: var(--dWhite);
+        background-color: var(--dBlue);
+    }
+
     /* focus狀態 */
     
     button,
