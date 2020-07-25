@@ -55,6 +55,9 @@
             padding-bottom: 15px;
             line-height: 0px;
             box-shadow: 0px 3px 6px #00000029;
+            /* display: none; */
+            position: absolute;
+            z-index: 1;
         }
 
         [id *="taichung"] {
@@ -68,55 +71,123 @@
             border-top-left-radius: 24px;
             border-bottom-left-radius: 24px;
             background-color: var(--dLightGray);
+            padding-top: 10px;
+            padding-bottom: 10px;
+            padding-right: 15px;
+            text-align: right;
+            /* position: absolute; */
+
         }
-        .contrySelect{
-            
+
+        .contrySelect {
+            width: 40px;
+            height: 48px;
+            border: 1px solid #C9C9C9;
+            /* background-color: var(--dWhite); */
+            background: url("../public/image/select.png")scroll transparent;
+            background-position: left 15px top 50%;
+            background-repeat: no-repeat;
+            /* position: absolute; */
+            position: relative;
+            top: -48px;
+            left: 131px;
+            border-top-right-radius: 24px;
+            border-bottom-right-radius: 24px;
         }
     </style>
 </head>
 
 <body>
     <div style="background-color: #FFFFFF; height: 600px; padding: 50px;">
-        <div>
-            <div class="contry">台中市</div>
-            <div class="contrySelect"></div>
-        </div>
+        <div style="position: relative;display: inline-block; margin-right: 16px; margin-bottom: 24px;">
+            <div class="contry" style="margin-right: 16px; margin-bottom: 24px;">
+                <input type="checkbox">
+                <label class=" text20R">台中市</label>
+                <div class="contrySelect"></div>
+            </div>
 
-        <div class="dblock row areaBlock">
-            <div class="col" style="padding-left: 0px;">
-                <div class="area">
-                    <input type="checkbox" id="taichung01" style="margin-right: 13px;">
-                    <label for="taichung01" class="text20R areaMargin">北屯區</label>
+            <div class="dblock row areaBlock" style="display: none;">
+                <div class="col" style="padding-left: 0px;">
+                    <div class="area">
+                        <input type="checkbox" id="taichung01">
+                        <label for="taichung01" class="text20R">北屯區</label>
+                    </div>
+                    <div class="area">
+                        <input type="checkbox" id="taichung02">
+                        <label for="taichung02" class="text20R">北區</label>
+                    </div>
+                    <div class="area">
+                        <input type="checkbox" id="taichung03">
+                        <label for="taichung03" class="text20R">西區</label>
+                    </div>
+                    <div class="area">
+                        <input type="checkbox" id="taichung04">
+                        <label for="taichung04" class="text20R">南屯區</label>
+                    </div>
                 </div>
-                <div class="area">
-                    <input type="checkbox" id="taichung02">
-                    <label for="taichung02" class="text20R">北區</label>
-                </div>
-                <div class="area">
-                    <input type="checkbox" id="taichung03">
-                    <label for="taichung03" class="text20R">西區</label>
-                </div>
-                <div class="area">
-                    <input type="checkbox" id="taichung04">
-                    <label for="taichung04" class="text20R">南屯區</label>
+                <div class="col" style="padding-left: 0px;">
+                    <div class="area">
+                        <input type="checkbox" id="taichung05">
+                        <label for="taichung05" class="text20R areaMargin">大坑區</label>
+                    </div>
+                    <div class="area">
+                        <input type="checkbox" id="taichung06">
+                        <label for="taichung06" class="text20R">中區</label>
+                    </div>
+                    <div class="area">
+                        <input type="checkbox" id="taichung07">
+                        <label for="taichung07" class="text20R">西屯區</label>
+                    </div>
+                    <div class="area">
+                        <input type="checkbox" id="taichung08">
+                        <label for="taichung08" class="text20R">大雅區</label>
+                    </div>
                 </div>
             </div>
-            <div class="col" style="padding-left: 0px;">
-                <div class="area">
-                    <input type="checkbox" id="taichung05">
-                    <label for="taichung05" class="text20R areaMargin">大坑區</label>
+        </div>
+        <div style="position: relative;display: inline-block; margin-right: 16px; margin-bottom: 24px;">
+            <div class="contry">
+                <input type="checkbox">
+                <label class=" text20R">苗栗縣</label>
+                <div class="contrySelect"></div>
+            </div>
+
+            <div class="dblock row areaBlock">
+                <div class="col" style="padding-left: 0px;">
+                    <div class="area">
+                        <input type="checkbox" id="taichung01">
+                        <label for="taichung01" class="text20R">北屯區</label>
+                    </div>
+                    <div class="area">
+                        <input type="checkbox" id="taichung02">
+                        <label for="taichung02" class="text20R">北區</label>
+                    </div>
+                    <div class="area">
+                        <input type="checkbox" id="taichung03">
+                        <label for="taichung03" class="text20R">西區</label>
+                    </div>
+                    <div class="area">
+                        <input type="checkbox" id="taichung04">
+                        <label for="taichung04" class="text20R">南屯區</label>
+                    </div>
                 </div>
-                <div class="area">
-                    <input type="checkbox" id="taichung06">
-                    <label for="taichung06" class="text20R">中區</label>
-                </div>
-                <div class="area">
-                    <input type="checkbox" id="taichung07">
-                    <label for="taichung07" class="text20R">西屯區</label>
-                </div>
-                <div class="area">
-                    <input type="checkbox" id="taichung08">
-                    <label for="taichung08" class="text20R">大雅區</label>
+                <div class="col" style="padding-left: 0px;">
+                    <div class="area">
+                        <input type="checkbox" id="taichung05">
+                        <label for="taichung05" class="text20R areaMargin">大坑區</label>
+                    </div>
+                    <div class="area">
+                        <input type="checkbox" id="taichung06">
+                        <label for="taichung06" class="text20R">中區</label>
+                    </div>
+                    <div class="area">
+                        <input type="checkbox" id="taichung07">
+                        <label for="taichung07" class="text20R">西屯區</label>
+                    </div>
+                    <div class="area">
+                        <input type="checkbox" id="taichung08">
+                        <label for="taichung08" class="text20R">大雅區</label>
+                    </div>
                 </div>
             </div>
         </div>
