@@ -103,7 +103,7 @@
                                 <td class="action d-flex align-items-center">
                                     <!-- <p>完成</p> -->
                                     <!-- <p class="Rcolor">取消</p> -->
-                                    <button class="text20R dbtn btnB">完備</button>
+                                    <button class="text20R dbtn btnB" data-toggle="modal" data-target="#readyOrder">完備</button>
                                     <button class="text20R dbtn btnW ml-auto" data-toggle="modal" data-target="#order">查看訂單</button>
                                 </td>
                             </tr>
@@ -130,7 +130,7 @@
                                 <td class="action d-flex align-items-center">
                                     <!-- <p>完成</p> -->
                                     <p class="Rcolor">取消</p>
-                                    <!-- <button class="text20R dbtn btnB">完備</button> -->
+                                    <!-- <button class="text20R dbtn btnB" data-toggle="modal" data-target="#readyOrder">完備</button> -->
                                     <button class="text20R dbtn btnW ml-auto" data-toggle="modal" data-target="#order">查看訂單</button>
                                 </td>
                             </tr>
@@ -157,7 +157,7 @@
                                 <td class="action d-flex align-items-center">
                                     <p>完成</p>
                                     <!-- <p class="Rcolor">取消</p> -->
-                                    <!-- <button class="text20R dbtn btnB">完備</button> -->
+                                    <!-- <button class="text20R dbtn btnB" data-toggle="modal" data-target="#readyOrder">完備</button> -->
                                     <button class="text20R dbtn btnW ml-auto" data-toggle="modal" data-target="#order">查看訂單</button>
                                 </td>
                             </tr>
@@ -165,9 +165,6 @@
                         </tbody>
                     </table>
                 </div>
-                <button type="button" class="btnY dbtn" data-toggle="modal" data-target="#comfirm2BtnW1340">
-                    選擇型彈跳框(2按鈕型)
-                </button>
 
             </div>
         </div>
@@ -234,9 +231,9 @@
     </div>
 
 
-    <!-- 選擇型彈跳框(2按鈕型) -->
+    <!-- 完備彈框 -->
 
-    <div class="modal fade xl2Btn" id="comfirm2BtnW1340">
+    <div class="modal fade xl2Btn" id="readyOrder">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
@@ -245,9 +242,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <i class=" icon-close"></i>
                 </button>
-
-
-                <div class="modal-body text24R">
+                <div class="modal-body text24R mb-m">
                     <div class="row">
                         <div class="col-md-12">
                             <table class="table">
@@ -296,14 +291,14 @@
                             </table>
                         </div>
                     </div>
-
-                    <div class="modal-footer">
-                        <button class="text20R dbtn btnW" data-dismiss="modal">尚未完成</button>
-                        <button class="text20R dbtn btnY ml-3">確認完備</button>
-                    </div>
+                </div>
+                <div class="modal-footer ">
+                    <button class="text20R dbtn btnW" data-dismiss="modal">尚未完成</button>
+                    <button class="text20R dbtn btnY ml-3">確認完備</button>
                 </div>
             </div>
         </div>
+    </div>
 
 
 

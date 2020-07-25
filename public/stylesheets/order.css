@@ -96,3 +96,7 @@ td:last-child {
 .Rcolor {
     color: var(--dRed);
 }
+
+.table {
+    margin-bottom: 0;
+}
