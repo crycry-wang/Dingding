@@ -1,4 +1,4 @@
-    /* 瀏覽器縮放 */
+/* 瀏覽器縮放 */
     /* body {
         transform: scale(0.67);
         transform-origin: 0.0;
@@ -23,6 +23,12 @@
         --ddBlue: #83BEC2;
         --ddRed: #C53F3B;
         --dBlack: #373A3C;
+        /* 淡灰色用於垃圾桶、外框 */
+        --moreLightGray: #DDDDDD;
+    }
+    
+    ul {
+        padding-left: 0;
     }
     
     * {
@@ -586,9 +592,8 @@
     
     .modal-body {
         padding-top: 0px;
-        margin-bottom: 64px;
-        margin-top: 21px;
-        ;
+        margin-bottom: 60px;
+        margin-top: 20px;
         padding-bottom: 0;
     }
     
@@ -606,9 +611,40 @@
         right: 24px;
         top: 24px;
     }
+    /* width-800 1000 1340  */
+    
+    .xl2Btn .modal-header,
+    .xl2Btn .modal-footer,
+    .xl2Btn .modal-body {
+        padding-left: 60px;
+        padding-right: 60px;
+    }
+    
+    .xl2Btn .modal-header {
+        padding-top: 56px;
+    }
+    
+    .xl2Btn .modal-footer {
+        padding-bottom: 60px;
+    }
+    
+    .xl2Btn .modal-body,
+    .l2Btn .modal-body,
+    .m2Btn .modal-body {
+        margin-top: 40px;
+    }
+    
+    .l2Btn .modal-footer,
+    .l2Btn .modal-body,
+    .m2Btn .modal-footer,
+    .m2Btn .modal-body {
+        padding-right: 60px;
+    }
     /* 彈框尺寸 */
     
-    .sm2Btn .modal-dialog {
+    .sm2Btn .modal-dialog,
+    .sm1Btn .modal-dialog,
+    .inputS .modal-dialog {
         max-width: 536px;
         margin-top: 270px;
     }
@@ -631,28 +667,32 @@
     /* 輸入型彈框尺寸  */
     
     .modal-continer {
-        padding-left: 68px;
-        padding-right: 68px;
+        padding-left: 60px;
+        padding-right: 60px;
         margin-top: 40px;
     }
     
-    #inputL .singleText398 {
+    .inputL .singleText398,
+    .inputS .singleText398 {
         display: block;
         width: 100%;
+    }
+    
+    .inputL .singleText398 {
         margin-bottom: 40px;
     }
     
-    #inputS .modal-continer {
+    .inputS .modal-continer {
         margin-top: 24px;
         margin-bottom: 40px;
     }
     
-    #inputL .modal-dialog {
+    .inputL .modal-dialog {
         margin-top: 0;
     }
     /* 確認型彈跳框 */
     
-    #comfirmBtn .modal-header {
+    .sm1Btn .modal-header {
         padding-top: 56px;
         padding-bottom: 40px;
     }
@@ -675,7 +715,6 @@ select{
     background-repeat: no-repeat;
     
 }
-
 option::-ms-expand{ display: none; }
 option{
     -moz-appearance:none; 
