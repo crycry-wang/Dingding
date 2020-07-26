@@ -1,0 +1,217 @@
+.mTH {
+    background-color: var(--dYellow);
+    padding: 8px 32px;
+    border-right: solid 4px var(--dWhite);
+}
+
+.vTH{
+    background-color: var(--dBlue);
+}
+
+.mTR {
+    margin-top: 4px;
+    border: 1px solid var(--moreLightGray);
+    border-radius: 10px;
+}
+
+.mTD {
+    padding: 11px 32px;
+}
+
+.textB {
+    color: var(--dBlue);
+}
+
+.textG {
+    color: var(--moreLightGray);
+}
+
+.textY {
+    color: var(--dYellow);
+}
+
+.textR {
+    color: var(--dRed);
+}
+
+.textW{
+    color:var(--dWhite);
+}
+
+.topBtnGroup {
+    padding-left: 32px;
+}
+
+.imgBorder {
+    border-right: 18px solid var(--dWhite);
+}
+
+.voteItem {
+    padding: 16px 24px;
+    width: 100%;
+    border-radius: 20px;
+    background-color: var(--dLightGray);
+}
+
+.itemImg{
+    height: 80px;
+    width: 80px;
+}
+
+.voteItemNo {
+    line-height: 84px;
+}
+
+.voteItemSelected {
+    border: 1px solid var(--dBlue);
+    background-color: rgba(151, 210, 214, .3);
+}
+
+.clipCircle {
+    clip-path: circle(50% at 50% 50%);
+}
+
+.progress {
+    height: 1.25rem;
+    font-size: 0.75rem;
+    background-color: var(--moreLightGray);
+    border-radius: 0.5rem;
+}
+
+.progress-bar {
+    text-align: center;
+    white-space: nowrap;
+    background-color: var(--dBlue);
+    transition: width 0.6s ease;
+    border-radius: 0.5rem;
+}
+
+.progressSelected {
+    background-color: var(--dWhite);
+}
+
+.progress-barSelected {
+    background-color: var(--dBlue);
+}
+
+
+/* order */
+
+.orderListimg{
+    height: 28px;
+    width: 28px;
+}
+
+.orderSection{
+    background-color: #F2F2F2;
+    margin-right: -40px;
+    margin-left:-40px ;
+}
+
+.orderSectionInner{
+    margin-right:40px;
+    margin-left:40px ;
+    padding:17px 0 13px 40px;
+    line-height: 40px;
+}
+
+.orderSectionImg{
+    height: 40px;
+    width: 40px;
+}
+
+.orderSectionMTD {
+    padding: 11px 0 11px 32px;
+}
+
+.price::before{
+    content: '';
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    background: url(../image/coin.png) no-repeat center;
+    background-size: cover;
+    vertical-align: middle;
+    margin-right: 16px;
+}
+
+.orderProductItem{
+    background-color: var(--dLightGray);
+    border-right: solid 18px var(--dWhite);
+}
+
+.orderProductItemInner{
+    line-height: 80px;
+}
+
+
+/* .icon-plus::before{
+    float: left;
+    text-align: center;
+    padding: 9px 6px;
+    color: var(--dWhite);
+}
+
+.icon-plus::after{
+    margin-top: 26px;
+    content: '';
+    display: block;
+    width: 32px;
+    height: 32px;
+    border-radius: 100%;
+    background-color: var(--dYellow);
+}
+
+.icon-minus::before{
+    float: left;
+    text-align: center;
+    padding: 9px 6px;
+    color: var(--dDeepGray);
+}
+
+.icon-minus::after{
+    margin-top: 26px;
+    content: '';
+    display:block;
+    width: 32px;
+    height: 32px;
+    border-radius: 100%;
+    background-color: var(--moreLightGray);
+} */
+
+
+.minusBg{
+    position: relative;
+    width: 32px;
+    height: 32px;
+    border-radius: 100%;
+    background-color: var(--moreLightGray);
+}
+.plusBg{
+    position: relative;
+    width: 32px;
+    height: 32px;
+    border-radius: 100%;
+    background-color: var(--dYellow);
+}
+/* .minusBg::before{
+    content: '\e804';
+    width: 32px;
+    height: 32px;
+    color: var(--dDeepGray);
+} */
+
+.icon-minus{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    color: var(--dDeepGray);
+}
+.icon-plus{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    color:var(--dWhite);
+}
