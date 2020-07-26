@@ -139,14 +139,109 @@ td:last-child {
 
 /* 垃圾桶 */
 
-.list .icon-trash {
+.icon-trash {
     font-size: 30px;
     color: var(--moreLightGray);
     margin-left: 20px;
 }
 
-.list .icon-trash:hover {
+.icon-trash:hover {
     font-size: 30px;
     color: var(--dBlack);
     cursor: pointer;
+}
+
+
+/* 新增產品 */
+
+ul {
+    margin-bottom: 0;
+}
+
+.upload,
+.mealInfo img {
+    width: 220px;
+    height: 220px;
+    border-radius: 20px;
+}
+
+.mealInfo img {
+    border: 1px solid #C9C9C9;
+}
+
+.upload {
+    background: #F8F8F8;
+    text-align: center;
+    vertical-align: middle;
+    display: table-cell;
+}
+
+#product .modal-body,
+#typeManager .modal-body,
+#recommend .modal-body {
+    padding-left: 60px;
+}
+
+.btnLG {
+    border: 1px solid #C9C9C9;
+    background-color: #ffffff;
+}
+
+.inputInfo {
+    margin-left: 90px;
+}
+
+.inputInfo .text24B {
+    margin-right: 40px;
+}
+
+.inputInfo .singleText398,
+.inputInfo .ddselect {
+    width: 410px;
+}
+
+.inputInfo li+li {
+    margin-top: 40px;
+}
+
+.mealInfo {
+    margin-bottom: 40px;
+}
+
+.multiText398 {
+    width: 100%;
+}
+
+
+/* 類別管理介面 */
+
+.typrItem {
+    margin-bottom: 40px;
+}
+
+.typrItem .singleText398 {
+    width: 100%;
+    margin-right: 40px;
+}
+
+.typeInfo button {
+    margin-bottom: 20px;
+}
+
+
+/* 推薦產品介面 */
+
+#recommend .fst::after,
+#recommend .snd::after,
+#recommend .trd::after {
+    top: calc(50% - 6px);
+    left: calc(50% - 4px);
+}
+
+#recommend .fst {
+    margin-right: 40px;
+}
+
+.recommendItem+.recommendItem {
+    margin-top: 40px;
 }
