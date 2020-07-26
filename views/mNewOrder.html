@@ -14,8 +14,10 @@
     <link rel="stylesheet" href="../public/stylesheets/sider.css">
     <link rel="stylesheet" href="../public/stylesheets/member.css">
 
-
     <title>Document</title>
+    <style>
+
+    </style>
 
 
 </head>
@@ -47,32 +49,58 @@
             <div class="topBtnGroup topBtnPadding">
                 <button class="text20R dbtn btnGY">訂訂行事曆</button>
                 <button class="text20R dbtn btnGY">我的團體</button>
-                <button class="text20R dbtn btnGY">我的訂單</button>
-                <button class="text20R dbtn btnGB btnB">我的投票</button>
+                <button class="text20R dbtn btnGY btnY">我的訂單</button>
+                <button class="text20R dbtn btnGB">我的投票</button>
             </div>
             <div class="dblock givePadding mt-m">
                 <div class="clearfix">
                     <button class="text20R dbtn btnG"><i class="icon-left-open mr-2"></i>返回</button>
-                    <button class="text20R dbtn btnB float-right">建立投票</button>
+                    <button class="text20R dbtn btnY float-right">建立訂單</button>
                 </div>
-                <div class="mt-l">
-                    <div class="row mb-s mTD">
+                <div class="mt-l ml-4">
+                    <div class="row mb-s">
+                        <div class="col-2 mTD">
+                            <span class="text20B">選擇團體</span>
+                        </div>
+                        <div class="dSelect" style="width: 500px;">
+                            <div class="dSelectText text20R">選擇團體</div>
+                        </div>
+                    </div>
+                    <div class="row mb-s">
+                        <div class="col-2 mTD">
+                            <span class="text20B">餐點送達時間</span>
+                        </div>
+                        <div class="dSelect" style="width: 500px;">
+                            <div class="dSelectText text20R">選擇日期時間</div>
+                        </div>
+                    </div>
+                    <div class="row mb-s">
+                        <div class="col-2 mTD">
+                            <span class="text20B">點餐截止時間</span>
+                        </div>
+                        <div class="dSelect" style="width: 500px;">
+                            <div class="dSelectText text20R">選擇日期時間</div>
+                        </div>
+                    </div>                    
+                    <div class="row mb-m mTD">
                         <div class="dSelect" style="width: 500px;">
                             <input type="text" class="text20RG singleText398" placeholder="請輸入店家名稱">
                         </div>
-                        <button class="text20R dbtn btnB ml-3">搜尋店家</button>
+                        <button class="text20R dbtn btnY ml-3">搜尋店家</button>
+                        <button class="text20R dbtn btnY ml-3">店家拉霸機</button>
                     </div>
                     <div class="mTD">
-                        <a href="#" class="text20R text-decoration-none pr-3 textY">已選取</a><span class="textG">|</span>
-                        <a href="#" class="text20R text-decoration-none pr-3 pl-3">推薦</a><span class="textG">|</span>
-                        <a href="#" class="text20R text-decoration-none pr-3 pl-3">收藏</a>
+                        <a href="#" class="text20R text-decoration-none pr-3 textB">推薦</a><span class="textG">|</span>
+                        <a href="#" class="text20R text-decoration-none pr-3 pl-3">收藏</a><span class="textG">|</span>
+                        <a href="#" class="text20R text-decoration-none pr-3 pl-3">重新下訂</a><span class="textG">|</span>
+                        <a href="#" class="text20R text-decoration-none pr-3 pl-3">最近的投票</a>
                     </div>
                 </div>
             </div>
             <div class="dblock mt-1">
                 <div class="mTD row">
                     <div class="col-4 imgBorder">
-                        <div class="imgCard ">
+                        <div class="imgCard">
                             <div class="dingImgDiv">
                                 <img class="dingImg" src="../public/image/card1.png" alt="">
                                 <div class="middle"></div>

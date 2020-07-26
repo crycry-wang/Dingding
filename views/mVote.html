@@ -12,11 +12,15 @@
     <link rel="stylesheet" href="../public/stylesheets/style.css">
     <link rel="stylesheet" href="../public/stylesheets/fontello.css">
     <link rel="stylesheet" href="../public/stylesheets/sider.css">
-    <link rel="stylesheet" href="../public/stylesheets/vote.css">
+    <link rel="stylesheet" href="../public/stylesheets/member.css">
 
 
     <title>Document</title>
-
+    <style>
+        .dTag::after {
+            background-color: var(--dBlue);
+        }
+    </style>
 
 </head>
 
@@ -47,7 +51,7 @@
             <div class="topBtnGroup topBtnPadding">
                 <button class="text20R dbtn btnGY">訂訂行事曆</button>
                 <button class="text20R dbtn btnGY">我的團體</button>
-                <button class="text20R dbtn btnGY">我的訂單團體</button>
+                <button class="text20R dbtn btnGY">我的訂單</button>
                 <button class="text20R dbtn btnGB btnB">我的投票</button>
             </div>
             <div class="dblock givePadding mt-m">
@@ -55,7 +59,7 @@
                     <button class="text20R dbtn btnG"><i class="icon-left-open mr-2"></i>返回</button>
                 </div>
                 <div class="mt-l">
-                    <div class="row mb-s vTD">
+                    <div class="row mb-s mTD">
                         <div class="col-2">
                             <span class="text20B">投票標題</span>
                         </div>
@@ -69,7 +73,7 @@
                             <span class="text20B ">2020/06/03 18:00</span>
                         </div>
                     </div>
-                    <div class="row mb-s vTD">
+                    <div class="row mb-s mTD">
                         <div class="col-2">
                             <span class="text20B">團名名稱</span>
                         </div>
@@ -83,7 +87,7 @@
                             <span class="text20B textR">2020/06/02 12:00</span>
                         </div>
                     </div>
-                    <div class="row mb-s vTD">
+                    <div class="row mb-s mTD">
                         <div class="col-2">
                             <span class="text20B">票數選項</span>
                         </div>
@@ -91,7 +95,7 @@
                             <span class="text20B">一人多票</span>
                         </div>
                     </div>
-                    <div class="vTD givePadding">
+                    <div class="mTD givePadding">
                         <div class="row">
                             <div class="col-6 imgBorder mb-xs">
                                 <div class="voteItem voteItemSelected">
@@ -101,7 +105,7 @@
                                         </div>
                                         <div class="col-2">
                                             <img src="../public/image/store/Taichung/太初麵食/太初蕃茄牛肉麵.jpeg" alt=""
-                                                class="clipCircle">
+                                                class="itemImg clipCircle">
                                         </div>
                                         <div class="col-9 pl-3">
                                             <p class="text20B mb-3 mt-1">麥當勞五權西店麥當勞五</p>
@@ -130,7 +134,7 @@
                                         </div>
                                         <div class="col-2">
                                             <img src="../public/image/store/Taichung/太初麵食/太初蕃茄牛肉麵.jpeg" alt=""
-                                                class="clipCircle">
+                                                class="itemImg clipCircle">
                                         </div>
                                         <div class="col-9 pl-3">
                                             <p class="text20B mb-3 mt-1">麥當勞五權西店麥當勞五</p>
@@ -158,16 +162,15 @@
                                         </div>
                                         <div class="col-2">
                                             <img src="../public/image/store/Taichung/太初麵食/太初蕃茄牛肉麵.jpeg" alt=""
-                                                class="clipCircle">
+                                                class="itemImg clipCircle">
                                         </div>
                                         <div class="col-9 pl-3">
                                             <p class="text20B mb-3 mt-1">麥當勞五權西店麥當勞五</p>
                                             <div class="row">
                                                 <div class="col-8">
                                                     <div class="progress">
-                                                        <div class="progress-bar"
-                                                            role="progressbar" style="width: 50%" aria-valuenow="25"
-                                                            aria-valuemin="0" aria-valuemax="100">
+                                                        <div class="progress-bar" role="progressbar" style="width: 50%"
+                                                            aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -187,7 +190,7 @@
                                         </div>
                                         <div class="col-2">
                                             <img src="../public/image/store/Taichung/太初麵食/太初蕃茄牛肉麵.jpeg" alt=""
-                                                class="clipCircle">
+                                                class="itemImg clipCircle">
                                         </div>
                                         <div class="col-9 pl-3">
                                             <p class="text20B mb-3 mt-1">麥當勞五權西店麥當勞五</p>
@@ -215,7 +218,7 @@
                                         </div>
                                         <div class="col-2">
                                             <img src="../public/image/store/Taichung/太初麵食/太初蕃茄牛肉麵.jpeg" alt=""
-                                                class="clipCircle">
+                                                class="itemImg clipCircle">
                                         </div>
                                         <div class="col-9 pl-3">
                                             <p class="text20B mb-3 mt-1">麥當勞五權西店麥當勞五</p>
@@ -243,7 +246,7 @@
                                         </div>
                                         <div class="col-2">
                                             <img src="../public/image/store/Taichung/太初麵食/太初蕃茄牛肉麵.jpeg" alt=""
-                                                class="clipCircle">
+                                                class="itemImg clipCircle">
                                         </div>
                                         <div class="col-9 pl-3">
                                             <p class="text20B mb-3 mt-1">麥當勞五權西店麥當勞五</p>
@@ -272,7 +275,7 @@
                                         </div>
                                         <div class="col-2">
                                             <img src="../public/image/store/Taichung/太初麵食/太初蕃茄牛肉麵.jpeg" alt=""
-                                                class="clipCircle">
+                                                class="itemImg clipCircle">
                                         </div>
                                         <div class="col-9 pl-3">
                                             <p class="text20B mb-3 mt-1">麥當勞五權西店麥當勞五</p>
@@ -301,7 +304,7 @@
                                         </div>
                                         <div class="col-2">
                                             <img src="../public/image/store/Taichung/太初麵食/太初蕃茄牛肉麵.jpeg" alt=""
-                                                class="clipCircle">
+                                                class="itemImg clipCircle">
                                         </div>
                                         <div class="col-9 pl-3">
                                             <p class="text20B mb-3 mt-1">麥當勞五權西店麥當勞五</p>
