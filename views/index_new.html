@@ -103,7 +103,8 @@
             color: var(--dWhite);
         }
 
-        .icon-spoon {
+        /* 店家卡小湯匙 */
+        .dingImgDiv>.icon-spoon {
             float: right;
             color: var(--dYellow);
             font-size: 24px;
@@ -122,37 +123,179 @@
             color: var(--dWhite);
         }
 
+        /* 登入/註冊用的彈框圓角 */
         .modal-content-index {
             border-radius: 8px;
             border: 0;
         }
 
-        .modelImgDiv {
+        /* 登入彈框左側照片 */
+        .modelImgDivLogin {
             /* display: inline-block; */
             width: 398px;
             height: 750px;
             background-color: var(--dYellow);
             float: left;
+            border-bottom-left-radius: 8px;
+            border-top-left-radius: 8px;
         }
-        .orBoder::after{
+
+        /* 註冊彈框左側照片 */
+        .modelImgDivRegistered {
+            width: 398px;
+            height: 977px;
+            background-color: var(--dYellow);
+            float: left;
+            border-bottom-left-radius: 8px;
+            border-top-left-radius: 8px;
+        }
+
+        /* 登入or後面的線 */
+        .orBoder::after {
             content: '';
             display: block;
             background-color: #ECEEEF;
             height: 1px;
             width: 177px;
             margin-top: -13px;
-            margin-left: 45px;
+            margin-left: 35px;
         }
-        .lrImg{
+
+        /* 登入or前面的線 */
+        .orBoder::before {
+            content: '';
+            display: block;
+            background-color: #ECEEEF;
+            height: 1px;
+            width: 177px;
+            margin-bottom: -16px;
+            margin-left: -190px;
+        }
+
+        /* 左右照片設定 */
+        .lrImg {
             width: 32px;
-            height: 32px; 
+            height: 32px;
             position: absolute;
             top: 0px;
             opacity: 0.5;
         }
-        .lrImg:hover{
+
+        /* 左右hover */
+        .lrImg:hover {
             opacity: 1;
             transition-duration: 0.7s;
+        }
+
+        /* fb快速登入 */
+        .fb {
+            width: 202px;
+            height: 44px;
+            border: 1px solid #DDDDDD;
+            border-radius: 30px;
+            display: inline-block;
+            margin-right: 20px;
+            background-image: url(../public/image/facebook.png);
+            background-repeat: no-repeat;
+            background-size: 24px;
+            background-position: 16px 10px;
+            text-align: right;
+            padding-top: 9px;
+            font-size: 18px;
+            padding-right: 20px;
+            letter-spacing: 1.2px;
+
+        }
+
+        /* google登入 */
+        .google {
+            width: 176px;
+            height: 44px;
+            border: 1px solid #DDDDDD;
+            border-radius: 30px;
+            display: inline-block;
+            /* margin-right: 20px; */
+            background-image: url(../public/image/google.png);
+            background-repeat: no-repeat;
+            background-size: 24px;
+            background-position: 16px 10px;
+            text-align: right;
+            padding-top: 9px;
+            font-size: 18px;
+            padding-right: 20px;
+            letter-spacing: 1.2px;
+        }
+
+        .storeModelImg {
+            width: 1440px;
+            height: 350px;
+            background-image: url(../public/image/store/Taichung/太初麵食/index.jpeg);
+            background-repeat: no-repeat;
+            background-size: 1440px auto;
+            background-size: cover;
+            display: block;
+            background-position: 50% 50%;
+            /* overflow: hidden; */
+            position: fixed;
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+            z-index: 999;
+        }
+
+        .storeModelImg>img {
+            width: 1440px;
+            height: auto;
+
+        }
+
+        .storeModelImgContent {
+            background-color: var(--dWhite);
+            width: 543px;
+            height: 190px;
+            margin-top: 62px;
+            padding-top: 40px;
+            padding-left: 46px;
+        }
+
+        .storeModelImgContent>.icon-spoon,
+        .storeModelImgContent>.icon-borderspoon {
+            font-size: 24px;
+            color: var(--dYellow);
+            margin-left: -6px;
+            margin-right: -6px;
+        }
+
+        .storeModelImgContentBottom {
+            width: 543px;
+            padding-left: 42px;
+            margin-top: 27px;
+        }
+
+        /* 店家彈框內的愛心icon */
+        .storeModelImgContentBottom>.icon-heart {
+            color: var(--dWhite);
+            opacity: 0.6;
+            font-size: 30px;
+        }
+
+        /* 愛心icon hover +透明度調高 */
+        .icon-heart:hover {
+            opacity: 0.8;
+        }
+
+        .icon-close {
+            color: var(--dWhite);
+        }
+
+        li {
+            font-size: 1rem;
+            color: #777777;
+            margin-bottom: 17px;
+        }
+
+        li:hover {
+            color: var(--dYellow);
+            transition-duration: 0.5s;
         }
     </style>
 </head>
@@ -187,9 +330,9 @@
                 <div class="d-inline-block" style="margin-right: 280px;">
                     <button class=" dbtn btnY d-inline-block" style="font-size: 16px;line-height: 30px;">尋找食物</button>
                 </div>
-                <a class="text20B mr16" data-toggle="modal" data-target="#inputXL">登入</a>
+                <a class="text20B mr16" data-toggle="modal" data-target="#inputXLLogin">登入</a>
                 <span class="text20B mr16" style="color: var(--dYellow);">|</span>
-                <a class="text20B">註冊</a>
+                <a class="text20B" data-toggle="modal" data-target="#inputXLregistered">註冊</a>
             </div>
         </nav>
 
@@ -207,14 +350,15 @@
         <!-- 熱門店家 -->
         <div class="givePadding mContainerContent">
             <span class="text28B" style="position: relative;">熱門店家
-                <img class="lrImg" style="left: 1579px;" src="../public/image/right.png" alt=""/>
-                <img class="lrImg" style="left: 1539px;" src="../public/image/left.png" alt=""/>
-                
-                
+                <img class="lrImg" style="left: 1579px;" src="../public/image/right.png" alt="" />
+                <img class="lrImg" style="left: 1539px;" src="../public/image/left.png" alt="" />
+
+
             </span><br>
-            <div class="imgCard d-inline-block" style="margin-top: 23px;margin-right: 20px;">
+            <div class="imgCard d-inline-block" style="margin-top: 23px;margin-right: 20px;" data-toggle="modal"
+                data-target="#storeModel">
                 <div class="dingImgDiv">
-                    <img class="dingImg" src="../public/image/store/Taichung/蛋白盒子健康餐_復興店/index.jpeg" alt="">
+                    <img class="dingImg" src="../public/image/store/Taichung/太初麵食/index.jpeg" alt="">
                     <div class="middle"></div>
                     <i class="heart icon-heart"></i><i class="icon-spoon"></i>
                 </div>
@@ -244,8 +388,8 @@
         <!-- 最新店家 -->
         <div class="givePadding mContainerContent">
             <span class="text28B" style="position: relative;">最新店家
-                <img class="lrImg" style="left: 1579px;" src="../public/image/right.png" alt=""/>
-                <img class="lrImg" style="left: 1539px;" src="../public/image/left.png" alt=""/>
+                <img class="lrImg" style="left: 1579px;" src="../public/image/right.png" alt="" />
+                <img class="lrImg" style="left: 1539px;" src="../public/image/left.png" alt="" />
             </span><br>
             <div class="imgCard d-inline-block" style="margin-top: 23px;margin-right: 20px;">
                 <div class="dingImgDiv">
@@ -291,8 +435,8 @@
         <!-- 推薦店家 -->
         <div class="givePadding mContainerContent">
             <span class="text28B" style="position: relative;">推薦店家
-                <img class="lrImg" style="left: 1579px;" src="../public/image/right.png" alt=""/>
-                <img class="lrImg" style="left: 1539px;" src="../public/image/left.png" alt=""/>
+                <img class="lrImg" style="left: 1579px;" src="../public/image/right.png" alt="" />
+                <img class="lrImg" style="left: 1539px;" src="../public/image/left.png" alt="" />
             </span><br>
             <div class="imgCard d-inline-block" style="margin-top: 23px;margin-right: 20px;">
                 <div class="dingImgDiv">
@@ -335,11 +479,11 @@
 
         </footer>
 
-        <div class="modal fade inputXL" id="inputXL">
+        <div class="modal fade inputXL" id="inputXLLogin">
             <div class="modal-dialog modal-dialog-centered">
 
                 <div class="modal-content modal-content-index">
-                    <div class="modelImgDiv">
+                    <div class="modelImgDivLogin">
                         <img src="../public/image/loginImg.png" style="width: 398px;height: auto;" alt="">
                     </div>
                     <div style="width: 690px;position: absolute; right: 0;">
@@ -363,17 +507,247 @@
                             <button class="text20R dbtn btn398 " style="margin-bottom: 24px;">登入</button>
                             <div style="padding-left: 48px;margin-bottom: 80px;">
                                 <span style="font-size: 16px; margin-right: 16px;">還沒用過訂訂嗎 ? </span>
-                                <a href="" class="text16R" >點此註冊</a>/ 
+                                <a href="" class="text16R">點此註冊</a>/
                                 <a href="" class="text16R">忘記密碼</a>
                             </div>
-                            <div style="padding-left: 189px;">
+                            <div style="padding-left: 189px;margin-bottom: 20px;">
                                 <span class="eng20R orBoder" style="color: var(--dDeepGray);">or</span>
+                            </div>
+                            <div>
+                                <div class="fb">
+                                    Facebook登入
+                                </div>
+                                <div class="google">
+                                    Google登入
+                                </div>
                             </div>
                         </div>
                         <div class="modal-footer">
                         </div>
                     </div>
 
+                </div>
+            </div>
+        </div>
+
+        <!-- 註冊 -->
+        <div class="modal fade inputXL" id="inputXLregistered">
+            <div class="modal-dialog modal-dialog-centered">
+
+                <div class="modal-content modal-content-index">
+                    <div class="modelImgDivRegistered">
+                        <img src="../public/image/registered.png" style="width: 398px;height: auto;" alt="">
+                    </div>
+                    <div style="width: 690px;position: absolute; right: 0;">
+                        <div class="modal-header-index">
+                            <div class="dTag act text24RG" style="display: inline-block;">一般用戶註冊</div>
+                            <div class="dTag text24RG" style="display: inline-block;">企業用戶註冊</div>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <i class=" icon-close"></i>
+                            </button>
+                        </div>
+                        <div class="modal-continer-index">
+                            <p class="text20B mb-2">
+                                暱稱
+                            </p>
+                            <input type="text" class="text20RG singleText398 " placeholder="請輸入暱稱">
+                            <p class="text20B mb-2">
+                                帳號
+                            </p>
+                            <input type="text" class="text20RG singleText398 " placeholder="請輸入電子信箱">
+                            <p class="text20B mb-2">
+                                密碼
+                            </p>
+                            <input type="text" class="text20RG singleText398 " placeholder="請輸入密碼">
+                            <p class="text20B mb-2">
+                                手機
+                            </p>
+                            <input type="text" class="text20RG singleText398 " placeholder="請輸入手機號碼">
+
+                            <button class="text20R dbtn btn398 " style="margin-bottom: 24px;">登入</button>
+                            <div style="padding-left: 48px;margin-bottom: 80px;">
+                                <span style="font-size: 16px; margin-right: 16px;">已經有帳號了嗎 ? </span>
+                                <a href="" class="text16R">點此切換登入頁面</a>
+                            </div>
+                            <div style="padding-left: 189px;margin-bottom: 20px;">
+                                <span class="eng20R orBoder" style="color: var(--dDeepGray);">or</span>
+                            </div>
+                            <div>
+                                <div class="fb">
+                                    Facebook登入
+                                </div>
+                                <div class="google">
+                                    Google登入
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- 店家彈框 -->
+        <div class="modal fade storeModel" id="storeModel">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="storeModelImg align-middle">
+                        <div class="storeModelImgContent">
+                            <span class="text28B mr16">太初麵食</span>
+                            <span class="eng24R mr16">4.8</span>
+                            <i class="icon-spoon"></i>
+                            <i class="icon-spoon"></i>
+                            <i class="icon-spoon"></i>
+                            <i class="icon-spoon"></i>
+                            <i class="icon-borderspoon"></i>
+                            <br>
+                            <span class="text20RG" style="margin-top: 8px;">訂單完成率 87% </span>
+                            <br>
+                            <span class="text20R" style="margin-top: 8px;">台中市南屯區公益路二段51號</span>
+                        </div>
+                        <div class="storeModelImgContentBottom">
+                            <i class="icon-heart"></i>
+                            <button class="dbtn dbtnG text20R" style="float: right;">快速安排訂單</button>
+                        </div>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <i class=" icon-close"></i>
+                        </button>
+                    </div>
+                    <div class="modal-header" style="margin-top: 310px;position: fixed;z-index: 999;">
+                        <ul style="width: 100px;margin-right: 40px;margin-top: 40px;">
+                            <li class="storeContent" href="#title01">店家推薦</li>
+                            <li class="storeContent" href="#title02">人氣餐點</li>
+                            <li class="storeContent">套餐</li>
+                            <li class="storeContent">單點</li>
+                            <li class="storeContent">飲品</li>
+                        </ul>
+                        <div style="background-color: var(--dWhite);width: 1240px;height: 86px;padding-top: 40px;">
+                            <span class="dTag text24RG act">美味餐點</span>
+                            <span class="dTag text24RG">詳細資訊</span>
+                            <span class="dTag text24RG">店家評價</span>
+                        </div>
+
+                    </div>
+
+                    <div style="margin-top: 493px;margin-left: 180px;">
+                        <div class="text28B" style="margin-bottom: 27px;" id="title01" name="title01">店家推薦</div>
+                        <div class="meals">
+                            <div class="mealsCard">
+                                <span class="text20B mealsName">無骨鹽酥雞</span>
+                                <div class="mealsDetail">新鮮直送，鮮嫩多汁</div>
+                                <div class="mealsPrice">
+                                    <img src="../public/image/coin.png" alt="">
+                                    <span class="text20RG">60</span>
+                                </div>
+                                <div class="mealsCardDiv">
+                                    <img src="../public/image/store/Taichung/太初麵食/傳香滷肉飯套餐.jpeg" alt="">
+                                </div>
+                            </div>
+                            <div class="mealsCard">
+                                <span class="text20B mealsName">無骨鹽酥雞</span>
+                                <div class="mealsDetail">新鮮直送，鮮嫩多汁</div>
+                                <div class="mealsPrice">
+                                    <img src="../public/image/coin.png" alt="">
+                                    <span class="text20RG">60</span>
+                                </div>
+                                <div class="mealsCardDiv">
+                                    <img src="../public/image/store/Taichung/太初麵食/傳香滷肉飯套餐.jpeg" alt="">
+                                </div>
+                            </div>
+                            <div class="mealsCard">
+                                <span class="text20B mealsName">無骨鹽酥雞</span>
+                                <div class="mealsDetail">新鮮直送，鮮嫩多汁</div>
+                                <div class="mealsPrice">
+                                    <img src="../public/image/coin.png" alt="">
+                                    <span class="text20RG">60</span>
+                                </div>
+                                <div class="mealsCardDiv">
+                                    <img src="../public/image/store/Taichung/太初麵食/傳香滷肉飯套餐.jpeg" alt="">
+                                </div>
+                            </div>
+                            <div class="mealsCard">
+                                <span class="text20B mealsName">無骨鹽酥雞</span>
+                                <div class="mealsDetail">新鮮直送，鮮嫩多汁</div>
+                                <div class="mealsPrice">
+                                    <img src="../public/image/coin.png" alt="">
+                                    <span class="text20RG">60</span>
+                                </div>
+                                <div class="mealsCardDiv">
+                                    <img src="../public/image/store/Taichung/太初麵食/傳香滷肉飯套餐.jpeg" alt="">
+                                </div>
+                            </div>
+                            <div class="mealsCard">
+                                <span class="text20B mealsName">無骨鹽酥雞</span>
+                                <div class="mealsDetail">新鮮直送，鮮嫩多汁</div>
+                                <div class="mealsPrice">
+                                    <img src="../public/image/coin.png" alt="">
+                                    <span class="text20RG">60</span>
+                                </div>
+                                <div class="mealsCardDiv">
+                                    <img src="../public/image/store/Taichung/太初麵食/傳香滷肉飯套餐.jpeg" alt="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text28B" style="margin-bottom: 27px;" id="title02" name="title02">人氣餐點</div>
+                        <div class="meals">
+                            <div class="mealsCard">
+                                <span class="text20B mealsName">無骨鹽酥雞</span>
+                                <div class="mealsDetail">新鮮直送，鮮嫩多汁</div>
+                                <div class="mealsPrice">
+                                    <img src="../public/image/coin.png" alt="">
+                                    <span class="text20RG">60</span>
+                                </div>
+                                <div class="mealsCardDiv">
+                                    <img src="../public/image/store/Taichung/太初麵食/傳香滷肉飯套餐.jpeg" alt="">
+                                </div>
+                            </div>
+                            <div class="mealsCard">
+                                <span class="text20B mealsName">無骨鹽酥雞</span>
+                                <div class="mealsDetail">新鮮直送，鮮嫩多汁</div>
+                                <div class="mealsPrice">
+                                    <img src="../public/image/coin.png" alt="">
+                                    <span class="text20RG">60</span>
+                                </div>
+                                <div class="mealsCardDiv">
+                                    <img src="../public/image/store/Taichung/太初麵食/傳香滷肉飯套餐.jpeg" alt="">
+                                </div>
+                            </div>
+                            <div class="mealsCard">
+                                <span class="text20B mealsName">無骨鹽酥雞</span>
+                                <div class="mealsDetail">新鮮直送，鮮嫩多汁</div>
+                                <div class="mealsPrice">
+                                    <img src="../public/image/coin.png" alt="">
+                                    <span class="text20RG">60</span>
+                                </div>
+                                <div class="mealsCardDiv">
+                                    <img src="../public/image/store/Taichung/太初麵食/傳香滷肉飯套餐.jpeg" alt="">
+                                </div>
+                            </div>
+                            <div class="mealsCard">
+                                <span class="text20B mealsName">無骨鹽酥雞</span>
+                                <div class="mealsDetail">新鮮直送，鮮嫩多汁</div>
+                                <div class="mealsPrice">
+                                    <img src="../public/image/coin.png" alt="">
+                                    <span class="text20RG">60</span>
+                                </div>
+                                <div class="mealsCardDiv">
+                                    <img src="../public/image/store/Taichung/太初麵食/傳香滷肉飯套餐.jpeg" alt="">
+                                </div>
+                            </div>
+                            <div class="mealsCard">
+                                <span class="text20B mealsName">無骨鹽酥雞</span>
+                                <div class="mealsDetail">新鮮直送，鮮嫩多汁</div>
+                                <div class="mealsPrice">
+                                    <img src="../public/image/coin.png" alt="">
+                                    <span class="text20RG">60</span>
+                                </div>
+                                <div class="mealsCardDiv">
+                                    <img src="../public/image/store/Taichung/太初麵食/傳香滷肉飯套餐.jpeg" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
