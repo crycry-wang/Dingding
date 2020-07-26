@@ -10,7 +10,8 @@
     <script src="../public/javascript/popper.min.js"></script>
     <script src="../public/javascript//bootstrap.min.js"></script>
     <link rel="stylesheet" href="../public/stylesheets/style.css">
-    <link rel="stylesheet" href="../public/stylesheets/fontello.css">
+    <!-- <link rel="stylesheet" href="../public/stylesheets/fontello.css"> -->
+    <link rel="" href="../fontello-0726/css/fontello.css">
     <link rel="stylesheet" href="../public/stylesheets/sider.css">
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
@@ -18,6 +19,7 @@
 
     <!-- test -->
     <style>
+        /* 店家資訊區塊設定 */
         .information {
             width: 856px;
             height: 858px;
@@ -25,36 +27,97 @@
             margin-right: 46px;
             /* margin-bottom: 80px; */
             display: inline-block;
-            padding-right: 108px;
+            /* padding-right: 108px; */
             padding-left: 74px;
+            padding-top: 143px;
         }
 
+        /* 側欄配送地區區塊設定 */
         .delivery {
             display: inline-block;
             width: 398px;
             height: 856px;
             margin-top: 40px;
-            float: right;
+            /* float: right; */
+            /* margin-left: 46px; */
+            position: absolute;
         }
 
+        /* 右上三顆按鈕設定 */
         .rightbtn {
             margin-top: 60px;
             position: relative;
             padding-left: 902px;
         }
 
+        /* 三顆按鈕的 margin */
         .rightbtn>.btn {
             margin-right: 20px;
         }
 
+        /* 裝店家資訊的袋子 */
         .storeTitleDiv {
-            margin-bottom: 60px;
-            padding-top: 32px;
+            margin-bottom: 40px;
+        }
+
+        /* 標題文字與輸入框距離 */
+        .storeTitle {
+            margin-right: 52px;
+        }
+
+        /* 店家照片圓圈 */
+        .circle {
+            width: 150px;
+            height: 150px;
+            /* background: #0cc; */
+            /* outline: 16px solid var(--dWhite); */
+            outline-offset: 0px;
+            -webkit-clip-path: circle(50% at 50% 50%);
+            margin: 4.5% auto auto auto;
+            
+
+
 
         }
 
-        .storeTitle {
-            margin-right: 52px;
+        .circleDiv {
+            width: 166px;
+            height: 166px;
+            background-color: var(--dWhite);
+            border-radius: 200px;
+            position: absolute;
+            top: 103px;
+            left: 518px;
+            text-align : center;
+        }
+
+        /* 圓圈裡的照片尺寸 */
+        .circle>img {
+            width: auto;
+            height: 150px;
+            
+        }
+
+        /* 店家資訊文字輸入框 */
+        .aboutTextarea {
+            width: 536px;
+            height: 120px;
+            position: absolute;
+            border-radius: 24px;
+        }
+
+        /* 加號設定 */
+        .newIcon {
+            font-size: 12px;
+            position: relative;
+            bottom: 4px;
+            margin-left: 15px;
+        }
+        .noteTextarea{
+            border-radius: 24px;
+            width: 317px;
+            height: 149px;
+            margin-top: 16px;
         }
     </style>
 
@@ -71,12 +134,12 @@
         <p class="name text24B">尊品原汁牛肉麵</p>
         <div class="menu text24R">
 
-            <a href="" class="act"><i class="icon-order"></i>訂單管理</a>
+            <a href=""><i class="icon-order" style="font-size: 30px;"></i>訂單管理</a>
             <a href=""><i class="icon-menu"></i>餐點清單</a>
-            <a href=""><i class="icon-statistics"></i>營運統計</a>
-            <a href=""><i class="icon-evaluation"></i>店家評價</a>
-            <a href=""><i class="icon-message"></i>通知</a>
-            <a href=""><i class="icon-about"></i>店家資訊</a>
+            <a href=""><i class="icon-statistics" style="font-size: 30px;"></i>營運統計</a>
+            <a href=""><i class="icon-evaluation" style="font-size: 30px;"></i>店家評價</a>
+            <a href=""><i class="icon-message" style="font-size: 30px;"></i>通知</a>
+            <a href="" class="act"><i class="icon-about"></i>店家資訊</a>
             <a href="" id="signOut"><i class="icon-logout"></i>登出</a>
         </div>
     </div>
@@ -88,64 +151,80 @@
             <button class="text20R dbtn btnW" style="margin-right: 5px;">取消</button>
             <button class="text20R dbtn btnY">儲存</button>
         </div>
+        <div class="circleDiv">
+            <div class="circle">
+                <img src="../public/image/store/Taichung/可不可熟成紅茶_台中大墩店/index.jpeg" alt="">
+            </div>
+        </div>
         <div class="dblock information">
-            <img src="" alt="">
+
             <div class=" storeTitleDiv">
                 <span class="text20B storeTitle">店家名稱</span>
-                <input type="text" class="singleText398 text20R" placeholder="請輸入店家名稱">
+                <input type="text" class="singleText398 text20R" placeholder="請輸入店家名稱" style="width: 536px;">
             </div>
             <div class=" storeTitleDiv">
                 <span class="text20B storeTitle">店家照片</span>
-                <!-- <input type="text" class="singleText398 text20R" placeholder="請輸入店家名稱"> -->
+                <span class="text20R" style="margin-right: 20px; margin-left: 20px;">封面照片.jpg</span> <button
+                    class="dbtn btnW text20R">上傳照片</button>
             </div>
             <div class=" storeTitleDiv">
                 <span class="text20B storeTitle">店家電話</span>
-                <input type="text" class="singleText398 text20R" placeholder="04-24738082">
+                <input type="text" class="singleText398 text20R" placeholder="04-24738082" style="width: 536px;">
             </div>
             <div class=" storeTitleDiv">
                 <span class="text20B storeTitle">店家地址</span>
-                <input type="text" class="singleText398 text20R" placeholder="請填入完整地址">
+                <input type="text" class="singleText398 text20R" placeholder="請填入完整地址" style="width: 536px;">
             </div>
             <div class=" storeTitleDiv">
                 <span class="text20B storeTitle">營業時間</span>
-                <input type="text" class="singleText398 text20R" placeholder="08:00-20:00">
+                <input type="text" class="singleText398 text20R" placeholder="08:00-20:00" style="width: 536px;">
             </div>
             <div class=" storeTitleDiv">
                 <span class="text20B storeTitle">固定公休</span>
-                <input type="text" class="singleText398 text20R" placeholder="週三">
+                <input type="text" class="singleText398 text20R" placeholder="週三" style="width: 536px;">
             </div>
-            <div class=" storeTitleDiv" style="vertical-align: top;">
+            <div class=" storeTitleDiv" style="vertical-align: super;">
                 <span class="text20B storeTitle">店家簡介</span>
-                <input type="text" class="multiText398 text20R" placeholder="訂單滿200即可外送!">
+                <textarea type="text" class="multiText398 text20R aboutTextarea" placeholder="手搖茶飲專賣"></textarea>
             </div>
         </div>
-        <div class="dblock delivery"></div>
+        <div class="dblock delivery">
+            <div class="mb-l">
+                <span class="text20B" style="margin-right: 50px;">配送地區</span>
+                <button class="text20R dbtn">選擇地區 <span class="icon-new newIcon"></span> </button>
+            </div>
+            <div>
+                <span class="text20B" style="margin-right: 16px;">注意事項</span><span
+                    style="font-size: 16px; color: var(--dDeepGray);">(選填)</span>
+                <textarea type="text" class="multiText398 text20R noteTextarea" placeholder="填入配送注意事項"></textarea>
+            </div>
+        </div>
     </div>
 
     <script>
-        var information = new Vue({
-            el: "#information",
-            data: {
-                title: {
-                    name: "店家名稱",
-                    photo: "店家照片",
-                    phone: "店家電話",
-                    address: "店家地址",
-                    workTime: "營業時間",
-                    restTime: "固定公休",
-                    about: "店家簡介"
-                },
-                inputText:[
-                    { nameInput:"" , placeholder:"請輸入店家名稱" },
-                    { photoInput:"" , placeholder:"請輸入店家名稱" },
-                    { addressInput:"" , placeholder:"請輸入店家名稱" },
-                    { workTimeInput:"" , placeholder:"請輸入店家名稱" },
-                    { restTimeInput:"" , placeholder:"請輸入店家名稱" },
-                    { aboutInput:"" , placeholder:"請輸入店家名稱" }
-                ]
+        // var information = new Vue({
+        //     el: "#information",
+        //     data: {
+        //         title: {
+        //             name: "店家名稱",
+        //             photo: "店家照片",
+        //             phone: "店家電話",
+        //             address: "店家地址",
+        //             workTime: "營業時間",
+        //             restTime: "固定公休",
+        //             about: "店家簡介"
+        //         },
+        //         inputText: [
+        //             { nameInput: "", placeholder: "請輸入店家名稱" },
+        //             { photoInput: "", placeholder: "請輸入店家名稱" },
+        //             { addressInput: "", placeholder: "請輸入店家名稱" },
+        //             { workTimeInput: "", placeholder: "請輸入店家名稱" },
+        //             { restTimeInput: "", placeholder: "請輸入店家名稱" },
+        //             { aboutInput: "", placeholder: "請輸入店家名稱" }
+        //         ]
 
-            }
-        })
+        //     }
+        // })
     </script>
 
 </body>
