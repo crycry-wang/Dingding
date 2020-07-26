@@ -66,6 +66,7 @@
         <div class="d-flex align-items-center">
             <img class="lrImg" src="../public/image/left.png">
             <div class="dblock mt-4 col-10">
+                <canvas id="chart" width="800" height="400"></canvas>
             </div>
             <img class="lrImg" src="../public/image/right.png">
         </div>
@@ -91,8 +92,78 @@
 
     </div>
 
+    <script src="../public/javascript/Chart.min.js"></script>
+    <script>
+        Chart.defaults.global.defaultFontColor = '#373A3C';
+        Chart.defaults.global.defaultFontSize = 20;
+        Chart.defaults.global.defaultFontFamily = ['Alata',
+            'Noto Sans TC'
+        ];
+
+        var ctx = document.getElementById('chart').getContext('2d');
 
 
+
+        // bar
+        var chart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ["全選", "套餐", "漢堡", "飲品"],
+                datasets: [{
+                    label: '訂單量',
+                    data: [500, 200, 245, 105],
+                    backgroundColor: [
+
+                        'rgba(236, 167, 42, 0.7)'
+
+                        // ,'rgba(54, 162, 235, 0.7)',
+                        // 'rgba(255, 206, 86, 0.7)',
+                        // 'rgba(75, 192, 192, 0.7)',
+                        // 'rgba(153, 102, 255, 0.7)',
+                        // 'rgba(255, 159, 64, 0.7)'
+
+                    ],
+                    borderColor: [
+                        'rgba(236, 167, 42,1)'
+                        // ,'rgba(54, 162, 235, 1)',
+                        // 'rgba(255, 206, 86, 1)',
+                        // 'rgba(75, 192, 192, 1)',
+                        // 'rgba(153, 102, 255, 1)',
+                        // 'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1,
+                    maxBarThickness: 2
+
+
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            fontSize: 16,
+                            maxTicksLimit: 8,
+
+                        }
+
+                    }],
+                    xAxes: [{
+                        gridLines: {
+                            display: false,
+                            color: "black"
+                        },
+
+                        maxBarThickness: 80
+
+
+                    }]
+                }
+            }
+
+
+
+        });
+    </script>
 </body>
 
 </html>

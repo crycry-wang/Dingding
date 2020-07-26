@@ -21,7 +21,7 @@
     /* 取消的紅色 */
     --dRed: #D9534F;
     /* 按鈕hover */
-    --ddYellow: #D89316;
+    --ddYellow: #d89316;
     --ddBlue: #83BEC2;
     --ddRed: #C53F3B;
     --dBlack: #373A3C;
@@ -82,8 +82,9 @@ ul,
 li {
     list-style: none;
 }
-a{
-    text-decoration:none !important;
+
+a {
+    text-decoration: none !important;
 }
 
 [class*="col-"] {
@@ -115,7 +116,8 @@ a{
     margin-right: auto;
     margin-left: auto;
 }
-.mContainerContent{
+
+.mContainerContent {
     width: 100%;
     padding-right: 156px;
     padding-left: 156px;
@@ -224,13 +226,14 @@ a{
     letter-spacing: 2px;
 }
 
-.text16R{
+.text16R {
     font-size: 1rem;
     font-weight: 400;
     color: var(--dBlack);
     letter-spacing: 1.28px;
 }
-.text16R:hover{
+
+.text16R:hover {
     color: var(--dYellow);
 }
 
@@ -603,7 +606,10 @@ textarea {
 
 
 /* 自製下拉選單，長度記得另外設定 */
+
+
 /* 展開時將dOptionDivOff改為dOptionDivOn，dSelect改為dSelectClick */
+
 
 /* 下拉選單平常樣式(四個圓角) */
 
@@ -616,7 +622,10 @@ textarea {
 
 
 /* 下拉選單展開樣式(左下佑下圓角消除) */
+
+
 /* 展開時dSelect改為dSelectClick */
+
 .dSelectClick {
     height: 48px;
     color: var(--dBlack);
@@ -674,10 +683,12 @@ textarea {
 
 
 /* 下拉選單展開時設定 */
+
+
 /* 展開時將dOptionDivOff改為dOptionDivOn */
+
 .dOptionDivOn {
     position: absolute;
-    
 }
 
 
@@ -747,7 +758,8 @@ textarea {
     padding-left: 40px;
     padding-right: 40px;
 }
-.modal-header-index{
+
+.modal-header-index {
     padding-top: 80px;
     padding-left: 155px;
     /* padding-right: 195px; */
@@ -821,7 +833,8 @@ textarea {
     max-width: 536px;
     margin-top: 270px;
 }
-.inputXL .modal-dialog{
+
+.inputXL .modal-dialog {
     max-width: 1088px;
 }
 
@@ -849,12 +862,12 @@ textarea {
     padding-right: 60px;
     margin-top: 40px;
 }
-.modal-continer-index{
+
+.modal-continer-index {
     margin-top: 95px;
     padding-left: 138px;
     padding-right: 138px;
 }
-
 
 .inputL .singleText398,
 .inputS .singleText398 {
@@ -865,6 +878,7 @@ textarea {
 .inputL .singleText398 {
     margin-bottom: 40px;
 }
+
 .inputXL .singleText398 {
     margin-bottom: 30px;
 }
