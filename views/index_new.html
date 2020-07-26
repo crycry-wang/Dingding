@@ -87,6 +87,7 @@
             padding-left: 9px;
 
         }
+
         .dBannerM {
             height: 406px;
             width: 1609px;
@@ -94,18 +95,21 @@
             background-repeat: no-repeat;
             background-size: cover;
         }
+
         .bannerTextM {
             line-height: 406px;
             font-size: 1.5rem;
             font-weight: 700;
             color: var(--dWhite);
         }
-        .icon-spoon{
+
+        .icon-spoon {
             float: right;
             color: var(--dYellow);
             font-size: 24px;
             margin-top: 25px;
         }
+
         .footer {
             margin-top: 260px;
             height: 87px;
@@ -113,9 +117,41 @@
             line-height: 87px;
             font-size: 16px;
         }
-        
+
         .footer a {
             color: var(--dWhite);
+        }
+
+        .modal-content-index {
+            border-radius: 8px;
+            border: 0;
+        }
+
+        .modelImgDiv {
+            /* display: inline-block; */
+            width: 398px;
+            height: 750px;
+            background-color: var(--dYellow);
+            float: left;
+        }
+        .orBoder::after{
+            content: '';
+            display: block;
+            background-color: #ECEEEF;
+            height: 1px;
+            width: 177px;
+            margin-top: -13px;
+            margin-left: 20px;
+        }
+        .lrImg{
+            width: 32px;
+            height: 32px; 
+            position: absolute;
+            top: 0px;
+        }
+        .lrImg:hover{
+            opacity: 0.8;
+            transition-duration: 0.7s;
         }
     </style>
 </head>
@@ -150,7 +186,7 @@
                 <div class="d-inline-block" style="margin-right: 280px;">
                     <button class=" dbtn btnY d-inline-block" style="font-size: 16px;line-height: 30px;">尋找食物</button>
                 </div>
-                <a class="text20B mr16">登入</a>
+                <a class="text20B mr16" data-toggle="modal" data-target="#inputXL">登入</a>
                 <span class="text20B mr16" style="color: var(--dYellow);">|</span>
                 <a class="text20B">註冊</a>
             </div>
@@ -170,8 +206,10 @@
         <!-- 熱門店家 -->
         <div class="givePadding mContainerContent">
             <span class="text28B" style="position: relative;">熱門店家
-                <div class="lrBtn" style="position: absolute;left: 1579px;top: 0px;"><i class="icon-right-open"></i></div>
-                <div class="lrBtn"style="position: absolute;left: 1539px;top: 0px;"><i class="icon-left-open"></i></div>
+                <img class="lrImg" style="left: 1579px;" src="../public/image/right.png" alt=""/>
+                <img class="lrImg" style="left: 1539px;" src="../public/image/left.png" alt=""/>
+                
+                
             </span><br>
             <div class="imgCard d-inline-block" style="margin-top: 23px;margin-right: 20px;">
                 <div class="dingImgDiv">
@@ -205,8 +243,8 @@
         <!-- 最新店家 -->
         <div class="givePadding mContainerContent">
             <span class="text28B" style="position: relative;">最新店家
-                <div class="lrBtn" style="position: absolute;left: 1579px;top: 0px;"><i class="icon-right-open"></i></div>
-                <div class="lrBtn"style="position: absolute;left: 1539px;top: 0px;"><i class="icon-left-open"></i></div>
+                <img class="lrImg" style="left: 1579px;" src="../public/image/right.png" alt=""/>
+                <img class="lrImg" style="left: 1539px;" src="../public/image/left.png" alt=""/>
             </span><br>
             <div class="imgCard d-inline-block" style="margin-top: 23px;margin-right: 20px;">
                 <div class="dingImgDiv">
@@ -237,6 +275,7 @@
             </div>
         </div>
 
+        <!-- 優惠看板 -->
         <div class="mContainerContent givePadding">
             <div class="dBannerM">
                 <div class="bannerImage">
@@ -251,8 +290,8 @@
         <!-- 推薦店家 -->
         <div class="givePadding mContainerContent">
             <span class="text28B" style="position: relative;">推薦店家
-                <div class="lrBtn" style="position: absolute;left: 1579px;top: 0px;"><i class="icon-right-open"></i></div>
-                <div class="lrBtn"style="position: absolute;left: 1539px;top: 0px;"><i class="icon-left-open"></i></div>
+                <img class="lrImg" style="left: 1579px;" src="../public/image/right.png" alt=""/>
+                <img class="lrImg" style="left: 1539px;" src="../public/image/left.png" alt=""/>
             </span><br>
             <div class="imgCard d-inline-block" style="margin-top: 23px;margin-right: 20px;">
                 <div class="dingImgDiv">
@@ -282,8 +321,8 @@
                 <a class="eng24R score">4.8</a>
             </div>
         </div>
-         <!-- footer -->
-         <footer class="footer">
+        <!-- footer -->
+        <footer class="footer">
             <div class="mContainer">
                 <ul>
                     <li class="float-left mr-2"><a href="">關於訂訂</a></li>
@@ -294,6 +333,49 @@
             </div>
 
         </footer>
+
+        <div class="modal fade inputXL" id="inputXL">
+            <div class="modal-dialog modal-dialog-centered">
+
+                <div class="modal-content modal-content-index">
+                    <div class="modelImgDiv">
+                        <img src="../public/image/loginImg.png" style="width: 398px;height: auto;" alt="">
+                    </div>
+                    <div style="width: 690px;position: absolute; right: 0;">
+                        <div class="modal-header-index">
+                            <div class="dTag act text24RG" style="display: inline-block;">一般用戶登入</div>
+                            <div class="dTag text24RG" style="display: inline-block;">企業用戶登入</div>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <i class=" icon-close"></i>
+                            </button>
+                        </div>
+                        <div class="modal-continer-index">
+                            <p class="text20B mb-2">
+                                帳號
+                            </p>
+                            <input type="text" class="text20RG singleText398 " placeholder="請輸入舊密碼">
+                            <p class="text20B mb-2">
+                                密碼
+                            </p>
+                            <input type="text" class="text20RG singleText398 " placeholder="請輸入新密碼">
+
+                            <button class="text20R dbtn btn398 " style="margin-bottom: 24px;">登入</button>
+                            <div style="padding-left: 48px;margin-bottom: 80px;">
+                                <span style="font-size: 16px; margin-right: 16px;">還沒用過訂訂嗎 ? </span>
+                                <a href="" class="text16R" >點此註冊</a>/ 
+                                <a href="" class="text16R">忘記密碼</a>
+                            </div>
+                            <div style="padding-left: 189px;">
+                                <span class="eng20R orBoder" style="color: var(--dDeepGray);">or</span>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
     </div>
 
 </body>

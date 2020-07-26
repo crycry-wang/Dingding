@@ -59,7 +59,8 @@ ul {
 
 button:hover,
 a:hover,
-.ddselect:hover {
+.ddselect:hover,
+.lrImg:hover {
     cursor: pointer;
 }
 
@@ -80,6 +81,9 @@ ol,
 ul,
 li {
     list-style: none;
+}
+a{
+    text-decoration:none !important;
 }
 
 [class*="col-"] {
@@ -218,6 +222,16 @@ li {
     font-weight: 400;
     color: var(--dDeepGray);
     letter-spacing: 2px;
+}
+
+.text16R{
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--dBlack);
+    letter-spacing: 1.28px;
+}
+.text16R:hover{
+    color: var(--dYellow);
 }
 
 
@@ -733,6 +747,12 @@ textarea {
     padding-left: 40px;
     padding-right: 40px;
 }
+.modal-header-index{
+    padding-top: 80px;
+    padding-left: 155px;
+    /* padding-right: 195px; */
+    border: 0;
+}
 
 .modal-header {
     padding-top: 40px;
@@ -801,6 +821,9 @@ textarea {
     max-width: 536px;
     margin-top: 270px;
 }
+.inputXL .modal-dialog{
+    max-width: 1088px;
+}
 
 .m2Btn .modal-dialog {
     max-width: 800px;
@@ -826,6 +849,12 @@ textarea {
     padding-right: 60px;
     margin-top: 40px;
 }
+.modal-continer-index{
+    margin-top: 95px;
+    padding-left: 138px;
+    padding-right: 138px;
+}
+
 
 .inputL .singleText398,
 .inputS .singleText398 {
@@ -836,13 +865,17 @@ textarea {
 .inputL .singleText398 {
     margin-bottom: 40px;
 }
+.inputXL .singleText398 {
+    margin-bottom: 30px;
+}
 
 .inputS .modal-continer {
     margin-top: 24px;
     margin-bottom: 40px;
 }
 
-.inputL .modal-dialog {
+.inputL .modal-dialog,
+.inputXL .modal-dialog {
     margin-top: 0;
 }
 
