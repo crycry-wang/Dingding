@@ -1,0 +1,85 @@
+.topTag {
+    padding-top: 48px;
+    top: 0;
+    padding-left: 40px;
+}
+
+.dblock {
+    margin-bottom: 40px;
+    margin-top: 24px;
+}
+
+
+/* statList */
+
+.statList {
+    margin-top: 40px;
+    padding-left: 40px;
+}
+
+.statList h2 {
+    margin-bottom: 8px;
+}
+
+.statList li {
+    border-right: 1px solid #C9C9C9;
+    display: inline-block;
+}
+
+.statList li {
+    padding-right: 80px;
+    padding-left: 80px;
+}
+
+.statList li:first-child {
+    padding-left: 0;
+}
+
+.statList li:last-child {
+    padding-right: 0;
+    border-right: none;
+}
+
+
+/* 換上下月 */
+
+
+/* 勾選 */
+
+input[type="checkbox"] {
+    -webkit-appearance: none;
+    vertical-align: center;
+    /* margin-top: 5px; */
+    background: var(--dWhite);
+    border: #c9c9c9 solid 1px;
+    border-radius: 5px;
+    min-height: 20px;
+    min-width: 20px;
+    position: relative;
+}
+
+input[type=checkbox]:checked::after {
+    content: '';
+    top: 4px;
+    left: 4px;
+    position: absolute;
+    background: transparent;
+    border: var(--dYellow) solid 2px;
+    border-top: none;
+    border-right: none;
+    height: 6px;
+    width: 10px;
+    -moz-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}
+
+.typeCheckbox {
+    margin-top: 16px;
+}
+
+.typeCheckbox label {
+    margin-left: 12px;
+    margin-right: 24px;
+}
