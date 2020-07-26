@@ -582,7 +582,7 @@ textarea {
 
 
 /* 自製下拉選單，長度記得另外設定 */
-
+/* 展開時將dOptionDivOff改為dOptionDivOn，dSelect改為dSelectClick */
 
 /* 下拉選單平常樣式(四個圓角) */
 
@@ -595,7 +595,7 @@ textarea {
 
 
 /* 下拉選單展開樣式(左下佑下圓角消除) */
-
+/* 展開時dSelect改為dSelectClick */
 .dSelectClick {
     height: 48px;
     color: var(--dBlack);
@@ -653,9 +653,10 @@ textarea {
 
 
 /* 下拉選單展開時設定 */
-
+/* 展開時將dOptionDivOff改為dOptionDivOn */
 .dOptionDivOn {
     position: absolute;
+    
 }
 
 
