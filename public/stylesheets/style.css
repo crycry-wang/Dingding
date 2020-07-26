@@ -111,6 +111,13 @@ li {
     margin-right: auto;
     margin-left: auto;
 }
+.mContainerContent{
+    width: 100%;
+    padding-right: 156px;
+    padding-left: 156px;
+    margin-right: auto;
+    margin-left: auto;
+}
 
 
 /* 一般頁面container */
@@ -521,7 +528,7 @@ textarea {
     color: var(--dWhite);
     font-size: 30px;
     position: absolute;
-    bottom: 24px;
+    bottom: 70px;
     right: 16px;
     opacity: 0.4;
 }
