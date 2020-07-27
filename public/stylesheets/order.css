@@ -1,27 +1,3 @@
-/* 搜尋 */
-
-.form-control-sm {
-    border: none;
-    border-radius: 0 30px 30px 0;
-    width: calc(100% - 4rem);
-    padding: 0;
-}
-
-.icon-search {
-    color: var(--dDeepGray);
-    font-size: 1.25rem;
-    margin-right: 20px;
-}
-
-.inputSearch {
-    background: white;
-    padding: 0 20px;
-    width: 260px;
-    border-radius: 30px;
-    height: 40px;
-}
-
-
 /* 表頭 */
 
 .table thead tr {
@@ -73,21 +49,6 @@ td:last-child {
     border-right: 1px solid var(--moreLightGray);
 }
 
-.price {
-    vertical-align: middle;
-}
-
-.price::before {
-    content: '';
-    display: inline-block;
-    width: 24px;
-    height: 24px;
-    background: url(../image/coin.png) no-repeat center;
-    background-size: cover;
-    vertical-align: middle;
-    margin-right: 16px;
-}
-
 .action p {
     display: inline;
     padding: 0 24px;
@@ -99,4 +60,8 @@ td:last-child {
 
 .table {
     margin-bottom: 0;
+}
+
+.mr-56 {
+    margin-right: 56px;
 }

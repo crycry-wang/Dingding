@@ -983,7 +983,7 @@ textarea {
 
 /* 訂訂幣 */
 
-.price::before {
+.eng24R.price::before {
     content: '';
     display: inline-block;
     width: 24px;
@@ -992,4 +992,54 @@ textarea {
     background-size: cover;
     vertical-align: middle;
     margin-right: 4px;
+}
+
+.eng20R.price::before {
+    content: '';
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin-right: 4px;
+    background: url(../image/coin.png) no-repeat center;
+    background-size: cover;
+    vertical-align: middle;
+    margin-right: 4px;
+}
+
+
+/* 搜尋 */
+
+.form-control-sm {
+    border: none;
+    border-radius: 0 30px 30px 0;
+    width: calc(100% - 4rem);
+    padding: 0;
+}
+
+.icon-search {
+    color: var(--dDeepGray);
+    font-size: 1.25rem;
+    margin-right: 20px;
+}
+
+.inputSearch {
+    background: white;
+    padding: 0 20px;
+    width: 260px;
+    border-radius: 30px;
+    height: 40px;
+}
+
+
+/* 上下鍵 */
+
+.lrImg {
+    width: 32px;
+    height: 32px;
+    opacity: 0.5;
+}
+
+.lrImg:hover {
+    opacity: 1;
+    transition-duration: 0.7s;
 }

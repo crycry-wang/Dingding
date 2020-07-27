@@ -83,17 +83,6 @@
         margin-right: 24px;
     }
     
-    .lrImg {
-        width: 32px;
-        height: 32px;
-        opacity: 0.5;
-    }
-    
-    .lrImg:hover {
-        opacity: 1;
-        transition-duration: 0.7s;
-    }
-    
     .typeButton,
     .typeCheckbox {
         padding: 0 72px;
