@@ -473,7 +473,7 @@ textarea {
     opacity: 0;
     height: 4px;
     width: auto;
-    margin-top: 7px;
+    margin-top: 3px;
 }
 
 
@@ -648,6 +648,7 @@ textarea {
     height:23px;
     margin-top: 0px;
     margin-right: 16px;
+    vertical-align: middle;
 }
 
 
