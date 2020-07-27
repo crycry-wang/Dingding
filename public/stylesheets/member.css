@@ -47,6 +47,16 @@
 .itemImg{
     height: 80px;
     width: 80px;
+    padding: 2px 0 2px 2px;
+}
+
+.itemBorder{
+    border-right: solid 9px var(--dWhite);
+}
+
+.itemBorder:nth-child(even){
+    border-left: solid 9px var(--dWhite);
+    border-right:0;
 }
 
 .clipCircle {
@@ -87,7 +97,7 @@
 }
 
 .progress {
-    height: 1.25rem;
+    height: 0.75rem;
     font-size: 0.75rem;
     background-color: var(--moreLightGray);
     border-radius: 0.5rem;
@@ -141,41 +151,35 @@
 
 .orderProductItem{
     background-color: var(--dLightGray);
-    border-right: solid 18px var(--dWhite);
+  
 }
 
 .orderProductItemInner{
     line-height: 80px;
 }
 
-.minusBg{
-    position: relative;
-    width: 32px;
-    height: 32px;
+.countP .icon-minus::before{
+    position: absolute;
+    top: 0;
+    left: 4%;
+    width: 36px;
+    height: 36px;
     border-radius: 100%;
-    background-color: var(--moreLightGray);
-}
-.plusBg{
-    position: relative;
-    width: 32px;
-    height: 32px;
-    border-radius: 100%;
-    background-color: var(--dYellow);
+    line-height: 36px;
+    color: var(--dDeepGray);
+    background-color: var(--moreLightGray) ;
 }
 
-.icon-minus{
+.countP .icon-plus::before{
     position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%,-50%);
-    color: var(--dDeepGray);
-}
-.icon-plus{
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%,-50%);
-    color:var(--dWhite);
+    top:0;
+    right: 4%;
+    width: 36px;
+    height: 36px;
+    border-radius: 100%;
+    line-height: 36px;
+    color: var(--dWhite);
+    background-color: var(--dYellow);
 }
 
 /* member */
