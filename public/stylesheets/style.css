@@ -60,7 +60,9 @@ ul {
 button:hover,
 a:hover,
 .ddselect:hover,
-.lrImg:hover {
+.lrImg:hover,
+.icon-heart:hover,
+.storeContent:hover {
     cursor: pointer;
 }
 
@@ -474,7 +476,7 @@ textarea {
     opacity: 0;
     height: 4px;
     width: auto;
-    margin-top: 7px;
+    margin-top: 3px;
 }
 
 
@@ -591,17 +593,65 @@ textarea {
     width: auto;
     margin-top: 64px;
 }
+.meals{
+    margin-left: 23px;
+    margin-right: 148px;
+    margin-bottom: 40px;
+}
 
 .mealsCard {
     width: 344px;
-    height: 152px;
+    height: 154px;
     border: 1px solid #DDDDDD;
     position: relative;
+    display: inline-block;
+    padding: 2px;
+    margin-right: 16px;
+    margin-bottom: 32px;
+    
 }
 
 .mealsName {
-    margin-left: 16px;
-    margin-top: 11px;
+    left: 16px;
+    top: 11px;
+    position: absolute;
+}
+.mealsCard img{
+    width: auto;
+    height: 148px;
+    
+    
+}
+.mealsCardDiv{
+    height: 148px;
+    width: 148px;
+    position: absolute;
+    right: 2px;
+    top: 2px;
+    overflow: hidden;
+}
+.mealsDetail{
+    font-size: 1rem; 
+    color: #777777;
+    top: 44px;
+    left: 16px;
+    position: absolute;
+}
+.mealsPrice{
+    position: absolute;
+    top: 112px;
+    left: 16px;
+    width: 120px;
+    height: 28px;
+    display: block; 
+    
+}
+.mealsPrice>img{
+    width:auto; 
+    height:23px;
+    margin-top: 0px;
+    margin-right: 16px;
+    vertical-align: middle;
 }
 
 
@@ -849,9 +899,15 @@ textarea {
 .xl2Btn .modal-dialog {
     max-width: 1340px;
 }
+.storeModel .modal-dialog{
+    max-width: 1440px;
+}
 
 .redColor {
     color: var(--dRed);
+}
+.storeModel{
+    margin-top: 80px;
 }
 
 
@@ -889,7 +945,8 @@ textarea {
 }
 
 .inputL .modal-dialog,
-.inputXL .modal-dialog {
+.inputXL .modal-dialog,
+.storeModel .modal-dialog{
     margin-top: 0;
 }
 
