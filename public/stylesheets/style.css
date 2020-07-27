@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-:root {
-=======
 /* 瀏覽器縮放 */
 
 
@@ -11,7 +8,6 @@
      */
 
  :root {
->>>>>>> crycry
     /* 主色 */
     --dYellow: #ECA72A;
     /* 副色 */
@@ -25,12 +21,6 @@
     /* 取消的紅色 */
     --dRed: #D9534F;
     /* 按鈕hover */
-<<<<<<< HEAD
-    --ddYellow: #D89316;
-    --ddBlue: #83BEC2;
-    --ddRed: #C53F3B;
-    --dBlack: #373A3C;
-=======
     --ddYellow: #d89316;
     --ddBlue: #83BEC2;
     --ddRed: #C53F3B;
@@ -45,7 +35,6 @@ ul {
 
 .row {
     margin: 0;
->>>>>>> crycry
 }
 
 * {
@@ -70,14 +59,10 @@ ul {
 
 button:hover,
 a:hover,
-<<<<<<< HEAD
-.ddselect:hover {
-=======
 .ddselect:hover,
 .lrImg:hover,
 .icon-heart:hover,
 .storeContent:hover {
->>>>>>> crycry
     cursor: pointer;
 }
 
@@ -100,13 +85,10 @@ li {
     list-style: none;
 }
 
-<<<<<<< HEAD
-=======
 a {
     text-decoration: none !important;
 }
 
->>>>>>> crycry
 [class*="col-"] {
     padding-right: 0;
     padding-left: 0;
@@ -137,8 +119,6 @@ a {
     margin-left: auto;
 }
 
-<<<<<<< HEAD
-=======
 .mContainerContent {
     width: 100%;
     padding-right: 156px;
@@ -147,7 +127,6 @@ a {
     margin-left: auto;
 }
 
->>>>>>> crycry
 
 /* 一般頁面container */
 
@@ -249,8 +228,6 @@ a {
     letter-spacing: 2px;
 }
 
-<<<<<<< HEAD
-=======
 .text16R {
     font-size: 1rem;
     font-weight: 400;
@@ -262,7 +239,6 @@ a {
     color: var(--dYellow);
 }
 
->>>>>>> crycry
 
 /* 英數字 24px 黑色 */
 
@@ -303,11 +279,6 @@ a {
 }
 
 
-<<<<<<< HEAD
-/* 灰底白字按鈕 */
-
-.btnG {
-=======
 /* 灰底白字按鈕，hover變黃色 */
 
 .btnGY {
@@ -320,7 +291,6 @@ a {
 /* 灰底白字按鈕，hover變藍色 */
 
 .btnGB {
->>>>>>> crycry
     color: var(--dBlack);
     background-color: #DDDDDD;
     margin-right: 16px;
@@ -379,8 +349,6 @@ a {
 }
 
 
-<<<<<<< HEAD
-=======
 /* 上排按鈕與上距離 */
 
 .topBtnPadding {
@@ -388,7 +356,6 @@ a {
 }
 
 
->>>>>>> crycry
 /* 按鈕hover特效 */
 
 .btnY:hover,
@@ -413,23 +380,16 @@ a {
     transition-duration: 0.5s;
 }
 
-<<<<<<< HEAD
-.btnG:hover {
-=======
 .btnGY:hover {
->>>>>>> crycry
     color: var(--dWhite);
     background-color: var(--dYellow);
 }
 
-<<<<<<< HEAD
-=======
 .btnGB:hover {
     color: var(--dWhite);
     background-color: var(--dBlue);
 }
 
->>>>>>> crycry
 
 /* focus狀態 */
 
@@ -446,11 +406,7 @@ select:focus {
 
 /* 提示字顏色 */
 
-<<<<<<< HEAD
-::placeholder {
-=======
  ::placeholder {
->>>>>>> crycry
     color: var(--dDeepGray);
 }
 
@@ -520,11 +476,7 @@ textarea {
     opacity: 0;
     height: 4px;
     width: auto;
-<<<<<<< HEAD
-    margin-top: 7px;
-=======
     margin-top: 3px;
->>>>>>> crycry
 }
 
 
@@ -597,21 +549,12 @@ textarea {
 /* 收藏 */
 
 .heart {
-<<<<<<< HEAD
-    position: absolute;
-    bottom: 24px;
-    right: 16px;
-    width: 28px;
-    height: 25px;
-    opacity: 0.8;
-=======
     color: var(--dWhite);
     font-size: 30px;
     position: absolute;
     bottom: 74px;
     right: 16px;
     opacity: 0.4;
->>>>>>> crycry
 }
 
 
@@ -661,19 +604,6 @@ textarea {
     padding-left: 0;
     padding-right: 2px;
 }
-<<<<<<< HEAD
-
-.mealsCard {
-    width: 344px;
-    height: 152px;
-    border: 1px solid #DDDDDD;
-    position: relative;
-}
-
-.mealsName {
-    margin-left: 16px;
-    margin-top: 11px;
-=======
 .meals{
     margin-left: 23px;
     margin-right: 148px;
@@ -733,19 +663,15 @@ textarea {
     margin-top: 0px;
     margin-right: 16px;
     vertical-align: middle;
->>>>>>> crycry
 }
 
 
 /* 自製下拉選單，長度記得另外設定 */
 
 
-<<<<<<< HEAD
-=======
 /* 展開時將dOptionDivOff改為dOptionDivOn，dSelect改為dSelectClick */
 
 
->>>>>>> crycry
 /* 下拉選單平常樣式(四個圓角) */
 
 .dSelect {
@@ -758,12 +684,9 @@ textarea {
 
 /* 下拉選單展開樣式(左下佑下圓角消除) */
 
-<<<<<<< HEAD
-=======
 
 /* 展開時dSelect改為dSelectClick */
 
->>>>>>> crycry
 .dSelectClick {
     height: 48px;
     color: var(--dBlack);
@@ -779,11 +702,7 @@ textarea {
     padding-top: 11px;
     padding-bottom: 11px;
     padding-left: 20px;
-<<<<<<< HEAD
-    background: url("./icon/select.png")scroll transparent;
-=======
     background: url("../image/select.png")scroll transparent;
->>>>>>> crycry
     background-position: right 20px top 50%;
     background-repeat: no-repeat;
 }
@@ -826,12 +745,9 @@ textarea {
 
 /* 下拉選單展開時設定 */
 
-<<<<<<< HEAD
-=======
 
 /* 展開時將dOptionDivOff改為dOptionDivOn */
 
->>>>>>> crycry
 .dOptionDivOn {
     position: absolute;
 }
@@ -849,129 +765,6 @@ textarea {
 /* margin */
 
 .mt-xs {
-<<<<<<< HEAD
-    margin-top: 20px;
-}
-
-.mt-s {
-    margin-top: 24px;
-}
-
-.mt-m {
-    margin-top: 40px;
-}
-
-.mt-l {
-    margin-top: 60px;
-}
-
-.mt-xl {
-    margin-top: 80px;
-}
-
-.mb-xs {
-    margin-bottom: 20px;
-}
-
-.mb-s {
-    margin-bottom: 24px;
-}
-
-.mb-m {
-    margin-bottom: 40px;
-}
-
-.mb-l {
-    margin-bottom: 60px;
-}
-
-.mb-xl {
-    margin-bottom: 80px;
-}
-
-
-/* 內建下拉選單 */
-
-
-/* .dselect select{ 
-    height:48px;
-    border: none;
-    color: var(--dBlack);
-    background-color: var(--dLightGray);
-    border-radius: 24px;
-    padding-left: 20px;
-    padding-right: 20px;
-}
-select{
-    appearance:none;  
-   -moz-appearance:none;  
-   -webkit-appearance:none;
-    background: url("./icon/select.png")scroll transparent;
-    background-position: right 20px top 50%;
-    background-repeat: no-repeat;
-    
-}
-
-option::-ms-expand{ display: none; }
-option{
-    -moz-appearance:none; 
-    -webkit-appearance:none;
-    appearance:none;
-} */
-
-
-/* .dtable{
-    border-collapse:collapse;
-} */
-
-
-/* .dtr>th {
-    padding: 8px 32px 4px 32px;
-    background-color: var(--dYellow);
-    
-} */
-
-
-/* .thB.dtr>th{
-    background-color: var(--dBlue);
-} */
-
-
-/* .thG.dtr>th{
-    background-color: var(--dLightGray);
-    color: var(--dBlack);
-    padding: 11px 40px 11px 40px;
-} */
-
-
-/* .dtrtd{
-    border: 1px solid #DDDDDD;
-    border-radius: 10px;
-    margin-top: 4px;
-    -webkit-box-sizing: border-box;
-     -moz-box-sizing: border-box;
-          box-sizing: border-box;
-} */
-
-
-/* .dtrtd>td{
-    padding-top: 15px;
-    padding-bottom: 15px;
-    
-} */
-
-
-/* td {    
-     border-bottom: 1px solid #DDDDDD;
-     border-top: 1px solid #DDDDDD;
-     padding: 1rem;
-     border-radius: 10px;
-     border-top-left-radius:10px;
-     border-top-right-radius:10px;
-     border-bottom-left-radius:10px;
-     border-bottom-right-radius:10px;
-    } */
-=======
     margin-top: 20px !important;
 }
 
@@ -1179,4 +972,3 @@ option{
 #readyOrder .modal-footer {
     padding-bottom: 40px;
 }
->>>>>>> crycry
