@@ -2,19 +2,8 @@ body {
     background: var(--dLightGray);
 }
 
-<<<<<<< HEAD
-.containerRight {
-    width: 100%;
-    padding-right: 140px;
-    padding-left: 480px;
-    margin-right: auto;
-    margin-left: auto;
-    height: 100vh;
-}
-=======
 
 /* 左邊sider */
->>>>>>> crycry
 
 .slider {
     width: 400px;
@@ -23,22 +12,16 @@ body {
     text-align: center;
 }
 
-<<<<<<< HEAD
-=======
 
 /* LOGO */
 
->>>>>>> crycry
 .sliderLogo {
     margin-top: 60px;
 }
 
-<<<<<<< HEAD
-=======
 
 /* 照片 */
 
->>>>>>> crycry
 .sliderPhoto {
     width: 100px;
     height: 100px;
@@ -48,33 +31,23 @@ body {
     margin-top: 56px;
 }
 
-<<<<<<< HEAD
-=======
 
 /* 名子 */
 
->>>>>>> crycry
 .name {
     margin-top: 40px;
 }
 
-<<<<<<< HEAD
-=======
 
 /* menu */
 
->>>>>>> crycry
 .menu {
     margin-top: 48px;
 }
 
 .menu .act {
     color: white;
-<<<<<<< HEAD
-    background-color: var(--ddYellow);
-=======
     background-color: var(--dYellow);
->>>>>>> crycry
     border-radius: 40px;
 }
 
@@ -91,13 +64,6 @@ body {
     letter-spacing: 8px;
 }
 
-<<<<<<< HEAD
-ul {
-    padding-left: 0;
-}
-
-=======
->>>>>>> crycry
 #signOut {
     position: absolute;
     bottom: 80px;
@@ -107,8 +73,6 @@ ul {
 
 .member {
     margin-top: 200px;
-<<<<<<< HEAD
-=======
 }
 
 .menu i {
@@ -152,5 +116,4 @@ ul {
     padding-left: 480px;
     margin-right: auto;
     margin-left: auto;
->>>>>>> crycry
-}
+ß}
