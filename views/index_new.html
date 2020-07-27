@@ -119,6 +119,7 @@
         
         .footer a {
             color: var(--dWhite);
+            letter-spacing: 1.28px;
         }
         /* 登入/註冊用的彈框圓角 */
         
@@ -279,6 +280,7 @@
             opacity: 0.8;
         }
         
+<<<<<<< HEAD
         .icon-close {
             color: var(--dWhite);
         }
@@ -288,11 +290,32 @@
         }
         
         li>a {
+=======
+        .storeClose {
+            color: var(--dWhite);
+        }
+        
+        .storeUl>li {
+            margin-bottom: 17px;
+        }
+        
+        .storeUl {
+            width: 100px;
+            margin-right: 40px;
+            margin-top: 40px;
+        }
+        
+        li>.storeContent {
+>>>>>>> crycry
             font-size: 1rem;
             color: #777777;
         }
         
+<<<<<<< HEAD
         li>a:hover {
+=======
+        li>.storeContent:hover {
+>>>>>>> crycry
             color: var(--dYellow);
             transition-duration: 0.5s;
         }
@@ -541,7 +564,7 @@
             </div>
 
         </footer>
-
+        <!-- 登入 -->
         <div class="modal fade inputXL" id="inputXLLogin">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content modal-content-index">
@@ -672,11 +695,11 @@
                             <button class="dbtn dbtnG text20R" style="float: right;">快速安排訂單</button>
                         </div>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <i class=" icon-close"></i>
+                            <i class="storeClose icon-close"></i>
                         </button>
                     </div>
                     <div class="modal-header" style="margin-top: 310px;position: fixed;z-index: 999;">
-                        <ul style="width: 100px;margin-right: 40px;margin-top: 40px;">
+                        <ul class="storeUl">
                             <li>
                                 <a class="storeContent" href="#title01">店家推薦</a>
                             </li>

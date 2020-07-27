@@ -14,11 +14,6 @@
 
 /* 按鈕 */
 
-.icon-new::before {
-    vertical-align: middle;
-    font-size: 12px;
-}
-
 .buttonGroup button+button {
     margin-left: 16px;
 }

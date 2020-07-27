@@ -14,6 +14,7 @@
     <!-- <link rel="" href="../fontello-b562579f/css/fontello.css"> -->
     <link rel="stylesheet" href="../public/stylesheets/sider.css">
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <!-- <link rel="stylesheet" href="../public/stylesheets/member.css"> -->
 
     <title>Document</title>
 
@@ -35,19 +36,31 @@
         /* 側欄配送地區區塊設定 */
         .delivery {
             display: inline-block;
-            width: 398px;
+            width: 400px;
             height: 856px;
             margin-top: 40px;
             /* float: right; */
             /* margin-left: 46px; */
             position: absolute;
+            overflow: scroll;
+            overflow-x: hidden;
+            overflow-y: auto;
         }
 
         /* 右上三顆按鈕設定 */
         .rightbtn {
-            margin-top: 60px;
+
+            /* height: 142px; */
             position: relative;
             padding-left: 902px;
+            /* float: right;
+            left: 902px; */
+        }
+
+        .btnDiv {
+            height: 103px;
+            position: relative;
+            padding-top: 60px;
         }
 
         /* 三顆按鈕的 margin */
@@ -66,36 +79,38 @@
         }
 
         /* 店家照片圓圈 */
-        .circle {
+        .memberPhoto {
             width: 150px;
             height: 150px;
-            /* background: #0cc; */
-            /* outline: 16px solid var(--dWhite); */
-            outline-offset: 0px;
-            -webkit-clip-path: circle(50% at 50% 50%);
-            margin: 4.5% auto auto auto;
-            
-
-
-
-        }
-
-        .circleDiv {
-            width: 166px;
-            height: 166px;
-            background-color: var(--dWhite);
-            border-radius: 200px;
+            border: 8px solid #FFFFFF;
+            border-radius: 50%;
+            background-position: center center;
+            background-size: contain;
             position: absolute;
             top: 103px;
             left: 518px;
-            text-align : center;
+        }
+
+        .icon-photo-1::before {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            color: var(--dYellow);
+            width: 40px;
+            height: 40px;
+            font-size: 20px;
+            line-height: 34px;
+            text-align: center;
+            border-radius: 100%;
+            background-color: var(--dWhite);
+            border: 2px solid var(--dYellow);
         }
 
         /* 圓圈裡的照片尺寸 */
         .circle>img {
             width: auto;
             height: 150px;
-            
+
         }
 
         /* 店家資訊文字輸入框 */
@@ -113,11 +128,17 @@
             bottom: 4px;
             margin-left: 15px;
         }
-        .noteTextarea{
+
+        .noteTextarea {
             border-radius: 24px;
             width: 317px;
             height: 149px;
             margin-top: 16px;
+        }
+
+        /* 多行輸入框重新設定 */
+        .multiText398 {
+            padding: 16px 25px 16px 20px;
         }
     </style>
 
@@ -146,18 +167,23 @@
 
     <div class="containerRight">
         <!-- 右邊內容放置區 -->
-        <div class="rightbtn">
-            <button class="text20BW dbtn btnB" style="margin-right: 15px;">店家資訊預覽</button>
-            <button class="text20R dbtn btnW" style="margin-right: 5px;">取消</button>
-            <button class="text20R dbtn btnY">儲存</button>
+        <div class="btnDiv">
+            <div class="rightbtn">
+                <button class="text20BW dbtn btnB" style="margin-right: 15px;">店家資訊預覽</button>
+                <button class="text20R dbtn btnW" style="margin-right: 5px;">取消</button>
+                <button class="text20R dbtn btnY">儲存</button>
+            </div>
         </div>
-        <div class="circleDiv">
+        <div class="mInfo">
+            <div style="background-image: url(../public/image/photo.jpg);" class="memberPhoto icon-photo-1">
+            </div>
+            <!-- <div class="circleDiv">
             <div class="circle">
                 <img src="../public/image/store/Taichung/可不可熟成紅茶_台中大墩店/index.jpeg" alt="">
             </div>
-        </div>
-        <div class="dblock information">
+        </div> -->
 
+<<<<<<< HEAD
             <div class=" storeTitleDiv">
                 <span class="text20B storeTitle">店家名稱</span>
                 <input type="text" class="singleText398 text20R" placeholder="請輸入店家名稱" style="width: 536px;">
@@ -192,16 +218,63 @@
             <div class="mb-l">
                 <span class="text20B" style="margin-right: 50px;">配送地區</span>
                 <button class="text20R dbtn">選擇地區 <span class="icon-new newIcon"></span> </button>
+=======
+            <div class="dblock information">
+
+                <div class=" storeTitleDiv">
+                    <span class="text20B storeTitle">店家名稱</span>
+                    <input type="text" class="singleText398 text20R" placeholder="請輸入店家名稱" style="width: 536px;">
+                </div>
+                <div class=" storeTitleDiv">
+                    <span class="text20B storeTitle">店家照片</span>
+                    <span class="text20R" style="margin-right: 20px; margin-left: 20px;">封面照片.jpg</span> <button
+                        class="dbtn btnW text20R">上傳照片</button>
+                </div>
+                <div class=" storeTitleDiv">
+                    <span class="text20B storeTitle">店家電話</span>
+                    <input type="text" class="singleText398 text20R" placeholder="請輸入店家電話" style="width: 536px;">
+                </div>
+                <div class=" storeTitleDiv">
+                    <span class="text20B storeTitle">店家地址</span>
+                    <input type="text" class="singleText398 text20R" placeholder="請輸入完整地址" style="width: 536px;">
+                </div>
+                <div class=" storeTitleDiv">
+                    <span class="text20B storeTitle">營業時間</span>
+                    <input type="text" class="singleText398 text20R" placeholder="請輸入營業時間" style="width: 536px;">
+                </div>
+                <div class=" storeTitleDiv">
+                    <span class="text20B storeTitle">固定公休</span>
+                    <input type="text" class="singleText398 text20R" placeholder="請輸入公休日" style="width: 536px;">
+                </div>
+                <div class=" storeTitleDiv" style="vertical-align: super;">
+                    <span class="text20B storeTitle">店家簡介</span>
+                    <textarea type="text" class="multiText398 text20R aboutTextarea" placeholder="請輸入店家簡介"></textarea>
+                </div>
+>>>>>>> crycry
             </div>
-            <div>
-                <span class="text20B" style="margin-right: 16px;">注意事項</span><span
-                    style="font-size: 16px; color: var(--dDeepGray);">(選填)</span>
-                <textarea type="text" class="multiText398 text20R noteTextarea" placeholder="填入配送注意事項"></textarea>
+            <div class="dblock delivery">
+                <div class="mb-l">
+                    <span class="text20B" style="margin-right: 50px;">配送地區</span>
+                    <button class="text20R dbtn" style="margin-bottom: 24px;">選擇地區 <span
+                            class="icon-new newIcon"></span> </button><br>
+                    <button class="dbtn btnY text20B"
+                        style="margin-bottom: 20px;padding-left: 16px;padding-right: 12px;">台中市北屯區 <i
+                            class="icon-close"></i> </button><br>
+                    <button class="dbtn btnY text20B"
+                        style="margin-bottom: 20px;padding-left: 16px;padding-right: 12px;">台中市北屯區 <i
+                            class="icon-close"></i> </button><br>
+                    
+
+                </div>
+                <div>
+                    <span class="text20B" style="margin-right: 16px;">注意事項</span><span
+                        style="font-size: 16px; color: var(--dDeepGray);">(選填)</span>
+                    <textarea type="text" class="multiText398 text20R noteTextarea" placeholder="填入配送注意事項"></textarea>
+                </div>
             </div>
         </div>
-    </div>
 
-    <script>
+        <script>
         // var information = new Vue({
         //     el: "#information",
         //     data: {
@@ -225,7 +298,7 @@
 
         //     }
         // })
-    </script>
+        </script>
 
 </body>
 
