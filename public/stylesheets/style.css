@@ -493,12 +493,10 @@ textarea {
 /* 店家照片卡 */
 
 .imgCard {
-    
     /* width: 520px; */
     width: auto;
     height: 358px;
     margin-top: 23px;
-    
 }
 
 
@@ -508,9 +506,7 @@ textarea {
     width: 100%;
     overflow: hidden;
     position: relative;
-    
 }
-
 
 
 /* 照片 */
@@ -561,11 +557,13 @@ textarea {
 /* 店家名稱 */
 
 .shopName {
-    width: 80%;
-    margin-top: 26px;
-    position: absolute;
+    width: 100%;
+    /* padding-right: 20px; */
+    /* margin-top: 26px; */
+    /* position: absolute; */
     overflow: hidden;
     display: -webkit-box;
+    /* display: inline-block; */
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 1;
 }
@@ -598,13 +596,15 @@ textarea {
     width: auto;
     /* margin-top: 5px; */
 }
-.card-body{
+
+.card-body {
     padding-bottom: 5px;
     padding-top: 26px;
     padding-left: 0;
     padding-right: 2px;
 }
-.meals{
+
+.meals {
     margin-left: 23px;
     margin-right: 148px;
     margin-bottom: 40px;
@@ -619,7 +619,6 @@ textarea {
     padding: 2px;
     margin-right: 16px;
     margin-bottom: 32px;
-    
 }
 
 .mealsName {
@@ -627,13 +626,13 @@ textarea {
     top: 11px;
     position: absolute;
 }
-.mealsCard img{
+
+.mealsCard img {
     width: auto;
     height: 148px;
-    
-    
 }
-.mealsCardDiv{
+
+.mealsCardDiv {
     height: 148px;
     width: 148px;
     position: absolute;
@@ -641,25 +640,27 @@ textarea {
     top: 2px;
     overflow: hidden;
 }
-.mealsDetail{
-    font-size: 1rem; 
+
+.mealsDetail {
+    font-size: 1rem;
     color: #777777;
     top: 44px;
     left: 16px;
     position: absolute;
 }
-.mealsPrice{
+
+.mealsPrice {
     position: absolute;
     top: 112px;
     left: 16px;
     width: 120px;
     height: 28px;
-    display: block; 
-    
+    display: block;
 }
-.mealsPrice>img{
-    width:auto; 
-    height:23px;
+
+.mealsPrice>img {
+    width: auto;
+    height: 23px;
     margin-top: 0px;
     margin-right: 16px;
     vertical-align: middle;
@@ -910,14 +911,16 @@ textarea {
 .xl2Btn .modal-dialog {
     max-width: 1340px;
 }
-.storeModel .modal-dialog{
+
+.storeModel .modal-dialog {
     max-width: 1440px;
 }
 
 .redColor {
     color: var(--dRed);
 }
-.storeModel{
+
+.storeModel {
     margin-top: 80px;
 }
 
@@ -955,11 +958,15 @@ textarea {
     margin-bottom: 40px;
 }
 
-.inputL .modal-dialog,
+
+/* 彈框mt */
+
+
+/* .inputL .modal-dialog,
 .inputXL .modal-dialog,
 .storeModel .modal-dialog{
     margin-top: 0;
-}
+} */
 
 
 /* 確認型彈跳框 */
