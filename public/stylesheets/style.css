@@ -490,9 +490,12 @@ textarea {
 /* 店家照片卡 */
 
 .imgCard {
-    position: relative;
-    width: 520px;
+    
+    /* width: 520px; */
+    width: auto;
     height: 358px;
+    margin-top: 23px;
+    
 }
 
 
@@ -500,19 +503,21 @@ textarea {
 
 .dingImgDiv {
     width: 100%;
-    /* 改100%? */
-    /* height: 292px; */
-    /* overflow: hidden; */
-    /* position: relative; */
+    overflow: hidden;
+    position: relative;
+    
 }
+
 
 
 /* 照片 */
 
 .dingImg {
-    width: 520px;
+    /* width: 100%; */
+    /* max-width: 780px; */
+    max-height: 300px;
     /* 改100%? */
-    height: 292px;
+    /* max-height: 292px; */
     opacity: 1;
     display: block;
     /* width: 100%; */
@@ -544,7 +549,7 @@ textarea {
     color: var(--dWhite);
     font-size: 30px;
     position: absolute;
-    bottom: 70px;
+    bottom: 74px;
     right: 16px;
     opacity: 0.4;
 }
@@ -588,7 +593,13 @@ textarea {
     opacity: 1;
     height: 2px;
     width: auto;
-    margin-top: 64px;
+    /* margin-top: 5px; */
+}
+.card-body{
+    padding-bottom: 5px;
+    padding-top: 26px;
+    padding-left: 0;
+    padding-right: 2px;
 }
 .meals{
     margin-left: 23px;
