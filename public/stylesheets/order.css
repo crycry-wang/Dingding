@@ -1,0 +1,102 @@
+/* 搜尋 */
+
+.form-control-sm {
+    border: none;
+    border-radius: 0 30px 30px 0;
+    width: calc(100% - 4rem);
+    padding: 0;
+}
+
+.icon-search {
+    color: var(--dDeepGray);
+    font-size: 1.25rem;
+    margin-right: 20px;
+}
+
+.inputSearch {
+    background: white;
+    padding: 0 20px;
+    width: 260px;
+    border-radius: 30px;
+    height: 40px;
+}
+
+
+/* 表頭 */
+
+.table thead tr {
+    background: var(--dYellow);
+    color: white;
+}
+
+.table thead th {
+    height: 40px;
+    padding: 0;
+    padding-left: 32px;
+    vertical-align: middle;
+    font-weight: normal;
+    border: none;
+}
+
+
+/* 表內容 */
+
+table {
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+.table tbody td {
+    padding: 16px 0 16px 32px;
+    background: white;
+    border-bottom: 1px solid var(--moreLightGray);
+    vertical-align: middle;
+}
+
+.table tbody td:last-child {
+    padding: 16px 32px 16px 32px;
+}
+
+.table tbody+tbody {
+    border-top: none;
+}
+
+.table tbody td:first-child {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-left: 1px solid var(--moreLightGray);
+}
+
+td:last-child {
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-right: 1px solid var(--moreLightGray);
+}
+
+.price {
+    vertical-align: middle;
+}
+
+.price::before {
+    content: '';
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    background: url(../image/coin.png) no-repeat center;
+    background-size: cover;
+    vertical-align: middle;
+    margin-right: 16px;
+}
+
+.action p {
+    display: inline;
+    padding: 0 24px;
+}
+
+.Rcolor {
+    color: var(--dRed);
+}
+
+.table {
+    margin-bottom: 0;
+}
