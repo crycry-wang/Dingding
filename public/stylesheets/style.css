@@ -558,11 +558,14 @@ textarea {
 /* 店家名稱 */
 
 .shopName {
-    width: 80%;
-    margin-top: 26px;
-    position: absolute;
+
+    width:100%;
+    /* padding-right: 20px; */
+    /* margin-top: 26px; */
+    /* position: absolute; */
     overflow: hidden;
     display: -webkit-box;
+    /* display: inline-block; */
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 1;
 }
