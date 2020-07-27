@@ -49,14 +49,14 @@
                 <div class="mt-l mb-m" style="margin-left: 40px; width: 1260px;">
 
                     <span>
-                        <button class="text20R dbtn btnG btnY">訂訂行事曆</button>
-                        <button class="text20R dbtn btnG">我的團體</button>
-                        <button class="text20R dbtn btnG">我的訂單</button>
-                        <button class="text20R dbtn btnG">我的投票</button>
+                        <button class="mr-xs text20R dbtn btnGY btnY">訂訂行事曆</button>
+                        <button class="mr-xs text20R dbtn btnGY">我的團體</button>
+                        <button class="mr-xs text20R dbtn btnGY">我的訂單</button>
+                        <button class="text20R dbtn btnGB">我的投票</button>
                     </span>
                     <span class="float-right">
                         <input type="text" class="text20RG singleText400 mr-xs" placeholder="請輸入團號">
-                        <button class="text20R dbtn btnY">加入團體</button>
+                        <button class="text20R dbtn btnGY btnY">加入團體</button>
                     </span>
 
                 </div>
@@ -65,22 +65,27 @@
                 <div class="dblock" style="height: 897px; width: 1300px;">
 
                     <div class="text-center d-flex justify-content-between align-items-center" style="margin-bottom: 32px;">
-                        
-                        <img class="lrImg  btnPhoto" src="../public/image/left.png"  onclick="prevM()">
-                        <p id="YearAndMonth" class="eng40R"></p>
-                        <img class="lrImg btnPhoto" src="../public/image/right.png"  onclick="nextM()">
-                        
+
+                        <img class="lrImg  btnPhoto" src="../public/image/left.png" onclick="prevM()">
+                        <div class="d-flex align-items-center">
+                            <p id="myDates" class="eng40R mr-xs"></p>
+                            <p id="myMonths" class="eng30R mr-xs"></p>
+                            <p id="" class="br-m"></p>
+                            <p id="myYears" class="eng24R ml-xs"></p>
+                        </div>
+                        <img class="lrImg btnPhoto" src="../public/image/right.png" onclick="nextM()">
+
                     </div>
                     <table>
                         <thead>
                             <tr>
-                                <th class="btnR eng24W">Sun</th>
-                                <th class="btnY eng24W">Mon</th>
-                                <th class="btnY eng24W">Tue</th>
-                                <th class="btnY eng24W">Wed</th>
-                                <th class="btnY eng24W">Thu</th>
-                                <th class="btnY eng24W">Fri</th>
-                                <th class="btnY eng24W">Sat</th>
+                                <th class="thR eng24W">Sun</th>
+                                <th class="thY eng24W">Mon</th>
+                                <th class="thY eng24W">Tue</th>
+                                <th class="thY eng24W">Wed</th>
+                                <th class="thY eng24W">Thu</th>
+                                <th class="thY eng24W">Fri</th>
+                                <th class="thY eng24W">Sat</th>
                             </tr>
                         </thead>
                         <tbody id="myCalendar"></tbody>
@@ -95,6 +100,8 @@
     <!-- <div id="nowDate"></div> -->
 
     <script src="../public/javascript/calendar.js"></script>
+
+
 
 
 
