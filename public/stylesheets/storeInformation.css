@@ -1,0 +1,201 @@
+/* 店家資訊區塊設定 */
+.information {
+    width: 856px;
+    height: 858px;
+    margin-top: 40px;
+    margin-right: 46px;
+    /* margin-bottom: 80px; */
+    display: inline-block;
+    /* padding-right: 108px; */
+    padding-left: 74px;
+    padding-top: 143px;
+}
+
+/* 側欄配送地區區塊設定 */
+.delivery {
+    display: inline-block;
+    width: 400px;
+    height: 856px;
+    margin-top: 40px;
+    /* float: right; */
+    /* margin-left: 46px; */
+    position: absolute;
+    overflow: scroll;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+/* 右上三顆按鈕設定 */
+.rightbtn {
+
+    /* height: 142px; */
+    position: relative;
+    padding-left: 1007px;
+    /* float: right;
+    left: 902px; */
+}
+
+.btnDiv {
+    height: 103px;
+    position: relative;
+    padding-top: 60px;
+}
+
+/* 三顆按鈕的 margin */
+.rightbtn>.btn {
+    margin-right: 20px;
+}
+
+/* 裝店家資訊的袋子 */
+.storeTitleDiv {
+    margin-bottom: 40px;
+}
+
+/* 標題文字與輸入框距離 */
+.storeTitle {
+    margin-right: 52px;
+}
+
+/* 店家照片圓圈 */
+.memberPhoto {
+    width: 150px;
+    height: 150px;
+    border: 8px solid #FFFFFF;
+    border-radius: 50%;
+    background-position: center center;
+    background-size: contain;
+    position: absolute;
+    top: 103px;
+    left: 518px;
+}
+
+.icon-photo-1::before {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    color: var(--dYellow);
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+    line-height: 34px;
+    text-align: center;
+    border-radius: 100%;
+    background-color: var(--dWhite);
+    border: 2px solid var(--dYellow);
+}
+
+/* 圓圈裡的照片尺寸 */
+.circle>img {
+    width: auto;
+    height: 150px;
+
+}
+
+/* 店家資訊文字輸入框 */
+.aboutTextarea {
+    width: 536px;
+    height: 120px;
+    position: absolute;
+    border-radius: 24px;
+}
+
+/* 加號設定 */
+.newIcon {
+    font-size: 12px;
+    position: relative;
+    bottom: 4px;
+    margin-left: 15px;
+}
+
+.noteTextarea {
+    border-radius: 24px;
+    width: 317px;
+    height: 149px;
+    margin-top: 16px;
+}
+
+/* 多行輸入框重新設定 */
+.multiText398 {
+    padding: 16px 25px 16px 20px;
+}
+
+.storeModelImg {
+    width: 1440px;
+    height: 350px;
+    background-image: url(../image/store/Taichung/太初麵食/index.jpeg);
+    background-repeat: no-repeat;
+    background-size: 1440px auto;
+    background-size: cover;
+    display: block;
+    background-position: 50% 50%;
+    /* overflow: hidden; */
+    position: fixed;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    z-index: 999;
+}
+
+.storeModelImg>img {
+    width: 1440px;
+    height: auto;
+
+}
+
+.storeModelImgContent {
+    background-color: var(--dWhite);
+    width: 543px;
+    height: 190px;
+    margin-top: 62px;
+    padding-top: 40px;
+    padding-left: 46px;
+}
+
+.storeModelImgContent>.icon-spoon,
+.storeModelImgContent>.icon-borderspoon {
+    font-size: 24px;
+    color: var(--dYellow);
+    margin-left: -6px;
+    margin-right: -6px;
+}
+
+.storeModelImgContentBottom {
+    width: 543px;
+    padding-left: 42px;
+    margin-top: 27px;
+}
+
+/* 店家彈框內的愛心icon */
+.storeModelImgContentBottom>.icon-heart {
+    color: var(--dWhite);
+    opacity: 0.6;
+    font-size: 30px;
+}
+
+/* 愛心icon hover +透明度調高 */
+.icon-heart:hover {
+    opacity: 0.8;
+}
+
+.storeClose {
+    color: var(--dWhite);
+}
+
+.storeUl>li {
+    margin-bottom: 17px;
+}
+
+.storeUl {
+    width: 100px;
+    margin-right: 40px;
+    margin-top: 40px;
+}
+
+li>.storeContent {
+    font-size: 1rem;
+    color: #777777;
+}
+
+li>.storeContent:hover {
+    color: var(--dYellow);
+    transition-duration: 0.5s;
+}
