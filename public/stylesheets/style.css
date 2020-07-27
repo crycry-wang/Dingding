@@ -979,3 +979,17 @@ textarea {
 #readyOrder .modal-footer {
     padding-bottom: 40px;
 }
+
+
+/* 訂訂幣 */
+
+.price::before {
+    content: '';
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    background: url(../image/coin.png) no-repeat center;
+    background-size: cover;
+    vertical-align: middle;
+    margin-right: 16px;
+}
