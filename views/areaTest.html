@@ -24,7 +24,7 @@
             min-width: 20px;
             position: relative;
         }
-
+        
         input[type=checkbox]:checked::after {
             content: '';
             top: 4px;
@@ -41,11 +41,11 @@
             -webkit-transform: rotate(-45deg);
             transform: rotate(-45deg);
         }
-
+        
         .area {
             margin-bottom: 23px;
         }
-
+        
         .areaBlock {
             width: 313px;
             height: 190px;
@@ -55,15 +55,13 @@
             padding-bottom: 15px;
             line-height: 0px;
             box-shadow: 0px 3px 6px #00000029;
-            /* display: none; */
-            position: absolute;
             z-index: 1;
         }
-
+        
         [id *="taichung"] {
             margin-right: 13px;
         }
-
+        
         .contry {
             width: 132px;
             height: 48px;
@@ -75,32 +73,26 @@
             padding-bottom: 10px;
             padding-right: 15px;
             text-align: right;
-            /* position: absolute; */
-
         }
-
+        
         .contrySelect {
             width: 40px;
             height: 48px;
             border: 1px solid #C9C9C9;
-            /* background-color: var(--dWhite); */
             background: url("../public/image/select.png")scroll transparent;
             background-position: left 15px top 50%;
             background-repeat: no-repeat;
-            /* position: absolute; */
-            position: relative;
-            top: -48px;
-            left: 131px;
             border-top-right-radius: 24px;
             border-bottom-right-radius: 24px;
+            display: inline-block;
         }
     </style>
 </head>
 
 <body>
     <div style="background-color: #FFFFFF; height: 600px; padding: 50px;">
-        <div style="position: relative;display: inline-block; margin-right: 16px; margin-bottom: 24px;">
-            <div class="contry" style="margin-right: 16px; margin-bottom: 24px;">
+        <div style="display: inline-block;">
+            <div class="contry">
                 <input type="checkbox">
                 <label class=" text20R">台中市</label>
                 <div class="contrySelect"></div>
@@ -145,7 +137,7 @@
                 </div>
             </div>
         </div>
-        <div style="position: relative;display: inline-block; margin-right: 16px; margin-bottom: 24px;">
+        <!-- <div style="position: relative;display: inline-block; margin-right: 16px; margin-bottom: 24px;">
             <div class="contry">
                 <input type="checkbox">
                 <label class=" text20R">苗栗縣</label>
@@ -192,8 +184,8 @@
             </div>
         </div>
     </div>
-
-
+ -->
+        g
 </body>
 
 </html>

@@ -110,7 +110,7 @@
     height: 18px;
     background: url(../image/coin.png) no-repeat center;
     background-size: cover;
-    margin-right: 16px;
+    margin-right: 4px;
 }
 
 .noticeItem .actionR p.text20R {
@@ -242,21 +242,9 @@
     letter-spacing: 4px;
 }
 
-.orderItem .price::before,
-.totle .price::before {
-    content: '';
-    display: inline-block;
-    width: 24px;
-    height: 24px;
-    background: url(../image/coin.png) no-repeat center;
-    background-size: cover;
-    vertical-align: middle;
-    margin-right: 16px;
-}
-
 .orderItem .price {
     vertical-align: middle;
-    width: 140px;
+    width: 200px;
     margin-left: 16px;
 }
 
@@ -265,4 +253,9 @@
     margin-bottom: 40px;
     padding-left: 60px;
     padding-right: 60px;
+}
+
+.w100 {
+    width: 100px;
+    margin-right: 40px;
 }

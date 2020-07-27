@@ -21,7 +21,7 @@
     /* 取消的紅色 */
     --dRed: #D9534F;
     /* 按鈕hover */
-    --ddYellow: #D89316;
+    --ddYellow: #d89316;
     --ddBlue: #83BEC2;
     --ddRed: #C53F3B;
     --dBlack: #373A3C;
@@ -85,8 +85,9 @@ ul,
 li {
     list-style: none;
 }
-a{
-    text-decoration:none !important;
+
+a {
+    text-decoration: none !important;
 }
 
 [class*="col-"] {
@@ -118,7 +119,8 @@ a{
     margin-right: auto;
     margin-left: auto;
 }
-.mContainerContent{
+
+.mContainerContent {
     width: 100%;
     padding-right: 156px;
     padding-left: 156px;
@@ -227,13 +229,14 @@ a{
     letter-spacing: 2px;
 }
 
-.text16R{
+.text16R {
     font-size: 1rem;
     font-weight: 400;
     color: var(--dBlack);
     letter-spacing: 1.28px;
 }
-.text16R:hover{
+
+.text16R:hover {
     color: var(--dYellow);
 }
 
@@ -491,12 +494,10 @@ textarea {
 /* 店家照片卡 */
 
 .imgCard {
-    
     /* width: 520px; */
     width: auto;
     height: 358px;
     margin-top: 23px;
-    
 }
 
 
@@ -506,9 +507,7 @@ textarea {
     width: 100%;
     overflow: hidden;
     position: relative;
-    
 }
-
 
 
 /* 照片 */
@@ -559,8 +558,7 @@ textarea {
 /* 店家名稱 */
 
 .shopName {
-
-    width:100%;
+    width: 100%;
     /* padding-right: 20px; */
     /* margin-top: 26px; */
     /* position: absolute; */
@@ -599,13 +597,15 @@ textarea {
     width: auto;
     /* margin-top: 5px; */
 }
-.card-body{
+
+.card-body {
     padding-bottom: 5px;
     padding-top: 26px;
     padding-left: 0;
     padding-right: 2px;
 }
-.meals{
+
+.meals {
     margin-left: 23px;
     margin-right: 148px;
     margin-bottom: 40px;
@@ -620,7 +620,6 @@ textarea {
     padding: 2px;
     margin-right: 16px;
     margin-bottom: 32px;
-    
 }
 
 .mealsName {
@@ -628,13 +627,13 @@ textarea {
     top: 11px;
     position: absolute;
 }
-.mealsCard img{
+
+.mealsCard img {
     width: auto;
     height: 148px;
-    
-    
 }
-.mealsCardDiv{
+
+.mealsCardDiv {
     height: 148px;
     width: 148px;
     position: absolute;
@@ -642,25 +641,27 @@ textarea {
     top: 2px;
     overflow: hidden;
 }
-.mealsDetail{
-    font-size: 1rem; 
+
+.mealsDetail {
+    font-size: 1rem;
     color: #777777;
     top: 44px;
     left: 16px;
     position: absolute;
 }
-.mealsPrice{
+
+.mealsPrice {
     position: absolute;
     top: 112px;
     left: 16px;
     width: 120px;
     height: 28px;
-    display: block; 
-    
+    display: block;
 }
-.mealsPrice>img{
-    width:auto; 
-    height:23px;
+
+.mealsPrice>img {
+    width: auto;
+    height: 23px;
     margin-top: 0px;
     margin-right: 16px;
     vertical-align: middle;
@@ -668,7 +669,10 @@ textarea {
 
 
 /* 自製下拉選單，長度記得另外設定 */
+
+
 /* 展開時將dOptionDivOff改為dOptionDivOn，dSelect改為dSelectClick */
+
 
 /* 下拉選單平常樣式(四個圓角) */
 
@@ -681,7 +685,10 @@ textarea {
 
 
 /* 下拉選單展開樣式(左下佑下圓角消除) */
+
+
 /* 展開時dSelect改為dSelectClick */
+
 .dSelectClick {
     height: 48px;
     color: var(--dBlack);
@@ -739,10 +746,12 @@ textarea {
 
 
 /* 下拉選單展開時設定 */
+
+
 /* 展開時將dOptionDivOff改為dOptionDivOn */
+
 .dOptionDivOn {
     position: absolute;
-    
 }
 
 
@@ -812,7 +821,8 @@ textarea {
     padding-left: 40px;
     padding-right: 40px;
 }
-.modal-header-index{
+
+.modal-header-index {
     padding-top: 80px;
     padding-left: 155px;
     /* padding-right: 195px; */
@@ -886,7 +896,8 @@ textarea {
     max-width: 536px;
     margin-top: 270px;
 }
-.inputXL .modal-dialog{
+
+.inputXL .modal-dialog {
     max-width: 1088px;
 }
 
@@ -901,14 +912,16 @@ textarea {
 .xl2Btn .modal-dialog {
     max-width: 1340px;
 }
-.storeModel .modal-dialog{
+
+.storeModel .modal-dialog {
     max-width: 1440px;
 }
 
 .redColor {
     color: var(--dRed);
 }
-.storeModel{
+
+.storeModel {
     margin-top: 80px;
 }
 
@@ -920,12 +933,12 @@ textarea {
     padding-right: 60px;
     margin-top: 40px;
 }
-.modal-continer-index{
+
+.modal-continer-index {
     margin-top: 95px;
     padding-left: 138px;
     padding-right: 138px;
 }
-
 
 .inputL .singleText398,
 .inputS .singleText398 {
@@ -936,6 +949,7 @@ textarea {
 .inputL .singleText398 {
     margin-bottom: 40px;
 }
+
 .inputXL .singleText398 {
     margin-bottom: 30px;
 }
@@ -945,11 +959,15 @@ textarea {
     margin-bottom: 40px;
 }
 
-.inputL .modal-dialog,
+
+/* 彈框mt */
+
+
+/* .inputL .modal-dialog,
 .inputXL .modal-dialog,
 .storeModel .modal-dialog{
     margin-top: 0;
-}
+} */
 
 
 /* 確認型彈跳框 */
@@ -961,4 +979,68 @@ textarea {
 
 #readyOrder .modal-footer {
     padding-bottom: 40px;
+}
+
+
+/* 訂訂幣 */
+
+.eng24R.price::before {
+    content: '';
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    background: url(../image/coin.png) no-repeat center;
+    background-size: cover;
+    vertical-align: middle;
+    margin-right: 4px;
+}
+
+.eng20R.price::before {
+    content: '';
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin-right: 4px;
+    background: url(../image/coin.png) no-repeat center;
+    background-size: cover;
+    vertical-align: middle;
+    margin-right: 4px;
+}
+
+
+/* 搜尋 */
+
+.form-control-sm {
+    border: none;
+    border-radius: 0 30px 30px 0;
+    width: calc(100% - 4rem);
+    padding: 0;
+}
+
+.icon-search {
+    color: var(--dDeepGray);
+    font-size: 1.25rem;
+    margin-right: 20px;
+}
+
+.inputSearch {
+    background: white;
+    padding: 0 20px;
+    width: 260px;
+    border-radius: 30px;
+    height: 40px;
+}
+
+
+/* 上下鍵 */
+
+.lrImg {
+    width: 32px;
+    height: 32px;
+    opacity: 0.5;
+}
+
+.lrImg:hover {
+    opacity: 1;
+    transition-duration: 0.7s;
 }

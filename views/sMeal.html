@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="../public/stylesheets/bootstrap.min.css">
+    <script src="../public/javascript/jquery-3.5.1.min.js"></script>
+    <script src="../public/javascript/popper.min.js"></script>
+    <script src="../public/javascript//bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../public/stylesheets/style.css">
+    <link rel="stylesheet" href="../public/stylesheets/fontello.css">
+    <link rel="stylesheet" href="../public/stylesheets/sider.css">
+    <link rel="stylesheet" href="../public/stylesheets/meal.css">
+
+    <title>Document</title>
+
+
+</head>
+
+<body>
+    <!-- 左邊sider -->
+    <div class="slider fixed-top">
+        <img src="../public/image/LOGO.png" class="sliderLogo">
+        <br>
+        <img src="../public/image/photo.jpg" class="sliderPhoto">
+        <p class="name text24B">尊品原汁牛肉麵</p>
+        <div class="menu text24R ">
+
+            <a href=""><i class="icon-order"></i>訂單管理</a>
+            <a href="" class="act"><i class="icon-menu"></i>餐點清單</a>
+            <a href=""><i class="icon-statistics"></i>營運統計</a>
+            <a href=""><i class="icon-evaluation"></i>店家評價</a>
+            <a href=""><i class="icon-message"></i>通知<span class="note">3</span></a>
+            <a href=""><i class="icon-about"></i>店家資訊</a>
+            <a href="" id="signOut"><i class="icon-logout"></i>登出</a>
+        </div>
+    </div>
+
+    <div class="containerRight">
+        <!-- 右邊內容放置區 -->
+        <nav class="topTag d-flex row inWrapper position-sticky align-items-start">
+            <div class="dTag text24RG act">套餐</div>
+            <div class="dTag text24RG">漢堡</div>
+            <div class="dTag text24RG">飲品</div>
+            <button class="text20R dbtn btnB ml-auto" data-toggle="modal" data-target="#typeManager">類別管理</button>
+        </nav>
+
+
+        <div class="dblock mb-m">
+            <div class="buttonGroup text-right mb-4 mt-0">
+                <button class="dbtn btnW text20R" data-toggle="modal" data-target="#recommend">
+                    推薦產品
+                </button>
+                <button class="dbtn btnY text20R" data-toggle="modal" data-target="#product">
+                    新增產品
+                    <span class="ml-2">+</span>
+                </button>
+            </div>
+
+            <div class="row">
+                <div class="col-12">
+                    <table class="table mb-0">
+                        <thead class="text20R">
+                            <tr>
+                                <th style="width:10%;">
+                                    編號
+                                </th>
+                                <th style="width:28%;">
+                                    餐點名稱
+                                </th>
+                                <th style="width:10%;">
+                                    價格
+                                </th>
+                                <th style="width:10%;">
+                                    圖片
+                                </th>
+                                <th>
+                                    說明
+                                </th>
+
+                            </tr>
+                            <tr height="8px"></tr>
+                        </thead>
+
+                        <tbody class="text20R list">
+                            <!-- 1 -->
+                            <tr>
+                                <td class="fst"><img src="../public/image/first.png" alt="">
+                                </td>
+                                <td>
+                                    摩絲熱狗堡
+                                </td>
+                                <td>
+                                    65
+                                </td>
+                                <td>
+                                    <img src="../public/image/photo.jpg" alt="">
+                                </td>
+
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <p class="text20B desc">可自選醬:1.番茄2.辣醬3.辣醬3.辣醬3.辣醬3</p>
+                                        <button class="text20R dbtn btnW ml-auto" data-toggle="modal" data-target="#product">詳情</button>
+                                        <i class="icon-trash" data-toggle="modal" data-target="#deleteMeal"></i>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr height="8px"></tr>
+                            <!-- 2 -->
+                            <tr>
+                                <td class="snd"><img src="../public/image/second.png" alt="">
+                                </td>
+                                <td>
+                                    摩絲熱狗堡
+                                </td>
+                                <td>
+                                    65
+                                </td>
+                                <td>
+                                    <img src="../public/image/photo.jpg" alt="">
+                                </td>
+
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <p class="text20B desc">可自選醬:1.番茄2.辣醬3.辣醬3.辣醬3.辣醬3</p>
+                                        <button class="text20R dbtn btnW ml-auto" data-toggle="modal" data-target="#product">詳情</button>
+                                        <i class="icon-trash" data-toggle="modal" data-target="#deleteMeal"></i>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr height="8px"></tr>
+                            <!-- 3 -->
+                            <tr>
+                                <td class="trd"><img src="../public/image/third.png" alt="">
+                                </td>
+                                <td>
+                                    摩絲熱狗堡
+                                </td>
+                                <td>
+                                    65
+                                </td>
+                                <td>
+                                    <img src="../public/image/photo.jpg" alt="">
+                                </td>
+
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <p class="text20B desc">可自選醬:1.番茄2.辣醬3.辣醬3.辣醬3.辣醬3</p>
+                                        <button class="text20R dbtn btnW ml-auto" data-toggle="modal" data-target="#product">詳情</button>
+                                        <i class="icon-trash" data-toggle="modal" data-target="#deleteMeal"></i>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+        <button type="button" class="btnY dbtn" data-toggle="modal" data-target="#comfirm">
+            成功介面
+        </button>
+        <button type="button" class="btnR dbtn" data-toggle="modal" data-target="#deleteType">
+            刪除類別介面
+        </button>
+    </div>
+
+    <!-- 新增產品 -->
+    <h1>width-1000 </h1>
+
+    <div class="modal fade l2Btn" id="product">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text28B">產品詳情</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <i class=" icon-close"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="text24R d-flex align-items-start mealInfo mb-m">
+                        <!-- <span class="d-inline-block">
+                            <div class="upload"> <button class="dbtn btnLG text20R align-middle">上傳圖片</button></div>
+                        </span> -->
+                        <span class="d-inline-block">
+                            <img src="../public/image/photo.jpg" alt="">
+                        </span>
+                        <ul class="d-inline-block inputInfo">
+                            <li>
+                                <p class="text24B d-inline-block">餐點名稱</p>
+                                <input type="text" class="text20RG singleText398 " placeholder="請輸入餐點名稱">
+                            </li>
+                            <li>
+                                <p class="text24B d-inline-block">產品類別</p>
+                                <div class="ddselect d-inline-block">
+                                    <div class="dSelect">
+                                        <div class="dSelectText text20R">選擇類別</div>
+                                    </div>
+                                    <div class="dOptionDivOff">
+                                        <div class="dOption text20R">選擇類別</div>
+                                        <div class="dOption text20R">套餐</div>
+                                        <div class="dOption text20R">漢堡</div>
+                                        <div class="dOption text20R">飲品</div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <p class="text24B d-inline-block">餐點價格</p>
+                                <input type="text" class="text20RG singleText398 " placeholder="請輸入餐點價格">
+                            </li>
+                        </ul>
+                    </div>
+                    <p class="text24B d-block mb-3">說明</p>
+                    <textarea class="text20RG multiText398" placeholder="請輸入餐點說明"></textarea>
+                </div>
+
+                <div class="modal-footer">
+                    <button class="text20R dbtn btnW" data-dismiss="modal">取消返回</button>
+                    <button class="text20R dbtn btnY ml-3">確定新增</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 成功介面 -->
+
+    <div class="modal fade sm1Btn" id="comfirm">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text28B w-100 text-center ">新增成功</h5>
+                </div>
+
+                <div class="modal-footer">
+                    <button class="text20R dbtn btnY m-auto">確定</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 類別管理介面 -->
+    <div class="modal fade m2Btn" id="typeManager">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text28B">類別管理</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <i class=" icon-close"></i>
+                    </button>
+                </div>
+                <div class="modal-body d-flex row">
+                    <p class="text24B col-3">類別名稱</p>
+                    <div class="typeInfo col-9">
+                        <div class="typrItem d-flex">
+                            <input type="text" class="text20RG singleText398 " placeholder="請輸入類別名稱" value="套餐">
+                            <i class="icon-trash ml-auto"></i>
+                        </div>
+                        <div class="typrItem d-flex">
+                            <input type="text" class="text20RG singleText398 " placeholder="請輸入類別名稱" value="漢堡">
+                            <i class="icon-trash ml-auto"></i>
+                        </div>
+                        <div class="typrItem d-flex">
+                            <input type="text" class="text20RG singleText398 " placeholder="請輸入類別名稱" value="飲品">
+                            <i class="icon-trash ml-auto"></i>
+                        </div>
+                        <button class="dbtn btnW text20R">
+                            新增類別
+                            <i class="icon-new ml-2 alig-middle"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button class="text20R dbtn btnW" data-dismiss="modal">取消返回</button>
+                    <button class="text20R dbtn btnY ml-3">確定修改</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 刪除餐點 -->
+    <div class="modal fade sm2Btn" id="deleteMeal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text28B">是否要刪除餐點</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <i class=" icon-close"></i>
+                    </button>
+                </div>
+                <p class="modal-body text24R">
+                    <span class="redColor"> 刪除餐點</span>後，動作將無法被還原。
+                </p>
+                <div class="modal-footer">
+                    <button class="text20R dbtn btnW" data-dismiss="modal">返回離開</button>
+                    <button class="text20R dbtn btnR ml-3">刪除餐點</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 刪除類別 -->
+    <div class="modal fade sm2Btn" id="deleteType">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text28B">是否要刪除類別</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <i class=" icon-close"></i>
+                    </button>
+                </div>
+                <p class="modal-body text24R">
+                    刪除類別後，類別內的全部餐點也將同時<span class="redColor">刪除</span>。
+                </p>
+                <div class="modal-footer">
+                    <button class="text20R dbtn btnW" data-dismiss="modal">返回離開</button>
+                    <button class="text20R dbtn btnR ml-3">刪除類別</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 推薦產品介面 -->
+    <div class="modal fade m2Btn" id="recommend">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text28B">推薦產品</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <i class=" icon-close"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <ul>
+                        <li class="align-middle row recommendItem">
+                            <div class="col-3">
+                                <p class="d-inline-block text24B align-middle mr-3">推薦</p>
+                                <span class="fst align-middle"><img src="../public/image/first.png"></span>
+                            </div>
+                            <div class="row col-9">
+                                <div class="ddselect col-6">
+                                    <div class="dSelect mr-3">
+                                        <div class="dSelectText text20R">選擇類別</div>
+                                    </div>
+                                    <div class="dOptionDivOff mr-3">
+                                        <div class="dOption text20R">選擇類別</div>
+                                        <div class="dOption text20R">套餐</div>
+                                        <div class="dOption text20R">漢堡</div>
+                                        <div class="dOption text20R">飲品</div>
+                                    </div>
+                                </div>
+
+                                <div class="ddselect col-6">
+                                    <div class="dSelect ml-3">
+                                        <div class="dSelectText text20R">選擇餐點</div>
+                                    </div>
+                                    <div class="dOptionDivOff ml-3">
+                                        <div class="dOption text20R">選擇餐點</div>
+                                        <div class="dOption text20R">摩絲熱狗堡</div>
+                                        <div class="dOption text20R">摩絲鱈魚堡</div>
+                                        <div class="dOption text20R">燒肉珍珠堡</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="align-middle row recommendItem">
+                            <div class="col-3">
+                                <p class="d-inline-block text24B align-middle mr-3">推薦</p>
+                                <span class="snd align-middle"><img src="../public/image/second.png"></span>
+                            </div>
+                            <div class="row col-9">
+                                <div class="ddselect col-6">
+                                    <div class="dSelect mr-3">
+                                        <div class="dSelectText text20R">選擇類別</div>
+                                    </div>
+                                    <div class="dOptionDivOff mr-3">
+                                        <div class="dOption text20R">選擇類別</div>
+                                        <div class="dOption text20R">套餐</div>
+                                        <div class="dOption text20R">漢堡</div>
+                                        <div class="dOption text20R">飲品</div>
+                                    </div>
+                                </div>
+
+                                <div class="ddselect col-6">
+                                    <div class="dSelect ml-3">
+                                        <div class="dSelectText text20R">選擇餐點</div>
+                                    </div>
+                                    <div class="dOptionDivOff ml-3">
+                                        <div class="dOption text20R">選擇餐點</div>
+                                        <div class="dOption text20R">摩絲熱狗堡</div>
+                                        <div class="dOption text20R">摩絲鱈魚堡</div>
+                                        <div class="dOption text20R">燒肉珍珠堡</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="align-middle row recommendItem">
+                            <div class="col-3">
+                                <p class="d-inline-block text24B align-middle mr-3">推薦</p>
+                                <span class="trd align-middle"><img src="../public/image/third.png"></span>
+                            </div>
+                            <div class="row col-9">
+                                <div class="ddselect col-6">
+                                    <div class="dSelect mr-3">
+                                        <div class="dSelectText text20R">選擇類別</div>
+                                    </div>
+                                    <div class="dOptionDivOff mr-3">
+                                        <div class="dOption text20R">選擇類別</div>
+                                        <div class="dOption text20R">套餐</div>
+                                        <div class="dOption text20R">漢堡</div>
+                                        <div class="dOption text20R">飲品</div>
+                                    </div>
+                                </div>
+
+                                <div class="ddselect col-6">
+                                    <div class="dSelect ml-3">
+                                        <div class="dSelectText text20R">選擇餐點</div>
+                                    </div>
+                                    <div class="dOptionDivOff ml-3">
+                                        <div class="dOption text20R">選擇餐點</div>
+                                        <div class="dOption text20R">摩絲熱狗堡</div>
+                                        <div class="dOption text20R">摩絲鱈魚堡</div>
+                                        <div class="dOption text20R">燒肉珍珠堡</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+
+
+                    </ul>
+                </div>
+
+
+                <div class="modal-footer">
+                    <button class="text20R dbtn btnW" data-dismiss="modal">取消返回</button>
+                    <button class="text20R dbtn btnY ml-3">確定修改</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+
+</html>
