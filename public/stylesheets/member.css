@@ -234,12 +234,6 @@
     border: 2px solid var(--dYellow);
 }
 
-.icon-trash::before{
-    font-size:28px;
-    color: var(--moreLightGray);
-    float: right;
-    padding-top: 4px;
-}
 
 .mInfo .singleText398{
     width: 100%;
@@ -256,3 +250,34 @@
     height: 60px;
     padding: 6px 0;
 }
+
+/* 儲值 */
+.CoinBlock .text24B{
+margin-right: 96px;
+}
+
+.CoinBlock .price{
+    width: 140px;
+  
+}
+
+.CoinBlock{
+    background: white;
+    padding: 8px 8px 8px 40px;
+    border-radius: 30px;
+
+}
+
+/* 垃圾桶 */
+
+.mCollection .icon-trash {
+    font-size:30px;
+    color: var(--moreLightGray);
+    margin-left: auto;
+}
+
+.mCollection .icon-trash:hover {
+    color: var(--dBlack);
+    cursor: pointer;
+}
+
