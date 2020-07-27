@@ -287,18 +287,26 @@
         }
 
         li {
-            font-size: 1rem;
-            color: #777777;
             margin-bottom: 17px;
         }
 
-        li:hover {
+        li>a {
+            font-size: 1rem;
+            color: #777777;
+        }
+
+        li>a:hover {
             color: var(--dYellow);
             transition-duration: 0.5s;
         }
 
         .row {
             margin-right: -16px;
+        }
+        @media only screen and (max-width: 500px){
+        .rwdhidden{
+            display: none;
+        }
         }
     </style>
 </head>
@@ -319,7 +327,7 @@
                             style="width: 260px; height: 40px; padding-left: 56px;">
                     </div>
                 </div>
-                <div class="col-6">
+                <div class="col-6 rwdhidden">
                     <span class="text20B mr16">選擇送餐地址</span>
                     <div class="ddselect mr16">
                         <div class="dSelect d-inline-block" style="width: 160px; top: 40px;">
@@ -371,7 +379,9 @@
                             alt="...">
                         <i class="heart icon-heart"></i>
                         <div class="card-body">
-                            <span class="card-text text24B">太初麵食</span>
+                            <div class="d-inline-block w-75">
+                                <span class="card-text text24B shopName">太初麵食</span>
+                            </div>
                             <i class="icon-spoon float-right"></i>
                             <span class="card-text eng24R float-right" style="margin-right: 7px;">4.8</span>
 
@@ -380,11 +390,13 @@
                 </div>
                 <div class="col-4 pr-3 imgCard">
                     <div class="dingImgDiv" style="width:  100%">
-                        <img src="../public/image/store/Taichung/太初麵食/index.jpeg" class="card-img-top dingImg"
+                        <img src="../public/image/store/Taichung/隨主飡_法式水煮專賣/index.jpeg" class="card-img-top dingImg"
                             alt="...">
                         <i class="heart icon-heart"></i>
                         <div class="card-body">
-                            <span class="card-text text24B">太初麵食</span>
+                            <div class="d-inline-block w-75">
+                                <span class="card-text text24B shopName">隨主飡_法式水煮專賣賣賣賣賣賣賣賣賣賣</span>
+                            </div>
                             <i class="icon-spoon float-right"></i>
                             <span class="card-text eng24R float-right" style="margin-right: 7px;">4.8</span>
 
@@ -393,17 +405,20 @@
                 </div>
                 <div class="col-4 pr-3 imgCard">
                     <div class="dingImgDiv" style="width:  100%">
-                        <img src="../public/image/store/Taichung/太初麵食/index.jpeg" class="card-img-top dingImg"
+                        <img src="../public/image/store/Taichung/隨主飡_法式水煮專賣/index.jpeg" class="card-img-top dingImg"
                             alt="...">
                         <i class="heart icon-heart"></i>
                         <div class="card-body">
-                            <span class="card-text text24B">太初麵食</span>
+                            <div class="d-inline-block w-75">
+                                <span class="card-text text24B shopName">隨主飡_法式水煮專賣</span>
+                            </div>
                             <i class="icon-spoon float-right"></i>
                             <span class="card-text eng24R float-right" style="margin-right: 7px;">4.8</span>
 
                         </div>
                     </div>
                 </div>
+
 
             </div>
         </div>
@@ -418,33 +433,39 @@
             <div class="row">
                 <div class="col-4 pr-3 imgCard">
                     <div class="dingImgDiv" style="width:  100%">
-                        <img src="../public/image/store/Taichung/太初麵食/index.jpeg" class="card-img-top dingImg"
+                        <img src="../public/image/store/Taichung/好好越南料理/index.jpeg" class="card-img-top dingImg"
                             alt="...">
                         <i class="heart icon-heart"></i>
                         <div class="card-body">
-                            <span class="card-text text24B">太初麵食</span>
+                            <div class="d-inline-block w-75">
+                                <span class="card-text text24B shopName">太初麵食</span>
+                            </div>
                             <div class="newStore">NEW</div>
                         </div>
                     </div>
                 </div>
                 <div class="col-4 pr-3 imgCard">
                     <div class="dingImgDiv" style="width:  100%">
-                        <img src="../public/image/store/Taichung/太初麵食/index.jpeg" class="card-img-top dingImg"
+                        <img src="../public/image/store/Taichung/好好越南料理/index.jpeg" class="card-img-top dingImg"
                             alt="...">
                         <i class="heart icon-heart"></i>
                         <div class="card-body">
-                            <span class="card-text text24B">太初麵食</span>
+                            <div class="d-inline-block w-75">
+                                <span class="card-text text24B shopName">太初麵食</span>
+                            </div>
                             <div class="newStore">NEW</div>
                         </div>
                     </div>
                 </div>
                 <div class="col-4 pr-3 imgCard">
                     <div class="dingImgDiv" style="width:  100%">
-                        <img src="../public/image/store/Taichung/太初麵食/index.jpeg" class="card-img-top dingImg"
+                        <img src="../public/image/store/Taichung/好好越南料理/index.jpeg" class="card-img-top dingImg"
                             alt="...">
                         <i class="heart icon-heart"></i>
                         <div class="card-body">
-                            <span class="card-text text24B">太初麵食</span>
+                            <div class="d-inline-block w-75">
+                                <span class="card-text text24B shopName">太初麵食</span>
+                            </div>
                             <div class="newStore">NEW</div>
                         </div>
                     </div>
@@ -468,18 +489,20 @@
         <!-- 推薦店家 -->
         <div class="mContainer givePadding">
             <h3 class="text28B text28Padding">
-                推薦店家
+                熱門店家
                 <img class="lrImg" src="../public/image/right.png" alt="">
                 <img class="lrImg" src="../public/image/left.png" alt="" style="margin-right: 8px;">
             </h3>
             <div class="row">
-                <div class="col-4 pr-3 imgCard">
+                <div class="col-4 pr-3 imgCard" data-toggle="modal" data-target="#storeModel">
                     <div class="dingImgDiv" style="width:  100%">
                         <img src="../public/image/store/Taichung/太初麵食/index.jpeg" class="card-img-top dingImg"
                             alt="...">
                         <i class="heart icon-heart"></i>
                         <div class="card-body">
-                            <span class="card-text text24B">太初麵食</span>
+                            <div class="d-inline-block w-75">
+                                <span class="card-text text24B shopName">太初麵食</span>
+                            </div>
                             <i class="icon-spoon float-right"></i>
                             <span class="card-text eng24R float-right" style="margin-right: 7px;">4.8</span>
 
@@ -488,11 +511,13 @@
                 </div>
                 <div class="col-4 pr-3 imgCard">
                     <div class="dingImgDiv" style="width:  100%">
-                        <img src="../public/image/store/Taichung/太初麵食/index.jpeg" class="card-img-top dingImg"
+                        <img src="../public/image/store/Taichung/隨主飡_法式水煮專賣/index.jpeg" class="card-img-top dingImg"
                             alt="...">
                         <i class="heart icon-heart"></i>
                         <div class="card-body">
-                            <span class="card-text text24B">太初麵食</span>
+                            <div class="d-inline-block w-75">
+                                <span class="card-text text24B shopName">隨主飡_法式水煮專賣賣賣賣賣賣賣賣賣賣</span>
+                            </div>
                             <i class="icon-spoon float-right"></i>
                             <span class="card-text eng24R float-right" style="margin-right: 7px;">4.8</span>
 
@@ -501,17 +526,20 @@
                 </div>
                 <div class="col-4 pr-3 imgCard">
                     <div class="dingImgDiv" style="width:  100%">
-                        <img src="../public/image/store/Taichung/太初麵食/index.jpeg" class="card-img-top dingImg"
+                        <img src="../public/image/store/Taichung/隨主飡_法式水煮專賣/index.jpeg" class="card-img-top dingImg"
                             alt="...">
                         <i class="heart icon-heart"></i>
                         <div class="card-body">
-                            <span class="card-text text24B">太初麵食</span>
+                            <div class="d-inline-block w-75">
+                                <span class="card-text text24B shopName">隨主飡_法式水煮專賣</span>
+                            </div>
                             <i class="icon-spoon float-right"></i>
                             <span class="card-text eng24R float-right" style="margin-right: 7px;">4.8</span>
 
                         </div>
                     </div>
                 </div>
+
 
             </div>
         </div>
@@ -748,7 +776,65 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="text28B" style="margin-bottom: 27px;" id="title02" name="title02">人氣餐點</div>
+                        <div class="text28B" style="margin-bottom: 27px;" id="title02">人氣餐點</div>
+                        <div class="meals">
+                            <div class="mealsCard">
+                                <span class="text20B mealsName">無骨鹽酥雞</span>
+                                <div class="mealsDetail">新鮮直送，鮮嫩多汁</div>
+                                <div class="mealsPrice">
+                                    <img src="../public/image/coin.png" alt="">
+                                    <span class="text20RG">60</span>
+                                </div>
+                                <div class="mealsCardDiv">
+                                    <img src="../public/image/store/Taichung/太初麵食/傳香滷肉飯套餐.jpeg" alt="">
+                                </div>
+                            </div>
+                            <div class="mealsCard">
+                                <span class="text20B mealsName">無骨鹽酥雞</span>
+                                <div class="mealsDetail">新鮮直送，鮮嫩多汁</div>
+                                <div class="mealsPrice">
+                                    <img src="../public/image/coin.png" alt="">
+                                    <span class="text20RG">60</span>
+                                </div>
+                                <div class="mealsCardDiv">
+                                    <img src="../public/image/store/Taichung/太初麵食/傳香滷肉飯套餐.jpeg" alt="">
+                                </div>
+                            </div>
+                            <div class="mealsCard">
+                                <span class="text20B mealsName">無骨鹽酥雞</span>
+                                <div class="mealsDetail">新鮮直送，鮮嫩多汁</div>
+                                <div class="mealsPrice">
+                                    <img src="../public/image/coin.png" alt="">
+                                    <span class="text20RG">60</span>
+                                </div>
+                                <div class="mealsCardDiv">
+                                    <img src="../public/image/store/Taichung/太初麵食/傳香滷肉飯套餐.jpeg" alt="">
+                                </div>
+                            </div>
+                            <div class="mealsCard">
+                                <span class="text20B mealsName">無骨鹽酥雞</span>
+                                <div class="mealsDetail">新鮮直送，鮮嫩多汁</div>
+                                <div class="mealsPrice">
+                                    <img src="../public/image/coin.png" alt="">
+                                    <span class="text20RG">60</span>
+                                </div>
+                                <div class="mealsCardDiv">
+                                    <img src="../public/image/store/Taichung/太初麵食/傳香滷肉飯套餐.jpeg" alt="">
+                                </div>
+                            </div>
+                            <div class="mealsCard">
+                                <span class="text20B mealsName">無骨鹽酥雞</span>
+                                <div class="mealsDetail">新鮮直送，鮮嫩多汁</div>
+                                <div class="mealsPrice">
+                                    <img src="../public/image/coin.png" alt="">
+                                    <span class="text20RG">60</span>
+                                </div>
+                                <div class="mealsCardDiv">
+                                    <img src="../public/image/store/Taichung/太初麵食/傳香滷肉飯套餐.jpeg" alt="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text28B" style="margin-bottom: 27px;" id="title03">套餐</div>
                         <div class="meals">
                             <div class="mealsCard">
                                 <span class="text20B mealsName">無骨鹽酥雞</span>
