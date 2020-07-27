@@ -275,10 +275,11 @@ nav {
     opacity: 0.8;
 }
 
+/* 店家彈框XX */
 .storeClose {
     color: var(--dWhite);
 }
-
+/* 側邊分類小標題清單 */
 .storeUl>li {
     margin-bottom: 17px;
 }
@@ -288,11 +289,35 @@ nav {
     margin-top: 40px;
 }
 
+/* 店家彈框側邊小分類標題前面的黃線 */
+.storeContent::before{
+    content: '';
+    display: block;
+    border-radius: 1px;
+    background-color: var(--dYellow);
+    opacity: 0;
+    height: 2px;
+    width: 25px;
+    margin-left: -39px;
+    margin-bottom: -11px;
+}
+
+/* 被點選的分類標題要加的class */
+.actMeals{
+    color: var(--dYellow) !important;
+    font-weight: 700;
+}
+.actMeals.storeContent::before{
+    opacity: 1;
+}
+
+/* 預設分類小標題文字顏色 */
 li>.storeContent {
     font-size: 1rem;
     color: #777777;
 }
 
+/* 預設分類小標題hover樣式 */
 li>.storeContent:hover {
     color: var(--dYellow);
     transition-duration: 0.5s;

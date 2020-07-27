@@ -20,9 +20,7 @@
     /* float: right; */
     /* margin-left: 46px; */
     position: absolute;
-    overflow: scroll;
-    overflow-x: hidden;
-    overflow-y: auto;
+    
 }
 
 /* 右上三顆按鈕設定 */

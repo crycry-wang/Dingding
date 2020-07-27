@@ -609,6 +609,9 @@ textarea {
     margin-left: 23px;
     margin-right: 148px;
     margin-bottom: 40px;
+    overflow: scroll;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 .mealsCard {
@@ -923,6 +926,7 @@ textarea {
 
 .storeModel {
     margin-top: 80px;
+    
 }
 
 
