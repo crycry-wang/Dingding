@@ -80,9 +80,7 @@
             width: 53px;
             height: 30px;
             border-radius: 15px;
-            position: absolute;
-            right: 2px;
-            margin-top: 26px;
+            float: right;
             line-height: 30px;
             padding-left: 9px;
 
@@ -90,7 +88,8 @@
 
         .dBannerM {
             height: 406px;
-            width: 1609px;
+            /* width: 1609px; */
+            width: 100%;
             background-image: url("../public/image/BannerM.png");
             background-repeat: no-repeat;
             background-size: cover;
@@ -104,11 +103,11 @@
         }
 
         /* 店家卡小湯匙 */
-        .dingImgDiv>.icon-spoon {
-            float: right;
+        .card-body>.icon-spoon {
+            /* float: right; */
             color: var(--dYellow);
             font-size: 24px;
-            margin-top: 25px;
+            /* margin-top: 25px; */
         }
 
         .footer {
@@ -176,8 +175,8 @@
         .lrImg {
             width: 32px;
             height: 32px;
-            position: absolute;
-            top: 0px;
+            float: right;
+            /* top: 0px; */
             opacity: 0.5;
         }
 
@@ -297,42 +296,53 @@
             color: var(--dYellow);
             transition-duration: 0.5s;
         }
+
+        .row {
+            margin-right: -16px;
+        }
     </style>
 </head>
 
 <body>
     <div class="wrapper">
         <nav class="mContainer">
-            <div class="navItem">
-                <img src="../public/image/logo.png" width="106" height="32" class="d-inline-block align-middle " alt=""
-                    loading="lazy" style="margin-right: 171px;">
-                <!-- <div class="d-inline-block align-middle serchDiv" >
-                    <i class="icon-search "></i>
-                    <input type="text">
-                </div> -->
-                <div class="d-inline-block align-baseline"
-                    style="width: 260px;height: 40px;position: relative;margin-right: 40px;">
-                    <i class="icon-search" style="position: absolute;top: -1px;left: 20px;"></i>
-                    <input type="text" class="singleText398 text20R" placeholder="輸入店家名稱"
-                        style="width: 260px; height: 40px; padding-left: 56px;">
+            <div class="navItem row">
+                <div class="col-2">
+                    <img src="../public/image/logo.png" width="106" height="32" class="d-inline-block align-middle "
+                        alt="" loading="lazy">
                 </div>
-                <span class="text20B mr16">選擇送餐地址</span>
-                <div class="ddselect mr16">
-                    <div class="dSelect d-inline-block" style="width: 160px; top: 40px;">
-                        <div class="dSelectText text20R " style="line-height: 30px;">縣市</div>
+                <div class="col-2">
+                    <div class="d-inline-block align-baseline"
+                        style="width: 260px;height: 40px;position: relative;margin-right: 40px;">
+                        <i class="icon-search" style="position: absolute;top: -1px;left: 20px;"></i>
+                        <input type="text" class="singleText398 text20R" placeholder="輸入店家名稱"
+                            style="width: 260px; height: 40px; padding-left: 56px;">
                     </div>
                 </div>
-                <div class="ddselect mr16">
-                    <div class="dSelect d-inline-block" style="width: 160px; top: 40px;">
-                        <div class="dSelectText text20R " style="line-height: 30px;">區</div>
+                <div class="col-6">
+                    <span class="text20B mr16">選擇送餐地址</span>
+                    <div class="ddselect mr16">
+                        <div class="dSelect d-inline-block" style="width: 160px; top: 40px;">
+                            <div class="dSelectText text20R " style="line-height: 30px;">縣市</div>
+                        </div>
+                    </div>
+                    <div class="ddselect mr16">
+                        <div class="dSelect d-inline-block" style="width: 160px; top: 40px;">
+                            <div class="dSelectText text20R " style="line-height: 30px;">區</div>
+                        </div>
+                    </div>
+                    <div class="d-inline-block">
+                        <button class=" dbtn btnY d-inline-block"
+                            style="font-size: 16px;line-height: 30px;">尋找食物</button>
                     </div>
                 </div>
-                <div class="d-inline-block" style="margin-right: 280px;">
-                    <button class=" dbtn btnY d-inline-block" style="font-size: 16px;line-height: 30px;">尋找食物</button>
+                <div class="col-2">
+                    <div style="float: right;">
+                        <a class="text20B mr16" data-toggle="modal" data-target="#inputXLLogin">登入</a>
+                        <span class="text20B mr16" style="color: var(--dYellow);">|</span>
+                        <a class="text20B" data-toggle="modal" data-target="#inputXLregistered">註冊</a>
+                    </div>
                 </div>
-                <a class="text20B mr16" data-toggle="modal" data-target="#inputXLLogin">登入</a>
-                <span class="text20B mr16" style="color: var(--dYellow);">|</span>
-                <a class="text20B" data-toggle="modal" data-target="#inputXLregistered">註冊</a>
             </div>
         </nav>
 
@@ -348,80 +358,103 @@
         </div>
 
         <!-- 熱門店家 -->
-        <div class="givePadding mContainerContent">
-            <span class="text28B" style="position: relative;">熱門店家
-                <img class="lrImg" style="left: 1579px;" src="../public/image/right.png" alt="" />
-                <img class="lrImg" style="left: 1539px;" src="../public/image/left.png" alt="" />
+        <div class="mContainer givePadding">
+            <h3 class="text28B text28Padding">
+                熱門店家
+                <img class="lrImg" src="../public/image/right.png" alt="">
+                <img class="lrImg" src="../public/image/left.png" alt="" style="margin-right: 8px;">
+            </h3>
+            <div class="row">
+                <div class="col-4 pr-3 imgCard" data-toggle="modal" data-target="#storeModel">
+                    <div class="dingImgDiv" style="width:  100%">
+                        <img src="../public/image/store/Taichung/太初麵食/index.jpeg" class="card-img-top dingImg"
+                            alt="...">
+                        <i class="heart icon-heart"></i>
+                        <div class="card-body">
+                            <span class="card-text text24B">太初麵食</span>
+                            <i class="icon-spoon float-right"></i>
+                            <span class="card-text eng24R float-right" style="margin-right: 7px;">4.8</span>
 
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4 pr-3 imgCard">
+                    <div class="dingImgDiv" style="width:  100%">
+                        <img src="../public/image/store/Taichung/太初麵食/index.jpeg" class="card-img-top dingImg"
+                            alt="...">
+                        <i class="heart icon-heart"></i>
+                        <div class="card-body">
+                            <span class="card-text text24B">太初麵食</span>
+                            <i class="icon-spoon float-right"></i>
+                            <span class="card-text eng24R float-right" style="margin-right: 7px;">4.8</span>
 
-            </span><br>
-            <div class="imgCard d-inline-block" style="margin-top: 23px;margin-right: 20px;" data-toggle="modal"
-                data-target="#storeModel">
-                <div class="dingImgDiv">
-                    <img class="dingImg" src="../public/image/store/Taichung/太初麵食/index.jpeg" alt="">
-                    <div class="middle"></div>
-                    <i class="heart icon-heart"></i><i class="icon-spoon"></i>
+                        </div>
+                    </div>
                 </div>
-                <div class="text24B shopName">麥當勞 五權西店五權西店五權西店五權西店</div>
-                <a class="eng24R score">4.8</a>
-            </div>
-            <div class="imgCard d-inline-block" style="margin-top: 23px;margin-right: 20px;">
-                <div class="dingImgDiv">
-                    <img class="dingImg" src="../public/image/store/Taichung/蛋白盒子健康餐_復興店/index.jpeg" alt="">
-                    <div class="middle"></div>
-                    <i class="heart icon-heart"></i><i class="icon-spoon"></i>
+                <div class="col-4 pr-3 imgCard">
+                    <div class="dingImgDiv" style="width:  100%">
+                        <img src="../public/image/store/Taichung/太初麵食/index.jpeg" class="card-img-top dingImg"
+                            alt="...">
+                        <i class="heart icon-heart"></i>
+                        <div class="card-body">
+                            <span class="card-text text24B">太初麵食</span>
+                            <i class="icon-spoon float-right"></i>
+                            <span class="card-text eng24R float-right" style="margin-right: 7px;">4.8</span>
+
+                        </div>
+                    </div>
                 </div>
-                <div class="text24B shopName">麥當勞 五權西店五權西店五權西店五權西店</div>
-                <a class="eng24R score">4.8</a>
-            </div>
-            <div class="imgCard d-inline-block" style="margin-top: 23px;">
-                <div class="dingImgDiv">
-                    <img class="dingImg" src="../public/image/store/Taichung/蛋白盒子健康餐_復興店/index.jpeg" alt="">
-                    <div class="middle"></div>
-                    <i class="heart icon-heart"></i><i class="icon-spoon"></i>
-                </div>
-                <div class="text24B shopName">麥當勞 五權西店五權西店五權西店五權西店</div>
-                <a class="eng24R score">4.8</a>
+
             </div>
         </div>
 
         <!-- 最新店家 -->
-        <div class="givePadding mContainerContent">
-            <span class="text28B" style="position: relative;">最新店家
-                <img class="lrImg" style="left: 1579px;" src="../public/image/right.png" alt="" />
-                <img class="lrImg" style="left: 1539px;" src="../public/image/left.png" alt="" />
-            </span><br>
-            <div class="imgCard d-inline-block" style="margin-top: 23px;margin-right: 20px;">
-                <div class="dingImgDiv">
-                    <img class="dingImg" src="../public/image/store/Taichung/蛋白盒子健康餐_復興店/index.jpeg" alt="">
-                    <div class="middle"></div>
-                    <i class="heart icon-heart"></i>
+        <div class="mContainer givePadding">
+            <h3 class="text28B text28Padding">
+                最新店家
+                <img class="lrImg" src="../public/image/right.png" alt="">
+                <img class="lrImg" src="../public/image/left.png" alt="" style="margin-right: 8px;">
+            </h3>
+            <div class="row">
+                <div class="col-4 pr-3 imgCard">
+                    <div class="dingImgDiv" style="width:  100%">
+                        <img src="../public/image/store/Taichung/太初麵食/index.jpeg" class="card-img-top dingImg"
+                            alt="...">
+                        <i class="heart icon-heart"></i>
+                        <div class="card-body">
+                            <span class="card-text text24B">太初麵食</span>
+                            <div class="newStore">NEW</div>
+                        </div>
+                    </div>
                 </div>
-                <div class="text24B shopName">麥當勞 五權西店五權西店五權西店五權西店</div>
-                <div class="newStore">NEW</div>
-            </div>
-            <div class="imgCard d-inline-block" style="margin-top: 23px;margin-right: 20px;">
-                <div class="dingImgDiv">
-                    <img class="dingImg" src="../public/image/store/Taichung/蛋白盒子健康餐_復興店/index.jpeg" alt="">
-                    <div class="middle"></div>
-                    <i class="heart icon-heart"></i>
+                <div class="col-4 pr-3 imgCard">
+                    <div class="dingImgDiv" style="width:  100%">
+                        <img src="../public/image/store/Taichung/太初麵食/index.jpeg" class="card-img-top dingImg"
+                            alt="...">
+                        <i class="heart icon-heart"></i>
+                        <div class="card-body">
+                            <span class="card-text text24B">太初麵食</span>
+                            <div class="newStore">NEW</div>
+                        </div>
+                    </div>
                 </div>
-                <div class="text24B shopName">麥當勞 五權西店五權西店五權西店五權西店</div>
-                <div class="newStore">NEW</div>
-            </div>
-            <div class="imgCard d-inline-block" style="margin-top: 23px;">
-                <div class="dingImgDiv">
-                    <img class="dingImg" src="../public/image/store/Taichung/蛋白盒子健康餐_復興店/index.jpeg" alt="">
-                    <div class="middle"></div>
-                    <i class="heart icon-heart"></i>
+                <div class="col-4 pr-3 imgCard">
+                    <div class="dingImgDiv" style="width:  100%">
+                        <img src="../public/image/store/Taichung/太初麵食/index.jpeg" class="card-img-top dingImg"
+                            alt="...">
+                        <i class="heart icon-heart"></i>
+                        <div class="card-body">
+                            <span class="card-text text24B">太初麵食</span>
+                            <div class="newStore">NEW</div>
+                        </div>
+                    </div>
                 </div>
-                <div class="text24B shopName">麥當勞 五權西店五權西店五權西店五權西店</div>
-                <div class="newStore">NEW</div>
+
             </div>
         </div>
 
         <!-- 優惠看板 -->
-        <div class="mContainerContent givePadding">
+        <div class="mContainer givePadding">
             <div class="dBannerM">
                 <div class="bannerImage">
                     <div class="container">
@@ -433,37 +466,53 @@
         </div>
 
         <!-- 推薦店家 -->
-        <div class="givePadding mContainerContent">
-            <span class="text28B" style="position: relative;">推薦店家
-                <img class="lrImg" style="left: 1579px;" src="../public/image/right.png" alt="" />
-                <img class="lrImg" style="left: 1539px;" src="../public/image/left.png" alt="" />
-            </span><br>
-            <div class="imgCard d-inline-block" style="margin-top: 23px;margin-right: 20px;">
-                <div class="dingImgDiv">
-                    <img class="dingImg" src="../public/image/store/Taichung/蛋白盒子健康餐_復興店/index.jpeg" alt="">
-                    <div class="middle"></div>
-                    <i class="heart icon-heart"></i>
+        <div class="mContainer givePadding">
+            <h3 class="text28B text28Padding">
+                推薦店家
+                <img class="lrImg" src="../public/image/right.png" alt="">
+                <img class="lrImg" src="../public/image/left.png" alt="" style="margin-right: 8px;">
+            </h3>
+            <div class="row">
+                <div class="col-4 pr-3 imgCard">
+                    <div class="dingImgDiv" style="width:  100%">
+                        <img src="../public/image/store/Taichung/太初麵食/index.jpeg" class="card-img-top dingImg"
+                            alt="...">
+                        <i class="heart icon-heart"></i>
+                        <div class="card-body">
+                            <span class="card-text text24B">太初麵食</span>
+                            <i class="icon-spoon float-right"></i>
+                            <span class="card-text eng24R float-right" style="margin-right: 7px;">4.8</span>
+
+                        </div>
+                    </div>
                 </div>
-                <div class="text24B shopName">麥當勞 五權西店五權西店五權西店五權西店</div>
-                <a class="eng24R score">4.8</a> <i class="icon-spoon"></i>
-            </div>
-            <div class="imgCard d-inline-block" style="margin-top: 23px;margin-right: 20px;">
-                <div class="dingImgDiv">
-                    <img class="dingImg" src="../public/image/store/Taichung/蛋白盒子健康餐_復興店/index.jpeg" alt="">
-                    <div class="middle"></div>
-                    <i class="heart icon-heart"></i>
+                <div class="col-4 pr-3 imgCard">
+                    <div class="dingImgDiv" style="width:  100%">
+                        <img src="../public/image/store/Taichung/太初麵食/index.jpeg" class="card-img-top dingImg"
+                            alt="...">
+                        <i class="heart icon-heart"></i>
+                        <div class="card-body">
+                            <span class="card-text text24B">太初麵食</span>
+                            <i class="icon-spoon float-right"></i>
+                            <span class="card-text eng24R float-right" style="margin-right: 7px;">4.8</span>
+
+                        </div>
+                    </div>
                 </div>
-                <div class="text24B shopName">麥當勞 五權西店五權西店五權西店五權西店</div>
-                <a class="eng24R score">4.8</a><i class="icon-spoon"></i>
-            </div>
-            <div class="imgCard d-inline-block" style="margin-top: 23px;">
-                <div class="dingImgDiv">
-                    <img class="dingImg" src="../public/image/store/Taichung/蛋白盒子健康餐_復興店/index.jpeg" alt="">
-                    <div class="middle"></div>
-                    <i class="heart icon-heart"></i><i class="icon-spoon"></i>
+                <div class="col-4 pr-3 imgCard">
+                    <div class="dingImgDiv" style="width:  100%">
+                        <img src="../public/image/store/Taichung/太初麵食/index.jpeg" class="card-img-top dingImg"
+                            alt="...">
+                        <i class="heart icon-heart"></i>
+                        <div class="card-body">
+                            <span class="card-text text24B">太初麵食</span>
+                            <i class="icon-spoon float-right"></i>
+                            <span class="card-text eng24R float-right" style="margin-right: 7px;">4.8</span>
+
+                        </div>
+                    </div>
                 </div>
-                <div class="text24B shopName">麥當勞 五權西店五權西店五權西店五權西店</div>
-                <a class="eng24R score">4.8</a>
+
             </div>
         </div>
         <!-- footer -->
@@ -616,11 +665,21 @@
                     </div>
                     <div class="modal-header" style="margin-top: 310px;position: fixed;z-index: 999;">
                         <ul style="width: 100px;margin-right: 40px;margin-top: 40px;">
-                            <li class="storeContent" href="#title01">店家推薦</li>
-                            <li class="storeContent" href="#title02">人氣餐點</li>
-                            <li class="storeContent">套餐</li>
-                            <li class="storeContent">單點</li>
-                            <li class="storeContent">飲品</li>
+                            <li>
+                                <a class="storeContent" href="#title01">店家推薦</a>
+                            </li>
+                            <li>
+                                <a class="storeContent" href="#title02">人氣餐點</a>
+                            </li>
+                            <li>
+                                <a class="storeContent" href="#title03">套餐</a>
+                            </li>
+                            <li>
+                                <a class="storeContent" href="#title04">單點</a>
+                            </li>
+                            <li>
+                                <a class="storeContent" href="#title05">飲品</a>
+                            </li>
                         </ul>
                         <div style="background-color: var(--dWhite);width: 1240px;height: 86px;padding-top: 40px;">
                             <span class="dTag text24RG act">美味餐點</span>
