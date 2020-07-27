@@ -120,6 +120,7 @@
 
         .footer a {
             color: var(--dWhite);
+            letter-spacing: 1.28px;
         }
 
         /* 登入/註冊用的彈框圓角 */
@@ -282,20 +283,25 @@
             opacity: 0.8;
         }
 
-        .icon-close {
+        .storeClose {
             color: var(--dWhite);
         }
 
-        li {
+        .storeUl>li {
             margin-bottom: 17px;
         }
+        .storeUl{
+            width: 100px;
+            margin-right: 40px;
+            margin-top: 40px;
+        }
 
-        li>a {
+        li>.storeContent {
             font-size: 1rem;
             color: #777777;
         }
 
-        li>a:hover {
+        li>.storeContent:hover {
             color: var(--dYellow);
             transition-duration: 0.5s;
         }
@@ -303,11 +309,8 @@
         .row {
             margin-right: -16px;
         }
-        @media only screen and (max-width: 500px){
-        .rwdhidden{
-            display: none;
-        }
-        }
+        
+        
     </style>
 </head>
 
@@ -555,7 +558,7 @@
             </div>
 
         </footer>
-
+        <!-- 登入 -->
         <div class="modal fade inputXL" id="inputXLLogin">
             <div class="modal-dialog modal-dialog-centered">
 
@@ -688,11 +691,11 @@
                             <button class="dbtn dbtnG text20R" style="float: right;">快速安排訂單</button>
                         </div>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <i class=" icon-close"></i>
+                            <i class="storeClose icon-close"></i>
                         </button>
                     </div>
                     <div class="modal-header" style="margin-top: 310px;position: fixed;z-index: 999;">
-                        <ul style="width: 100px;margin-right: 40px;margin-top: 40px;">
+                        <ul class="storeUl">
                             <li>
                                 <a class="storeContent" href="#title01">店家推薦</a>
                             </li>
