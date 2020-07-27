@@ -46,7 +46,14 @@ function showCalendar(month, year){
 
     let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
-    YandM.innerHTML = [month+1]+ " " + months[month] + " " + "/" + " " + year;
+    YandM.insertAdjacentHTML(`beforeend`, `<span id="yaM" class="mr-xs"></span><span id="YAM" class=""></span><span id="Yam" class="ml-xs"></span>`);
+    let titleyaM =document.getElementById("yaM");
+    let titleYAM =document.getElementById("YAM");
+    let titleYam =document.getElementById("Yam");
+    
+    yaM.innerHTML = [month+1]+ " " + months[month] + "";
+    YAM.innerHTML = "|" + "";
+    Yam.innerHTML = year;
 
     tbl.innerHTML = "";
 
