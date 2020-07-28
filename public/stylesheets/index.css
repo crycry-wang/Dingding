@@ -218,7 +218,7 @@ nav {
     letter-spacing: 1.2px;
 }
 
-
+/* 店家彈框 */
 .storeModelImg {
     width: 1440px;
     height: 350px;
@@ -286,10 +286,10 @@ nav {
 }
 /* 側邊分類小標題清單 */
 .storeUl>li {
-    margin-bottom: 17px;
+    margin-bottom: 25px;
 }
 .storeUl{
-    width: 100px;
+    /* width: 100px; */
     margin-right: 40px;
     margin-top: 40px;
 }

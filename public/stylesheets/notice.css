@@ -144,7 +144,8 @@
 .read .content,
 .read .photo,
 .read img,
-.read .actionR p {
+.read .actionR p,
+.read .actionR .price {
     opacity: 0.4;
 }
 
