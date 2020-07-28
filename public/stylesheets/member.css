@@ -316,13 +316,9 @@ input+input {
 
 .coinList::-webkit-scrollbar {
     width: 8px;
-    left: 50px;
-    position: absolute;
 }
 
 .coinList::-webkit-scrollbar-thumb {
     border-radius: 100px;
-    -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
     background: var(--dYellow);
-    opacity: 0.7;
 }
