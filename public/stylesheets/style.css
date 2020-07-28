@@ -607,12 +607,32 @@ textarea {
 
 .meals {
     margin-left: 23px;
-    margin-right: 148px;
+    /* margin-right: 148px; */
     margin-bottom: 40px;
-    overflow: scroll;
+    /* overflow: scroll;
     overflow-x: hidden;
-    overflow-y: auto;
+    overflow-y: auto; */
+    
 }
+
+/* 店家彈框菜單滾動軸 */
+.mealsScroll{
+    overflow-y: scroll; 
+    width: 1190px; 
+    height: 500px; 
+    padding-bottom: 40px;
+
+}
+.mealsScroll::-webkit-scrollbar {
+    width:10px;
+    height:8px;
+    }
+.mealsScroll::-webkit-scrollbar-thumb {
+    border-radius:100px;
+    -webkit-box-shadow:inset 0 0 5px rgba(0,0,0,0.2);
+    background:var(--dYellow);
+    opacity: 0.7;
+    }
 
 .mealsCard {
     width: 344px;
@@ -918,6 +938,7 @@ textarea {
 
 .storeModel .modal-dialog {
     max-width: 1440px;
+    height: 90vh;
 }
 
 .redColor {
@@ -925,7 +946,8 @@ textarea {
 }
 
 .storeModel {
-    margin-top: 80px;
+    padding-top: 40px;
+    margin-bottom: 40px;
     
 }
 

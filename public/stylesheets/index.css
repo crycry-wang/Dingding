@@ -218,6 +218,7 @@ nav {
     letter-spacing: 1.2px;
 }
 
+
 .storeModelImg {
     width: 1440px;
     height: 350px;
@@ -227,26 +228,28 @@ nav {
     background-size: cover;
     display: block;
     background-position: 50% 50%;
-    /* overflow: hidden; */
-    position: fixed;
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
-    z-index: 999;
+    /* position: fixed; */
+    border-top-left-radius: 20px !important;
+    border-top-right-radius: 20px !important;
+    /* z-index: 999; */
 }
 
 .storeModelImg>img {
     width: 1440px;
     height: auto;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
 
 }
 
 .storeModelImgContent {
     background-color: var(--dWhite);
     width: 543px;
-    height: 190px;
+    /* height: 190px; */
     margin-top: 62px;
     padding-top: 40px;
     padding-left: 46px;
+    padding-bottom: 40px;
 }
 
 .storeModelImgContent>.icon-spoon,
@@ -257,10 +260,12 @@ nav {
     margin-right: -6px;
 }
 
+
 .storeModelImgContentBottom {
     width: 543px;
     padding-left: 42px;
     margin-top: 27px;
+    margin-bottom: 26px;
 }
 
 /* 店家彈框內的愛心icon */

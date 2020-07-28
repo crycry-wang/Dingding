@@ -25,7 +25,7 @@
 <body>
     <div class="wrapper">
         <!-- navbar -->
-        <nav class="mContainer">
+        <nav class="mContainer" style="z-index: 998;">
             <div class="navItem row">
                 <div class="col-2">
                     <img src="../public/image/logo.png" width="106" height="32" class="d-inline-block align-middle "
@@ -377,243 +377,54 @@
         </div>
         <!-- 店家彈框 -->
         <div class="modal fade storeModel" id="storeModel">
-            <div class="modal-dialog modal-dialog-scrollable">
-                <div class="modal-content">
-                    <div class="storeModelImg align-middle">
-                        <div class="storeModelImgContent">
-                            <span class="text28B mr16">太初麵食</span>
-                            <span class="eng24R mr16">4.8</span>
-                            <i class="icon-spoon"></i>
-                            <i class="icon-spoon"></i>
-                            <i class="icon-spoon"></i>
-                            <i class="icon-spoon"></i>
-                            <i class="icon-borderspoon"></i>
-                            <!-- <br> -->
-                            <p class="text20RG" style="margin-top: 8px;">訂單完成率 87% </p>
-                            <!-- <br> -->
-                            <p class="text20R" style="margin-top: 8px;">台中市南屯區公益路二段51號</p>
+            <div class="modal-dialog  w-100" style="height: 1440px; margin-top: 0;z-index:999;">
+                <div class="modal-content  w-100 h-100 ">
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalScrollable">
+            Launch demo modal
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModalScrollable" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+            <div class="modal-dialog" role="document"
+                style="max-width: 1440px;margin-left: 237px;margin-top: 30px;border-radius: 20px;overflow: hidden;">
+                <div class="bg-success model-content"
+                    style="width: 1440px;height: 1000px;border-radius: 20px;">
+                    <div class="">
+                        <div class="storeModelImg align-middle">
+                            <div class="storeModelImgContent">
+                                <span class="text28B mr16">太初麵食</span>
+                                <span class="eng24R mr16">4.8</span>
+                                <i class="icon-spoon"></i>
+                                <i class="icon-spoon"></i>
+                                <i class="icon-spoon"></i>
+                                <i class="icon-spoon"></i>
+                                <i class="icon-borderspoon"></i>
+                                <br>
+                                <span class="text20RG" style="margin-top: 8px;">訂單完成率 87% </span>
+                                <br>
+                                <span class="text20R" style="margin-top: 8px;">台中市南屯區公益路二段51號</span>
+                            </div>
+                            <div class="storeModelImgContentBottom">
+                                <i class="icon-heart"></i>
+                                <button class="dbtn dbtnG text20R" style="float: right;">快速安排訂單</button>
+                            </div>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <i class="storeClose icon-close"></i>
+                            </button>
                         </div>
-                        <div class="storeModelImgContentBottom">
-                            <i class="icon-heart"></i>
-                            <button class="dbtn dbtnG text20R" style="float: right;">快速安排訂單</button>
-                        </div>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <i class="storeClose icon-close"></i>
-                        </button>
                     </div>
-                    <div class="row">
-                        <div class="modal-header col-2" style="padding-right: 0px;">
-                            <ul class="storeUl">
-                                <li>
-                                    <a class="storeContent actMeals" href="#title01">店家推薦</a>
-                                </li>
-                                <li>
-                                    <a class="storeContent" href="#title02">人氣餐點</a>
-                                </li>
-                                <li>
-                                    <a class="storeContent" href="#title03">套餐</a>
-                                </li>
-                                <li>
-                                    <a class="storeContent" href="#title04">單點</a>
-                                </li>
-                                <li>
-                                    <a class="storeContent" href="#title05">飲品</a>
-                                </li>
-                            </ul>
+                    <div class="">
+                        ...
+                    </div>
+                    <div class="">
 
-
-                        </div>
-                        <!-- margin-top: 493px; -->
-                        <div class="col-10" style=" ">
-                            <div style="background-color: var(--dWhite);width: 500px;height: 86px;padding-top: 40px;">
-                                <span class="dTag text24RG act">美味餐點</span>
-                                <span class="dTag text24RG">詳細資訊</span>
-                                <span class="dTag text24RG">店家評價</span>
-                            </div>
-                            <br>
-                            <div class="mealsScroll">
-                                <div class="text28B mt-l" style="margin-bottom: 27px;" id="title01" name="title01">店家推薦
-                                </div>
-                                <div class="meals">
-                                    <div class="mealsCard">
-                                        <span class="text20B mealsName">無骨鹽酥雞</span>
-                                        <div class="mealsDetail">新鮮直送，鮮嫩多汁</div>
-                                        <div class="mealsPrice">
-                                            <span class="eng20R price">
-                                                <span class=" align-middle">5,000</span>
-                                            </span>
-                                        </div>
-                                        <div class="mealsCardDiv">
-                                            <img src="../public/image/store/Taichung/太初麵食/傳香滷肉飯套餐.jpeg" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="mealsCard">
-                                        <span class="text20B mealsName">無骨鹽酥雞</span>
-                                        <div class="mealsDetail">新鮮直送，鮮嫩多汁</div>
-                                        <div class="mealsPrice">
-                                            <span class="eng20R price">
-                                                <span class=" align-middle">5,000</span>
-                                            </span>
-                                        </div>
-                                        <div class="mealsCardDiv">
-                                            <img src="../public/image/store/Taichung/太初麵食/傳香滷肉飯套餐.jpeg" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="mealsCard">
-                                        <span class="text20B mealsName">無骨鹽酥雞</span>
-                                        <div class="mealsDetail">新鮮直送，鮮嫩多汁</div>
-                                        <div class="mealsPrice">
-                                            <span class="eng20R price">
-                                                <span class=" align-middle">5,000</span>
-                                            </span>
-                                        </div>
-                                        <div class="mealsCardDiv">
-                                            <img src="../public/image/store/Taichung/太初麵食/傳香滷肉飯套餐.jpeg" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="mealsCard">
-                                        <span class="text20B mealsName">無骨鹽酥雞</span>
-                                        <div class="mealsDetail">新鮮直送，鮮嫩多汁</div>
-                                        <div class="mealsPrice">
-                                            <span class="eng20R price">
-                                                <span class=" align-middle">5,000</span>
-                                            </span>
-                                        </div>
-                                        <div class="mealsCardDiv">
-                                            <img src="../public/image/store/Taichung/太初麵食/傳香滷肉飯套餐.jpeg" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="mealsCard">
-                                        <span class="text20B mealsName">無骨鹽酥雞</span>
-                                        <div class="mealsDetail">新鮮直送，鮮嫩多汁</div>
-                                        <div class="mealsPrice">
-                                            <span class="eng20R price">
-                                                <span class=" align-middle">5,000</span>
-                                            </span>
-                                        </div>
-                                        <div class="mealsCardDiv">
-                                            <img src="../public/image/store/Taichung/太初麵食/傳香滷肉飯套餐.jpeg" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="mealsCard">
-                                        <span class="text20B mealsName">無骨鹽酥雞</span>
-                                        <div class="mealsDetail">新鮮直送，鮮嫩多汁</div>
-                                        <div class="mealsPrice">
-                                            <span class="eng20R price">
-                                                <span class=" align-middle">5,000</span>
-                                            </span>
-                                        </div>
-                                        <div class="mealsCardDiv">
-                                            <img src="../public/image/store/Taichung/太初麵食/傳香滷肉飯套餐.jpeg" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="mealsCard">
-                                        <span class="text20B mealsName">無骨鹽酥雞</span>
-                                        <div class="mealsDetail">新鮮直送，鮮嫩多汁</div>
-                                        <div class="mealsPrice">
-                                            <span class="eng20R price">
-                                                <span class=" align-middle">5,000</span>
-                                            </span>
-                                        </div>
-                                        <div class="mealsCardDiv">
-                                            <img src="../public/image/store/Taichung/太初麵食/傳香滷肉飯套餐.jpeg" alt="">
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <div class="text28B" style="margin-bottom: 27px;" id="title02">人氣餐點</div>
-                                <div class="meals">
-                                    <div class="mealsCard">
-                                        <span class="text20B mealsName">無骨鹽酥雞</span>
-                                        <div class="mealsDetail">新鮮直送，鮮嫩多汁</div>
-                                        <div class="mealsPrice">
-                                            <span class="eng20R price">
-                                                <span class=" align-middle">5,000</span>
-                                            </span>
-                                        </div>
-                                        <div class="mealsCardDiv">
-                                            <img src="../public/image/store/Taichung/太初麵食/傳香滷肉飯套餐.jpeg" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="mealsCard">
-                                        <span class="text20B mealsName">無骨鹽酥雞</span>
-                                        <div class="mealsDetail">新鮮直送，鮮嫩多汁</div>
-                                        <div class="mealsPrice">
-                                            <span class="eng20R price">
-                                                <span class=" align-middle">5,000</span>
-                                            </span>
-                                        </div>
-                                        <div class="mealsCardDiv">
-                                            <img src="../public/image/store/Taichung/太初麵食/傳香滷肉飯套餐.jpeg" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="mealsCard">
-                                        <span class="text20B mealsName">無骨鹽酥雞</span>
-                                        <div class="mealsDetail">新鮮直送，鮮嫩多汁</div>
-                                        <div class="mealsPrice">
-                                            <span class="eng20R price">
-                                                <span class=" align-middle">5,000</span>
-                                            </span>
-                                        </div>
-                                        <div class="mealsCardDiv">
-                                            <img src="../public/image/store/Taichung/太初麵食/傳香滷肉飯套餐.jpeg" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="mealsCard">
-                                        <span class="text20B mealsName">無骨鹽酥雞</span>
-                                        <div class="mealsDetail">新鮮直送，鮮嫩多汁</div>
-                                        <div class="mealsPrice">
-                                            <span class="eng20R price">
-                                                <span class=" align-middle">5,000</span>
-                                            </span>
-                                        </div>
-                                        <div class="mealsCardDiv">
-                                            <img src="../public/image/store/Taichung/太初麵食/傳香滷肉飯套餐.jpeg" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="mealsCard">
-                                        <span class="text20B mealsName">無骨鹽酥雞</span>
-                                        <div class="mealsDetail">新鮮直送，鮮嫩多汁</div>
-                                        <div class="mealsPrice">
-                                            <span class="eng20R price">
-                                                <span class=" align-middle">5,000</span>
-                                            </span>
-                                        </div>
-                                        <div class="mealsCardDiv">
-                                            <img src="../public/image/store/Taichung/太初麵食/傳香滷肉飯套餐.jpeg" alt="">
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <div class="text28B" style="margin-bottom: 27px;" id="title03">套餐</div>
-                                <div class="meals">
-                                    <div class="mealsCard">
-                                        <span class="text20B mealsName">無骨鹽酥雞</span>
-                                        <div class="mealsDetail">新鮮直送，鮮嫩多汁</div>
-                                        <div class="mealsPrice">
-                                            <span class="eng20R price">
-                                                <span class=" align-middle">5,000</span>
-                                            </span>
-                                        </div>
-                                        <div class="mealsCardDiv">
-                                            <img src="../public/image/store/Taichung/太初麵食/傳香滷肉飯套餐.jpeg" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="mealsCard">
-                                        <span class="text20B mealsName">無骨鹽酥雞</span>
-                                        <div class="mealsDetail">新鮮直送，鮮嫩多汁</div>
-                                        <div class="mealsPrice">
-                                            <span class="eng20R price">
-                                                <span class=" align-middle">5,000</span>
-                                            </span>
-                                        </div>
-                                        <div class="mealsCardDiv">
-                                            <img src="../public/image/store/Taichung/太初麵食/傳香滷肉飯套餐.jpeg" alt="">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
