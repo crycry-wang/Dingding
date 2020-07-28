@@ -619,7 +619,8 @@ textarea {
 .mealsScroll{
     overflow-y: scroll; 
     width: 1190px; 
-    height: 500px; 
+    /* height: 500px;  */
+    height: 40vh;
     padding-bottom: 40px;
 
 }
