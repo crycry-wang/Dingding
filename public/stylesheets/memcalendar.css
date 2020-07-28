@@ -1,9 +1,13 @@
+/* 友文製 */
+
+
 /* 日曆中的日期 */
 
 th {
     border: 5px solid var(--dWhite);
     text-align: center;
     vertical-align: auto;
+    font-weight: lighter;
 }
 
 td {
@@ -12,6 +16,8 @@ td {
     height: 114px;
     width: 170px;
     vertical-align: top;
+    padding-left: 8px;
+    font-size: 1.5rem;
 }
 
 .thY {
@@ -38,21 +44,21 @@ table {
 /* 英數字設定 */
 
 .eng40R {
-    font-family: 'Alata';
+    /* font-family: 'Alata'; */
     font-size: 2.5rem;
     color: var(--dBlack);
     letter-spacing: 4.8px;
 }
 
 .eng30R {
-    font-family: 'Alata';
+    /* font-family: 'Alata'; */
     font-size: 1.875rem;
     color: var(--dBlack);
     letter-spacing: 3.6px;
 }
 
 .eng24W {
-    font-family: 'Alata';
+    /* font-family: 'Alata'; */
     font-size: 1.5rem;
     color: var(--dWhite);
     letter-spacing: 2.88px;
@@ -96,4 +102,5 @@ table {
 .br-m {
     border-right: 4px solid var(--dYellow);
     height: 32px;
+    border-radius: 2px;
 }
