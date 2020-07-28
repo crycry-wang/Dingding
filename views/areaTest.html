@@ -22,6 +22,7 @@
             border-radius: 5px;
             min-height: 20px;
             min-width: 20px;
+            margin-right: 12px;
             position: relative;
         }
         
@@ -49,7 +50,6 @@
         .areaBlock {
             width: 313px;
             height: 190px;
-            margin-left: 50px;
             padding-left: 20px;
             padding-top: 22px;
             padding-bottom: 15px;
@@ -63,22 +63,20 @@
         }
         
         .contry {
-            width: 132px;
             height: 48px;
             border: 1px solid #C9C9C9;
             border-top-left-radius: 24px;
             border-bottom-left-radius: 24px;
             background-color: var(--dLightGray);
-            padding-top: 10px;
-            padding-bottom: 10px;
-            padding-right: 15px;
-            text-align: right;
+            padding: 10px 20px;
+            display: inline-block;
         }
         
         .contrySelect {
             width: 40px;
             height: 48px;
             border: 1px solid #C9C9C9;
+            border-left: none;
             background: url("../public/image/select.png")scroll transparent;
             background-position: left 15px top 50%;
             background-repeat: no-repeat;
@@ -86,19 +84,24 @@
             border-bottom-right-radius: 24px;
             display: inline-block;
         }
+        
+        label {
+            margin-bottom: 0;
+        }
     </style>
 </head>
 
 <body>
     <div style="background-color: #FFFFFF; height: 600px; padding: 50px;">
         <div style="display: inline-block;">
-            <div class="contry">
-                <input type="checkbox">
-                <label class=" text20R">台中市</label>
+            <span class="d-flex">
+                <div class="contry">
+                    <input type="checkbox">
+                    <label class=" text20R">台中市</label>
+                </div>
                 <div class="contrySelect"></div>
-            </div>
-
-            <div class="dblock row areaBlock" style="display: none;">
+            </span>
+            <div class="dblock row areaBlock">
                 <div class="col" style="padding-left: 0px;">
                     <div class="area">
                         <input type="checkbox" id="taichung01">
@@ -185,7 +188,7 @@
         </div>
     </div>
  -->
-        g
+
 </body>
 
 </html>
