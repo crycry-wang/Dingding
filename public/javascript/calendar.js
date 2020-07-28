@@ -1,5 +1,7 @@
 // 日曆
 
+// const e = require("express");
+
 let today = new Date();
 let nowMonth = today.getMonth();
 let nowYear = today.getFullYear();
@@ -35,6 +37,9 @@ function showCalendar(month, year) {
     let firstDay = new Date(year, month).getDay();
     // console.log(firstDay); //3
 
+    // 今天的日期
+    let todayDate = today.getDate();
+
     // 如果一個月中有31天，則“第32天”將是下個月的1號。
     // 如果有30，則“第32天”將是下個月的2號。如果有28，則“第32天”將是下個月的4號。
     // 從32中減去任何一個，您就會得到正確的數字。
@@ -45,7 +50,6 @@ function showCalendar(month, year) {
 
     let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
-    // YandM.insertAdjacentHTML(`beforeend`, `<span id="yaM" class="mr-xs"></span><span id="YAM" class=""></span><span id="Yam" class="ml-xs"></span>`);
     let numMonths = document.getElementById("myDates");
     let engMonths = document.getElementById("myMonths");
     let myYears = document.getElementById("myYears");
@@ -62,40 +66,71 @@ function showCalendar(month, year) {
         let row = document.createElement("tr");
         for (let j = 0; j < 7; j++) {
 
-
-
             if (i === 0 && j < firstDay) {
                 let col = document.createElement("td");
                 let cellText = document.createTextNode("");
                 col.appendChild(cellText);
                 row.appendChild(col);
+
+                col.className = "tdPass";
+
             } else if (i === 0 && j === firstDay) {
                 let col = document.createElement("td");
                 let cellText = document.createTextNode(date);
                 col.appendChild(cellText);
                 row.appendChild(col);
+
+                if ((date < todayDate && year == today.getFullYear() && month == today.getMonth()) || year < today.getFullYear() || (year == today.getFullYear() && month < today.getMonth())) {
+
+                    col.className = "tdPass";
+
+                }else{
+                    col.className = "tdFutrue";
+                }
+
                 date++;
+
             } else if (date <= days) {
                 let col = document.createElement("td");
                 let cellText = document.createTextNode(date);
                 col.appendChild(cellText);
                 row.appendChild(col);
+
+                if ((date < todayDate && year == today.getFullYear() && month == today.getMonth()) || year < today.getFullYear() || (year == today.getFullYear() && month < today.getMonth())) {
+
+                    col.className = "tdPass";
+
+                }else{
+                    col.className = "tdFutrue";
+                }
+
                 date++;
+
             } else if (i === 5 && j === 0) {
                 break;
             } else {
-                let col = document.createElement("td");
+                let col = document.createElement('td');
                 let cellText = document.createTextNode("");
                 col.appendChild(cellText);
                 row.appendChild(col);
-                // break;
+
+                // col.className = "tdPass";
+
             }
 
         }
 
         tbl.appendChild(row);
+
     }
 
+    // if (month <= nowMonth && date < today) {
+
+    //     col.className = "tdPass";
+
+    // } else {
+    //     col.className = "tdFutrue";
+    // }
 
 }
 
