@@ -40,19 +40,24 @@
         </div>
     </div>
 
+    <!-- 右邊內容放置區 -->
     <div class="containerRight">
         <div class="inWrapper">
+            <!-- 上方頁籤 -->
             <div class="topBtnGroup topBtnPadding">
                 <button class="text20R dbtn btnGY">訂訂行事曆</button>
                 <button class="text20R dbtn btnGY">我的團體</button>
                 <button class="text20R dbtn btnGY btnY">我的訂單</button>
                 <button class="text20R dbtn btnGB">我的投票</button>
             </div>
+            <!-- 內容區塊 -->
             <div class="dblock givePadding mt-m">
                 <div class="clearfix">
                     <button class="text20R dbtn btnG"><i class="icon-left-open mr-2"></i>返回</button>
-                    <button class="text20R dbtn btnY float-right">確認點餐</button>
-                    <button class="text20R dbtn btnR float-right mr-3">刪除訂單</button>
+                    <button class="text20R dbtn btnY float-right" data-toggle="modal"
+                        data-target="#comfirm2BtnW800">確認點餐</button>
+                    <button class="text20R dbtn btnR float-right mr-3" data-toggle="modal"
+                        data-target="#delete2Btn">刪除訂單</button>
                 </div>
                 <div class="mt-l ml-4">
                     <div class="row mb-s mTD">
@@ -116,7 +121,7 @@
                                     <img src="../public/image/store/Taichung/肯德基KFC_台中公益/咔啦雞腿堡.jpeg" alt=""
                                         class="itemImg">
                                 </div>
-                                <div class="col-4 text20B orderProductItem pl-2">
+                                <div class="col-4 text20B pl-2">
                                     咔啦雞腿堡
                                 </div>
                                 <div class="col-3">
@@ -135,47 +140,7 @@
                                     <img src="../public/image/store/Taichung/肯德基KFC_台中公益/咔啦雞腿堡.jpeg" alt=""
                                         class="itemImg">
                                 </div>
-                                <div class="col-4 text20B orderProductItem pl-2">
-                                    咔啦雞腿堡
-                                </div>
-                                <div class="col-3">
-                                    <p class="eng20R price ml-4">60</p>
-                                </div>
-                                <div class="col-3 countP ml-n4">
-                                    <i class="icon-minus"></i>
-                                    <p class="eng20R text-center">0</p>
-                                    <i class="icon-plus"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row mb-n1 orderSectionMTD">
-                        <div class="col-6 itemBorder orderProductItem ">
-                            <div class="row align-items-center">
-                                <div class="col-2">
-                                    <img src="../public/image/store/Taichung/肯德基KFC_台中公益/咔啦雞腿堡.jpeg" alt=""
-                                        class="itemImg">
-                                </div>
-                                <div class="col-4 text20B orderProductItem pl-2">
-                                    咔啦雞腿堡
-                                </div>
-                                <div class="col-3">
-                                    <p class="eng20R price ml-4">60</p>
-                                </div>
-                                <div class="col-3 countP ml-n4">
-                                    <i class="icon-minus"></i>
-                                    <p class="eng20R text-center">0</p>
-                                    <i class="icon-plus"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-6 itemBorder orderProductItem ">
-                            <div class="row align-items-center">
-                                <div class="col-2">
-                                    <img src="../public/image/store/Taichung/肯德基KFC_台中公益/咔啦雞腿堡.jpeg" alt=""
-                                        class="itemImg">
-                                </div>
-                                <div class="col-4 text20B orderProductItem pl-2">
+                                <div class="col-4 text20B pl-2">
                                     咔啦雞腿堡
                                 </div>
                                 <div class="col-3">
@@ -196,7 +161,7 @@
                                     <img src="../public/image/store/Taichung/肯德基KFC_台中公益/咔啦雞腿堡.jpeg" alt=""
                                         class="itemImg">
                                 </div>
-                                <div class="col-4 text20B orderProductItem pl-2">
+                                <div class="col-4 text20B pl-2">
                                     咔啦雞腿堡
                                 </div>
                                 <div class="col-3">
@@ -215,7 +180,7 @@
                                     <img src="../public/image/store/Taichung/肯德基KFC_台中公益/咔啦雞腿堡.jpeg" alt=""
                                         class="itemImg">
                                 </div>
-                                <div class="col-4 text20B orderProductItem pl-2">
+                                <div class="col-4 text20B pl-2">
                                     咔啦雞腿堡
                                 </div>
                                 <div class="col-3">
@@ -236,7 +201,7 @@
                                     <img src="../public/image/store/Taichung/肯德基KFC_台中公益/咔啦雞腿堡.jpeg" alt=""
                                         class="itemImg">
                                 </div>
-                                <div class="col-4 text20B orderProductItem pl-2">
+                                <div class="col-4 text20B pl-2">
                                     咔啦雞腿堡
                                 </div>
                                 <div class="col-3">
@@ -255,7 +220,47 @@
                                     <img src="../public/image/store/Taichung/肯德基KFC_台中公益/咔啦雞腿堡.jpeg" alt=""
                                         class="itemImg">
                                 </div>
-                                <div class="col-4 text20B orderProductItem pl-2">
+                                <div class="col-4 text20B pl-2">
+                                    咔啦雞腿堡
+                                </div>
+                                <div class="col-3">
+                                    <p class="eng20R price ml-4">60</p>
+                                </div>
+                                <div class="col-3 countP ml-n4">
+                                    <i class="icon-minus"></i>
+                                    <p class="eng20R text-center">0</p>
+                                    <i class="icon-plus"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-n1 orderSectionMTD">
+                        <div class="col-6 itemBorder orderProductItem ">
+                            <div class="row align-items-center">
+                                <div class="col-2">
+                                    <img src="../public/image/store/Taichung/肯德基KFC_台中公益/咔啦雞腿堡.jpeg" alt=""
+                                        class="itemImg">
+                                </div>
+                                <div class="col-4 text20B pl-2">
+                                    咔啦雞腿堡
+                                </div>
+                                <div class="col-3">
+                                    <p class="eng20R price ml-4">60</p>
+                                </div>
+                                <div class="col-3 countP ml-n4">
+                                    <i class="icon-minus"></i>
+                                    <p class="eng20R text-center">0</p>
+                                    <i class="icon-plus"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6 itemBorder orderProductItem ">
+                            <div class="row align-items-center">
+                                <div class="col-2">
+                                    <img src="../public/image/store/Taichung/肯德基KFC_台中公益/咔啦雞腿堡.jpeg" alt=""
+                                        class="itemImg">
+                                </div>
+                                <div class="col-4 text20B pl-2">
                                     咔啦雞腿堡
                                 </div>
                                 <div class="col-3">
@@ -273,6 +278,60 @@
             </div>
         </div>
 
+
+        <!-- 刪除訂單彈跳框 -->
+        <div class="modal fade sm2Btn" id="delete2Btn">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title text28B">是否要刪除訂單</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <i class=" icon-close"></i>
+                        </button>
+                    </div>
+                    <p class="modal-body text24R">
+                        刪除訂單後，其他團員的點餐也將一併被
+                        <span class="redColor">取消餐點
+                        </span>，並退還全額。
+                    </p>
+                    <div class="modal-footer">
+                        <button class="text20R dbtn btnW" data-dismiss="modal">返回離開</button>
+                        <button class="text20R dbtn btnR ml-3">刪除訂單</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 確認點餐彈跳框 -->
+        <div class="modal fade m2Btn" id="comfirm2BtnW800">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title text28B">請確認餐點</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <i class=" icon-close"></i>
+                        </button>
+                    </div>
+                    <div class="orderProductItemList text24R">
+                        <div class="orderProductItem mb-4">
+                            <img src="../public/image/store/Taichung/肯德基KFC_台中公益/咔啦雞腿堡.jpeg" alt="" class="itemImg">
+                            <span class="pl-2">
+                                咔啦雞腿堡
+                            </span>
+                            <span class="price ml-4">60</span>
+                            <span class="">＊0</span>
+                        </div>
+                        <p class="text-right"style="border-top:solid 2px var(--dBlack);">
+                            <span class="text20B">總金額<span class="price ml-3 eng20R">60</span></span>
+                        </p>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="text20R dbtn btnW" data-dismiss="modal">取消返回</button>
+                        <button class="text20R dbtn btnY ml-3">完成訂單</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
 
 </body>

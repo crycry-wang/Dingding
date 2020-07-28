@@ -154,8 +154,9 @@
   
 }
 
-.orderProductItemInner{
+.orderProductItemList{
     line-height: 80px;
+    margin: 32px 60px 28px 60px;
 }
 
 .countP .icon-minus::before{
