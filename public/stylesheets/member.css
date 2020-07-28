@@ -240,8 +240,15 @@
 
 .cTR {
     border-bottom: 1px solid var(--moreLightGray);
-    height: 60px;
-    padding: 6px 0;
+    padding: 12px 0;
+}
+
+.cTR .mTD {
+    padding-left: 32px;
+}
+
+.dblock .cTR:last-child {
+    border-bottom: none;
 }
 
 
