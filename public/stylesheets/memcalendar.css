@@ -65,6 +65,14 @@ td {
     letter-spacing: 2.88px;
 }
 
+.eng28RW {
+    /* font-family: 'Alata'; */
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--dBlack);
+    letter-spacing: 2.88px;
+}
+
 
 /* 輸入框 */
 
@@ -82,6 +90,10 @@ td {
 
 .mr-xs {
     margin-right: 16px;
+}
+
+.mr-s {
+    margin-right: 32px;
 }
 
 .ml-xs {
