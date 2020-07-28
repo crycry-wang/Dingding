@@ -327,6 +327,12 @@ li>.storeContent:hover {
     color: var(--dYellow);
     transition-duration: 0.5s;
 }
+/* 首頁店家彈框->店家資訊 */
+.storeAbout{
+    width: 16px;
+    height: 16px;
+    margin-bottom: 4px;
+}
 
 .row {
     margin-right: -16px;
