@@ -1,0 +1,100 @@
+/* 標頭 */
+
+.title {
+    padding-top: 48px;
+    top: 0;
+    padding-left: 40px;
+    padding-bottom: 16px;
+}
+
+
+/* 星等 */
+
+.star {
+    margin: 0px 40px 0 16px;
+    font-size: 24px;
+    color: var( --dYellow);
+}
+
+.star i+i {
+    margin-left: -24px;
+}
+
+
+/* 訂單完成率 87% */
+
+.achieve {
+    background: #C9C9C9;
+    color: white;
+    padding: 7px 0px 6px 20px;
+    border-radius: 20px 0 0 20px;
+    position: relative;
+    ;
+}
+
+.achieve::after {
+    position: absolute;
+    content: '';
+    width: 100%;
+    height: 43px;
+    right: -140px;
+    top: 0px;
+    background: #C9C9C9;
+    z-index: -1;
+}
+
+
+/* 清單 */
+
+.dblock:first-child {
+    margin-top: 32px;
+}
+
+.dblock {
+    margin-bottom: 24px;
+    padding: 16px 40px;
+}
+
+
+/* 圖片 */
+
+.evaluationList img,
+.evaluationList .photo {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+}
+
+.evaluationList .photo {
+    background: #BFBFBF;
+    text-align: center;
+    line-height: 60px;
+}
+
+.evaluationList .photo::after {
+    content: '訂訂';
+    color: white;
+    font-size: 16px;
+    letter-spacing: 2px;
+}
+
+
+/* 內文 */
+
+.evaluationList .content {
+    display: inline-block;
+    margin-left: 40px;
+}
+
+.content .text24B {
+    margin-bottom: 8px;
+}
+
+.content .star {
+    margin-left: -12px;
+    margin-bottom: 10px;
+}
+
+.content .text20R {
+    margin-bottom: 6px;
+}

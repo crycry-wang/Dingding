@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="../public/stylesheets/bootstrap.min.css">
+    <script src="../public/javascript/jquery-3.5.1.min.js"></script>
+    <script src="../public/javascript/popper.min.js"></script>
+    <script src="../public/javascript//bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../public/stylesheets/style.css">
+    <link rel="stylesheet" href="../public/stylesheets/sider.css">
+    <link rel="stylesheet" href="../public/stylesheets/memcalendar.css">
+
+
+</head>
+
+<body>
+
+    <div class="Wrapper">
+        <div class="wrapper1920">
+            <!-- 左邊sider -->
+            <div class="slider fixed-top">
+                <img src="../public/image/LOGO.png" class="sliderLogo">
+                <br>
+                <img src="../public/image/photo.jpg" class="sliderPhoto">
+                <p class="name text24B">阿信</p>
+                <div class="menu text24R">
+
+                    <a href="">首頁</a>
+                    <a href="" class="act">訂訂行事曆</a>
+                    <a href="" class="mb-2">會員中心</a>
+                    <span class="d-none">
+                        <a href="" class="mb-0">個人資料</a>
+                        <a href="" class="">我的訂訂幣</a>
+                    </span>
+                    <a href="" class="mt-4">通知</a>
+                    <a href="" id="signOut">登出</a>
+                </div>
+            </div>
+
+            <div class="containerRight">
+                <!-- 右邊內容放置區 -->
+
+                <!-- 功能列 -->
+                <div class="mt-l mb-m" style="margin-left: 40px; width: 1260px;">
+
+                    <span>
+                        <button class="text20R dbtn btnG btnY">訂訂行事曆</button>
+                        <button class="text20R dbtn btnG">我的團體</button>
+                        <button class="text20R dbtn btnG">我的訂單</button>
+                        <button class="text20R dbtn btnG">我的投票</button>
+                    </span>
+                    <span class="float-right">
+                        <input type="text" class="text20RG singleText400 mr-xs" placeholder="請輸入團號">
+                        <button class="text20R dbtn btnY">加入團體</button>
+                    </span>
+
+                </div>
+
+                <!-- 反白區 -->
+                <div class="dblock" style="height: 897px; width: 1300px;">
+
+                    <div class="text-center" style="margin-bottom: 32px;">
+                        
+                        <img class="lrImg  btnPhoto float-left" src="../public/image/left.png"  onclick="prevM()">
+                        <p id="YearAndMonth" class="eng40R d-inline"></p>
+                        <img class="lrImg btnPhoto float-right" src="../public/image/right.png"  onclick="nextM()">
+                        
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th class="btnR eng24W">Sun</th>
+                                <th class="btnY eng24W">Mon</th>
+                                <th class="btnY eng24W">Tue</th>
+                                <th class="btnY eng24W">Wed</th>
+                                <th class="btnY eng24W">Thu</th>
+                                <th class="btnY eng24W">Fri</th>
+                                <th class="btnY eng24W">Sat</th>
+                            </tr>
+                        </thead>
+                        <tbody id="myCalendar"></tbody>
+                    </table>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- <div id="nowDate"></div> -->
+
+    <script src="../public/javascript/calendar.js"></script>
+
+
+
+</body>
+
+</html>

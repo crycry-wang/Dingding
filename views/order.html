@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="../public/stylesheets/fontello.css">
     <link rel="stylesheet" href="../public/stylesheets/sider.css">
     <link rel="stylesheet" href="../public/stylesheets/notice.css">
+    <link rel="stylesheet" href="../public/stylesheets/order.css">
 
     <title>Document</title>
 
@@ -34,7 +35,6 @@
             <a href=""><i class="icon-evaluation"></i>店家評價</a>
             <a href=""><i class="icon-message"></i>通知<span class="note">3</span></a>
             <a href=""><i class="icon-about"></i>店家資訊</a>
-
             <a href="" id="signOut"><i class="icon-logout"></i>登出</a>
         </div>
     </div>
@@ -47,114 +47,266 @@
             <div class="dTag text24RG">完備訂單</div>
             <div class="dTag text24RG">預定訂單</div>
             <div class="dTag text24RG">歷史訂單</div>
+            <div class="ml-auto inputSearch">
+                <i class="icon-search"></i>
+                <input type="text" class="form-control-sm text20RG " placeholder="請輸入關鍵字">
+            </div>
 
         </nav>
         <div class="dblock mt-4">
-            <ul>
-                <!-- 新訊息 -->
-                <li class="noticeItem d-flex align-items-center">
-                    <!-- <span class="photo"></span> -->
-                    <img src="../public/image/message.png">
-                    <span class="content">
-                        <h2 class="text24B">訂訂系統緊急升級通知</h2>
-                        <p class="text20R">訂訂將於2020年06月26號(星期五)14:00至15:00進行系統升級。</p>
-                        <p class="text16">3小時前</p>
-                    </span>
-                    <span class="ml-auto actionR">
-                        <p class="eng20R d-none">4,000</p>
-                        <button class="text20R dbtn btnW d-none">建立新訂單</button>
-                        <button class="text20R dbtn btnB d-none">移動至訂單</button>
-                        <button class="text20R dbtn btnY" data-toggle="modal" data-target="#comfirm2Btn"> 完成訂單</button>
-                        <i class="icon-trash"></i>
-                        <p class="text20R d-none">等待中..</p>
-                    </span>
-                </li>
 
-                <!-- 取消訂單 -->
-                <li class="noticeItem d-flex align-items-center cancel">
-                    <span class="photo"></span>
-                    <!-- <img src="../public/image/message.png"> -->
-                    <span class="content">
-                        <h2 class="text24B">訂訂系統緊急升級通知</h2>
-                        <p class="text20R">訂訂將於2020年06月26號(星期五)14:00至15:00進行系統升級。</p>
-                        <p class="text16">3小時前</p>
-                    </span>
-                    <span class="ml-auto actionR">
-                        <p class="eng20R d-none">4,000</p>
-                        <button class="text20R dbtn btnW">建立新訂單</button>
-                        <button class="text20R dbtn btnB d-none">移動至訂單</button>
-                        <button class="text20R dbtn btnY d-none" data-toggle="modal" data-target="#comfirm2Btn">
-                            完成訂單</button>
-                        <i class="icon-trash"></i>
-                        <p class="text20R d-none">等待中..</p>
-                    </span>
-                </li>
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="table">
+                        <thead class="text20R">
+                            <tr>
+                                <th style="width:12%;">
+                                    訂單編號
+                                </th>
+                                <th style="width:21%;">
+                                    送餐時間
+                                </th>
+                                <th style="width:12%;">
+                                    聯絡人
+                                </th>
+                                <th style="width:13%;">
+                                    聯絡電話
+                                </th>
+                                <th style="width:14%;">
+                                    金額
+                                </th>
+                                <th>
+                                    訂單狀況
+                                </th>
+                            </tr>
+                            <tr height="8px"></tr>
+                        </thead>
 
-                <!-- 已讀 -->
-                <li class="noticeItem d-flex align-items-center read">
-                    <!-- <span class="photo"></span> -->
-                    <img src="../public/image/message.png">
-                    <span class="content">
-                        <h2 class="text24B">八方雲集　已完成訂單</h2>
-                        <p class="text20R">您已經完成訂單了，期待您的下次訂購。</p>
-                        <p class="text16">3小時前</p>
-                    </span>
-                    <span class="ml-auto actionR">
-                        <p class="eng20R">4,000</p>
-                        <button class="text20R dbtn btnW d-none">建立新訂單</button>
-                        <button class="text20R dbtn btnB d-none">移動至訂單</button>
-                        <button class="text20R dbtn btnY d-none" data-toggle="modal" data-target="#comfirm2Btn">
-                            完成訂單</button>
-                        <i class="icon-trash"></i>
-                        <p class="text20R d-none">等待中..</p>
-                    </span>
-                </li>
+                        <tbody class="text20R list">
+                            <tr>
+                                <td>
+                                    252541
+                                </td>
+                                <td>
+                                    2020/06/18 12:00
+                                </td>
+                                <td>
+                                    阿信
+                                </td>
+                                <td>
+                                    0970333215
+                                </td>
+                                <td>
+                                    <span class="eng20R price">
+                                        <span class=" align-middle">5,000</span>
+                                    </span>
+                                </td>
+                                <td class="action d-flex align-items-center">
+                                    <!-- <p>完成</p> -->
+                                    <!-- <p class="Rcolor">取消</p> -->
+                                    <button class="text20R dbtn btnB" data-toggle="modal" data-target="#readyOrder">完備</button>
+                                    <button class="text20R dbtn btnW ml-auto" data-toggle="modal" data-target="#order">查看訂單</button>
+                                </td>
+                            </tr>
+                            <tr height="8px"></tr>
 
-                <!-- 已讀取消訂單 -->
-                <li class="noticeItem d-flex align-items-center cancel read">
-                    <span class="photo"></span>
-                    <!-- <img src="../public/image/message.png"> -->
-                    <span class="content">
-                        <h2 class="text24B">尊品原汁牛肉麵 已取消訂單</h2>
-                        <p class="text20R">店家因太忙或種種原因，而取消了訂單，我們將會退還全額給您。</p>
-                        <p class="text16">3小時前</p>
-                    </span>
-                    <span class="ml-auto actionR">
-                        <p class="eng20R d-none">4,000</p>
-                        <button class="text20R dbtn btnW d-none">建立新訂單</button>
-                        <button class="text20R dbtn btnB">移動至訂單</button>
-                        <button class="text20R dbtn btnY d-none" data-toggle="modal" data-target="#comfirm2Btn">
-                            完成訂單</button>
-                        <i class="icon-trash"></i>
-                        <p class="text20R d-none">等待中..</p>
-                    </span>
-                </li>
+                            <!-- 取消 -->
+                            <tr>
+                                <td>
+                                    252541
+                                </td>
+                                <td>
+                                    2020/06/18 12:00
+                                </td>
+                                <td>
+                                    阿信
+                                </td>
+                                <td>
+                                    0970333215
+                                </td>
+                                <td>
+                                    <span class="eng20R price">
+                                        <span class=" align-middle">5,000</span>
+                                    </span>
+                                </td>
+                                <td class="action d-flex align-items-center">
+                                    <!-- <p>完成</p> -->
+                                    <p class="Rcolor">取消</p>
+                                    <!-- <button class="text20R dbtn btnB" data-toggle="modal" data-target="#readyOrder">完備</button> -->
+                                    <button class="text20R dbtn btnW ml-auto" data-toggle="modal" data-target="#order">查看訂單</button>
+                                </td>
+                            </tr>
+                            <tr height="8px"></tr>
 
-            </ul>
+                            <!-- 完成 -->
+                            <tr>
+                                <td>
+                                    252541
+                                </td>
+                                <td>
+                                    2020/06/18 12:00
+                                </td>
+                                <td>
+                                    阿信
+                                </td>
+                                <td>
+                                    0970333215
+                                </td>
+                                <td>
+                                    <span class="eng20R price">
+                                        <span class=" align-middle">5,000</span>
+                                    </span>
+                                </td>
+                                <td class="action d-flex align-items-center">
+                                    <p>完成</p>
+                                    <!-- <p class="Rcolor">取消</p> -->
+                                    <!-- <button class="text20R dbtn btnB" data-toggle="modal" data-target="#readyOrder">完備</button> -->
+                                    <button class="text20R dbtn btnW ml-auto" data-toggle="modal" data-target="#order">查看訂單</button>
+                                </td>
+                            </tr>
+                            <tr height="8px"></tr>
+                        </tbody>
+                    </table>
+                </div>
 
+            </div>
         </div>
-
-
     </div>
 
 
-    <!-- 完成訂單) -->
-
-    <div class="modal fade sm2Btn" id="comfirm2Btn">
-        <div class="modal-dialog">
+    <!-- 訂單詳情 -->
+    <div class="modal fade xl2Btn" id="order">
+        <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title text28B">完成訂單</h5>
+                    <h5 class="modal-title text28B w-100 text-center">搜尋團體</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <i class=" icon-close"></i>
                     </button>
                 </div>
-                <p class="modal-body text24R">
-                    請確認餐點無誤，我們將撥款給店家
-                </p>
-                <div class="modal-footer">
-                    <button class="text20R dbtn btnW" data-dismiss="modal">取消返回</button>
-                    <button class="text20R dbtn btnY ml-3">完成訂單</button>
+                <div class="modal-body row">
+                    <div class="d-inline-block col-6">
+                        <dl class="leftContent">
+                            <dt class="text20B">餐點送達時間</dt>
+                            <dd class="text20R">2020/06/18 12:00</dd>
+                            <dt class="text20B">聯絡人</dt>
+                            <dd class="text20R">阿信</dd>
+                            <dt class="text20B">聯絡電話</dt>
+                            <dd class="text20R">0912345678</dd>
+                            <dt class="text20B">配送地址</dt>
+                            <dd class="text20R">台中市西區公益路二段81號</dd>
+                            <dt class="text20B">訂單建立日期</dt>
+                            <dd class="text20R">2020/06/16 12:00</dd>
+                        </dl>
+                    </div>
+                    <div class="d-inline-block col-6">
+                        <ul class="rightContent">
+                            <li class="orderItem d-flex align-items-center">
+                                <img src="../public/image/photo.jpg" alt="">
+                                <p class="text20B align-middle">五月天阿信</p>
+                                <span class="eng20R price">
+                                    <span class=" align-middle">5,000</span>
+                                </span>
+                                <p class="eng20R w100 text-right">x1</p>
+                            </li>
+                            <li class="orderItem d-flex align-items-center">
+                                <img src="../public/image/photo.jpg" alt="">
+                                <p class="text20B align-middle">五月天阿信</p>
+                                <span class="eng20R price">
+                                    <span class="align-middle">200</span>
+                                </span>
+                                <p class="eng20R w100 text-right">x100</p>
+                            </li>
+                            <li class="orderItem d-flex align-items-center">
+                                <img src="../public/image/photo.jpg" alt="">
+                                <p class="text20B align-middle">五月天阿信</p>
+                                <span class="eng20R price">
+                                    <span class=" align-middle">200</span>
+                                </span>
+                                <p class="eng20R w100 text-right">x100</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 詳情 -->
+                <div class="modal-footer ml-auto totle">
+                    <p class="text20B mr-3">總金額</p>
+                    <span class="eng20R price">
+                        <span class=" align-middle">5,000</span>
+                    </span>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 完備彈框 -->
+
+    <div class="modal fade xl2Btn" id="readyOrder">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text28B w-100 text-center ">這筆訂單準備完成了嗎？</h5>
+                </div>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <i class=" icon-close"></i>
+                </button>
+                <div class="modal-body text24R mb-m">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <table class="table">
+                                <thead class="text20R">
+                                    <tr>
+                                        <th style="width:18%;">
+                                            訂單編號
+                                        </th>
+                                        <th style="width:24%;">
+                                            送餐時間
+                                        </th>
+                                        <th style="width:18%;">
+                                            聯絡人
+                                        </th>
+                                        <th style="width:20%;">
+                                            聯絡電話
+                                        </th>
+                                        <th>
+                                            金額
+                                        </th>
+
+                                    </tr>
+                                    <tr height="8px"></tr>
+                                </thead>
+
+                                <tbody class="text20R list">
+                                    <tr>
+                                        <td>
+                                            252541
+                                        </td>
+                                        <td>
+                                            2020/06/18 12:00
+                                        </td>
+                                        <td>
+                                            阿信
+                                        </td>
+                                        <td>
+                                            0970333215
+                                        </td>
+                                        <td>
+                                            <span class="eng20R price">
+                                                <span class=" align-middle">5,000</span>
+                                            </span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer ">
+                    <button class="text20R dbtn btnW" data-dismiss="modal">尚未完成</button>
+                    <button class="text20R dbtn btnY ml-3">確認完備</button>
                 </div>
             </div>
         </div>

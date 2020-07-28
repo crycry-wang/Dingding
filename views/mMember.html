@@ -16,6 +16,11 @@
 
     <title>Document</title>
 
+
+    <style>
+        /* 環境 */
+    </style>
+
 </head>
 
 <body>
@@ -27,12 +32,12 @@
         <img src="../public/image/photo.jpg" class="sliderPhoto">
         <p class="name text24B">阿信</p>
         <div class="menu text24R">
-            <a href="" class="act"><i class="icon-home"></i>首頁</a>
+            <a href=""><i class="icon-home"></i>首頁</a>
             <a href=""><i class="icon-claendar"></i>訂訂行事曆</a>
-            <a href="" class="mb-2"><i class="icon-member"></i>會員中心<i class="icon-down-open ml-3 mr-0"
+            <a href="" class="mb-2 act"><i class="icon-member"></i>會員中心<i class="icon-down-open ml-3 mr-0"
                     style="font-size: 14px;"></i></a>
-            <span class="menuI d-none">
-                <a href="" class="mb-0">個人資料</a>
+            <span class="menuI">
+                <a href="" class="mb-0 act">個人資料</a>
                 <a href="">我的訂訂幣</a>
             </span>
             <a href="" class="mt-4"><i class="icon-message"></i>通知<span class="note">3</span></a>
@@ -40,104 +45,83 @@
         </div>
     </div>
 
-    <div class="containerRight">
+    <div class="containerRight memberInfo">
         <div class="inWrapper">
-            <div class="dCoinBlock mt-m pt-2 mb-xxl">
-                <span class="text24B">我的訂訂幣</span>
-                <button class="text20R dbtn btnB float-right mt-n1">儲值</button>
-                <span class="eng24R price float-right mr-4">5,000</span>
+            <div class="CoinBlock mt-m py-2 mb-100 d-inline-block">
+                <span class="text24B align-middle">我的訂訂幣</span>
+                <span class="eng24R price mr-4 ">
+                    <span class=" align-middle">5,000</span>
+                </span>
+                <button class="text20R dbtn btnB align-middle">儲值</button>
             </div>
-            <div class="row clearfix">
-                <div class="mInfo givePadding">
-                    <div style="background-image: url(../public/image/photo.jpg);" class="memberPhoto icon-photo-1">
+            <div class="row">
+                <div class="col-8 mInfo">
+                    <div class="d-flex">
+                        <div style="background-image: url(../public/image/photo.jpg);" class="memberPhoto icon-photo-1">
+                        </div>
+                        <div class="ml-auto">
+                            <button class="text20R dbtn btnW  mr-3">取消</button>
+                            <button class="text20R dbtn btnY">儲存</button>
+                        </div>
                     </div>
-                    <div class="clearfix">
-                        <button class="text20R dbtn btnY float-right ml-3">儲存</button>
-                        <button class="text20R dbtn btnW float-right">取消</button>
-                    </div>
-                    <div class="mt-l">
-                        <div class="row mb-m mTD">
-                            <div class="col-4">
-                                <span class="text20B">帳號</span>
-                            </div>
-                            <div class="col-7">
+                    <div class="row">
+                        <ul class="mt-m mInfoList w-100">
+                            <li>
+                                <span class="text20B title">帳號</span>
                                 <span class="text20R">Abc123@example.com</span>
-                            </div>
-                        </div>
-                        <div class="row mb-m">
-                            <div class="col-4 mTD">
-                                <span class="text20B">暱稱</span>
-                            </div>
-                            <div class="col-7">
+                            </li>
+                            <li>
+                                <span class="text20B title">暱稱</span>
                                 <input type="text" class="text20R singleText398" placeholder="請輸入電子信箱" value="阿信">
-                            </div>
-                        </div>
-                        <div class="row mb-m mTD">
-                            <div class="col-4">
-                                <span class="text20B">密碼</span>
-                            </div>
-                            <div class="col-7">
+                            </li>
+                            <li>
+                                <span class="text20B title">密碼</span>
                                 <span class="text20R">*****</span>
-                                <button class="text20R dbtn btnW mt-n2 ml-4">修改密碼</button>
-                            </div>
-                        </div>
-                        <div class="row mb-m">
-                            <div class="col-4 mTD">
-                                <span class="text20B">手機</span>
-                            </div>
-                            <div class="col-7">
+                                <button class="text20R dbtn btnW ml-4">修改密碼</button>
+                            </li>
+                            <li>
+                                <span class="text20B title">手機</span>
                                 <input type="text" class="text20R singleText398" placeholder="請輸入暱稱" value="09123456789">
-                            </div>
-                        </div>
-                        <div class="row mb-m">
-                            <div class="col-4 mTD">
-                                <span class="text20B">常用地址</span>
-                            </div>
-                            <div class="col-7">
-                                <input type="text" class="text20R singleText398" placeholder="請輸入常用地址"
-                                value="台中市南屯區公益路2段69號14F-1">
-                            </div>
+                            </li>
+                            <li>
+                                <span class="text20B title">常用地址</span>
+                                <input type="text" class="text20R singleText398" placeholder="請輸入常用地址" value="台中市南屯區公益路2段69號14F">
+                                <input type="text" class="text20R singleText398" placeholder="請輸入常用地址" value="台中市南屯區公益路2段69號14F">
+                                <i class="icon-trash"></i>
 
+                                <button class="dbtn btnW text20R ml-140 mt-m">
+                                    新增常用地址
+                                    <span class="ml-2">+</span>
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-4">
+                    <div class="dblock ml-3 likeList">
+                        <p class="text24B mb-m">收藏店家名單</p>
+                        <div class="row mb-xs d-flex  w-100">
+                            <img src="../public/image/store/Taichung/朴大哥的韓式炸雞_逢甲總店/index.jpeg" class="orderSectionImg mr20 clipCircle mr-20">
+                            <span class="text20B" style="line-height: 40px;">尊品原汁牛肉麵</span>
+                            <i class="icon-trash"></i>
                         </div>
-                        <div class="row mb-m">
-                            <div class="col-4 mTD">
-                                <!-- <span class="text20B">常用地址</span> -->
-                            </div>
-                            <button class="text20R dbtn btnW mt-n2">新增常用地址<i class="icon-new textY ml-2"></i></button>
+                        <div class="row mb-xs d-flex  w-100">
+                            <img src="../public/image/store/Taichung/朴大哥的韓式炸雞_逢甲總店/index.jpeg" class="orderSectionImg mr20 clipCircle mr-20">
+                            <span class="text20B" style="line-height: 40px;">尊品原汁牛肉麵</span>
+                            <i class="icon-trash"></i>
+                        </div>
+                        <div class="row mb-xs d-flex  w-100">
+                            <img src="../public/image/store/Taichung/朴大哥的韓式炸雞_逢甲總店/index.jpeg" class="orderSectionImg mr20 clipCircle mr-20">
+                            <span class="text20B" style="line-height: 40px;">尊品原汁牛肉麵</span>
+                            <i class="icon-trash"></i>
                         </div>
                     </div>
                 </div>
-                <div class="mCollection givePadding">
-                    <p class="text24B mb-m">收藏店家名單</p>
-                    <div class="row mb-4">
-                        <div class="col-12">
-                            <img src="../public/image/store/Taichung/朴大哥的韓式炸雞_逢甲總店/index.jpeg" alt=""
-                                class="float-left orderSectionImg clipCircle mr-3">
-                            <span class="text20B" style="line-height: 40px;">尊品原汁牛肉麵</span>
-                            <i class="icon-trash textG"></i>
-                        </div>
-                    </div>
-                    <div class="row mb-4">
-                        <div class="col-12">
-                            <img src="../public/image/store/Taichung/朴大哥的韓式炸雞_逢甲總店/index.jpeg" alt=""
-                                class="float-left orderSectionImg clipCircle mr-3">
-                            <span class="text20B" style="line-height: 40px;">尊品原汁牛肉麵</span>
-                            <i class="icon-trash textG"></i>
-                        </div>
-                    </div>
-                    <div class="row mb-4">
-                        <div class="col-12">
-                            <img src="../public/image/store/Taichung/朴大哥的韓式炸雞_逢甲總店/index.jpeg" alt=""
-                                class="float-left orderSectionImg clipCircle mr-3">
-                            <span class="text20B" style="line-height: 40px;">尊品原汁牛肉麵</span>
-                            <i class="icon-trash textG"></i>
-                        </div>
-                    </div>
-                </div>
+
             </div>
 
         </div>
-    </div>
 
 
 

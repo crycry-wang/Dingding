@@ -12,8 +12,9 @@
     border-radius: 10px;
 }
 
-.mTD {
-    padding: 11px 32px;
+.mInfoList li {
+    padding: 0 60px 0 32px;
+    margin-bottom: 40px;
 }
 
 .textB {
@@ -36,8 +37,8 @@
     color: var(--dRed);
 }
 
-.textW{
-    color:var(--dWhite);
+.textW {
+    color: var(--dWhite);
 }
 
 .topBtnGroup {
@@ -48,7 +49,7 @@
     border-right: 18px solid var(--dWhite);
 }
 
-.itemImg{
+.itemImg {
     height: 80px;
     width: 80px;
     padding: 2px 0 2px 2px;
@@ -67,19 +68,10 @@
     clip-path: circle(50% at 50% 50%);
 }
 
-.price::before{
-    content: '';
-    display: inline-block;
-    width: 24px;
-    height: 24px;
-    background: url(../image/coin.png) no-repeat center;
-    background-size: cover;
-    vertical-align: middle;
-    margin-right: 16px;
-}
 
 /* vote */
-.vTH{
+
+.vTH {
     background-color: var(--dBlue);
 }
 
@@ -89,7 +81,6 @@
     border-radius: 20px;
     background-color: var(--dLightGray);
 }
-
 
 .voteItemNo {
     line-height: 84px;
@@ -126,25 +117,25 @@
 
 /* order */
 
-.orderListimg{
+.orderListimg {
     height: 28px;
     width: 28px;
 }
 
-.orderSection{
+.orderSection {
     background-color: #F2F2F2;
     margin-right: -40px;
-    margin-left:-40px ;
+    margin-left: -40px;
 }
 
-.orderSectionInner{
-    margin-right:40px;
-    margin-left:40px ;
-    padding:17px 0 13px 40px;
+.orderSectionInner {
+    margin-right: 40px;
+    margin-left: 40px;
+    padding: 17px 0 13px 40px;
     line-height: 40px;
 }
 
-.orderSectionImg{
+.orderSectionImg {
     height: 40px;
     width: 40px;
 }
@@ -153,7 +144,7 @@
     padding: 11px 0 11px 32px;
 }
 
-.orderProductItem{
+.orderProductItem {
     background-color: var(--dLightGray);
     position: relative;
 }
@@ -206,9 +197,10 @@
 
 }
 
+
 /* member */
 
-.dCoinBlock{
+.dCoinBlock {
     width: 506px;
     background-color: var(--dWhite);
     padding: 8px 8px 8px 40px;
@@ -219,16 +211,16 @@
     margin-bottom: 100px !important;
 }
 
-.mInfo{
-    width: 886px;
+.mInfo {
     border-radius: 20px;
     padding: 40px;
     background-color: var(--dWhite);
+    position: relative;
 }
 
-.mCollection{
+.mCollection {
     position: absolute;
-    left:1382px;
+    left: 1382px;
     width: 398px;
     border-radius: 20px;
     padding: 40px;
@@ -243,11 +235,11 @@
     background-position: center center;
     background-size: contain;
     position: absolute;
-    top: 152px;
-    left: 518px;
+    top: -50px;
+    left: 40px;
 }
 
-.icon-photo-1::before{
+.icon-photo-1::before {
     position: absolute;
     right: 0;
     bottom: 0;
@@ -262,25 +254,97 @@
     border: 2px solid var(--dYellow);
 }
 
-.icon-trash::before{
-    font-size:28px;
-    color: var(--moreLightGray);
-    float: right;
-    padding-top: 4px;
+.mInfo .singleText398 {
+    width: calc(100% - 222px);
+    display: inline-block;
 }
 
-.mInfo .singleText398{
-    width: 100%;
-}
-
-
-.cTH{
+.cTH {
     background-color: #F9FAFC;
     padding: 8px 32px;
 }
 
-.cTR{
+.cTR {
     border-bottom: 1px solid var(--moreLightGray);
-    height: 60px;
-    padding: 6px 0;
+    padding: 12px 0;
+}
+
+.cTR .mTD {
+    padding-left: 32px;
+}
+
+.dblock .cTR:last-child {
+    border-bottom: none;
+}
+
+
+/* 儲值 */
+
+.CoinBlock .text24B {
+    margin-right: 96px;
+}
+
+.CoinBlock {
+    background: white;
+    padding: 8px 8px 8px 40px;
+    border-radius: 30px;
+}
+
+
+/* 垃圾桶 */
+
+.memberInfo .icon-trash {
+    font-size: 30px;
+    color: var(--moreLightGray);
+    margin-left: auto;
+}
+
+.memberInfo .icon-trash:hover {
+    color: var(--dBlack);
+    cursor: pointer;
+}
+
+
+/* 會員中心-輸入內容 */
+
+.title {
+    width: 138px;
+    display: inline-block;
+}
+
+.ml-140,
+input+input {
+    margin-left: 140px;
+}
+
+.mb-100 {
+    margin-bottom: 100px;
+}
+
+.mr-20 {
+    margin-right: 20px;
+}
+
+input+input {
+    margin-top: 40px;
+    margin-right: 32px;
+}
+
+
+/* 滾輪 */
+
+.coinList {
+    overflow-y: scroll;
+    /* 100vh-需要佔的高度 */
+    max-height: calc(100vh - 420px);
+    padding-right: 20px;
+}
+
+.coinList::-webkit-scrollbar {
+    width: 8px;
+}
+
+.coinList::-webkit-scrollbar-thumb {
+    border-radius: 100px;
+    background: var(--dYellow);
 }

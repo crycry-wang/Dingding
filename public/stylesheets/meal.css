@@ -1,0 +1,234 @@
+/* tag */
+
+.topTag {
+    padding-top: 48px;
+    top: 0;
+    padding-left: 40px;
+    padding-bottom: 16px;
+}
+
+.dTag::after {
+    background-color: var(--dBlue);
+}
+
+
+/* 按鈕 */
+
+.buttonGroup button+button {
+    margin-left: 16px;
+}
+
+
+/* 表頭 */
+
+.table thead tr {
+    background: var(--dYellow);
+    color: white;
+}
+
+.table thead th {
+    height: 40px;
+    padding: 0;
+    padding-left: 32px;
+    vertical-align: middle;
+    font-weight: normal;
+    border: none;
+}
+
+
+/* 表內容 */
+
+table {
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+.table tbody td {
+    padding: 16px 0 16px 32px;
+    background: white;
+    border-bottom: 1px solid var(--moreLightGray);
+    vertical-align: middle;
+}
+
+.table tbody td:last-child {
+    padding: 16px 32px 16px 32px;
+}
+
+.table tbody+tbody {
+    border-top: none;
+}
+
+.table tbody td:first-child {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-left: 1px solid var(--moreLightGray);
+}
+
+td:last-child {
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-right: 1px solid var(--moreLightGray);
+}
+
+
+/* .table {
+    margin-bottom: 0;
+} */
+
+.list img {
+    width: 60px;
+    height: 60px;
+}
+
+.desc {
+    width: calc(100% - 196px);
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+}
+
+
+/* 名次 */
+
+.fst img,
+.snd img,
+.trd img {
+    width: 40px;
+    height: 40px;
+}
+
+.fst,
+.snd,
+.trd {
+    position: relative;
+}
+
+.fst::after,
+.snd::after,
+.trd::after {
+    display: inline-block;
+    position: absolute;
+    top: calc(50% - 12px);
+    left: calc(50% - 12px);
+    font-weight: 700;
+    color: var(--dBlack);
+}
+
+.fst::after {
+    content: '1';
+}
+
+.snd::after {
+    content: '2';
+}
+
+.trd::after {
+    content: '3';
+}
+
+
+/* 垃圾桶 */
+
+.icon-trash {
+    font-size: 30px;
+    color: var(--moreLightGray);
+    margin-left: 20px;
+}
+
+.icon-trash:hover {
+    font-size: 30px;
+    color: var(--dBlack);
+    cursor: pointer;
+}
+
+
+/* 新增產品 */
+
+ul {
+    margin-bottom: 0;
+}
+
+.upload,
+.mealInfo img {
+    width: 220px;
+    height: 220px;
+    border-radius: 20px;
+}
+
+.mealInfo img {
+    border: 1px solid #C9C9C9;
+}
+
+.upload {
+    background: #F8F8F8;
+    text-align: center;
+    vertical-align: middle;
+    display: table-cell;
+}
+
+#product .modal-body,
+#typeManager .modal-body,
+#recommend .modal-body {
+    padding-left: 60px;
+}
+
+.btnLG {
+    border: 1px solid #C9C9C9;
+    background-color: #ffffff;
+}
+
+.inputInfo {
+    margin-left: 90px;
+}
+
+.inputInfo .text24B {
+    margin-right: 40px;
+}
+
+.inputInfo .singleText398,
+.inputInfo .ddselect {
+    width: 410px;
+}
+
+.inputInfo li+li {
+    margin-top: 40px;
+}
+
+.multiText398 {
+    width: 100%;
+}
+
+
+/* 類別管理介面 */
+
+.typrItem {
+    margin-bottom: 40px;
+}
+
+.typrItem .singleText398 {
+    width: 100%;
+    margin-right: 40px;
+}
+
+.typeInfo button {
+    margin-bottom: 20px;
+}
+
+
+/* 推薦產品介面 */
+
+#recommend .fst::after,
+#recommend .snd::after,
+#recommend .trd::after {
+    top: calc(50% - 6px);
+    left: calc(50% - 4px);
+}
+
+#recommend .fst {
+    margin-right: 40px;
+}
+
+.recommendItem+.recommendItem {
+    margin-top: 40px;
+}
