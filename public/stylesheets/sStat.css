@@ -87,3 +87,8 @@
     .typeCheckbox {
         padding: 0 72px;
     }
+    
+    label,
+    input {
+        cursor: pointer;
+    }

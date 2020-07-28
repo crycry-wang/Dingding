@@ -12,8 +12,9 @@
     border-radius: 10px;
 }
 
-.mTD {
-    padding: 11px 32px;
+.mInfoList li {
+    padding: 0 60px 0 32px;
+    margin-bottom: 40px;
 }
 
 .textB {
@@ -185,10 +186,10 @@
 }
 
 .mInfo {
-    width: 886px;
     border-radius: 20px;
     padding: 40px;
     background-color: var(--dWhite);
+    position: relative;
 }
 
 .mCollection {
@@ -208,8 +209,8 @@
     background-position: center center;
     background-size: contain;
     position: absolute;
-    top: 152px;
-    left: 518px;
+    top: -50px;
+    left: 40px;
 }
 
 .icon-photo-1::before {
@@ -228,7 +229,8 @@
 }
 
 .mInfo .singleText398 {
-    width: 100%;
+    width: calc(100% - 222px);
+    display: inline-block;
 }
 
 .cTH {
@@ -238,8 +240,15 @@
 
 .cTR {
     border-bottom: 1px solid var(--moreLightGray);
-    height: 60px;
-    padding: 6px 0;
+    padding: 12px 0;
+}
+
+.cTR .mTD {
+    padding-left: 32px;
+}
+
+.dblock .cTR:last-child {
+    border-bottom: none;
 }
 
 
@@ -247,10 +256,6 @@
 
 .CoinBlock .text24B {
     margin-right: 96px;
-}
-
-.CoinBlock .price {
-    width: 140px;
 }
 
 .CoinBlock {
@@ -262,13 +267,58 @@
 
 /* 垃圾桶 */
 
-.mCollection .icon-trash {
+.memberInfo .icon-trash {
     font-size: 30px;
     color: var(--moreLightGray);
     margin-left: auto;
 }
 
-.mCollection .icon-trash:hover {
+.memberInfo .icon-trash:hover {
     color: var(--dBlack);
     cursor: pointer;
+}
+
+
+/* 會員中心-輸入內容 */
+
+.title {
+    width: 138px;
+    display: inline-block;
+}
+
+.ml-140,
+input+input {
+    margin-left: 140px;
+}
+
+.mb-100 {
+    margin-bottom: 100px;
+}
+
+.mr-20 {
+    margin-right: 20px;
+}
+
+input+input {
+    margin-top: 40px;
+    margin-right: 32px;
+}
+
+
+/* 滾輪 */
+
+.coinList {
+    overflow-y: scroll;
+    /* 100vh-需要佔的高度 */
+    max-height: calc(100vh - 420px);
+    padding-right: 20px;
+}
+
+.coinList::-webkit-scrollbar {
+    width: 8px;
+}
+
+.coinList::-webkit-scrollbar-thumb {
+    border-radius: 100px;
+    background: var(--dYellow);
 }
