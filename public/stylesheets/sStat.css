@@ -86,12 +86,9 @@
     .typeButton,
     .typeCheckbox {
         padding: 0 72px;
-<<<<<<< HEAD
     }
     
     label,
     input {
         cursor: pointer;
-=======
->>>>>>> yee
     }

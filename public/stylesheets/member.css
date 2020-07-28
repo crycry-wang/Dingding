@@ -12,9 +12,8 @@
     border-radius: 10px;
 }
 
-.mInfoList li {
-    padding: 0 60px 0 32px;
-    margin-bottom: 40px;
+.mTD {
+    padding: 11px 32px;
 }
 
 .mInfoList li {

@@ -1,50 +1,18 @@
-<<<<<<< HEAD
-/* 友文製 */
-
-
-/* 日曆中的日期 */
-
-th {
-    border: 5px solid var(--dWhite);
-    text-align: center;
-    vertical-align: auto;
-    font-weight: lighter;
-}
-
-td {
-    border: 5px solid var(--dWhite);
-    background-color: var(--dLightGray);
-    height: 12vh;
-    width: 170px;
-    vertical-align: top;
-    padding-left: 8px;
-    font-size: 1.5rem;
-}
-
-.thY {
-    background-color: var(--dYellow);
-}
-
-.thR {
-    background-color: var(--dRed);
-}
-
-.tdPass {
-    background-color: var(--moreLightGray);
-=======
 :root {
     --light-gray: #DADCE0;
 }
 
+
 /* 超連結重設定 */
+
 
 /* 日曆中的日期 */
 
-#YearAndMonth{
+#YearAndMonth {
     text-align: center;
 }
 
-th{
+th {
     border: 1px solid var(--light-gray);
     text-align: center;
     vertical-align: auto;
@@ -55,47 +23,22 @@ td {
     height: 114px;
     width: 170px;
     vertical-align: top;
->>>>>>> yee
 }
 
 
 /* 日曆 */
 
-<<<<<<< HEAD
-
-/* table {
-    width: 1220px;
-    height: 741px;
-} */
-
-
-/* 英數字設定 */
-
-.eng40R {
-    /* font-family: 'Alata'; */
-    font-size: 2.5rem;
-    color: var(--dBlack);
-    letter-spacing: 4.8px;
-}
-
-.eng30R {
-    /* font-family: 'Alata'; */
-    font-size: 1.875rem;
-    color: var(--dBlack);
-    letter-spacing: 3.6px;
-}
-
-.eng24W {
-    /* font-family: 'Alata'; */
-=======
-table{
+table {
     width: 1220px;
     height: 741px;
 }
+
 
 /* 側邊攔 */
 
+
 /* 英數字設定 */
+
 .eng40R {
     font-family: 'Alata';
     font-size: 2.5rem;
@@ -105,16 +48,12 @@ table{
 
 .eng24W {
     font-family: 'Alata';
->>>>>>> yee
     font-size: 1.5rem;
     color: var(--dWhite);
     letter-spacing: 2.88px;
 }
 
-<<<<<<< HEAD
 
-=======
->>>>>>> yee
 /* 輸入框 */
 
 .singleText400 {
@@ -126,7 +65,6 @@ table{
     border-radius: 24px;
 }
 
-<<<<<<< HEAD
 
 /* marging */
 
@@ -134,32 +72,6 @@ table{
     margin-right: 16px;
 }
 
-.ml-xs {
-    margin-left: 16px;
-}
-
-
-/* 按鈕圖 */
-
-.btnPhoto {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-}
-
-
-/* 直槓 */
-
-.br-m {
-    border-right: 4px solid var(--dYellow);
-    height: 32px;
-    border-radius: 2px;
-=======
-/* marging */
-
-.mr-xs {
-    margin-right: 16px ;
-}
 
 /* 按鈕圖 */
 
@@ -168,5 +80,4 @@ table{
     height: 50px;
     box-shadow: 0px 3px 6px #00000029;
     border-radius: 50%;
->>>>>>> yee
 }
