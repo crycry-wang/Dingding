@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* 友文製 */
 
 
@@ -5,19 +6,35 @@
 
 .eng40R {
     /* font-family: 'Alata'; */
+=======
+:root {
+    --light-gray: #DADCE0;
+}
+
+/* 英數字設定 */
+.eng40R {
+    font-family: 'Alata';
+>>>>>>> yee
     font-size: 2.5rem;
     color: var(--dBlack);
     letter-spacing: 2.88px;
 }
 
 .eng24W {
+<<<<<<< HEAD
     /* font-family: 'Alata'; */
+=======
+    font-family: 'Alata';
+>>>>>>> yee
     font-size: 1.5rem;
     color: var(--dWhite);
     letter-spacing: 2.88px;
 }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> yee
 /* 輸入框 */
 
 .singleText400 {
@@ -29,6 +46,7 @@
     border-radius: 24px;
 }
 
+<<<<<<< HEAD
 
 /* marging */
 
@@ -48,6 +66,14 @@
 }
 
 
+=======
+/* marging */
+
+.mr-xs {
+    margin-right: 16px ;
+}
+
+>>>>>>> yee
 /* li */
 
 .liBorder {

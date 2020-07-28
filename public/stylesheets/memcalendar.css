@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* 友文製 */
 
 
@@ -30,11 +31,37 @@ td {
 
 .tdPass {
     background-color: var(--moreLightGray);
+=======
+:root {
+    --light-gray: #DADCE0;
+}
+
+/* 超連結重設定 */
+
+/* 日曆中的日期 */
+
+#YearAndMonth{
+    text-align: center;
+}
+
+th{
+    border: 1px solid var(--light-gray);
+    text-align: center;
+    vertical-align: auto;
+}
+
+td {
+    border: 1px solid var(--light-gray);
+    height: 114px;
+    width: 170px;
+    vertical-align: top;
+>>>>>>> yee
 }
 
 
 /* 日曆 */
 
+<<<<<<< HEAD
 
 /* table {
     width: 1220px;
@@ -60,12 +87,34 @@ td {
 
 .eng24W {
     /* font-family: 'Alata'; */
+=======
+table{
+    width: 1220px;
+    height: 741px;
+}
+
+/* 側邊攔 */
+
+/* 英數字設定 */
+.eng40R {
+    font-family: 'Alata';
+    font-size: 2.5rem;
+    color: var(--dBlack);
+    letter-spacing: 2.88px;
+}
+
+.eng24W {
+    font-family: 'Alata';
+>>>>>>> yee
     font-size: 1.5rem;
     color: var(--dWhite);
     letter-spacing: 2.88px;
 }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> yee
 /* 輸入框 */
 
 .singleText400 {
@@ -77,6 +126,7 @@ td {
     border-radius: 24px;
 }
 
+<<<<<<< HEAD
 
 /* marging */
 
@@ -104,4 +154,19 @@ td {
     border-right: 4px solid var(--dYellow);
     height: 32px;
     border-radius: 2px;
+=======
+/* marging */
+
+.mr-xs {
+    margin-right: 16px ;
+}
+
+/* 按鈕圖 */
+
+.btnPhoto {
+    width: 50px;
+    height: 50px;
+    box-shadow: 0px 3px 6px #00000029;
+    border-radius: 50%;
+>>>>>>> yee
 }
