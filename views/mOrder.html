@@ -52,14 +52,16 @@
             </div>
             <!-- 內容區塊 -->
             <div class="dblock givePadding mt-m">
+                <!-- 內容按鈕 -->
                 <div class="clearfix">
-                    <button class="text20R dbtn btnG"><i class="icon-left-open mr-2"></i>返回</button>
+                    <button class="text20RG dbtn btnG"><i class="icon-left-open mr-2"></i>返回</button>
                     <button class="text20R dbtn btnY float-right" data-toggle="modal"
-                        data-target="#comfirm2BtnW800">確認點餐</button>
+                        data-target="#comfirmOrder">確認點餐</button>
                     <button class="text20R dbtn btnR float-right mr-3" data-toggle="modal"
-                        data-target="#delete2Btn">刪除訂單</button>
+                        data-target="#deleteOrder">刪除訂單</button>
                 </div>
-                <div class="mt-l ml-4">
+                <!-- 上方內容 -->
+                <div class="mt-s ml-4">
                     <div class="row mb-s mTD">
                         <div class="col-2">
                             <span class="text20B">團名名稱</span>
@@ -85,8 +87,10 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- 中間顯示區 -->
                 <div class="orderSection">
-                    <div class="orderSectionInner mt-l ml-4">
+                    <div class="orderSectionInner mt-s ml-4">
                         <div class="row orderSectionMTD">
                             <div class="col-8">
                                 <img src="../public/image/store/Taichung/朴大哥的韓式炸雞_逢甲總店/index.jpeg" alt=""
@@ -113,6 +117,8 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- 下方點餐區 -->
                 <div class="mt-4 ml-4 pt-1">
                     <div class="row mb-n1 orderSectionMTD">
                         <div class="col-6 itemBorder orderProductItem ">
@@ -280,7 +286,7 @@
 
 
         <!-- 刪除訂單彈跳框 -->
-        <div class="modal fade sm2Btn" id="delete2Btn">
+        <div class="modal fade sm2Btn" id="deleteOrder">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -302,8 +308,26 @@
             </div>
         </div>
 
-        <!-- 確認點餐彈跳框 -->
-        <div class="modal fade m2Btn" id="comfirm2BtnW800">
+        <!-- 刪除完成彈跳框 -->
+        <button type="button" class="btnY dbtn" data-toggle="modal" data-target="#orderSuccess">
+            訂單刪除
+        </button>
+        <div class="modal fade sm1Btn" id="orderSuccess">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title text28B w-100 text-center ">訂單已被刪除</h5>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button class="text20R dbtn btnY m-auto">確定</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 檢查點餐彈跳框 -->
+        <div class="modal fade m2Btn" id="comfirmOrder">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -318,16 +342,109 @@
                             <span class="pl-2">
                                 咔啦雞腿堡
                             </span>
-                            <span class="price ml-4">60</span>
-                            <span class="">＊0</span>
+                            <span class="price">60</span>
+                            <span class="productQuantity">0</span>
                         </div>
-                        <p class="text-right"style="border-top:solid 2px var(--dBlack);">
+                        <p class="text-right" style="border-top:solid 2px var(--dBlack);">
                             <span class="text20B">總金額<span class="price ml-3 eng20R">60</span></span>
                         </p>
                     </div>
                     <div class="modal-footer">
                         <button class="text20R dbtn btnW" data-dismiss="modal">取消返回</button>
                         <button class="text20R dbtn btnY ml-3">完成訂單</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 點餐完成彈跳框 -->
+        <button type="button" class="btnY dbtn" data-toggle="modal" data-target="#orderSuccess">
+            點餐成功
+        </button>
+        <div class="modal fade sm1Btn" id="orderSuccess">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title text28B w-100 text-center ">點餐成功</h5>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button class="text20R dbtn btnY m-auto">確定</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 取消點餐彈跳框 -->
+        <button type="button" class="btnR dbtn" data-toggle="modal" data-target="#cancelOrder">
+            取消點餐
+        </button>
+        <div class="modal fade sm2Btn" id="cancelOrder">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title text28B">是否要取消點餐</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <i class=" icon-close"></i>
+                        </button>
+                    </div>
+                    <p class="modal-body text24R">
+                        取消點餐後，我們將會退還全額
+                    </p>
+                    <div class="modal-footer">
+                        <button class="text20R dbtn btnW" data-dismiss="modal">取消離開</button>
+                        <button class="text20R dbtn btnY ml-3">取消點餐</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 訂單成立彈跳框 -->
+        <button type="button" class="btnY dbtn" data-toggle="modal" data-target="#createOrderSuccess">
+            訂單成立
+        </button>
+        <div class="modal fade sm1Btn" id="createOrderSuccess">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title text28B w-100 text-center ">建立訂單成功</h5>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button class="text20R dbtn btnY m-auto">確定</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 輸入型彈跳框(按鈕加長型)(密碼)-->
+        <button type="button" class="btnY dbtn" data-toggle="modal" data-target="#makeComment">
+            評價
+        </button>
+        <div class="modal fade inputL" id="makeComment">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title text28B">麥當勞五權西店麥當勞</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <i class=" icon-close"></i>
+                        </button>
+                    </div>
+                    <div class="modal-continer">
+                        <p class="text24B mb-m textY" style="font-size: 1.6rem;">
+                            <i class="mr-1 icon-spoon"></i>
+                            <i class="mr-1 icon-spoon"></i>
+                            <i class="mr-1 icon-spoon"></i>
+                            <i class="mr-1 icon-spoon"></i>
+                            <i class="mr-1 icon-borderspoon"></i>
+                        </p>
+                        <p class="text24B mb-2">
+                            評價
+                        </p>
+                        <textarea class="text20RG multiText398 mt-3 mb-m" placeholder="請輸入電子信箱"></textarea>
+                        <button class="text20R dbtn btnY w-100">張貼評價</button>
+                    </div>
+                    <div class="modal-footer">
                     </div>
                 </div>
             </div>

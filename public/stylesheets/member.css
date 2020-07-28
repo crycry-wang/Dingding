@@ -24,6 +24,10 @@
     color: var(--moreLightGray);
 }
 
+.textDG{
+    color: var(--dDeepGray);
+}
+
 .textY {
     color: var(--dYellow);
 }
@@ -151,12 +155,17 @@
 
 .orderProductItem{
     background-color: var(--dLightGray);
-  
+    position: relative;
 }
 
 .orderProductItemList{
     line-height: 80px;
     margin: 32px 60px 28px 60px;
+}
+
+.orderProductItemList .orderProductItem .price{
+    position: absolute;
+    left: 65%;
 }
 
 .countP .icon-minus::before{
@@ -181,6 +190,20 @@
     line-height: 36px;
     color: var(--dWhite);
     background-color: var(--dYellow);
+}
+
+
+.productQuantity{
+    position: relative;
+    left:55%;
+}
+
+.productQuantity::before{
+    content: '*';
+    position: absolute;
+    top:-16px;
+    right: 24px;
+
 }
 
 /* member */
