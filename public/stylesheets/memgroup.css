@@ -36,6 +36,17 @@
     margin-right: 16px;
 }
 
+.mr-m {
+    margin-right: 32px;
+}
+
+
+/* padding */
+
+.pl-m {
+    padding-left: 32px;
+}
+
 
 /* li */
 

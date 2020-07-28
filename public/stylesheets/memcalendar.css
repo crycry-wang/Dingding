@@ -13,7 +13,7 @@ th {
 td {
     border: 5px solid var(--dWhite);
     background-color: var(--dLightGray);
-    height: 114px;
+    height: 12vh;
     width: 170px;
     vertical-align: top;
     padding-left: 8px;
@@ -35,10 +35,11 @@ td {
 
 /* 日曆 */
 
-table {
+
+/* table {
     width: 1220px;
     height: 741px;
-}
+} */
 
 
 /* 英數字設定 */
