@@ -440,7 +440,7 @@ input+input {
 /* 滾輪 */
 
 .orderVoteList{
-    max-height: calc(100vh - 395px);
+    max-height: calc(100vh - 400px);
 
 }
 
