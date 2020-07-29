@@ -250,7 +250,6 @@
 }
 
 .modal-bottom {
-    margin-top: 40px;
     margin-bottom: 40px;
     padding-left: 60px;
     padding-right: 60px;
@@ -259,4 +258,15 @@
 .w100 {
     width: 100px;
     margin-right: 40px;
+}
+
+
+/* 通知滾輪 */
+
+.noticeList {
+    max-height: calc(100vh - 260px);
+}
+
+.orderList {
+    max-height: calc(100vh - 540px);
 }
