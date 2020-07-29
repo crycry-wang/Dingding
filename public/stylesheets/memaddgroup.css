@@ -87,3 +87,454 @@
     border: none;
     /* line-height: 1rem; */
 }
+
+
+/* 會員前台共用 */
+
+.mTH {
+    background-color: var(--dYellow);
+    padding: 8px 32px;
+    border-right: solid 4px var(--dWhite);
+}
+
+.mTR {
+    margin-top: 4px;
+    border: 1px solid var(--moreLightGray);
+    border-radius: 10px;
+}
+
+.mInfoList li {
+    padding: 0 60px 0 32px;
+    margin-bottom: 40px;
+}
+
+.textB {
+    color: var(--dBlue);
+}
+
+.textG {
+    color: var(--moreLightGray);
+}
+
+.textY {
+    color: var(--dYellow);
+}
+
+.textR {
+    color: var(--dRed);
+}
+
+.textW {
+    color: var(--dWhite);
+}
+
+.topBtnGroup {
+    padding-left: 32px;
+}
+
+.imgBorder {
+    border-right: 18px solid var(--dWhite);
+}
+
+.itemImg {
+    height: 80px;
+    width: 80px;
+}
+
+.clipCircle {
+    clip-path: circle(50% at 50% 50%);
+}
+
+
+/* vote */
+
+.vTH {
+    background-color: var(--dBlue);
+}
+
+.voteItem {
+    padding: 16px 24px;
+    width: 100%;
+    border-radius: 20px;
+    background-color: var(--dLightGray);
+}
+
+.voteItemNo {
+    line-height: 84px;
+}
+
+.voteItemSelected {
+    border: 1px solid var(--dBlue);
+    background-color: rgba(151, 210, 214, .3);
+}
+
+.progress {
+    height: 1.25rem;
+    font-size: 0.75rem;
+    background-color: var(--moreLightGray);
+    border-radius: 0.5rem;
+}
+
+.progress-bar {
+    text-align: center;
+    white-space: nowrap;
+    background-color: var(--dBlue);
+    transition: width 0.6s ease;
+    border-radius: 0.5rem;
+}
+
+.progressSelected {
+    background-color: var(--dWhite);
+}
+
+.progress-barSelected {
+    background-color: var(--dBlue);
+}
+
+
+/* order */
+
+.orderListimg {
+    height: 28px;
+    width: 28px;
+}
+
+.orderSection {
+    background-color: #F2F2F2;
+    margin-right: -40px;
+    margin-left: -40px;
+}
+
+.orderSectionInner {
+    margin-right: 40px;
+    margin-left: 40px;
+    padding: 17px 0 13px 40px;
+    line-height: 40px;
+}
+
+.orderSectionImg {
+    height: 40px;
+    width: 40px;
+}
+
+.orderSectionMTD {
+    padding: 11px 0 11px 32px;
+}
+
+.orderProductItem {
+    background-color: var(--dLightGray);
+    border-right: solid 18px var(--dWhite);
+}
+
+.orderProductItemInner {
+    line-height: 80px;
+}
+
+.minusBg {
+    position: relative;
+    width: 32px;
+    height: 32px;
+    border-radius: 100%;
+    background-color: var(--moreLightGray);
+}
+
+.plusBg {
+    position: relative;
+    width: 32px;
+    height: 32px;
+    border-radius: 100%;
+    background-color: var(--dYellow);
+}
+
+.icon-minus {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--dDeepGray);
+}
+
+.icon-plus {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--dWhite);
+}
+
+
+/* member */
+
+.dCoinBlock {
+    width: 506px;
+    background-color: var(--dWhite);
+    padding: 8px 8px 8px 40px;
+    border-radius: 30px;
+}
+
+.mb-xxl {
+    margin-bottom: 100px !important;
+}
+
+.mInfo {
+    border-radius: 20px;
+    padding: 40px;
+    background-color: var(--dWhite);
+    position: relative;
+}
+
+.mCollection {
+    position: absolute;
+    left: 1382px;
+    width: 398px;
+    border-radius: 20px;
+    padding: 40px;
+    background-color: var(--dWhite);
+}
+
+.memberPhoto {
+    width: 150px;
+    height: 150px;
+    border: 8px solid #FFFFFF;
+    border-radius: 50%;
+    background-position: center center;
+    background-size: contain;
+    position: absolute;
+    top: -50px;
+    left: 40px;
+}
+
+.icon-photo-1::before {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    color: var(--dYellow);
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+    line-height: 34px;
+    text-align: center;
+    border-radius: 100%;
+    background-color: var(--dWhite);
+    border: 2px solid var(--dYellow);
+}
+
+.mInfo .singleText398 {
+    width: calc(100% - 222px);
+    display: inline-block;
+}
+
+.cTH {
+    background-color: #F9FAFC;
+    padding: 8px 32px;
+}
+
+.cTR {
+    border-bottom: 1px solid var(--moreLightGray);
+    padding: 12px 0;
+}
+
+.cTR .mTD {
+    padding-left: 32px;
+}
+
+.dblock .cTR:last-child {
+    border-bottom: none;
+}
+
+
+/* 儲值 */
+
+.CoinBlock .text24B {
+    margin-right: 96px;
+}
+
+.CoinBlock {
+    background: white;
+    padding: 8px 8px 8px 40px;
+    border-radius: 30px;
+}
+
+
+/* 垃圾桶 */
+
+.memberInfo .icon-trash {
+    font-size: 30px;
+    color: var(--moreLightGray);
+    margin-left: auto;
+}
+
+.memberInfo .icon-trash:hover {
+    color: var(--dBlack);
+    cursor: pointer;
+}
+
+
+/* 會員中心-輸入內容 */
+
+.title {
+    width: 138px;
+    display: inline-block;
+}
+
+.ml-140,
+input+input {
+    margin-left: 140px;
+}
+
+.mb-100 {
+    margin-bottom: 100px;
+}
+
+.mr-20 {
+    margin-right: 20px;
+}
+
+input+input {
+    margin-top: 40px;
+    margin-right: 32px;
+}
+
+
+/* 滾輪 */
+
+.coinList {
+    overflow-y: scroll;
+    /* 100vh-需要佔的高度 */
+    max-height: calc(100vh - 420px);
+    padding-right: 20px;
+}
+
+.coinList::-webkit-scrollbar {
+    width: 8px;
+}
+
+.coinList::-webkit-scrollbar-thumb {
+    border-radius: 100px;
+    background: var(--dYellow);
+}
+
+
+/* crycry做的左邊sider */
+
+body {
+    background: var(--dLightGray);
+}
+
+
+/* 左邊sider */
+
+.slider {
+    width: 400px;
+    height: 100vh;
+    background: rgb(255, 255, 255);
+    text-align: center;
+}
+
+
+/* LOGO */
+
+.sliderLogo {
+    margin-top: 60px;
+    width: 120px;
+    height: 36px;
+}
+
+
+/* 照片 */
+
+.sliderPhoto {
+    width: 100px;
+    height: 100px;
+    box-shadow: 0px 3px 6px #00000029;
+    border: 4px solid #FFFFFF;
+    border-radius: 50%;
+    margin-top: 56px;
+}
+
+
+/* 名子 */
+
+.name {
+    margin-top: 40px;
+}
+
+
+/* menu */
+
+.menu {
+    margin-top: 48px;
+}
+
+.menu .act {
+    color: white;
+    background-color: var(--dYellow);
+    border-radius: 40px;
+}
+
+.menu a {
+    text-align: left;
+    width: 280px;
+    letter-spacing: 3px;
+    text-decoration-line: none;
+    color: black;
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 24px;
+    padding: 8px 30px 10px 30px;
+    letter-spacing: 8px;
+}
+
+#signOut {
+    position: absolute;
+    bottom: 80px;
+    left: calc(50% - 140px);
+    margin-bottom: 0;
+}
+
+.member {
+    margin-top: 200px;
+}
+
+.menu i {
+    margin-right: 20px;
+}
+
+.menuI .act {
+    color: var(--dYellow);
+    background-color: #FFFFFF;
+}
+
+.act .icon-down-open::before {
+    transform: scaleY(-1);
+}
+
+.menuI a {
+    padding-left: 84px;
+}
+
+.note {
+    text-align: right;
+    font-size: 20px;
+    padding-left: 8px;
+    border-radius: 20px;
+    background-color: var(--dYellow);
+    color: #FFFFFF;
+    margin-left: 70px;
+}
+
+.act .note {
+    color: var(--ddYellow);
+    background-color: #FFFFFF;
+}
+
+
+/* 右邊內容放置區 */
+
+.containerRight {
+    width: 100%;
+    padding-right: 140px;
+    padding-left: 480px;
+    margin-right: auto;
+    margin-left: auto;
+}

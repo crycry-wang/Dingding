@@ -1,3 +1,5 @@
+// 友文製
+
 // 日曆
 
 // const e = require("express");
@@ -84,7 +86,7 @@ function showCalendar(month, year) {
 
                     col.className = "tdPass";
 
-                }else{
+                } else {
                     col.className = "tdFutrue";
                 }
 
@@ -100,7 +102,7 @@ function showCalendar(month, year) {
 
                     col.className = "tdPass";
 
-                }else{
+                } else {
                     col.className = "tdFutrue";
                 }
 
