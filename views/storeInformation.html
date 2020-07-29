@@ -16,6 +16,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <!-- <link rel="stylesheet" href="../public/stylesheets/member.css"> -->
     <link rel="stylesheet" href="../public/stylesheets/storeInformation.css">
+    <link rel="stylesheet" href="../public/stylesheets/member.css">
 
     <title>店家資訊</title>
     <style>
@@ -47,7 +48,7 @@
 
     <div class="containerRight">
         <!-- 右邊內容放置區 -->
-        <div class="btnDiv">
+        <div class="btnDiv mb-m">
             <div class="rightbtn">
                 <button class="text20BW dbtn btnB" style="margin-right: 15px;" data-toggle="modal"
                     data-target="#storeModel">店家資訊預覽</button>
@@ -55,65 +56,80 @@
                 <button class="text20R dbtn btnY" data-toggle="modal" data-target="#comfirm2Btn">儲存</button>
             </div>
         </div>
-        <div class="mInfo">
-            <div style="background-image: url(../public/image/photo.jpg);" class="memberPhoto icon-photo-1">
-            </div>
-            <!-- 左邊店家基本資訊 -->
-            <div class="dblock information">
+        <div class="row">
+            <div class="col-8 mInfo" style="margin-bottom: 80px;">
+                <div class="d-flex">
+                    <div style="background-image: url(../public/image/photo.jpg);" class="memberPhoto icon-photo-1">
+                    </div>
+                </div>
+                <!-- <div style="background-image: url(../public/image/photo.jpg);" class="memberPhoto icon-photo-1">
+                </div> -->
+                <!-- 左邊店家基本資訊 -->
+                <div class="information row">
 
-                <div class=" storeTitleDiv">
-                    <span class="text20B storeTitle">店家名稱</span>
-                    <input type="text" class="singleText398 text20R" placeholder="請輸入店家名稱" style="width: 536px;">
-                </div>
-                <div class=" storeTitleDiv">
-                    <span class="text20B storeTitle">店家照片</span>
-                    <span class="text20R" style="margin-right: 20px; margin-left: 20px;">封面照片.jpg</span> <button
-                        class="dbtn btnW text20R">上傳照片</button>
-                </div>
-                <div class=" storeTitleDiv">
-                    <span class="text20B storeTitle">店家電話</span>
-                    <input type="text" class="singleText398 text20R" placeholder="請輸入店家電話" style="width: 536px;">
-                </div>
-                <div class=" storeTitleDiv">
-                    <span class="text20B storeTitle">店家地址</span>
-                    <input type="text" class="singleText398 text20R" placeholder="請輸入完整地址" style="width: 536px;">
-                </div>
-                <div class=" storeTitleDiv">
-                    <span class="text20B storeTitle">營業時間</span>
-                    <input type="text" class="singleText398 text20R" placeholder="請輸入營業時間" style="width: 536px;">
-                </div>
-                <div class=" storeTitleDiv">
-                    <span class="text20B storeTitle">固定公休</span>
-                    <input type="text" class="singleText398 text20R" placeholder="請輸入公休日" style="width: 536px;">
-                </div>
-                <div class=" storeTitleDiv" style="vertical-align: super;">
-                    <span class="text20B storeTitle">店家簡介</span>
-                    <textarea type="text" class="multiText398 text20R aboutTextarea" placeholder="請輸入店家簡介"></textarea>
+                    <div class=" storeTitleDiv w-100">
+                        <span class="text20B storeTitle">店家名稱</span>
+                        <input type="text" class="singleText398 text20R" placeholder="請輸入店家名稱">
+                    </div>
+                    <div class=" storeTitleDiv w-100">
+                        <span class="text20B storeTitle">店家照片</span>
+                        <span class="text20R" style="margin-right: 20px; margin-left: 20px;">封面照片.jpg</span> <button
+                            class="dbtn btnW text20R">上傳照片</button>
+                    </div>
+                    <div class=" storeTitleDiv w-100">
+                        <span class="text20B storeTitle">店家電話</span>
+                        <input type="text" class="singleText398 text20R" placeholder="請輸入店家電話">
+                    </div>
+                    <div class=" storeTitleDiv w-100">
+                        <span class="text20B storeTitle">店家地址</span>
+                        <input type="text" class="singleText398 text20R" placeholder="請輸入完整地址">
+                    </div>
+                    <div class=" storeTitleDiv w-100">
+                        <span class="text20B storeTitle">營業時間</span>
+                        <input type="text" class="singleText398 text20R" placeholder="請輸入營業時間">
+                    </div>
+                    <div class=" storeTitleDiv w-100">
+                        <span class="text20B storeTitle">固定公休</span>
+                        <input type="text" class="singleText398 text20R" placeholder="請輸入公休日">
+                    </div>
+                    <div class=" storeTitleDiv w-100">
+                        <span class="text20B storeTitle" style="display: inline-block;">店家簡介</span>
+                        <div class="row">
+                            <div class="col">
+                                <textarea type="text" class="multiText398 text20R aboutTextarea"
+                                    placeholder="請輸入店家簡介"></textarea>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <!-- 右邊配送地區 -->
-            <div class="dblock delivery">
-                <div class="mb-l">
-                    <span class="text20B" style="margin-right: 50px;">配送地區</span>
-                    <button class="dbtn text20R" data-toggle="modal" data-target="#comfirm2BtnW1340"
-                        style="margin-bottom: 24px;background-color: var(--dLightGray);">
-                        選擇地區
-                        <span class="ml-2">+</span>
-                    </button>
-                    <br>
-                    <button class="dbtn btnY text20B"
-                        style="margin-bottom: 20px;padding-left: 16px;padding-right: 12px;">台中市北屯區 <i
-                            class="icon-close"></i> </button><br>
-                    <button class="dbtn btnY text20B"
-                        style="margin-bottom: 20px;padding-left: 16px;padding-right: 12px;">台中市北屯區 <i
-                            class="icon-close"></i> </button><br>
-                </div>
-                <div>
-                    <span class="text20B" style="margin-right: 16px;">注意事項</span><span
-                        style="font-size: 16px; color: var(--dDeepGray);">(選填)</span>
-                    <textarea type="text" class="multiText398 text20R noteTextarea" placeholder="填入配送注意事項"></textarea>
+            <div class="col-4">
+                <div class="dblock delivery ml-3">
+                    <div class="mb-l">
+                        <span class="text20B" style="margin-right: 50px;">配送地區</span>
+                        <button class="dbtn text20R" data-toggle="modal" data-target="#comfirm2BtnW1340"
+                            style="margin-bottom: 24px;background-color: var(--dLightGray);">
+                            選擇地區
+                            <span class="ml-2">+</span>
+                        </button>
+                        <br>
+                        <button class="dbtn btnY text20B"
+                            style="margin-bottom: 20px;padding-left: 16px;padding-right: 12px;">台中市北屯區 <i
+                                class="icon-close"></i> </button><br>
+                        <button class="dbtn btnY text20B"
+                            style="margin-bottom: 20px;padding-left: 16px;padding-right: 12px;">台中市北屯區 <i
+                                class="icon-close"></i> </button><br>
+                    </div>
+                    <div>
+                        <span class="text20B" style="margin-right: 16px;">注意事項</span><span
+                            style="font-size: 16px; color: var(--dDeepGray);">(選填)</span>
+                        <textarea type="text" class="multiText398 text20R noteTextarea w-100"
+                            placeholder="填入配送注意事項"></textarea>
+                    </div>
                 </div>
             </div>
+
 
         </div>
     </div>
