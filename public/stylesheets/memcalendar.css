@@ -1,53 +1,65 @@
-:root {
-    --light-gray: #DADCE0;
-}
-
-
-/* 超連結重設定 */
+/* 友文製 */
 
 
 /* 日曆中的日期 */
 
-#YearAndMonth {
-    text-align: center;
-}
-
 th {
-    border: 1px solid var(--light-gray);
+    border: 5px solid var(--dWhite);
     text-align: center;
     vertical-align: auto;
+    font-weight: lighter;
 }
 
 td {
-    border: 1px solid var(--light-gray);
-    height: 114px;
+    border: 5px solid var(--dWhite);
+    background-color: var(--dLightGray);
+    height: 12vh;
     width: 170px;
     vertical-align: top;
+    padding-left: 8px;
+    font-size: 1.5rem;
+}
+
+.thY {
+    background-color: var(--dYellow);
+}
+
+.thR {
+    background-color: var(--dRed);
+}
+
+.tdPass {
+    background-color: var(--moreLightGray);
 }
 
 
 /* 日曆 */
 
-table {
+
+/* table {
     width: 1220px;
     height: 741px;
-}
-
-
-/* 側邊攔 */
+} */
 
 
 /* 英數字設定 */
 
 .eng40R {
-    font-family: 'Alata';
+    /* font-family: 'Alata'; */
     font-size: 2.5rem;
     color: var(--dBlack);
-    letter-spacing: 2.88px;
+    letter-spacing: 4.8px;
+}
+
+.eng30R {
+    /* font-family: 'Alata'; */
+    font-size: 1.875rem;
+    color: var(--dBlack);
+    letter-spacing: 3.6px;
 }
 
 .eng24W {
-    font-family: 'Alata';
+    /* font-family: 'Alata'; */
     font-size: 1.5rem;
     color: var(--dWhite);
     letter-spacing: 2.88px;
@@ -96,8 +108,16 @@ table {
 /* 按鈕圖 */
 
 .btnPhoto {
-    width: 50px;
-    height: 50px;
-    box-shadow: 0px 3px 6px #00000029;
+    width: 32px;
+    height: 32px;
     border-radius: 50%;
+}
+
+
+/* 直槓 */
+
+.br-m {
+    border-right: 4px solid var(--dYellow);
+    height: 32px;
+    border-radius: 2px;
 }
