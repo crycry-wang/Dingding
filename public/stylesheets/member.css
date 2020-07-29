@@ -447,3 +447,21 @@ input+input {
 .coinList {
     max-height: calc(100vh - 420px);
 }
+
+
+/* 住址 */
+
+.addressList {
+    max-height: calc(100vh - 945px);
+}
+
+.addressList div:not(:last-of-type) {
+    margin-bottom: 40px;
+}
+
+
+/* 收藏店家名單 */
+
+.likeList {
+    max-height: calc(100vh - 400px);
+}
