@@ -13,7 +13,7 @@ th {
 td {
     border: 5px solid var(--dWhite);
     background-color: var(--dLightGray);
-    height: 12vh;
+    height: calc(10vh + 60px);
     width: 170px;
     vertical-align: top;
     padding-left: 8px;
