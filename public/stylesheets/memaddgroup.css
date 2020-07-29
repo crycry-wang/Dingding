@@ -1,21 +1,22 @@
-:root {
-    --light-gray: #DADCE0;
-}
+/* 友文製 */
+
 
 /* 英數字設定 */
+
 .eng40R {
-    font-family: 'Alata';
+    /* font-family: 'Alata'; */
     font-size: 2.5rem;
     color: var(--dBlack);
     letter-spacing: 2.88px;
 }
 
 .eng24W {
-    font-family: 'Alata';
+    /* font-family: 'Alata'; */
     font-size: 1.5rem;
     color: var(--dWhite);
     letter-spacing: 2.88px;
 }
+
 
 /* 輸入框 */
 
@@ -28,24 +29,29 @@
     border-radius: 24px;
 }
 
+
 /* marging */
 
 .mr-xs {
-    margin-right: 16px ;
-
+    margin-right: 16px;
 }
 
 .mr-xxs {
-    margin-right: 4px ;
+    margin-right: 4px;
 }
 
 .mr-m {
-    margin-right: 46px ;
+    margin-right: 46px;
 }
 
 .ml-m {
     margin-left: 40px;
 }
+
+.ml-s {
+    margin-left: 12px;
+}
+
 
 /* li */
 
@@ -54,10 +60,11 @@
     border-radius: 10px;
 }
 
+
 /* 按鈕 */
 
 .btnLG {
-    color: var(--dBlack);
+    color: var(--dDeepGray);
     background-color: var(--dLightGray);
     margin-right: 16px;
 }
@@ -65,7 +72,18 @@
 .btnPhoto {
     width: 50px;
     height: 50px;
-    box-shadow: 0px 3px 6px #00000029;
-    border: 4px solid #FFFFFF;
     border-radius: 50%;
+}
+
+.dbtnMem {
+    height: auto;
+    width: auto;
+    /* 待確 */
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding-left: 12px;
+    padding-right: 24px;
+    border-radius: 30px;
+    border: none;
+    /* line-height: 1rem; */
 }

@@ -16,9 +16,305 @@
     <!-- <link rel="stylesheet" href="../public/stylesheets/order.css"> -->
     <title>dingding</title>
     <style>
-
-
-
+        nav {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+            background-color: #FFFFFF;
+            height: 80px;
+            z-index: 998;
+        }
+        
+        .navItem {
+            line-height: 80px;
+            vertical-align: center;
+        }
+        
+        .icon-search {
+            color: var(--dDeepGray);
+            font-size: 1.25rem;
+            /* margin-right: 20px; */
+            top: 12px;
+            left: 20px;
+        }
+        
+        .serchDiv {
+            width: 260px;
+            height: 40px;
+            background-color: var(--dLightGray);
+            border-radius: 24px;
+            padding: 5px 74px 8px 20px;
+        }
+        
+        .ddselect {
+            z-index: 999;
+            width: 160px;
+            height: 40px;
+            display: inline-block;
+            line-height: 80px;
+        }
+        
+        .mr16 {
+            margin-right: 16px;
+        }
+        
+        .dBanner {
+            margin-top: 80px;
+            height: 416px;
+            background-image: url("../public/image/Banner.png");
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        
+        .bannerText {
+            font-size: 2rem;
+            font-weight: 700;
+            line-height: 416px;
+            color: var(--dWhite);
+        }
+        
+        .newStore {
+            color: var(--dWhite);
+            background-color: var(--dYellow);
+            width: 53px;
+            height: 30px;
+            border-radius: 15px;
+            float: right;
+            line-height: 30px;
+            padding-left: 9px;
+        }
+        
+        .dBannerM {
+            height: 406px;
+            /* width: 1609px; */
+            width: 100%;
+            background-image: url("../public/image/BannerM.png");
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        
+        .bannerTextM {
+            line-height: 406px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--dWhite);
+        }
+        /* 店家卡小湯匙 */
+        
+        .card-body>.icon-spoon {
+            /* float: right; */
+            color: var(--dYellow);
+            font-size: 24px;
+            /* margin-top: 25px; */
+        }
+        
+        .footer {
+            margin-top: 260px;
+            height: 87px;
+            background-color: var(--dYellow);
+            line-height: 87px;
+            font-size: 16px;
+        }
+        
+        .footer a {
+            color: var(--dWhite);
+            letter-spacing: 1.28px;
+        }
+        /* 登入/註冊用的彈框圓角 */
+        
+        .modal-content-index {
+            border-radius: 8px;
+            border: 0;
+        }
+        /* 登入彈框左側照片 */
+        
+        .modelImgDivLogin {
+            /* display: inline-block; */
+            width: 398px;
+            height: 750px;
+            background-color: var(--dYellow);
+            float: left;
+            border-bottom-left-radius: 8px;
+            border-top-left-radius: 8px;
+        }
+        /* 註冊彈框左側照片 */
+        
+        .modelImgDivRegistered {
+            width: 398px;
+            height: 977px;
+            background-color: var(--dYellow);
+            float: left;
+            border-bottom-left-radius: 8px;
+            border-top-left-radius: 8px;
+        }
+        /* 登入or後面的線 */
+        
+        .orBoder::after {
+            content: '';
+            display: block;
+            background-color: #ECEEEF;
+            height: 1px;
+            width: 177px;
+            margin-top: -13px;
+            margin-left: 35px;
+        }
+        /* 登入or前面的線 */
+        
+        .orBoder::before {
+            content: '';
+            display: block;
+            background-color: #ECEEEF;
+            height: 1px;
+            width: 177px;
+            margin-bottom: -16px;
+            margin-left: -190px;
+        }
+        /* 左右照片設定 */
+        
+        .lrImg {
+            width: 32px;
+            height: 32px;
+            float: right;
+            /* top: 0px; */
+            opacity: 0.5;
+        }
+        /* 左右hover */
+        
+        .lrImg:hover {
+            opacity: 1;
+            transition-duration: 0.7s;
+        }
+        /* fb快速登入 */
+        
+        .fb {
+            width: 202px;
+            height: 44px;
+            border: 1px solid #DDDDDD;
+            border-radius: 30px;
+            display: inline-block;
+            margin-right: 20px;
+            background-image: url(../public/image/facebook.png);
+            background-repeat: no-repeat;
+            background-size: 24px;
+            background-position: 16px 10px;
+            text-align: right;
+            padding-top: 9px;
+            font-size: 18px;
+            padding-right: 20px;
+            letter-spacing: 1.2px;
+        }
+        /* google登入 */
+        
+        .google {
+            width: 176px;
+            height: 44px;
+            border: 1px solid #DDDDDD;
+            border-radius: 30px;
+            display: inline-block;
+            /* margin-right: 20px; */
+            background-image: url(../public/image/google.png);
+            background-repeat: no-repeat;
+            background-size: 24px;
+            background-position: 16px 10px;
+            text-align: right;
+            padding-top: 9px;
+            font-size: 18px;
+            padding-right: 20px;
+            letter-spacing: 1.2px;
+        }
+        
+        .storeModelImg {
+            width: 1440px;
+            height: 350px;
+            background-image: url(../public/image/store/Taichung/太初麵食/index.jpeg);
+            background-repeat: no-repeat;
+            background-size: 1440px auto;
+            background-size: cover;
+            display: block;
+            background-position: 50% 50%;
+            /* overflow: hidden; */
+            position: fixed;
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+            z-index: 999;
+        }
+        
+        .storeModelImg>img {
+            width: 1440px;
+            height: auto;
+        }
+        
+        .storeModelImgContent {
+            background-color: var(--dWhite);
+            width: 543px;
+            height: 190px;
+            margin-top: 62px;
+            padding-top: 40px;
+            padding-left: 46px;
+        }
+        
+        .storeModelImgContent>.icon-spoon,
+        .storeModelImgContent>.icon-borderspoon {
+            font-size: 24px;
+            color: var(--dYellow);
+            margin-left: -6px;
+            margin-right: -6px;
+        }
+        
+        .storeModelImgContentBottom {
+            width: 543px;
+            padding-left: 42px;
+            margin-top: 27px;
+        }
+        /* 店家彈框內的愛心icon */
+        
+        .storeModelImgContentBottom>.icon-heart {
+            color: var(--dWhite);
+            opacity: 0.6;
+            font-size: 30px;
+        }
+        /* 愛心icon hover +透明度調高 */
+        
+        .icon-heart:hover {
+            opacity: 0.8;
+        }
+        
+        .storeClose {
+            color: var(--dWhite);
+        }
+        
+        .storeUl>li {
+            margin-bottom: 17px;
+        }
+        
+        .storeUl {
+            width: 100px;
+            margin-right: 40px;
+            margin-top: 40px;
+        }
+        
+        li>.storeContent {
+            font-size: 1rem;
+            color: #777777;
+        }
+        
+        li>.storeContent:hover {
+            color: var(--dYellow);
+            transition-duration: 0.5s;
+        }
+        
+        .row {
+            margin-right: -16px;
+        }
+        
+        @media only screen and (max-width: 500px) {
+            .rwdhidden {
+                display: none;
+            }
+        }
+        /* 彈框位置修正 */
     </style>
 </head>
 
@@ -28,15 +324,12 @@
         <nav class="mContainer">
             <div class="navItem row">
                 <div class="col-2">
-                    <img src="../public/image/logo.png" width="106" height="32" class="d-inline-block align-middle "
-                        alt="" loading="lazy">
+                    <img src="../public/image/logo.png" width="106" height="32" class="d-inline-block align-middle " alt="" loading="lazy">
                 </div>
                 <div class="col-2">
-                    <div class="d-inline-block align-baseline"
-                        style="width: 260px;height: 40px;position: relative;margin-right: 40px;">
+                    <div class="d-inline-block align-baseline" style="width: 260px;height: 40px;position: relative;margin-right: 40px;">
                         <i class="icon-search" style="position: absolute;top: -1px;left: 20px;"></i>
-                        <input type="text" class="singleText398 text20R" placeholder="輸入店家名稱"
-                            style="width: 260px; height: 40px; padding-left: 56px;">
+                        <input type="text" class="singleText398 text20R" placeholder="輸入店家名稱" style="width: 260px; height: 40px; padding-left: 56px;">
                     </div>
                 </div>
                 <div class="col-6 rwdhidden">
@@ -52,8 +345,7 @@
                         </div>
                     </div>
                     <div class="d-inline-block">
-                        <button class=" dbtn btnY d-inline-block"
-                            style="font-size: 16px;line-height: 30px;">尋找食物</button>
+                        <button class=" dbtn btnY d-inline-block" style="font-size: 16px;line-height: 30px;">尋找食物</button>
                     </div>
                 </div>
                 <div class="col-2">
@@ -87,8 +379,7 @@
             <div class="row">
                 <div class="col-4 pr-3 imgCard" data-toggle="modal" data-target="#storeModel">
                     <div class="dingImgDiv" style="width:  100%">
-                        <img src="../public/image/store/Taichung/太初麵食/index.jpeg" class="card-img-top dingImg"
-                            alt="...">
+                        <img src="../public/image/store/Taichung/太初麵食/index.jpeg" class="card-img-top dingImg" alt="...">
                         <i class="heart icon-heart"></i>
                         <div class="card-body">
                             <div class="d-inline-block w-75">
@@ -102,8 +393,7 @@
                 </div>
                 <div class="col-4 pr-3 imgCard">
                     <div class="dingImgDiv" style="width:  100%">
-                        <img src="../public/image/store/Taichung/隨主飡_法式水煮專賣/index.jpeg" class="card-img-top dingImg"
-                            alt="...">
+                        <img src="../public/image/store/Taichung/隨主飡_法式水煮專賣/index.jpeg" class="card-img-top dingImg" alt="...">
                         <i class="heart icon-heart"></i>
                         <div class="card-body">
                             <div class="d-inline-block w-75">
@@ -117,8 +407,7 @@
                 </div>
                 <div class="col-4 pr-3 imgCard">
                     <div class="dingImgDiv" style="width:  100%">
-                        <img src="../public/image/store/Taichung/隨主飡_法式水煮專賣/index.jpeg" class="card-img-top dingImg"
-                            alt="...">
+                        <img src="../public/image/store/Taichung/隨主飡_法式水煮專賣/index.jpeg" class="card-img-top dingImg" alt="...">
                         <i class="heart icon-heart"></i>
                         <div class="card-body">
                             <div class="d-inline-block w-75">
@@ -145,8 +434,7 @@
             <div class="row">
                 <div class="col-4 pr-3 imgCard">
                     <div class="dingImgDiv" style="width:  100%">
-                        <img src="../public/image/store/Taichung/好好越南料理/index.jpeg" class="card-img-top dingImg"
-                            alt="...">
+                        <img src="../public/image/store/Taichung/好好越南料理/index.jpeg" class="card-img-top dingImg" alt="...">
                         <i class="heart icon-heart"></i>
                         <div class="card-body">
                             <div class="d-inline-block w-75">
@@ -158,8 +446,7 @@
                 </div>
                 <div class="col-4 pr-3 imgCard">
                     <div class="dingImgDiv" style="width:  100%">
-                        <img src="../public/image/store/Taichung/好好越南料理/index.jpeg" class="card-img-top dingImg"
-                            alt="...">
+                        <img src="../public/image/store/Taichung/好好越南料理/index.jpeg" class="card-img-top dingImg" alt="...">
                         <i class="heart icon-heart"></i>
                         <div class="card-body">
                             <div class="d-inline-block w-75">
@@ -171,8 +458,7 @@
                 </div>
                 <div class="col-4 pr-3 imgCard">
                     <div class="dingImgDiv" style="width:  100%">
-                        <img src="../public/image/store/Taichung/好好越南料理/index.jpeg" class="card-img-top dingImg"
-                            alt="...">
+                        <img src="../public/image/store/Taichung/好好越南料理/index.jpeg" class="card-img-top dingImg" alt="...">
                         <i class="heart icon-heart"></i>
                         <div class="card-body">
                             <div class="d-inline-block w-75">
@@ -208,8 +494,7 @@
             <div class="row">
                 <div class="col-4 pr-3 imgCard" data-toggle="modal" data-target="#storeModel">
                     <div class="dingImgDiv" style="width:  100%">
-                        <img src="../public/image/store/Taichung/太初麵食/index.jpeg" class="card-img-top dingImg"
-                            alt="...">
+                        <img src="../public/image/store/Taichung/太初麵食/index.jpeg" class="card-img-top dingImg" alt="...">
                         <i class="heart icon-heart"></i>
                         <div class="card-body">
                             <div class="d-inline-block w-75">
@@ -223,8 +508,7 @@
                 </div>
                 <div class="col-4 pr-3 imgCard">
                     <div class="dingImgDiv" style="width:  100%">
-                        <img src="../public/image/store/Taichung/隨主飡_法式水煮專賣/index.jpeg" class="card-img-top dingImg"
-                            alt="...">
+                        <img src="../public/image/store/Taichung/隨主飡_法式水煮專賣/index.jpeg" class="card-img-top dingImg" alt="...">
                         <i class="heart icon-heart"></i>
                         <div class="card-body">
                             <div class="d-inline-block w-75">
@@ -238,8 +522,7 @@
                 </div>
                 <div class="col-4 pr-3 imgCard">
                     <div class="dingImgDiv" style="width:  100%">
-                        <img src="../public/image/store/Taichung/隨主飡_法式水煮專賣/index.jpeg" class="card-img-top dingImg"
-                            alt="...">
+                        <img src="../public/image/store/Taichung/隨主飡_法式水煮專賣/index.jpeg" class="card-img-top dingImg" alt="...">
                         <i class="heart icon-heart"></i>
                         <div class="card-body">
                             <div class="d-inline-block w-75">

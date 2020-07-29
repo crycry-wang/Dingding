@@ -1,21 +1,22 @@
-:root {
-    --light-gray: #DADCE0;
-}
+/* 友文製 */
+
 
 /* 英數字設定 */
+
 .eng40R {
-    font-family: 'Alata';
+    /* font-family: 'Alata'; */
     font-size: 2.5rem;
     color: var(--dBlack);
     letter-spacing: 2.88px;
 }
 
 .eng24W {
-    font-family: 'Alata';
+    /* font-family: 'Alata'; */
     font-size: 1.5rem;
     color: var(--dWhite);
     letter-spacing: 2.88px;
 }
+
 
 /* 輸入框 */
 
@@ -28,11 +29,24 @@
     border-radius: 24px;
 }
 
+
 /* marging */
 
 .mr-xs {
-    margin-right: 16px ;
+    margin-right: 16px;
 }
+
+.mr-m {
+    margin-right: 32px;
+}
+
+
+/* padding */
+
+.pl-m {
+    padding-left: 32px;
+}
+
 
 /* li */
 

@@ -604,25 +604,28 @@ textarea {
     
 }
 
+
 /* 店家彈框菜單滾動軸 */
-.mealsScroll{
-    overflow-y: scroll; 
-    width: 1190px; 
+
+.mealsScroll {
+    overflow-y: scroll;
+    width: 1190px;
     /* height: 500px;  */
     height: 40vh;
     padding-bottom: 40px;
-
 }
+
 .mealsScroll::-webkit-scrollbar {
-    width:10px;
-    height:8px;
-    }
+    width: 10px;
+    height: 8px;
+}
+
 .mealsScroll::-webkit-scrollbar-thumb {
-    border-radius:100px;
-    -webkit-box-shadow:inset 0 0 5px rgba(0,0,0,0.2);
-    background:var(--dYellow);
+    border-radius: 100px;
+    -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+    background: var(--dYellow);
     opacity: 0.7;
-    }
+}
 
 .mealsCard {
     width: 344px;
@@ -938,7 +941,6 @@ textarea {
 .storeModel {
     padding-top: 40px;
     margin-bottom: 40px;
-    
 }
 
 
@@ -1059,4 +1061,23 @@ textarea {
 .lrImg:hover {
     opacity: 1;
     transition-duration: 0.7s;
+}
+
+
+/* 滾輪 */
+
+.scrollList {
+    overflow-y: scroll;
+    /* 100vh-需要佔的高度 */
+    /* max-height: calc(100vh - 420px); */
+    /* padding-right: 20px; */
+}
+
+.scrollList::-webkit-scrollbar {
+    width: 8px;
+}
+
+.scrollList::-webkit-scrollbar-thumb {
+    border-radius: 100px;
+    background: var(--dYellow);
 }
