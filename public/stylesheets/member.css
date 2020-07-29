@@ -3,8 +3,18 @@
 .mTH {
     background-color: var(--dYellow);
     padding: 8px 32px;
-    border-right: solid 4px var(--dWhite);
+    border-left: solid 2px var(--dWhite);
+    border-right: solid 2px var(--dWhite);
 }
+
+.mTH:nth-child(3n-2) {
+    border-left: 0px;
+}
+
+.mTH:nth-child(3n) {
+    border-right: 0px;
+}
+
 
 .mTR {
     margin-top: 4px;
