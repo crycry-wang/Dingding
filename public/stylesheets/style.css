@@ -419,6 +419,7 @@ textarea {
 }
 
 
+
 /* 單行輸入框 */
 
 .singleText398 {
@@ -542,7 +543,7 @@ textarea {
     color: var(--dWhite);
     font-size: 30px;
     position: absolute;
-    bottom: 74px;
+    bottom: 80px;
     right: 16px;
     opacity: 0.4;
 }
@@ -600,8 +601,6 @@ textarea {
 
 .meals {
     margin-left: 23px;
-    margin-bottom: 40px;
-    
 }
 
 
@@ -610,7 +609,6 @@ textarea {
 .mealsScroll {
     overflow-y: scroll;
     width: 1190px;
-    /* height: 500px;  */
     height: 40vh;
     padding-bottom: 40px;
 }
