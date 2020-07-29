@@ -2,15 +2,17 @@
     --light-gray: #DADCE0;
 }
 
+
 /* 超連結重設定 */
+
 
 /* 日曆中的日期 */
 
-#YearAndMonth{
+#YearAndMonth {
     text-align: center;
 }
 
-th{
+th {
     border: 1px solid var(--light-gray);
     text-align: center;
     vertical-align: auto;
@@ -26,14 +28,17 @@ td {
 
 /* 日曆 */
 
-table{
+table {
     width: 1220px;
     height: 741px;
 }
 
+
 /* 側邊攔 */
 
+
 /* 英數字設定 */
+
 .eng40R {
     font-family: 'Alata';
     font-size: 2.5rem;
@@ -48,6 +53,7 @@ table{
     letter-spacing: 2.88px;
 }
 
+
 /* 輸入框 */
 
 .singleText400 {
@@ -59,11 +65,13 @@ table{
     border-radius: 24px;
 }
 
+
 /* marging */
 
 .mr-xs {
-    margin-right: 16px ;
+    margin-right: 16px;
 }
+
 
 /* 按鈕圖 */
 
