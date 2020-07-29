@@ -206,12 +206,18 @@ ul {
 
 /* 推薦產品介面 */
 
-
-
 #recommend .fst {
     margin-right: 40px;
 }
 
 .recommendItem+.recommendItem {
     margin-top: 40px;
+}
+
+.mealList {
+    max-height: calc(100vh - 392px);
+}
+
+.typeList {
+    max-height: calc(100vh - 420px);
 }
