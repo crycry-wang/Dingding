@@ -115,18 +115,6 @@ td:last-child {
     color: var(--dBlack);
 }
 
-.fst::after {
-    content: '1';
-}
-
-.snd::after {
-    content: '2';
-}
-
-.trd::after {
-    content: '3';
-}
-
 
 /* 垃圾桶 */
 
@@ -218,12 +206,7 @@ ul {
 
 /* 推薦產品介面 */
 
-#recommend .fst::after,
-#recommend .snd::after,
-#recommend .trd::after {
-    top: calc(50% - 6px);
-    left: calc(50% - 4px);
-}
+
 
 #recommend .fst {
     margin-right: 40px;
