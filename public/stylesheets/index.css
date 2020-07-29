@@ -131,6 +131,14 @@ nav {
     border-bottom-left-radius: 8px;
     border-top-left-radius: 8px;
 }
+.modelImgDivForget {
+    width: 398px;
+    height: 750px;
+    background-color: var(--dBlue);
+    float: left;
+    border-bottom-left-radius: 8px;
+    border-top-left-radius: 8px;
+}
 
 /* 註冊彈框左側照片 */
 .modelImgDivRegistered {
@@ -336,4 +344,14 @@ li>.storeContent:hover {
 
 .row {
     margin-right: -16px;
+}
+
+
+/* 返回登入按鈕 */
+.btn398G{
+    margin-bottom: 24px;
+    width: 398px;
+    color: var(--dBlack);
+    border: 1px solid #DDDDDD;
+    background-color: var(--dWhite);
 }
