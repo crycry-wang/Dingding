@@ -1,0 +1,453 @@
+/* 會員前台共用 */
+
+.mTH {
+    background-color: var(--dYellow);
+    padding: 8px 32px;
+    border-right: solid 4px var(--dWhite);
+}
+
+.mTR {
+    margin-top: 4px;
+    border: 1px solid var(--moreLightGray);
+    border-radius: 10px;
+}
+
+.mTD {
+    padding: 11px 32px;
+}
+
+.mInfoList li {
+    padding: 0 60px 0 32px;
+    margin-bottom: 40px;
+}
+
+.textB {
+    color: var(--dBlue);
+}
+
+.textG {
+    color: var(--moreLightGray);
+}
+
+.textDG {
+    color: var(--dDeepGray);
+}
+
+.textY {
+    color: var(--dYellow);
+}
+
+.textR {
+    color: var(--dRed);
+}
+
+.textW {
+    color: var(--dWhite);
+}
+
+.topBtnGroup {
+    padding-left: 32px;
+}
+
+.imgBorder {
+    border-right: 18px solid var(--dWhite);
+}
+
+.itemImg {
+    height: 80px;
+    width: 80px;
+    padding: 2px 0 2px 2px;
+}
+
+.itemBorder {
+    border-right: solid 9px var(--dWhite);
+}
+
+.itemBorder:nth-child(even) {
+    border-left: solid 9px var(--dWhite);
+    border-right: 0;
+}
+
+.clipCircle {
+    clip-path: circle(50% at 50% 50%);
+}
+
+
+/* 店家卡小湯匙 */
+
+.card-body>.icon-spoon {
+    /* float: right; */
+    color: var(--dYellow);
+    font-size: 24px;
+    /* margin-top: 25px; */
+}
+
+.form-check {
+    position: relative;
+    display: flex;
+    padding-left: 0;
+    margin-left: 56px;
+    margin-right: 40px;
+}
+
+.form-check>.imgCard {
+    padding-left: 9px;
+    padding-right: 9px;
+    position: relative;
+}
+
+.form-check>.imgCard:nth-child(3n-2) {
+    padding-left: 0px;
+}
+
+.form-check>.imgCard:nth-child(3n) {
+    padding-right: 0px;
+}
+
+.form-check-input {
+    transform: scale(3);
+    position: absolute;
+    z-index: 40;
+    top: 30px;
+    left: 50px;
+    border: 0;
+}
+
+
+/* 
+input[type=checkbox] {
+margin-right: 5px;
+cursor: pointer;
+font-size: 14px;
+width: 15px;
+height: 12px;
+position: relative;
+}
+
+input[type=checkbox]:after {
+position: absolute;
+width: 10px;
+height: 15px;
+top: 0;
+content: " ";
+background-color: #ff0000;
+color: #fff;
+display: inline-block;
+visibility: visible;
+padding: 0px 3px;
+border-radius: 3px;
+}
+
+input[type=checkbox]:checked:after {
+content: "\e806";
+font-family: "fontello";
+font-style: normal;
+font-weight: normal;
+width: 1em;
+
+}
+
+input[type=radio] {
+margin-right: 5px;
+cursor: pointer;
+font-size: 14px;
+width: 15px;
+height: 12px;
+position: relative;
+}
+
+input[type=radio]:after {
+position: absolute;
+width: 10px;
+height: 15px;
+top: 0;
+content: " ";
+background-color: #ff0000;
+color: #fff;
+display: inline-block;
+visibility: visible;
+padding: 0px 3px;
+border-radius: 50%;
+}
+
+input[type=radio]:checked:before {
+content: "✓";
+display: block;
+position: relative;
+top: -2px;
+left: 3px;
+width: 6px;
+height: 6px;
+color: #fff;
+font-weight: 400;
+z-index: 1;
+} 
+ */
+
+
+/* vote */
+
+.vTH {
+    background-color: var(--dBlue);
+}
+
+.voteItem {
+    padding: 16px 24px;
+    width: 100%;
+    border-radius: 20px;
+    background-color: var(--dLightGray);
+}
+
+.voteItemNo {
+    line-height: 84px;
+}
+
+.voteItemSelected {
+    border: 1px solid var(--dBlue);
+    background-color: rgba(151, 210, 214, .3);
+}
+
+.progress {
+    height: 0.75rem;
+    font-size: 0.75rem;
+    background-color: var(--moreLightGray);
+    border-radius: 0.5rem;
+}
+
+.progress-bar {
+    text-align: center;
+    white-space: nowrap;
+    background-color: var(--dBlue);
+    transition: width 0.6s ease;
+    border-radius: 0.5rem;
+}
+
+.progressSelected {
+    background-color: var(--dWhite);
+}
+
+.progress-barSelected {
+    background-color: var(--dBlue);
+}
+
+
+/* order */
+
+.orderListimg {
+    height: 28px;
+    width: 28px;
+}
+
+.orderSection {
+    background-color: #F2F2F2;
+    margin-right: -40px;
+    margin-left: -40px;
+}
+
+.orderSectionInner {
+    margin-right: 40px;
+    margin-left: 40px;
+    padding: 17px 0 13px 40px;
+    line-height: 40px;
+}
+
+.orderSectionImg {
+    height: 40px;
+    width: 40px;
+}
+
+.orderSectionMTD {
+    padding: 11px 0 11px 32px;
+}
+
+.orderProductItem {
+    background-color: var(--dLightGray);
+    position: relative;
+}
+
+.orderProductItemList {
+    line-height: 80px;
+    margin: 32px 60px 28px 60px;
+}
+
+.orderProductItemList .orderProductItem .price {
+    position: absolute;
+    left: 65%;
+}
+
+.countP .icon-minus::before {
+    position: absolute;
+    top: 0;
+    left: 4%;
+    width: 36px;
+    height: 36px;
+    border-radius: 100%;
+    line-height: 36px;
+    color: var(--dDeepGray);
+    background-color: var(--moreLightGray);
+}
+
+.countP .icon-plus::before {
+    position: absolute;
+    top: 0;
+    right: 4%;
+    width: 36px;
+    height: 36px;
+    border-radius: 100%;
+    line-height: 36px;
+    color: var(--dWhite);
+    background-color: var(--dYellow);
+}
+
+.productQuantity {
+    position: relative;
+    top: 6px;
+    left: 55%;
+}
+
+.productQuantity::before {
+    content: '*';
+    position: absolute;
+    top: -20px;
+    left: -18px;
+}
+
+
+/* member */
+
+.dCoinBlock {
+    width: 506px;
+    background-color: var(--dWhite);
+    padding: 8px 8px 8px 40px;
+    border-radius: 30px;
+}
+
+.mb-xxl {
+    margin-bottom: 100px !important;
+}
+
+.mInfo {
+    border-radius: 20px;
+    padding: 40px;
+    background-color: var(--dWhite);
+    position: relative;
+}
+
+.mCollection {
+    position: absolute;
+    left: 1382px;
+    width: 398px;
+    border-radius: 20px;
+    padding: 40px;
+    background-color: var(--dWhite);
+}
+
+.memberPhoto {
+    width: 150px;
+    height: 150px;
+    border: 8px solid #FFFFFF;
+    border-radius: 50%;
+    background-position: center center;
+    background-size: contain;
+    position: absolute;
+    top: -50px;
+    left: 40px;
+}
+
+.icon-photo-1::before {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    color: var(--dYellow);
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+    line-height: 34px;
+    text-align: center;
+    border-radius: 100%;
+    background-color: var(--dWhite);
+    border: 2px solid var(--dYellow);
+}
+
+.mInfo .singleText398 {
+    width: calc(100% - 222px);
+    display: inline-block;
+}
+
+.cTH {
+    background-color: #F9FAFC;
+    padding: 8px 32px;
+}
+
+.cTR {
+    border-bottom: 1px solid var(--moreLightGray);
+    padding: 12px 0;
+}
+
+.cTR .mTD {
+    padding-left: 32px;
+}
+
+.dblock .cTR:last-child {
+    border-bottom: none;
+}
+
+
+/* 儲值 */
+
+.CoinBlock .text24B {
+    margin-right: 96px;
+}
+
+.CoinBlock {
+    background: white;
+    padding: 8px 8px 8px 40px;
+    border-radius: 30px;
+}
+
+
+/* 垃圾桶 */
+
+.memberInfo .icon-trash {
+    font-size: 30px;
+    color: var(--moreLightGray);
+    margin-left: auto;
+}
+
+.memberInfo .icon-trash:hover {
+    color: var(--dBlack);
+    cursor: pointer;
+}
+
+
+/* 會員中心-輸入內容 */
+
+.title {
+    width: 138px;
+    display: inline-block;
+}
+
+.ml-140,
+input+input {
+    margin-left: 140px;
+}
+
+.mb-100 {
+    margin-bottom: 100px;
+}
+
+.mr-20 {
+    margin-right: 20px;
+}
+
+input+input {
+    margin-top: 40px;
+    margin-right: 32px;
+}
+
+
+/* 滾輪 */
+
+.coinList {
+    max-height: calc(100vh - 420px);
+}
