@@ -29,7 +29,7 @@
     color: var(--moreLightGray);
 }
 
-.textDG{
+.textDG {
     color: var(--dDeepGray);
 }
 
@@ -59,20 +59,22 @@
     padding: 2px 0 2px 2px;
 }
 
-.itemBorder{
+.itemBorder {
     border-right: solid 9px var(--dWhite);
 }
 
-.itemBorder:nth-child(even){
+.itemBorder:nth-child(even) {
     border-left: solid 9px var(--dWhite);
-    border-right:0;
+    border-right: 0;
 }
 
 .clipCircle {
     clip-path: circle(50% at 50% 50%);
 }
 
+
 /* 店家卡小湯匙 */
+
 .card-body>.icon-spoon {
     /* float: right; */
     color: var(--dYellow);
@@ -82,23 +84,23 @@
 
 .form-check {
     position: relative;
-    display:flex;
+    display: flex;
     padding-left: 0;
     margin-left: 56px;
     margin-right: 40px;
 }
 
-.form-check>.imgCard{
+.form-check>.imgCard {
     padding-left: 9px;
     padding-right: 9px;
     position: relative;
 }
 
-.form-check>.imgCard:nth-child(3n-2){
+.form-check>.imgCard:nth-child(3n-2) {
     padding-left: 0px;
 }
 
-.form-check>.imgCard:nth-child(3n){
+.form-check>.imgCard:nth-child(3n) {
     padding-right: 0px;
 }
 
@@ -106,10 +108,12 @@
     transform: scale(3);
     position: absolute;
     z-index: 40;
-    top:30px;
-    left:50px;
-    border:0;
+    top: 30px;
+    left: 50px;
+    border: 0;
 }
+
+
 /* 
 input[type=checkbox] {
 margin-right: 5px;
@@ -179,6 +183,7 @@ font-weight: 400;
 z-index: 1;
 } 
  */
+
 
 /* vote */
 
@@ -260,17 +265,17 @@ z-index: 1;
     position: relative;
 }
 
-.orderProductItemList{
+.orderProductItemList {
     line-height: 80px;
     margin: 32px 60px 28px 60px;
 }
 
-.orderProductItemList .orderProductItem .price{
+.orderProductItemList .orderProductItem .price {
     position: absolute;
     left: 65%;
 }
 
-.countP .icon-minus::before{
+.countP .icon-minus::before {
     position: absolute;
     top: 0;
     left: 4%;
@@ -279,12 +284,12 @@ z-index: 1;
     border-radius: 100%;
     line-height: 36px;
     color: var(--dDeepGray);
-    background-color: var(--moreLightGray) ;
+    background-color: var(--moreLightGray);
 }
 
-.countP .icon-plus::before{
+.countP .icon-plus::before {
     position: absolute;
-    top:0;
+    top: 0;
     right: 4%;
     width: 36px;
     height: 36px;
@@ -294,19 +299,17 @@ z-index: 1;
     background-color: var(--dYellow);
 }
 
-
-.productQuantity{
+.productQuantity {
     position: relative;
-    top:6px;
-    left:55%;
+    top: 6px;
+    left: 55%;
 }
 
-.productQuantity::before{
+.productQuantity::before {
     content: '*';
     position: absolute;
-    top:-20px;
+    top: -20px;
     left: -18px;
-
 }
 
 
@@ -446,17 +449,5 @@ input+input {
 /* 滾輪 */
 
 .coinList {
-    overflow-y: scroll;
-    /* 100vh-需要佔的高度 */
     max-height: calc(100vh - 420px);
-    padding-right: 20px;
-}
-
-.coinList::-webkit-scrollbar {
-    width: 8px;
-}
-
-.coinList::-webkit-scrollbar-thumb {
-    border-radius: 100px;
-    background: var(--dYellow);
 }

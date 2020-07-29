@@ -117,6 +117,7 @@
     padding: 16px 25px 16px 20px;
 }
 
+/* 店家彈框 */
 .storeModelImg {
     width: 1440px;
     height: 350px;
@@ -126,26 +127,28 @@
     background-size: cover;
     display: block;
     background-position: 50% 50%;
-    /* overflow: hidden; */
-    position: fixed;
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
-    z-index: 999;
+    /* position: fixed; */
+    border-top-left-radius: 20px !important;
+    border-top-right-radius: 20px !important;
+    /* z-index: 999; */
 }
 
 .storeModelImg>img {
     width: 1440px;
     height: auto;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
 
 }
 
 .storeModelImgContent {
     background-color: var(--dWhite);
     width: 543px;
-    height: 190px;
+    /* height: 190px; */
     margin-top: 62px;
     padding-top: 40px;
     padding-left: 46px;
+    padding-bottom: 40px;
 }
 
 .storeModelImgContent>.icon-spoon,
@@ -156,10 +159,12 @@
     margin-right: -6px;
 }
 
+
 .storeModelImgContentBottom {
     width: 543px;
     padding-left: 42px;
     margin-top: 27px;
+    margin-bottom: 26px;
 }
 
 /* 店家彈框內的愛心icon */
@@ -174,26 +179,146 @@
     opacity: 0.8;
 }
 
+/* 店家彈框XX */
 .storeClose {
     color: var(--dWhite);
 }
-
+/* 側邊分類小標題清單 */
 .storeUl>li {
-    margin-bottom: 17px;
+    margin-bottom: 25px;
 }
-
-.storeUl {
-    width: 100px;
+.storeUl{
+    /* width: 100px; */
     margin-right: 40px;
     margin-top: 40px;
 }
 
+/* 店家彈框側邊小分類標題前面的黃線 */
+.storeContent::before{
+    content: '';
+    display: block;
+    border-radius: 1px;
+    background-color: var(--dYellow);
+    opacity: 0;
+    height: 2px;
+    width: 25px;
+    margin-left: -39px;
+    margin-bottom: -11px;
+}
+
+/* 被點選的分類標題要加的class */
+.actMeals{
+    color: var(--dYellow) !important;
+    font-weight: 700;
+}
+.actMeals.storeContent::before{
+    opacity: 1;
+}
+
+/* 預設分類小標題文字顏色 */
 li>.storeContent {
     font-size: 1rem;
     color: #777777;
 }
 
+/* 預設分類小標題hover樣式 */
 li>.storeContent:hover {
     color: var(--dYellow);
     transition-duration: 0.5s;
+}
+
+/* 地區選擇 */
+input[type="checkbox"] {
+    -webkit-appearance: none;
+    vertical-align: center;
+    /* margin-top: 5px; */
+    background: var(--dWhite);
+    border: #c9c9c9 solid 1px;
+    border-radius: 5px;
+    min-height: 20px;
+    min-width: 20px;
+    margin-right: 12px;
+    position: relative;
+}
+
+input[type=checkbox]:checked::after {
+    content: '';
+    top: 4px;
+    left: 4px;
+    position: absolute;
+    background: transparent;
+    border: var(--dYellow) solid 2px;
+    border-top: none;
+    border-right: none;
+    height: 6px;
+    width: 10px;
+    -moz-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}
+
+.area {
+    margin-bottom: 23px;
+}
+
+.areaBlock {
+    width: 313px;
+    height: 190px;
+    padding-left: 20px;
+    padding-top: 22px;
+    padding-bottom: 15px;
+    line-height: 0px;
+    box-shadow: 0px 3px 6px #00000029;
+    z-index: 1;
+    position: absolute;
+}
+/* 彈框北部中部南部標題 */
+.areaTitle{
+    display: inline-block;
+    margin-right: 24px;
+}
+/* 縣市checkbox+下拉式選單 */
+.areaSelect{
+    display: inline-block; 
+    position: relative; 
+    margin-right: 14px;
+}
+.areaSelected{
+    margin-bottom: 20px;
+    padding-left: 16px;
+    padding-right: 12px; 
+    display: inline-block;
+    margin-right: 16px;
+}
+
+[id *="taichung"] {
+    margin-right: 13px;
+}
+
+.contry {
+    height: 48px;
+    border: 1px solid #C9C9C9;
+    border-top-left-radius: 24px;
+    border-bottom-left-radius: 24px;
+    background-color: var(--dLightGray);
+    padding: 10px 15px;
+    display: inline-block;
+}
+
+.contrySelect {
+    width: 40px;
+    height: 48px;
+    border: 1px solid #C9C9C9;
+    border-left: none;
+    background: url("../image/select.png")scroll transparent;
+    background-position: left 15px top 50%;
+    background-repeat: no-repeat;
+    border-top-right-radius: 24px;
+    border-bottom-right-radius: 24px;
+    display: inline-block;
+}
+
+label {
+    margin-bottom: 0;
 }

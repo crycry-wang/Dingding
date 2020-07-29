@@ -131,6 +131,14 @@ nav {
     border-bottom-left-radius: 8px;
     border-top-left-radius: 8px;
 }
+.modelImgDivForget {
+    width: 398px;
+    height: 750px;
+    background-color: var(--dBlue);
+    float: left;
+    border-bottom-left-radius: 8px;
+    border-top-left-radius: 8px;
+}
 
 /* 註冊彈框左側照片 */
 .modelImgDivRegistered {
@@ -218,7 +226,7 @@ nav {
     letter-spacing: 1.2px;
 }
 
-
+/* 店家彈框 */
 .storeModelImg {
     width: 1440px;
     height: 350px;
@@ -286,10 +294,10 @@ nav {
 }
 /* 側邊分類小標題清單 */
 .storeUl>li {
-    margin-bottom: 17px;
+    margin-bottom: 25px;
 }
 .storeUl{
-    width: 100px;
+    /* width: 100px; */
     margin-right: 40px;
     margin-top: 40px;
 }
@@ -327,7 +335,23 @@ li>.storeContent:hover {
     color: var(--dYellow);
     transition-duration: 0.5s;
 }
+/* 首頁店家彈框->店家資訊 */
+.storeAbout{
+    width: 16px;
+    height: 16px;
+    margin-bottom: 4px;
+}
 
 .row {
     margin-right: -16px;
+}
+
+
+/* 返回登入按鈕 */
+.btn398G{
+    margin-bottom: 24px;
+    width: 398px;
+    color: var(--dBlack);
+    border: 1px solid #DDDDDD;
+    background-color: var(--dWhite);
 }
