@@ -53,6 +53,14 @@ table {
     letter-spacing: 2.88px;
 }
 
+.eng28RW {
+    /* font-family: 'Alata'; */
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--dBlack);
+    letter-spacing: 2.88px;
+}
+
 
 /* 輸入框 */
 
@@ -70,6 +78,18 @@ table {
 
 .mr-xs {
     margin-right: 16px;
+}
+
+.mr-s {
+    margin-right: 32px;
+}
+
+.ml-xs {
+    margin-left: 16px;
+}
+
+.ml-l {
+    margin-left: 40px;
 }
 
 
