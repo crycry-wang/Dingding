@@ -61,7 +61,17 @@
 .mTH {
     background-color: var(--dYellow);
     padding: 8px 32px;
-    border-right: solid 4px var(--dWhite);
+    border-left: solid 2px var(--dWhite);
+    border-right: solid 2px var(--dWhite);
+    font-weight: 500;
+}
+
+.mTH:nth-child(3n-2) {
+    border-left: 0px;
+}
+
+.mTH:nth-child(3n) {
+    border-right: 0px;
 }
 
 .mTR {
@@ -309,6 +319,10 @@
     border-bottom: none;
 }
 
+.dblock {
+    height: 100vh - 200px;
+}
+
 
 /* 儲值 */
 
@@ -379,6 +393,10 @@ input+input {
 .coinList::-webkit-scrollbar-thumb {
     border-radius: 100px;
     background: var(--dYellow);
+}
+
+.orderVoteList {
+    max-height: calc(100vh - 200px);
 }
 
 

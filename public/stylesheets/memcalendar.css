@@ -392,6 +392,11 @@ td {
 }
 
 
+/* .dblock {
+    height: 100vh;
+} */
+
+
 /* 儲值 */
 
 .CoinBlock .text24B {
@@ -461,6 +466,10 @@ input+input {
 .coinList::-webkit-scrollbar-thumb {
     border-radius: 100px;
     background: var(--dYellow);
+}
+
+.orderVoteList {
+    max-height: calc(100vh - 200px);
 }
 
 
