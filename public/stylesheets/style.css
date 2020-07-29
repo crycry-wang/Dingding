@@ -1,4 +1,13 @@
-:root {
+/* 瀏覽器縮放 */
+
+
+/* body {
+        transform: scale(0.67);
+        transform-origin: 0.0;
+    }
+     */
+
+ :root {
     /* 主色 */
     --dYellow: #ECA72A;
     /* 副色 */
@@ -12,10 +21,20 @@
     /* 取消的紅色 */
     --dRed: #D9534F;
     /* 按鈕hover */
-    --ddYellow: #D89316;
+    --ddYellow: #d89316;
     --ddBlue: #83BEC2;
     --ddRed: #C53F3B;
     --dBlack: #373A3C;
+    /* 淡灰色用於垃圾桶、外框 */
+    --moreLightGray: #DDDDDD;
+}
+
+ul {
+    padding-left: 0;
+}
+
+.row {
+    margin: 0;
 }
 
 * {
@@ -40,7 +59,11 @@
 
 button:hover,
 a:hover,
-.ddselect:hover {
+.ddselect:hover,
+.lrImg:hover,
+.icon-heart:hover,
+.storeContent:hover,
+.dTag:hover {
     cursor: pointer;
 }
 
@@ -61,6 +84,10 @@ ol,
 ul,
 li {
     list-style: none;
+}
+
+a {
+    text-decoration: none !important;
 }
 
 [class*="col-"] {
@@ -89,6 +116,14 @@ li {
     width: 100%;
     padding-right: 140px;
     padding-left: 140px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.mContainerContent {
+    width: 100%;
+    padding-right: 156px;
+    padding-left: 156px;
     margin-right: auto;
     margin-left: auto;
 }
@@ -194,6 +229,17 @@ li {
     letter-spacing: 2px;
 }
 
+.text16R {
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--dBlack);
+    letter-spacing: 1.28px;
+}
+
+.text16R:hover {
+    color: var(--dYellow);
+}
+
 
 /* 英數字 24px 黑色 */
 
@@ -234,9 +280,18 @@ li {
 }
 
 
-/* 灰底白字按鈕 */
+/* 灰底白字按鈕，hover變黃色 */
 
-.btnG {
+.btnGY {
+    color: var(--dBlack);
+    background-color: #DDDDDD;
+    margin-right: 16px;
+}
+
+
+/* 灰底白字按鈕，hover變藍色 */
+
+.btnGB {
     color: var(--dBlack);
     background-color: #DDDDDD;
     margin-right: 16px;
@@ -295,6 +350,13 @@ li {
 }
 
 
+/* 上排按鈕與上距離 */
+
+.topBtnPadding {
+    padding-top: 60px;
+}
+
+
 /* 按鈕hover特效 */
 
 .btnY:hover,
@@ -319,9 +381,14 @@ li {
     transition-duration: 0.5s;
 }
 
-.btnG:hover {
+.btnGY:hover {
     color: var(--dWhite);
     background-color: var(--dYellow);
+}
+
+.btnGB:hover {
+    color: var(--dWhite);
+    background-color: var(--dBlue);
 }
 
 
@@ -340,7 +407,7 @@ select:focus {
 
 /* 提示字顏色 */
 
-::placeholder {
+ ::placeholder {
     color: var(--dDeepGray);
 }
 
@@ -410,7 +477,7 @@ textarea {
     opacity: 0;
     height: 4px;
     width: auto;
-    margin-top: 7px;
+    margin-top: 3px;
 }
 
 
@@ -427,9 +494,10 @@ textarea {
 /* 店家照片卡 */
 
 .imgCard {
-    position: relative;
-    width: 520px;
+    /* width: 520px; */
+    width: auto;
     height: 358px;
+    margin-top: 23px;
 }
 
 
@@ -437,26 +505,19 @@ textarea {
 
 .dingImgDiv {
     width: 100%;
-    /* 改100%? */
-    /* height: 292px; */
-    /* overflow: hidden; */
-    /* position: relative; */
+    overflow: hidden;
+    position: relative;
 }
 
 
 /* 照片 */
 
 .dingImg {
-    width: 520px;
-    /* 改100%? */
-    height: 292px;
+    max-height: 300px;
     opacity: 1;
     display: block;
-    /* width: 100%; */
-    /* height: auto; */
     transition: .5s ease;
     border-radius: 4px;
-    /* backface-visibility: hidden; */
     object-fit: cover;
 }
 
@@ -478,23 +539,25 @@ textarea {
 /* 收藏 */
 
 .heart {
+    color: var(--dWhite);
+    font-size: 30px;
     position: absolute;
-    bottom: 24px;
+    bottom: 74px;
     right: 16px;
-    width: 28px;
-    height: 25px;
-    opacity: 0.8;
+    opacity: 0.4;
 }
 
 
 /* 店家名稱 */
 
 .shopName {
-    width: 80%;
-    margin-top: 26px;
-    position: absolute;
+    width: 100%;
+    /* padding-right: 20px; */
+    /* margin-top: 26px; */
+    /* position: absolute; */
     overflow: hidden;
     display: -webkit-box;
+    /* display: inline-block; */
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 1;
 }
@@ -525,23 +588,106 @@ textarea {
     opacity: 1;
     height: 2px;
     width: auto;
-    margin-top: 64px;
+    /* margin-top: 5px; */
+}
+
+.card-body {
+    padding-bottom: 5px;
+    padding-top: 26px;
+    padding-left: 0;
+    padding-right: 2px;
+}
+
+.meals {
+    margin-left: 23px;
+    margin-bottom: 40px;
+    
+}
+
+
+/* 店家彈框菜單滾動軸 */
+
+.mealsScroll {
+    overflow-y: scroll;
+    width: 1190px;
+    /* height: 500px;  */
+    height: 40vh;
+    padding-bottom: 40px;
+}
+
+.mealsScroll::-webkit-scrollbar {
+    width: 10px;
+    height: 8px;
+}
+
+.mealsScroll::-webkit-scrollbar-thumb {
+    border-radius: 100px;
+    -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+    background: var(--dYellow);
+    opacity: 0.7;
 }
 
 .mealsCard {
     width: 344px;
-    height: 152px;
+    height: 154px;
     border: 1px solid #DDDDDD;
     position: relative;
+    display: inline-block;
+    padding: 2px;
+    margin-right: 16px;
+    margin-bottom: 32px;
 }
 
 .mealsName {
-    margin-left: 16px;
-    margin-top: 11px;
+    left: 16px;
+    top: 11px;
+    position: absolute;
+}
+
+.mealsCard img {
+    width: auto;
+    height: 148px;
+}
+
+.mealsCardDiv {
+    height: 148px;
+    width: 148px;
+    position: absolute;
+    right: 2px;
+    top: 2px;
+    overflow: hidden;
+}
+
+.mealsDetail {
+    font-size: 1rem;
+    color: #777777;
+    top: 44px;
+    left: 16px;
+    position: absolute;
+}
+
+.mealsPrice {
+    position: absolute;
+    top: 112px;
+    left: 16px;
+    width: 120px;
+    height: 28px;
+    display: block;
+}
+
+.mealsPrice>img {
+    width: auto;
+    height: 23px;
+    margin-top: 0px;
+    margin-right: 16px;
+    vertical-align: middle;
 }
 
 
 /* 自製下拉選單，長度記得另外設定 */
+
+
+/* 展開時將dOptionDivOff改為dOptionDivOn，dSelect改為dSelectClick */
 
 
 /* 下拉選單平常樣式(四個圓角) */
@@ -555,6 +701,9 @@ textarea {
 
 
 /* 下拉選單展開樣式(左下佑下圓角消除) */
+
+
+/* 展開時dSelect改為dSelectClick */
 
 .dSelectClick {
     height: 48px;
@@ -571,7 +720,7 @@ textarea {
     padding-top: 11px;
     padding-bottom: 11px;
     padding-left: 20px;
-    background: url("./icon/select.png")scroll transparent;
+    background: url("../image/select.png")scroll transparent;
     background-position: right 20px top 50%;
     background-repeat: no-repeat;
 }
@@ -614,6 +763,9 @@ textarea {
 
 /* 下拉選單展開時設定 */
 
+
+/* 展開時將dOptionDivOff改為dOptionDivOn */
+
 .dOptionDivOn {
     position: absolute;
 }
@@ -631,124 +783,301 @@ textarea {
 /* margin */
 
 .mt-xs {
-    margin-top: 20px;
+    margin-top: 20px !important;
 }
 
 .mt-s {
-    margin-top: 24px;
+    margin-top: 24px !important;
 }
 
 .mt-m {
-    margin-top: 40px;
+    margin-top: 40px !important;
 }
 
 .mt-l {
-    margin-top: 60px;
+    margin-top: 60px !important;
 }
 
 .mt-xl {
-    margin-top: 80px;
+    margin-top: 80px !important;
 }
 
 .mb-xs {
-    margin-bottom: 20px;
+    margin-bottom: 20px !important;
 }
 
 .mb-s {
-    margin-bottom: 24px;
+    margin-bottom: 24px !important;
 }
 
 .mb-m {
-    margin-bottom: 40px;
+    margin-bottom: 40px !important;
 }
 
 .mb-l {
-    margin-bottom: 60px;
+    margin-bottom: 60px !important;
 }
 
 .mb-xl {
-    margin-bottom: 80px;
+    margin-bottom: 80px !important;
 }
 
 
-/* 內建下拉選單 */
+/* 彈跳框 */
 
+.modal-content {
+    border-radius: 20px;
+    border: 0;
+}
 
-/* .dselect select{ 
-    height:48px;
+.modal-header,
+.modal-footer,
+.modal-body {
     border: none;
-    color: var(--dBlack);
-    background-color: var(--dLightGray);
-    border-radius: 24px;
-    padding-left: 20px;
-    padding-right: 20px;
-}
-select{
-    appearance:none;  
-   -moz-appearance:none;  
-   -webkit-appearance:none;
-    background: url("./icon/select.png")scroll transparent;
-    background-position: right 20px top 50%;
-    background-repeat: no-repeat;
-    
+    padding-left: 40px;
+    padding-right: 40px;
 }
 
-option::-ms-expand{ display: none; }
-option{
-    -moz-appearance:none; 
-    -webkit-appearance:none;
-    appearance:none;
+.modal-header-index {
+    padding-top: 80px;
+    padding-left: 155px;
+    /* padding-right: 195px; */
+    border: 0;
+}
+
+.modal-header {
+    padding-top: 40px;
+    padding-bottom: 0;
+}
+
+.modal-body {
+    padding-top: 0px;
+    margin-bottom: 60px;
+    margin-top: 20px;
+    padding-bottom: 0;
+}
+
+.modal-footer {
+    padding-top: 0;
+    padding-bottom: 40px;
+}
+
+.modal-footer>* {
+    margin: 0;
+}
+
+.modal .close {
+    position: absolute;
+    right: 24px;
+    top: 24px;
+}
+
+
+/* width-800 1000 1340  */
+
+.xl2Btn .modal-header,
+.xl2Btn .modal-footer,
+.xl2Btn .modal-body {
+    padding-left: 60px;
+    padding-right: 60px;
+}
+
+.xl2Btn .modal-header {
+    padding-top: 56px;
+}
+
+.xl2Btn .modal-footer {
+    padding-bottom: 60px;
+}
+
+.xl2Btn .modal-body,
+.l2Btn .modal-body,
+.m2Btn .modal-body {
+    margin-top: 40px;
+}
+
+.l2Btn .modal-footer,
+.l2Btn .modal-body,
+.m2Btn .modal-footer,
+.m2Btn .modal-body {
+    padding-right: 60px;
+}
+
+
+/* 彈框尺寸 */
+
+.sm2Btn .modal-dialog,
+.sm1Btn .modal-dialog,
+.inputS .modal-dialog {
+    max-width: 536px;
+    margin-top: 270px;
+}
+
+.inputXL .modal-dialog {
+    max-width: 1088px;
+}
+
+.m2Btn .modal-dialog {
+    max-width: 800px;
+}
+
+.l2Btn .modal-dialog {
+    max-width: 1000px;
+}
+
+.xl2Btn .modal-dialog {
+    max-width: 1340px;
+}
+
+.storeModel .modal-dialog {
+    max-width: 1440px;
+    height: 90vh;
+}
+
+.redColor {
+    color: var(--dRed);
+}
+
+.storeModel {
+    padding-top: 40px;
+    margin-bottom: 40px;
+}
+
+
+/* 輸入型彈框尺寸  */
+
+.modal-continer {
+    padding-left: 60px;
+    padding-right: 60px;
+    margin-top: 40px;
+}
+
+.modal-continer-index {
+    margin-top: 95px;
+    padding-left: 138px;
+    padding-right: 138px;
+}
+
+.inputL .singleText398,
+.inputS .singleText398 {
+    display: block;
+    width: 100%;
+}
+
+.inputL .singleText398 {
+    margin-bottom: 40px;
+}
+
+.inputXL .singleText398 {
+    margin-bottom: 30px;
+}
+
+.inputS .modal-continer {
+    margin-top: 24px;
+    margin-bottom: 40px;
+}
+
+
+/* 彈框mt */
+
+
+/* .inputL .modal-dialog,
+.inputXL .modal-dialog,
+.storeModel .modal-dialog{
+    margin-top: 0;
 } */
 
 
-/* .dtable{
-    border-collapse:collapse;
-} */
+/* 確認型彈跳框 */
+
+.sm1Btn .modal-header {
+    padding-top: 56px;
+    padding-bottom: 40px;
+}
+
+#readyOrder .modal-footer {
+    padding-bottom: 40px;
+}
 
 
-/* .dtr>th {
-    padding: 8px 32px 4px 32px;
-    background-color: var(--dYellow);
-    
-} */
+/* 訂訂幣 */
+
+.eng24R.price::before {
+    content: '';
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    background: url(../image/coin.png) no-repeat center;
+    background-size: cover;
+    vertical-align: middle;
+    margin-right: 4px;
+}
+
+.eng20R.price::before {
+    content: '';
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin-right: 4px;
+    background: url(../image/coin.png) no-repeat center;
+    background-size: cover;
+    vertical-align: middle;
+    margin-right: 4px;
+}
 
 
-/* .thB.dtr>th{
-    background-color: var(--dBlue);
-} */
+/* 搜尋 */
+
+.form-control-sm {
+    border: none;
+    border-radius: 0 30px 30px 0;
+    width: calc(100% - 4rem);
+    padding: 0;
+}
+
+.icon-search {
+    color: var(--dDeepGray);
+    font-size: 1.25rem;
+    margin-right: 20px;
+}
+
+.inputSearch {
+    background: white;
+    padding: 0 20px;
+    width: 260px;
+    border-radius: 30px;
+    height: 40px;
+}
 
 
-/* .thG.dtr>th{
-    background-color: var(--dLightGray);
-    color: var(--dBlack);
-    padding: 11px 40px 11px 40px;
-} */
+/* 上下鍵 */
+
+.lrImg {
+    width: 32px;
+    height: 32px;
+    opacity: 0.5;
+}
+
+.lrImg:hover {
+    opacity: 1;
+    transition-duration: 0.7s;
+}
 
 
-/* .dtrtd{
-    border: 1px solid #DDDDDD;
-    border-radius: 10px;
-    margin-top: 4px;
-    -webkit-box-sizing: border-box;
-     -moz-box-sizing: border-box;
-          box-sizing: border-box;
-} */
+/* 滾輪 */
 
+.scrollList {
+    overflow-y: scroll;
+    /* 100vh-需要佔的高度 */
+    /* max-height: calc(100vh - 420px); */
+    /* padding-right: 20px; */
+}
 
-/* .dtrtd>td{
-    padding-top: 15px;
-    padding-bottom: 15px;
-    
-} */
+.scrollList::-webkit-scrollbar {
+    width: 8px;
+}
 
-
-/* td {    
-     border-bottom: 1px solid #DDDDDD;
-     border-top: 1px solid #DDDDDD;
-     padding: 1rem;
-     border-radius: 10px;
-     border-top-left-radius:10px;
-     border-top-right-radius:10px;
-     border-bottom-left-radius:10px;
-     border-bottom-right-radius:10px;
-    } */
+.scrollList::-webkit-scrollbar-thumb {
+    border-radius: 100px;
+    background: var(--dYellow);
+}
