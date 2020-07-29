@@ -392,11 +392,6 @@ td {
 }
 
 
-/* .dblock {
-    height: 100vh;
-} */
-
-
 /* 儲值 */
 
 .CoinBlock .text24B {
@@ -469,7 +464,7 @@ input+input {
 }
 
 .orderVoteList {
-    max-height: calc(100vh - 200px);
+    max-height: calc(100vh - 376px);
 }
 
 

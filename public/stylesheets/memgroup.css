@@ -320,7 +320,7 @@
 }
 
 .dblock {
-    height: 100vh - 200px;
+    height: calc( 100vh - 183px);
 }
 
 
@@ -396,7 +396,7 @@ input+input {
 }
 
 .orderVoteList {
-    max-height: calc(100vh - 200px);
+    max-height: calc(100vh - 376px);
 }
 
 
