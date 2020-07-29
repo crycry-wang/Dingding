@@ -56,6 +56,7 @@
             line-height: 0px;
             box-shadow: 0px 3px 6px #00000029;
             z-index: 1;
+            position: absolute;
         }
         
         [id *="taichung"] {
@@ -93,7 +94,7 @@
 
 <body>
     <div style="background-color: #FFFFFF; height: 600px; padding: 50px;">
-        <div style="display: inline-block;">
+        <div style="display: inline-block; position: relative;">
             <span class="d-flex">
                 <div class="contry">
                     <input type="checkbox">
@@ -101,7 +102,7 @@
                 </div>
                 <div class="contrySelect"></div>
             </span>
-            <div class="dblock row areaBlock">
+            <div class="dblock row areaBlock" style="display: none;">
                 <div class="col" style="padding-left: 0px;">
                     <div class="area">
                         <input type="checkbox" id="taichung01">

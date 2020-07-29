@@ -513,18 +513,11 @@ textarea {
 /* 照片 */
 
 .dingImg {
-    /* width: 100%; */
-    /* max-width: 780px; */
     max-height: 300px;
-    /* 改100%? */
-    /* max-height: 292px; */
     opacity: 1;
     display: block;
-    /* width: 100%; */
-    /* height: auto; */
     transition: .5s ease;
     border-radius: 4px;
-    /* backface-visibility: hidden; */
     object-fit: cover;
 }
 
@@ -607,11 +600,14 @@ textarea {
 
 .meals {
     margin-left: 23px;
-    /* margin-right: 148px; */
     margin-bottom: 40px;
+<<<<<<< HEAD
     /* overflow: scroll;
     overflow-x: hidden;
     overflow-y: auto; */
+=======
+    
+>>>>>>> erh
 }
 
 
