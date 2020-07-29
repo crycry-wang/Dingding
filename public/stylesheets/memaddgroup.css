@@ -560,6 +560,7 @@ body {
 .dblock {
     margin-bottom: 40px;
     margin-top: 24px;
+    height: 100vh - 183px;
 }
 
 
@@ -721,13 +722,17 @@ body {
     z-index: 1001;
     width: 24px;
     height: 16px;
-    top: 12px;
+    top: calc(50% - 12px);
     content: '';
-    background: green;
+    background: white;
     display: block;
-    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+    clip-path: polygon(100% 0, 50% 50%, 100% 100%);
     position: absolute;
-    right: 24px;
+    left: -24px;
+}
+
+.tag-wrap {
+    filter: drop-shadow(-1px 6px 3px rgba(50, 50, 0, 0.5));
 }
 
 .dropdown-item:hover,
