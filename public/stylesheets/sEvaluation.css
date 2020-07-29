@@ -37,13 +37,10 @@
 
 /* 清單 */
 
-.dblock:first-child {
-    margin-top: 32px;
-}
-
 .dblock {
     margin-bottom: 24px;
     padding: 16px 40px;
+    margin-top: 0;
 }
 
 
@@ -88,4 +85,8 @@
 
 .content .text20R {
     margin-bottom: 6px;
+}
+
+.evaluationList {
+    max-height: calc(100vh - 185px);
 }
