@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="../public/stylesheets/style.css">
     <link rel="stylesheet" href="../public/stylesheets/fontello.css">
     <link rel="stylesheet" href="../public/stylesheets/sider.css">
-    <link rel="stylesheet" href="../public/stylesheets/sider.css">
+
     <link rel="stylesheet" href="../public/stylesheets/memaddgroup.css">
 
 
@@ -59,13 +59,13 @@
                 </div>
 
                 <!-- 反白區 -->
-                <div class="row dblock">
-                    <div class="row col-12 d-flex justify-content-between">
+                <div class="dblock">
+                    <div class="d-flex justify-content-between">
                         <button class="dbtn btnLG text20RG icon-left-open">返回</button><br>
                         <button class="dbtn btnY text20R">儲存</button>
                     </div>
-                    <div class="row col-12 ml-m" style="margin-top: 43px;">
-                        <div class="col-12 d-flex mb-m">
+                    <div class="ml-m" style="margin-top: 43px;">
+                        <div class="d-flex mb-m">
                             <span class="mr-m">
                                 <p class="text20R">邀請團號</p>
                             </span>
@@ -73,29 +73,33 @@
                                 <p class="eng20R">G2K5631</p>
                             </span>
                         </div>
-                        <div class="col-12 d-flex mb-m align-items-center">
+                        <div class="d-flex mb-m align-items-center">
                             <span class="mr-m">
                                 <p class="text20R">團體名稱</p>
                             </span>
                             <span><input class="singleText398 text20R" type="text" placeholder="請輸入團體名稱" value="MDF08前端工程班"></span>
                         </div>
-                        <div class="col-12 d-flex mb-l align-items-center">
+                        <div class="d-flex mb-l align-items-center">
                             <span class="mr-m">
                                 <p class="text20R">邀請團員</p>
                             </span>
                             <span><input class="singleText398 mr-xs text20R" type="text" placeholder="請輸入團員電子信箱"></span>
                             <span><button class="dbtn btnY text20R">邀請</button></span>
                         </div>
-                        <div class="col-12 d-flex ">
+                        <div class="d-flex ">
                             <button class="dbtnMem btnB d-flex align-items-center mr-xs text20R">
                                 <img src="../public/image/photo.jpg" alt="" class="btnPhoto mr-xs">
                                 <p class="mr-xxs">阿信</p>
                                 <p>(團長)</p>
                             </button>
-                            <button type="button" class="dbtnMem btnLG d-flex align-items-center text20R">
+                            <button type="button" class="dbtnMem btnLG d-flex align-items-center text20R" id="more" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <img src="../public/image/photo.jpg" alt="" class="btnPhoto mr-xs">
                                 <p>阿信</p>
                             </button>
+                            <div class="dropdown-menu text-center tag-wrap" aria-labelledby="more" id='moreMenu'>
+                                <a class="dropdown-item text20R" href="#">移交團長</a>
+                                <a class="dropdown-item text20R" href="#">退出成員</a>
+                            </div>
                         </div>
                     </div>
 
