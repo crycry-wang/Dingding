@@ -1069,6 +1069,7 @@ textarea {
     overflow-y: scroll;
     left: 16px;
     padding-right: 8px;
+    position: relative;
     /* 100vh-需要佔的高度 */
     /* max-height: calc(100vh - 420px); */
 }
