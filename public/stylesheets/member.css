@@ -36,6 +36,10 @@
     color: var(--dBlue);
 }
 
+.textG {
+    color: var(--moreLightGray);
+}
+
 .textDG {
     color: var(--dDeepGray);
 }
@@ -297,10 +301,10 @@
 }
 
 .productQuantity::before {
-    content: '*';
+    content: '＊';
     position: absolute;
-    top: -16px;
-    left: -20px;
+    /* top: -16px; */
+    left: -28px;
 }
 
 
@@ -439,10 +443,16 @@ input+input {
 
 /* 滾輪 */
 
-.orderVoteListAll{
+.orderVoteListL{
     max-height: calc(100vh - 246px);
 
 }
+
+.orderVoteListM{
+    max-height: calc(100vh - 330px);
+
+}
+
 
 .orderVoteList{
     max-height: calc(100vh - 400px);

@@ -16,7 +16,12 @@
     <link rel="stylesheet" href="../public/stylesheets/order.css">
 
     <title>Document</title>
+    <style>
+        .orderVoteList {
+            max-height: calc(100vh - 400px);
 
+        }
+    </style>
 
 </head>
 
@@ -104,8 +109,10 @@
                                 <td class="action d-flex align-items-center">
                                     <!-- <p>完成</p> -->
                                     <!-- <p class="Rcolor">取消</p> -->
-                                    <button class="text20R dbtn btnB" data-toggle="modal" data-target="#readyOrder">完備</button>
-                                    <button class="text20R dbtn btnW ml-auto" data-toggle="modal" data-target="#order">查看訂單</button>
+                                    <button class="text20R dbtn btnB" data-toggle="modal"
+                                        data-target="#readyOrder">完備</button>
+                                    <button class="text20R dbtn btnW ml-auto" data-toggle="modal"
+                                        data-target="#order">查看訂單</button>
                                 </td>
                             </tr>
                             <tr height="8px"></tr>
@@ -133,7 +140,8 @@
                                     <!-- <p>完成</p> -->
                                     <p class="Rcolor">取消</p>
                                     <!-- <button class="text20R dbtn btnB" data-toggle="modal" data-target="#readyOrder">完備</button> -->
-                                    <button class="text20R dbtn btnW ml-auto" data-toggle="modal" data-target="#order">查看訂單</button>
+                                    <button class="text20R dbtn btnW ml-auto" data-toggle="modal"
+                                        data-target="#order">查看訂單</button>
                                 </td>
                             </tr>
                             <tr height="8px"></tr>
@@ -161,7 +169,8 @@
                                     <p>完成</p>
                                     <!-- <p class="Rcolor">取消</p> -->
                                     <!-- <button class="text20R dbtn btnB" data-toggle="modal" data-target="#readyOrder">完備</button> -->
-                                    <button class="text20R dbtn btnW ml-auto" data-toggle="modal" data-target="#order">查看訂單</button>
+                                    <button class="text20R dbtn btnW ml-auto" data-toggle="modal"
+                                        data-target="#order">查看訂單</button>
                                 </td>
                             </tr>
                             <tr height="8px"></tr>
@@ -179,7 +188,7 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title text28B w-100 text-center">搜尋團體</h5>
+                    <h5 class="modal-title text28B w-100 text-center">訂單詳情</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <i class=" icon-close"></i>
                     </button>
@@ -199,15 +208,16 @@
                             <dd class="text20R">2020/06/16 12:00</dd>
                         </dl>
                     </div>
-                    <div class="d-inline-block col-6">
-                        <ul class="rightContent">
+                    <!-- 捲軸範圍 -->
+                    <div class="d-inline-block col-6 scrollList orderVoteList">
+                        <ul class="rightContent ">
                             <li class="orderItem d-flex align-items-center">
                                 <img src="../public/image/photo.jpg" alt="">
                                 <p class="text20B align-middle">五月天阿信</p>
                                 <span class="eng20R price">
                                     <span class=" align-middle">5,000</span>
                                 </span>
-                                <p class="eng20R w100 text-right">x1</p>
+                                <p class="eng20R w100 text-right">＊1</p>
                             </li>
                             <li class="orderItem d-flex align-items-center">
                                 <img src="../public/image/photo.jpg" alt="">
@@ -215,7 +225,7 @@
                                 <span class="eng20R price">
                                     <span class="align-middle">200</span>
                                 </span>
-                                <p class="eng20R w100 text-right">x100</p>
+                                <p class="eng20R w100 text-right">＊100</p>
                             </li>
                             <li class="orderItem d-flex align-items-center">
                                 <img src="../public/image/photo.jpg" alt="">
@@ -223,10 +233,202 @@
                                 <span class="eng20R price">
                                     <span class=" align-middle">200</span>
                                 </span>
-                                <p class="eng20R w100 text-right">x100</p>
+                                <p class="eng20R w100 text-right">＊100</p>
                             </li>
-                        </ul>
+                            <li class="orderItem d-flex align-items-center">
+                                <img src="../public/image/photo.jpg" alt="">
+                                <p class="text20B align-middle">五月天阿信</p>
+                                <span class="eng20R price">
+                                    <span class=" align-middle">5,000</span>
+                                </span>
+                                <p class="eng20R w100 text-right">＊1</p>
+                            </li>
+                            <li class="orderItem d-flex align-items-center">
+                                <img src="../public/image/photo.jpg" alt="">
+                                <p class="text20B align-middle">五月天阿信</p>
+                                <span class="eng20R price">
+                                    <span class="align-middle">200</span>
+                                </span>
+                                <p class="eng20R w100 text-right">＊100</p>
+                            </li>
+                            <li class="orderItem d-flex align-items-center">
+                                <img src="../public/image/photo.jpg" alt="">
+                                <p class="text20B align-middle">五月天阿信</p>
+                                <span class="eng20R price">
+                                    <span class=" align-middle">200</span>
+                                </span>
+                                <p class="eng20R w100 text-right">＊100</p>
+                            </li>
+                            <li class="orderItem d-flex align-items-center">
+                                <img src="../public/image/photo.jpg" alt="">
+                                <p class="text20B align-middle">五月天阿信</p>
+                                <span class="eng20R price">
+                                    <span class=" align-middle">5,000</span>
+                                </span>
+                                <p class="eng20R w100 text-right">＊1</p>
+                            </li>
+                            <li class="orderItem d-flex align-items-center">
+                                <img src="../public/image/photo.jpg" alt="">
+                                <p class="text20B align-middle">五月天阿信</p>
+                                <span class="eng20R price">
+                                    <span class="align-middle">200</span>
+                                </span>
+                                <p class="eng20R w100 text-right">＊100</p>
+                            </li>
+                            <li class="orderItem d-flex align-items-center">
+                                <img src="../public/image/photo.jpg" alt="">
+                                <p class="text20B align-middle">五月天阿信</p>
+                                <span class="eng20R price">
+                                    <span class=" align-middle">200</span>
+                                </span>
+                                <p class="eng20R w100 text-right">＊100</p>
+                            </li>
+                            <li class="orderItem d-flex align-items-center">
+                                <img src="../public/image/photo.jpg" alt="">
+                                <p class="text20B align-middle">五月天阿信</p>
+                                <span class="eng20R price">
+                                    <span class=" align-middle">5,000</span>
+                                </span>
+                                <p class="eng20R w100 text-right">＊1</p>
+                            </li>
+                            <li class="orderItem d-flex align-items-center">
+                                <img src="../public/image/photo.jpg" alt="">
+                                <p class="text20B align-middle">五月天阿信</p>
+                                <span class="eng20R price">
+                                    <span class="align-middle">200</span>
+                                </span>
+                                <p class="eng20R w100 text-right">＊100</p>
+                            </li>
+                            <li class="orderItem d-flex align-items-center">
+                                <img src="../public/image/photo.jpg" alt="">
+                                <p class="text20B align-middle">五月天阿信</p>
+                                <span class="eng20R price">
+                                    <span class=" align-middle">200</span>
+                                </span>
+                                <p class="eng20R w100 text-right">＊100</p>
+                            </li>
+                            <li class="orderItem d-flex align-items-center">
+                                <img src="../public/image/photo.jpg" alt="">
+                                <p class="text20B align-middle">五月天阿信</p>
+                                <span class="eng20R price">
+                                    <span class=" align-middle">5,000</span>
+                                </span>
+                                <p class="eng20R w100 text-right">＊1</p>
+                            </li>
+                            <li class="orderItem d-flex align-items-center">
+                                <img src="../public/image/photo.jpg" alt="">
+                                <p class="text20B align-middle">五月天阿信</p>
+                                <span class="eng20R price">
+                                    <span class="align-middle">200</span>
+                                </span>
+                                <p class="eng20R w100 text-right">＊100</p>
+                            </li>
+                            <li class="orderItem d-flex align-items-center">
+                                <img src="../public/image/photo.jpg" alt="">
+                                <p class="text20B align-middle">五月天阿信</p>
+                                <span class="eng20R price">
+                                    <span class=" align-middle">200</span>
+                                </span>
+                                <p class="eng20R w100 text-right">＊100</p>
+                            </li>
+                            <li class="orderItem d-flex align-items-center">
+                                <img src="../public/image/photo.jpg" alt="">
+                                <p class="text20B align-middle">五月天阿信</p>
+                                <span class="eng20R price">
+                                    <span class=" align-middle">5,000</span>
+                                </span>
+                                <p class="eng20R w100 text-right">＊1</p>
+                            </li>
+                            <li class="orderItem d-flex align-items-center">
+                                <img src="../public/image/photo.jpg" alt="">
+                                <p class="text20B align-middle">五月天阿信</p>
+                                <span class="eng20R price">
+                                    <span class="align-middle">200</span>
+                                </span>
+                                <p class="eng20R w100 text-right">＊100</p>
+                            </li>
+                            <li class="orderItem d-flex align-items-center">
+                                <img src="../public/image/photo.jpg" alt="">
+                                <p class="text20B align-middle">五月天阿信</p>
+                                <span class="eng20R price">
+                                    <span class=" align-middle">200</span>
+                                </span>
+                                <p class="eng20R w100 text-right">＊100</p>
+                            </li>
+                            <li class="orderItem d-flex align-items-center">
+                                <img src="../public/image/photo.jpg" alt="">
+                                <p class="text20B align-middle">五月天阿信</p>
+                                <span class="eng20R price">
+                                    <span class=" align-middle">5,000</span>
+                                </span>
+                                <p class="eng20R w100 text-right">＊1</p>
+                            </li>
+                            <li class="orderItem d-flex align-items-center">
+                                <img src="../public/image/photo.jpg" alt="">
+                                <p class="text20B align-middle">五月天阿信</p>
+                                <span class="eng20R price">
+                                    <span class="align-middle">200</span>
+                                </span>
+                                <p class="eng20R w100 text-right">＊100</p>
+                            </li>
+                            <li class="orderItem d-flex align-items-center">
+                                <img src="../public/image/photo.jpg" alt="">
+                                <p class="text20B align-middle">五月天阿信</p>
+                                <span class="eng20R price">
+                                    <span class=" align-middle">200</span>
+                                </span>
+                                <p class="eng20R w100 text-right">＊100</p>
+                            </li>
+                            <li class="orderItem d-flex align-items-center">
+                                <img src="../public/image/photo.jpg" alt="">
+                                <p class="text20B align-middle">五月天阿信</p>
+                                <span class="eng20R price">
+                                    <span class=" align-middle">5,000</span>
+                                </span>
+                                <p class="eng20R w100 text-right">＊1</p>
+                            </li>
+                            <li class="orderItem d-flex align-items-center">
+                                <img src="../public/image/photo.jpg" alt="">
+                                <p class="text20B align-middle">五月天阿信</p>
+                                <span class="eng20R price">
+                                    <span class="align-middle">200</span>
+                                </span>
+                                <p class="eng20R w100 text-right">＊100</p>
+                            </li>
+                            <li class="orderItem d-flex align-items-center">
+                                <img src="../public/image/photo.jpg" alt="">
+                                <p class="text20B align-middle">五月天阿信</p>
+                                <span class="eng20R price">
+                                    <span class=" align-middle">200</span>
+                                </span>
+                                <p class="eng20R w100 text-right">＊100</p>
+                            </li>
+                            <li class="orderItem d-flex align-items-center">
+                                <img src="../public/image/photo.jpg" alt="">
+                                <p class="text20B align-middle">五月天阿信</p>
+                                <span class="eng20R price">
+                                    <span class=" align-middle">5,000</span>
+                                </span>
+                                <p class="eng20R w100 text-right">＊1</p>
+                            </li>
+                            <li class="orderItem d-flex align-items-center">
+                                <img src="../public/image/photo.jpg" alt="">
+                                <p class="text20B align-middle">五月天阿信</p>
+                                <span class="eng20R price">
+                                    <span class="align-middle">200</span>
+                                </span>
+                                <p class="eng20R w100 text-right">＊100</p>
+                            </li>
+                            <li class="orderItem d-flex align-items-center">
+                                <img src="../public/image/photo.jpg" alt="">
+                                <p class="text20B align-middle">五月天阿信</p>
+                                <span class="eng20R price">
+                                    <span class=" align-middle">200</span>
+                                </span>
+                                <p class="eng20R w100 text-right">＊100</p>
+                            </li>
                     </div>
+                    </ul>
                 </div>
 
                 <!-- 詳情 -->
