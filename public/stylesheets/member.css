@@ -98,6 +98,8 @@
     max-height: 210px;
 }
 
+
+
 .dblock>.form-check {
     position: relative;
     display: flex;
@@ -106,13 +108,17 @@
     margin-right: 40px;
 }
 
-.form-check>.imgCard {
-
+.imgCardGroup>.imgCard {
     position: relative;
-    margin-top: -29px;
-    /* margin-bottom: 0.01%; */
+    margin-top: -34px;
+    padding-right: 16px;
 }
 
+.imgCardGroup{
+    padding-top: 14px;
+    margin-left: 56px;
+    margin-right: 40px;
+}
 
 
 .imgCard .form-check-input {
@@ -197,11 +203,6 @@
     line-height: 84px;
 }
 
-.voteItemSelected {
-    border: 1px solid var(--dBlue);
-    background-color: rgba(151, 210, 214, .3);
-}
-
 .progress {
     height: 0.75rem;
     font-size: 0.75rem;
@@ -217,12 +218,18 @@
     border-radius: 0.5rem;
 }
 
-.progressSelected {
+.voteItemSelected {
+    border: 1px solid var(--dBlue);
+    background-color: rgba(151, 210, 214, .3);
+}
+
+.voteItemSelected .progress{
     background-color: var(--dWhite);
 }
 
-.progress-barSelected {
+.voteItemSelected .progress-bar{
     background-color: var(--dBlue);
+
 }
 
 
