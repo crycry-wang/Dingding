@@ -242,13 +242,13 @@
 
 .orderSection {
     background-color: #F2F2F2;
-    margin-right: -40px;
-    margin-left: -40px;
+    /* margin-right: -40px; */
+    /* margin-left: -40px; */
 }
 
 .orderSectionInner {
-    margin-right: 40px;
-    margin-left: 40px;
+    /* margin-right: 40px; */
+    /* margin-left: 40px; */
     padding: 17px 0 13px 40px;
     line-height: 40px;
 }
