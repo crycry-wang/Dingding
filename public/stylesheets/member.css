@@ -439,6 +439,11 @@ input+input {
 
 /* 滾輪 */
 
+.orderVoteListAll{
+    max-height: calc(100vh - 246px);
+
+}
+
 .orderVoteList{
     max-height: calc(100vh - 400px);
 
