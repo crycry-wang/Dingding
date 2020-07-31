@@ -1067,9 +1067,10 @@ textarea {
 
 .scrollList {
     overflow-y: scroll;
+    left: 16px;
+    padding-right: 8px;
     /* 100vh-需要佔的高度 */
     /* max-height: calc(100vh - 420px); */
-    /* padding-right: 20px; */
 }
 
 .scrollList::-webkit-scrollbar {
