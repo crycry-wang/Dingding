@@ -301,10 +301,10 @@
 }
 
 .productQuantity::before {
-    content: '＊';
+    content: 'x';
     position: absolute;
-    /* top: -16px; */
-    left: -28px;
+    top: -25px;
+    left: -20px;
 }
 
 
