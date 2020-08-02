@@ -48,132 +48,107 @@
         </nav>
 
 
-        <div class="dblock mb-m">
+        <div class="dblock">
             <div class="buttonGroup text-right mb-4 mt-0">
                 <button class="dbtn btnW text20R" data-toggle="modal" data-target="#recommend">
                     推薦產品
                 </button>
-                <button class="dbtn btnY text20R" data-toggle="modal" data-target="#product">
+                <button class="dbtn btnY text20R" data-toggle="modal" data-target="#product" @click='addProductItem'>
                     新增產品
                     <span class="ml-2">+</span>
                 </button>
             </div>
 
-            <div class="row" id="sMealList">
-                <div class="w-100 position-relative">
-                    <div class="text20R ml-3 titleHead ">
-
-                        <span style="width:calc(10% - 8px); ">
-                            編號
-                        </span>
-                        <span style="width:calc(28% - 8px); ">
-                            餐點名稱
-                        </span>
-                        <span style="width:calc(10% - 8px); ">
-                            價格
-                        </span>
-                        <span style="width:calc(10% - 8px); ">
-                            圖片
-                        </span>
-                        <span>
-                            說明
-                        </span>
+            <div class="text20R" id="sMealList">
+                <div class="titleHead col-12 row align-items-center">
+                    <div class="col-1">
+                        推薦
                     </div>
-
+                    <div class="col-3">
+                        餐點名稱
+                    </div>
+                    <div class="col-1">
+                        價格
+                    </div>
+                    <div class="col-1">
+                        圖片
+                    </div>
+                    <div class="col-6">
+                        說明
+                    </div>
                 </div>
-                <div class="col-12 scrollList mealList d-block ">
-                    <table class="table mb-0 ">
-                        <thead class="text20R ">
-                            <tr>
-                                <th style="width:10%; ">
-                                    編號
-                                </th>
-                                <th style="width:28%; ">
-                                    餐點名稱
-                                </th>
-                                <th style="width:10%; ">
-                                    價格
-                                </th>
-                                <th style="width:10%; ">
-                                    圖片
-                                </th>
-                                <th>
-                                    說明
-                                </th>
-
-                            </tr>
-                            <tr height="8px "></tr>
-                        </thead>
-                        <tbody class="text20R list" v-for='(item,index) in product'>
-                            <!-- 1 -->
-                            <tr>
-                                <td class="fst"><img src="../public/image/first.png " alt=" ">
-                                </td>
-                                <td>
-                                    {{item.productName}}
-                                </td>
-                                <td>
-                                    {{(item.productPrice).toLocaleString('en-US')}}
-                                </td>
-                                <td>
-                                    <img src="../public/image/photo.jpg">
-                                </td>
-                                <td>
-                                    <div class="d-flex align-items-center">
-                                        <p class="text20B desc ">可自選醬:1.番茄2.辣醬3.辣醬3.辣醬3.辣醬3</p>
-                                        <button class="text20R dbtn btnW ml-auto" data-toggle="modal" data-target="#product">詳情</button>
-                                        <i class="icon-trash " data-toggle="modal" data-target="#deleteMeal"></i>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr height="8px"></tr>
-                        </tbody>
-
-
-                    </table>
-                </div>
+                <ul class="scrollList mealList">
+                    <li class="row col-12 d-flex align-items-center" v-for='(item,index) in product'>
+                        <div class="fst col-1" v-if='item.recommendProduct==1'>
+                            <img src="../public/image/first.png">
+                        </div>
+                        <div class="snd col-1" v-if='item.recommendProduct==2'>
+                            <img src="../public/image/second.png">
+                        </div>
+                        <div class="trd col-1" v-if='item.recommendProduct==3'>
+                            <img src="../public/image/third.png">
+                        </div>
+                        <div class="col-1" v-if='!item.recommendProduct'></div>
+                        <div class="col-3">
+                            {{item.productName}}
+                        </div>
+                        <div class="col-1">
+                            {{(item.productPrice).toLocaleString('en-US')}}
+                        </div>
+                        <div class="col-1">
+                            <img :src="(`../public/image/${item.productPhoto}`)">
+                        </div>
+                        <div class="col-6">
+                            <div class="d-flex align-items-center">
+                                <p class="text20B desc">{{item.productInformation}}</p>
+                                <button class="text20R dbtn btnW ml-auto" data-toggle="modal" data-target="#product">詳情</button>
+                                <i class="icon-trash " data-toggle="modal" data-target="#deleteMeal"></i>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
             </div>
-
+            <button type="button" class="btnY dbtn " data-toggle="modal" data-target="#comfirm">
+                成功介面
+            </button>
+            <button type="button" class="btnR dbtn " data-toggle="modal" data-target="#deleteType">
+                刪除類別介面
+            </button>
         </div>
-        <button type="button" class="btnY dbtn " data-toggle="modal " data-target="#comfirm">
-        成功介面
-    </button>
-        <button type="button" class="btnR dbtn " data-toggle="modal " data-target="#deleteType">
-        刪除類別介面
-    </button>
     </div>
+    </div>
+
 
     <!-- 新增產品 -->
     <div class="modal fade l2Btn" id="product">
         <div class="modal-dialog modal-dialog-centered ">
-            <div class="modal-content ">
-                <div class="modal-header ">
+            <div class="modal-content">
+                <div class="modal-header">
                     <h5 class="modal-title text28B ">產品詳情</h5>
-                    <button type="button " class="close " data-dismiss="modal " aria-label="Close ">
-                        <i class=" icon-close "></i>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <i class=" icon-close"></i>
                     </button>
                 </div>
                 <div class="modal-body ">
                     <div class="text24R d-flex align-items-start mealInfo mb-m ">
-                        <!-- <span class="d-inline-block ">
+                        <span class="d-inline-block" v-if='!productPhoto'>
                             <div class="upload "> <button class="dbtn btnLG text20R align-middle ">上傳圖片</button></div>
-                        </span> -->
-                        <span class="d-inline-block ">
-                            <img src="../public/image/photo.jpg " alt=" ">
+                        </span>
+                        <span class="d-inline-block" v-else>
+                            <img :src="(`../public/image/${productPhoto}`)">
                         </span>
                         <ul class="d-inline-block inputInfo ">
                             <li>
                                 <p class="text24B d-inline-block ">餐點名稱</p>
-                                <input type="text " class="text20RG singleText398 " placeholder="請輸入餐點名稱 ">
+                                <input type="text " class="text20RG singleText398 " placeholder="請輸入餐點名稱" v-model="productName">
                             </li>
                             <li>
-                                <p class="text24B d-inline-block ">產品類別</p>
+                                <p class="text24B d-inline-block">產品類別</p>
                                 <div class="ddselect d-inline-block ">
-                                    <div class="dSelect ">
+                                    <div class="dSelect selectTitle">
                                         <div class="dSelectText text20R ">選擇類別</div>
                                     </div>
-                                    <div class="dOptionDivOff ">
-                                        <div class="dOption text20R ">選擇類別</div>
+                                    <div class="dOptionDivOff selectContent">
                                         <div class="dOption text20R ">套餐</div>
                                         <div class="dOption text20R ">漢堡</div>
                                         <div class="dOption text20R ">飲品</div>
@@ -181,13 +156,13 @@
                                 </div>
                             </li>
                             <li>
-                                <p class="text24B d-inline-block ">餐點價格</p>
-                                <input type="text " class="text20RG singleText398 " placeholder="請輸入餐點價格 ">
+                                <p class="text24B d-inline-block">餐點價格</p>
+                                <input type="text" class="text20RG singleText398" placeholder="請輸入餐點價格" v-model="productPrice">
                             </li>
                         </ul>
                     </div>
-                    <p class="text24B d-block mb-3 ">說明</p>
-                    <textarea class="text20RG multiText398 " placeholder="請輸入餐點說明 "></textarea>
+                    <p class="text24B d-block mb-3">說明</p>
+                    <textarea class="text20RG multiText398" placeholder="請輸入餐點說明" v-model="productInformation"></textarea>
                 </div>
 
                 <div class="modal-footer ">
@@ -217,12 +192,12 @@
 
     <!-- 類別管理介面 -->
     <div class="modal fade m2Btn" id="typeManager">
-        <div class="modal-dialog modal-dialog-centered ">
-            <div class="modal-content ">
-                <div class="modal-header ">
-                    <h5 class="modal-title text28B ">類別管理</h5>
-                    <button type="button " class="close " data-dismiss="modal " aria-label="Close ">
-                        <i class=" icon-close "></i>
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text28B">類別管理</h5>
+                    <button type="button" class="close " data-dismiss="modal" aria-label="Close">
+                        <i class=" icon-close"></i>
                     </button>
                 </div>
 
@@ -232,26 +207,14 @@
 
                     <div class="typeInfo col-9">
                         <div class="typeList scrollList">
-                            <div class="typrItem d-flex">
-                                <input type="text " class="text20RG singleText398 " placeholder="請輸入類別名稱 " value="套餐 ">
-                                <i class="icon-trash ml-auto "></i>
-                            </div>
-                            <div class="typrItem d-flex">
-                                <input type="text " class="text20RG singleText398 " placeholder="請輸入類別名稱 " value="漢堡 ">
-                                <i class="icon-trash ml-auto "></i>
-                            </div>
-                            <div class="typrItem d-flex">
-                                <input type="text " class="text20RG singleText398 " placeholder="請輸入類別名稱 " value="飲品 ">
-                                <i class="icon-trash ml-auto "></i>
-                            </div>
-                            <div class="typrItem d-flex">
-                                <input type="text " class="text20RG singleText398 " placeholder="請輸入類別名稱 " value="飲品 ">
+                            <div class="typrItem d-flex" v-for='(typeItem,index) in category'>
+                                <input type="text " class="text20RG singleText398 " placeholder="請輸入類別名稱 " v-model.trim='typeItem.categoryName'>
                                 <i class="icon-trash ml-auto "></i>
                             </div>
 
 
 
-                            <button class="dbtn btnW text20R ">
+                            <button class="dbtn btnW text20R" @click='addItem'>
                                 新增類別
                                 <i class="icon-new ml-2 alig-middle "></i>
                             </button>
@@ -331,10 +294,10 @@
                                         <div class="dSelectText text20R ">選擇類別</div>
                                     </div>
                                     <div class="dOptionDivOff mr-3 ">
-                                        <div class="dOption text20R ">選擇類別</div>
-                                        <div class="dOption text20R ">套餐</div>
-                                        <div class="dOption text20R ">漢堡</div>
-                                        <div class="dOption text20R ">飲品</div>
+                                        <div class="dOption text20R">選擇類別</div>
+                                        <div class="dOption text20R" v-for='(categoryItem,index) in category'>
+                                            {{categoryItem.categoryName}}</div>
+
                                     </div>
                                 </div>
 
@@ -419,7 +382,7 @@
                 </div>
 
 
-                <div class="modal-footer ">
+                <div class="modal-footer">
                     <button class="text20R dbtn btnW " data-dismiss="modal ">取消返回</button>
                     <button class="text20R dbtn btnY ml-3 ">確定修改</button>
                 </div>
@@ -430,24 +393,60 @@
 
     <!-- vue -->
     <script>
+        var currentCategory = '';
         // data資料
         let data = {
             product: [{
                 productID: '1',
                 productName: '摩絲熱狗堡',
                 productPrice: 65,
-                recommendProduct: '1'
+                recommendProduct: 1,
+                productPhoto: 'photo.jpg',
+                productInformation: '可自選醬:1.番茄2.辣醬3.辣醬3.辣醬3.辣醬3',
+                categoryName: '套餐'
+
+
             }, {
                 productID: '2',
                 productName: '摩絲熱狗堡1',
                 productPrice: 66,
-                recommendProduct: '1'
+                recommendProduct: 2,
+                productPhoto: 'photo.jpg',
+                productInformation: '可自選醬:1.番茄2.辣醬3.辣醬3.辣醬3.辣醬3',
+                categoryName: '漢堡'
+
             }, {
                 productID: '3',
                 productName: '摩絲熱狗堡2',
                 productPrice: 67,
-                recommendProduct: '1'
+                recommendProduct: 3,
+                productPhoto: 'photo.jpg',
+                productInformation: '可自選醬:1.番茄2.辣醬3.辣醬3.辣醬3.辣醬3',
+                categoryName: '飲品'
+            }, {
+                productID: '4',
+                productName: '摩絲熱狗堡3',
+                productPrice: 68,
+                recommendProduct: null,
+                productPhoto: 'photo.jpg',
+                productInformation: '可自選醬:1.番茄2.辣醬3.辣醬3.辣醬3.辣醬3',
+                categoryName: '套餐'
+            }],
+
+            category: [{
+
+                categoryID: 1,
+                categoryName: '套餐'
+            }, {
+
+                categoryID: 2,
+                categoryName: '漢堡'
+            }, {
+
+                categoryID: 3,
+                categoryName: '飲品'
             }]
+
 
         }
 
@@ -456,9 +455,77 @@
         //vue資料
         let sMeal = new Vue({
             el: '#sMealList',
-            data: data
+            data: data,
+            methods: {
+                addProductItem() {
+                    newProduct.productName = "",
+                        newProduct.productPrice = "",
+                        newProduct.categoryName = "",
+                        newProduct.productPhoto = 'photo.jpg',
+                        newProduct.productInformation = '',
+                        newProduct.categoryName = '',
+                        newProduct.newsIndex = -1
+                }
+            }
+
         })
+
+        // 類別
+        let typeManager = new Vue({
+            el: '#typeManager',
+            data: data,
+            methods: {
+                addItem() {
+                    this.category.push({
+                        categoryName: this.category.categoryName
+                    })
+                }
+            }
+        })
+
+
+
+        // 新增產品
+        let newProduct = new Vue({
+            el: '#product',
+            data: {
+                productName: 'testproductName',
+                productPrice: 'testproductPrice',
+                categoryName: 'testcategoryName',
+                productPhoto: '',
+                productInformation: 'testproductInformation',
+                categoryName: currentCategory,
+                newsIndex: 0
+            }
+        })
+
+
+
+
+        // 下拉選單
+
+        $(function() {
+            function reSelect() {
+                $('.selectTitle').removeClass('dSelectClick').addClass('dSelect');
+                $('.selectContent').removeClass('dOptionDivOn').addClass('dOptionDivOff');
+            }
+
+            function teSelect() {
+                reSelect();
+                currentCategory = $(this).text();
+                $('.ddselect').children('.selectTitle').children('.dSelectText').text(currentCategory);
+
+            }
+
+            $('.dSelectText').click(function() {
+                $('.selectTitle').removeClass('dSelect').addClass('dSelectClick');
+                $('.selectContent').removeClass('dOptionDivOff').addClass('dOptionDivOn');
+                $('.dOption').click(teSelect);
+            });
+
+        });
     </script>
 </body>
+
 
 </html>

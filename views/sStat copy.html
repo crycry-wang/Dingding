@@ -13,8 +13,6 @@
     <link rel="stylesheet" href="../public/stylesheets/fontello.css">
     <link rel="stylesheet" href="../public/stylesheets/sider.css">
     <link rel="stylesheet" href="../public/stylesheets/sStat.css">
-    <script src="../public/javascript/vue.js"></script>
-
 
     <title>Document</title>
 
@@ -41,7 +39,7 @@
             <a href="" id="signOut"><i class="icon-logout"></i>登出</a>
         </div>
     </div>
-    <div class="containerRight" id='stat'>
+    <div class="containerRight">
         <!-- 右邊內容放置區 -->
 
         <nav class="topTag row inWrapper position-sticky">
@@ -51,15 +49,15 @@
         <ul class="statList">
             <li>
                 <h2 class="text20RG">日期</h2>
-                <p class="eng24R">{{date}}</p>
+                <p class="eng24R">2020.07.01</p>
             </li>
             <li>
                 <h2 class="text20RG">訂單量</h2>
-                <p class="eng24R">{{(orderTotle).toLocaleString('en-US')}}</p>
+                <p class="eng24R">1,215</p>
             </li>
             <li>
                 <h2 class="text20RG">銷售總額</h2>
-                <p class="eng24R">${{(orderAmount).toLocaleString('en-US')}}</p>
+                <p class="eng24R">$31,245</p>
             </li>
         </ul>
         <div class="d-flex align-items-center">
@@ -71,74 +69,26 @@
         </div>
 
         <div class="typeButton">
-            <button class="text20R dbtn btnGB">全部</button>
-            <button class=" text20R dbtn btnGB" v-for='(item,index) in category' @click='(switchbutton(index))'>{{item.categoryName}}</button>
+            <button class="text20R dbtn btnGB btnB">全部</button>
+            <button class=" text20R dbtn btnGB ">套餐</button>
+            <button class="text20R dbtn btnGB ">漢堡</button>
+            <button class="text20R dbtn btnGB ">飲品</button>
+
         </div>
-        <!-- <div class="typeCheckbox" id='typeCheckbox'>
-            <span>
-            <span> <input type="checkbox" id="all">
-                <label for="all" class="text20R">全選</label></span>
-            <span v-for='item in category'>
-                <input type="checkbox" id="all">
-                <label for="all" class="text20R">{{item.productName}}</label>
-            </span>
-            </span>
+        <div class="typeCheckbox">
+            <input type="checkbox" id="all">
+            <label for="all" class="text20R">全選</label>
+            <input type="checkbox" id="type1">
+            <label for="type1" class="text20R ">套餐</label>
+            <input type="checkbox" id="type2">
+            <label for="type2" class="text20R ">漢堡</label>
+            <input type="checkbox" id="type3">
+            <label for="type3" class="text20R">飲品</label>
         </div>
- -->
+
 
     </div>
-    <!-- vue -->
-    <script>
-        // data資料
-        let data = {
-            category: [{
-                    categoryID: '0',
-                    categoryName: '套餐',
-                    productName: 'A套餐',
-                    productName: 'B套餐',
-                    productName: 'C套餐',
-                }, {
-                    categoryID: '1',
-                    categoryName: '漢堡',
-                    productName: '摩絲熱狗堡',
-                    productName: '摩絲熱狗堡1',
-                    productName: '摩絲熱狗堡3',
-                }, {
-                    categoryID: '2',
-                    categoryName: '飲品',
-                    productName: '可樂',
-                    productName: '雪碧',
-                    productName: '玉米濃湯',
-                }
 
-            ],
-            date: '2020.07.01',
-            orderTotle: 1215,
-            orderAmount: 31245
-        }
-
-
-        //vue資料
-        let mMember = new Vue({
-            el: '#stat',
-            data: data,
-            methods: {
-                switchbutton(index) {
-                    var currenti = index;
-                    console.log(currenti);
-
-                }
-            }
-        })
-
-        $('button').click(function() {
-            $('button').removeClass('btnB');
-            $(this).addClass('btnB');
-        });
-    </script>
-
-
-    <!-- 營運統計 -->
     <script src="../public/javascript/Chart.min.js"></script>
     <script>
         Chart.defaults.global.defaultFontColor = '#373A3C';
