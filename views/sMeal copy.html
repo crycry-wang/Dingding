@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="../public/stylesheets/fontello.css">
     <link rel="stylesheet" href="../public/stylesheets/sider.css">
     <link rel="stylesheet" href="../public/stylesheets/meal.css">
-    <script src="../public/javascript/vue.js"></script>
+
     <title>Document</title>
 
 
@@ -59,7 +59,7 @@
                 </button>
             </div>
 
-            <div class="row" id="sMealList">
+            <div class="row">
                 <div class="w-100 position-relative">
                     <div class="text20R ml-3 titleHead ">
 
@@ -104,16 +104,17 @@
                             </tr>
                             <tr height="8px "></tr>
                         </thead>
-                        <tbody class="text20R list" v-for='(item,index) in product'>
+                        <tbody class="text20R list ">
+
                             <!-- 1 -->
                             <tr>
-                                <td class="fst"><img src="../public/image/first.png " alt=" ">
+                                <td class="fst "><img src="../public/image/first.png " alt=" ">
                                 </td>
                                 <td>
-                                    {{item.productName}}
+                                    摩絲熱狗堡
                                 </td>
                                 <td>
-                                    {{(item.productPrice).toLocaleString('en-US')}}
+                                    65
                                 </td>
                                 <td>
                                     <img src="../public/image/photo.jpg">
@@ -126,19 +127,317 @@
                                     </div>
                                 </td>
                             </tr>
-                            <tr height="8px"></tr>
+                            <tr height="8px "></tr>
+                            <!-- 2 -->
+                            <tr>
+                                <td class="snd "><img src="../public/image/second.png " alt=" ">
+                                </td>
+                                <td>
+                                    摩絲熱狗堡
+                                </td>
+                                <td>
+                                    65
+                                </td>
+                                <td>
+                                    <img src="../public/image/photo.jpg " alt=" ">
+                                </td>
+
+                                <td>
+                                    <div class="d-flex align-items-center ">
+                                        <p class="text20B desc ">可自選醬:1.番茄2.辣醬3.辣醬3.辣醬3.辣醬3</p>
+                                        <button class="text20R dbtn btnW ml-auto " data-toggle="modal " data-target="#product">詳情</button>
+                                        <i class="icon-trash " data-toggle="modal " data-target="#deleteMeal"></i>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr height="8px "></tr>
+                            <!-- 3 -->
+                            <tr>
+                                <td class="trd "><img src="../public/image/third.png " alt=" ">
+                                </td>
+                                <td>
+                                    摩絲熱狗堡
+                                </td>
+                                <td>
+                                    65
+                                </td>
+                                <td>
+                                    <img src="../public/image/photo.jpg " alt=" ">
+                                </td>
+
+                                <td>
+                                    <div class="d-flex align-items-center ">
+                                        <p class="text20B desc ">可自選醬:1.番茄2.辣醬3.辣醬3.辣醬3.辣醬3</p>
+                                        <button class="text20R dbtn btnW ml-auto " data-toggle="modal " data-target="#product ">詳情</button>
+                                        <i class="icon-trash " data-toggle="modal " data-target="#deleteMeal "></i>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr height="8px "></tr>
+                            <!-- 3 -->
+                            <tr>
+                                <td class="trd "><img src="../public/image/third.png " alt=" ">
+                                </td>
+                                <td>
+                                    摩絲熱狗堡
+                                </td>
+                                <td>
+                                    65
+                                </td>
+                                <td>
+                                    <img src="../public/image/photo.jpg " alt=" ">
+                                </td>
+
+                                <td>
+                                    <div class="d-flex align-items-center ">
+                                        <p class="text20B desc ">可自選醬:1.番茄2.辣醬3.辣醬3.辣醬3.辣醬3</p>
+                                        <button class="text20R dbtn btnW ml-auto " data-toggle="modal " data-target="#product ">詳情</button>
+                                        <i class="icon-trash " data-toggle="modal " data-target="#deleteMeal "></i>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr height="8px "></tr>
+                            <!-- 3 -->
+                            <tr>
+                                <td class="trd "><img src="../public/image/third.png " alt=" ">
+                                </td>
+                                <td>
+                                    摩絲熱狗堡
+                                </td>
+                                <td>
+                                    65
+                                </td>
+                                <td>
+                                    <img src="../public/image/photo.jpg " alt=" ">
+                                </td>
+
+                                <td>
+                                    <div class="d-flex align-items-center ">
+                                        <p class="text20B desc ">可自選醬:1.番茄2.辣醬3.辣醬3.辣醬3.辣醬3</p>
+                                        <button class="text20R dbtn btnW ml-auto " data-toggle="modal " data-target="#product ">詳情</button>
+                                        <i class="icon-trash " data-toggle="modal " data-target="#deleteMeal "></i>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr height="8px "></tr>
+                            <!-- 3 -->
+                            <tr>
+                                <td class="trd "><img src="../public/image/third.png " alt=" ">
+                                </td>
+                                <td>
+                                    摩絲熱狗堡
+                                </td>
+                                <td>
+                                    65
+                                </td>
+                                <td>
+                                    <img src="../public/image/photo.jpg " alt=" ">
+                                </td>
+
+                                <td>
+                                    <div class="d-flex align-items-center ">
+                                        <p class="text20B desc ">可自選醬:1.番茄2.辣醬3.辣醬3.辣醬3.辣醬3</p>
+                                        <button class="text20R dbtn btnW ml-auto " data-toggle="modal " data-target="#product ">詳情</button>
+                                        <i class="icon-trash " data-toggle="modal " data-target="#deleteMeal "></i>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr height="8px "></tr>
+                            <!-- 3 -->
+                            <tr>
+                                <td class="trd "><img src="../public/image/third.png " alt=" ">
+                                </td>
+                                <td>
+                                    摩絲熱狗堡
+                                </td>
+                                <td>
+                                    65
+                                </td>
+                                <td>
+                                    <img src="../public/image/photo.jpg " alt=" ">
+                                </td>
+
+                                <td>
+                                    <div class="d-flex align-items-center ">
+                                        <p class="text20B desc ">可自選醬:1.番茄2.辣醬3.辣醬3.辣醬3.辣醬3</p>
+                                        <button class="text20R dbtn btnW ml-auto " data-toggle="modal " data-target="#product ">詳情</button>
+                                        <i class="icon-trash " data-toggle="modal " data-target="#deleteMeal "></i>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr height="8px "></tr>
+                            <!-- 3 -->
+                            <tr>
+                                <td class="trd "><img src="../public/image/third.png " alt=" ">
+                                </td>
+                                <td>
+                                    摩絲熱狗堡
+                                </td>
+                                <td>
+                                    65
+                                </td>
+                                <td>
+                                    <img src="../public/image/photo.jpg " alt=" ">
+                                </td>
+
+                                <td>
+                                    <div class="d-flex align-items-center ">
+                                        <p class="text20B desc ">可自選醬:1.番茄2.辣醬3.辣醬3.辣醬3.辣醬3</p>
+                                        <button class="text20R dbtn btnW ml-auto " data-toggle="modal " data-target="#product ">詳情</button>
+                                        <i class="icon-trash " data-toggle="modal " data-target="#deleteMeal "></i>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr height="8px "></tr>
+                            <!-- 3 -->
+                            <tr>
+                                <td class="trd "><img src="../public/image/third.png " alt=" ">
+                                </td>
+                                <td>
+                                    摩絲熱狗堡
+                                </td>
+                                <td>
+                                    65
+                                </td>
+                                <td>
+                                    <img src="../public/image/photo.jpg " alt=" ">
+                                </td>
+
+                                <td>
+                                    <div class="d-flex align-items-center ">
+                                        <p class="text20B desc ">可自選醬:1.番茄2.辣醬3.辣醬3.辣醬3.辣醬3</p>
+                                        <button class="text20R dbtn btnW ml-auto " data-toggle="modal " data-target="#product ">詳情</button>
+                                        <i class="icon-trash " data-toggle="modal " data-target="#deleteMeal "></i>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr height="8px "></tr>
+                            <!-- 3 -->
+                            <tr>
+                                <td class="trd "><img src="../public/image/third.png " alt=" ">
+                                </td>
+                                <td>
+                                    摩絲熱狗堡
+                                </td>
+                                <td>
+                                    65
+                                </td>
+                                <td>
+                                    <img src="../public/image/photo.jpg " alt=" ">
+                                </td>
+
+                                <td>
+                                    <div class="d-flex align-items-center ">
+                                        <p class="text20B desc ">可自選醬:1.番茄2.辣醬3.辣醬3.辣醬3.辣醬3</p>
+                                        <button class="text20R dbtn btnW ml-auto " data-toggle="modal " data-target="#product ">詳情</button>
+                                        <i class="icon-trash " data-toggle="modal " data-target="#deleteMeal "></i>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr height="8px "></tr>
+                            <!-- 3 -->
+                            <tr>
+                                <td class="trd "><img src="../public/image/third.png " alt=" ">
+                                </td>
+                                <td>
+                                    摩絲熱狗堡
+                                </td>
+                                <td>
+                                    65
+                                </td>
+                                <td>
+                                    <img src="../public/image/photo.jpg " alt=" ">
+                                </td>
+
+                                <td>
+                                    <div class="d-flex align-items-center ">
+                                        <p class="text20B desc ">可自選醬:1.番茄2.辣醬3.辣醬3.辣醬3.辣醬3</p>
+                                        <button class="text20R dbtn btnW ml-auto " data-toggle="modal " data-target="#product ">詳情</button>
+                                        <i class="icon-trash " data-toggle="modal " data-target="#deleteMeal "></i>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr height="8px "></tr>
+                            <!-- 3 -->
+                            <tr>
+                                <td class="trd "><img src="../public/image/third.png " alt=" ">
+                                </td>
+                                <td>
+                                    摩絲熱狗堡
+                                </td>
+                                <td>
+                                    65
+                                </td>
+                                <td>
+                                    <img src="../public/image/photo.jpg " alt=" ">
+                                </td>
+
+                                <td>
+                                    <div class="d-flex align-items-center ">
+                                        <p class="text20B desc ">可自選醬:1.番茄2.辣醬3.辣醬3.辣醬3.辣醬3</p>
+                                        <button class="text20R dbtn btnW ml-auto " data-toggle="modal " data-target="#product ">詳情</button>
+                                        <i class="icon-trash " data-toggle="modal " data-target="#deleteMeal "></i>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr height="8px "></tr>
+                            <!-- 3 -->
+                            <tr>
+                                <td class="trd "><img src="../public/image/third.png " alt=" ">
+                                </td>
+                                <td>
+                                    摩絲熱狗堡
+                                </td>
+                                <td>
+                                    65
+                                </td>
+                                <td>
+                                    <img src="../public/image/photo.jpg " alt=" ">
+                                </td>
+
+                                <td>
+                                    <div class="d-flex align-items-center ">
+                                        <p class="text20B desc ">可自選醬:1.番茄2.辣醬3.辣醬3.辣醬3.辣醬3</p>
+                                        <button class="text20R dbtn btnW ml-auto " data-toggle="modal " data-target="#product ">詳情</button>
+                                        <i class="icon-trash " data-toggle="modal " data-target="#deleteMeal "></i>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr height="8px "></tr>
+                            <!-- 3 -->
+                            <tr>
+                                <td class="trd "><img src="../public/image/third.png " alt=" ">
+                                </td>
+                                <td>
+                                    摩絲熱狗堡
+                                </td>
+                                <td>
+                                    65
+                                </td>
+                                <td>
+                                    <img src="../public/image/photo.jpg " alt=" ">
+                                </td>
+
+                                <td>
+                                    <div class="d-flex align-items-center ">
+                                        <p class="text20B desc ">可自選醬:1.番茄2.辣醬3.辣醬3.辣醬3.辣醬3</p>
+                                        <button class="text20R dbtn btnW ml-auto " data-toggle="modal " data-target="#product ">詳情</button>
+                                        <i class="icon-trash " data-toggle="modal " data-target="#deleteMeal "></i>
+                                    </div>
+                                </td>
+                            </tr>
+
                         </tbody>
-
-
-                    </table>
                 </div>
+                </table>
             </div>
-
         </div>
-        <button type="button" class="btnY dbtn " data-toggle="modal " data-target="#comfirm">
+
+    </div>
+    <button type="button" class="btnY dbtn " data-toggle="modal " data-target="#comfirm">
         成功介面
     </button>
-        <button type="button" class="btnR dbtn " data-toggle="modal " data-target="#deleteType">
+    <button type="button" class="btnR dbtn " data-toggle="modal " data-target="#deleteType">
         刪除類別介面
     </button>
     </div>
@@ -428,37 +727,6 @@
     </div>
 
 
-    <!-- vue -->
-    <script>
-        // data資料
-        let data = {
-            product: [{
-                productID: '1',
-                productName: '摩絲熱狗堡',
-                productPrice: 65,
-                recommendProduct: '1'
-            }, {
-                productID: '2',
-                productName: '摩絲熱狗堡1',
-                productPrice: 66,
-                recommendProduct: '1'
-            }, {
-                productID: '3',
-                productName: '摩絲熱狗堡2',
-                productPrice: 67,
-                recommendProduct: '1'
-            }]
-
-        }
-
-
-
-        //vue資料
-        let sMeal = new Vue({
-            el: '#sMealList',
-            data: data
-        })
-    </script>
 </body>
 
 </html>
