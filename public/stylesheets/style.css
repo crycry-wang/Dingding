@@ -640,7 +640,7 @@ textarea {
 .mealsName {
     left: 16px;
     top: 11px;
-    position: absolute;
+    position: relative;
 }
 
 .mealsCard img {
@@ -660,9 +660,9 @@ textarea {
 .mealsDetail {
     font-size: 1rem;
     color: #777777;
-    top: 44px;
+    top: 6px;
     left: 16px;
-    position: absolute;
+    position: relative;
 }
 
 .mealsPrice {
