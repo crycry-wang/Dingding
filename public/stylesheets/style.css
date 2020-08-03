@@ -1066,9 +1066,9 @@ textarea {
 /* 滾輪 */
 
 .scrollList {
+    width: calc(100% + 24px);
     overflow-y: scroll;
-    left: 16px;
-    padding-right: 8px;
+    padding-right: 16px;
     position: relative;
     /* 100vh-需要佔的高度 */
     /* max-height: calc(100vh - 420px); */
