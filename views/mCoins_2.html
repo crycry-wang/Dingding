@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="../public/stylesheets/fontello.css">
     <link rel="stylesheet" href="../public/stylesheets/sider.css">
     <link rel="stylesheet" href="../public/stylesheets/member.css">
+    <script src="../public/javascript/vue.js"></script>
 
     <title>Document</title>
 
@@ -41,7 +42,7 @@
     </div>
 
     <!-- 右邊內容放置區 -->
-    <div class="containerRight">
+    <div class="containerRight" id="purchased">
         <div class="inWrapper">
             <div class="CoinBlock mt-m py-2 mb-l d-inline-block">
                 <span class="text24B align-middle">我的訂訂幣</span>
@@ -52,8 +53,8 @@
             </div>
             <div class="dblock givePadding">
                 <nav class="topTag row">
-                    <div class="dTag text24RG act">儲值記錄</div>
-                    <div class="dTag text24RG">消費記錄</div>
+                    <div class="dTag text24RG">儲值記錄</div>
+                    <div class="dTag text24RG act">消費記錄</div>
                 </nav>
                 <div class="row mt-m text20B col-12">
                     <div class="col-3 cTH ">時間</div>
@@ -62,115 +63,133 @@
                     <div class="col-3 cTH ">訂訂幣</div>
                 </div>
                 <div class="scrollList coinList">
-                    <div class="row cTR col-12 ">
-                        <div class="col-3 mTD eng20R ">2020/06/26</div>
-                        <div class="col-3 mTD text20R ">尊品原汁牛肉麵</div>
-                        <div class="col-3 mTD text20R ">原汁牛肉麵</div>
+                    <div class="row cTR col-12" v-for='item in tradeDetail'>
+                        <div class="col-3 mTD eng20R ">{{item.orderCreateTime}}</div>
+                        <div class="col-3 mTD text20R ">{{item.storeName}}</div>
+                        <div class="col-3 mTD text20R ">{{item.productName.join()}}</div>
                         <span class="co3-4 mTD eng20R price ">
-                            <span class=" align-middle ">5,000</span>
+                            <span class=" align-middle ">{{item.tradeMoney}}</span>
                         </span>
                     </div>
-                    <div class="row cTR col-12 ">
-                        <div class="col-3 mTD eng20R ">2020/06/26</div>
-                        <div class="col-3 mTD text20R ">尊品原汁牛肉麵</div>
-                        <div class="col-3 mTD text20R ">原汁牛肉麵</div>
-                        <span class="co3-4 mTD eng20R price ">
-                            <span class=" align-middle ">5,000</span>
-                        </span>
-                    </div>
-                    <div class="row cTR col-12 ">
-                        <div class="col-3 mTD eng20R ">2020/06/26</div>
-                        <div class="col-3 mTD text20R ">尊品原汁牛肉麵</div>
-                        <div class="col-3 mTD text20R ">原汁牛肉麵</div>
-                        <span class="co3-4 mTD eng20R price ">
-                            <span class=" align-middle ">5,000</span>
-                        </span>
-                    </div>
-                    <div class="row cTR col-12 ">
-                        <div class="col-3 mTD eng20R ">2020/06/26</div>
-                        <div class="col-3 mTD text20R ">尊品原汁牛肉麵</div>
-                        <div class="col-3 mTD text20R ">原汁牛肉麵</div>
-                        <span class="co3-4 mTD eng20R price ">
-                            <span class=" align-middle ">5,000</span>
-                        </span>
-                    </div>
-                    <div class="row cTR col-12 ">
-                        <div class="col-3 mTD eng20R ">2020/06/26</div>
-                        <div class="col-3 mTD text20R ">尊品原汁牛肉麵</div>
-                        <div class="col-3 mTD text20R ">原汁牛肉麵</div>
-                        <span class="co3-4 mTD eng20R price ">
-                            <span class=" align-middle ">5,000</span>
-                        </span>
-                    </div>
-                    <div class="row cTR col-12 ">
-                        <div class="col-3 mTD eng20R ">2020/06/26</div>
-                        <div class="col-3 mTD text20R ">尊品原汁牛肉麵</div>
-                        <div class="col-3 mTD text20R ">原汁牛肉麵</div>
-                        <span class="co3-4 mTD eng20R price ">
-                            <span class=" align-middle ">5,000</span>
-                        </span>
-                    </div>
-                    <div class="row cTR col-12 ">
-                        <div class="col-3 mTD eng20R ">2020/06/26</div>
-                        <div class="col-3 mTD text20R ">尊品原汁牛肉麵</div>
-                        <div class="col-3 mTD text20R ">原汁牛肉麵</div>
-                        <span class="co3-4 mTD eng20R price ">
-                            <span class=" align-middle ">5,000</span>
-                        </span>
-                    </div>
-                    <div class="row cTR col-12 ">
-                        <div class="col-3 mTD eng20R ">2020/06/26</div>
-                        <div class="col-3 mTD text20R ">尊品原汁牛肉麵</div>
-                        <div class="col-3 mTD text20R ">原汁牛肉麵</div>
-                        <span class="co3-4 mTD eng20R price ">
-                            <span class=" align-middle ">5,000</span>
-                        </span>
-                    </div>
-                    <div class="row cTR col-12 ">
-                        <div class="col-3 mTD eng20R ">2020/06/26</div>
-                        <div class="col-3 mTD text20R ">尊品原汁牛肉麵</div>
-                        <div class="col-3 mTD text20R ">原汁牛肉麵</div>
-                        <span class="co3-4 mTD eng20R price ">
-                            <span class=" align-middle ">5,000</span>
-                        </span>
-                    </div>
-                    <div class="row cTR col-12 ">
-                        <div class="col-3 mTD eng20R ">2020/06/26</div>
-                        <div class="col-3 mTD text20R ">尊品原汁牛肉麵</div>
-                        <div class="col-3 mTD text20R ">原汁牛肉麵</div>
-                        <span class="co3-4 mTD eng20R price ">
-                            <span class=" align-middle ">5,000</span>
-                        </span>
-                    </div>
-                    <div class="row cTR col-12 ">
-                        <div class="col-3 mTD eng20R ">2020/06/26</div>
-                        <div class="col-3 mTD text20R ">尊品原汁牛肉麵</div>
-                        <div class="col-3 mTD text20R ">原汁牛肉麵</div>
-                        <span class="co3-4 mTD eng20R price ">
-                            <span class=" align-middle ">5,000</span>
-                        </span>
-                    </div>
-                    <div class="row cTR col-12 ">
-                        <div class="col-3 mTD eng20R ">2020/06/26</div>
-                        <div class="col-3 mTD text20R ">尊品原汁牛肉麵</div>
-                        <div class="col-3 mTD text20R ">原汁牛肉麵</div>
-                        <span class="co3-4 mTD eng20R price ">
-                            <span class=" align-middle ">5,000</span>
-                        </span>
-                    </div>
-                    <div class="row cTR col-12 ">
-                        <div class="col-3 mTD eng20R ">2020/06/26</div>
-                        <div class="col-3 mTD text20R ">尊品原汁牛肉麵</div>
-                        <div class="col-3 mTD text20R ">原汁牛肉麵</div>
-                        <span class="co3-4 mTD eng20R price ">
-                            <span class=" align-middle ">5,000</span>
-                        </span>
-                    </div>
+
                 </div>
             </div>
         </div>
     </div>
-    </div>
+
+
+
+    <script>
+        // data資料
+        let data = {
+            memberID: 1,
+            tradeDetail: [{
+                tradeDetailID: 0,
+                tradeMoney: 5001,
+                orderCreateTime: '2020/06/26',
+                storeName: '尊品原汁牛肉麵',
+                productName: ['水餃', '原汁牛肉麵']
+
+
+            }, {
+                tradeDetailID: 1,
+                tradeMoney: 5002,
+                orderCreateTime: '2020/06/25',
+                storeName: '肯德基',
+                productName: ['炸雞', 'A組全家餐']
+
+            }, {
+                tradeDetailID: 2,
+                tradeMoney: 5003,
+                orderCreateTime: '2020/06/24',
+                storeName: '八方雲集',
+                productName: ['玉米濃湯', '煎餃']
+
+            }, {
+                tradeDetailID: 3,
+                tradeMoney: 5004,
+                orderCreateTime: '2020/06/23',
+                storeName: '明倫蛋餅',
+                productName: ['明倫蛋餅']
+            }, {
+                tradeDetailID: 3,
+                tradeMoney: 5004,
+                orderCreateTime: '2020/06/23',
+                storeName: '明倫蛋餅',
+                productName: ['明倫蛋餅']
+            }, {
+                tradeDetailID: 3,
+                tradeMoney: 5004,
+                orderCreateTime: '2020/06/23',
+                storeName: '明倫蛋餅',
+                productName: ['明倫蛋餅']
+            }, {
+                tradeDetailID: 3,
+                tradeMoney: 5004,
+                orderCreateTime: '2020/06/23',
+                storeName: '明倫蛋餅',
+                productName: ['明倫蛋餅']
+            }, {
+                tradeDetailID: 3,
+                tradeMoney: 5004,
+                orderCreateTime: '2020/06/23',
+                storeName: '明倫蛋餅',
+                productName: ['明倫蛋餅']
+            }, {
+                tradeDetailID: 3,
+                tradeMoney: 5004,
+                orderCreateTime: '2020/06/23',
+                storeName: '明倫蛋餅',
+                productName: ['明倫蛋餅']
+            }, {
+                tradeDetailID: 3,
+                tradeMoney: 5004,
+                orderCreateTime: '2020/06/23',
+                storeName: '明倫蛋餅',
+                productName: ['明倫蛋餅']
+            }, {
+                tradeDetailID: 3,
+                tradeMoney: 5004,
+                orderCreateTime: '2020/06/23',
+                storeName: '明倫蛋餅',
+                productName: ['明倫蛋餅']
+            }, {
+                tradeDetailID: 3,
+                tradeMoney: 5004,
+                orderCreateTime: '2020/06/23',
+                storeName: '明倫蛋餅',
+                productName: ['明倫蛋餅']
+            }, {
+                tradeDetailID: 3,
+                tradeMoney: 5004,
+                orderCreateTime: '2020/06/23',
+                storeName: '明倫蛋餅',
+                productName: ['明倫蛋餅']
+            }, {
+                tradeDetailID: 3,
+                tradeMoney: 5004,
+                orderCreateTime: '2020/06/23',
+                storeName: '明倫蛋餅',
+                productName: ['明倫蛋餅']
+            }, {
+                tradeDetailID: 3,
+                tradeMoney: 5004,
+                orderCreateTime: '2020/06/23',
+                storeName: '明倫蛋餅',
+                productName: ['明倫蛋餅']
+
+            }],
+            myCoin: 5000
+
+        }
+
+        let mPurchased = new Vue({
+            el: '#purchased',
+            data: data,
+
+
+        })
+    </script>
 
 
 
