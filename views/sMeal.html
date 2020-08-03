@@ -101,7 +101,8 @@
                         <div class="col-6">
                             <div class="d-flex align-items-center">
                                 <p class="text20B desc">{{item.productInformation}}</p>
-                                <button class="text20R dbtn btnW ml-auto" data-toggle="modal" data-target="#product">詳情</button>
+                                <button class="text20R dbtn btnW ml-auto" data-toggle="modal"
+                                    data-target="#product">詳情</button>
                                 <i class="icon-trash " data-toggle="modal" data-target="#deleteMeal"></i>
                             </div>
                         </div>
@@ -140,7 +141,8 @@
                         <ul class="d-inline-block inputInfo ">
                             <li>
                                 <p class="text24B d-inline-block ">餐點名稱</p>
-                                <input type="text " class="text20RG singleText398 " placeholder="請輸入餐點名稱" v-model="productName">
+                                <input type="text " class="text20RG singleText398 " placeholder="請輸入餐點名稱"
+                                    v-model="productName">
                             </li>
                             <li>
                                 <p class="text24B d-inline-block">產品類別</p>
@@ -157,12 +159,14 @@
                             </li>
                             <li>
                                 <p class="text24B d-inline-block">餐點價格</p>
-                                <input type="text" class="text20RG singleText398" placeholder="請輸入餐點價格" v-model="productPrice">
+                                <input type="text" class="text20RG singleText398" placeholder="請輸入餐點價格"
+                                    v-model="productPrice">
                             </li>
                         </ul>
                     </div>
                     <p class="text24B d-block mb-3">說明</p>
-                    <textarea class="text20RG multiText398" placeholder="請輸入餐點說明" v-model="productInformation"></textarea>
+                    <textarea class="text20RG multiText398" placeholder="請輸入餐點說明"
+                        v-model="productInformation"></textarea>
                 </div>
 
                 <div class="modal-footer ">
@@ -208,7 +212,8 @@
                     <div class="typeInfo col-9">
                         <div class="typeList scrollList">
                             <div class="typrItem d-flex" v-for='(typeItem,index) in category'>
-                                <input type="text " class="text20RG singleText398 " placeholder="請輸入類別名稱 " v-model.trim='typeItem.categoryName'>
+                                <input type="text " class="text20RG singleText398 " placeholder="請輸入類別名稱 "
+                                    v-model.trim='typeItem.categoryName'>
                                 <i class="icon-trash ml-auto "></i>
                             </div>
 
@@ -393,7 +398,7 @@
 
     <!-- vue -->
     <script>
-        var currentCategory = '';
+        var currentCategory;
         // data資料
         let data = {
             product: [{
@@ -484,6 +489,9 @@
         })
 
 
+  
+        
+
 
         // 新增產品
         let newProduct = new Vue({
@@ -498,13 +506,14 @@
                 newsIndex: 0
             }
         })
-
+ 
 
 
 
         // 下拉選單
+        // var a = ;
+        $(function () {
 
-        $(function() {
             function reSelect() {
                 $('.selectTitle').removeClass('dSelectClick').addClass('dSelect');
                 $('.selectContent').removeClass('dOptionDivOn').addClass('dOptionDivOff');
@@ -513,17 +522,21 @@
             function teSelect() {
                 reSelect();
                 currentCategory = $(this).text();
+                newProduct.categoryName = currentCategory;
                 $('.ddselect').children('.selectTitle').children('.dSelectText').text(currentCategory);
-
+                // currentCategory;
+                // return a; 
             }
 
-            $('.dSelectText').click(function() {
+            $('.dSelectText').click(function () {
                 $('.selectTitle').removeClass('dSelect').addClass('dSelectClick');
                 $('.selectContent').removeClass('dOptionDivOff').addClass('dOptionDivOn');
                 $('.dOption').click(teSelect);
+                // console.log(a);
             });
-
+            
         });
+        
     </script>
 </body>
 
