@@ -15,18 +15,14 @@
     <link rel="stylesheet" href="../public/stylesheets/sider.css">
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <!-- <link rel="stylesheet" href="../public/stylesheets/member.css"> -->
-    <link rel="stylesheet" href="../public/stylesheets/sEvaluation.css">
     <link rel="stylesheet" href="../public/stylesheets/storeInformation.css">
-<<<<<<< HEAD
-=======
     <link rel="stylesheet" href="../public/stylesheets/member.css">
     <link rel="stylesheet" href="../public/stylesheets/index.css">
->>>>>>> 7456b0e... pick erh0803 16:50
 
     <title>店家資訊</title>
     <style>
-        .dblock:first-child {
-            margin-top: 0;
+        .active{
+            background-color: var(--dYellow);
         }
     </style>
 
@@ -54,75 +50,6 @@
             </div>
         </div>
 
-<<<<<<< HEAD
-    <div class="containerRight">
-        <!-- 右邊內容放置區 -->
-        <div class="btnDiv">
-            <div class="rightbtn">
-                <button class="text20BW dbtn btnB" style="margin-right: 15px;" data-toggle="modal"
-                    data-target="#storeModel">店家資訊預覽</button>
-                <!-- <button class="text20R dbtn btnW" style="margin-right: 5px;">取消</button> -->
-                <button class="text20R dbtn btnY" data-toggle="modal" data-target="#comfirm2Btn">儲存</button>
-            </div>
-        </div>
-        <div class="mInfo">
-            <div style="background-image: url(../public/image/photo.jpg);" class="memberPhoto icon-photo-1">
-            </div>
-            <!-- 左邊店家基本資訊 -->
-            <div class="dblock information">
-
-                <div class=" storeTitleDiv">
-                    <span class="text20B storeTitle">店家名稱</span>
-                    <input type="text" class="singleText398 text20R" placeholder="請輸入店家名稱" style="width: 536px;">
-                </div>
-                <div class=" storeTitleDiv">
-                    <span class="text20B storeTitle">店家照片</span>
-                    <span class="text20R" style="margin-right: 20px; margin-left: 20px;">封面照片.jpg</span> <button
-                        class="dbtn btnW text20R">上傳照片</button>
-                </div>
-                <div class=" storeTitleDiv">
-                    <span class="text20B storeTitle">店家電話</span>
-                    <input type="text" class="singleText398 text20R" placeholder="請輸入店家電話" style="width: 536px;">
-                </div>
-                <div class=" storeTitleDiv">
-                    <span class="text20B storeTitle">店家地址</span>
-                    <input type="text" class="singleText398 text20R" placeholder="請輸入完整地址" style="width: 536px;">
-                </div>
-                <div class=" storeTitleDiv">
-                    <span class="text20B storeTitle">營業時間</span>
-                    <input type="text" class="singleText398 text20R" placeholder="請輸入營業時間" style="width: 536px;">
-                </div>
-                <div class=" storeTitleDiv">
-                    <span class="text20B storeTitle">固定公休</span>
-                    <input type="text" class="singleText398 text20R" placeholder="請輸入公休日" style="width: 536px;">
-                </div>
-                <div class=" storeTitleDiv" style="vertical-align: super;">
-                    <span class="text20B storeTitle">店家簡介</span>
-                    <textarea type="text" class="multiText398 text20R aboutTextarea" placeholder="請輸入店家簡介"></textarea>
-                </div>
-            </div>
-            <!-- 右邊配送地區 -->
-            <div class="dblock delivery">
-                <div class="mb-l">
-                    <span class="text20B" style="margin-right: 50px;">配送地區</span>
-                    <button class="dbtn text20R" data-toggle="modal" data-target="#comfirm2BtnW1340"
-                        style="margin-bottom: 24px;background-color: var(--dLightGray);">
-                        選擇地區
-                        <span class="ml-2">+</span>
-                    </button>
-                    <br>
-                    <button class="dbtn btnY text20B"
-                        style="margin-bottom: 20px;padding-left: 16px;padding-right: 12px;">台中市北屯區 <i
-                            class="icon-close"></i> </button><br>
-                    <button class="dbtn btnY text20B"
-                        style="margin-bottom: 20px;padding-left: 16px;padding-right: 12px;">台中市北屯區 <i
-                            class="icon-close"></i> </button><br>
-                </div>
-                <div>
-                    <span class="text20B" style="margin-right: 16px;">注意事項</span><span
-                        style="font-size: 16px; color: var(--dDeepGray);">(選填)</span>
-                    <textarea type="text" class="multiText398 text20R noteTextarea" placeholder="填入配送注意事項"></textarea>
-=======
         <div class="containerRight">
             <!-- 右邊內容放置區 -->
             <div class="btnDiv mb-m">
@@ -233,14 +160,10 @@
                         </div>
 
                     </div>
->>>>>>> 7456b0e... pick erh0803 16:50
                 </div>
 
-<<<<<<< HEAD
-=======
 
             </div>
->>>>>>> 7456b0e... pick erh0803 16:50
         </div>
         <!-- 儲存彈框 -->
         <div class="modal fade sm2Btn" id="comfirm2Btn">
@@ -285,8 +208,8 @@
                                     <div class="contrySelect"></div>
                                 </span>
                                 <div class="dblock row areaBlock" v-if="area.isShow">
-                                    <div class="area" v-for="(district,id) in area.districtName">
-                                        <input type="checkbox" :id="'north'+district.id" v-model="district.selected">
+                                    <div class="area" v-for="(district,id) in area.districtName" :id="district.id">
+                                        <input type="checkbox" :id="'north'+district.id" value="district.name" v-model="north.isSelect">
                                         <label :for="'north'+district.id" class="text20R">{{district.name}}</label>
                                     </div>
                                 </div>
@@ -872,8 +795,8 @@
                         <div class="text20B" style="margin-top: 70px;display: inline-block;margin-right: 40px;">已選擇區域
                         </div>
                         <button class="dbtn btnY text20B areaSelected">台北市北北區 <i class="icon-close"></i> </button>
-
-
+                        
+                        
                     </div>
                     <div class="modal-footer">
                         <button class="text20R dbtn btnW" data-dismiss="modal">取消返回</button>
@@ -1289,15 +1212,15 @@
                 {
                     country: "台北市",
                     districtName: [
-                        { name: "中山區", id: 104, selected: true },
-                        { name: "中正區", id: 100, selected: false },
-                        { name: "松山區", id: 105, selected: false },
-                        { name: "信義區", id: 110, selected: false },
-                        { name: "大安區", id: 106, selected: false },
-                        { name: "士林區", id: 111, selected: false }
+                        { name: "中山區", id: 104, selected:true },
+                        { name: "中正區", id: 100, selected:false },
+                        { name: "松山區", id: 105, selected:false },
+                        { name: "信義區", id: 110, selected:false },
+                        { name: "大安區", id: 106, selected:false },
+                        { name: "士林區", id: 111, selected:false }
                     ],
                     isShow: false,
-                    isSelect: []
+                    isSelect:[]
                 },
                 {
                     country: "新北市",
@@ -1316,7 +1239,7 @@
         let storeInformation = new Vue({
             el: "#storeInformation",
             data: data,
-            computed: {
+            computed:{
                 // isSelect(){
                 //     console.log(this.north[0].districtName[0].selected)
                 //     return this.north[0].districtName[0].selected
@@ -1330,6 +1253,7 @@
                 handleSelect(index) {
                     if (this.north[index].isShow == false) {
                         this.north[index].isShow = true
+                        $(this.north[index]).addClass('active')
                     } else if (this.north[index].isShow == true) {
                         this.north[index].isShow = false
                     }
