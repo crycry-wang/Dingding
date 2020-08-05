@@ -2,8 +2,6 @@
 
 // 日曆
 
-// const e = require("express");
-
 let today = new Date();
 let nowMonth = today.getMonth();
 let nowYear = today.getFullYear();
@@ -17,6 +15,10 @@ function prevM() {
     let NowYear = (nowMonth === 0) ? nowYear - 1 : nowYear;
     let NowMonth = (nowMonth === 0) ? 11 : nowMonth - 1;
     showCalendar(NowMonth, NowYear);
+    $("td").click(function() {
+        $("td[id]").attr("data-toggle", "modal");
+        $("td[id]").attr("data-target", "#comfirm2BtnW1340");
+    })
     return (nowYear = NowYear, nowMonth = NowMonth);
 }
 
@@ -26,6 +28,10 @@ function nextM() {
     let NowYear = (nowMonth === 11) ? nowYear + 1 : nowYear;
     let NowMonth = (nowMonth + 1) % 12;
     showCalendar(NowMonth, NowYear);
+    $("td").click(function() {
+        $("td[id]").attr("data-toggle", "modal");
+        $("td[id]").attr("data-target", "#comfirm2BtnW1340");
+    })
     return (nowYear = NowYear, nowMonth = NowMonth);
 }
 
@@ -82,6 +88,8 @@ function showCalendar(month, year) {
                 col.appendChild(cellText);
                 row.appendChild(col);
 
+                col.id = date;
+
                 if ((date < todayDate && year == today.getFullYear() && month == today.getMonth()) || year < today.getFullYear() || (year == today.getFullYear() && month < today.getMonth())) {
 
                     col.className = "tdPass";
@@ -97,6 +105,8 @@ function showCalendar(month, year) {
                 let cellText = document.createTextNode(date);
                 col.appendChild(cellText);
                 row.appendChild(col);
+
+                col.id = date;
 
                 if ((date < todayDate && year == today.getFullYear() && month == today.getMonth()) || year < today.getFullYear() || (year == today.getFullYear() && month < today.getMonth())) {
 
@@ -115,9 +125,6 @@ function showCalendar(month, year) {
                 let cellText = document.createTextNode("");
                 col.appendChild(cellText);
                 row.appendChild(col);
-
-                // col.className = "tdPass";
-
             }
 
         }
@@ -125,16 +132,4 @@ function showCalendar(month, year) {
         tbl.appendChild(row);
 
     }
-
-    // if (month <= nowMonth && date < today) {
-
-    //     col.className = "tdPass";
-
-    // } else {
-    //     col.className = "tdFutrue";
-    // }
-
 }
-
-
-// calender.insertAdjacentHTML(`beforeend`, `<div class="day"></div>`);
