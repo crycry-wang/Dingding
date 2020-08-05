@@ -5,15 +5,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="../public/stylesheets/bootstrap.min.css">
-    <script src="../public/javascript/jquery-3.5.1.min.js"></script>
-    <script src="../public/javascript/popper.min.js"></script>
-    <script src="../public/javascript//bootstrap.min.js"></script>
-    <link rel="stylesheet" href="../public/stylesheets/style.css">
-    <link rel="stylesheet" href="../public/stylesheets/fontello.css">
-    <link rel="stylesheet" href="../public/stylesheets/sider.css">
-    <link rel="stylesheet" href="../public/stylesheets/meal.css">
-    <script src="../public/javascript/vue.js"></script>
+    <link rel="stylesheet" href="/stylesheets/bootstrap.min.css">
+    <script src="/javascript/jquery-3.5.1.min.js"></script>
+    <script src="/javascript/popper.min.js"></script>
+    <script src="/javascript//bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <link rel="stylesheet" href="/stylesheets/fontello.css">
+    <link rel="stylesheet" href="/stylesheets/sider.css">
+    <link rel="stylesheet" href="/stylesheets/meal.css">
+    <script src="/javascript/vue.js"></script>
     <title>Document</title>
 
 
@@ -22,15 +22,15 @@
 <body>
     <!-- 左邊sider -->
     <div class="slider fixed-top">
-        <img src="../public/image/LOGO.png" class="sliderLogo">
+        <img src="/image/LOGO.png" class="sliderLogo">
         <br>
-        <img src="../public/image/photo.jpg" class="sliderPhoto">
+        <img src="/image/photo.jpg" class="sliderPhoto">
         <p class="name text24B">尊品原汁牛肉麵</p>
         <div class="menu text24R ">
 
             <a href=""><i class="icon-order"></i>訂單管理</a>
             <a href="" class="act"><i class="icon-menu"></i>餐點清單</a>
-            <a href=""><i class="icon-statistics"></i>營運統計</a>
+            <a href="sStat"><i class="icon-statistics"></i>營運統計</a>
             <a href=""><i class="icon-evaluation"></i>店家評價</a>
             <a href=""><i class="icon-message"></i>通知<span class="note">3</span></a>
             <a href=""><i class="icon-about"></i>店家資訊</a>
@@ -80,13 +80,13 @@
                 <ul class="scrollList mealList">
                     <li class="row col-12 d-flex align-items-center" v-for='(item,index) in product'>
                         <div class="fst col-1" v-if='item.recommendProduct==1'>
-                            <img src="../public/image/first.png">
+                            <img src="/image/first.png">
                         </div>
                         <div class="snd col-1" v-if='item.recommendProduct==2'>
-                            <img src="../public/image/second.png">
+                            <img src="/image/second.png">
                         </div>
                         <div class="trd col-1" v-if='item.recommendProduct==3'>
-                            <img src="../public/image/third.png">
+                            <img src="/image/third.png">
                         </div>
                         <div class="col-1" v-if='!item.recommendProduct'></div>
                         <div class="col-3">
@@ -96,7 +96,7 @@
                             {{(item.productPrice).toLocaleString('en-US')}}
                         </div>
                         <div class="col-1">
-                            <img :src="(`../public/image/${item.productPhoto}`)">
+                            <img :src="(`/image/${item.productPhoto}`)">
                         </div>
                         <div class="col-6">
                             <div class="d-flex align-items-center">
@@ -135,7 +135,7 @@
                             <div class="upload "> <button class="dbtn btnLG text20R align-middle ">上傳圖片</button></div>
                         </span>
                         <span class="d-inline-block" v-else>
-                            <img :src="(`../public/image/${productPhoto}`)">
+                            <img :src="(`/image/${productPhoto}`)">
                         </span>
                         <ul class="d-inline-block inputInfo">
                             <li>
@@ -286,7 +286,7 @@
                         <li class="align-middle row recommendItem">
                             <div class="col-3">
                                 <p class="d-inline-block text24B align-middle mr-3">推薦</p>
-                                <span class="fst align-middle"><img src="../public/image/first.png"></span>
+                                <span class="fst align-middle"><img src="/image/first.png"></span>
                             </div>
                             <div class="row col-9">
                                 <div class="ddselect col-6">
@@ -317,7 +317,7 @@
                         <li class="align-middle row recommendItem">
                             <div class="col-3">
                                 <p class="d-inline-block text24B align-middle mr-3">推薦</p>
-                                <span class="snd align-middle"><img src="../public/image/second.png"></span>
+                                <span class="snd align-middle"><img src="/image/second.png"></span>
                             </div>
                             <div class="row col-9">
                                 <div class="ddselect col-6">
@@ -348,7 +348,7 @@
                         <li class="align-middle row recommendItem">
                             <div class="col-3">
                                 <p class="d-inline-block text24B align-middle mr-3">推薦</p>
-                                <span class="trd align-middle"><img src="../public/image/third.png"></span>
+                                <span class="trd align-middle"><img src="/image/third.png"></span>
                             </div>
                             <div class="row col-9">
                                 <div class="ddselect col-6">
