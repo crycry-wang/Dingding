@@ -1,47 +1,10 @@
-let data = {
-    list: [
-        { groupNum: '1node6', groupName: '火鍋團', groupLeader: '阿信' },
-        { groupNum: '1node6', groupName: '火鍋團', groupLeader: '阿信' },
-        { groupNum: '1node6', groupName: '火鍋團', groupLeader: '阿信' },
-        { groupNum: '1node6', groupName: '火鍋團', groupLeader: '阿信' },
-        { groupNum: '1node6', groupName: '火鍋團', groupLeader: '阿信' },
-        { groupNum: '1node6', groupName: '火鍋團', groupLeader: '阿信' },
-        { groupNum: '1node6', groupName: '火鍋團', groupLeader: '阿信' },
-        { groupNum: '1node6', groupName: '火鍋團', groupLeader: '阿信' },
-        { groupNum: '1node6', groupName: '火鍋團', groupLeader: '阿信' },
-        { groupNum: '1node6', groupName: '火鍋團', groupLeader: '阿信' },
-        { groupNum: '1node6', groupName: '火鍋團', groupLeader: '阿信' },
-        { groupNum: '1node6', groupName: '火鍋團', groupLeader: '阿信' },
-        { groupNum: '1node6', groupName: '火鍋團', groupLeader: '阿信' },
-        { groupNum: '1node6', groupName: '火鍋團', groupLeader: '阿信' },
-        { groupNum: '1node6', groupName: '火鍋團', groupLeader: '阿信' },
-        { groupNum: '1node6', groupName: '火鍋團', groupLeader: '阿信' },
-        { groupNum: '1node6', groupName: '火鍋團', groupLeader: '阿信' },
-        { groupNum: '1node6', groupName: '火鍋團', groupLeader: '阿信' },
-        { groupNum: '1node6', groupName: '火鍋團', groupLeader: '阿信' },
-        { groupNum: '1node6', groupName: '火鍋團', groupLeader: '阿信' },
-        { groupNum: '1node6', groupName: '火鍋團', groupLeader: '阿信' },
-        { groupNum: '1node6', groupName: '火鍋團', groupLeader: '阿信' },
-        { groupNum: '1node6', groupName: '火鍋團', groupLeader: '阿信' },
-        { groupNum: '1node6', groupName: '火鍋團', groupLeader: '阿信' },
-        { groupNum: '1node6', groupName: '火鍋團', groupLeader: '阿信' },
-        { groupNum: '1node6', groupName: '火鍋團', groupLeader: '阿信' },
-        { groupNum: '1node6', groupName: '火鍋團', groupLeader: '阿信' },
-        { groupNum: '1node6', groupName: '火鍋團', groupLeader: '阿信' },
-        { groupNum: '1node6', groupName: '火鍋團', groupLeader: '阿信' },
-        { groupNum: '1node6', groupName: '火鍋團', groupLeader: '阿信' },
-        { groupNum: '1node6', groupName: '火鍋團', groupLeader: '阿信' },
-        { groupNum: '1node6', groupName: '火鍋團', groupLeader: '阿信' },
-        { groupNum: '1node6', groupName: '火鍋團', groupLeader: '阿信' },
-        { groupNum: '1node6', groupName: '火鍋團', groupLeader: '阿信' },
-        { groupNum: '1node6', groupName: '火鍋團', groupLeader: '阿信' },
-        { groupNum: '1node6', groupName: '火鍋團', groupLeader: '阿信' },
-        { groupNum: '1node6', groupName: '火鍋團', groupLeader: '阿信' },
-        { groupNum: '1node6', groupName: '火鍋團', groupLeader: '阿信' }
-    ]
-}
+// let data = {
+//     list: JSON.parse('<%- jsonStr %>')
+// }
 
-new Vue({
+let app = new Vue({
     el: '#app',
-    data: data
+    data: {
+        list: JSON.parse('<%- jsonStr %>')
+    }
 })

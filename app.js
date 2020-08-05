@@ -9,6 +9,13 @@ var usersRouter = require('./routes/users');
 
 var app = express();
 
+// 設定router
+var mgrouter = require('./routes/MG')
+
+// 連線資料庫
+const db = require('./model/db');
+const { state } = require('./model/db');
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -19,8 +26,18 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// db state
+app.use(function(req,res,next){
+  req.db = db;
+  next();
+});
+
+
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+
+// 使用router
+app.use('/mg', mgrouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
