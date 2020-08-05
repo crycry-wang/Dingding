@@ -117,115 +117,7 @@
     padding: 16px 25px 16px 20px;
 }
 
-/* 店家彈框 */
-.storeModelImg {
-    width: 1440px;
-    height: 350px;
-    background-image: url(../image/store/Taichung/太初麵食/index.jpeg);
-    background-repeat: no-repeat;
-    background-size: 1440px auto;
-    background-size: cover;
-    display: block;
-    background-position: 50% 50%;
-    /* position: fixed; */
-    border-top-left-radius: 20px !important;
-    border-top-right-radius: 20px !important;
-    /* z-index: 999; */
-}
 
-.storeModelImg>img {
-    width: 1440px;
-    height: auto;
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
-
-}
-
-.storeModelImgContent {
-    background-color: var(--dWhite);
-    width: 543px;
-    /* height: 190px; */
-    margin-top: 62px;
-    padding-top: 40px;
-    padding-left: 46px;
-    padding-bottom: 40px;
-}
-
-.storeModelImgContent>.icon-spoon,
-.storeModelImgContent>.icon-borderspoon {
-    font-size: 24px;
-    color: var(--dYellow);
-    margin-left: -6px;
-    margin-right: -6px;
-}
-
-
-.storeModelImgContentBottom {
-    width: 543px;
-    padding-left: 42px;
-    margin-top: 27px;
-    margin-bottom: 26px;
-}
-
-/* 店家彈框內的愛心icon */
-.storeModelImgContentBottom>.icon-heart {
-    color: var(--dWhite);
-    opacity: 0.6;
-    font-size: 30px;
-}
-
-/* 愛心icon hover +透明度調高 */
-.icon-heart:hover {
-    opacity: 0.8;
-}
-
-/* 店家彈框XX */
-.storeClose {
-    color: var(--dWhite);
-}
-/* 側邊分類小標題清單 */
-.storeUl>li {
-    margin-bottom: 25px;
-}
-.storeUl{
-    /* width: 100px; */
-    margin-right: 40px;
-    margin-top: 40px;
-}
-
-/* 店家彈框側邊小分類標題前面的黃線 */
-.storeContent::before{
-    content: '';
-    display: block;
-    border-radius: 1px;
-    background-color: var(--dYellow);
-    opacity: 0;
-    height: 2px;
-    width: 25px;
-    margin-left: -39px;
-    margin-bottom: -11px;
-}
-
-/* 被點選的分類標題要加的class */
-.actMeals{
-    color: var(--dYellow) !important;
-    font-weight: 700;
-}
-.actMeals.storeContent::before{
-    opacity: 1;
-}
-
-/* 預設分類小標題文字顏色 */
-li>.storeContent {
-    font-size: 1rem;
-    color: #777777;
-}
-
-/* 預設分類小標題hover樣式 */
-li>.storeContent:hover {
-    color: var(--dYellow);
-    transition-duration: 0.5s;
-}
 
 /* 地區選擇 */
 input[type="checkbox"] {
@@ -260,12 +152,15 @@ input[type=checkbox]:checked::after {
 
 .area {
     margin-bottom: 23px;
+    width: 135px;
+    display: inline-block;
 }
 
 .areaBlock {
     width: 313px;
-    height: 190px;
+    height: auto;
     padding-left: 20px;
+    padding-right: 18px;
     padding-top: 22px;
     padding-bottom: 15px;
     line-height: 0px;

@@ -8,14 +8,21 @@
 </head>
 
 <body>
-    <h1>apple</h1>
-    <h1>apple</h1>
-    <h1>apple</h1>
-    <h1>apple</h1>
-    <h1>apple</h1>
-    <h1>apple</h1>
-    <h1>apple</h1>
-    <h1>apple</h1>
+    <button onclick="q()">apple</button>
+    <input type="checkbox" class="bee">
+    <input type="checkbox">
+    <input type="checkbox">
+    <input type="checkbox">
+    <input type="checkbox">
+    <input type="checkbox">
+    <input type="text">
+
+    <script>
+        function q(){
+            var ar = document.querySelectorAll("input[type='checkbox'][class='bee']:checked");
+            console.log(ar);
+        }
+    </script>
 </body>
 
 </html>
