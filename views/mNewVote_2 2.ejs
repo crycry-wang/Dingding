@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="../public/stylesheets/bootstrap.min.css">
+    <script src="../public/javascript/jquery-3.5.1.min.js"></script>
+    <script src="../public/javascript/popper.min.js"></script>
+    <script src="../public/javascript//bootstrap.min.js"></script>
+    <script src="../public/javascript/vue.js"></script>
+    <link rel="stylesheet" href="../public/stylesheets/style.css">
+    <link rel="stylesheet" href="../public/stylesheets/fontello.css">
+    <link rel="stylesheet" href="../public/stylesheets/sider.css">
+    <link rel="stylesheet" href="../public/stylesheets/member.css">
+
+    <title>Document</title>
+    <style>
+        .dblock {
+            height: calc(100vh - 186px);
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <!-- 右邊內容放置區 -->
+    <div class="slider fixed-top">
+        <img src="../public/image/LOGO.png" class="sliderLogo">
+        <br>
+        <img src="../public/image/photo.jpg" class="sliderPhoto">
+        <p class="name text24B">阿信</p>
+        <div class="menu text24R">
+            <a href=""><i class="icon-home"></i>首頁</a>
+            <a href="" class="act"><i class="icon-claendar"></i>訂訂行事曆</a>
+            <a href="" class="mb-2"><i class="icon-member"></i>會員中心<i class="icon-down-open ml-3 mr-0"
+                    style="font-size: 14px;"></i></a>
+            <span class="menuI d-none">
+                <a href="" class="mb-0">個人資料</a>
+                <a href="">我的訂訂幣</a>
+            </span>
+            <a href="" class="mt-4"><i class="icon-message"></i>通知<span class="note">3</span></a>
+            <a href="" id="signOut"><i class="icon-logout"></i>登出</a>
+        </div>
+    </div>
+
+    <!-- 右邊內容 -->
+    <div class="containerRight">
+        <div class="inWrapper">
+            <!-- 上方頁籤 -->
+            <div class="topBtnGroup topBtnPadding">
+                <button class="text20R dbtn btnGY">訂訂行事曆</button>
+                <button class="text20R dbtn btnGY">我的團體</button>
+                <button class="text20R dbtn btnGY">我的訂單</button>
+                <button class="text20R dbtn btnGB btnB">我的投票</button>
+            </div>
+            <!-- 內容區塊 -->
+            <div id="app" class="dblock givePadding mt-m">
+                <!-- 內容按鈕 -->
+                <div class="clearfix mb-s">
+                    <button class="text20RG dbtn btnG"><i class="icon-left-open mr-2"></i>返回</button>
+                    <button class="text20R dbtn btnB float-right">建立投票</button>
+                </div>
+                <div class="scrollList orderVoteListM">
+                    <!-- 上方內容 -->
+                    <div class="ml-4">
+                        <div class="row mb-s mTD">
+                            <div class="dSelect" style="width: 500px;">
+                                <input type="text" class="text20RG singleText398" placeholder="請輸入店家名稱">
+                            </div>
+                            <button class="text20R dbtn btnB ml-3">搜尋店家</button>
+                        </div>
+                        <div class="mTD">
+                            <a href="#" class="text20R text-decoration-none pr-3 textY">已選取</a><span class="textG">|</span>
+                            <a href="#" class="text20R text-decoration-none pr-3 pl-3">推薦</a><span class="textG">|</span>
+                            <a href="#" class="text20R text-decoration-none pr-3 pl-3">收藏</a>
+                        </div>
+                    </div>
+                    <!-- 水平線 -->
+                    <div class="orderSection mt-n2">
+                        <hr class="mb-4" style="border: 1px solid var(--dLightGray);">
+                    </div>
+                    <!-- 商品卡 -->
+                    <div class="row imgCardGroup">
+                        <div v-for="(store,index) in storeList" class="col-4 imgCard">
+                            <input class="form-check-input" type="checkbox" id="blankCheckbox" value="option1"
+                                aria-label="...">
+                            <div class="dingImgDiv" style="width:  100%">
+                                <img :src="storeList[index].storePhoto" class="card-img-top dingImg"
+                                    alt="...">
+                                <div class="card-body">
+                                    <div class="d-inline-block w-75">
+                                        <span class="card-text text24B shopName">{{ store.storeName }}</span>
+                                    </div>
+                                    <i class="icon-spoon float-right"></i>
+                                    <span class="card-text eng24R float-right" style="margin-right: 7px;">{{store.storeScore}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../public/javascript/data.js"></script>
+    <script>
+        let app = new Vue({
+            el:"#app",
+            data:data
+        })
+    </script>
+
+</body>
+
+</html>

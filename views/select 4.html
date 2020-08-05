@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="../public/stylesheets/bootstrap.min.css">
+    <script src="../public/javascript/jquery-3.5.1.min.js"></script>
+    <script src="../public/javascript/popper.min.js"></script>
+    <script src="../public/javascript//bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../public/stylesheets/style.css">
+    <link rel="stylesheet" href="../public/stylesheets/fontello.css">
+
+
+    <title>Document</title>
+
+    <style>
+        select {
+            /*去除外邊框*/
+            border: none;
+            /*適應safari瀏覽器內容不跑偏*/
+            line-height: 1;
+            width: 500px;
+            /*將預設的select選擇框樣式清除*/
+            appearance: none;
+            -moz-appearance: none;
+            -webkit-appearance: none;
+            /*在選擇框的最右側中間顯示小箭頭圖片*/
+            padding-right: 14px;
+            height: 48px;
+            border-radius: 24px 24px 24px 24px;
+        }
+        
+        .dSelectText {
+            background-color: var(--dLightGray);
+        }
+        
+        option {
+            outline: none;
+        }
+        
+        .text20R option {
+            font-size: 1.25rem;
+            font-weight: 400;
+            color: var(--dBlack);
+            letter-spacing: 2px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- 自製下拉式選單 -->
+    <div class="ddselect" style="width: 500px;">
+        <div class="dSelect" style="width: 500px;">
+            <div class="dSelectText text20R">選擇團體</div>
+        </div>
+        <div class="dOptionDivOff" style="width: 500px;">
+            <div class="dOption text20R">選擇團體</div>
+            <div class="dOption text20R">火鍋團</div>
+            <div class="dOption text20R">被程式耽誤的通靈王</div>
+        </div>
+    </div>
+    <br><br>
+    <div class="ddselect" style="width: 500px;">
+        <div class="dSelectClick " style="width: 500px;">
+            <div class="dSelectText text20R">選擇團體</div>
+        </div>
+        <div class="dOptionDivOn" style="width: 500px;">
+            <div class="dOption text20R">隨便吃團</div>
+            <div class="dOption text20R">火鍋團</div>
+            <div class="dOption text20R">被程式耽誤的通靈王</div>
+        </div>
+    </div>
+    <br><br><br><br><br><br><br><br>
+
+
+
+    <!-- 下拉選單 -->
+    <form>
+        <select name="YourLocation" class="text20R dSelectText ">
+            　<option value="Taipei" style="outline: none;">台北</option>
+            　<option value="Taoyuan" >桃園</option>
+            　<option value="Hsinchu" >新竹</option>
+            　<option value="Miaoli" >苗栗</option>
+            
+        </select>
+    </form>
+
+
+    <!-- <table class="dtable ">
+        <tr class="text20BW dtr thG ">
+            <th>編號</th>
+            <th>餐點名稱</th>
+        </tr>
+
+    </table>
+    <br><br><br>
+    <table class="dtable ">
+        <tr class="text20BW dtr ">
+            <th>編號</th>
+            <th>餐點名稱</th>
+        </tr>
+        <tr class="dtr ">
+            <td>1</td>
+            <td>摩斯熱狗堡</td>
+        </tr>
+    </table>
+    <br><br><br>
+    <table class="dtable ">
+        <tr class="text20BW dtr thB ">
+            <th>編號</th>
+            <th>餐點名稱</th>
+        </tr>
+        <tbody>
+            <tr class="dtrtd ">
+                <td>1</td>
+                <td>摩斯熱狗堡</td>
+            </tr>
+            <tr class="dtrtd ">
+                <td>1</td>
+                <td>摩斯熱狗堡</td>
+            </tr>
+        </tbody>
+    </table>
+    <br><br><br> -->
+
+</body>
+
+</html>
