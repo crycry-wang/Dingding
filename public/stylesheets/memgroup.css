@@ -45,12 +45,12 @@
 
 .pl-m {
     padding-left: 32px;
-
 }
 
 .pl-xm {
     padding-left: 40px;
 }
+
 
 /* li */
 
@@ -324,7 +324,7 @@
 }
 
 .dblock {
-    height: calc( 100vh - 186px);
+    max-height: calc( 100vh - 186px);
 }
 
 
