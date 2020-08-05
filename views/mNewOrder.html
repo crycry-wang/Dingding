@@ -95,7 +95,7 @@
                                     <span class="text20B">點餐截止時間</span>
                                 </div>
                                 <div class="dSelect" style="width: 500px;">
-                                    <input v-model="orderDeadline" type="date" class="text20RG singleText398"
+                                    <input v-model="orderDeadline" type="datetime-local" class="text20RG singleText398"
                                         placeholder="選擇日期時間">
                                 </div>
                             </div>
@@ -290,7 +290,17 @@
                     localStorage.selectedStore = this.selectedStore;
                     // console.log('now pretend I did more stuff...');
                 },              
- 
+                searchStore:function(){
+                    let finalStoreList = this.storeList;
+                    if(this.searchCondition){
+                        return this.storeList
+                    }else{
+                        finalStoreList = this.storeList.filter(store => {
+                            return this.storeList.storeName.toLowerCase().indexOf(this.searchCondition.toLowerCase()) != -1
+                        })
+                    }
+                    return finalStoreList;
+                }
   
             }
         })

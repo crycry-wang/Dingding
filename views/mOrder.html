@@ -347,9 +347,9 @@
                             <i class=" icon-close"></i>
                         </button>
                     </div>
-                    <div class="orderProductItemList text24R">
+                    <div class="orderProductItemList text20B">
                         <div class="scrollList orderVoteList">
-                            <div v-for="(product,index) in productList" class="d-flex justify-content-between orderProductItem mb-2">
+                            <div v-for="(product,index) in fitlterProductList" class="d-flex justify-content-between orderProductItem mb-2">
                                 <div>
                                     <img :src="product.productPhoto" alt="" class="itemImg">
                                     <span class="pl-2">
@@ -357,12 +357,12 @@
                                     </span>
                                 </div>
                                 <div>
-                                    <span class="eng24R price">
+                                    <span class="eng20R price">
                                     <span class="align-middle">{{product.productPrice}}</span>
                                     </span>
                                 </div>
                                 <div>
-                                    <span class="eng24R productQuantity">{{product.quality}}</span>
+                                    <span class="eng20R align-middle productQuantity pr-5">{{product.quality}}</span>
                                 </div>
                             </div>
                         </div>
@@ -501,6 +501,9 @@
 
                         });
                         return sum.toLocaleString('en-US');
+                    },
+                    fitlterProductList:function(){
+                        return this.productList.filter(product=>product.quality > 0)
                     }
                 },
                 // methods: {
