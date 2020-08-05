@@ -39,15 +39,15 @@
             <br>
             <img src="/image/photo.jpg" class="sliderPhoto">
             <p class="name text24B">尊品原汁牛肉麵</p>
-            <div class="menu text24R">
+            <div class="menu text24R ">
 
-                <a href=""><i class="icon-order" style="font-size: 30px;"></i>訂單管理</a>
+                <a href="" class=""><i class="icon-order"></i>訂單管理</a>
                 <a href=""><i class="icon-menu"></i>餐點清單</a>
-                <a href=""><i class="icon-statistics" style="font-size: 30px;"></i>營運統計</a>
-                <a href=""><i class="icon-evaluation" style="font-size: 30px;"></i>店家評價</a>
-                <a href=""><i class="icon-message" style="font-size: 30px;"></i>通知</a>
-                <a href="" class="act"><i class="icon-about"></i>店家資訊</a>
-                <a href="/" id="signOut"><i class="icon-logout"></i>登出</a>
+                <a href=""><i class="icon-statistics"></i>營運統計</a>
+                <a href=""><i class="icon-evaluation"></i>店家評價</a>
+                <a href=""><i class="icon-message "></i>通知<span class="note">3</span></a>
+                <a href="sInformation" class="act"><i class="icon-about"></i>店家資訊</a>
+                <a href="" id="signOut"><i class="icon-logout"></i>登出</a>
             </div>
         </div>
 
@@ -55,8 +55,7 @@
             <!-- 右邊內容放置區 -->
             <div class="btnDiv mb-m">
                 <div class="rightbtn">
-                    <button class="text20BW dbtn btnB" style="margin-right: 15px;" data-toggle="modal"
-                        :data-target="'#storeModel'+ id">店家資訊預覽</button>
+                    <button class="text20BW dbtn btnB" style="margin-right: 15px;" data-toggle="modal" :data-target="'#storeModel'+ id">店家資訊預覽</button>
                     <!-- <button class="text20R dbtn btnW" style="margin-right: 5px;">取消</button> -->
                     <button class="text20R dbtn btnY" data-toggle="modal" data-target="#comfirm2Btn">儲存</button>
                 </div>
@@ -64,8 +63,7 @@
             <div class="row">
                 <div class="col-8 mInfo" style="height: 900px;">
                     <div class="d-flex">
-                        <div :style="'background-image: url(/image/store/' + storeBanner + ');'"
-                            class="memberPhoto icon-photo-1">
+                        <div :style="'background-image: url(/image/store/' + storeBanner + ');'" class="memberPhoto icon-photo-1">
                         </div>
                     </div>
                     <!-- 左邊店家基本資訊 -->
@@ -86,8 +84,7 @@
                         </div>
                         <div class=" storeTitleDiv w-100">
                             <span class="text20B storeTitle">店家地址</span>
-                            <input type="text" class="singleText398 text20R" placeholder="請輸入完整地址"
-                                v-model="storeAddress">
+                            <input type="text" class="singleText398 text20R" placeholder="請輸入完整地址" v-model="storeAddress">
                         </div>
                         <div class=" storeTitleDiv w-100">
                             <span class="text20B storeTitle">營業時間</span>
@@ -98,10 +95,8 @@
                             <input type="text" class="singleText398 text20R" placeholder="請輸入公休日" v-model="storeClose">
                         </div>
                         <div class=" storeTitleDiv w-100">
-                            <span class="text20B storeTitle"
-                                style="display: inline-block;position: relative;bottom: 100px;">店家簡介</span>
-                            <textarea type="text" class="multiText398 text20R d-inline-block aboutTextarea"
-                                placeholder="請輸入店家簡介" v-model="storeIntroduction"></textarea>
+                            <span class="text20B storeTitle" style="display: inline-block;position: relative;bottom: 100px;">店家簡介</span>
+                            <textarea type="text" class="multiText398 text20R d-inline-block aboutTextarea" placeholder="請輸入店家簡介" v-model="storeIntroduction"></textarea>
                         </div>
                     </div>
                 </div>
@@ -111,53 +106,39 @@
 
                         <div class="mb-l">
                             <span class="text20B" style="margin-right: 50px;">配送地區</span>
-                            <button class="dbtn text20R" data-toggle="modal" data-target="#comfirm2BtnW1340"
-                                style="margin-bottom: 24px;background-color: var(--dLightGray);">
+                            <button class="dbtn text20R" data-toggle="modal" data-target="#comfirm2BtnW1340" style="margin-bottom: 24px;background-color: var(--dLightGray);">
                                 選擇地區
                                 <span class="ml-2">+</span>
                             </button>
                             <br>
                             <div class="w-100 scrollList" style="max-height: calc(100vh - 600px);">
-                                <button class="dbtn btnY text20B"
-                                    style="margin-bottom: 20px;padding-left: 16px;padding-right: 12px;">台中市北屯區 <i
+                                <button class="dbtn btnY text20B" style="margin-bottom: 20px;padding-left: 16px;padding-right: 12px;">台中市北屯區 <i
                                         class="icon-close"></i> </button><br>
-                                <button class="dbtn btnY text20B"
-                                    style="margin-bottom: 20px;padding-left: 16px;padding-right: 12px;">台中市北屯區 <i
+                                <button class="dbtn btnY text20B" style="margin-bottom: 20px;padding-left: 16px;padding-right: 12px;">台中市北屯區 <i
                                         class="icon-close"></i> </button><br>
-                                <button class="dbtn btnY text20B"
-                                    style="margin-bottom: 20px;padding-left: 16px;padding-right: 12px;">台中市北屯區 <i
+                                <button class="dbtn btnY text20B" style="margin-bottom: 20px;padding-left: 16px;padding-right: 12px;">台中市北屯區 <i
                                         class="icon-close"></i> </button><br>
-                                <button class="dbtn btnY text20B"
-                                    style="margin-bottom: 20px;padding-left: 16px;padding-right: 12px;">台中市北屯區 <i
+                                <button class="dbtn btnY text20B" style="margin-bottom: 20px;padding-left: 16px;padding-right: 12px;">台中市北屯區 <i
                                         class="icon-close"></i> </button><br>
-                                <button class="dbtn btnY text20B"
-                                    style="margin-bottom: 20px;padding-left: 16px;padding-right: 12px;">台中市北屯區 <i
+                                <button class="dbtn btnY text20B" style="margin-bottom: 20px;padding-left: 16px;padding-right: 12px;">台中市北屯區 <i
                                         class="icon-close"></i> </button><br>
-                                <button class="dbtn btnY text20B"
-                                    style="margin-bottom: 20px;padding-left: 16px;padding-right: 12px;">台中市北屯區 <i
+                                <button class="dbtn btnY text20B" style="margin-bottom: 20px;padding-left: 16px;padding-right: 12px;">台中市北屯區 <i
                                         class="icon-close"></i> </button><br>
-                                <button class="dbtn btnY text20B"
-                                    style="margin-bottom: 20px;padding-left: 16px;padding-right: 12px;">台中市北屯區 <i
+                                <button class="dbtn btnY text20B" style="margin-bottom: 20px;padding-left: 16px;padding-right: 12px;">台中市北屯區 <i
                                         class="icon-close"></i> </button><br>
-                                <button class="dbtn btnY text20B"
-                                    style="margin-bottom: 20px;padding-left: 16px;padding-right: 12px;">台中市北屯區 <i
+                                <button class="dbtn btnY text20B" style="margin-bottom: 20px;padding-left: 16px;padding-right: 12px;">台中市北屯區 <i
                                         class="icon-close"></i> </button><br>
-                                <button class="dbtn btnY text20B"
-                                    style="margin-bottom: 20px;padding-left: 16px;padding-right: 12px;">台中市北屯區 <i
+                                <button class="dbtn btnY text20B" style="margin-bottom: 20px;padding-left: 16px;padding-right: 12px;">台中市北屯區 <i
                                         class="icon-close"></i> </button><br>
-                                <button class="dbtn btnY text20B"
-                                    style="margin-bottom: 20px;padding-left: 16px;padding-right: 12px;">台中市北屯區 <i
+                                <button class="dbtn btnY text20B" style="margin-bottom: 20px;padding-left: 16px;padding-right: 12px;">台中市北屯區 <i
                                         class="icon-close"></i> </button><br>
-                                <button class="dbtn btnY text20B"
-                                    style="margin-bottom: 20px;padding-left: 16px;padding-right: 12px;">台中市北屯區 <i
+                                <button class="dbtn btnY text20B" style="margin-bottom: 20px;padding-left: 16px;padding-right: 12px;">台中市北屯區 <i
                                         class="icon-close"></i> </button><br>
                             </div>
                         </div>
                         <div style="height: 200px;">
-                            <span class="text20B" style="margin-right: 16px;">注意事項</span><span
-                                style="font-size: 16px; color: var(--dDeepGray);">(選填)</span>
-                            <textarea type="text" class="multiText398 text20R noteTextarea w-100" placeholder="填入配送注意事項"
-                                v-model="storeNotice"></textarea>
+                            <span class="text20B" style="margin-right: 16px;">注意事項</span><span style="font-size: 16px; color: var(--dDeepGray);">(選填)</span>
+                            <textarea type="text" class="multiText398 text20R noteTextarea w-100" placeholder="填入配送注意事項" v-model="storeNotice"></textarea>
                         </div>
 
                     </div>
@@ -811,8 +792,7 @@
         <div class="modal fade storeModel" :id="'storeModel'+ id">
             <div class="modal-dialog modal-dialog-scrollable">
                 <div class="modal-content">
-                    <div class="storeModelImg align-middle"
-                        :style="'background-image: url(/image/store/' + storeBanner + ');'">
+                    <div class="storeModelImg align-middle" :style="'background-image: url(/image/store/' + storeBanner + ');'">
                         <div style="display: inline-block;">
                             <div class="storeModelImgContent">
                                 <span class="text28B mr16">{{storeName}}</span>
@@ -883,10 +863,8 @@
 
                         <div class="col-10 ml-n5 mr-5">
                             <div style="background-color: var(--dWhite);width: 500px;height: 86px;padding-top: 40px;">
-                                <span class="dTag text24RG " :class="[active ? 'act' : '']"
-                                    v-on:click="tabClick(1)">美味餐點</span>
-                                <span class="dTag text24RG" :class="[active ? 'act' : '']"
-                                    v-on:click="tabClick(2)">詳細資訊</span>
+                                <span class="dTag text24RG " :class="[active ? 'act' : '']" v-on:click="tabClick(1)">美味餐點</span>
+                                <span class="dTag text24RG" :class="[active ? 'act' : '']" v-on:click="tabClick(2)">詳細資訊</span>
                                 <span class="dTag text24RG" v-on:click="tabClick(3)">店家評價</span>
                             </div>
                             <br>
@@ -1083,14 +1061,11 @@
                                 <div class="text28B mt-l" style="margin-bottom: 11px;">店家資訊</div>
                                 <div style="padding-right: 165px;padding-left: 16px;">
                                     <p class="text20R" style="color: var(--dDeepGray);margin-bottom: 7px;">
-                                        <img src="/image/Phone.png" class="storeAbout">
-                                        {{ storePhone }}</p>
+                                        <img src="/image/Phone.png" class="storeAbout"> {{ storePhone }}</p>
                                     <p class="text20R" style="color: var(--dDeepGray);margin-bottom: 7px;">
-                                        <img src="/image/Places.png" class="storeAbout">
-                                        {{ storeAddress }}</p>
+                                        <img src="/image/Places.png" class="storeAbout"> {{ storeAddress }}</p>
                                     <p class="text20R" style="color: var(--dDeepGray);margin-bottom: 15px;">
-                                        <img src="/image/Clock.png" class="storeAbout">
-                                        {{ storeOpen }}</p>
+                                        <img src="/image/Clock.png" class="storeAbout"> {{ storeOpen }}</p>
                                     <p class="text20B" style="color: var(--dRed);">公休日&nbsp;<span>週三</span>
                                     </p>
                                 </div>
@@ -1209,33 +1184,58 @@
             storeOpen: "11:00-24:00",
             storeClose: "無",
             storeNotice: "訂單滿千會額外贈送折價券!",
-            north: [
-                {
-                    country: "台北市",
-                    districtName: [
-                        { name: "中山區", id: 104, selected: true },
-                        { name: "中正區", id: 100, selected: false },
-                        { name: "松山區", id: 105, selected: false },
-                        { name: "信義區", id: 110, selected: false },
-                        { name: "大安區", id: 106, selected: false },
-                        { name: "士林區", id: 111, selected: false }
-                    ],
-                    isShow: false,
-                    isSelect: []
-                },
-                {
-                    country: "新北市",
-                    districtName: [
-                        { name: "板橋區", id: 220 },
-                        { name: "汐止區", id: 221 },
-                        { name: "深坑區", id: 222 },
-                        { name: "新店區", id: 231 },
-                        { name: "三重區", id: 241 },
-                        { name: "永和區", id: 234 }
-                    ],
-                    isShow: false
-                }
-            ]
+            north: [{
+                country: "台北市",
+                districtName: [{
+                    name: "中山區",
+                    id: 104,
+                    selected: true
+                }, {
+                    name: "中正區",
+                    id: 100,
+                    selected: false
+                }, {
+                    name: "松山區",
+                    id: 105,
+                    selected: false
+                }, {
+                    name: "信義區",
+                    id: 110,
+                    selected: false
+                }, {
+                    name: "大安區",
+                    id: 106,
+                    selected: false
+                }, {
+                    name: "士林區",
+                    id: 111,
+                    selected: false
+                }],
+                isShow: false,
+                isSelect: []
+            }, {
+                country: "新北市",
+                districtName: [{
+                    name: "板橋區",
+                    id: 220
+                }, {
+                    name: "汐止區",
+                    id: 221
+                }, {
+                    name: "深坑區",
+                    id: 222
+                }, {
+                    name: "新店區",
+                    id: 231
+                }, {
+                    name: "三重區",
+                    id: 241
+                }, {
+                    name: "永和區",
+                    id: 234
+                }],
+                isShow: false
+            }]
         }
         let storeInformation = new Vue({
             el: "#storeInformation",

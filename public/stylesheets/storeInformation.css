@@ -1,4 +1,5 @@
 /* 店家資訊區塊設定 */
+
 .information {
     height: 858px;
     /* margin-top: 40px; */
@@ -7,15 +8,17 @@
     position: relative;
 }
 
+
 /* 側欄配送地區區塊設定 */
+
 .delivery {
-    height: 900px;
+    /* height: 900px; */
     padding-top: 40px;
-    
-    
 }
 
+
 /* 右上三顆按鈕設定 */
+
 .rightbtn {
     float: right;
     /* left: 902px; */
@@ -27,22 +30,30 @@
     padding-top: 60px;
 }
 
+
 /* 三顆按鈕的 margin */
+
 .rightbtn>.btn {
     margin-right: 20px;
 }
 
+
 /* 裝店家資訊的袋子 */
+
 .storeTitleDiv {
     margin-bottom: 40px;
 }
 
+
 /* 標題文字與輸入框距離 */
+
 .storeTitle {
     margin-right: 52px;
 }
 
+
 /* 店家照片圓圈 */
+
 .memberPhoto {
     width: 150px;
     height: 150px;
@@ -70,14 +81,17 @@
     border: 2px solid var(--dYellow);
 }
 
+
 /* 圓圈裡的照片尺寸 */
+
 .circle>img {
     width: auto;
     height: 150px;
-
 }
 
+
 /* 店家資訊文字輸入框 */
+
 .aboutTextarea {
     height: 120px;
     /* position: absolute; */
@@ -86,7 +100,9 @@
     width: calc(100% - 222px);
 }
 
+
 /* 加號設定 */
+
 .newIcon {
     font-size: 12px;
     position: relative;
@@ -100,14 +116,16 @@
     margin-top: 16px;
 }
 
+
 /* 多行輸入框重新設定 */
+
 .multiText398 {
     padding: 16px 25px 16px 20px;
 }
 
 
-
 /* 地區選擇 */
+
 input[type="checkbox"] {
     -webkit-appearance: none;
     vertical-align: center;
@@ -156,21 +174,28 @@ input[type=checkbox]:checked::after {
     z-index: 1;
     position: absolute;
 }
+
+
 /* 彈框北部中部南部標題 */
-.areaTitle{
+
+.areaTitle {
     display: inline-block;
     margin-right: 24px;
 }
+
+
 /* 縣市checkbox+下拉式選單 */
-.areaSelect{
-    display: inline-block; 
-    position: relative; 
+
+.areaSelect {
+    display: inline-block;
+    position: relative;
     margin-right: 14px;
 }
-.areaSelected{
+
+.areaSelected {
     margin-bottom: 20px;
     padding-left: 16px;
-    padding-right: 12px; 
+    padding-right: 12px;
     display: inline-block;
     margin-right: 16px;
 }
