@@ -55,7 +55,7 @@
             <div id="app" class="dblock givePadding mt-m">
                 <div class="dTag act text24RG">預定訂單</div>
                 <div class="dTag text24RG">歷史訂單</div>
-                <div class="d-flex justify-content-end mr-1">
+                <div class="d-flex justify-content-end">
                     <a href="mNewOrder"><button class="text20R dbtn btnB">安排訂單<span class="ml-2">+</span></button></a>
                 </div>
                 <div class="row mt-4 text20BW">
@@ -68,8 +68,7 @@
                     <div v-for="(order,index) in orderList" class="row mTR text20B">
                         <div class="col-4 mTD">{{ order.groupName }}</div>
                         <div class="col-4 mTD">
-                            <img :src="orderList[index].storePhoto" alt=""
-                                class="float-left orderListimg clipCircle mr-3">{{ order.storeName }}</div>
+                            <img :src="orderList[index].storePhoto" alt="" class="float-left orderListimg clipCircle mr-3">{{ order.storeName }}</div>
                         <div class="col-4 mTD">{{ order.orderArrivedTime }}<i class="icon-ok float-right textY"></i></div>
                     </div>
                     <!-- <div class="row mTR text20B">
@@ -185,13 +184,22 @@
 
     <script>
         let app = new Vue({
-            el:"#app",
-            data:{
-                orderList:[
-                    {orderID:1,groupName:"隨便吃團",storeName:"太初麵食",orderArrivedTime:"2020/06/22 12:00",storePhoto:"/image/store/Taichung/太初麵食/index.jpeg"},
-                    {orderID:2,groupName:"吃到飽團",storeName:"隨主飡_法式水煮專賣",orderArrivedTime:"2020/07/06 16:20",storePhoto:"/image/store/Taichung/太初麵食/index.jpeg"}
-                ],
-            }  
+            el: "#app",
+            data: {
+                orderList: [{
+                    orderID: 1,
+                    groupName: "隨便吃團",
+                    storeName: "太初麵食",
+                    orderArrivedTime: "2020/06/22 12:00",
+                    storePhoto: "/image/store/Taichung/太初麵食/index.jpeg"
+                }, {
+                    orderID: 2,
+                    groupName: "吃到飽團",
+                    storeName: "隨主飡_法式水煮專賣",
+                    orderArrivedTime: "2020/07/06 16:20",
+                    storePhoto: "/image/store/Taichung/太初麵食/index.jpeg"
+                }],
+            }
         })
     </script>
 </body>
