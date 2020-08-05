@@ -66,11 +66,11 @@
                 <!-- 捲軸範圍 -->
                 <div class="scrollList orderVoteList">
                     <div v-for="(order,index) in orderList" class="row mTR text20B">
-                        <div class="col-4 mTD">{{ orderList[index].groupName }}</div>
+                        <div class="col-4 mTD">{{ order.groupName }}</div>
                         <div class="col-4 mTD">
                             <img :src="orderList[index].storePhoto" alt=""
-                                class="float-left orderListimg clipCircle mr-3">{{ orderList[index].storeName }}</div>
-                        <div class="col-4 mTD">{{ orderList[index].orderArrivedTime }}<i class="icon-ok float-right textY"></i></div>
+                                class="float-left orderListimg clipCircle mr-3">{{ order.storeName }}</div>
+                        <div class="col-4 mTD">{{ order.orderArrivedTime }}<i class="icon-ok float-right textY"></i></div>
                     </div>
                     <!-- <div class="row mTR text20B">
                         <div class="col-4 mTD">就愛烤肉團</div>

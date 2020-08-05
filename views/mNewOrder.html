@@ -73,8 +73,12 @@
                                     <span class="text20B">選擇團體</span>
                                 </div>
                                 <div class="dSelect" style="width: 500px;">
-                                    <input v-model="groupName" type="text" class="text20RG singleText398"
+                                    <!-- <input v-model="groupName" type="text" class="text20RG singleText398"
+                                        placeholder="選擇團體"> -->
+                                    <select v-model="groupName" name="" id="" class="text20RG singleText398 w-75"
                                         placeholder="選擇團體">
+                                        <option v-for="(group,index) in groupList" class="text20RG singleText398" value="">{{group.groupName}}</option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="row mb-s">
@@ -82,7 +86,7 @@
                                     <span class="text20B">餐點送達時間</span>
                                 </div>
                                 <div class="dSelect" style="width: 500px;">
-                                    <input v-model="orderArrivedTime" type="text" class="text20RG singleText398"
+                                    <input v-model="orderArrivedTime" type="datetime-local" class="text20RG singleText398"
                                         placeholder="選擇日期時間">
                                 </div>
                             </div>
@@ -91,16 +95,15 @@
                                     <span class="text20B">點餐截止時間</span>
                                 </div>
                                 <div class="dSelect" style="width: 500px;">
-                                    <input v-model="orderDeadline" type="text" class="text20RG singleText398"
+                                    <input v-model="orderDeadline" type="date" class="text20RG singleText398"
                                         placeholder="選擇日期時間">
                                 </div>
                             </div>
                             <div class="row mb-m mTD">
                                 <div class="dSelect" style="width: 500px;">
-                                    <input type="text" class="text20RG singleText398"
-                                        placeholder="請輸入店家名稱">
+                                    <input v-model:trim="searchCondition" type="text" class="text20RG singleText398" placeholder="請輸入店家名稱">
                                 </div>
-                                <button class="text20R dbtn btnY ml-3">搜尋店家</button>
+                                <button v-on:click="searchStore" class="text20R dbtn btnY ml-3">搜尋店家</button>
                                 <button v-on:click="randomChoose" class="text20R dbtn btnY ml-3" type="button"
                                     id="randomBtn">店家拉霸機</button>
                             </div>
@@ -121,17 +124,17 @@
                         <!-- 商品卡 -->
                         <div class="row imgCardGroup">
                             <div v-for="(store,index) in storeList" class="col-4 imgCard">
-                                <input v-model="choosedStore" class="form-check-input" type="radio" name="blankRadio" id="blankRadio1"
-                                    :value="storeList[index].storeID" aria-label="...">
+                                <input v-model="selectedStore" class="form-check-input" type="radio" name="blankRadio"
+                                    id="blankRadio1" :value="storeList[index].storeID" aria-label="...">
                                 <div class="dingImgDiv" style="width:  100%">
-                                    <img :src="storeList[index].storePhoto"
-                                        class="card-img-top dingImg" alt="...">
+                                    <img :src="storeList[index].storePhoto" class="card-img-top dingImg" alt="...">
                                     <div class="card-body">
                                         <div class="d-inline-block w-75">
-                                            <p class="card-text text24B shopName">{{ storeList[index].storeName }}</p>
+                                            <p class="card-text text24B shopName">{{ store.storeName }}</p>
                                         </div>
                                         <i class="icon-spoon float-right"></i>
-                                        <span class="card-text eng24R float-right" style="margin-right: 7px;">4.8</span>
+                                        <span class="card-text eng24R float-right"
+                                            style="margin-right: 7px;">{{store.storeScore}}</span>
                                     </div>
                                 </div>
                             </div>
@@ -219,7 +222,7 @@
 
 
 
-
+    <script src="../public/javascript/data.js"></script>
     <script>
         // let data ＝ {
         //     groupName:"aa",
@@ -234,19 +237,7 @@
 
         let app = new Vue({
             el: "#app",
-            data: {
-                groupName: "",
-                orderArrivedTime: "",
-                orderDeadline: "",
-                choosedStore: "",
-                storeList:[
-                    {storeID:1,storeName:"太初麵食",storePhoto:"../public/image/store/Taichung/太初麵食/index.jpeg",},
-                    {storeID:2,storeName:"隨主飡_法式水煮專賣賣賣賣賣賣賣賣賣賣",storePhoto:"../public/image/store/Taichung/隨主飡_法式水煮專賣/index.jpeg",}  ,                                
-                    {storeID:3,storeName:"隨主飡_法式水煮專賣賣賣賣賣賣賣賣賣賣",storePhoto:"../public/image/store/Taichung/隨主飡_法式水煮專賣/index.jpeg",}                                  
-                ]  ,
-                randaomCard:"",
-                countCard:""
-            },
+            data: data,
             mounted() {
                 if (localStorage.groupName) {
                     this.groupName = localStorage.groupName;
@@ -258,27 +249,49 @@
                     this.orderDeadline = localStorage.orderDeadline;
                 }
                 if (localStorage.orderDeadline) {
-                    this.choosedStore = localStorage.choosedStore;
+                    this.selectedStore = localStorage.selectedStore;
                 }
             },
+            computed:{
+                // searchStore(){
+                //     if(this.searchCondition){
+                //         return this.storeList
+                //     }else{
+                //         return this.storeList.filter(store => {
+                //             return this.storeList.storeName.toLowerCase().indexOf(this.searchCondition.toLowerCase()) != -1
+                //         })
+                //     }
+                // }
+                // searchStore(){
+                //     if(this.searchCondition){
+                //         return this.storeList
+                //     }else{
+                //         return this.storeList.filter(store => {
+                //             return this.storeList.storeName.toLowerCase().indexOf(this.searchCondition.toLowerCase()) != -1
+                //         })
+                //     }
+                // }
+            },
             methods: {
-                randomChoose(){
+                randomChoose:function() {
                     this.countCard = document.getElementsByClassName('imgCard').length;
-                    this.choosedStore="";
+                    this.selectedStore = "";
                     this.randaomCard = Math.floor(Math.random() * this.countCard);
                     console.log(this.countCard);
-                    this.choosedStore = document.querySelectorAll(".form-check-input")[this.randaomCard];
-                    this.choosedStore.checked = true;
-                    this.choosedStore = this.choosedStore.value;
+                    this.selectedStore = document.querySelectorAll(".form-check-input")[this.randaomCard];
+                    this.selectedStore.checked = true;
+                    this.selectedStore = this.selectedStore.value;
                     // $(`.imgCardGroup .form-check-input`).eq(randaomCard).prop("checked", true);
                 },
-                persist :function() {
+                persist: function () {
                     localStorage.groupName = this.groupName;
                     localStorage.orderArrivedTime = this.orderArrivedTime;
                     localStorage.orderDeadline = this.orderDeadline;
-                    localStorage.choosedStore = this.choosedStore;
+                    localStorage.selectedStore = this.selectedStore;
                     // console.log('now pretend I did more stuff...');
-                }
+                },              
+ 
+  
             }
         })
 

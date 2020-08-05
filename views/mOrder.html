@@ -25,7 +25,6 @@
 </head>
 
 <body>
-
     <!-- 左邊sider -->
     <div class="slider fixed-top">
         <img src="../public/image/LOGO.png" class="sliderLogo">
@@ -47,7 +46,7 @@
     </div>
 
     <!-- 右邊內容放置區 -->
-    <div class="containerRight">
+    <div id="app" class="containerRight">
         <div class="inWrapper">
             <!-- 上方頁籤 -->
             <div class="topBtnGroup topBtnPadding">
@@ -57,7 +56,7 @@
                 <button class="text20R dbtn btnGB">我的投票</button>
             </div>
             <!-- 內容區塊 -->
-            <form action="#" name="" class="dblock givePadding mt-m">
+            <div class="dblock givePadding mt-m">
                 <!-- 內容按鈕 -->
                 <div class="clearfix mb-s">
                     <button class="text20RG dbtn btnG"><i class="icon-left-open mr-2"></i>返回</button>
@@ -67,7 +66,7 @@
                         data-target="#deleteOrder">刪除訂單</button>
                 </div>
                 <!-- 捲軸範圍 -->
-                <div class="scrollList orderVoteListM">
+                <div class="scrollList orderVoteListL">
                     <!-- 上方內容 -->
                     <div class="ml-4">
                         <div class="row mb-s mTD">
@@ -75,7 +74,7 @@
                                 <span class="text20B">團名名稱</span>
                             </div>
                             <div class="col-10">
-                                <span class="text20B ">資策會便當團</span>
+                                <span class="text20B ">{{groupName}}</span>
                             </div>
                         </div>
                         <div class="row mb-s mTD">
@@ -83,7 +82,7 @@
                                 <span class="text20B">餐點送達時間</span>
                             </div>
                             <div class="col-10">
-                                <span class="text20B">2020/06/18 12:00</span>
+                                <span class="text20B">{{orderArrivedTime}}</span>
                             </div>
                         </div>
                         <div class="row mb-s mTD">
@@ -91,7 +90,7 @@
                                 <span class="text20B">點餐截止時間</span>
                             </div>
                             <div class="col-10">
-                                <span class="text20B textR">2020/06/17 12:00</span>
+                                <span class="text20B textR">{{orderDeadline}}</span>
                             </div>
                         </div>
                     </div>
@@ -101,16 +100,17 @@
                         <div class="orderSectionInner mt-s ml-4">
                             <div class="row orderSectionMTD">
                                 <div class="col-7">
-                                    <img src="../public/image/store/Taichung/朴大哥的韓式炸雞_逢甲總店/index.jpeg" alt=""
+                                    <img :src="storeList[selectedStore].storePhoto" alt=""
                                         class="float-left orderSectionImg clipCircle mr-3">
-                                    <span class="text24B">肯德基KFC_台中公益</span>
+                                    <span class="text24B">{{storeList[selectedStore].storeName}}</span>
                                 </div>
                                 <div class="col-3 text-right pr-3">
-                                    <span class="text20B">已選擇<span class="eng20R textY mr-3 ml-3">0</span>項餐點</span>
+                                    <span class="text20B">已選擇<span
+                                            class="eng20R textY mr-3 ml-3">{{totalQuality}}</span>項餐點</span>
                                 </div>
                                 <div class="col-2 text-right">
                                     <span class="text20B">總金額 <span class="eng20R price">
-                                            <span class=" align-middle">200</span>
+                                            <span class=" align-middle">{{total}}</span>
                                         </span>
                                     </span>
                                 </div>
@@ -132,6 +132,29 @@
                     <!-- 下方點餐區 -->
                     <div class="mt-4 ml-4 pt-1">
                         <div class="row mb-n1 orderSectionMTD">
+                            <div v-for="(product,index) in productList" class="col-6 itemBorder orderProductItem mb-4">
+                                <div class="row align-items-center">
+                                    <div class="col-2">
+                                        <img :src="productList[index].productPhoto" alt="" class="itemImg">
+                                    </div>
+                                    <div class="col-4 text20B pl-2">
+                                        {{product.productName}}
+                                    </div>
+                                    <div class="col-3">
+                                        <span class="eng20R price">
+                                            <span class=" align-middle">{{product.productPrice}}</span>
+                                        </span>
+
+                                    </div>
+                                    <div class="col-3 countP ml-n4">
+                                        <i @click="if(product.quality>0){product.quality--}" class="icon-minus"></i>
+                                        <p class="eng20R text-center">{{product.quality}}</p>
+                                        <i @click="product.quality++" class="icon-plus"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div class="row mb-n1 orderSectionMTD">
                             <div class="col-6 itemBorder orderProductItem ">
                                 <div class="row align-items-center">
                                     <div class="col-2">
@@ -265,56 +288,11 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row mb-n1 orderSectionMTD">
-                            <div class="col-6 itemBorder orderProductItem ">
-                                <div class="row align-items-center">
-                                    <div class="col-2">
-                                        <img src="../public/image/store/Taichung/肯德基KFC_台中公益/咔啦雞腿堡.jpeg" alt=""
-                                            class="itemImg">
-                                    </div>
-                                    <div class="col-4 text20B pl-2">
-                                        咔啦雞腿堡
-                                    </div>
-                                    <div class="col-3">
-                                        <span class="eng20R price">
-                                            <span class=" align-middle">60</span>
-                                        </span>
-
-                                    </div>
-                                    <div class="col-3 countP ml-n4">
-                                        <i class="icon-minus"></i>
-                                        <p class="eng20R text-center">0</p>
-                                        <i class="icon-plus"></i>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-6 itemBorder orderProductItem ">
-                                <div class="row align-items-center">
-                                    <div class="col-2">
-                                        <img src="../public/image/store/Taichung/肯德基KFC_台中公益/咔啦雞腿堡.jpeg" alt=""
-                                            class="itemImg">
-                                    </div>
-                                    <div class="col-4 text20B pl-2">
-                                        咔啦雞腿堡
-                                    </div>
-                                    <div class="col-3">
-                                        <span class="eng20R price">
-                                            <span class=" align-middle">60</span>
-                                        </span>
-                                    </div>
-                                    <div class="col-3 countP ml-n4">
-                                        <i class="icon-minus"></i>
-                                        <p class="eng20R text-center">0</p>
-                                        <i class="icon-plus"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        </div> -->
 
                     </div>
                 </div>
-            </form>
+            </div>
         </div>
 
 
@@ -371,151 +349,27 @@
                     </div>
                     <div class="orderProductItemList text24R">
                         <div class="scrollList orderVoteList">
-                            <div class="orderProductItem mb-2">
-                                <img src="../public/image/store/Taichung/肯德基KFC_台中公益/咔啦雞腿堡.jpeg" alt="" class="itemImg">
-                                <span class="pl-2">
-                                    咔啦雞腿堡
-                                </span>
-                                <span class="eng24R price">
-                                    <span class=" align-middle">0</span>
-                                </span>
-                                <span class="eng24R productQuantity">0</span>
-                            </div>
-                            <div class="orderProductItem mb-2">
-                                <img src="../public/image/store/Taichung/肯德基KFC_台中公益/咔啦雞腿堡.jpeg" alt="" class="itemImg">
-                                <span class="pl-2">
-                                    咔啦雞腿堡
-                                </span>
-                                <span class="eng24R price">
-                                    <span class=" align-middle">0</span>
-                                </span>
-                                <span class="eng24R productQuantity">0</span>
-                            </div>
-                            <div class="orderProductItem mb-2">
-                                <img src="../public/image/store/Taichung/肯德基KFC_台中公益/咔啦雞腿堡.jpeg" alt="" class="itemImg">
-                                <span class="pl-2">
-                                    咔啦雞腿堡
-                                </span>
-                                <span class="eng24R price">
-                                    <span class=" align-middle">0</span>
-                                </span>
-                                <span class="eng24R productQuantity">0</span>
-                            </div>
-                            <div class="orderProductItem mb-2">
-                                <img src="../public/image/store/Taichung/肯德基KFC_台中公益/咔啦雞腿堡.jpeg" alt="" class="itemImg">
-                                <span class="pl-2">
-                                    咔啦雞腿堡
-                                </span>
-                                <span class="eng24R price">
-                                    <span class=" align-middle">0</span>
-                                </span>
-                                <span class="eng24R productQuantity">0</span>
-                            </div>
-                            <div class="orderProductItem mb-2">
-                                <img src="../public/image/store/Taichung/肯德基KFC_台中公益/咔啦雞腿堡.jpeg" alt="" class="itemImg">
-                                <span class="pl-2">
-                                    咔啦雞腿堡
-                                </span>
-                                <span class="eng24R price">
-                                    <span class=" align-middle">0</span>
-                                </span>
-                                <span class="eng24R productQuantity">0</span>
-                            </div>
-                            <div class="orderProductItem mb-2">
-                                <img src="../public/image/store/Taichung/肯德基KFC_台中公益/咔啦雞腿堡.jpeg" alt="" class="itemImg">
-                                <span class="pl-2">
-                                    咔啦雞腿堡
-                                </span>
-                                <span class="eng24R price">
-                                    <span class=" align-middle">0</span>
-                                </span>
-                                <span class="eng24R productQuantity">0</span>
-                            </div>
-                            <div class="orderProductItem mb-2">
-                                <img src="../public/image/store/Taichung/肯德基KFC_台中公益/咔啦雞腿堡.jpeg" alt="" class="itemImg">
-                                <span class="pl-2">
-                                    咔啦雞腿堡
-                                </span>
-                                <span class="eng24R price">
-                                    <span class=" align-middle">0</span>
-                                </span>
-                                <span class="eng24R productQuantity">0</span>
-                            </div>
-                            <div class="orderProductItem mb-2">
-                                <img src="../public/image/store/Taichung/肯德基KFC_台中公益/咔啦雞腿堡.jpeg" alt="" class="itemImg">
-                                <span class="pl-2">
-                                    咔啦雞腿堡
-                                </span>
-                                <span class="eng24R price">
-                                    <span class=" align-middle">0</span>
-                                </span>
-                                <span class="eng24R productQuantity">0</span>
-                            </div>
-                            <div class="orderProductItem mb-2">
-                                <img src="../public/image/store/Taichung/肯德基KFC_台中公益/咔啦雞腿堡.jpeg" alt="" class="itemImg">
-                                <span class="pl-2">
-                                    咔啦雞腿堡
-                                </span>
-                                <span class="eng24R price">
-                                    <span class=" align-middle">0</span>
-                                </span>
-                                <span class="eng24R productQuantity">0</span>
-                            </div>
-                            <div class="orderProductItem mb-2">
-                                <img src="../public/image/store/Taichung/肯德基KFC_台中公益/咔啦雞腿堡.jpeg" alt="" class="itemImg">
-                                <span class="pl-2">
-                                    咔啦雞腿堡
-                                </span>
-                                <span class="eng24R price">
-                                    <span class=" align-middle">0</span>
-                                </span>
-                                <span class="eng24R productQuantity">0</span>
-                            </div>
-                            <div class="orderProductItem mb-2">
-                                <img src="../public/image/store/Taichung/肯德基KFC_台中公益/咔啦雞腿堡.jpeg" alt="" class="itemImg">
-                                <span class="pl-2">
-                                    咔啦雞腿堡
-                                </span>
-                                <span class="eng24R price">
-                                    <span class=" align-middle">0</span>
-                                </span>
-                                <span class="eng24R productQuantity">0</span>
-                            </div>
-                            <div class="orderProductItem mb-2">
-                                <img src="../public/image/store/Taichung/肯德基KFC_台中公益/咔啦雞腿堡.jpeg" alt="" class="itemImg">
-                                <span class="pl-2">
-                                    咔啦雞腿堡
-                                </span>
-                                <span class="eng24R price">
-                                    <span class=" align-middle">0</span>
-                                </span>
-                                <span class="eng24R productQuantity">0</span>
-                            </div>
-                            <div class="orderProductItem mb-2">
-                                <img src="../public/image/store/Taichung/肯德基KFC_台中公益/咔啦雞腿堡.jpeg" alt="" class="itemImg">
-                                <span class="pl-2">
-                                    咔啦雞腿堡
-                                </span>
-                                <span class="eng24R price">
-                                    <span class=" align-middle">0</span>
-                                </span>
-                                <span class="eng24R productQuantity">0</span>
-                            </div>
-                            <div class="orderProductItem mb-2">
-                                <img src="../public/image/store/Taichung/肯德基KFC_台中公益/咔啦雞腿堡.jpeg" alt="" class="itemImg">
-                                <span class="pl-2">
-                                    咔啦雞腿堡
-                                </span>
-                                <span class="eng24R price">
-                                    <span class=" align-middle">0</span>
-                                </span>
-                                <span class="eng24R productQuantity">0</span>
+                            <div v-for="(product,index) in productList" class="d-flex justify-content-between orderProductItem mb-2">
+                                <div>
+                                    <img :src="product.productPhoto" alt="" class="itemImg">
+                                    <span class="pl-2">
+                                        {{product.productName}}
+                                    </span>
+                                </div>
+                                <div>
+                                    <span class="eng24R price">
+                                    <span class="align-middle">{{product.productPrice}}</span>
+                                    </span>
+                                </div>
+                                <div>
+                                    <span class="eng24R productQuantity">{{product.quality}}</span>
+                                </div>
                             </div>
                         </div>
                         <p class="text-right" style="border-top:solid 2px var(--dBlack);">
                             <span class="text20B">總金額
                                 <span class="eng20R price">
-                                    <span class="align-middle">5,000</span>
+                                    <span class="align-middle">{{total}}</span>
                                 </span>
                             </span>
                         </p>
@@ -621,7 +475,42 @@
                 </div>
             </div>
         </div>
+        <script src="../public/javascript/data.js"></script>
+        </div>
+        <script>
+            let app = new Vue({
+                el: "#app",
+                data: data,
+                mounted() {
+                    if (localStorage.groupName) {
+                        this.groupName = localStorage.groupName;
+                    }
+                },
+                computed: {
+                    totalQuality: function () {
+                        let sum = 0;
+                        this.productList.forEach(product => {
+                            sum = sum + product.quality
+                        });
+                        return sum;
+                    },
+                    total: function () {
+                        let sum = 0;
+                        this.productList.forEach(product => {
+                            sum = sum + (product.quality * product.productPrice)
 
+                        });
+                        return sum.toLocaleString('en-US');
+                    }
+                },
+                // methods: {
+
+                // },
+                // watch: {
+
+                // }
+            })
+        </script>
 
 </body>
 
