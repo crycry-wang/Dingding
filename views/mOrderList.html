@@ -9,6 +9,7 @@
     <script src="../public/javascript/jquery-3.5.1.min.js"></script>
     <script src="../public/javascript/popper.min.js"></script>
     <script src="../public/javascript//bootstrap.min.js"></script>
+    <script src="../public/javascript/vue.js"></script>
     <link rel="stylesheet" href="../public/stylesheets/style.css">
     <link rel="stylesheet" href="../public/stylesheets/fontello.css">
     <link rel="stylesheet" href="../public/stylesheets/sider.css">
@@ -51,7 +52,7 @@
                 <button class="text20R dbtn btnGB">我的投票</button>
             </div>
             <!-- 內容區塊 -->
-            <div class="dblock givePadding mt-m">
+            <div id="app" class="dblock givePadding mt-m">
                 <div class="dTag act text24RG">預定訂單</div>
                 <div class="dTag text24RG">歷史訂單</div>
                 <div class="d-flex justify-content-end mr-1">
@@ -64,6 +65,34 @@
                 </div>
                 <!-- 捲軸範圍 -->
                 <div class="scrollList orderVoteList">
+                    <div v-for="(order,index) in orderList" class="row mTR text20B">
+                        <div class="col-4 mTD">{{ orderList[index].groupName }}</div>
+                        <div class="col-4 mTD">
+                            <img :src="orderList[index].storePhoto" alt=""
+                                class="float-left orderListimg clipCircle mr-3">{{ orderList[index].storeName }}</div>
+                        <div class="col-4 mTD">{{ orderList[index].orderArrivedTime }}<i class="icon-ok float-right textY"></i></div>
+                    </div>
+                    <!-- <div class="row mTR text20B">
+                        <div class="col-4 mTD">就愛烤肉團</div>
+                        <div class="col-4 mTD">
+                            <img src="../public/image/store/Taichung/朴大哥的韓式炸雞_逢甲總店/index.jpeg" alt=""
+                                class="float-left orderListimg clipCircle mr-3">八色</div>
+                        <div class="col-4 mTD">2020/06/18 13:00<i class="icon-ok float-right textY"></i></div>
+                    </div>
+                    <div class="row mTR text20B">
+                        <div class="col-4 mTD">隨便吃團</div>
+                        <div class="col-4 mTD">
+                            <img src="../public/image/store/Taichung/朴大哥的韓式炸雞_逢甲總店/index.jpeg" alt=""
+                                class="float-left orderListimg clipCircle mr-3">屋馬</div>
+                        <div class="col-4 mTD">2020/07/05 12:00<i class="icon-ok float-right textG"></i></div>
+                    </div>
+                    <div class="row mTR text20B">
+                        <div class="col-4 mTD">吃到飽團</div>
+                        <div class="col-4 mTD">
+                            <img src="../public/image/store/Taichung/朴大哥的韓式炸雞_逢甲總店/index.jpeg" alt=""
+                                class="float-left orderListimg clipCircle mr-3">萬客</div>
+                        <div class="col-4 mTD">2020/07/06 16:20<i class="icon-ok float-right textY"></i></div>
+                    </div>
                     <div class="row mTR text20B">
                         <div class="col-4 mTD">資策會便當團</div>
                         <div class="col-4 mTD">
@@ -91,34 +120,8 @@
                             <img src="../public/image/store/Taichung/朴大哥的韓式炸雞_逢甲總店/index.jpeg" alt=""
                                 class="float-left orderListimg clipCircle mr-3">萬客</div>
                         <div class="col-4 mTD">2020/07/06 16:20<i class="icon-ok float-right textY"></i></div>
-                    </div><div class="row mTR text20B">
-                        <div class="col-4 mTD">資策會便當團</div>
-                        <div class="col-4 mTD">
-                            <img src="../public/image/store/Taichung/朴大哥的韓式炸雞_逢甲總店/index.jpeg" alt=""
-                                class="float-left orderListimg clipCircle mr-3">清潭洞</div>
-                        <div class="col-4 mTD">2020/06/22 12:00<i class="icon-ok float-right textY"></i></div>
                     </div>
                     <div class="row mTR text20B">
-                        <div class="col-4 mTD">就愛烤肉團</div>
-                        <div class="col-4 mTD">
-                            <img src="../public/image/store/Taichung/朴大哥的韓式炸雞_逢甲總店/index.jpeg" alt=""
-                                class="float-left orderListimg clipCircle mr-3">八色</div>
-                        <div class="col-4 mTD">2020/06/18 13:00<i class="icon-ok float-right textY"></i></div>
-                    </div>
-                    <div class="row mTR text20B">
-                        <div class="col-4 mTD">隨便吃團</div>
-                        <div class="col-4 mTD">
-                            <img src="../public/image/store/Taichung/朴大哥的韓式炸雞_逢甲總店/index.jpeg" alt=""
-                                class="float-left orderListimg clipCircle mr-3">屋馬</div>
-                        <div class="col-4 mTD">2020/07/05 12:00<i class="icon-ok float-right textG"></i></div>
-                    </div>
-                    <div class="row mTR text20B">
-                        <div class="col-4 mTD">吃到飽團</div>
-                        <div class="col-4 mTD">
-                            <img src="../public/image/store/Taichung/朴大哥的韓式炸雞_逢甲總店/index.jpeg" alt=""
-                                class="float-left orderListimg clipCircle mr-3">萬客</div>
-                        <div class="col-4 mTD">2020/07/06 16:20<i class="icon-ok float-right textY"></i></div>
-                    </div><div class="row mTR text20B">
                         <div class="col-4 mTD">資策會便當團</div>
                         <div class="col-4 mTD">
                             <img src="../public/image/store/Taichung/朴大哥的韓式炸雞_逢甲總店/index.jpeg" alt=""
@@ -173,14 +176,24 @@
                             <img src="../public/image/store/Taichung/朴大哥的韓式炸雞_逢甲總店/index.jpeg" alt=""
                                 class="float-left orderListimg clipCircle mr-3">萬客</div>
                         <div class="col-4 mTD">2020/07/06 16:20<i class="icon-right-open float-right textY"></i></div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
     </div>
 
 
-
+    <script>
+        let app = new Vue({
+            el:"#app",
+            data:{
+                orderList:[
+                    {orderID:1,groupName:"隨便吃團",storeName:"太初麵食",orderArrivedTime:"2020/06/22 12:00",storePhoto:"../public/image/store/Taichung/太初麵食/index.jpeg"},
+                    {orderID:2,groupName:"吃到飽團",storeName:"隨主飡_法式水煮專賣",orderArrivedTime:"2020/07/06 16:20",storePhoto:"../public/image/store/Taichung/太初麵食/index.jpeg"}
+                ],
+            }  
+        })
+    </script>
 </body>
 
 </html>
