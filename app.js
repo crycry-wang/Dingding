@@ -44,10 +44,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 // use自定義
 app.use('/', indexRouter);
 app.use('/mCalendar', mCalendarRouter);
-app.use('/mCalendar', mCostCoinsRouter);
+app.use('/mCostCoins', mCostCoinsRouter);
 app.use('/mGroup', mGroupRouter);
 app.use('/mIndex', mIndexRouter);
-app.use('/mIndex', mMemberRouter);
+app.use('/mMember', mMemberRouter);
 app.use('/mNewGroup', mNewGroupRouter);
 app.use('/mNewOrder', mNewOrderRouter);
 app.use('/mNewVote', mNewVoteRouter);
