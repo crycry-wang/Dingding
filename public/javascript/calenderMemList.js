@@ -5,14 +5,6 @@ let data = {
     ],
     voteList: [
         { titleName: '聚餐吃什麼?', groupName: '火鍋團', timeOut: '2020/08/20 12:00', checkOn: 'true' },
-        { titleName: '貴婦們的下午茶', groupName: '就愛烤肉團', timeOut: '2020/08/20 16:00', checkOn: '' },
-        { titleName: '貴婦們的下午茶', groupName: '就愛烤肉團', timeOut: '2020/08/20 16:00', checkOn: '' },
-        { titleName: '貴婦們的下午茶', groupName: '就愛烤肉團', timeOut: '2020/08/20 16:00', checkOn: '' },
-        { titleName: '貴婦們的下午茶', groupName: '就愛烤肉團', timeOut: '2020/08/20 16:00', checkOn: '' },
-        { titleName: '貴婦們的下午茶', groupName: '就愛烤肉團', timeOut: '2020/08/20 16:00', checkOn: '' },
-        { titleName: '貴婦們的下午茶', groupName: '就愛烤肉團', timeOut: '2020/08/20 16:00', checkOn: '' },
-        { titleName: '貴婦們的下午茶', groupName: '就愛烤肉團', timeOut: '2020/08/20 16:00', checkOn: '' },
-        { titleName: '貴婦們的下午茶', groupName: '就愛烤肉團', timeOut: '2020/08/20 16:00', checkOn: '' },
         { titleName: '貴婦們的下午茶', groupName: '就愛烤肉團', timeOut: '2020/08/20 16:00', checkOn: '' }
     ]
 }
