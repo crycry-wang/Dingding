@@ -1,11 +1,994 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-  </body>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../public/stylesheets/bootstrap.min.css">
+    <script src="../public/javascript/jquery-3.5.1.min.js"></script>
+    <script src="../public/javascript/popper.min.js"></script>
+    <script src="../public/javascript//bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../public/stylesheets/style.css">
+    <link rel="stylesheet" href="../public/stylesheets/fontello.css">
+    <link rel="stylesheet" href="../public/stylesheets/sider.css">
+    <link rel="stylesheet" href="../public/stylesheets/notice.css">
+    <link rel="stylesheet" href="../public/stylesheets/sEvaluation.css">
+    <link rel="stylesheet" href="../public/stylesheets/index.css">
+    <!-- <link rel="stylesheet" href="../public/stylesheets/order.css"> -->
+    <title>dingding</title>
+    <style>
+
+
+
+    </style>
+</head>
+
+<body>
+    <div class="wrapper" id="store">
+        <!-- navbar -->
+        <nav class="mContainer">
+            <div class="navItem row">
+                <div class="col-2">
+                    <img src="../public/image/logo.png" width="106" height="32" class="d-inline-block align-middle "
+                        alt="" loading="lazy">
+                </div>
+                <div class="col-2">
+                    <div class="d-inline-block align-baseline"
+                        style="width: 260px;height: 40px;position: relative;margin-right: 40px;">
+                        <i class="icon-search" style="position: absolute;top: -1px;left: 20px;"></i>
+                        <input type="text" class="singleText398 text20R" placeholder="輸入店家名稱"
+                            style="width: 260px; height: 40px; padding-left: 56px;">
+                    </div>
+                </div>
+                <div class="col-6 rwdhidden">
+                    <span class="text20B mr16">選擇送餐地址</span>
+                    <div class="ddselect mr16">
+                        <div class="dSelect d-inline-block" style="width: 160px; top: 40px;">
+                            <div class="dSelectText text20R " style="line-height: 30px;">縣市</div>
+                        </div>
+                    </div>
+                    <div class="ddselect mr16">
+                        <div class="dSelect d-inline-block" style="width: 160px; top: 40px;">
+                            <div class="dSelectText text20R " style="line-height: 30px;">區</div>
+                        </div>
+                    </div>
+                    <div class="d-inline-block">
+                        <button class=" dbtn btnY d-inline-block"
+                            style="font-size: 16px;line-height: 30px;">尋找食物</button>
+                    </div>
+                </div>
+                <div class="col-2">
+                    <div style="float: right;">
+                        <a class="text20B mr16" data-toggle="modal" data-target="#inputXLLogin">登入</a>
+                        <span class="text20B mr16" style="color: var(--dYellow);">|</span>
+                        <a class="text20B" data-toggle="modal" data-target="#inputXLregistered">註冊</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+
+        <!-- Banner -->
+        <div class="dBanner">
+            <div class="">
+                <div class="container">
+                    <p class="bannerText text-center">決「訂」您的每一餐
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 熱門店家 -->
+        <div class="mContainer givePadding" style="margin-top: 66px;">
+            <h3 class="text28B text28Padding">
+                熱門店家
+                <img class="lrImg" src="../public/image/right.png" alt="" v-on:click="handleChange(3)">
+                <img class="lrImg" src="../public/image/left.png" alt="" style="margin-right: 8px;"
+                    v-on:click="handleChange(-3)">
+            </h3>
+            <div class="row">
+                <div class="col-4 pr-3 imgCard" v-for="(item,index) in filterStore" :key="index">
+                    <div class="dingImgDiv" style="width:  100%">
+                        <img :src="'../public/image/store/' + item.storeBanner" class="card-img-top dingImg" alt="..."
+                            data-toggle="modal" :data-target="'#storeModel'+ item.id">
+                        <i class="heart icon-heart" style="opacity: 1;z-index: 999;" v-on:click="handleLike(item.id)"
+                            v-if="item.likeStore"></i>
+                        <i class="heart icon-heart" style="z-index: 999;" v-on:click="handleLike(item.id)" v-else></i>
+
+                        <div class="card-body">
+                            <div class="d-inline-block w-75">
+                                <span class="card-text text24B shopName">{{item.storeName}}</span>
+                            </div>
+                            <i class="icon-spoon float-right"></i>
+                            <span class="card-text eng24R float-right"
+                                style="margin-right: 7px;">{{item.comment}}</span>
+
+                        </div>
+                    </div>
+                    <!-- 店家彈框(有評價) -->
+                    <div class="modal fade storeModel" :id="'storeModel'+ item.id">
+                        <div class="modal-dialog modal-dialog-scrollable">
+                            <div class="modal-content">
+                                <div class="storeModelImg align-middle"
+                                    :style="'background-image: url(../public/image/store/' + item.storeBanner + ');'">
+                                    <div style="display: inline-block;">
+                                        <div class="storeModelImgContent">
+                                            <span class="text28B mr16">{{item.storeName}}</span>
+                                            <span class="eng24R mr16">{{item.comment}}</span>
+                                            <div class="spoon" style="display: inline-block;" v-if="item.comment == 5">
+                                                <i class="icon-spoon"></i>
+                                                <i class="icon-spoon"></i>
+                                                <i class="icon-spoon"></i>
+                                                <i class="icon-spoon"></i>
+                                                <i class="icon-spoon"></i>
+                                            </div>
+                                            <div class="spoon" style="display: inline-block;"
+                                                v-if="item.comment>4 && item.comment<5">
+                                                <i class="icon-spoon"></i>
+                                                <i class="icon-spoon"></i>
+                                                <i class="icon-spoon"></i>
+                                                <i class="icon-spoon"></i>
+                                                <i class="icon-borderspoon"></i>
+                                            </div>
+                                            <div class="spoon" style="display: inline-block;"
+                                                v-if="item.comment>3 && item.comment<4">
+                                                <i class="icon-spoon"></i>
+                                                <i class="icon-spoon"></i>
+                                                <i class="icon-spoon"></i>
+                                                <i class="icon-borderspoon"></i>
+                                                <i class="icon-borderspoon"></i>
+                                            </div>
+                                            <div class="spoon" style="display: inline-block;"
+                                                v-if="item.comment>2 && item.comment<3">
+                                                <i class="icon-spoon"></i>
+                                                <i class="icon-spoon"></i>
+                                                <i class="icon-borderspoon"></i>
+                                                <i class="icon-borderspoon"></i>
+                                                <i class="icon-borderspoon"></i>
+                                            </div>
+                                            <p class="text20RG" style="margin-top: 8px;">訂單完成率 {{item.tradeSuccess}}%
+                                            </p>
+                                            <p class="text20R" style="margin-top: 8px;">{{ item.storeAddress }}</p>
+                                        </div>
+                                        <div class="storeModelImgContentBottom">
+                                            <i class="icon-heart" style="opacity: 1;z-index: 999;"
+                                                v-on:click="handleLike(item.id)" v-if="item.likeStore"></i>
+                                            <i class="icon-heart" style="z-index: 999;" v-on:click="handleLike(item.id)"
+                                                v-else></i>
+                                            <button class="dbtn dbtnG text20R" style="float: right;">快速安排訂單</button>
+                                        </div>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <i class="storeClose icon-close"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="modal-header col-2" style="padding-right: 0px;">
+                                        <ul class="storeUl" v-if="tab === 1" v-show="tab===1">
+                                            <li v-for="meal in item.categoryName">
+                                                <a class="storeContent" :href="'#title'+meal.cid">{{meal.name}}</a>
+                                                <!-- <a class="storeContent actMeals" :href="'#title'+meal.cid">{{meal.name}}</a> -->
+                                            </li>
+                                        </ul>
+
+
+                                    </div>
+
+                                    <div class="col-10 ml-n5 mr-5">
+                                        <div
+                                            style="background-color: var(--dWhite);width: 500px;height: 86px;padding-top: 40px;">
+                                            <span class="dTag text24RG act" v-on:click="tabClick(1)">美味餐點</span>
+                                            <span class="dTag text24RG" v-on:click="tabClick(2)">詳細資訊</span>
+                                            <span class="dTag text24RG" v-on:click="tabClick(3)">店家評價</span>
+                                        </div>
+                                        <br>
+                                        <!-- 美味餐點 -->
+                                        <div class="mealsScroll" v-if="tab === 1" v-show="tab===1">
+                                            <div v-for="meal in item.categoryName">
+                                                <div class="text28B mt-l" style="margin-bottom: 27px;" :id="'title'+meal.cid"
+                                                    :name="'title'+meal.cid">{{meal.name}}
+                                                </div>
+                                                <div class="meals">
+                                                    <div class="mealsCard" v-for="detail in meal.content">
+                                                        <div style="width: 170px; height: auto;"
+                                                            class="text20B mealsName">{{ detail.productName }}
+                                                        </div>
+                                                        <div class="mealsDetail" style="width: 170px; height: auto;">
+                                                            {{ detail.productInformation }}</div>
+                                                        <div class="mealsPrice">
+                                                            <span class="eng20R price">
+                                                                <span
+                                                                    class=" align-middle">{{ detail.productPrice }}</span>
+                                                            </span>
+                                                        </div>
+                                                        <div class="mealsCardDiv"
+                                                            style="text-align : center;line-height: 148px;display: block;">
+                                                            <img style="margin-left: -20px;"
+                                                                :src="'../public/image/store/' + detail.productPhoto"
+                                                                alt="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- 店家簡介 -->
+                                        <div class="mealsScroll" v-if="tab === 2" v-show="tab===2">
+                                            <div class="text28B mt-l" style="margin-bottom: 11px;">店家簡介</div>
+                                            <div style="padding-right: 165px;padding-left: 16px;">
+                                                <p class="text20R" style="color: var(--dDeepGray);">
+                                                    {{ item.storeIntroduction }}</p>
+                                            </div>
+                                            <div class="text28B mt-l" style="margin-bottom: 11px;">店家資訊</div>
+                                            <div style="padding-right: 165px;padding-left: 16px;">
+                                                <p class="text20R" style="color: var(--dDeepGray);margin-bottom: 7px;">
+                                                    <img src="../public/image/Phone.png" class="storeAbout">
+                                                    {{ item.storePhone }}</p>
+                                                <p class="text20R" style="color: var(--dDeepGray);margin-bottom: 7px;">
+                                                    <img src="../public/image/Places.png" class="storeAbout">
+                                                    {{ item.storeAddress }}</p>
+                                                <p class="text20R" style="color: var(--dDeepGray);margin-bottom: 15px;">
+                                                    <img src="../public/image/Clock.png" class="storeAbout">
+                                                    {{ item.storeOpen }}</p>
+                                                <p class="text20B" style="color: var(--dRed);">公休日&nbsp;<span>週三</span>
+                                                </p>
+                                            </div>
+                                            <div class="text28B mt-l" style="margin-bottom: 11px;">配送地區</div>
+                                            <div style="padding-right: 165px;padding-left: 16px;">
+                                                <p class="text20R" style="color: var(--dDeepGray);">台中市南屯區 / 台中市西區</p>
+                                            </div>
+                                            <div class="text28B mt-l" style="margin-bottom: 11px;">注意事項</div>
+                                            <div style="padding-right: 165px;padding-left: 16px;">
+                                                <p class="text20R" style="color: var(--dDeepGray);">
+                                                    {{ item.storeNotice }}</p>
+                                            </div>
+                                        </div>
+                                        <!-- 店家評論 -->
+                                        <div class="mealsScroll" v-if="tab === 3" v-show="tab===3">
+                                            <ul class="evaluationList">
+                                                <!-- 1 -->
+                                                <li class="dblock d-flex pl-0" v-for="comment in item.comments">
+                                                    <!-- <span class="photo"></span> -->
+                                                    <img :src="'../public/image/會員資料/大頭照/' + comment.memberPhoto">
+                                                    <span class="content">
+                                                        <h2 class="text24B">{{ comment.member }}</h2>
+                                                        <div class="star">
+                                                            <i v-if="comment.commentScore >= 1" class="icon-spoon"></i>
+                                                            <i v-if="comment.commentScore >= 2" class="icon-spoon"></i>
+                                                            <i v-if="comment.commentScore >= 3" class="icon-spoon"></i>
+                                                            <i v-if="comment.commentScore >= 4" class="icon-spoon"></i>
+                                                            <i v-if="comment.commentScore >= 5" class="icon-spoon"></i>
+                                                            <i v-if="comment.commentScore <= 1"
+                                                                class="icon-borderspoon"></i>
+                                                            <i v-if="comment.commentScore <= 2"
+                                                                class="icon-borderspoon"></i>
+                                                            <i v-if="comment.commentScore <=3"
+                                                                class="icon-borderspoon"></i>
+                                                            <i v-if="comment.commentScore <=4"
+                                                                class="icon-borderspoon"></i>
+                                                        </div>
+                                                        <p class="text20R">
+                                                            {{ comment.commentContent }}</p>
+                                                        <p class="text16">3小時前</p>
+                                                    </span>
+                                                </li>
+
+
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+            </div>
+        </div>
+
+        <!-- 最新店家 -->
+        <div class="mContainer givePadding" style="margin-top: 66px;">
+            <h3 class="text28B text28Padding ">
+                最新店家
+                <img class="lrImg" src="../public/image/right.png" alt="">
+                <img class="lrImg" src="../public/image/left.png" alt="" style="margin-right: 8px;">
+            </h3>
+            <div class="row">
+                <div class="col-4 pr-3 imgCard">
+                    <div class="dingImgDiv" style="width:  100%">
+                        <img src="../public/image/store/Taichung/好好越南料理/index.jpeg" class="card-img-top dingImg"
+                            alt="...">
+                        <i class="heart icon-heart"></i>
+                        <div class="card-body">
+                            <div class="d-inline-block w-75">
+                                <span class="card-text text24B shopName">太初麵食</span>
+                            </div>
+                            <div class="newStore">NEW</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4 pr-3 imgCard">
+                    <div class="dingImgDiv" style="width:  100%">
+                        <img src="../public/image/store/Taichung/好好越南料理/index.jpeg" class="card-img-top dingImg"
+                            alt="...">
+                        <i class="heart icon-heart"></i>
+                        <div class="card-body">
+                            <div class="d-inline-block w-75">
+                                <span class="card-text text24B shopName">太初麵食</span>
+                            </div>
+                            <div class="newStore">NEW</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4 pr-3 imgCard">
+                    <div class="dingImgDiv" style="width:  100%">
+                        <img src="../public/image/store/Taichung/好好越南料理/index.jpeg" class="card-img-top dingImg"
+                            alt="...">
+                        <i class="heart icon-heart"></i>
+                        <div class="card-body">
+                            <div class="d-inline-block w-75">
+                                <span class="card-text text24B shopName">太初麵食</span>
+                            </div>
+                            <div class="newStore">NEW</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- 優惠看板 -->
+        <div class="mContainer givePadding" style="margin-top: 46px;">
+            <div class="dBannerM">
+                <div class="bannerImage">
+                    <div class="container">
+                        <p class="bannerTextM text-center text24B">決「訂」您的每一餐
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 推薦店家 -->
+        <div class="mContainer givePadding" style="margin-top: 66px;">
+            <h3 class="text28B text28Padding">
+                熱門店家
+                <img class="lrImg" src="../public/image/right.png" alt="">
+                <img class="lrImg" src="../public/image/left.png" alt="" style="margin-right: 8px;">
+            </h3>
+            <div class="row">
+                <div class="col-4 pr-3 imgCard" data-toggle="modal" data-target="#storeModel">
+                    <div class="dingImgDiv" style="width:  100%">
+                        <img src="../public/image/store/Taichung/太初麵食/index.jpeg" class="card-img-top dingImg"
+                            alt="...">
+                        <i class="heart icon-heart"></i>
+                        <div class="card-body">
+                            <div class="d-inline-block w-75">
+                                <span class="card-text text24B shopName">太初麵食</span>
+                            </div>
+                            <i class="icon-spoon float-right"></i>
+                            <span class="card-text eng24R float-right" style="margin-right: 7px;">4.8</span>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4 pr-3 imgCard">
+                    <div class="dingImgDiv" style="width:  100%">
+                        <img src="../public/image/store/Taichung/隨主飡_法式水煮專賣/index.jpeg" class="card-img-top dingImg"
+                            alt="...">
+                        <i class="heart icon-heart"></i>
+                        <div class="card-body">
+                            <div class="d-inline-block w-75">
+                                <span class="card-text text24B shopName">隨主飡_法式水煮專賣賣賣賣賣賣賣賣賣賣</span>
+                            </div>
+                            <i class="icon-spoon float-right"></i>
+                            <span class="card-text eng24R float-right" style="margin-right: 7px;">4.8</span>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4 pr-3 imgCard">
+                    <div class="dingImgDiv" style="width:  100%">
+                        <img src="../public/image/store/Taichung/隨主飡_法式水煮專賣/index.jpeg" class="card-img-top dingImg"
+                            alt="...">
+                        <i class="heart icon-heart"></i>
+                        <div class="card-body">
+                            <div class="d-inline-block w-75">
+                                <span class="card-text text24B shopName">隨主飡_法式水煮專賣</span>
+                            </div>
+                            <i class="icon-spoon float-right"></i>
+                            <span class="card-text eng24R float-right" style="margin-right: 7px;">4.8</span>
+
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+        <!-- footer -->
+        <footer class="footer">
+            <div class="mContainer">
+                <ul>
+                    <li class="float-left mr-2"><a href="">關於訂訂</a></li>
+                    <li class="float-left mr-2"><a href="">取得協助</a></li>
+                    <li class="float-left mr-2"><a href="">閱讀常見問答</a></li>
+                    <li class="float-right"><a href="">© DingDingFood 2020</a></li>
+                </ul>
+            </div>
+
+        </footer>
+        <!-- 登入 -->
+        <div class="modal fade inputXL" id="inputXLLogin">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content modal-content-index">
+                    <div class="modelImgDivLogin">
+                        <img src="../public/image/loginImg.png" style="width: 398px;height: auto;" alt="">
+                    </div>
+                    <div style="width: 690px;position: absolute; right: 0;">
+                        <div class="modal-header-index">
+                            <div class="dTag act text24RG" style="display: inline-block;">一般用戶登入</div>
+                            <div class="dTag text24RG" style="display: inline-block;">企業用戶登入</div>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <i class=" icon-close"></i>
+                            </button>
+                        </div>
+                        <div class="modal-continer-index">
+                            <p class="text20B mb-2">
+                                帳號
+                            </p>
+                            <input type="text" class="text20RG singleText398 " placeholder="請輸入舊密碼">
+                            <p class="text20B mb-2">
+                                密碼
+                            </p>
+                            <input type="text" class="text20RG singleText398 " placeholder="請輸入新密碼">
+
+                            <button class="text20R dbtn btn398 " style="margin-bottom: 24px;">登入</button>
+                            <div style="padding-left: 48px;margin-bottom: 80px;">
+                                <span style="font-size: 16px; margin-right: 16px;">還沒用過訂訂嗎 ? </span>
+                                <a href="" class="text16R">點此註冊</a>/
+                                <a href="" class="text16R">忘記密碼</a>
+                            </div>
+                            <div style="padding-left: 189px;margin-bottom: 20px;">
+                                <span class="eng20R orBoder" style="color: var(--dDeepGray);">or</span>
+                            </div>
+                            <div>
+                                <div class="fb">
+                                    Facebook登入
+                                </div>
+                                <div class="google">
+                                    Google登入
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- 註冊 -->
+        <div class="modal fade inputXL" id="inputXLregistered">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content modal-content-index">
+                    <div class="modelImgDivRegistered">
+                        <img src="../public/image/registered.png" style="width: 398px;height: auto;" alt="">
+                    </div>
+                    <div style="width: 690px;position: absolute; right: 0;">
+                        <div class="modal-header-index">
+                            <div class="dTag act text24RG" style="display: inline-block;">一般用戶註冊</div>
+                            <div class="dTag text24RG" style="display: inline-block;">企業用戶註冊</div>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <i class=" icon-close"></i>
+                            </button>
+                        </div>
+                        <div class="modal-continer-index">
+                            <p class="text20B mb-2">
+                                暱稱
+                            </p>
+                            <input type="text" class="text20RG singleText398 " placeholder="請輸入暱稱">
+                            <p class="text20B mb-2">
+                                帳號
+                            </p>
+                            <input type="text" class="text20RG singleText398 " placeholder="請輸入電子信箱">
+                            <p class="text20B mb-2">
+                                密碼
+                            </p>
+                            <input type="text" class="text20RG singleText398 " placeholder="請輸入密碼">
+                            <p class="text20B mb-2">
+                                手機
+                            </p>
+                            <input type="text" class="text20RG singleText398 " placeholder="請輸入手機號碼">
+
+                            <button class="text20R dbtn btn398 " style="margin-bottom: 24px;">登入</button>
+                            <div style="padding-left: 48px;margin-bottom: 80px;">
+                                <span style="font-size: 16px; margin-right: 16px;">已經有帳號了嗎 ? </span>
+                                <a href="" class="text16R">點此切換登入頁面</a>
+                            </div>
+                            <div style="padding-left: 189px;margin-bottom: 20px;">
+                                <span class="eng20R orBoder" style="color: var(--dDeepGray);">or</span>
+                            </div>
+                            <div>
+                                <div class="fb">
+                                    Facebook登入
+                                </div>
+                                <div class="google">
+                                    Google登入
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="../public/javascript/vue.js"></script>
+    <script>
+        let data = {
+            index: 0,
+            tab: 1,
+            storeItem: [
+                {
+                    id: 0,
+                    storeName: "肯德基 KFC 台中公益店",
+                    country: "台中市",
+                    districtName: "西區",
+                    storeBanner: "Taichung/肯德基KFC_台中公益/index.jpg",
+                    tradeSuccess: 87,
+                    comment: "4.5",
+                    likeStore: false,
+                    categoryName: [
+                        {
+                            cid:1,
+                            name: '多人歡聚餐',
+                            content: [
+                                { productName: "6塊咔啦脆雞派對B餐", productPhoto: "Taichung/肯德基KFC_台中公益/6塊咔啦脆雞派對B餐.jpeg", productInformation: "含咔啦脆雞6塊，大薯1份。", productPrice: "419" },
+                                { productName: "8塊咔啦脆雞派對B餐", productPhoto: "Taichung/肯德基KFC_台中公益/8塊咔啦脆雞派對B餐.jpeg", productInformation: "含咔啦脆雞8塊，大薯2份。", productPrice: "419" },
+                            ]
+                        },
+
+                        {
+                            cid:2,
+                            name: 'XL 套餐',
+                            content: [
+                                { productName: "花生熔岩咔啦雞腿堡XL", productPhoto: "Taichung/肯德基KFC_台中公益/花生熔岩咔啦雞腿堡.jpeg", productInformation: "含花生熔岩咔啦雞腿堡1份，咔啦脆雞1塊。", productPrice: "199" }
+                            ]
+                        },
+                        {
+                            cid:3,
+                            name: '蛋撻及點心',
+                            content: [{ productName: "原味蛋撻禮盒點心套餐", productPhoto: "Taichung/肯德基KFC_台中公益/原味蛋撻禮盒點心套餐.jpeg", productInformation: "內含原味蛋撻6顆及熱義式咖啡(大)2杯。", productPrice: "245" }
+                            ]
+                        }
+                    ],
+                    storeIntroduction: "美式美食",
+                    storePhone: "04-23027066",
+                    storeAddress: "台中市西區公益路163號",
+                    storeOpen: "24H",
+                    storeClose: "無",
+                    storeNotice: "炸雞恕不開放選擇部位，另外為響應環保，不提供免洗餐具、吸管。",
+                    comments: [
+                        {
+                            member: "柯淑貞",
+                            memberPhoto: "1.jpg",
+                            commentScore: 3,
+                            commentContent: "送來的時候有點涼掉了，比較可惜。",
+                            commentTime: "3小時前"
+                        },
+                        {
+                            member: "林俊逸",
+                            memberPhoto: "2.jpg",
+                            commentScore: 4,
+                            commentContent: "雞腿相當酥脆、好吃。",
+                            commentTime: "2小時前"
+                        },
+                    ]
+                },
+
+                {
+                    id: 1,
+                    storeName: "西門町大腸麵線 台中肉圓",
+                    country: "台中市",
+                    districtName: "西區",
+                    storeBanner: "Taichung/西門町大腸麵線_台中肉圓/index.jpeg",
+                    tradeSuccess: 93,
+                    comment: "4.8",
+                    likeStore: false,
+                    categoryName: [
+                        {
+                            cid:1,
+                            name: '單點',
+                            content: [
+                                { productName: "蚵仔麵線", productPhoto: "Taichung/西門町大腸麵線_台中肉圓/蚵仔麵線.jpeg", productInformation: "每日新鮮現煮。", productPrice: "70" },
+                                { productName: "大腸麵線", productPhoto: "Taichung/西門町大腸麵線_台中肉圓/大腸麵線.jpeg", productInformation: "每日新鮮現煮。", productPrice: "50" },
+                                { productName: "肉圓", productPhoto: "Taichung/西門町大腸麵線_台中肉圓/肉圓.jpeg", productInformation: "每日新鮮現煮。", productPrice: "50" },
+                                { productName: "肉羹麵線", productPhoto: "Taichung/西門町大腸麵線_台中肉圓/肉羹麵線.jpeg", productInformation: "每日新鮮現煮。", productPrice: "50" },
+                            ]
+                        },
+                    ],
+                    storeIntroduction: "台灣美食",
+                    storePhone: "04-23357798",
+                    storeAddress: "台中市西區大墩路408號",
+                    storeOpen: "11:00-20:00",
+                    storeClose: "週三",
+                    storeNotice: "20份以上請提前1天預訂。",
+                    comments: [
+                        {
+                            member: "王思賢",
+                            memberPhoto: "3.jpg",
+                            commentScore: 5,
+                            commentContent: "食量大的同事吃了也覺得很飽，價格又很親民，下次回再訂購。",
+                            commentTime: "3小時前"
+                        },
+                        {
+                            member: "林柔發",
+                            memberPhoto: "6.jpg",
+                            commentScore: 2,
+                            commentContent: "今天食物裡面竟然吃到頭髮，衛生感覺不佳!",
+                            commentTime: "2小時前"
+                        },
+                    ]
+                },
+
+                {
+                    id: 2,
+                    storeName: "鴨董當歸鴨 精誠店",
+                    country: "台中市",
+                    districtName: "西區",
+                    storeBanner: "Taichung/鴨董當歸鴨_精誠店/index.jpeg",
+                    tradeSuccess: 80,
+                    comment: "3.8",
+                    likeStore: false,
+                    categoryName: [
+                        {
+                            name: '主食',
+                            content: [
+                                { productName: "鴨肉飯", productPhoto: "Taichung/鴨董當歸鴨_精誠店/鴨肉飯.jpeg", productInformation: "大碗。", productPrice: "35" },
+                                { productName: "當歸鴨肉麵線", productPhoto: "Taichung/鴨董當歸鴨_精誠店/當歸鴨肉麵線.jpeg", productInformation: "大碗。", productPrice: "70" },
+                            ]
+                        },
+                        {
+                            name: '單點',
+                            content: [
+                                { productName: "鴨肉", productPhoto: "Taichung/鴨董當歸鴨_精誠店/鴨肉.jpeg", productInformation: "一盤。", productPrice: "100" },
+                                { productName: "脆腸", productPhoto: "Taichung/鴨董當歸鴨_精誠店/脆腸.jpeg", productInformation: "一盤。", productPrice: "60" },
+                                { productName: "松阪豬肉", productPhoto: "Taichung/鴨董當歸鴨_精誠店/松阪豬肉.jpeg", productInformation: "一盤。", productPrice: "100" },
+                            ]
+                        },
+                    ],
+                    storeIntroduction: "台灣美食",
+                    storePhone: "04-23100045",
+                    storeAddress: "台中市西區精誠路148號",
+                    storeOpen: "10:30-21:30",
+                    storeClose: "無",
+                    storeNotice: "為響應環保，不提供免洗餐具。",
+                },
+                {
+                    id: 3,
+                    storeName: "太初麵食",
+                    country: "台中市",
+                    districtName: "南屯區",
+                    storeBanner: "Taichung/太初麵食/index.jpeg",
+                    tradeSuccess: 82,
+                    comment: "4.6",
+                    likeStore: false,
+                    categoryName: [
+                        {
+                            cid:1,
+                            name: '湯麵套餐組合',
+                            content: [
+                                { productName: "老北京御膳里肌麵套餐", productPhoto: "Taichung/太初麵食/老北京御膳里肌麵套餐.jpeg", productInformation: "麵食內容物含紅蘿蔔, 白蘿蔔, 豬里肌。", productPrice: "258" },
+                                { productName: "老北京御膳雞柳麵套餐", productPhoto: "Taichung/太初麵食/老北京御膳雞柳麵套餐.jpeg", productInformation: "麵食內容物含紅蘿蔔, 白蘿蔔, 滑嫩雞柳。", productPrice: "258" },
+                                { productName: "老北京御膳牛肉麵套餐", productPhoto: "Taichung/太初麵食/老北京御膳牛肉麵套餐.jpeg", productInformation: "麵食內容物含紅蘿蔔, 白蘿蔔, 牛腩條。", productPrice: "358" },
+
+                            ]
+                        },
+
+                        {
+                            cid:2,
+                            name: '乾麵套餐組合',
+                            content: [
+                                { productName: "傳香肉燥乾拌麵套餐", productPhoto: "Taichung/太初麵食/傳香肉燥乾拌麵套餐.jpeg", productInformation: "麵食內容物含滷貢丸及油豆腐。", productPrice: "328" },
+                                { productName: "回味麻辣乾麵套餐", productPhoto: "Taichung/太初麵食/回味麻辣乾麵套餐.jpeg", productInformation: "麵食內容物含豆芽, 蔥花, 餛飩。", productPrice: "368" },
+                            ]
+                        },
+                        {
+                            cid:3,
+                            name: '飯類套餐組合',
+                            content: [{ productName: "傳香滷肉飯套餐", productPhoto: "Taichung/太初麵食/傳香滷肉飯套餐.jpeg", productInformation: "每日限量。", productPrice: "288" }
+                            ]
+                        },
+                        {
+                            cid:4,
+                            name: '單點湯麵品項',
+                            content: [
+                                { productName: "太初香辣里肌麵", productPhoto: "Taichung/太初麵食/太初香辣里肌麵.jpeg", productInformation: "麵食內容物含鴨血, 豆腐, 蒜苗及豬里肌。", productPrice: "165" },
+                                { productName: "太初蕃茄牛肉麵", productPhoto: "Taichung/太初麵食/太初蕃茄牛肉麵.jpeg", productInformation: "麵食內容物含番茄, 青江菜及牛腩條。", productPrice: "238" },
+                            ]
+                        },
+                    ],
+                    storeIntroduction: "台灣美食，牛肉麵專賣。",
+                    storePhone: "04-23195101",
+                    storeAddress: "台中市南屯區公益路二段115號",
+                    storeOpen: "11:00-24:00",
+                    storeClose: "無",
+                    storeNotice: "訂單滿千會額外贈送折價券!",
+                },
+                {
+                    id: 4,
+                    storeName: "可不可熟成紅茶 台中大墩店",
+                    country: "台中市",
+                    districtName: "南屯區",
+                    storeBanner: "Taichung/可不可熟成紅茶_台中大墩店/index.jpeg",
+                    tradeSuccess: 96,
+                    comment: "4.7",
+                    likeStore: false,
+                    categoryName: [
+                        {
+                            cid:1,
+                            name: '多人歡聚餐',
+                            content: [
+                                { productName: "6塊咔啦脆雞派對B餐", productPhoto: "Taichung/肯德基KFC_台中公益/6塊咔啦脆雞派對B餐.jpeg", productInformation: "含咔啦脆雞6塊，大薯1份。", productPrice: "419" },
+                                { productName: "8塊咔啦脆雞派對B餐", productPhoto: "Taichung/肯德基KFC_台中公益/8塊咔啦脆雞派對B餐.jpeg", productInformation: "含咔啦脆雞8塊，大薯2份。", productPrice: "419" },
+                            ]
+                        },
+
+                        {
+                            cid:2,
+                            name: 'XL 套餐',
+                            content: [
+                                { productName: "花生熔岩咔啦雞腿堡XL", productPhoto: "Taichung/肯德基KFC_台中公益/花生熔岩咔啦雞腿堡XL.jpeg", productInformation: "含花生熔岩咔啦雞腿堡1份，咔啦脆雞1塊。", productPrice: "199" }
+                            ]
+                        },
+                        {
+                            cid:3,
+                            name: '蛋撻及點心',
+                            content: [{ productName: "原味蛋撻禮盒點心套餐", productPhoto: "Taichung/肯德基KFC_台中公益/原味蛋撻禮盒點心套餐.jpeg", productInformation: "內含原味蛋撻6顆及熱義式咖啡(大)2杯。", productPrice: "245" }
+                            ]
+                        }
+                    ],
+                    storeIntroduction: "紅茶專賣",
+                    storePhone: "04-23286666",
+                    storeAddress: "台中市南屯區大墩路834號",
+                    storeOpen: "10:00-22:00",
+                    storeClose: "無",
+                    storeNotice: "量大請提前預訂。",
+                },
+                {
+                    id: 5,
+                    storeName: "必勝客 Pizza Hut 台中西屯店",
+                    country: "台中市",
+                    districtName: "西屯區",
+                    storeBanner: "Taichung/必勝客_台中西屯店/index.jpeg",
+                    tradeSuccess: 100,
+                    comment: "3.9",
+                    likeStore: false,
+                    categoryName: [
+                        {
+                            cid:1,
+                            name: '多人歡聚餐',
+                            content: [
+                                { productName: "6塊咔啦脆雞派對B餐", productPhoto: "Taichung/肯德基KFC_台中公益/6塊咔啦脆雞派對B餐.jpeg", productInformation: "含咔啦脆雞6塊，大薯1份。", productPrice: "419" },
+                                { productName: "8塊咔啦脆雞派對B餐", productPhoto: "Taichung/肯德基KFC_台中公益/8塊咔啦脆雞派對B餐.jpeg", productInformation: "含咔啦脆雞8塊，大薯2份。", productPrice: "419" },
+                            ]
+                        },
+
+                        {
+                            cid:2,
+                            name: 'XL 套餐',
+                            content: [
+                                { productName: "花生熔岩咔啦雞腿堡XL", productPhoto: "Taichung/肯德基KFC_台中公益/花生熔岩咔啦雞腿堡XL.jpeg", productInformation: "含花生熔岩咔啦雞腿堡1份，咔啦脆雞1塊。", productPrice: "199" }
+                            ]
+                        },
+                        {
+                            cid:3,
+                            name: '蛋撻及點心',
+                            content: [{ productName: "原味蛋撻禮盒點心套餐", productPhoto: "Taichung/肯德基KFC_台中公益/原味蛋撻禮盒點心套餐.jpeg", productInformation: "內含原味蛋撻6顆及熱義式咖啡(大)2杯。", productPrice: "245" }
+                            ]
+                        }
+                    ],
+                    storeIntroduction: "披薩專賣",
+                    storePhone: "04-24513011",
+                    storeAddress: "台中市西屯區福星路610號",
+                    storeOpen: "11:00-23:00",
+                    storeClose: "無",
+                    storeNotice: "無",
+                },
+                {
+                    id: 6,
+                    storeName: "爭鮮迴轉壽司 家樂福文心店",
+                    country: "台中市",
+                    districtName: "西屯區",
+                    storeBanner: "Taichung/爭鮮迴轉壽司_家樂福文心店/index.jpeg",
+                    tradeSuccess: 97,
+                    comment: "4.9",
+                    likeStore: false,
+                    categoryName: [
+                        {
+                            cid:1,
+                            name: '多人歡聚餐',
+                            content: [
+                                { productName: "6塊咔啦脆雞派對B餐", productPhoto: "Taichung/肯德基KFC_台中公益/6塊咔啦脆雞派對B餐.jpeg", productInformation: "含咔啦脆雞6塊，大薯1份。", productPrice: "419" },
+                                { productName: "8塊咔啦脆雞派對B餐", productPhoto: "Taichung/肯德基KFC_台中公益/8塊咔啦脆雞派對B餐.jpeg", productInformation: "含咔啦脆雞8塊，大薯2份。", productPrice: "419" },
+                            ]
+                        },
+
+                        {
+                            cid:2,
+                            name: 'XL 套餐',
+                            content: [
+                                { productName: "花生熔岩咔啦雞腿堡XL", productPhoto: "Taichung/肯德基KFC_台中公益/花生熔岩咔啦雞腿堡XL.jpeg", productInformation: "含花生熔岩咔啦雞腿堡1份，咔啦脆雞1塊。", productPrice: "199" }
+                            ]
+                        },
+                        {
+                            cid:3,
+                            name: '蛋撻及點心',
+                            content: [{ productName: "原味蛋撻禮盒點心套餐", productPhoto: "Taichung/肯德基KFC_台中公益/原味蛋撻禮盒點心套餐.jpeg", productInformation: "內含原味蛋撻6顆及熱義式咖啡(大)2杯。", productPrice: "245" }
+                            ]
+                        }
+                    ],
+                    storeIntroduction: "日式料理，平價壽司",
+                    storePhone: "04-22546195",
+                    storeAddress: "台中市西屯區文心路一段521號",
+                    storeOpen: "11:00-21:30",
+                    storeClose: "無",
+                    storeNotice: "外送餐點無法提供客製。",
+                },
+                {
+                    id: 7,
+                    storeName: "八曜和茶 精誠門市",
+                    country: "台中市",
+                    districtName: "西屯區",
+                    storeBanner: "Taichung/八曜和茶_精誠門市/index.jpeg",
+                    tradeSuccess: 92,
+                    comment: "4.9",
+                    likeStore: false,
+                    categoryName: [
+                        {
+                            cid:1,
+                            name: '多人歡聚餐',
+                            content: [
+                                { productName: "6塊咔啦脆雞派對B餐", productPhoto: "Taichung/肯德基KFC_台中公益/6塊咔啦脆雞派對B餐.jpeg", productInformation: "含咔啦脆雞6塊，大薯1份。", productPrice: "419" },
+                                { productName: "8塊咔啦脆雞派對B餐", productPhoto: "Taichung/肯德基KFC_台中公益/8塊咔啦脆雞派對B餐.jpeg", productInformation: "含咔啦脆雞8塊，大薯2份。", productPrice: "419" },
+                            ]
+                        },
+
+                        {
+                            cid:2,
+                            name: 'XL 套餐',
+                            content: [
+                                { productName: "花生熔岩咔啦雞腿堡XL", productPhoto: "Taichung/肯德基KFC_台中公益/花生熔岩咔啦雞腿堡XL.jpeg", productInformation: "含花生熔岩咔啦雞腿堡1份，咔啦脆雞1塊。", productPrice: "199" }
+                            ]
+                        },
+                        {
+                            cid:3,
+                            name: '蛋撻及點心',
+                            content: [{ productName: "原味蛋撻禮盒點心套餐", productPhoto: "Taichung/肯德基KFC_台中公益/原味蛋撻禮盒點心套餐.jpeg", productInformation: "內含原味蛋撻6顆及熱義式咖啡(大)2杯。", productPrice: "245" }
+                            ]
+                        }
+                    ],
+                    storeIntroduction: "手搖茶飲專賣",
+                    storePhone: "04-23272869",
+                    storeAddress: "台中市西屯區精誠路25號",
+                    storeOpen: "10:00-22:00",
+                    storeClose: "無",
+                    storeNotice: "20杯以上請提前一天訂購。",
+                },
+                {
+                    id: 8,
+                    storeName: "正忠排骨飯 東興店",
+                    country: "台中市",
+                    districtName: "西屯區",
+                    storeBanner: "Taichung/正忠排骨飯_東興店/index.jpeg",
+                    tradeSuccess: 79,
+                    comment: "3.9",
+                    likeStore: false,
+                    categoryName: [
+                        {
+                            cid:1,
+                            name: '多人歡聚餐',
+                            content: [
+                                { productName: "6塊咔啦脆雞派對B餐", productPhoto: "Taichung/肯德基KFC_台中公益/6塊咔啦脆雞派對B餐.jpeg", productInformation: "含咔啦脆雞6塊，大薯1份。", productPrice: "419" },
+                                { productName: "8塊咔啦脆雞派對B餐", productPhoto: "Taichung/肯德基KFC_台中公益/8塊咔啦脆雞派對B餐.jpeg", productInformation: "含咔啦脆雞8塊，大薯2份。", productPrice: "419" },
+                            ]
+                        },
+
+                        {
+                            cid:2,
+                            name: 'XL 套餐',
+                            content: [
+                                { productName: "花生熔岩咔啦雞腿堡XL", productPhoto: "Taichung/肯德基KFC_台中公益/花生熔岩咔啦雞腿堡XL.jpeg", productInformation: "含花生熔岩咔啦雞腿堡1份，咔啦脆雞1塊。", productPrice: "199" }
+                            ]
+                        },
+                        {
+                            cid:3,
+                            name: '蛋撻及點心',
+                            content: [{ productName: "原味蛋撻禮盒點心套餐", productPhoto: "Taichung/肯德基KFC_台中公益/原味蛋撻禮盒點心套餐.jpeg", productInformation: "內含原味蛋撻6顆及熱義式咖啡(大)2杯。", productPrice: "245" }
+                            ]
+                        }
+                    ],
+                    storeIntroduction: "道地排骨飯專賣",
+                    storePhone: "04-24726998",
+                    storeAddress: "台中市西屯區東興路二段356號",
+                    storeOpen: "10:30-20:00",
+                    storeClose: "無",
+                    storeNotice: "30份以上便當請提前一天訂購。",
+
+                },
+            ],
+            
+        };
+        let store = new Vue({
+            el: "#store",
+            data: data,
+            computed: {
+
+                filterStore() {
+                    return this.storeItem.slice(this.index, this.index + 3)
+
+                },
+                tabClass() {
+                    return {
+                        act: this.tab = 1
+                    }
+                },
+                // categoryList() {
+                //     let obj = {
+                //         sort: [],
+                //         map: {}
+                //     }
+                //     var e = this.storeItem.map(function (categoryName) {
+                //         return categoryName
+                //     })
+                //     return e
+                // }
+
+            },
+            methods: {
+                handleChange(change) {
+
+                    this.index = this.index + change;
+                    if (this.index < 0) {
+                        this.index = this.storeItem.length - 3
+                    } else if (this.index > this.storeItem.length - 3) {
+                        this.index = 0
+                    }
+                    // console.log(this.storeItem[1].categoryName[0].name)
+                },
+                handleLike(e) {
+                    // index = this.storeItem.id
+                    if (this.storeItem[e].likeStore == false) {
+                        this.storeItem[e].likeStore = true
+
+                    } else if (this.storeItem[e].likeStore == true) {
+                        this.storeItem[e].likeStore = false
+                    }
+
+                    console.log(e);
+
+                },
+                activeOut() {
+                    this.active = false
+                },
+                tabClick(index) {
+                    this.tab = index
+                    return this.tab
+                },
+
+
+            }
+        })
+    </script>
+
+</body>
+
 </html>
