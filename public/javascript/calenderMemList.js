@@ -1,3 +1,5 @@
+var c;
+
 let data = {
     orderList: [
         { groupName: '資策會便當團', src: '../public/image/store/Taichung/朴大哥的韓式炸雞_逢甲總店/index.jpeg', storeName: '清潭洞', onTime: '2020/08/20 12:00', checkOn: 'true' },
@@ -15,9 +17,20 @@ let data = {
         { titleName: '貴婦們的下午茶', groupName: '就愛烤肉團', timeOut: '2020/08/20 16:00', checkOn: '' },
         { titleName: '貴婦們的下午茶', groupName: '就愛烤肉團', timeOut: '2020/08/20 16:00', checkOn: '' }
     ]
+    ,xxx:c
 }
 
 new Vue({
     el: '#app',
     data: data
 })
+
+$("td").click(function(){
+
+    var b = event.target.id;
+
+    data.xxx = b;    
+
+})
+
+// console.log(data.voteList[0].timeOut);

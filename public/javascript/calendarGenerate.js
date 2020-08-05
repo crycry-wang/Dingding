@@ -18,6 +18,8 @@ function prevM() {
     $("td").click(function() {
         $("td[id]").attr("data-toggle", "modal");
         $("td[id]").attr("data-target", "#comfirm2BtnW1340");
+
+        // console.log(event.target.id);
     })
     return (nowYear = NowYear, nowMonth = NowMonth);
 }
@@ -31,6 +33,8 @@ function nextM() {
     $("td").click(function() {
         $("td[id]").attr("data-toggle", "modal");
         $("td[id]").attr("data-target", "#comfirm2BtnW1340");
+
+        // console.log(event.target.id);
     })
     return (nowYear = NowYear, nowMonth = NowMonth);
 }
