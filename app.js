@@ -29,6 +29,9 @@ var sOrderRouter = require('./routes/sOrder');
 var sProductRouter = require('./routes/sProduct');
 var sStatRouter = require('./routes/sStat');
 
+const { state } = require('./model/db');
+const db = require('./model/db');
+
 var app = express();
 
 // view engine setup
