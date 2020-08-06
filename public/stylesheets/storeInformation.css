@@ -1,36 +1,27 @@
 /* 店家資訊區塊設定 */
+
 .information {
-    width: 856px;
-    height: 858px;
-    margin-top: 40px;
-    margin-right: 46px;
-    /* margin-bottom: 80px; */
-    display: inline-block;
-    /* padding-right: 108px; */
+    /* height: 858px; */
+    /* margin-top: 40px; */
     padding-left: 74px;
-    padding-top: 143px;
+    padding-top: 100px;
+    position: relative;
 }
+
 
 /* 側欄配送地區區塊設定 */
+
 .delivery {
-    display: inline-block;
-    width: 400px;
-    height: 856px;
-    margin-top: 40px;
-    /* float: right; */
-    /* margin-left: 46px; */
-    position: absolute;
-    
+    /* height: 900px; */
+    padding-top: 40px;
 }
 
-/* 右上三顆按鈕設定 */
-.rightbtn {
 
-    /* height: 142px; */
-    position: relative;
-    padding-left: 1007px;
-    /* float: right;
-    left: 902px; */
+/* 右上三顆按鈕設定 */
+
+.rightbtn {
+    float: right;
+    /* left: 902px; */
 }
 
 .btnDiv {
@@ -39,22 +30,30 @@
     padding-top: 60px;
 }
 
+
 /* 三顆按鈕的 margin */
+
 .rightbtn>.btn {
     margin-right: 20px;
 }
 
+
 /* 裝店家資訊的袋子 */
+
 .storeTitleDiv {
     margin-bottom: 40px;
 }
 
+
 /* 標題文字與輸入框距離 */
+
 .storeTitle {
     margin-right: 52px;
 }
 
+
 /* 店家照片圓圈 */
+
 .memberPhoto {
     width: 150px;
     height: 150px;
@@ -82,22 +81,28 @@
     border: 2px solid var(--dYellow);
 }
 
+
 /* 圓圈裡的照片尺寸 */
+
 .circle>img {
     width: auto;
     height: 150px;
-
 }
+
 
 /* 店家資訊文字輸入框 */
+
 .aboutTextarea {
-    width: 536px;
     height: 120px;
-    position: absolute;
+    /* position: absolute; */
     border-radius: 24px;
+    display: inline-block;
+    width: calc(100% - 222px);
 }
 
+
 /* 加號設定 */
+
 .newIcon {
     font-size: 12px;
     position: relative;
@@ -107,19 +112,20 @@
 
 .noteTextarea {
     border-radius: 24px;
-    width: 317px;
     height: 149px;
     margin-top: 16px;
 }
 
+
 /* 多行輸入框重新設定 */
+
 .multiText398 {
     padding: 16px 25px 16px 20px;
 }
 
 
-
 /* 地區選擇 */
+
 input[type="checkbox"] {
     -webkit-appearance: none;
     vertical-align: center;
@@ -168,21 +174,28 @@ input[type=checkbox]:checked::after {
     z-index: 1;
     position: absolute;
 }
+
+
 /* 彈框北部中部南部標題 */
-.areaTitle{
+
+.areaTitle {
     display: inline-block;
     margin-right: 24px;
 }
+
+
 /* 縣市checkbox+下拉式選單 */
-.areaSelect{
-    display: inline-block; 
-    position: relative; 
+
+.areaSelect {
+    display: inline-block;
+    position: relative;
     margin-right: 14px;
 }
-.areaSelected{
+
+.areaSelected {
     margin-bottom: 20px;
     padding-left: 16px;
-    padding-right: 12px; 
+    padding-right: 12px;
     display: inline-block;
     margin-right: 16px;
 }
