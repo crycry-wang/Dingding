@@ -9,7 +9,7 @@ var indexRouter = require('./routes/index');
 // var mCalendarRouter = require('./routes/mCalendar');
 // var mCostCoinsRouter = require('./routes/mCostCoins');
 // var mGroupRouter = require('./routes/mGroup');
-// var mIndexRouter = require('./routes/mIndex');
+var mIndexRouter = require('./routes/mIndex');
 // var mMemberRouter = require('./routes/mMember');
 // var mNewGroupRouter = require('./routes/mNewGroup');
 // var mNewOrderRouter = require('./routes/mNewOrder');
@@ -46,28 +46,28 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // use自定義
 app.use('/', indexRouter);
-app.use('/mCalendar', mCalendarRouter);
-app.use('/mCostCoins', mCostCoinsRouter);
-app.use('/mGroup', mGroupRouter);
+// app.use('/mCalendar', mCalendarRouter);
+// app.use('/mCostCoins', mCostCoinsRouter);
+// app.use('/mGroup', mGroupRouter);
 app.use('/mIndex', mIndexRouter);
-app.use('/mMember', mMemberRouter);
-app.use('/mNewGroup', mNewGroupRouter);
-app.use('/mNewOrder', mNewOrderRouter);
-app.use('/mNewVote', mNewVoteRouter);
-app.use('/mNewVote_2', mNewVote_2Router);
-app.use('/mNotice', mNoticeRouter);
-app.use('/mOrder', mOrderRouter);
-app.use('/mOrderList', mOrderListRouter);
-app.use('/mSaveCoins', mSaveCoinsRouter);
+// app.use('/mMember', mMemberRouter);
+// app.use('/mNewGroup', mNewGroupRouter);
+// app.use('/mNewOrder', mNewOrderRouter);
+// app.use('/mNewVote', mNewVoteRouter);
+// app.use('/mNewVote_2', mNewVote_2Router);
+// app.use('/mNotice', mNoticeRouter);
+// app.use('/mOrder', mOrderRouter);
+// app.use('/mOrderList', mOrderListRouter);
+// app.use('/mSaveCoins', mSaveCoinsRouter);
 app.use('/mSider', mSiderRouter);
-app.use('/mVote', mVoteRouter);
-app.use('/mVoteList', mVoteListRouter);
-app.use('/sComment', sCommentRouter);
+// app.use('/mVote', mVoteRouter);
+// app.use('/mVoteList', mVoteListRouter);
+// app.use('/sComment', sCommentRouter);
 app.use('/sInformation', sInformationRouter);
-app.use('/sNotice', sNoticeRouter);
-app.use('/sOrder', sOrderRouter);
-app.use('/sProduct', sProductRouter);
-app.use('/sStat', sStatRouter);
+// app.use('/sNotice', sNoticeRouter);
+// app.use('/sOrder', sOrderRouter);
+// app.use('/sProduct', sProductRouter);
+// app.use('/sStat', sStatRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
