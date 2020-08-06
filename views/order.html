@@ -17,26 +17,41 @@
 
     <title>Document</title>
     <style>
+        ul{
+            margin-bottom: 0;
+        }
         .titleHead {
             background: var(--dYellow);
             color: white;
             height: 40px;
-            padding-left: 32px;
-            padding-right: 32px;
             margin-bottom: 8px;
             position: relative;
+            padding-left: 32px;
+            padding-right: 32px;
         }
-
-        .mealList li {
+        .titleHead>div:not(:first-child),
+        .orderList li>div:not(:first-child){
+            padding-left: 32px;
+        }        
+        .orderList li {
             padding: 14px 32px;
             border: 1px solid var(--moreLightGray);
             border-radius: 20px;
-            margin-bottom: 8px;
+            
         }
 
-        .mealList img {
+
+        .orderList li+li{
+            margin-bottom: 8px;
+        }
+       
+        .orderList img {
             width: 60px;
             height: 60px;
+        }
+
+        .orderList{
+            max-height: calc(100vh - 306px);
         }
     </style>
 
@@ -76,21 +91,18 @@
         </nav>
 
         <div class="dblock">
-            
             <div class="text20R" id="sMealList">
                 <div class="titleHead col-12 row align-items-center d-flex">
-                    <div class="col-1">
+                    <div class="col-2">
                         訂單編號
                     </div>
-                    <div class="col-3">
+                    <div class="col-3 ml-n5">
                         送餐時間
                     </div>
-                    <div class="col-1">
+                    <div class="col-2">
                         聯絡人
                     </div>
-                    <div class="col-2">
-                        聯絡電話
-                    </div>
+                   
                     <div class="col-2">
                         金額
                     </div>
@@ -98,33 +110,37 @@
                         訂單狀況
                     </div>
                 </div>
-
-                <ul class="scrollList mealList">
+                <ul class="scrollList orderList">
                     <li class="row col-12 d-flex align-items-center" v-for='(item,index) in product'>
-                        <div class="col-1">
-                            252541
+                        <div class="col-2">
+                            25222
                         </div>
-                        <div class="col-3">
+                        <div class="col-3 ml-n5">
                             2020/06/18 12:00
                         </div>
-                        <div class="col-1">
+                        <div class="col-2">
                             阿信
                         </div>
-                        <div class="col-2">
-                            0970333215
-                        </div>
+                 
                         <div class="col-2">
                             <span class="eng20R price">
                                 <span class=" align-middle">5,000</span>
                             </span>
                         </div>
                         <div class="col-3">
-                            訂單狀況
+                            <span class="action d-flex align-items-center">
+                                <!-- <p>完成</p> -->
+                                <!-- <p class="Rcolor">取消</p> -->
+                                <button class="text20R dbtn btnB" data-toggle="modal"
+                                    data-target="#readyOrder">完備</button>
+                                <button class="text20R dbtn btnW ml-auto" data-toggle="modal"
+                                    data-target="#order">查看訂單</button>
+                            </span>
                         </div>
-            
-                            </div>
-                        </div>
+
+
                     </li>
+                   
                 </ul>
             </div>
             <!-- <button type="button" class="btnY dbtn " data-toggle="modal" data-target="#comfirm">
@@ -135,7 +151,7 @@
             </button> -->
         </div>
     </div>
-   
+
 
 
     <!--  -->
