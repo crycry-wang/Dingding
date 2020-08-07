@@ -2,23 +2,23 @@ var express = require('express');
 var router = express.Router();
 var db = require('../model/db');
 
-const mysql = require('mysql');
+// const mysql = require('mysql');
 
 // 建立連線物件
-const db = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'root',
-    database: 'dingding',
-    socketPath: '/Applications/MAMP/tmp/mysql/mysql.sock'
-});
+// const db = mysql.createConnection({
+//     host: 'localhost',
+//     user: 'root',
+//     password: 'root',
+//     database: 'dingding',
+//     socketPath: '/Applications/MAMP/tmp/mysql/mysql.sock'
+// });
 
-db.on('error', ex=>{
-    console.log(ex);
-});
-db.connect();
+// db.on('error', ex=>{
+//     console.log(ex);
+// });
+// db.connect();
 
-module.exports = db;
+// module.exports = db;
 /* GET home page. */
 router.get('/', function(req, res, next) {
   let sql = `select * from product`;

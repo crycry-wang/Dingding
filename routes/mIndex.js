@@ -4,7 +4,7 @@ var db = require('../model/db');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('mIndex');
+  res.render('mIndex', {active: 'mIndex'});
 });
 
 module.exports = router;

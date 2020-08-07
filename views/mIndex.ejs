@@ -36,7 +36,8 @@
 <body>
 
     <!-- 左邊sider -->
-    <div class="slider fixed-top">
+    <%- include('mSider', {active}); %>
+    <!-- <div class="slider fixed-top">
         <img src="/image/LOGO.png" class="sliderLogo">
         <br>
         <img src="/image/photo.jpg" class="sliderPhoto">
@@ -53,7 +54,7 @@
             <a href="" class="mt-4"><i class="icon-message"></i>通知<span class="note">3</span></a>
             <a href="" id="signOut"><i class="icon-logout"></i>登出</a>
         </div>
-    </div>
+    </div> -->
 
     <div style="padding-left: 400px; background-color: var(--dLightGray);">
         <!-- 右邊內容放置區 -->
