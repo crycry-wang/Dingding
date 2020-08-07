@@ -41,23 +41,21 @@
                 <div class="col-6 rwdhidden">
                     <span class="text20B mr16">選擇送餐地址</span>
                     <div class="ddselect mr16">
-                        <div class="dSelect d-inline-block" style="width: 160px; top: 40px;">
-                            <div class="dSelectText text20R " style="line-height: 30px;">縣市</div>
+                        <div class="dSelect d-inline-block countrySelectTitle" style="width: 160px; top: 40px;">
+                            <div v-model="input.country" class="dSelectText text20R countrySelectText" style="line-height: 30px;" :value="null">縣市</div>
                         </div>
-                        <div class="dOptionDivOff selectContent">
-                            <div class="dOption text20R">台北市</div>
-                            <div class="dOption text20R">台中市</div>
-                            <div class="dOption text20R">高雄市</div>
+                        <div class="dOptionDivOff selectContent countrySelectContent">
+                            <div class="dOption text20R countryOption" v-for="country in countryList.sort">{{ country }}</div>
                         </div>
                     </div>
                     <div class="ddselect mr16">
-                        <div class="dSelect d-inline-block" style="width: 160px; top: 40px;">
-                            <div class="dSelectText text20R " style="line-height: 30px;">區</div>
+                        <div class="dSelect d-inline-block districkSelectTitle" style="width: 160px; top: 40px;">
+                            <div v-model="input.districtName" class="dSelectText text20R districkSelectText" style="line-height: 30px;">區</div>
                         </div>
-                        <div class="dOptionDivOff selectContent">
-                            <div class="dOption text20R">南屯區</div>
-                            <div class="dOption text20R">北屯區</div>
-                            <div class="dOption text20R">大里區</div>
+                        <div class="dOptionDivOff selectContent districkSelectContent">
+                            <div class="dOption text20R districkOption" v-for="">南屯區</div>
+                            <div class="dOption text20R districkOption">北屯區</div>
+                            <div class="dOption text20R districkOption">大里區</div>
                         </div>
                     </div>
                     <div class="d-inline-block">
@@ -348,7 +346,7 @@
             <div class="dBannerM">
                 <div class="bannerImage">
                     <div class="container">
-                        <p class="bannerTextM text-center text24B">決「訂」您的每一餐
+                        <p class="bannerTextM text-center text24B">訂訂將於8/22 22:00 ~ 23:00 進行系統維護
                         </p>
                     </div>
                 </div>
@@ -524,34 +522,6 @@
                     </div>
 
                 </div>
-                <!-- <div class="modal-content modal-content-index" v-if="loginTab == 3" v-show="loginTab == 3">
-                    <div class="modelImgDivForget">
-                        <img src="/image/forget.png" style="width: 398px;height: auto;" alt="">
-                    </div>
-                    <div style="width: 690px;position: absolute; right: 0;">
-                        <div class="modal-header mt-m" style="margin-bottom: 40px;">
-                            <h5 class="modal-title text28B w-100 text-center">找回密碼</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <i class=" icon-close"></i>
-                            </button>
-                        </div>
-                        <div class="modal-continer-index" style="margin-top: 0;">
-                            
-                            <p class="text20B mb-2">
-                                電子信箱
-                            </p>
-                            <input type="text" class="text20RG singleText398 mb-l" placeholder="請輸入電子信箱">
-    
-                            <button class="text20R dbtn btn398 " style=" margin-bottom: 24px;">寄密碼到此信箱</button>
-                            <button class="text20R dbtn btn398G">返回登入頁面</button>
-                            
-                            
-                        </div>
-                        <div class="modal-footer">
-                        </div>
-                    </div>
-    
-                </div> -->
             </div>
 
         </div>
@@ -567,8 +537,10 @@
                     </div>
                     <div style="width: 690px;position: absolute; right: 0;">
                         <div class="modal-header-index">
-                            <div :class="{act:registeredTab == 1}" class="dTag text24RG" style="display: inline-block;" v-on:click="registeredTabClick(1)">一般用戶註冊</div>
-                            <div :class="{act:registeredTab == 2}" class="dTag text24RG" style="display: inline-block;" v-on:click="registeredTabClick(2)">企業用戶註冊</div>
+                            <div :class="{act:registeredTab == 1}" class="dTag text24RG" style="display: inline-block;"
+                                v-on:click="registeredTabClick(1)">一般用戶註冊</div>
+                            <div :class="{act:registeredTab == 2}" class="dTag text24RG" style="display: inline-block;"
+                                v-on:click="registeredTabClick(2)">企業用戶註冊</div>
                             </a>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <i class=" icon-close"></i>
@@ -620,24 +592,25 @@
                                 密碼
                             </p>
                             <input type="text" class="text20RG singleText398 " placeholder="請輸入密碼">
-    
-    
+
+
                             <button class="text20R dbtn btn398 " style="margin-bottom: 24px;">送出登記</button>
                             <div style="padding-left: 55px;margin-bottom: 80px;">
                                 <span style="font-size: 16px; margin-right: 16px;">送出登記後，我們將有專人會與您聯絡</span>
-                                
+
                             </div>
-    
+
                         </div>
-                        <div style="padding-right: 60px;padding-left: 138px;margin-top: 190px;display: block;" v-if="registeredTab == 2">
+                        <div style="padding-right: 60px;padding-left: 138px;margin-top: 190px;display: block;"
+                            v-if="registeredTab == 2">
                             <span style="font-weight: 700;margin-right: 14px;">客服專線</span>
                             <span style="color: var(--dYellow);margin-right: 14px;">|</span>
                             <span>0800-000-123</span>
                             <div style="float: right;">
                                 <span
                                     style="color: var(--dYellow);font-weight: 700;margin-right: 13px; vertical-align: middle;">聯絡客服</span>
-                                    <img src="/image/service01.png"
-                                    style="width: 16px; height: auto;line-height: 24px;" alt="">
+                                <img src="/image/service01.png" style="width: 16px; height: auto;line-height: 24px;"
+                                    alt="">
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -655,11 +628,15 @@
 
     <script src="/javascript/vue.js"></script>
     <script>
+        var country = ''
+        var districk = ''
         let data = {
             index: 0,
             tab: 1,
             loginTab: 1,
             registeredTab: 1,
+            dbDistrick: JSON.parse('<%- a %>'),
+            dbDelivery: JSON.parse('<%- b %>'),
             storeItem: [{
                 id: 0,
                 storeName: "肯德基 KFC 台中公益店",
@@ -1164,6 +1141,10 @@
             },
             ],
 
+            input: {
+                country: country,
+                districtName:districk
+            }
         };
         let store = new Vue({
             el: "#store",
@@ -1174,16 +1155,25 @@
                     return this.storeItem.slice(this.index, this.index + 3)
 
                 },
-                // categoryList() {
-                //     let obj = {
-                //         sort: [],
-                //         map: {}
-                //     }
-                //     var e = this.storeItem.map(function (categoryName) {
-                //         return categoryName
-                //     })
-                //     return e
-                // }
+                countryList() {
+                    let dbDistrickObj = {
+                        sort: [],
+                        map: {}
+                    }
+                    this.dbDistrick.forEach(({ country, districtName, districtID, area }, index) => {
+                        if (!dbDistrickObj.map[country]) {
+                            dbDistrickObj.sort.push(country)
+                            dbDistrickObj.map[country] = {
+                                sort: [],
+                                map: {}
+                            }
+                        }
+                        dbDistrickObj.map[country].sort.push(districtName)
+                        dbDistrickObj.map[country].map[districtName] = { index, districtID }
+                    })
+                    return dbDistrickObj
+
+                }
 
             },
             methods: {
@@ -1229,26 +1219,50 @@
             }
         });
 
-        $(function() {
-            function reSelect() {
-                $('.selectTitle').removeClass('dSelectClick').addClass('dSelect');
-                $('.selectContent').removeClass('dOptionDivOn').addClass('dOptionDivOff');
+        // 縣市選單
+        $(function () {
+            function reSelectCountry() {
+                $('.countrySelectTitle').removeClass('dSelectClick').addClass('dSelect');
+                $('.countrySelectContent').removeClass('dOptionDivOn').addClass('dOptionDivOff');
             }
 
-            function teSelect() {
-                reSelect();
-                currentCategory = $(this).text();
-                $('.ddselect').children('.selectTitle').children('.dSelectText').text(currentCategory);
+            function teSelectCountry() {
+                reSelectCountry();
+                country = $(this).text();
+                $('.ddselect').children('.countrySelectTitle').children('.countrySelectText').text(country);
 
             }
 
-            $('.dSelectText').click(function() {
-                $('.selectTitle').removeClass('dSelect').addClass('dSelectClick');
-                $('.selectContent').removeClass('dOptionDivOff').addClass('dOptionDivOn');
-                $('.dOption').click(teSelect);
+            $('.countrySelectText').click(function () {
+                $('.countrySelectTitle').removeClass('dSelect').addClass('dSelectClick');
+                $('.countrySelectContent').removeClass('dOptionDivOff').addClass('dOptionDivOn');
+                $('.countryOption').click(teSelectCountry);
             });
 
         });
+
+        // 區域選單
+        $(function () {
+            function reSelectDistrick() {
+                $('.districkSelectTitle').removeClass('dSelectClick').addClass('dSelect');
+                $('.districkSelectContent').removeClass('dOptionDivOn').addClass('dOptionDivOff');
+            }
+
+            function teSelectDistrick() {
+                reSelectDistrick();
+                districk = $(this).text();
+                $('.ddselect').children('.districkSelectTitle').children('.districkSelectText').text(districk);
+
+            }
+
+            $('.districkSelectText').click(function () {
+                $('.districkSelectTitle').removeClass('dSelect').addClass('dSelectClick');
+                $('.districkSelectContent').removeClass('dOptionDivOff').addClass('dOptionDivOn');
+                $('.districkOption').click(teSelectDistrick);
+            });
+
+        });
+
     </script>
 
 </body>
