@@ -17,7 +17,7 @@ router.get('/', function(req, res, next) {
     db.query(store, function(err, results) {
         if (err) console.log("ERR!!");
         newsJSON = JSON.stringify(results);
-        res.render('sNotice', { storeData: newsJSON });
+        res.render('sNotice', { storeData: newsJSON, active: 'sNotice' });
         console.log(newsJSON);
     })
 
