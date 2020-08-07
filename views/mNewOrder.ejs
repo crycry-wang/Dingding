@@ -75,7 +75,7 @@
                                 <div class="dSelect" style="width: 500px;">
                                     <!-- <input v-model="groupName" type="text" class="text20RG singleText398"
                                         placeholder="選擇團體"> -->
-                                    <select v-model="groupName" name="" id="" class="text20RG singleText398 w-75"
+                                    <!-- <select v-model="groupName" name="" id="" class="text20RG singleText398 w-75"
                                         placeholder="選擇團體">
                                         <option v-for="(group,index) in groupList" class="text20RG singleText398" value="">{{group.groupName}}</option>
                                     </select>
@@ -102,13 +102,13 @@
                             <div class="row mb-m mTD">
                                 <div class="dSelect" style="width: 500px;">
                                     <input v-model:trim="searchCondition" type="text" class="text20RG singleText398" placeholder="請輸入店家名稱">
-                                </div>
-                                <button v-on:click="searchStore" class="text20R dbtn btnY ml-3">搜尋店家</button>
+                                </div> -->
+                                <!-- <button v-on:click="searchStore" class="text20R dbtn btnY ml-3">搜尋店家</button>
                                 <button v-on:click="randomChoose" class="text20R dbtn btnY ml-3" type="button"
-                                    id="randomBtn">店家拉霸機</button>
+                                    id="randomBtn">店家拉霸機</button> -->
                             </div>
                             <div class="mTD">
-                                <a href="#" class="text20R text-decoration-none pr-3 textB">推薦</a><span
+                                <a href="#" class="text20R text-decoration-none pr-3 textB" @click="recommand">推薦</a><span
                                     class="textG">|</span>
                                 <a href="#" class="text20R text-decoration-none pr-3 pl-3">收藏</a><span
                                     class="textG">|</span>
@@ -122,7 +122,7 @@
                             <hr class="" style="border: 1px solid var(--dLightGray);">
                         </div>
                         <!-- 商品卡 -->
-                        <div class="row imgCardGroup">
+                        <!-- <div class="row imgCardGroup">
                             <div v-for="(store,index) in storeList" class="col-4 imgCard">
                                 <input v-model="selectedStore" class="form-check-input" type="radio" name="blankRadio"
                                     id="blankRadio1" :value="storeList[index].storeID" aria-label="...">
@@ -138,82 +138,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- <div class="col-4 imgCard">
-                                <div class="dingImgDiv" style="width:  100%">
-                                    <input class="form-check-input" type="radio" name="blankRadio" id="blankRadio1"
-                                        value="option1" aria-label="...">
-                                    <img src="/image/store/Taichung/隨主飡_法式水煮專賣/index.jpeg"
-                                        class="card-img-top dingImg" alt="...">
-                                    <div class="card-body">
-                                        <div class="d-inline-block w-75">
-                                            <p class="card-text text24B shopName">隨主飡_法式水煮專賣賣賣賣賣賣賣賣賣賣</p>
-                                        </div>
-                                        <i class="icon-spoon float-right"></i>
-                                        <span class="card-text eng24R float-right" style="margin-right: 7px;">4.8</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-4 imgCard">
-                                <div class="dingImgDiv" style="width:  100%">
-                                    <input class="form-check-input" type="radio" name="blankRadio" id="blankRadio1"
-                                        value="option1" aria-label="...">
-                                    <img src="/image/store/Taichung/太初麵食/index.jpeg"
-                                        class="card-img-top dingImg" alt="...">
-                                    <div class="card-body">
-                                        <div class="d-inline-block w-75">
-                                            <p class="card-text text24B shopName">太初麵食</p>
-                                        </div>
-                                        <i class="icon-spoon float-right"></i>
-                                        <span class="card-text eng24R float-right" style="margin-right: 7px;">4.8</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-4 imgCard">
-                                <input class="form-check-input" type="radio" name="blankRadio" id="blankRadio1"
-                                    value="option1" aria-label="...">
-                                <div class="dingImgDiv" style="width:  100%">
-                                    <img src="/image/store/Taichung/太初麵食/index.jpeg"
-                                        class="card-img-top dingImg" alt="...">
-                                    <div class="card-body">
-                                        <div class="d-inline-block w-75">
-                                            <p class="card-text text24B shopName">太初麵食</p>
-                                        </div>
-                                        <i class="icon-spoon float-right"></i>
-                                        <span class="card-text eng24R float-right" style="margin-right: 7px;">4.8</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-4 imgCard">
-                                <div class="dingImgDiv" style="width:  100%">
-                                    <input class="form-check-input" type="radio" name="blankRadio" id="blankRadio1"
-                                        value="option1" aria-label="...">
-                                    <img src="/image/store/Taichung/隨主飡_法式水煮專賣/index.jpeg"
-                                        class="card-img-top dingImg" alt="...">
-                                    <div class="card-body">
-                                        <div class="d-inline-block w-75">
-                                            <p class="card-text text24B shopName">隨主飡_法式水煮專賣賣賣賣賣賣賣賣賣賣</p>
-                                        </div>
-                                        <i class="icon-spoon float-right"></i>
-                                        <span class="card-text eng24R float-right" style="margin-right: 7px;">4.8</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-4 imgCard">
-                                <div class="dingImgDiv" style="width:  100%">
-                                    <input class="form-check-input" type="radio" name="blankRadio" id="blankRadio1"
-                                        value="option1" aria-label="...">
-                                    <img src="/image/store/Taichung/太初麵食/index.jpeg"
-                                        class="card-img-top dingImg" alt="...">
-                                    <div class="card-body">
-                                        <div class="d-inline-block w-75">
-                                            <p class="card-text text24B shopName">太初麵食</p>
-                                        </div>
-                                        <i class="icon-spoon float-right"></i>
-                                        <span class="card-text eng24R float-right" style="margin-right: 7px;">4.8</span>
-                                    </div>
-                                </div>
-                            </div> -->
-                        </div>
+                           
+                        </div> -->
                     </div>
                 </div>
             </div>
@@ -237,7 +163,10 @@
 
         let app = new Vue({
             el: "#app",
-            data: data,
+            data: {
+                data,
+                dataJson: []
+            },
             mounted() {
                 if (localStorage.groupName) {
                     this.groupName = localStorage.groupName;
@@ -300,6 +229,17 @@
                         })
                     }
                     return finalStoreList;
+                },
+                recommand:function(){
+                    
+                    fetch('/mNewOrder/json')
+                    .then(function(response) {
+                        return response.json();
+                    })
+                    .then((myJson) => {
+                        console.log(myJson);
+                        this.dataJson= myJson;
+                    });
                 }
   
             }
