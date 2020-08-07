@@ -1,0 +1,28 @@
+<!-- 左邊sider -->
+<div class="slider fixed-top" id='sSider'>
+    <img src="/image/LOGO.png" class="sliderLogo">
+    <br>
+    <img :src="(`image/store/${ storeData[0].storePhoto}`)" class="sliderPhoto">
+    <p class="name text24B">{{storeData[0].storeName}}</p>
+
+
+    <div class="menu text24R ">
+        <a <%if(active=="sOrder"){%> class="act"<%}%> href="sOrder"><i class="icon-order"></i>訂單管理</a>
+        <a <%if(active=="sProduct"){%> class="act"<%}%> href="sProduct"><i class="icon-menu"></i>餐點清單</a>
+        <a <%if(active=="sStat"){%> class="act"<%}%> href="sStat"><i class="icon-statistics"></i>營運統計</a>
+        <a <%if(active=="sComment"){%> class="act"<%}%> href="sComment"><i class="icon-evaluation"></i>店家評價</a>
+        <a <%if(active=="sNotice"){%> class="act"<%}%> href="sNotice"><i class="icon-message "></i>通知<span class="note">3</span></a>
+        <a <%if(active=="sInformation"){%> class="act"<%}%> href="sInformation"><i class="icon-about"></i>店家資訊</a>
+        <a href="index" id="signOut"><i class="icon-logout"></i>登出</a>
+    </div>
+</div>
+
+<script>
+    // vue資料
+    let sSider = new Vue({
+        el: '#sSider',
+        data: {
+            storeData: JSON.parse('<%- storeData %>')
+        }
+    })
+</script>

@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="/stylesheets/fontello.css">
     <link rel="stylesheet" href="/stylesheets/sider.css">
     <link rel="stylesheet" href="/stylesheets/notice.css">
+    <script src="/javascript/vue.js"></script>
 
     <title>Document</title>
 
@@ -30,329 +31,313 @@
 <body>
 
     <!-- 左邊sider -->
-    <div class="slider fixed-top">
-        <img src="/image/LOGO.png" class="sliderLogo">
-        <br>
-        <img src="/image/photo.jpg" class="sliderPhoto">
-        <p class="name text24B">尊品原汁牛肉麵</p>
-        <div class="menu text24R ">
+    <%- include('sSider', {active}); %>
+        <div class="containerRight">
+            <!-- 右邊內容放置區 -->
 
-            <a href="" class=""><i class="icon-order"></i>訂單管理</a>
-            <a href=""><i class="icon-menu"></i>餐點清單</a>
-            <a href=""><i class="icon-statistics"></i>營運統計</a>
-            <a href=""><i class="icon-evaluation"></i>店家評價</a>
-            <a href="" class="act"><i class="icon-message "></i>通知<span class="note">3</span></a>
-            <a href="sInformation"><i class="icon-about"></i>店家資訊</a>
-            <a href="" id="signOut"><i class="icon-logout"></i>登出</a>
-        </div>
-    </div>
+            <nav class="topTag row inWrapper">
+                <a class="more ml-auto" href="#" role="button" id="more" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                </a>
+                <div class="dropdown-menu text-center tag-wrap" aria-labelledby="more" id='moreMenu'>
+                    <a class="dropdown-item text20R" href="#">全部已讀</a>
+                    <a class="dropdown-item text20R" href="#">全部刪除</a>
 
-    <div class="containerRight">
-        <!-- 右邊內容放置區 -->
-
-        <nav class="topTag row inWrapper">
-            <a class="more ml-auto" href="#" role="button" id="more" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            </a>
-            <div class="dropdown-menu text-center tag-wrap" aria-labelledby="more" id='moreMenu'>
-                <a class="dropdown-item text20R" href="#">全部已讀</a>
-                <a class="dropdown-item text20R" href="#">全部刪除</a>
-
-            </div>
-        </nav>
-        <div class="dblock mt-4">
-            <ul class="scrollList noticeList">
-                <!-- 新訊息 -->
-                <li class="noticeItem d-flex align-items-center store">
-                    <span class="photo"></span>
-                    <!-- <img src="/image/message.png"> -->
-                    <span class="content">
+                </div>
+            </nav>
+            <div class="dblock mt-4">
+                <ul class="scrollList noticeList">
+                    <!-- 新訊息 -->
+                    <li class="noticeItem d-flex align-items-center store">
+                        <span class="photo"></span>
+                        <!-- <img src="/image/message.png"> -->
+                        <span class="content">
                         <h2 class="text24B">新訂單通知</h2>
                         <p class="text20R">有一筆來自阿信的新訂單，快去處理吧！</p>
                         <p class="text16">3小時前</p>
                     </span>
-                    <span class="ml-auto actionR">
+                        <span class="ml-auto actionR">
                         <span class="eng20R price">
                             <span class=" align-middle">5,000</span>
-                    </span>
-                    <button class="text20R dbtn btnW d-none" data-toggle="modal" data-target="#order">查看訂單</button>
-                    <button class="text20R dbtn btnY" data-toggle="modal" data-target="#orderAction"> 處理訂單</button>
-                    <i class="icon-trash d-none"></i>
-                    </span>
-                </li>
+                        </span>
+                        <button class="text20R dbtn btnW d-none" data-toggle="modal" data-target="#order">查看訂單</button>
+                        <button class="text20R dbtn btnY" data-toggle="modal" data-target="#orderAction"> 處理訂單</button>
+                        <i class="icon-trash d-none"></i>
+                        </span>
+                    </li>
 
-                <!-- 系統通知 -->
-                <li class="noticeItem d-flex align-items-center">
-                    <!-- <span class="photo"></span> -->
-                    <img src="/image/message.png">
-                    <span class="content">
+                    <!-- 系統通知 -->
+                    <li class="noticeItem d-flex align-items-center">
+                        <!-- <span class="photo"></span> -->
+                        <img src="/image/message.png">
+                        <span class="content">
                         <h2 class="text24B">訂訂系統通知</h2>
                         <p class="text20R">訂訂將於2020年06月26號(星期五)14:00至15:00進行系統升級。</p>
                         <p class="text16">3小時前</p>
                     </span>
-                    <span class="ml-auto actionR">
+                        <span class="ml-auto actionR">
                         <span class="eng20R price d-none">
                             <span class=" align-middle">5,000</span>
-                    </span>
-                    <button class="text20R dbtn btnW d-none" data-toggle="modal" data-target="#order">查看訂單</button>
-                    <button class="text20R dbtn btnY  d-none" data-toggle="modal" data-target="#orderAction">
+                        </span>
+                        <button class="text20R dbtn btnW d-none" data-toggle="modal" data-target="#order">查看訂單</button>
+                        <button class="text20R dbtn btnY  d-none" data-toggle="modal" data-target="#orderAction">
                             處理訂單</button>
-                    <i class="icon-trash"></i>
-                    </span>
-                </li>
+                        <i class="icon-trash"></i>
+                        </span>
+                    </li>
 
-                <!-- 拒絕訂單 -->
-                <li class="noticeItem d-flex align-items-center cancel store">
-                    <!-- <span class="photo"></span> -->
-                    <img src="/image/message.png">
-                    <span class="content">
+                    <!-- 拒絕訂單 -->
+                    <li class="noticeItem d-flex align-items-center cancel store">
+                        <!-- <span class="photo"></span> -->
+                        <img src="/image/message.png">
+                        <span class="content">
                         <h2 class="text24B">已拒絕 來自阿信的訂單</h2>
                         <p class="text20R">您已拒絕來自阿信的訂單，已新增訂單至歷史訂單。</p>
                         <p class="text16">3小時前</p>
                     </span>
-                    <span class="ml-auto actionR">
+                        <span class="ml-auto actionR">
                         <span class="eng20R price">
                             <span class=" align-middle">5,000</span>
-                    </span>
-                    <button class="text20R dbtn btnW" data-toggle="modal" data-target="#order">查看訂單</button>
-                    <button class="text20R dbtn btnY  d-none" data-toggle="modal" data-target="#orderAction">
+                        </span>
+                        <button class="text20R dbtn btnW" data-toggle="modal" data-target="#order">查看訂單</button>
+                        <button class="text20R dbtn btnY  d-none" data-toggle="modal" data-target="#orderAction">
                             處理訂單</button>
-                    <i class="icon-trash"></i>
-                    </span>
-                </li>
+                        <i class="icon-trash"></i>
+                        </span>
+                    </li>
 
-                <!-- 接受訂單 -->
-                <li class="noticeItem d-flex align-items-center store">
-                    <!-- <span class="photo"></span> -->
-                    <img src="/image/message.png">
-                    <span class="content">
+                    <!-- 接受訂單 -->
+                    <li class="noticeItem d-flex align-items-center store">
+                        <!-- <span class="photo"></span> -->
+                        <img src="/image/message.png">
+                        <span class="content">
                         <h2 class="text24B">已接受 來自王小華的訂單</h2>
                         <p class="text20R">已新增至訂單管理，請於<span class="Ycolor">2020/06/18 12:00</span>準時送達餐點。</p>
-                    <p class="text16">3小時前</p>
-                    </span>
-                    <span class="ml-auto actionR">
+                        <p class="text16">3小時前</p>
+                        </span>
+                        <span class="ml-auto actionR">
                         <span class="eng20R price">
                             <span class=" align-middle">5,000</span>
-                    </span>
-                    <button class="text20R dbtn btnW" data-toggle="modal" data-target="#order">查看訂單</button>
-                    <button class="text20R dbtn btnY  d-none" data-toggle="modal" data-target="#orderAction">
+                        </span>
+                        <button class="text20R dbtn btnW" data-toggle="modal" data-target="#order">查看訂單</button>
+                        <button class="text20R dbtn btnY  d-none" data-toggle="modal" data-target="#orderAction">
                             處理訂單</button>
-                    <i class="icon-trash"></i>
-                    </span>
-                </li>
+                        <i class="icon-trash"></i>
+                        </span>
+                    </li>
 
-                <!-- 已讀接受訂單 -->
-                <li class="noticeItem d-flex align-items-center read store">
-                    <!-- <span class="photo"></span> -->
-                    <img src="/image/message.png">
-                    <span class="content">
+                    <!-- 已讀接受訂單 -->
+                    <li class="noticeItem d-flex align-items-center read store">
+                        <!-- <span class="photo"></span> -->
+                        <img src="/image/message.png">
+                        <span class="content">
                         <h2 class="text24B">已接受 來自王小華的訂單</h2>
                         <p class="text20R">已新增至訂單管理，請於<span class="Ycolor">2020/06/18 12:00</span>準時送達餐點。</p>
-                    <p class="text16">3小時前</p>
-                    </span>
-                    <span class="ml-auto actionR">
+                        <p class="text16">3小時前</p>
+                        </span>
+                        <span class="ml-auto actionR">
                         <span class="eng20R price">
                             <span class=" align-middle">5,000</span>
-                    </span>
-                    <button class="text20R dbtn btnW" data-toggle="modal" data-target="#order">查看訂單</button>
-                    <button class="text20R dbtn btnY  d-none" data-toggle="modal" data-target="#orderAction">
+                        </span>
+                        <button class="text20R dbtn btnW" data-toggle="modal" data-target="#order">查看訂單</button>
+                        <button class="text20R dbtn btnY  d-none" data-toggle="modal" data-target="#orderAction">
                             處理訂單</button>
-                    <i class="icon-trash"></i>
-                    </span>
-                </li>
+                        <i class="icon-trash"></i>
+                        </span>
+                    </li>
 
-                <!-- 已讀拒絕訂單 -->
-                <li class="noticeItem d-flex align-items-center cancel store read">
-                    <!-- <span class="photo"></span> -->
-                    <img src="/image/message.png">
-                    <span class="content">
+                    <!-- 已讀拒絕訂單 -->
+                    <li class="noticeItem d-flex align-items-center cancel store read">
+                        <!-- <span class="photo"></span> -->
+                        <img src="/image/message.png">
+                        <span class="content">
                         <h2 class="text24B">已拒絕 來自阿信的訂單</h2>
                         <p class="text20R">您已拒絕來自阿信的訂單，已新增訂單至歷史訂單。</p>
                         <p class="text16">3小時前</p>
                     </span>
-                    <span class="ml-auto actionR">
+                        <span class="ml-auto actionR">
                         <span class="eng20R price">
                             <span class=" align-middle">5,000</span>
-                    </span>
-                    <button class="text20R dbtn btnW" data-toggle="modal" data-target="#order">查看訂單</button>
-                    <button class="text20R dbtn btnY  d-none" data-toggle="modal" data-target="#orderAction">
+                        </span>
+                        <button class="text20R dbtn btnW" data-toggle="modal" data-target="#order">查看訂單</button>
+                        <button class="text20R dbtn btnY  d-none" data-toggle="modal" data-target="#orderAction">
                             處理訂單</button>
-                    <i class="icon-trash"></i>
+                        <i class="icon-trash"></i>
 
-                    </span>
-                </li>
-                <!-- 已讀拒絕訂單 -->
-                <li class="noticeItem d-flex align-items-center cancel store read">
-                    <!-- <span class="photo"></span> -->
-                    <img src="/image/message.png">
-                    <span class="content">
+                        </span>
+                    </li>
+                    <!-- 已讀拒絕訂單 -->
+                    <li class="noticeItem d-flex align-items-center cancel store read">
+                        <!-- <span class="photo"></span> -->
+                        <img src="/image/message.png">
+                        <span class="content">
                         <h2 class="text24B">已拒絕 來自阿信的訂單</h2>
                         <p class="text20R">您已拒絕來自阿信的訂單，已新增訂單至歷史訂單。</p>
                         <p class="text16">3小時前</p>
                     </span>
-                    <span class="ml-auto actionR">
+                        <span class="ml-auto actionR">
                         <span class="eng20R price">
                             <span class=" align-middle">5,000</span>
-                    </span>
-                    <button class="text20R dbtn btnW" data-toggle="modal" data-target="#order">查看訂單</button>
-                    <button class="text20R dbtn btnY  d-none" data-toggle="modal" data-target="#orderAction">
+                        </span>
+                        <button class="text20R dbtn btnW" data-toggle="modal" data-target="#order">查看訂單</button>
+                        <button class="text20R dbtn btnY  d-none" data-toggle="modal" data-target="#orderAction">
                             處理訂單</button>
-                    <i class="icon-trash"></i>
+                        <i class="icon-trash"></i>
 
-                    </span>
-                </li>
-                <!-- 已讀拒絕訂單 -->
-                <li class="noticeItem d-flex align-items-center cancel store read">
-                    <!-- <span class="photo"></span> -->
-                    <img src="/image/message.png">
-                    <span class="content">
+                        </span>
+                    </li>
+                    <!-- 已讀拒絕訂單 -->
+                    <li class="noticeItem d-flex align-items-center cancel store read">
+                        <!-- <span class="photo"></span> -->
+                        <img src="/image/message.png">
+                        <span class="content">
                         <h2 class="text24B">已拒絕 來自阿信的訂單</h2>
                         <p class="text20R">您已拒絕來自阿信的訂單，已新增訂單至歷史訂單。</p>
                         <p class="text16">3小時前</p>
                     </span>
-                    <span class="ml-auto actionR">
+                        <span class="ml-auto actionR">
                         <span class="eng20R price">
                             <span class=" align-middle">5,000</span>
-                    </span>
-                    <button class="text20R dbtn btnW" data-toggle="modal" data-target="#order">查看訂單</button>
-                    <button class="text20R dbtn btnY  d-none" data-toggle="modal" data-target="#orderAction">
+                        </span>
+                        <button class="text20R dbtn btnW" data-toggle="modal" data-target="#order">查看訂單</button>
+                        <button class="text20R dbtn btnY  d-none" data-toggle="modal" data-target="#orderAction">
                             處理訂單</button>
-                    <i class="icon-trash"></i>
+                        <i class="icon-trash"></i>
 
-                    </span>
-                </li>
-                <!-- 已讀拒絕訂單 -->
-                <li class="noticeItem d-flex align-items-center cancel store read">
-                    <!-- <span class="photo"></span> -->
-                    <img src="/image/message.png">
-                    <span class="content">
+                        </span>
+                    </li>
+                    <!-- 已讀拒絕訂單 -->
+                    <li class="noticeItem d-flex align-items-center cancel store read">
+                        <!-- <span class="photo"></span> -->
+                        <img src="/image/message.png">
+                        <span class="content">
                         <h2 class="text24B">已拒絕 來自阿信的訂單</h2>
                         <p class="text20R">您已拒絕來自阿信的訂單，已新增訂單至歷史訂單。</p>
                         <p class="text16">3小時前</p>
                     </span>
-                    <span class="ml-auto actionR">
+                        <span class="ml-auto actionR">
                         <span class="eng20R price">
                             <span class=" align-middle">5,000</span>
-                    </span>
-                    <button class="text20R dbtn btnW" data-toggle="modal" data-target="#order">查看訂單</button>
-                    <button class="text20R dbtn btnY  d-none" data-toggle="modal" data-target="#orderAction">
+                        </span>
+                        <button class="text20R dbtn btnW" data-toggle="modal" data-target="#order">查看訂單</button>
+                        <button class="text20R dbtn btnY  d-none" data-toggle="modal" data-target="#orderAction">
                             處理訂單</button>
-                    <i class="icon-trash"></i>
+                        <i class="icon-trash"></i>
 
-                    </span>
-                </li>
-                <!-- 已讀拒絕訂單 -->
-                <li class="noticeItem d-flex align-items-center cancel store read">
-                    <!-- <span class="photo"></span> -->
-                    <img src="/image/message.png">
-                    <span class="content">
+                        </span>
+                    </li>
+                    <!-- 已讀拒絕訂單 -->
+                    <li class="noticeItem d-flex align-items-center cancel store read">
+                        <!-- <span class="photo"></span> -->
+                        <img src="/image/message.png">
+                        <span class="content">
                         <h2 class="text24B">已拒絕 來自阿信的訂單</h2>
                         <p class="text20R">您已拒絕來自阿信的訂單，已新增訂單至歷史訂單。</p>
                         <p class="text16">3小時前</p>
                     </span>
-                    <span class="ml-auto actionR">
+                        <span class="ml-auto actionR">
                         <span class="eng20R price">
                             <span class=" align-middle">5,000</span>
-                    </span>
-                    <button class="text20R dbtn btnW" data-toggle="modal" data-target="#order">查看訂單</button>
-                    <button class="text20R dbtn btnY  d-none" data-toggle="modal" data-target="#orderAction">
+                        </span>
+                        <button class="text20R dbtn btnW" data-toggle="modal" data-target="#order">查看訂單</button>
+                        <button class="text20R dbtn btnY  d-none" data-toggle="modal" data-target="#orderAction">
                             處理訂單</button>
-                    <i class="icon-trash"></i>
+                        <i class="icon-trash"></i>
 
-                    </span>
-                </li>
-                <!-- 已讀拒絕訂單 -->
-                <li class="noticeItem d-flex align-items-center cancel store read">
-                    <!-- <span class="photo"></span> -->
-                    <img src="/image/message.png">
-                    <span class="content">
+                        </span>
+                    </li>
+                    <!-- 已讀拒絕訂單 -->
+                    <li class="noticeItem d-flex align-items-center cancel store read">
+                        <!-- <span class="photo"></span> -->
+                        <img src="/image/message.png">
+                        <span class="content">
                         <h2 class="text24B">已拒絕 來自阿信的訂單</h2>
                         <p class="text20R">您已拒絕來自阿信的訂單，已新增訂單至歷史訂單。</p>
                         <p class="text16">3小時前</p>
                     </span>
-                    <span class="ml-auto actionR">
+                        <span class="ml-auto actionR">
                         <span class="eng20R price">
                             <span class=" align-middle">5,000</span>
-                    </span>
-                    <button class="text20R dbtn btnW" data-toggle="modal" data-target="#order">查看訂單</button>
-                    <button class="text20R dbtn btnY  d-none" data-toggle="modal" data-target="#orderAction">
+                        </span>
+                        <button class="text20R dbtn btnW" data-toggle="modal" data-target="#order">查看訂單</button>
+                        <button class="text20R dbtn btnY  d-none" data-toggle="modal" data-target="#orderAction">
                             處理訂單</button>
-                    <i class="icon-trash"></i>
+                        <i class="icon-trash"></i>
 
-                    </span>
-                </li>
-                <!-- 已讀拒絕訂單 -->
-                <li class="noticeItem d-flex align-items-center cancel store read">
-                    <!-- <span class="photo"></span> -->
-                    <img src="/image/message.png">
-                    <span class="content">
+                        </span>
+                    </li>
+                    <!-- 已讀拒絕訂單 -->
+                    <li class="noticeItem d-flex align-items-center cancel store read">
+                        <!-- <span class="photo"></span> -->
+                        <img src="/image/message.png">
+                        <span class="content">
                         <h2 class="text24B">已拒絕 來自阿信的訂單</h2>
                         <p class="text20R">您已拒絕來自阿信的訂單，已新增訂單至歷史訂單。</p>
                         <p class="text16">3小時前</p>
                     </span>
-                    <span class="ml-auto actionR">
+                        <span class="ml-auto actionR">
                         <span class="eng20R price">
                             <span class=" align-middle">5,000</span>
-                    </span>
-                    <button class="text20R dbtn btnW" data-toggle="modal" data-target="#order">查看訂單</button>
-                    <button class="text20R dbtn btnY  d-none" data-toggle="modal" data-target="#orderAction">
+                        </span>
+                        <button class="text20R dbtn btnW" data-toggle="modal" data-target="#order">查看訂單</button>
+                        <button class="text20R dbtn btnY  d-none" data-toggle="modal" data-target="#orderAction">
                             處理訂單</button>
-                    <i class="icon-trash"></i>
+                        <i class="icon-trash"></i>
 
-                    </span>
-                </li>
-                <!-- 已讀拒絕訂單 -->
-                <li class="noticeItem d-flex align-items-center cancel store read">
-                    <!-- <span class="photo"></span> -->
-                    <img src="/image/message.png">
-                    <span class="content">
+                        </span>
+                    </li>
+                    <!-- 已讀拒絕訂單 -->
+                    <li class="noticeItem d-flex align-items-center cancel store read">
+                        <!-- <span class="photo"></span> -->
+                        <img src="/image/message.png">
+                        <span class="content">
                         <h2 class="text24B">已拒絕 來自阿信的訂單</h2>
                         <p class="text20R">您已拒絕來自阿信的訂單，已新增訂單至歷史訂單。</p>
                         <p class="text16">3小時前</p>
                     </span>
-                    <span class="ml-auto actionR">
+                        <span class="ml-auto actionR">
                         <span class="eng20R price">
                             <span class=" align-middle">5,000</span>
-                    </span>
-                    <button class="text20R dbtn btnW" data-toggle="modal" data-target="#order">查看訂單</button>
-                    <button class="text20R dbtn btnY  d-none" data-toggle="modal" data-target="#orderAction">
+                        </span>
+                        <button class="text20R dbtn btnW" data-toggle="modal" data-target="#order">查看訂單</button>
+                        <button class="text20R dbtn btnY  d-none" data-toggle="modal" data-target="#orderAction">
                             處理訂單</button>
-                    <i class="icon-trash"></i>
+                        <i class="icon-trash"></i>
 
-                    </span>
-                </li>
-                <!-- 已讀拒絕訂單 -->
-                <li class="noticeItem d-flex align-items-center cancel store read">
-                    <!-- <span class="photo"></span> -->
-                    <img src="/image/message.png">
-                    <span class="content">
+                        </span>
+                    </li>
+                    <!-- 已讀拒絕訂單 -->
+                    <li class="noticeItem d-flex align-items-center cancel store read">
+                        <!-- <span class="photo"></span> -->
+                        <img src="/image/message.png">
+                        <span class="content">
                         <h2 class="text24B">已拒絕 來自阿信的訂單</h2>
                         <p class="text20R">您已拒絕來自阿信的訂單，已新增訂單至歷史訂單。</p>
                         <p class="text16">3小時前</p>
                     </span>
-                    <span class="ml-auto actionR">
+                        <span class="ml-auto actionR">
                         <span class="eng20R price">
                             <span class=" align-middle">5,000</span>
-                    </span>
-                    <button class="text20R dbtn btnW" data-toggle="modal" data-target="#order">查看訂單</button>
-                    <button class="text20R dbtn btnY  d-none" data-toggle="modal" data-target="#orderAction">
+                        </span>
+                        <button class="text20R dbtn btnW" data-toggle="modal" data-target="#order">查看訂單</button>
+                        <button class="text20R dbtn btnY  d-none" data-toggle="modal" data-target="#orderAction">
                             處理訂單</button>
-                    <i class="icon-trash"></i>
+                        <i class="icon-trash"></i>
 
-                    </span>
-                </li>
-                <button type="button" class="btnY dbtn" data-toggle="modal" data-target="#comfirmBtn">
+                        </span>
+                    </li>
+                    <button type="button" class="btnY dbtn" data-toggle="modal" data-target="#comfirmBtn">
                     確認型彈跳框(1按鈕型)
                 </button>
-                <button type="button" class="btnR dbtn" data-toggle="modal" data-target="#delete2Btn">
+                    <button type="button" class="btnR dbtn" data-toggle="modal" data-target="#delete2Btn">
                     刪除型彈跳框(2按鈕型)
                 </button>
-            </ul>
+                </ul>
+
+            </div>
+
+
 
         </div>
-
-
-
-
 
 
 
@@ -363,8 +348,8 @@
                     <div class="modal-header">
                         <h5 class="modal-title text28B w-100 text-center">訂單詳情</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <i class=" icon-close"></i>
-                        </button>
+                        <i class=" icon-close"></i>
+                    </button>
                     </div>
                     <div class="modal-body row mb-m">
                         <div class="d-inline-block col-6">
@@ -387,7 +372,7 @@
                                     <img src="/image/photo.jpg" alt="">
                                     <p class="text20B align-middle">五月天阿信</p>
                                     <span class="eng20R price">
-                                        <span class=" align-middle">5,000</span>
+                                    <span class=" align-middle">5,000</span>
                                     </span>
                                     <p class="eng20R w100 text-right">x1</p>
                                 </li>
@@ -395,7 +380,7 @@
                                     <img src="/image/photo.jpg" alt="">
                                     <p class="text20B align-middle">五月天阿信</p>
                                     <span class="eng20R price">
-                                        <span class="align-middle">200</span>
+                                    <span class="align-middle">200</span>
                                     </span>
                                     <p class="eng20R w100 text-right">x100</p>
                                 </li>
@@ -403,7 +388,7 @@
                                     <img src="/image/photo.jpg" alt="">
                                     <p class="text20B align-middle">五月天阿信</p>
                                     <span class="eng20R price">
-                                        <span class=" align-middle">200</span>
+                                    <span class=" align-middle">200</span>
                                     </span>
                                     <p class="eng20R w100 text-right">x100</p>
                                 </li>
@@ -411,7 +396,7 @@
                                     <img src="/image/photo.jpg" alt="">
                                     <p class="text20B align-middle">五月天阿信</p>
                                     <span class="eng20R price">
-                                        <span class=" align-middle">200</span>
+                                    <span class=" align-middle">200</span>
                                     </span>
                                     <p class="eng20R w100 text-right">x100</p>
                                 </li>
@@ -419,7 +404,7 @@
                                     <img src="/image/photo.jpg" alt="">
                                     <p class="text20B align-middle">五月天阿信</p>
                                     <span class="eng20R price">
-                                        <span class=" align-middle">200</span>
+                                    <span class=" align-middle">200</span>
                                     </span>
                                     <p class="eng20R w100 text-right">x100</p>
                                 </li>
@@ -427,7 +412,7 @@
                                     <img src="/image/photo.jpg" alt="">
                                     <p class="text20B align-middle">五月天阿信</p>
                                     <span class="eng20R price">
-                                        <span class=" align-middle">200</span>
+                                    <span class=" align-middle">200</span>
                                     </span>
                                     <p class="eng20R w100 text-right">x100</p>
                                 </li>
@@ -435,7 +420,7 @@
                                     <img src="/image/photo.jpg" alt="">
                                     <p class="text20B align-middle">五月天阿信</p>
                                     <span class="eng20R price">
-                                        <span class=" align-middle">200</span>
+                                    <span class=" align-middle">200</span>
                                     </span>
                                     <p class="eng20R w100 text-right">x100</p>
                                 </li>
@@ -469,8 +454,8 @@
                     <div class="modal-header">
                         <h5 class="modal-title text28B w-100 text-center">訂單詳情</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <i class=" icon-close"></i>
-                        </button>
+                        <i class=" icon-close"></i>
+                    </button>
                     </div>
                     <div class="modal-body row mb-m">
                         <div class="d-inline-block col-6">
@@ -493,7 +478,7 @@
                                     <img src="/image/photo.jpg" alt="">
                                     <p class="text20B align-middle">五月天阿信</p>
                                     <span class="eng20R price">
-                                        <span class=" align-middle">5,000</span>
+                                    <span class=" align-middle">5,000</span>
                                     </span>
                                     <p class="eng20R w100 text-right">x1</p>
                                 </li>
@@ -501,7 +486,7 @@
                                     <img src="/image/photo.jpg" alt="">
                                     <p class="text20B align-middle">五月天阿信</p>
                                     <span class="eng20R price">
-                                        <span class="align-middle">200</span>
+                                    <span class="align-middle">200</span>
                                     </span>
                                     <p class="eng20R w100 text-right">x100</p>
                                 </li>
@@ -509,7 +494,7 @@
                                     <img src="/image/photo.jpg" alt="">
                                     <p class="text20B align-middle">五月天阿信</p>
                                     <span class="eng20R price">
-                                        <span class=" align-middle">200</span>
+                                    <span class=" align-middle">200</span>
                                     </span>
                                     <p class="eng20R w100 text-right">x100</p>
                                 </li>
@@ -517,7 +502,7 @@
                                     <img src="/image/photo.jpg" alt="">
                                     <p class="text20B align-middle">五月天阿信</p>
                                     <span class="eng20R price">
-                                        <span class=" align-middle">200</span>
+                                    <span class=" align-middle">200</span>
                                     </span>
                                     <p class="eng20R w100 text-right">x100</p>
                                 </li>
@@ -525,7 +510,7 @@
                                     <img src="/image/photo.jpg" alt="">
                                     <p class="text20B align-middle">五月天阿信</p>
                                     <span class="eng20R price">
-                                        <span class=" align-middle">200</span>
+                                    <span class=" align-middle">200</span>
                                     </span>
                                     <p class="eng20R w100 text-right">x100</p>
                                 </li>
@@ -533,7 +518,7 @@
                                     <img src="/image/photo.jpg" alt="">
                                     <p class="text20B align-middle">五月天阿信</p>
                                     <span class="eng20R price">
-                                        <span class=" align-middle">200</span>
+                                    <span class=" align-middle">200</span>
                                     </span>
                                     <p class="eng20R w100 text-right">x100</p>
                                 </li>
@@ -541,7 +526,7 @@
                                     <img src="/image/photo.jpg" alt="">
                                     <p class="text20B align-middle">五月天阿信</p>
                                     <span class="eng20R price">
-                                        <span class=" align-middle">200</span>
+                                    <span class=" align-middle">200</span>
                                     </span>
                                     <p class="eng20R w100 text-right">x100</p>
                                 </li>
@@ -549,7 +534,7 @@
                                     <img src="/image/photo.jpg" alt="">
                                     <p class="text20B align-middle">五月天阿信</p>
                                     <span class="eng20R price">
-                                        <span class=" align-middle">200</span>
+                                    <span class=" align-middle">200</span>
                                     </span>
                                     <p class="eng20R w100 text-right">x100</p>
                                 </li>
@@ -561,7 +546,7 @@
                     <div class="modal-footer ml-auto totle">
                         <p class="text20B mr-3">總金額</p>
                         <span class="eng20R price">
-                            <span class=" align-middle">5,000</span>
+                        <span class=" align-middle">5,000</span>
                         </span>
                     </div>
 
@@ -593,13 +578,13 @@
                     <div class="modal-header">
                         <h5 class="modal-title text28B">是否要拒絕訂單</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <i class=" icon-close"></i>
-                        </button>
+                        <i class=" icon-close"></i>
+                    </button>
                     </div>
                     <p class="modal-body text24R">
 
                         <span class="redColor">拒絕訂單
-                        </span>後，我們將會取消此訂單。
+                    </span>後，我們將會取消此訂單。
                     </p>
                     <div class="modal-footer">
                         <button class="text20R dbtn btnW" data-dismiss="modal">返回離開</button>
@@ -608,6 +593,21 @@
                 </div>
             </div>
         </div>
+
+
+
+        <script>
+            // 亮標籤
+            $(function() {
+                $('#sSider a').each(function() {
+                    if ($(this).attr('href') == 'sNotice') {
+                        $(this).addClass('act');
+                        console.log(this);
+                    }
+                })
+            })
+        </script>
+
 
 </body>
 
