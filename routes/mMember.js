@@ -42,11 +42,9 @@ router.get('/', function(req, res, next) {
             if (err) console.log("ERR!!");
             newsJSON1 = JSON.stringify(results);
 
-            res.render('mMember', { mMemberData: newsJSON, memberLikestore: newsJSON1 });
+            res.render('mMember', { mMemberData: newsJSON, memberLikestore: newsJSON1, active: 'mMember' });
         })
     })
-
-
 
 
 })

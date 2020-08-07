@@ -53,7 +53,7 @@
             <a href="" id="signOut"><i class="icon-logout"></i>登出</a>
         </div>
     </div> -->
-    <% include mSider %>
+    <%- include('mSider', {active}); %>
 
         <div class="containerRight memberInfo" id='memberInfo'>
             <div class="inWrapper">
@@ -171,14 +171,14 @@
 
         <script>
             // 亮標籤
-            $(function() {
-                $('#mSider a').each(function() {
-                    if ($(this).attr('href') == 'mMember') {
-                        $(this).addClass('act');
-                        console.log(this);
-                    }
-                })
-            })
+            // $(function() {
+            //     $('#mSider a').each(function() {
+            //         if ($(this).attr('href') == 'mMember') {
+            //             $(this).addClass('act');
+            //             console.log(this);
+            //         }
+            //     })
+            // })
 
             //vue資料
             let mMember = new Vue({
