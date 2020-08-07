@@ -356,3 +356,12 @@ li>.storeContent:hover {
     border: 1px solid #DDDDDD;
     background-color: var(--dWhite);
 }
+
+.selectContent{
+    margin-top: -20px; 
+    width: 160px;
+}
+.dOption{
+    line-height: 48px;
+    padding-top: 0px;
+}

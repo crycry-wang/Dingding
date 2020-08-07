@@ -129,7 +129,7 @@
                                 <button class="dbtn btnY text20B"
                                     style="margin-bottom: 20px;padding-left: 16px;padding-right: 12px;">台中市北屯區 <i
                                         class="icon-close"></i> </button><br>
-                                
+
                             </div>
                         </div>
                         <div style="height: 200px;">
@@ -1262,11 +1262,35 @@
             }
         })
 
-        function q(){
+        function q() {
             var ar = document.querySelectorAll("input[type='checkbox'][class='bee']:checked");
             console.log(ar);
         }
     </script>
+
+
+    <!-- <script>
+    $(function() {
+            function reSelect() {
+                $('.selectTitle').removeClass('dSelectClick').addClass('dSelect');
+                $('.selectContent').removeClass('dOptionDivOn').addClass('dOptionDivOff');
+            }
+
+            function teSelect() {
+                reSelect();
+                currentCategory = $(this).text();
+                $('.ddselect').children('.selectTitle').children('.dSelectText').text(currentCategory);
+
+            }
+
+            $('.dSelectText').click(function() {
+                $('.selectTitle').removeClass('dSelect').addClass('dSelectClick');
+                $('.selectContent').removeClass('dOptionDivOff').addClass('dOptionDivOn');
+                $('.dOption').click(teSelect);
+            });
+
+        });
+</script> -->
 
 </body>
 
