@@ -42,7 +42,7 @@
                     <span class="text20B mr16">選擇送餐地址</span>
                     <div class="ddselect mr16">
                         <div class="dSelect d-inline-block countrySelectTitle" style="width: 160px; top: 40px;">
-                            <div v-model="input.country" class="dSelectText text20R countrySelectText" style="line-height: 30px;" :value="null">縣市</div>
+                            <div v-model="input.country" class="dSelectText text20R countrySelectText" style="line-height: 30px;">縣市</div>
                         </div>
                         <div class="dOptionDivOff selectContent countrySelectContent">
                             <div class="dOption text20R countryOption" v-for="country in countryList.sort">{{ country }}</div>
@@ -1230,6 +1230,7 @@
                 reSelectCountry();
                 country = $(this).text();
                 $('.ddselect').children('.countrySelectTitle').children('.countrySelectText').text(country);
+                console.log(country)
 
             }
 
