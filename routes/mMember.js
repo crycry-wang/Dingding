@@ -5,16 +5,22 @@ var db = require('../model/db');
 /* GET home page. */
 
 // 會員
-const memberId = 2;
+const memberId = 38;
 const memberSelect = 'select * from `member` where memberID=';
 const member = memberSelect + memberId;
 
 // 單純地址
-const addressSelect = 'select * from `memberaddress` where memberID=';
-const address = addressSelect + memberId;
-// 會員與地址表
+// const addressSelect = 'select * from `memberaddress` where memberID=';
+// const address = addressSelect + memberId;
+
+// 會員地址
 const memberJoinaddress = 'select * from memberaddress a inner join member b on a.memberID=b.memberID where a.memberID=';
-const memberWithaddress = memberJoinaddress + memberId;
+const address = memberJoinaddress + memberId;
+
+// 會員各項(地址 喜愛餐廳)
+
+const memberJoinaddressJoinLikestore = 'select * from memberaddress a inner join member b on a.memberID=b.memberID join likestore c on b.memberID=c.memberID where a.memberID=';
+const memberJoin = memberJoinaddressJoinLikestore + memberId;
 
 
 router.get('/', function(req, res, next) {
@@ -25,8 +31,8 @@ router.get('/', function(req, res, next) {
     //     res.render('mMember', { mMemberData: newsJSON });
     // })
 
-    // 會員與地址表
-    db.query(memberWithaddress, function(err, results) {
+    // 會員各項(地址 喜愛餐廳)
+    db.query(address, function(err, results) {
         if (err) console.log("ERR!!");
         newsJSON = JSON.stringify(results);
         res.render('mMember', { mMemberData: newsJSON });

@@ -54,7 +54,7 @@
                 <div class="row ">
                     <div class="col-8 mInfo">
                         <div class="d-flex">
-                            <div :style="{background: 'url(image/會員資料/大頭照/' + memberData[0].memberPhoto + ')',backgroundSize :'100%'}" class="memberPhoto icon-photo-1">
+                            <div :style="{background: 'url(image/會員資料/大頭照/' + memberData[0].memberPhoto + ')',backgroundSize :'cover'}" class="memberPhoto icon-photo-1">
                             </div>
                             <div class="ml-auto">
                                 <button class="text20R dbtn btnW  mr-3">取消</button>
@@ -80,16 +80,19 @@
                                     <span class="text20B title">手機</span>
                                     <input type="text" class="text20R singleText398" placeholder="請輸手機" v-model.trim='memberData[0].memberPhone'>
                                 </li>
-                                <!-- <li>
-                                <span class="text20B title">常用地址</span>
-                                <input type="text" class="text20R singleText398" placeholder="請輸入常用地址" v-model.trim='memberAddress[0].Address'>
-                            </li>
-                            <li class="addressList scrollList d-block" style="width: calc(100% + 8px);">
-                                <div v-if="item.id!=0" v-for='(item,index) in memberAddress'>
-                                    <input type="text" class="text20R singleText398 ml-140 mr-4" placeholder="請輸入常用地址" v-model.trim='item.Address'>
-                                    <i class="icon-trash" @click="deleteItem(index)"></i>
-                                </div>
-                            </li> -->
+                                <li>
+                                    <span class="text20B title">常用地址</span>
+                                    <input type="text" class="text20R singleText398" placeholder="請輸入常用地址" v-model.trim='memberData[0].memberAddress'>
+                                </li>
+
+                                <li class="addressList scrollList d-block" style="width: calc(100% + 8px);" v-if="memberData.length>1">
+                                    <span v-for='(item,index) in memberData'>
+                                        <div v-if="index!=0">
+                                            <input type="text" class="text20R singleText398 ml-140 mr-4" placeholder="請輸入常用地址" v-model.trim='item.memberAddress'>
+                                            <i class="icon-trash" @click="deleteItem(index)"></i>
+                                        </div>
+                                    </span>
+                                </li>
                                 <li class="mb-0">
                                     <button class="dbtn btnW text20R ml-140" @click='addItem'>
                                     新增常用地址
@@ -204,7 +207,8 @@
                 },
                 methods: {
                     deleteItem(index) {
-                        this.memberAddress.splice(index, 1);
+                        this.memberData.splice(index, 1);
+
                     },
                     addItem() {
                         this.memberAddress.push({
