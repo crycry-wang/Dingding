@@ -19,9 +19,11 @@ const address = memberJoinaddress + memberId;
 
 // 會員各項(地址 喜愛餐廳)
 
-const memberJoinaddressJoinLikestore = 'select * from memberaddress a inner join member b on a.memberID=b.memberID join likestore c on b.memberID=c.memberID where a.memberID=';
-const memberJoin = memberJoinaddressJoinLikestore + memberId;
+// const memberJoinaddressJoinLikestore = 'select * from memberaddress a inner join member b on a.memberID=b.memberID join likestore c on b.memberID=c.memberID where a.memberID=';
+// const memberJoin = memberJoinaddressJoinLikestore + memberId;
 
+const memberJoinLikestore = 'select * from member a inner join likestore b on a.memberID=b.memberID join store c on b.storeID=c.storeID where a.memberID=';
+const Likestore = memberJoinLikestore + memberId;
 
 router.get('/', function(req, res, next) {
     // 純會員side
@@ -31,16 +33,29 @@ router.get('/', function(req, res, next) {
     //     res.render('mMember', { mMemberData: newsJSON });
     // })
 
-    // 會員各項(地址 喜愛餐廳)
+    // 會員各項(地址)
     db.query(address, function(err, results) {
         if (err) console.log("ERR!!");
         newsJSON = JSON.stringify(results);
-        res.render('mMember', { mMemberData: newsJSON });
-        console.log(newsJSON);
+
+        db.query(Likestore, function(err, results) {
+            if (err) console.log("ERR!!");
+            newsJSON1 = JSON.stringify(results);
+
+            res.render('mMember', { mMemberData: newsJSON, memberLikestore: newsJSON1 });
+        })
     })
 
 
+
+
 })
+
+
+
+
+
+
 
 
 module.exports = router;
