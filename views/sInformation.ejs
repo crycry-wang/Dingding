@@ -61,10 +61,10 @@
                     <button class="text20R dbtn btnY" data-toggle="modal" data-target="#comfirm2Btn">儲存</button>
                 </div>
             </div>
-            <div class="row">
+            <div class="row" v-for="item in dbStoreInformation">
                 <div class="col-8 mInfo" style="height: calc(100vh - 190px); ">
                     <div class="d-flex">
-                        <div :style="'background-image: url(/image/store/' + storeBanner + ');'"
+                        <div :style="'background-image: url(/image/store/' + item.storePhoto + ');'"
                             class="memberPhoto icon-photo-1">
                         </div>
                     </div>
@@ -74,7 +74,7 @@
                             <div class=" storeTitleDiv w-100">
                                 <span class="text20B storeTitle">店家名稱</span>
                                 <input type="text" class="singleText398 text20R" placeholder="請輸入店家名稱"
-                                    v-model="storeName">
+                                    v-model="item.storeName">
                             </div>
                             <div class=" storeTitleDiv w-100">
                                 <span class="text20B storeTitle">店家照片</span>
@@ -84,28 +84,28 @@
                             <div class=" storeTitleDiv w-100">
                                 <span class="text20B storeTitle">店家電話</span>
                                 <input type="text" class="singleText398 text20R" placeholder="請輸入店家電話"
-                                    v-model="storePhone">
+                                    v-model="item.storePhone">
                             </div>
                             <div class=" storeTitleDiv w-100">
                                 <span class="text20B storeTitle">店家地址</span>
                                 <input type="text" class="singleText398 text20R" placeholder="請輸入完整地址"
-                                    v-model="storeAddress">
+                                    v-model="item.storeAddress">
                             </div>
                             <div class=" storeTitleDiv w-100">
                                 <span class="text20B storeTitle">營業時間</span>
                                 <input type="text" class="singleText398 text20R" placeholder="請輸入營業時間"
-                                    v-model="storeOpen">
+                                    v-model="item.storeOpen">
                             </div>
                             <div class=" storeTitleDiv w-100">
                                 <span class="text20B storeTitle">固定公休</span>
                                 <input type="text" class="singleText398 text20R" placeholder="請輸入公休日"
-                                    v-model="storeClose">
+                                    v-model="item.storeClose">
                             </div>
                             <div class=" storeTitleDiv w-100">
                                 <span class="text20B storeTitle"
                                     style="display: inline-block;position: relative;bottom: 100px;">店家簡介</span>
                                 <textarea type="text" class="multiText398 text20R d-inline-block aboutTextarea"
-                                    placeholder="請輸入店家簡介" v-model="storeIntroduction"></textarea>
+                                    placeholder="請輸入店家簡介" v-model="item.storeIntroduction"></textarea>
                             </div>
                         </div>
                     </div>
@@ -1168,6 +1168,8 @@
     <script src="/javascript/vue.js"></script>
     <script>
         let data = {
+            dbStoreInformation: JSON.parse('<%- a %>'),
+            dbDistrick: JSON.parse('<%- b %>'),
             tab: 1,
             active: true,
             id: 3,
@@ -1242,6 +1244,25 @@
             el: "#storeInformation",
             data: data,
             computed: {
+                areaList() {
+                    let dbDistrickObj = {
+                        sort: [],
+                        map: {}
+                    }
+                    this.dbDistrick.forEach(({ area, districtID, districtName, country, }, index) => {
+                        if (!dbDistrickObj.map[area]) {
+                            dbDistrickObj.sort.push(area)
+                            dbDistrickObj.map[area] = {
+                                sort: [],
+                                map: {}
+                            }
+                        }
+                        dbDistrickObj.map[area].sort.push(country)
+                        dbDistrickObj.map[area].map[country] = { districtName,districtID,index}
+                    })
+                    return dbDistrickObj
+
+                }
                 // isSelect(){
                 //     console.log(this.north[0].districtName[0].selected)
                 //     return this.north[0].districtName[0].selected

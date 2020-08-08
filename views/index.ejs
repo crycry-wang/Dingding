@@ -42,18 +42,23 @@
                     <span class="text20B mr16">選擇送餐地址</span>
                     <div class="ddselect mr16">
                         <div class="dSelect d-inline-block countrySelectTitle" style="width: 160px; top: 40px;">
-                            <div v-model="input.country" class="dSelectText text20R countrySelectText" style="line-height: 30px;">縣市</div>
+                            <div v-model="input.country" class="dSelectText text20R countrySelectText"
+                                style="line-height: 30px;">縣市</div>
                         </div>
                         <div class="dOptionDivOff selectContent countrySelectContent">
-                            <div class="dOption text20R countryOption" v-for="country in countryList.sort">{{ country }}</div>
+                            <div class="dOption text20R countryOption" v-for="country in countryList.sort">
+                                {{ country }}
+                            </div>
                         </div>
                     </div>
                     <div class="ddselect mr16">
                         <div class="dSelect d-inline-block districkSelectTitle" style="width: 160px; top: 40px;">
-                            <div v-model="input.districtName" class="dSelectText text20R districkSelectText" style="line-height: 30px;">區</div>
+                            <div v-model="input.districtName" class="dSelectText text20R districkSelectText"
+                                style="line-height: 30px;" :value="區">區</div>
                         </div>
                         <div class="dOptionDivOff selectContent districkSelectContent">
-                            <div class="dOption text20R districkOption" v-for="">南屯區</div>
+                            <div class="dOption text20R districkOption" v-for="districk in districkList.sort">
+                                {{ districk }}</div>
                             <div class="dOption text20R districkOption">北屯區</div>
                             <div class="dOption text20R districkOption">大里區</div>
                         </div>
@@ -357,17 +362,18 @@
         <div class="mContainer givePadding" style="margin-top: 66px;">
             <h3 class="text28B text28Padding">
                 推薦店家
-                <img class="lrImg" src="/image/right.png" alt="">
-                <img class="lrImg" src="/image/left.png" alt="" style="margin-right: 8px;">
+                <img class="lrImg" src="/image/right.png" alt="" v-on:click="handleChangeRecommend(3)">
+                <img class="lrImg" src="/image/left.png" alt="" style="margin-right: 8px;"
+                    v-on:click="handleChangeRecommend(-3)">
             </h3>
             <div class="row">
-                <div class="col-4 pr-3 imgCard" data-toggle="modal" data-target="#storeModel">
+                <div class="col-4 pr-3 imgCard" v-for="(item,index) in filterRecommendStore" :key="item.storeID">
                     <div class="dingImgDiv" style="width:  100%">
-                        <img src="/image/store/Taichung/太初麵食/index.jpeg" class="card-img-top dingImg" alt="...">
+                        <img :src="'/image/store/' + item.storeBanner" class="card-img-top dingImg" alt="...">
                         <i class="heart icon-heart"></i>
                         <div class="card-body">
                             <div class="d-inline-block w-75">
-                                <span class="card-text text24B shopName">太初麵食</span>
+                                <span class="card-text text24B shopName">{{ item.storeName }}</span>
                             </div>
                             <i class="icon-spoon float-right"></i>
                             <span class="card-text eng24R float-right" style="margin-right: 7px;">4.8</span>
@@ -375,34 +381,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-4 pr-3 imgCard">
-                    <div class="dingImgDiv" style="width:  100%">
-                        <img src="/image/store/Taichung/隨主飡_法式水煮專賣/index.jpeg" class="card-img-top dingImg" alt="...">
-                        <i class="heart icon-heart"></i>
-                        <div class="card-body">
-                            <div class="d-inline-block w-75">
-                                <span class="card-text text24B shopName">隨主飡_法式水煮專賣賣賣賣賣賣賣賣賣賣</span>
-                            </div>
-                            <i class="icon-spoon float-right"></i>
-                            <span class="card-text eng24R float-right" style="margin-right: 7px;">4.8</span>
 
-                        </div>
-                    </div>
-                </div>
-                <div class="col-4 pr-3 imgCard">
-                    <div class="dingImgDiv" style="width:  100%">
-                        <img src="/image/store/Taichung/隨主飡_法式水煮專賣/index.jpeg" class="card-img-top dingImg" alt="...">
-                        <i class="heart icon-heart"></i>
-                        <div class="card-body">
-                            <div class="d-inline-block w-75">
-                                <span class="card-text text24B shopName">隨主飡_法式水煮專賣</span>
-                            </div>
-                            <i class="icon-spoon float-right"></i>
-                            <span class="card-text eng24R float-right" style="margin-right: 7px;">4.8</span>
 
-                        </div>
-                    </div>
-                </div>
 
 
             </div>
@@ -628,21 +608,21 @@
 
     <script src="/javascript/vue.js"></script>
     <script>
-        var country = ''
-        var districk = ''
+        var country = ""
+        var districk = ""
         let data = {
             index: 0,
             tab: 1,
             loginTab: 1,
             registeredTab: 1,
             dbDistrick: JSON.parse('<%- a %>'),
-            dbDelivery: JSON.parse('<%- b %>'),
+            dbRecommendStore: JSON.parse('<%- b %>'),
             storeItem: [{
                 id: 0,
                 storeName: "肯德基 KFC 台中公益店",
                 country: "台中市",
                 districtName: "西區",
-                storeBanner: "Taichung/肯德基KFC_台中公益/index.jpg",
+                storeBanner: "Taichung/肯德基KFC_台中公益/index.jpeg",
                 tradeSuccess: 87,
                 comment: "4.5",
                 likeStore: false,
@@ -1143,19 +1123,22 @@
 
             input: {
                 country: country,
-                districtName:districk
+                districtName: districk
             }
         };
         let store = new Vue({
             el: "#store",
             data: data,
             computed: {
-
                 filterStore() {
                     return this.storeItem.slice(this.index, this.index + 3)
 
                 },
+                filterRecommendStore() {
+                    return this.dbRecommendStore.slice(this.index+6, this.index + 9)
+                },
                 countryList() {
+                    this.input.country = null
                     let dbDistrickObj = {
                         sort: [],
                         map: {}
@@ -1173,6 +1156,15 @@
                     })
                     return dbDistrickObj
 
+                },
+                districkList() {
+                    this.input.districtName = null
+                    // districk = "區"
+                    if (this.input.country) {
+                        return this.countryList.map[this.input.country]
+                    } else {
+                        return []
+                    }
                 }
 
             },
@@ -1183,6 +1175,16 @@
                     if (this.index < 0) {
                         this.index = this.storeItem.length - 3
                     } else if (this.index > this.storeItem.length - 3) {
+                        this.index = 0
+                    }
+                    // console.log(this.storeItem[1].categoryName[0].name)
+                },
+                handleChangeRecommend(change) {
+                    console.log(this.index)
+                    this.index = this.index + change;
+                    if (this.index < 0) {
+                        this.index = this.dbRecommendStore.length - 3
+                    } else if (this.index > this.dbRecommendStore.length - 3) {
                         this.index = 0
                     }
                     // console.log(this.storeItem[1].categoryName[0].name)
@@ -1199,17 +1201,17 @@
                     console.log(e);
 
                 },
-                activeOut() {
-                    this.active = false
-                },
+                //頁籤切換
                 tabClick(index) {
                     this.tab = index
                     return this.tab
                 },
+                // 登入頁籤切換
                 loginTabClick(a) {
                     this.loginTab = a
                     return this.loginTab
                 },
+                //註冊頁籤切換
                 registeredTabClick(a) {
                     this.registeredTab = a
                     return this.registeredTab
@@ -1229,6 +1231,7 @@
             function teSelectCountry() {
                 reSelectCountry();
                 country = $(this).text();
+                store.input.country = country;
                 $('.ddselect').children('.countrySelectTitle').children('.countrySelectText').text(country);
                 console.log(country)
 
@@ -1252,6 +1255,7 @@
             function teSelectDistrick() {
                 reSelectDistrick();
                 districk = $(this).text();
+                store.input.districkName = districk;
                 $('.ddselect').children('.districkSelectTitle').children('.districkSelectText').text(districk);
 
             }
