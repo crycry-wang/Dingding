@@ -2,16 +2,22 @@ var express = require('express');
 var router = express.Router();
 var db = require('../model/db');
 const { resolve, reject } = require('bluebird');
-var district = "";
+var northDistrict = "";
 var storeInformation ="";
-let districtSql = 'SELECT * FROM `district`';
-let storeInformationSql = 'SELECT * FROM `store` where storeID=1'
+var centralDistrict ="";
+let northDistrictSql = 'SELECT * FROM `district` where area=1';
+let centralDistrictSql = 'SELECT * FROM `district` where area=2';
+let storeInformationSql = 'SELECT * FROM `store` where storeID=1';
+let commentSql = 'SELECT * FROM `comment` where storeID=1';
 /* GET home page. */
 
+
+
 // 地區
-const getDistrictData = (req)=>{
+// 北部
+const getNorthDistrictData = (req)=>{
     return new Promise((resolve,reject)=>{
-      db.queryAsync(districtSql)
+      db.queryAsync(northDistrictSql)
         .then(results=>{
           resolve(results);
         })
@@ -20,7 +26,19 @@ const getDistrictData = (req)=>{
         })
     })
   }
-
+//中部
+const getCentralDistrictData = (req)=>{
+    return new Promise((resolve,reject)=>{
+      db.queryAsync(centralDistrictSql)
+        .then(results=>{
+          resolve(results);
+        })
+        .catch(ex=>{
+          reject(ex);
+        })
+    })
+  }
+//店家資訊
 const storeInformationData = (req) => {
     return new Promise((resolve, reject) => {
         db.queryAsync(storeInformationSql)
@@ -35,19 +53,13 @@ const storeInformationData = (req) => {
 router.get('/', async (req, res) => {
     const a = await storeInformationData(req);
     storeInformation = JSON.stringify(a)
-    const b = await getDistrictData(req);
-    district = JSON.stringify(b)
-    console.log(district)
-    res.render('sInformation', { a: storeInformation ,b:district })
+    const b = await getNorthDistrictData(req);
+    northDistrict = JSON.stringify(b)
+    const c = await getCentralDistrictData(req);
+    centralDistrict = JSON.stringify(c)
+    // console.log(northDistrict)
+    res.render('sInformation', { a: storeInformation ,b:northDistrict,c:centralDistrict })
 })
-// router.get('/', function (req, res, next) {
 
-//     db.query(districtSql, function (err, results, fields) {
-//         if (err) console.log("ERR!!");
-//         district = JSON.stringify(results);
-//         res.render('sInformation', { district });
-//     })
-
-// });
 
 module.exports = router;

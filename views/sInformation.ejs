@@ -37,8 +37,8 @@
         <div class="slider fixed-top">
             <img src="/image/LOGO.png" class="sliderLogo">
             <br>
-            <img src="/image/photo.jpg" class="sliderPhoto">
-            <p class="name text24B">尊品原汁牛肉麵</p>
+            <img src="/image/store/Taichung/肯德基KFC_台中公益/photo.jpeg" class="sliderPhoto">
+            <p class="name text24B">肯德基 KFC 台中公益店</p>
             <div class="menu text24R ">
 
                 <a href="" class=""><i class="icon-order"></i>訂單管理</a>
@@ -51,17 +51,17 @@
             </div>
         </div>
 
-        <div class="containerRight">
+        <div class="containerRight" v-for="item in dbStoreInformation">
             <!-- 右邊內容放置區 -->
             <div class="btnDiv mb-m">
                 <div class="rightbtn">
                     <button class="text20BW dbtn btnB" style="margin-right: 15px;" data-toggle="modal"
-                        :data-target="'#storeModel'+ id">店家資訊預覽</button>
+                        :data-target="'#storeModel'+ item.storeID">店家資訊預覽</button>
                     <!-- <button class="text20R dbtn btnW" style="margin-right: 5px;">取消</button> -->
                     <button class="text20R dbtn btnY" data-toggle="modal" data-target="#comfirm2Btn">儲存</button>
                 </div>
             </div>
-            <div class="row" v-for="item in dbStoreInformation">
+            <div class="row">
                 <div class="col-8 mInfo" style="height: calc(100vh - 190px); ">
                     <div class="d-flex">
                         <div :style="'background-image: url(/image/store/' + item.storePhoto + ');'"
@@ -127,7 +127,7 @@
                                     style="margin-bottom: 20px;padding-left: 16px;padding-right: 12px;">台中市北屯區 <i
                                         class="icon-close"></i> </button><br>
                                 <button class="dbtn btnY text20B"
-                                    style="margin-bottom: 20px;padding-left: 16px;padding-right: 12px;">台中市北屯區 <i
+                                    style="margin-bottom: 20px;padding-left: 16px;padding-right: 12px;">台中市南屯區 <i
                                         class="icon-close"></i> </button><br>
 
                             </div>
@@ -141,7 +141,178 @@
 
                     </div>
                 </div>
+                <!-- 店家資訊預覽彈框 -->
+                <!-- 店家彈框(有評價) -->
+                <div class="modal fade storeModel" :id="'storeModel'+ item.storeID">
+                    <div class="modal-dialog modal-dialog-scrollable">
+                        <div class="modal-content">
+                            <div class="storeModelImg align-middle"
+                                :style="'background-image: url(/image/store/' + item.storeBanner + ');'">
+                                <div style="display: inline-block;">
+                                    <div class="storeModelImgContent">
+                                        <span class="text28B mr16">{{item.storeName}}</span>
+                                        <span class="eng24R mr16">{{item.comment}}</span>
+                                        <div class="spoon" style="display: inline-block;" v-if="item.comment == 5">
+                                            <i class="icon-spoon"></i>
+                                            <i class="icon-spoon"></i>
+                                            <i class="icon-spoon"></i>
+                                            <i class="icon-spoon"></i>
+                                            <i class="icon-spoon"></i>
+                                        </div>
+                                        <div class="spoon" style="display: inline-block;"
+                                            v-if="item.comment>4 && item.comment<5">
+                                            <i class="icon-spoon"></i>
+                                            <i class="icon-spoon"></i>
+                                            <i class="icon-spoon"></i>
+                                            <i class="icon-spoon"></i>
+                                            <i class="icon-borderspoon"></i>
+                                        </div>
+                                        <div class="spoon" style="display: inline-block;"
+                                            v-if="item.comment>3 && item.comment<4">
+                                            <i class="icon-spoon"></i>
+                                            <i class="icon-spoon"></i>
+                                            <i class="icon-spoon"></i>
+                                            <i class="icon-borderspoon"></i>
+                                            <i class="icon-borderspoon"></i>
+                                        </div>
+                                        <div class="spoon" style="display: inline-block;"
+                                            v-if="item.comment>2 && item.comment<3">
+                                            <i class="icon-spoon"></i>
+                                            <i class="icon-spoon"></i>
+                                            <i class="icon-borderspoon"></i>
+                                            <i class="icon-borderspoon"></i>
+                                            <i class="icon-borderspoon"></i>
+                                        </div>
+                                        <p class="text20RG" style="margin-top: 8px;">訂單完成率 {{item.tradeSuccess}}%
+                                        </p>
+                                        <p class="text20R" style="margin-top: 8px;">{{ item.storeAddress }}</p>
+                                    </div>
+                                    <div class="storeModelImgContentBottom">
+                                        <i class="icon-heart" style="opacity: 1;z-index: 999;"
+                                            v-on:click="handleLike(item.id)" v-if="item.likeStore"></i>
+                                        <i class="icon-heart" style="z-index: 999;" v-on:click="handleLike(item.id)"
+                                            v-else></i>
+                                        <button class="dbtn dbtnG text20R" style="float: right;">快速安排訂單</button>
+                                    </div>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <i class="storeClose icon-close"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="modal-header col-2" style="padding-right: 0px;">
+                                    <ul class="storeUl" v-if="tab === 1" v-show="tab===1">
+                                        <li v-for="meal in item.categoryName">
+                                            <a class="storeContent" :href="'#title'+meal.cid">{{meal.name}}</a>
+                                            <!-- <a class="storeContent actMeals" :href="'#title'+meal.cid">{{meal.name}}</a> -->
+                                        </li>
+                                    </ul>
 
+
+                                </div>
+
+                                <div class="col-10 ml-n5 mr-5">
+                                    <div
+                                        style="background-color: var(--dWhite);width: 500px;height: 86px;padding-top: 40px;">
+                                        <span class="dTag text24RG act" v-on:click="tabClick(1)">美味餐點</span>
+                                        <span class="dTag text24RG" v-on:click="tabClick(2)">詳細資訊</span>
+                                        <span class="dTag text24RG" v-on:click="tabClick(3)">店家評價</span>
+                                    </div>
+                                    <br>
+                                    <!-- 美味餐點 -->
+                                    <div class="mealsScroll" v-if="tab === 1" v-show="tab===1">
+                                        <div v-for="meal in item.categoryName">
+                                            <div class="text28B mt-l" style="margin-bottom: 27px;"
+                                                :id="'title'+meal.cid" :name="'title'+meal.cid">{{meal.name}}
+                                            </div>
+                                            <div class="meals">
+                                                <div class="mealsCard" v-for="detail in meal.content">
+                                                    <div style="width: 170px; height: auto;" class="text20B mealsName">
+                                                        {{ detail.productName }}
+                                                    </div>
+                                                    <div class="mealsDetail" style="width: 170px; height: auto;">
+                                                        {{ detail.productInformation }}</div>
+                                                    <div class="mealsPrice">
+                                                        <span class="eng20R price">
+                                                            <span class=" align-middle">{{ detail.productPrice }}</span>
+                                                        </span>
+                                                    </div>
+                                                    <div class="mealsCardDiv"
+                                                        style="text-align : center;line-height: 148px;display: block;">
+                                                        <img style="margin-left: -20px;"
+                                                            :src="'/image/store/' + detail.productPhoto" alt="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- 店家簡介 -->
+                                    <div class="mealsScroll" v-if="tab === 2" v-show="tab===2">
+                                        <div class="text28B mt-l" style="margin-bottom: 11px;">店家簡介</div>
+                                        <div style="padding-right: 165px;padding-left: 16px;">
+                                            <p class="text20R" style="color: var(--dDeepGray);">
+                                                {{ item.storeIntroduction }}</p>
+                                        </div>
+                                        <div class="text28B mt-l" style="margin-bottom: 11px;">店家資訊</div>
+                                        <div style="padding-right: 165px;padding-left: 16px;">
+                                            <p class="text20R" style="color: var(--dDeepGray);margin-bottom: 7px;">
+                                                <img src="/image/Phone.png" class="storeAbout">
+                                                {{ item.storePhone }}</p>
+                                            <p class="text20R" style="color: var(--dDeepGray);margin-bottom: 7px;">
+                                                <img src="/image/Places.png" class="storeAbout">
+                                                {{ item.storeAddress }}</p>
+                                            <p class="text20R" style="color: var(--dDeepGray);margin-bottom: 15px;">
+                                                <img src="/image/Clock.png" class="storeAbout"> {{ item.storeOpen }}
+                                            </p>
+                                            <p class="text20B" style="color: var(--dRed);">公休日&nbsp;<span>週三</span>
+                                            </p>
+                                        </div>
+                                        <div class="text28B mt-l" style="margin-bottom: 11px;">配送地區</div>
+                                        <div style="padding-right: 165px;padding-left: 16px;">
+                                            <p class="text20R" style="color: var(--dDeepGray);">台中市南屯區 / 台中市西區</p>
+                                        </div>
+                                        <div class="text28B mt-l" style="margin-bottom: 11px;">注意事項</div>
+                                        <div style="padding-right: 165px;padding-left: 16px;">
+                                            <p class="text20R" style="color: var(--dDeepGray);">
+                                                {{ item.storeNotice }}</p>
+                                        </div>
+                                    </div>
+                                    <!-- 店家評論 -->
+                                    <div class="mealsScroll" v-if="tab === 3" v-show="tab===3">
+                                        <ul class="evaluationList">
+                                            <!-- 1 -->
+                                            <li class="dblock d-flex pl-0" v-for="comment in item.comments">
+                                                <!-- <span class="photo"></span> -->
+                                                <img :src="'/image/會員資料/大頭照/' + comment.memberPhoto">
+                                                <span class="content">
+                                                    <h2 class="text24B">{{ comment.member }}</h2>
+                                                    <div class="star">
+                                                        <i v-if="comment.commentScore >= 1" class="icon-spoon"></i>
+                                                        <i v-if="comment.commentScore >= 2" class="icon-spoon"></i>
+                                                        <i v-if="comment.commentScore >= 3" class="icon-spoon"></i>
+                                                        <i v-if="comment.commentScore >= 4" class="icon-spoon"></i>
+                                                        <i v-if="comment.commentScore >= 5" class="icon-spoon"></i>
+                                                        <i v-if="comment.commentScore <= 1"
+                                                            class="icon-borderspoon"></i>
+                                                        <i v-if="comment.commentScore <= 2"
+                                                            class="icon-borderspoon"></i>
+                                                        <i v-if="comment.commentScore <=3" class="icon-borderspoon"></i>
+                                                        <i v-if="comment.commentScore <=4" class="icon-borderspoon"></i>
+                                                    </div>
+                                                    <p class="text20R">
+                                                        {{ comment.commentContent }}</p>
+                                                    <p class="text16">3小時前</p>
+                                                </span>
+                                            </li>
+
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
             </div>
         </div>
@@ -774,7 +945,8 @@
                         </div>
                         <div class="text20B" style="margin-top: 70px;display: inline-block;margin-right: 40px;">已選擇區域
                         </div>
-                        <button class="dbtn btnY text20B areaSelected">台北市北北區 <i class="icon-close"></i> </button>
+                        <button class="dbtn btnY text20B areaSelected">台中市北屯區 <i class="icon-close"></i> </button>
+                        <button class="dbtn btnY text20B areaSelected">台中市南屯區 <i class="icon-close"></i> </button>
 
 
                     </div>
@@ -785,391 +957,15 @@
                 </div>
             </div>
         </div>
-        <!-- 店家資訊預覽彈框 -->
-        <!-- 店家彈框(有評價) -->
-        <div class="modal fade storeModel" :id="'storeModel'+ id">
-            <div class="modal-dialog modal-dialog-scrollable">
-                <div class="modal-content">
-                    <div class="storeModelImg align-middle"
-                        :style="'background-image: url(/image/store/' + storeBanner + ');'">
-                        <div style="display: inline-block;">
-                            <div class="storeModelImgContent">
-                                <span class="text28B mr16">{{storeName}}</span>
-                                <span class="eng24R mr16">{{comment}}</span>
-                                <div class="spoon" style="display: inline-block;" v-if=" comment == 5">
-                                    <i class="icon-spoon"></i>
-                                    <i class="icon-spoon"></i>
-                                    <i class="icon-spoon"></i>
-                                    <i class="icon-spoon"></i>
-                                    <i class="icon-spoon"></i>
-                                </div>
-                                <div class="spoon" style="display: inline-block;" v-if="comment>4 && comment<5">
-                                    <i class="icon-spoon"></i>
-                                    <i class="icon-spoon"></i>
-                                    <i class="icon-spoon"></i>
-                                    <i class="icon-spoon"></i>
-                                    <i class="icon-borderspoon"></i>
-                                </div>
-                                <div class="spoon" style="display: inline-block;" v-if="comment>3 && comment<4">
-                                    <i class="icon-spoon"></i>
-                                    <i class="icon-spoon"></i>
-                                    <i class="icon-spoon"></i>
-                                    <i class="icon-borderspoon"></i>
-                                    <i class="icon-borderspoon"></i>
-                                </div>
-                                <div class="spoon" style="display: inline-block;" v-if="comment>2 && comment<3">
-                                    <i class="icon-spoon"></i>
-                                    <i class="icon-spoon"></i>
-                                    <i class="icon-borderspoon"></i>
-                                    <i class="icon-borderspoon"></i>
-                                    <i class="icon-borderspoon"></i>
-                                </div>
-                                <p class="text20RG" style="margin-top: 8px;">訂單完成率 {{tradeSuccess}}%
-                                </p>
-                                <p class="text20R" style="margin-top: 8px;">{{ storeAddress }}</p>
-                            </div>
-                            <div class="storeModelImgContentBottom">
-                                <i class="icon-heart" style="z-index: 999;"></i>
-                                <button class="dbtn dbtnG text20R" style="float: right;">快速安排訂單</button>
-                            </div>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <i class="storeClose icon-close"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="modal-header col-2" style="padding-right: 0px;">
-                            <ul class="storeUl" v-if="tab === 1" v-show="tab===1">
-                                <li>
-                                    <a class="storeContent actMeals" href="#title01">店家推薦</a>
-                                </li>
-                                <li>
-                                    <a class="storeContent" href="#title02">人氣餐點</a>
-                                </li>
-                                <li>
-                                    <a class="storeContent" href="#title03">套餐</a>
-                                </li>
-                                <li>
-                                    <a class="storeContent" href="#title04">單點</a>
-                                </li>
-                                <li>
-                                    <a class="storeContent" href="#title05">飲品</a>
-                                </li>
-                            </ul>
 
-
-                        </div>
-
-                        <div class="col-10 ml-n5 mr-5">
-                            <div style="background-color: var(--dWhite);width: 500px;height: 86px;padding-top: 40px;">
-                                <span class="dTag text24RG " :class="[active ? 'act' : '']"
-                                    v-on:click="tabClick(1)">美味餐點</span>
-                                <span class="dTag text24RG" :class="[active ? 'act' : '']"
-                                    v-on:click="tabClick(2)">詳細資訊</span>
-                                <span class="dTag text24RG" v-on:click="tabClick(3)">店家評價</span>
-                            </div>
-                            <br>
-                            <!-- 美味餐點 -->
-                            <div class="mealsScroll" v-if="tab === 1" v-show="tab===1">
-                                <div class="text28B mt-l" style="margin-bottom: 27px;" id="title01" name="title01">店家推薦
-                                </div>
-                                <div class="meals">
-                                    <div class="mealsCard">
-                                        <span class="text20B mealsName">無骨鹽酥雞</span>
-                                        <div class="mealsDetail">新鮮直送，鮮嫩多汁</div>
-                                        <div class="mealsPrice">
-                                            <span class="eng20R price">
-                                                <span class=" align-middle">5,000</span>
-                                            </span>
-                                        </div>
-                                        <div class="mealsCardDiv">
-                                            <img src="/image/store/Taichung/太初麵食/傳香滷肉飯套餐.jpeg" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="mealsCard">
-                                        <span class="text20B mealsName">無骨鹽酥雞</span>
-                                        <div class="mealsDetail">新鮮直送，鮮嫩多汁</div>
-                                        <div class="mealsPrice">
-                                            <span class="eng20R price">
-                                                <span class=" align-middle">5,000</span>
-                                            </span>
-                                        </div>
-                                        <div class="mealsCardDiv">
-                                            <img src="/image/store/Taichung/太初麵食/傳香滷肉飯套餐.jpeg" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="mealsCard">
-                                        <span class="text20B mealsName">無骨鹽酥雞</span>
-                                        <div class="mealsDetail">新鮮直送，鮮嫩多汁</div>
-                                        <div class="mealsPrice">
-                                            <span class="eng20R price">
-                                                <span class=" align-middle">5,000</span>
-                                            </span>
-                                        </div>
-                                        <div class="mealsCardDiv">
-                                            <img src="/image/store/Taichung/太初麵食/傳香滷肉飯套餐.jpeg" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="mealsCard">
-                                        <span class="text20B mealsName">無骨鹽酥雞</span>
-                                        <div class="mealsDetail">新鮮直送，鮮嫩多汁</div>
-                                        <div class="mealsPrice">
-                                            <span class="eng20R price">
-                                                <span class=" align-middle">5,000</span>
-                                            </span>
-                                        </div>
-                                        <div class="mealsCardDiv">
-                                            <img src="/image/store/Taichung/太初麵食/傳香滷肉飯套餐.jpeg" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="mealsCard">
-                                        <span class="text20B mealsName">無骨鹽酥雞</span>
-                                        <div class="mealsDetail">新鮮直送，鮮嫩多汁</div>
-                                        <div class="mealsPrice">
-                                            <span class="eng20R price">
-                                                <span class=" align-middle">5,000</span>
-                                            </span>
-                                        </div>
-                                        <div class="mealsCardDiv">
-                                            <img src="/image/store/Taichung/太初麵食/傳香滷肉飯套餐.jpeg" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="mealsCard">
-                                        <span class="text20B mealsName">無骨鹽酥雞</span>
-                                        <div class="mealsDetail">新鮮直送，鮮嫩多汁</div>
-                                        <div class="mealsPrice">
-                                            <span class="eng20R price">
-                                                <span class=" align-middle">5,000</span>
-                                            </span>
-                                        </div>
-                                        <div class="mealsCardDiv">
-                                            <img src="/image/store/Taichung/太初麵食/傳香滷肉飯套餐.jpeg" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="mealsCard">
-                                        <span class="text20B mealsName">無骨鹽酥雞</span>
-                                        <div class="mealsDetail">新鮮直送，鮮嫩多汁</div>
-                                        <div class="mealsPrice">
-                                            <span class="eng20R price">
-                                                <span class=" align-middle">5,000</span>
-                                            </span>
-                                        </div>
-                                        <div class="mealsCardDiv">
-                                            <img src="/image/store/Taichung/太初麵食/傳香滷肉飯套餐.jpeg" alt="">
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <div class="text28B" style="margin-bottom: 27px;" id="title02">人氣餐點</div>
-                                <div class="meals">
-                                    <div class="mealsCard">
-                                        <span class="text20B mealsName">無骨鹽酥雞</span>
-                                        <div class="mealsDetail">新鮮直送，鮮嫩多汁</div>
-                                        <div class="mealsPrice">
-                                            <span class="eng20R price">
-                                                <span class=" align-middle">5,000</span>
-                                            </span>
-                                        </div>
-                                        <div class="mealsCardDiv">
-                                            <img src="/image/store/Taichung/太初麵食/傳香滷肉飯套餐.jpeg" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="mealsCard">
-                                        <span class="text20B mealsName">無骨鹽酥雞</span>
-                                        <div class="mealsDetail">新鮮直送，鮮嫩多汁</div>
-                                        <div class="mealsPrice">
-                                            <span class="eng20R price">
-                                                <span class=" align-middle">5,000</span>
-                                            </span>
-                                        </div>
-                                        <div class="mealsCardDiv">
-                                            <img src="/image/store/Taichung/太初麵食/傳香滷肉飯套餐.jpeg" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="mealsCard">
-                                        <span class="text20B mealsName">無骨鹽酥雞</span>
-                                        <div class="mealsDetail">新鮮直送，鮮嫩多汁</div>
-                                        <div class="mealsPrice">
-                                            <span class="eng20R price">
-                                                <span class=" align-middle">5,000</span>
-                                            </span>
-                                        </div>
-                                        <div class="mealsCardDiv">
-                                            <img src="/image/store/Taichung/太初麵食/傳香滷肉飯套餐.jpeg" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="mealsCard">
-                                        <span class="text20B mealsName">無骨鹽酥雞</span>
-                                        <div class="mealsDetail">新鮮直送，鮮嫩多汁</div>
-                                        <div class="mealsPrice">
-                                            <span class="eng20R price">
-                                                <span class=" align-middle">5,000</span>
-                                            </span>
-                                        </div>
-                                        <div class="mealsCardDiv">
-                                            <img src="/image/store/Taichung/太初麵食/傳香滷肉飯套餐.jpeg" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="mealsCard">
-                                        <span class="text20B mealsName">無骨鹽酥雞</span>
-                                        <div class="mealsDetail">新鮮直送，鮮嫩多汁</div>
-                                        <div class="mealsPrice">
-                                            <span class="eng20R price">
-                                                <span class=" align-middle">5,000</span>
-                                            </span>
-                                        </div>
-                                        <div class="mealsCardDiv">
-                                            <img src="/image/store/Taichung/太初麵食/傳香滷肉飯套餐.jpeg" alt="">
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <div class="text28B" style="margin-bottom: 27px;" id="title03">套餐</div>
-                                <div class="meals">
-                                    <div class="mealsCard">
-                                        <span class="text20B mealsName">無骨鹽酥雞</span>
-                                        <div class="mealsDetail">新鮮直送，鮮嫩多汁</div>
-                                        <div class="mealsPrice">
-                                            <span class="eng20R price">
-                                                <span class=" align-middle">5,000</span>
-                                            </span>
-                                        </div>
-                                        <div class="mealsCardDiv">
-                                            <img src="/image/store/Taichung/太初麵食/傳香滷肉飯套餐.jpeg" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="mealsCard">
-                                        <span class="text20B mealsName">無骨鹽酥雞</span>
-                                        <div class="mealsDetail">新鮮直送，鮮嫩多汁</div>
-                                        <div class="mealsPrice">
-                                            <span class="eng20R price">
-                                                <span class=" align-middle">5,000</span>
-                                            </span>
-                                        </div>
-                                        <div class="mealsCardDiv">
-                                            <img src="/image/store/Taichung/太初麵食/傳香滷肉飯套餐.jpeg" alt="">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- 店家簡介 -->
-                            <div class="mealsScroll" v-if="tab === 2" v-show="tab===2">
-                                <div class="text28B mt-l" style="margin-bottom: 11px;">店家簡介</div>
-                                <div style="padding-right: 165px;padding-left: 16px;">
-                                    <p class="text20R" style="color: var(--dDeepGray);">
-                                        {{ storeIntroduction }}</p>
-                                </div>
-                                <div class="text28B mt-l" style="margin-bottom: 11px;">店家資訊</div>
-                                <div style="padding-right: 165px;padding-left: 16px;">
-                                    <p class="text20R" style="color: var(--dDeepGray);margin-bottom: 7px;">
-                                        <img src="/image/Phone.png" class="storeAbout"> {{ storePhone }}</p>
-                                    <p class="text20R" style="color: var(--dDeepGray);margin-bottom: 7px;">
-                                        <img src="/image/Places.png" class="storeAbout"> {{ storeAddress }}</p>
-                                    <p class="text20R" style="color: var(--dDeepGray);margin-bottom: 15px;">
-                                        <img src="/image/Clock.png" class="storeAbout"> {{ storeOpen }}</p>
-                                    <p class="text20B" style="color: var(--dRed);">公休日&nbsp;<span>週三</span>
-                                    </p>
-                                </div>
-                                <div class="text28B mt-l" style="margin-bottom: 11px;">配送地區</div>
-                                <div style="padding-right: 165px;padding-left: 16px;">
-                                    <p class="text20R" style="color: var(--dDeepGray);">台中市南屯區 / 台中市西區</p>
-                                </div>
-                                <div class="text28B mt-l" style="margin-bottom: 11px;">注意事項</div>
-                                <div style="padding-right: 165px;padding-left: 16px;">
-                                    <p class="text20R" style="color: var(--dDeepGray);">
-                                        {{ storeNotice }}</p>
-                                </div>
-                            </div>
-                            <!-- 店家評論 -->
-                            <div class="mealsScroll" v-if="tab === 3" v-show="tab===3">
-                                <ul class="evaluationList">
-                                    <!-- 1 -->
-                                    <li class="dblock d-flex pl-0">
-                                        <!-- <span class="photo"></span> -->
-                                        <img src="/image/message.png">
-                                        <span class="content">
-                                            <h2 class="text24B">王小華</h2>
-                                            <div class="star">
-                                                <i class=" icon-spoon"></i>
-                                                <i class=" icon-spoon"></i>
-                                                <i class=" icon-spoon"></i>
-                                                <i class=" icon-spoon"></i>
-                                                <i class=" icon-borderspoon"></i>
-                                            </div>
-                                            <p class="text20R">
-                                                上次訂餐非常準時地送到了，用完餐當天的熱暑也退得差不多了，是一次很棒的用餐體驗，下次會繼續訂訂！</p>
-                                            <p class="text16">3小時前</p>
-                                        </span>
-                                    </li>
-                                    <!-- 2 -->
-                                    <li class="dblock d-flex pl-0">
-                                        <!-- <span class="photo"></span> -->
-                                        <img src="/image/message.png">
-                                        <span class="content">
-                                            <h2 class="text24B">陳大明</h2>
-                                            <div class="star">
-                                                <i class=" icon-spoon"></i>
-                                                <i class=" icon-spoon"></i>
-                                                <i class=" icon-spoon"></i>
-                                                <i class=" icon-spoon"></i>
-                                                <i class=" icon-borderspoon"></i>
-                                            </div>
-                                            <p class="text20R">
-                                                每次不知道吃什麼的時候就會想到要吃摩斯，穩定的品質讓人吃得很放心，安心的食材把關讓人覺得開心以後會持續訂訂！</p>
-                                            <p class="text16">3小時前</p>
-                                        </span>
-                                    </li>
-                                    <!-- 3 -->
-                                    <li class="dblock d-flex pl-0">
-                                        <!-- <span class="photo"></span> -->
-                                        <img src="/image/message.png">
-                                        <span class="content">
-                                            <h2 class="text24B">陳大明</h2>
-                                            <div class="star">
-                                                <i class=" icon-spoon"></i>
-                                                <i class=" icon-spoon"></i>
-                                                <i class=" icon-spoon"></i>
-                                                <i class=" icon-spoon"></i>
-                                                <i class=" icon-borderspoon"></i>
-                                            </div>
-                                            <p class="text20R">
-                                                每次不知道吃什麼的時候就會想到要吃摩斯，穩定的品質讓人吃得很放心，安心的食材把關讓人覺得開心以後會持續訂訂！</p>
-                                            <p class="text16">3小時前</p>
-                                        </span>
-                                    </li>
-                                    <!-- 4 -->
-                                    <li class="dblock d-flex pl-0">
-                                        <!-- <span class="photo"></span> -->
-                                        <img src="/image/message.png">
-                                        <span class="content">
-                                            <h2 class="text24B">陳大明</h2>
-                                            <div class="star">
-                                                <i class=" icon-spoon"></i>
-                                                <i class=" icon-spoon"></i>
-                                                <i class=" icon-spoon"></i>
-                                                <i class=" icon-spoon"></i>
-                                                <i class=" icon-borderspoon"></i>
-                                            </div>
-                                            <p class="text20R">
-                                                每次不知道吃什麼的時候就會想到要吃摩斯，穩定的品質讓人吃得很放心，安心的食材把關讓人覺得開心以後會持續訂訂！</p>
-                                            <p class="text16">3小時前</p>
-                                        </span>
-                                    </li>
-
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 
     <script src="/javascript/vue.js"></script>
     <script>
         let data = {
             dbStoreInformation: JSON.parse('<%- a %>'),
-            dbDistrick: JSON.parse('<%- b %>'),
+            dbDistrickNorth: JSON.parse('<%- b %>'),
+            dbDistrickCentral: JSON.parse('<%- c %>'),
             tab: 1,
             active: true,
             id: 3,
@@ -1238,31 +1034,66 @@
                     id: 234
                 }],
                 isShow: false
+            }],
+            middle: [{
+                country: "台中市",
+                districtName: [
+                    {
+                        name: "中區",
+                        id: 65
+                    },
+                    {
+                        name: "東區",
+                        id: 66
+                    },
+                    {
+                        name: "南區",
+                        id: 67
+                    },
+                    {
+                        name: "北區",
+                        id: 68
+                    },
+                    {
+                        name: "北屯區",
+                        id: 69
+                    },
+                ]
+
             }]
+
         }
         let storeInformation = new Vue({
             el: "#storeInformation",
             data: data,
             computed: {
-                areaList() {
+                northList() {
                     let dbDistrickObj = {
                         sort: [],
-                        map: {}
+                        map: {},
+                        isShow: false,
                     }
-                    this.dbDistrick.forEach(({ area, districtID, districtName, country, }, index) => {
-                        if (!dbDistrickObj.map[area]) {
-                            dbDistrickObj.sort.push(area)
-                            dbDistrickObj.map[area] = {
+                    this.dbDistrickNorth.forEach(({ districtID, districtName, country, }, index) => {
+                        if (!dbDistrickObj.map[country]) {
+                            dbDistrickObj.sort.push(country)
+                            dbDistrickObj.map[country] = {
                                 sort: [],
-                                map: {}
+                                map: {},
+                                isShow: false
                             }
                         }
-                        dbDistrickObj.map[area].sort.push(country)
-                        dbDistrickObj.map[area].map[country] = { districtName,districtID,index}
+                        dbDistrickObj.map[country].sort.push(districtName)
+                        // dbDistrickObj.map[country].sort.push({isShow: false})
+                        dbDistrickObj.map[country].map[districtName] = { districtID, index }
                     })
                     return dbDistrickObj
 
+
+                },
+                northDistrictList() {
+                    return this.northList.map[index]
                 }
+
                 // isSelect(){
                 //     console.log(this.north[0].districtName[0].selected)
                 //     return this.north[0].districtName[0].selected
@@ -1274,6 +1105,7 @@
                     return this.tab
                 },
                 handleSelect(index) {
+                    // console.log(this.northList[index])
                     if (this.north[index].isShow == false) {
                         this.north[index].isShow = true
                     } else if (this.north[index].isShow == true) {

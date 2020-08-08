@@ -59,8 +59,6 @@
                         <div class="dOptionDivOff selectContent districkSelectContent">
                             <div class="dOption text20R districkOption" v-for="districk in districkList.sort">
                                 {{ districk }}</div>
-                            <div class="dOption text20R districkOption">北屯區</div>
-                            <div class="dOption text20R districkOption">大里區</div>
                         </div>
                     </div>
                     <div class="d-inline-block">
@@ -188,9 +186,9 @@
                                     <div class="col-10 ml-n5 mr-5">
                                         <div
                                             style="background-color: var(--dWhite);width: 500px;height: 86px;padding-top: 40px;">
-                                            <span class="dTag text24RG act" v-on:click="tabClick(1)">美味餐點</span>
-                                            <span class="dTag text24RG" v-on:click="tabClick(2)">詳細資訊</span>
-                                            <span class="dTag text24RG" v-on:click="tabClick(3)">店家評價</span>
+                                            <span :class="{ act : tab == 1}" class="dTag text24RG" v-on:click="tabClick(1)">美味餐點</span>
+                                            <span :class="{ act : tab == 2}" class="dTag text24RG" v-on:click="tabClick(2)">詳細資訊</span>
+                                            <span :class="{ act : tab == 3}" class="dTag text24RG" v-on:click="tabClick(3)">店家評價</span>
                                         </div>
                                         <br>
                                         <!-- 美味餐點 -->
