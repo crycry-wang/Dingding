@@ -48,114 +48,90 @@
         </nav>
         <div class="dblock mt-4">
             <ul class="scrollList noticeList">
-                <!-- 新訊息 -->
-                <li class="noticeItem d-flex align-items-center store" v-for='(item,index) in orderNoticeData'>
-                    <img :src="(`image/會員資料/大頭照/${item.memberPhoto}`)">
-                    <span class="content">
-                        <h2 class="text24B">新訂單通知</h2>
-                        <p class="text20R">有一筆來自<span>{{item.memberName}}<span>的新訂單，快去處理吧！</p>
-                        <p class="text16">{{item.orderDeadline}}</p>
-                    </span>
-                    <span class="ml-auto actionR">
-                        <span class="eng20R price">
-                            <span class=" align-middle">5,000</span>
+                <!-- 處理訂單通知 -->
+                <span v-for='(item,index) in orderNoticeData'>
+                    <li :class="item.noticeStatus==2 ?
+                    'noticeItem d-flex align-items-center read store':'noticeItem d-flex align-items-center store'"
+                        @click='readNewStatus(index)'>
+                        <img :src="(`image/會員資料/大頭照/${item.memberPhoto}`)">
+                        <span class="content">
+                            <h2 class="text24B">新訂單通知</h2>
+                            <p class="text20R">有一筆來自<span>{{item.memberName}}<span>的新訂單，快去處理吧！</p>
+                            <p class="text16">{{item.noticeTime}}</p>
                         </span>
-                        <button class="text20R dbtn btnY" data-toggle="modal" data-target="#orderAction"> 處理訂單</button>
-                    </span>
-                </li>
-
+                        <span class="ml-auto actionR">
+                            <span class="eng20R price">
+                                <span class=" align-middle">5,000</span>
+                            </span>
+                            <button class="text20R dbtn btnY" data-toggle="modal" data-target="#orderAction">
+                                處理訂單</button>
+                        </span>
+                    </li>
+                </span>
                 <!-- 系統通知 -->
                 <span v-for='(item,index) in dNticeData'>
-                    <li :class="item.noticeStatus==2 ? 'noticeItem d-flex align-items-center read':'noticeItem d-flex align-items-center'"
-                        @click='readStatus(index)'>
-                        <img src="/image/message.png">
-                        <span class="content">
-                            <h2 class="text24B">訂訂系統通知</h2>
-                            <p class="text20R">{{item.noticeContent}}</p>
-                            <p class="text16">{{item.noticeTime}}</p>
-                    </li>
+                    <span v-if='item.noticeStatus > 0'>
+                        <li :class="item.noticeStatus== 2 ? 'noticeItem d-flex align-items-center read':'noticeItem d-flex align-items-center'"
+                            @click='readStatus(index)'>
+                            <img src="/image/message.png">
+                            <span class="content">
+                                <h2 class="text24B">訂訂系統通知</h2>
+                                <p class="text20R">{{item.noticeContent}}</p>
+                                <p class="text16">{{item.noticeTime}}</p>
+                            </span>
+                            <span class="ml-auto actionR">
+                                <i class="icon-trash" @click='deleteDN(index)'></i>
+                            </span>
+                        </li>
+                    </span>
                 </span>
 
                 <!-- 拒絕訂單 -->
-                <li class="noticeItem d-flex align-items-center cancel store">
-                    <!-- <span class="photo"></span> -->
-                    <img src="/image/message.png">
-                    <span class="content">
-                        <h2 class="text24B">已拒絕 來自阿信的訂單</h2>
-                        <p class="text20R">您已拒絕來自阿信的訂單，已新增訂單至歷史訂單。</p>
-                        <p class="text16">3小時前</p>
-                    </span>
-                    <span class="ml-auto actionR">
-                        <span class="eng20R price">
-                            <span class=" align-middle">5,000</span>
+                <span v-for='(item,index) in orderCaNoticeData'>
+                    <li :class="item.noticeStatus==2 ?
+                     'noticeItem d-flex align-items-center read cancel store':'noticeItem d-flex align-items-center cancel store'"
+                        @click='readCancelStatus(index)' v-if='item.noticeStatus > 0'>
+                        <img :src="(`image/會員資料/大頭照/${item.memberPhoto}`)">
+                        <span class="content">
+                            <h2 class="text24B">已拒絕 來自<span>{{item.memberName}}<span>的訂單</h2>
+                            <p class="text20R">您已拒絕來自<span>{{item.memberName}}</span>的訂單，已新增訂單至歷史訂單。</p>
+                            <p class="text16">{{item.noticeTime}}</p>
                         </span>
-                        <button class="text20R dbtn btnW" data-toggle="modal" data-target="#order">查看訂單</button>
-                        <button class="text20R dbtn btnY  d-none" data-toggle="modal" data-target="#orderAction">
-                            處理訂單</button>
-                        <i class="icon-trash"></i>
-                    </span>
-                </li>
+                        <span class="ml-auto actionR">
+                            <span class="eng20R price">
+                                <span class=" align-middle">3,400</span>
+                            </span>
+                            <button class="text20R dbtn btnW" data-toggle="modal" data-target="#order">查看訂單</button>
+                            <button class="text20R dbtn btnY  d-none" data-toggle="modal" data-target="#orderAction">
+                                處理訂單</button>
+                            <i class="icon-trash" @click='deleteCaN(index)'></i>
+                        </span>
+                    </li>
+                </span>
 
                 <!-- 接受訂單 -->
-                <li class="noticeItem d-flex align-items-center store">
-                    <!-- <span class="photo"></span> -->
-                    <img src="/image/message.png">
-                    <span class="content">
-                        <h2 class="text24B">已接受 來自王小華的訂單</h2>
-                        <p class="text20R">已新增至訂單管理，請於<span class="Ycolor">2020/06/18 12:00</span>準時送達餐點。</p>
-                        <p class="text16">3小時前</p>
-                    </span>
-                    <span class="ml-auto actionR">
-                        <span class="eng20R price">
-                            <span class=" align-middle">5,000</span>
+                <span v-for='(item,index) in orderOkNoticeData'>
+                    <li :class="item.noticeStatus==2 ? 'noticeItem d-flex align-items-center read':'noticeItem d-flex align-items-center'"
+                        @click='readOkStatus(index)' v-if='item.noticeStatus > 0'>
+                        <img :src="(`image/會員資料/大頭照/${item.memberPhoto}`)">
+                        <span class="content">
+                            <h2 class="text24B">已接受 來自<span>{{item.memberName}}</span>的訂單</h2>
+                            <p class="text20R">已新增至訂單管理，請於<span class="Ycolor">
+                                    {{(item.orderDeadline).slice(0,16).replace(/&#45/g,'/')}}</span>準時送達餐點。</p>
+                            <p class="text16">{{item.noticeTime}}</p>
                         </span>
-                        <button class="text20R dbtn btnW" data-toggle="modal" data-target="#order">查看訂單</button>
-                        <button class="text20R dbtn btnY  d-none" data-toggle="modal" data-target="#orderAction">
-                            處理訂單</button>
-                        <i class="icon-trash"></i>
-                    </span>
-                </li>
-
-                <!-- 已讀接受訂單 -->
-                <li class="noticeItem d-flex align-items-center read store">
-                    <!-- <span class="photo"></span> -->
-                    <img src="/image/message.png">
-                    <span class="content">
-                        <h2 class="text24B">已接受 來自王小華的訂單</h2>
-                        <p class="text20R">已新增至訂單管理，請於<span class="Ycolor">2020/06/18 12:00</span>準時送達餐點。</p>
-                        <p class="text16">3小時前</p>
-                    </span>
-                    <span class="ml-auto actionR">
-                        <span class="eng20R price">
-                            <span class=" align-middle">5,000</span>
+                        <span class="ml-auto actionR">
+                            <span class="eng20R price">
+                                <span class=" align-middle">1,850</span>
+                            </span>
+                            <button class="text20R dbtn btnW" data-toggle="modal" data-target="#order">查看訂單</button>
+                            <button class="text20R dbtn btnY  d-none" data-toggle="modal" data-target="#orderAction">
+                                處理訂單</button>
+                            <i class="icon-trash" @click='deleteOkN(index)'></i>
                         </span>
-                        <button class="text20R dbtn btnW" data-toggle="modal" data-target="#order">查看訂單</button>
-                        <button class="text20R dbtn btnY  d-none" data-toggle="modal" data-target="#orderAction">
-                            處理訂單</button>
-                        <i class="icon-trash"></i>
-                    </span>
-                </li>
+                    </li>
+                </span>
 
-                <!-- 已讀拒絕訂單 -->
-                <li class="noticeItem d-flex align-items-center cancel store read">
-                    <!-- <span class="photo"></span> -->
-                    <img src="/image/message.png">
-                    <span class="content">
-                        <h2 class="text24B">已拒絕 來自阿信的訂單</h2>
-                        <p class="text20R">您已拒絕來自阿信的訂單，已新增訂單至歷史訂單。</p>
-                        <p class="text16">3小時前</p>
-                    </span>
-                    <span class="ml-auto actionR">
-                        <span class="eng20R price">
-                            <span class=" align-middle">5,000</span>
-                        </span>
-                        <button class="text20R dbtn btnW" data-toggle="modal" data-target="#order">查看訂單</button>
-                        <button class="text20R dbtn btnY  d-none" data-toggle="modal" data-target="#orderAction">
-                            處理訂單</button>
-                        <i class="icon-trash"></i>
-
-                    </span>
-                </li>
 
                 <button type="button" class="btnY dbtn" data-toggle="modal" data-target="#comfirmBtn">
                     確認型彈跳框(1按鈕型)
@@ -437,34 +413,68 @@
                 storeData: JSON.parse('<%- storeData %>'),
                 dNticeData: JSON.parse('<%- dNticeData %>'),
                 orderNoticeData: JSON.parse('<%- orderNoticeData %>'),
+                orderCaNoticeData: JSON.parse('<%- orderCaNoticeData %>'),
                 orderDTNoticeData: JSON.parse('<%- orderDTNoticeData %>'),
+                orderOkNoticeData: JSON.parse('<%- orderOkNoticeData %>'),
             },
             mounted: function () {
-                let time = this.dNticeData.length;
-                let orderTime = this.orderNoticeData.length;
-                for (let index = 0; index < time; index++) {
-                    this.dNticeData[index].noticeTime = getDate(this.dNticeData[index].noticeTime);
-                }
-                for (let index = 0; index < orderTime; index++) {
-                    this.orderNoticeData[index].orderDeadline = getDate(this.orderNoticeData[index].orderDeadline);
-                }
+                this.dNticeData.forEach(function (item) {
+                    item.noticeTime = getDate(item.noticeTime);})
+
+                this.orderNoticeData.forEach(function (item) {
+                    item.noticeTime = getDate(item.noticeTime);})
+
+                this.orderCaNoticeData.forEach(function (item) {
+                    item.noticeTime = getDate(item.noticeTime);})
+                
+                this.orderOkNoticeData.forEach(function (item) {
+                    item.noticeTime = getDate(item.noticeTime);})
+            
             },
             methods: {
+                // 已讀
                 readStatus(index) {
-                    this.dNticeData[index].noticeStatus = 2;
-                }
-            },
-            computed: {
-                orderList() {
-                    let obj = [];
-                    for (let index = 0; index < this.orderDTNoticeData.length; index++) {
-                        obj.push(this.orderDTNoticeData[index].orderId);
+                    if (this.dNticeData[index].noticeStatus == 1) {
+                        this.dNticeData[index].noticeStatus = 2
                     }
-                    obj= Array.from(new Set(obj));
-                    return obj
+                },
+                readCancelStatus(index) {
+                    if (this.orderCaNoticeData[index].noticeStatus == 1) {
+                        this.orderCaNoticeData[index].noticeStatus = 2;
+                    }
+                },
+                readOkStatus(index) {
+                    if (this.orderOkNoticeData[index].noticeStatus == 1) {
+                    this.orderOkNoticeData[index].noticeStatus = 2;
+                    }
+                },
+                readNewStatus(index) {
+                    this.orderNoticeData[index].noticeStatus = 2;
+                },
+
+                // 刪除
+                deleteDN(index) {
+                    this.dNticeData[index].noticeStatus = 0;
+                },
+                deleteCaN(index) {
+                    this.orderCaNoticeData[index].noticeStatus = 0;
+                },
+                deleteOkN(index) {
+                    this.orderOkNoticeData[index].noticeStatus = 0;
                 }
 
             }
+            // ,computed: {
+            //     orderList() {
+            //         let obj = [];
+            //         for (let index = 0; index < this.orderDTNoticeData.length; index++) {
+            //             obj.push(this.orderDTNoticeData[index].orderId);
+            //         }
+            //         obj = Array.from(new Set(obj));
+            //         return obj
+            //     }
+
+            // }
 
 
         })

@@ -9,6 +9,7 @@
     <script src="/javascript/jquery-3.5.1.min.js"></script>
     <script src="/javascript/popper.min.js"></script>
     <script src="/javascript//bootstrap.min.js"></script>
+    <script src="/javascript/getDate.js"></script>
     <link rel="stylesheet" href="/stylesheets/style.css">
     <link rel="stylesheet" href="/stylesheets/fontello.css">
     <link rel="stylesheet" href="/stylesheets/sider.css">
@@ -33,9 +34,9 @@
         <!-- 右邊內容放置區 -->
 
         <nav class="topTag row inWrapper position-sticky">
-            <div class="dTag text24RG act">平台通知(1)</div>
-            <div class="dTag text24RG">訂單狀況(1)</div>
-            <div class="dTag text24RG">投票、訂單通知(1)</div>
+            <div :class="tab==0 ?'dTag text24RG act' : 'dTag text24RG'" @click='tab=0'>平台通知({{this.dNticeCount}})</div>
+            <div :class="tab==1 ?'dTag text24RG act' : 'dTag text24RG'" @click='tab=1'>訂單狀況(1)</div>
+            <div :class="tab==2 ?'dTag text24RG act' : 'dTag text24RG'" @click='tab=2'>投票、訂單通知(1)</div>
             <a class="more ml-auto" href="#" role="button" id="more" data-toggle="dropdown" aria-haspopup="true"
                 aria-expanded="false">
             </a>
@@ -47,145 +48,124 @@
         </nav>
         <div class="dblock mt-4">
             <ul class="scrollList noticeList">
-
-
-                <!-- 新訊息 -->
-                <li class="noticeItem d-flex align-items-center">
-                    <!-- <span class="photo"></span> -->
-                    <img src="/image/message.png">
-                    <span class="content">
-                        <h2 class="text24B">訂訂系統緊急升級通知</h2>
-                        <p class="text20R">訂訂將於2020年06月26號(星期五)14:00至15:00進行系統升級。</p>
-                        <p class="text16">剛剛</p>
-                    </span>
-                    <span class="ml-auto actionR d-flex align-items-center">
-                        <span class="eng20R price d-none">
-                            <span class=" align-middle">4,000</span>
+                <!-- 系統通知 -->
+                <span v-if='tab==0'>
+                    <span v-for='(item,index) in dNticeData'>
+                        <span v-if='item.noticeStatus > 0'>
+                            <li :class="item.noticeStatus== 2 ? 'noticeItem d-flex align-items-center read':'noticeItem d-flex align-items-center'"
+                                @click='readStatus(index)'>
+                                <img src="/image/message.png">
+                                <span class="content">
+                                    <h2 class="text24B">訂訂系統緊急升級通知</h2>
+                                    <p class="text20R">{{item.noticeContent}}</p>
+                                    <p class="text16">{{item.noticeTime}}</p>
+                                </span>
+                                <span class="ml-auto actionR">
+                                    <i class="icon-trash" @click='deleteDN(index)'></i>
+                                </span>
+                            </li>
                         </span>
-                        <button class="text20R dbtn btnW d-none">建立新訂單</button>
-                        <button class="text20R dbtn btnB d-none">移動至訂單</button>
-                        <button class="text20R dbtn btnY  d-none" data-toggle="modal" data-target="#comfirm2Btn ">
-                            完成訂單</button>
-                        <i class="icon-trash"></i>
-                        <p class="text20R d-none">等待中..</p>
                     </span>
-                </li>
+                </span>
 
                 <!-- 店家新訊息 -->
-                <li class="noticeItem d-flex align-items-center">
-                    <!-- <span class="photo"></span> -->
-                    <img src="/image/store/Taichung/八方雲集_台中向上店/index.jpeg">
-                    <span class="content">
-                        <h2 class="text24B">貓咪腹肌　已接受訂單</h2>
-                        <p class="text20R">貓咪腹肌已接受訂單，當餐點送達後，請點擊完成訂單按鈕</p>
-                        <p class="text16">剛剛</p>
-                    </span>
-                    <span class="ml-auto actionR d-flex align-items-center">
-                        <span class="eng20R price">
-                            <span class=" align-middle">4,000</span>
+                <span v-if='tab==1'>
+                    <li class="noticeItem d-flex align-items-center">
+                        <!-- <span class="photo"></span> -->
+                        <img src="/image/store/Taichung/八方雲集_台中向上店/index.jpeg">
+                        <span class="content">
+                            <h2 class="text24B">貓咪腹肌　已接受訂單</h2>
+                            <p class="text20R">貓咪腹肌已接受訂單，當餐點送達後，請點擊完成訂單按鈕</p>
+                            <p class="text16">剛剛</p>
                         </span>
-                        <button class="text20R dbtn btnW d-none">建立新訂單</button>
-                        <button class="text20R dbtn btnB d-none">移動至訂單</button>
-                        <button class="text20R dbtn btnY" data-toggle="modal" data-target="#comfirm2Btn"> 完成訂單</button>
-                        <i class="icon-trash d-none"></i>
-                        <p class="text20R d-none">等待中..</p>
-                    </span>
-                </li>
+                        <span class="ml-auto actionR d-flex align-items-center">
+                            <span class="eng20R price">
+                                <span class=" align-middle">4,000</span>
+                            </span>
+                            <button class="text20R dbtn btnW d-none">建立新訂單</button>
+                            <button class="text20R dbtn btnB d-none">移動至訂單</button>
+                            <button class="text20R dbtn btnY" data-toggle="modal" data-target="#comfirm2Btn">
+                                完成訂單</button>
+                            <i class="icon-trash d-none"></i>
+                            <p class="text20R d-none">等待中..</p>
+                        </span>
+                    </li>
 
-                <!-- 已讀 -->
-                <li class="noticeItem d-flex align-items-center read">
-                    <!-- <span class="photo"></span> -->
-                    <img src="/image/message.png">
-                    <span class="content">
-                        <h2 class="text24B">八方雲集　已完成訂單</h2>
-                        <p class="text20R">您已經完成訂單了，期待您的下次訂購。</p>
-                        <p class="text16">3小時前</p>
-                    </span>
-                    <span class="ml-auto actionR d-flex align-items-center">
-                        <span class="eng20R price ">
-                            <span class=" align-middle">4,000</span>
+                    <!-- 已讀 -->
+                    <li class="noticeItem d-flex align-items-center read">
+                        <!-- <span class="photo"></span> -->
+                        <img src="/image/message.png">
+                        <span class="content">
+                            <h2 class="text24B">八方雲集　已完成訂單</h2>
+                            <p class="text20R">您已經完成訂單了，期待您的下次訂購。</p>
+                            <p class="text16">3小時前</p>
+                        </span>
+                        <span class="ml-auto actionR d-flex align-items-center">
+                            <span class="eng20R price ">
+                                <span class=" align-middle">4,000</span>
+                            </span>
+
+                            <button class="text20R dbtn btnW d-none">建立新訂單</button>
+                            <button class="text20R dbtn btnB d-none">移動至訂單</button>
+                            <button class="text20R dbtn btnY d-none" data-toggle="modal" data-target="#comfirm2Btn">
+                                完成訂單</button>
+                            <i class="icon-trash"></i>
+                            <p class="text20R d-none">等待中..</p>
+                        </span>
+                    </li>
+
+                    <!-- 已讀取消訂單 -->
+                    <li class="noticeItem d-flex align-items-center cancel read">
+                        <span class="photo"></span>
+                        <!-- <img src="/image/message.png"> -->
+                        <span class="content">
+                            <h2 class="text24B">尊品原汁牛肉麵 已取消訂單</h2>
+                            <p class="text20R">店家因太忙或種種原因，而取消了訂單，我們將會退還全額給您。</p>
+                            <p class="text16">3小時前</p>
                         </span>
 
-                        <button class="text20R dbtn btnW d-none">建立新訂單</button>
-                        <button class="text20R dbtn btnB d-none">移動至訂單</button>
-                        <button class="text20R dbtn btnY d-none" data-toggle="modal" data-target="#comfirm2Btn">
-                            完成訂單</button>
-                        <i class="icon-trash"></i>
-                        <p class="text20R d-none">等待中..</p>
-                    </span>
-                </li>
+                        <span class="ml-auto actionR d-flex align-items-center">
+                            <span class="eng20R price d-none">
+                                <span class=" align-middle">4,000</span>
+                            </span>
 
+                            <button class="text20R dbtn btnW d-none">建立新訂單</button>
+                            <button class="text20R dbtn btnB">移動至訂單</button>
+                            <button class="text20R dbtn btnY d-none" data-toggle="modal" data-target="#comfirm2Btn">
+                                完成訂單</button>
+                            <i class="icon-trash"></i>
+                            <p class="text20R d-none">等待中..</p>
+                        </span>
+
+                    </li>
+                </span>
                 <!-- 已讀取消訂單 -->
-                <li class="noticeItem d-flex align-items-center cancel read">
-                    <span class="photo"></span>
-                    <!-- <img src="/image/message.png"> -->
-                    <span class="content">
-                        <h2 class="text24B">尊品原汁牛肉麵 已取消訂單</h2>
-                        <p class="text20R">店家因太忙或種種原因，而取消了訂單，我們將會退還全額給您。</p>
-                        <p class="text16">3小時前</p>
-                    </span>
-
-                    <span class="ml-auto actionR d-flex align-items-center">
-                        <span class="eng20R price d-none">
-                            <span class=" align-middle">4,000</span>
+                <span v-if='tab==2'>
+                    <li class="noticeItem d-flex align-items-center read">
+                        <span class="photo"></span>
+                        <!-- <img src="/image/message.png"> -->
+                        <span class="content">
+                            <h2 class="text24B">被程式耽誤的通靈王</h2>
+                            <p class="text20R">此團體已新增排程囉~</p>
+                            <p class="text16">6小時前</p>
                         </span>
 
-                        <button class="text20R dbtn btnW d-none">建立新訂單</button>
-                        <button class="text20R dbtn btnB">移動至訂單</button>
-                        <button class="text20R dbtn btnY d-none" data-toggle="modal" data-target="#comfirm2Btn">
-                            完成訂單</button>
-                        <i class="icon-trash"></i>
-                        <p class="text20R d-none">等待中..</p>
-                    </span>
+                        <span class="ml-auto actionR d-flex align-items-center">
+                            <span class="eng20R price d-none">
+                                <span class=" align-middle">4,000</span>
+                            </span>
 
-                </li>
-
-                <!-- 已讀取消訂單 -->
-                <li class="noticeItem d-flex align-items-center read">
-                    <span class="photo"></span>
-                    <!-- <img src="/image/message.png"> -->
-                    <span class="content">
-                        <h2 class="text24B">被程式耽誤的通靈王</h2>
-                        <p class="text20R">此團體已新增排程囉~</p>
-                        <p class="text16">6小時前</p>
-                    </span>
-
-                    <span class="ml-auto actionR d-flex align-items-center">
-                        <span class="eng20R price d-none">
-                            <span class=" align-middle">4,000</span>
+                            <button class="text20R dbtn btnW d-none">建立新訂單</button>
+                            <button class="text20R dbtn btnB">移動至排程</button>
+                            <button class="text20R dbtn btnY d-none" data-toggle="modal" data-target="#comfirm2Btn">
+                                完成訂單</button>
+                            <i class="icon-trash"></i>
+                            <p class="text20R d-none">等待中..</p>
                         </span>
 
-                        <button class="text20R dbtn btnW d-none">建立新訂單</button>
-                        <button class="text20R dbtn btnB">移動至排程</button>
-                        <button class="text20R dbtn btnY d-none" data-toggle="modal" data-target="#comfirm2Btn">
-                            完成訂單</button>
-                        <i class="icon-trash"></i>
-                        <p class="text20R d-none">等待中..</p>
-                    </span>
+                    </li>
+                </span>
 
-                </li>
-
-                <!-- 已讀訊息 -->
-                <li class="noticeItem d-flex align-items-center read">
-                    <!-- <span class="photo"></span> -->
-                    <img src="/image/message.png">
-                    <span class="content">
-                        <h2 class="text24B">訂訂系統緊急升級通知</h2>
-                        <p class="text20R">訂訂將於2020年05月29號(星期五)14:00至15:00進行系統升級。</p>
-                        <p class="text16">1個月前</p>
-                    </span>
-                    <span class="ml-auto actionR d-flex align-items-center">
-                        <span class="eng20R price d-none">
-                            <span class=" align-middle">4,000</span>
-                        </span>
-                        <button class="text20R dbtn btnW d-none">建立新訂單</button>
-                        <button class="text20R dbtn btnB d-none">移動至訂單</button>
-                        <button class="text20R dbtn btnY  d-none" data-toggle="modal" data-target="#comfirm2Btn ">
-                            完成訂單</button>
-                        <i class="icon-trash"></i>
-                        <p class="text20R d-none">等待中..</p>
-                    </span>
-                </li>
             </ul>
         </div>
     </div>
@@ -212,12 +192,68 @@
     </div>
     <script>
 
-        //vue資料
-        // let mNotice = new Vue({
-        //         el: '#mNotice',
-        //         data:data
-            
-        //     })
+        // vue資料
+        let mNotice = new Vue({
+            el: '#mNotice',
+            data: {
+                memberData: JSON.parse('<%- mMemberData %>'),
+                dNticeData: JSON.parse('<%- dNticeData %>'),
+                tab: 0
+
+            },
+            mounted: function () {
+                this.dNticeData.forEach(function (item) {
+                    item.noticeTime = getDate(item.noticeTime);
+                })
+
+
+
+            },
+            methods: {
+                // 已讀
+                readStatus(index) {
+                    if (this.dNticeData[index].noticeStatus == 1) {
+                        this.dNticeData[index].noticeStatus = 2
+                    }
+                },
+                // readCancelStatus(index) {
+                //     if (this.orderCaNoticeData[index].noticeStatus == 1) {
+                //         this.orderCaNoticeData[index].noticeStatus = 2;
+                //     }
+                // },
+                // readOkStatus(index) {
+                //     if (this.orderOkNoticeData[index].noticeStatus == 1) {
+                //     this.orderOkNoticeData[index].noticeStatus = 2;
+                //     }
+                // },
+                // readNewStatus(index) {
+                //     this.orderNoticeData[index].noticeStatus = 2;
+                // },
+
+                // 刪除
+                deleteDN(index) {
+                    this.dNticeData[index].noticeStatus = 0;
+                },
+                // deleteCaN(index) {
+                //     this.orderCaNoticeData[index].noticeStatus = 0;
+                // },
+                // deleteOkN(index) {
+                //     this.orderOkNoticeData[index].noticeStatus = 0;
+                // }
+
+            }, computed: {
+                // 平台通知數量
+                dNticeCount: function () {
+                    let a = 0;
+                    this.dNticeData.forEach(function (item) {
+                        if (item.noticeStatus == 1) {
+                            a += 1;
+                        }
+                    });
+                    return a;
+                }
+            }
+        })
     </script>
 </body>
 
