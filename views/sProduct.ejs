@@ -15,291 +15,295 @@
     <link rel="stylesheet" href="/stylesheets/meal.css">
     <script src="/javascript/vue.js"></script>
     <title>Document</title>
-
-
+    <style>
+        .clip {
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 1;
+               
+        }
+    </style>
 </head>
+
 
 <body>
     <!-- 左邊sider -->
     <%- include('sSider', {active}); %>
+    <span id='sProduct'>
+        <div class="containerRight">
+            <!-- 右邊內容放置區 -->
+            <nav class="topTag d-flex row inWrapper align-items-start">
+                <span v-for='(item,index) in elementp'>
+                    <div :class="index == Tab ? 'dTag text24RG act' : 'dTag text24RG'" @click='switchTab(index)'>
+                        {{item}}
+                    </div>
+                </span>
+                <button class="text20R dbtn btnB ml-auto" data-toggle="modal" @click='typeManager'>類別管理</button>
+            </nav>
 
-    <div class="containerRight">
-        <!-- 右邊內容放置區 -->
-        <nav class="topTag d-flex row inWrapper align-items-start">
-            <div class="dTag text24RG act">套餐</div>
-            <div class="dTag text24RG">漢堡</div>
-            <div class="dTag text24RG">飲品</div>
-            <button class="text20R dbtn btnB ml-auto" data-toggle="modal" data-target="#typeManager">類別管理</button>
-        </nav>
 
-
-        <div class="dblock">
-            <div class="buttonGroup text-right mb-4 mt-0">
-                <button class="dbtn btnW text20R" data-toggle="modal" data-target="#recommend">
-                    推薦產品
-                </button>
-                <button class="dbtn btnY text20R" data-toggle="modal" data-target="#product" @click='addProductItem'>
-                    新增產品
-                    <span class="ml-2">+</span>
-                </button>
-            </div>
-
-            <div class="text20R" id="sMealList">
-                <div class="titleHead col-12 row align-items-center">
-                    <div class="col-1">
-                        推薦
-                    </div>
-                    <div class="col-3">
-                        餐點名稱
-                    </div>
-                    <div class="col-1">
-                        價格
-                    </div>
-                    <div class="col-1">
-                        圖片
-                    </div>
-                    <div class="col-6">
-                        說明
-                    </div>
+            <div class="dblock">
+                <div class="buttonGroup text-right mb-4 mt-0">
+                    <button class="dbtn btnW text20R" data-toggle="modal" data-target="#recommend">
+                        推薦產品
+                    </button>
+                    <button class="dbtn btnY text20R" data-toggle="modal" data-target="#product" @click='clearIndex'>
+                        新增產品
+                        <span class="ml-2">+</span>
+                    </button>
                 </div>
-                <ul class="scrollList mealList">
-                    <li class="row col-12 d-flex align-items-center" v-for='(item,index) in product'>
-                        <div class="fst col-1" v-if='item.recommendProduct==1'>
-                            <img src="/image/first.png">
+
+                <div class="text20R" id="sMealList">
+                    <div class="titleHead col-12 row align-items-center">
+                        <div class="col-1">
+                            推薦
                         </div>
-                        <div class="snd col-1" v-if='item.recommendProduct==2'>
-                            <img src="/image/second.png">
-                        </div>
-                        <div class="trd col-1" v-if='item.recommendProduct==3'>
-                            <img src="/image/third.png">
-                        </div>
-                        <div class="col-1" v-if='!item.recommendProduct'></div>
                         <div class="col-3">
-                            {{item.productName}}
+                            餐點名稱
                         </div>
                         <div class="col-1">
-                            {{(item.productPrice).toLocaleString('en-US')}}
+                            價格
                         </div>
                         <div class="col-1">
-                            <img :src="(`/image/${item.productPhoto}`)">
+                            圖片
                         </div>
                         <div class="col-6">
-                            <div class="d-flex align-items-center">
-                                <p class="text20B desc">{{item.productInformation}}</p>
-                                <button class="text20R dbtn btnW ml-auto" data-toggle="modal" data-target="#product">詳情</button>
-                                <i class="icon-trash " data-toggle="modal" data-target="#deleteMeal"></i>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-            <button type="button" class="btnY dbtn " data-toggle="modal" data-target="#comfirm">
-                成功介面
-            </button>
-            <button type="button" class="btnR dbtn " data-toggle="modal" data-target="#deleteType">
-                刪除類別介面
-            </button>
-        </div>
-    </div>
-    </div>
-
-
-    <!-- 新增產品 -->
-    <div class="modal fade l2Btn" id="product">
-        <div class="modal-dialog modal-dialog-centered ">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title text28B ">產品詳情</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <i class=" icon-close"></i>
-                    </button>
-                </div>
-                <div class="modal-body ">
-                    <div class="text24R d-flex align-items-start mealInfo mb-m ">
-                        <span class="d-inline-block" v-if='!productPhoto'>
-                            <div class="upload "> <button class="dbtn btnLG text20R align-middle ">上傳圖片</button></div>
-                        </span>
-                        <span class="d-inline-block" v-else>
-                            <img :src="(`/image/${productPhoto}`)">
-                        </span>
-                        <ul class="d-inline-block inputInfo">
-                            <li>
-                                <p class="text24B d-inline-block ">餐點名稱</p>
-                                <input type="text " class="text20RG singleText398 " placeholder="請輸入餐點名稱" v-model="productName">
-                            </li>
-                            <li>
-                                <p class="text24B d-inline-block">產品類別</p>
-                                <div class="ddselect d-inline-block ">
-                                    <div class="dSelect selectTitle">
-                                        <div class="dSelectText text20R ">選擇類別</div>
-                                    </div>
-                                    <div class="dOptionDivOff selectContent">
-                                        <div class="dOption text20R ">套餐</div>
-                                        <div class="dOption text20R ">漢堡</div>
-                                        <div class="dOption text20R ">飲品</div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <p class="text24B d-inline-block">餐點價格</p>
-                                <input type="text" class="text20RG singleText398" placeholder="請輸入餐點價格" v-model="productPrice">
-                            </li>
-                        </ul>
-                    </div>
-                    <p class="text24B d-block mb-3">說明</p>
-                    <textarea class="text20RG multiText398" placeholder="請輸入餐點說明" v-model="productInformation"></textarea>
-                </div>
-
-                <div class="modal-footer">
-                    <button class="text20R dbtn btnW" data-dismiss="modal">取消返回</button>
-                    <button class="text20R dbtn btnY ml-3">確定新增</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-    <!-- 成功介面 -->
-    <div class="modal fade sm1Btn" id="comfirm">
-        <div class="modal-dialog ">
-            <div class="modal-content ">
-                <div class="modal-header ">
-                    <h5 class="modal-title text28B w-100 text-center ">新增成功</h5>
-                </div>
-
-                <div class="modal-footer">
-                    <button class="text20R dbtn btnY m-auto">確定</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-    <!-- 類別管理介面 -->
-    <div class="modal fade m2Btn" id="typeManager">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title text28B">類別管理</h5>
-                    <button type="button" class="close " data-dismiss="modal" aria-label="Close">
-                        <i class=" icon-close"></i>
-                    </button>
-                </div>
-
-                <div class="modal-body d-flex row">
-
-                    <p class="text24B col-3">類別名稱</p>
-
-                    <div class="typeInfo col-9">
-                        <div class="typeList scrollList">
-                            <div class="typrItem d-flex" v-for='(typeItem,index) in category'>
-                                <input type="text " class="text20RG singleText398 " placeholder="請輸入類別名稱 " v-model.trim='typeItem.categoryName'>
-                                <i class="icon-trash ml-auto "></i>
-                            </div>
-
-
-
-                            <button class="dbtn btnW text20R" @click='addItem'>
-                                新增類別
-                                <i class="icon-new ml-2 alig-middle"></i>
-                            </button>
+                            說明
                         </div>
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <button class="text20R dbtn btnW" data-dismiss="modal">取消返回</button>
-                    <button class="text20R dbtn btnY ml-3">確定修改</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- 刪除餐點 -->
-    <div class="modal fade sm2Btn" id="deleteMeal">
-        <div class="modal-dialog ">
-            <div class="modal-content ">
-                <div class="modal-header ">
-                    <h5 class="modal-title text28B ">是否要刪除餐點</h5>
-                    <button type="button " class="close " data-dismiss="modal " aria-label="Close ">
-                        <i class=" icon-close "></i>
-                    </button>
-                </div>
-                <p class="modal-body text24R">
-                    <span class="redColor"> 刪除餐點</span>後，動作將無法被還原。
-                </p>
-                <div class="modal-footer">
-                    <button class="text20R dbtn btnW" data-dismiss="modal">返回離開</button>
-                    <button class="text20R dbtn btnR ml-3">刪除餐點</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- 刪除類別 -->
-    <div class="modal fade sm2Btn" id="deleteType">
-        <div class="modal-dialog ">
-            <div class="modal-content ">
-                <div class="modal-header ">
-                    <h5 class="modal-title text28B ">是否要刪除類別</h5>
-                    <button type="button " class="close " data-dismiss="modal " aria-label="Close ">
-                        <i class=" icon-close "></i>
-                    </button>
-                </div>
-                <p class="modal-body text24R">
-                    刪除類別後，類別內的全部餐點也將同時<span class="redColor">刪除</span>。
-                </p>
-                <div class="modal-footer">
-                    <button class="text20R dbtn btnW" data-dismiss="modal">返回離開</button>
-                    <button class="text20R dbtn btnR ml-3">刪除類別</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- 推薦產品介面 -->
-    <div class="modal fade m2Btn" id="recommend">
-        <div class="modal-dialog modal-dialog-centered ">
-            <div class="modal-content ">
-                <div class="modal-header ">
-                    <h5 class="modal-title text28B ">推薦產品</h5>
-                    <button type="button " class="close " data-dismiss="modal " aria-label="Close ">
-                        <i class=" icon-close "></i>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <ul>
-                        <li class="align-middle row recommendItem">
-                            <div class="col-3">
-                                <p class="d-inline-block text24B align-middle mr-3">推薦</p>
-                                <span class="fst align-middle"><img src="/image/first.png"></span>
-                            </div>
-                            <div class="row col-9">
-                                <div class="ddselect col-6">
-                                    <div class="dSelect mr-3">
-                                        <div class="dSelectText text20R">選擇類別</div>
-                                    </div>
-                                    <div class="dOptionDivOff mr-3 ">
-                                        <div class="dOption text20R">選擇類別</div>
-                                        <div class="dOption text20R" v-for='(categoryItem,index) in category'>
-                                            {{categoryItem.categoryName}}</div>
-
-                                    </div>
+                    <ul class="scrollList mealList">
+                        <li v-for='(item,index) in productData'>
+                            <div class="row col-12 d-flex align-items-center list"
+                                v-if='item.categoryName == elementp[Tab]&&item.productStatus==1'>
+                                <div class="fst col-1" v-if='item.recommendProduct==1'>
+                                    <img src="/image/first.png">
                                 </div>
+                                <div class="snd col-1" v-if='item.recommendProduct==2'>
+                                    <img src="/image/second.png">
+                                </div>
+                                <div class="trd col-1" v-if='item.recommendProduct==3'>
+                                    <img src="/image/third.png">
+                                </div>
+                                <div class="col-1" v-if='!item.recommendProduct'></div>
+                                <div class="col-3">
+                                    {{item.productName}}
+                                </div>
+                                <div class="col-1">
+                                    {{(item.productPrice).toLocaleString('en-US')}}
+                                </div>
+                                <div class="col-1">
+                                    <img :src="(`/image/store/${item.productPhoto}`)">
 
-                                <div class="ddselect col-6">
-                                    <div class="dSelect ml-3">
-                                        <div class="dSelectText text20R">選擇餐點</div>
-                                    </div>
-                                    <div class="dOptionDivOff ml-3">
-                                        <div class="dOption text20R">選擇餐點</div>
-                                        <div class="dOption text20R">摩絲熱狗堡</div>
-                                        <div class="dOption text20R">摩絲鱈魚堡</div>
-                                        <div class="dOption text20R">燒肉珍珠堡</div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="d-flex align-items-center">
+                                        <p class="text20B desc">{{item.productInformation}}</p>
+                                        <button class="text20R dbtn btnW ml-auto" data-toggle="modal"
+                                            data-target="#product" @click='getIndex(index)'>詳情</button>
+                                        <i class="icon-trash " data-toggle="modal" data-target="#deleteMeal"
+                                            @click='getIndex(index)'></i>
                                     </div>
                                 </div>
                             </div>
                         </li>
-                        <li class="align-middle row recommendItem">
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- 產品詳情 -->
+        <div class="modal fade l2Btn" id="product">
+            <div class="modal-dialog modal-dialog-centered ">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title text28B ">產品詳情</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <i class=" icon-close"></i>
+                        </button>
+                    </div>
+                    <div class="modal-body ">
+                        <div class="text24R d-flex align-items-start mealInfo mb-m ">
+
+                            <span class="d-inline-block" v-if='productIndex==-1'>
+                                <div class="upload "> <button class="dbtn btnLG text20R align-middle ">上傳圖片</button>
+                                </div>
+                            </span>
+                            <span class="d-inline-block" v-else>
+                                <img :src="(`/image/store/${productData[productIndex].productPhoto}`)">
+                            </span>
+                            <ul class="d-inline-block inputInfo">
+                                <li>
+                                    <p class="text24B d-inline-block ">餐點名稱</p>
+                                    <input type="text " class="text20RG singleText398 " placeholder="請輸入餐點名稱"
+                                        v-model.trim="productData[productIndex]">{{productData[productIndex]}}<li>
+                                    <p class="text24B d-inline-block">產品類別</p>
+                                    <div class="ddselect d-inline-block ">
+                                        <div class="dSelect selectTitle">
+                                            <div class="dSelectText text20R ">選擇類別</div>
+                                        </div>
+                                        <div class="dOptionDivOff selectContent">
+                                            <div class="dOption text20R" v-for='(item,index) in elementp'>{{item}}</div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <p class="text24B d-inline-block">餐點價格</p>
+                                    <input type="text" class="text20RG singleText398" placeholder="請輸入餐點價格"
+                                        v-model="productData.productPrice">
+                                </li>
+                            </ul>
+                        </div>
+                        <p class="text24B d-block mb-3">說明</p>
+                        <textarea class="text20RG multiText398" placeholder="請輸入餐點說明"
+                            v-model="productData.productInformation"></textarea>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button class="text20R dbtn btnW" data-dismiss="modal">取消返回</button>
+                        <button class="text20R dbtn btnY ml-3">確定新增</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- 成功介面 -->
+        <div class="modal fade sm1Btn" id="comfirm">
+            <div class="modal-dialog ">
+                <div class="modal-content ">
+                    <div class="modal-header ">
+                        <h5 class="modal-title text28B w-100 text-center ">{{comfirm}}</h5>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button class="text20R dbtn btnY m-auto">確定</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- 類別管理介面 -->
+        <div class="modal fade m2Btn" id="typeManager">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title text28B">類別管理</h5>
+                        <button type="button" class="close " data-dismiss="modal" aria-label="Close">
+                            <i class=" icon-close"></i>
+                        </button>
+                    </div>
+                    <div class="modal-body d-flex row">
+                        <p class="text24B col-3">類別名稱</p>
+                        <div class="typeInfo col-9">
+                            <div class="typeList scrollList">
+                                <div class="typrItem d-flex" v-for='(typeItem,name,index) in elementpManger'
+                                    :key='index'>
+                                    <input type="text" class="text20RG singleText398" placeholder="請輸入類別名稱"
+                                        v-model.trim='elementpManger[name]'>
+                                    <i class="icon-trash ml-auto" @click='getType(name)'></i>
+                                </div>
+                                <button class="dbtn btnW text20R" @click='addType'>
+                                    新增類別
+                                    <i class="icon-new ml-2 alig-middle"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="text20R dbtn btnW" data-dismiss="modal">取消返回</button>
+                        <button class="text20R dbtn btnY ml-3" @click='typeEdit'>確定修改</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 刪除餐點 -->
+        <div class="modal fade sm2Btn" id="deleteMeal">
+            <div class="modal-dialog ">
+                <div class="modal-content ">
+                    <div class="modal-header ">
+                        <h5 class="modal-title text28B ">是否要刪除餐點</h5>
+                        <button type="button " class="close " data-dismiss="modal" aria-label="Close ">
+                            <i class=" icon-close "></i>
+                        </button>
+                    </div>
+                    <p class="modal-body text24R">
+                        <span class="redColor"> 刪除餐點</span>後，動作將無法被還原。
+                    </p>
+                    <div class="modal-footer">
+                        <button class="text20R dbtn btnW" data-dismiss="modal">返回離開</button>
+                        <button class="text20R dbtn btnR ml-3" @click='deleteProduct'>刪除餐點</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 刪除類別 -->
+        <div class="modal fade sm2Btn" id="deleteType">
+            <div class="modal-dialog ">
+                <div class="modal-content ">
+                    <div class="modal-header ">
+                        <h5 class="modal-title text28B ">是否要刪除類別</h5>
+                        <button type="button " class="close " data-dismiss="modal " aria-label="Close ">
+                            <i class=" icon-close "></i>
+                        </button>
+                    </div>
+                    <p class="modal-body text24R">
+                        刪除類別後，類別內的全部餐點也將同時<span class="redColor">刪除</span>。
+                    </p>
+                    <div class="modal-footer">
+                        <button class="text20R dbtn btnW" data-dismiss="modal">返回離開</button>
+                        <button class="text20R dbtn btnR ml-3" @click='deletetype'>刪除類別</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 推薦產品介面 -->
+        <div class="modal fade m2Btn" id="recommend">
+            <div class="modal-dialog modal-dialog-centered ">
+                <div class="modal-content ">
+                    <div class="modal-header ">
+                        <h5 class="modal-title text28B ">推薦產品</h5>
+                        <button type="button " class="close " data-dismiss="modal " aria-label="Close ">
+                            <i class=" icon-close "></i>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <ul>
+                            <li class="align-middle row recommendItem">
+                                <div class="col-3">
+                                    <p class="d-inline-block text24B align-middle mr-3">推薦</p>
+                                    <span class="fst align-middle"><img src="/image/first.png"></span>
+                                </div>
+                                <div class="row col-9">
+                                    <div class="ddselect col-6">
+                                        <div class="dSelect mr-3 selectTitle">
+                                            <div class="dSelectText text20R">選擇類別</div>
+                                        </div>
+                                        <div class="dOptionDivOff mr-3 selectContent">
+                                            <div class="dOption text20R  w-100 d-inline-block"
+                                                v-for='(item,index) in elementp'>{{item}}</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="ddselect col-6 ">
+                                        <div class="dSelect ml-3 selectTitle">
+                                            <div class="dSelectText text20R clip">選擇餐點</div>
+                                        </div>
+                                        <div class="dOptionDivOff ml-3 selectContent">
+                                            <span v-for='(item,index) in productData'>
+                                                <div class="dOption text20R w-100 d-inline-block clip"
+                                                    v-if='item.productStatus==1'>{{item.productName}}</div>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <!-- <li class="align-middle row recommendItem">
                             <div class="col-3">
                                 <p class="d-inline-block text24B align-middle mr-3">推薦</p>
                                 <span class="snd align-middle"><img src="/image/second.png"></span>
@@ -360,136 +364,129 @@
                                     </div>
                                 </div>
                             </div>
-                        </li>
+                        </li> -->
 
 
-                    </ul>
-                </div>
+                        </ul>
+                    </div>
 
 
-                <div class="modal-footer">
-                    <button class="text20R dbtn btnW " data-dismiss="modal ">取消返回</button>
-                    <button class="text20R dbtn btnY ml-3 ">確定修改</button>
+                    <div class="modal-footer">
+                        <button class="text20R dbtn btnW " data-dismiss="modal ">取消返回</button>
+                        <button class="text20R dbtn btnY ml-3 ">確定修改</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-
-    <!-- vue -->
+    </span>
     <script>
-        var currentCategory = '';
-        // data資料
-        let data = {
-            product: [{
-                productID: '1',
-                productName: '摩絲熱狗堡',
-                productPrice: 65,
-                recommendProduct: 1,
-                productPhoto: 'photo.jpg',
-                productInformation: '可自選醬:1.番茄2.辣醬3.辣醬3.辣醬3.辣醬3',
-                categoryName: '套餐'
-
-
-            }, {
-                productID: '2',
-                productName: '摩絲熱狗堡1',
-                productPrice: 66,
-                recommendProduct: 2,
-                productPhoto: 'photo.jpg',
-                productInformation: '可自選醬:1.番茄2.辣醬3.辣醬3.辣醬3.辣醬3',
-                categoryName: '漢堡'
-
-            }, {
-                productID: '3',
-                productName: '摩絲熱狗堡2',
-                productPrice: 67,
-                recommendProduct: 3,
-                productPhoto: 'photo.jpg',
-                productInformation: '可自選醬:1.番茄2.辣醬3.辣醬3.辣醬3.辣醬3',
-                categoryName: '飲品'
-            }, {
-                productID: '4',
-                productName: '摩絲熱狗堡3',
-                productPrice: 68,
-                recommendProduct: null,
-                productPhoto: 'photo.jpg',
-                productInformation: '可自選醬:1.番茄2.辣醬3.辣醬3.辣醬3.辣醬3',
-                categoryName: '套餐'
-            }],
-
-            category: [{
-
-                categoryID: 1,
-                categoryName: '套餐'
-            }, {
-
-                categoryID: 2,
-                categoryName: '漢堡'
-            }, {
-
-                categoryID: 3,
-                categoryName: '飲品'
-            }]
-
-
-        }
-
-
-
         //vue資料
-        let sMeal = new Vue({
-            el: '#sMealList',
-            data: data,
-            methods: {
-                addProductItem() {
-                    newProduct.productName = "",
-                        newProduct.productPrice = "",
-                        newProduct.categoryName = "",
-                        newProduct.productPhoto = 'photo.jpg',
-                        newProduct.productInformation = '',
-                        newProduct.categoryName = '',
-                        newProduct.newsIndex = -1
-                }
-            }
-
-        })
-
-        // 類別
-        let typeManager = new Vue({
-            el: '#typeManager',
-            data: data,
-            methods: {
-                addItem() {
-                    this.category.push({
-                        categoryName: this.category.categoryName
-                    })
-                }
-            }
-        })
-
-
-
-        // 新增產品
-        let newProduct = new Vue({
-            el: '#product',
+        let il;
+        let sProduct = new Vue({
+            el: '#sProduct',
             data: {
-                productName: 'testproductName',
-                productPrice: 'testproductPrice',
-                categoryName: 'testcategoryName',
-                productPhoto: '',
-                productInformation: 'testproductInformation',
-                categoryName: currentCategory,
-                newsIndex: 0
+                storeData: JSON.parse('<%- storeData %>'),
+                productData: JSON.parse('<%- productData %>'),
+                elementp: [],
+                elementpManger: [],
+                Tab: 0,
+                productIndex: -1,
+                comfirm: '',
+                type: '',
+                categoryName: ''
+            },
+
+            // 取類別
+            mounted: function () {
+                let categoryArry = this.productData.length;
+                let element = [];
+                for (let index = 0; index < categoryArry; index++) {
+                    element.push(this.productData[index].categoryName);
+                }
+                this.elementp = Array.from(new Set(element));
+                this.mTransE();
+            },
+            methods: {
+                switchTab(index) {
+                    this.Tab = index;
+                }
+
+                , getIndex(index) {
+                    this.productIndex = index;
+                }
+                , clearIndex() {
+                    this.productIndex = -1;
+                }
+                , deleteProduct() {
+                    this.productData[this.productIndex].productStatus = 0;
+                    $('#deleteMeal').modal('hide');
+                    this.comfirm = '刪除成功';
+                    $('#comfirm').modal('show');
+                    this.productIndex = -1;
+                }
+                // 類別
+                , typeManager() {
+                    this.elementpManger = [];
+                    this.mTransE();
+                    $('#typeManager').modal('show');
+                }
+                // 刪除類別
+                , getType(index) {
+                    this.type = index;
+                    $('#typeManager').modal('hide');
+                    $('#deleteType').modal('show');
+                }
+                , deletetype() {
+
+                    for (let i = 0; i < this.productData.length; i++) {
+                        if (this.productData[i].categoryName == this.elementpManger[this.type]) {
+                            this.productData[i].categoryName = '';
+                        }
+                    }
+                    this.elementpManger.splice(this.type, 1);
+                    this.elementp = [];
+                    this.eTransM();
+
+                    $('#deleteType').modal('hide');
+                    this.comfirm = '刪除成功';
+                    $('#comfirm').modal('show');
+
+
+                }
+                // 新增類別
+                , addType() {
+                    this.elementpManger.push('');
+                }
+                , typeEdit() {
+                    this.eTransM();
+                    $('#typeManager').modal('hide');
+                    this.comfirm = '修改成功';
+                    $('#comfirm').modal('show');
+
+                }
+                // 函式庫
+                , mTransE() {
+                    il = 0;
+                    while (il < this.elementp.length) {
+                        this.elementpManger[il] = this.elementp[il];
+                        il++;
+                    }
+                }, eTransM() {
+                    il = 0;
+                    while (il < this.elementpManger.length) {
+                        this.elementp[il] = this.elementpManger[il];
+                        il++;
+                    }
+                }
+
+
             }
         })
-
-
 
 
         // 下拉選單
-
-        $(function() {
+        $(function () {
             function reSelect() {
                 $('.selectTitle').removeClass('dSelectClick').addClass('dSelect');
                 $('.selectContent').removeClass('dOptionDivOn').addClass('dOptionDivOff');
@@ -498,18 +495,29 @@
             function teSelect() {
                 reSelect();
                 currentCategory = $(this).text();
+                sProduct.categoryName = currentCategory;
                 $('.ddselect').children('.selectTitle').children('.dSelectText').text(currentCategory);
 
             }
 
-            $('.dSelectText').click(function() {
+            $('.dSelectText').click(function () {
                 $('.selectTitle').removeClass('dSelect').addClass('dSelectClick');
                 $('.selectContent').removeClass('dOptionDivOff').addClass('dOptionDivOn');
                 $('.dOption').click(teSelect);
-            });
 
+            });
         });
+
+
+
+
+        // 確定
+        $('#comfirm button').click(function () {
+            $('#comfirm').modal('hide');
+        })
+
     </script>
+
 </body>
 
 

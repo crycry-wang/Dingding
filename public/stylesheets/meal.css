@@ -30,7 +30,7 @@
     margin-bottom: 8px;
 }
 
-.mealList li {
+.mealList .list {
     padding: 14px 32px;
     border: 1px solid var(--moreLightGray);
     border-radius: 20px;
