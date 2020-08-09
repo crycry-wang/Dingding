@@ -59,9 +59,58 @@ router.get('/',async(req,res)=>{
   const b = await storeIndexData(req);
   storeIndex=JSON.stringify(b);
   res.render('index', { a: district,b: storeIndex });
-  console.log(storeIndex)
+  // console.log(storeIndex)
   // console.log(district)
+});
+
+// router.post('/',(req,res)=>{
+//   const rSql = 'insert into `member`(`eMail`, `password`, `memberName`,`memberPhone`) VALUES (?,?,?,?)'
+//   db.queryAsync(rSql, [
+//     req.body.registeredEmail,
+//     req.body.registeredPassword,
+//     req.body.registeredName,
+//     req.body.registeredPhone,
+// ])
+// .then(results=>{
+//   res.json(results);
+// })
+// .catch(ex=>{
+//   console.log('ex:', ex);
+// })
+// })
+var m1 ='信箱已被使用'
+var m2 ='您已成功註冊'
+router.post('/',(req,res)=>{
+  db.query('SELECT eMail FROM `member` WHERE eMail=?',[req.body.registeredEmail],(error,results) => {
+    console.log(req.body.registeredEmail)
+    console.log(results)
+    if(error){
+      console.log(error);
+    }
+    else if(results.length > 0){
+      console.log("123456456")
+      return res.send('/',{message:m1});
+    }else{
+      
+    }
+  })
+
+  const rSql = 'insert into `member`(`eMail`, `password`, `memberName`,`memberPhone`) VALUES (?,?,?,?)'
+  db.queryAsync(rSql, [
+    req.body.registeredEmail,
+    req.body.registeredPassword,
+    req.body.registeredName,
+    req.body.registeredPhone,
+],(error,results) => {
+  if(error){
+    console.log(error)
+  } else {
+    console.log(results)
+    return res.send('/',{message:m2});
+  }
 })
+})
+
 
 // router.get('/', function (req, res, next) {
   

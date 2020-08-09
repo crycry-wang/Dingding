@@ -42,8 +42,9 @@
                     <span class="text20B mr16">選擇送餐地址</span>
                     <div class="ddselect mr16">
                         <div class="dSelect d-inline-block countrySelectTitle" style="width: 160px; top: 40px;">
-                            <div v-model="input.country" class="dSelectText text20R countrySelectText"
-                                style="line-height: 30px;">縣市</div>
+                            <div class="dSelectText text20R countrySelectText"
+                                style="line-height: 30px;"> {{input.country ? input.country:"縣市"}} </div>
+                                
                         </div>
                         <div class="dOptionDivOff selectContent countrySelectContent">
                             <div class="dOption text20R countryOption" v-for="country in countryList.sort">
@@ -53,8 +54,8 @@
                     </div>
                     <div class="ddselect mr16">
                         <div class="dSelect d-inline-block districkSelectTitle" style="width: 160px; top: 40px;">
-                            <div v-model="input.districtName" class="dSelectText text20R districkSelectText"
-                                style="line-height: 30px;" :value="區">區</div>
+                            <div  class="dSelectText text20R districkSelectText"
+                                style="line-height: 30px;">{{input.districtName ? input.districtName:"區"}}</div>
                         </div>
                         <div class="dOptionDivOff selectContent districkSelectContent">
                             <div class="dOption text20R districkOption" v-for="districk in districkList.sort">
@@ -434,7 +435,7 @@
                             <p class="text20B mb-2">
                                 密碼
                             </p>
-                            <input type="text" class="text20RG singleText398 " placeholder="請輸入密碼">
+                            <input type="password" class="text20RG singleText398 " placeholder="請輸入密碼">
 
                             <a href="mIndex"><button class="text20R dbtn btn398 "
                                     style="margin-bottom: 24px;">登入</button>
@@ -464,7 +465,7 @@
                             <p class="text20B mb-2">
                                 密碼
                             </p>
-                            <input type="text" class="text20RG singleText398 " placeholder="請輸入密碼">
+                            <input type="password" class="text20RG singleText398 " placeholder="請輸入密碼">
 
                             <button class="text20R dbtn btn398 " style="margin-bottom: 24px;">登入</button>
                             <div style="padding-left: 48px;margin-bottom: 80px;">
@@ -528,21 +529,22 @@
                             <p class="text20B mb-2">
                                 暱稱
                             </p>
-                            <input type="text" class="text20RG singleText398 " placeholder="請輸入暱稱">
+                            <input type="text" id="rName" class="text20RG singleText398 " placeholder="請輸入暱稱">
                             <p class="text20B mb-2">
                                 帳號
                             </p>
-                            <input type="text" class="text20RG singleText398 " placeholder="請輸入電子信箱">
+                            <input type="email" id="rEmail" class="text20RG singleText398 " placeholder="請輸入電子信箱">
                             <p class="text20B mb-2">
                                 密碼
                             </p>
-                            <input type="text" class="text20RG singleText398 " placeholder="請輸入密碼">
+                            <input type="password" id="rPassword" class="text20RG singleText398 " placeholder="請輸入密碼">
                             <p class="text20B mb-2">
                                 手機
                             </p>
-                            <input type="text" class="text20RG singleText398 " placeholder="請輸入手機號碼">
+                            <input type="text" id="rPhone" class="text20RG singleText398 " placeholder="請輸入手機號碼">
 
-                            <button class="text20R dbtn btn398 " style="margin-bottom: 24px;">註冊</button>
+                            <button id="rButton" class="text20R dbtn btn398 " style="margin-bottom: 24px;">註冊</button>
+                            
                             <div style="padding-left: 48px;margin-bottom: 80px;">
                                 <span style="font-size: 16px; margin-right: 16px;">已經有帳號了嗎 ? </span>
                                 <a href="" class="text16R">點此切換登入頁面</a>
@@ -1130,7 +1132,6 @@
             computed: {
                 filterStore() {
                     return this.storeItem.slice(this.index, this.index + 3)
-
                 },
                 filterRecommendStore() {
                     return this.dbRecommendStore.slice(this.index+6, this.index + 9)
@@ -1228,11 +1229,9 @@
 
             function teSelectCountry() {
                 reSelectCountry();
-                country = $(this).text();
-                store.input.country = country;
-                $('.ddselect').children('.countrySelectTitle').children('.countrySelectText').text(country);
-                console.log(country)
-
+                // country = $(this).text();
+                store.input.country = $(this).text().trim();
+                // $('.ddselect').children('.countrySelectTitle').children('.countrySelectText').text(country);
             }
 
             $('.countrySelectText').click(function () {
@@ -1252,9 +1251,9 @@
 
             function teSelectDistrick() {
                 reSelectDistrick();
-                districk = $(this).text();
-                store.input.districkName = districk;
-                $('.ddselect').children('.districkSelectTitle').children('.districkSelectText').text(districk);
+                // districk = $(this).text();
+                store.input.districtName = $(this).text().trim();
+                // $('.ddselect').children('.districkSelectTitle').children('.districkSelectText').text(districk);
 
             }
 
@@ -1265,6 +1264,45 @@
             });
 
         });
+
+        // <-------------------------------分隔線---------------------------------->
+        // 一般用戶註冊
+        let registeredData = {
+            registeredName: "",
+            registeredEmail: "",
+            registeredPassword: "",
+            registeredPhone: "",
+        };
+        document.querySelector('#rName')
+            .addEventListener("input", (e) => {
+                registeredData.registeredName = e.target.value;
+            })
+        document.querySelector('#rEmail')
+            .addEventListener("input", (e) => {
+                registeredData.registeredEmail = e.target.value;
+            })
+        document.querySelector('#rPassword')
+            .addEventListener("input", (e) => {
+                registeredData.registeredPassword = e.target.value;
+            })
+        document.querySelector('#rPhone')
+            .addEventListener("input", (e) => {
+                registeredData.registeredPhone = e.target.value;
+            })
+
+        document.querySelector("#rButton")
+            .addEventListener("click", () => {
+                fetch('http://localhost:3200', {
+                    method: 'POST',
+                    body: JSON.stringify(registeredData),
+                    headers: new Headers({
+                        'Content-Type': 'application/json'
+                    })
+                }).then(res => res.json())
+                    .catch(error => console.error('Error:', error))
+                    .then(response => alert(registeredData.registeredName + '歡迎加入訂訂!'));
+
+            })
 
     </script>
 

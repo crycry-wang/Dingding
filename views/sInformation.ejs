@@ -354,7 +354,7 @@
                                     <div class="contry">
                                         <input type="checkbox">
                                         <label class=" text20R"
-                                            v-on:click="handleSelect(index)">{{ area.country }}</label>
+                                            v-on:click="handleSelect(index,area.country)">{{ area.country }}</label>
                                     </div>
                                     <div class="contrySelect"></div>
                                 </span>
@@ -963,6 +963,7 @@
     <script src="/javascript/vue.js"></script>
     <script>
         let data = {
+            tempSelectList:[],
             dbStoreInformation: JSON.parse('<%- a %>'),
             dbDistrickNorth: JSON.parse('<%- b %>'),
             dbDistrickCentral: JSON.parse('<%- c %>'),
@@ -1104,14 +1105,17 @@
                     this.tab = index
                     return this.tab
                 },
-                handleSelect(index) {
+                handleSelect(index,type) {
+                    this.tempSelectList = this.dbDistrickNorth.filter(item => {
+                        if (item.country == type) return item
+                    })
                     // console.log(this.northList[index])
                     if (this.north[index].isShow == false) {
                         this.north[index].isShow = true
                     } else if (this.north[index].isShow == true) {
                         this.north[index].isShow = false
                     }
-                }
+                },
             }
         })
 
