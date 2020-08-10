@@ -11,7 +11,7 @@ const member = memberSelect + memberId;
 
 const getMemberData = (req) => {
   return new Promise((resolve, reject) => {
-      db.queryAsync(memberId)
+      db.queryAsync(member)
           .then(results => {
               resolve(results);
           })
@@ -25,7 +25,6 @@ const getMemberData = (req) => {
 //傳資料到表單裡
 router.get('/', async (req, res) => {
   newsJSON = JSON.stringify(await getMemberData(req));
-  
   
   res.render('mCalendar', { 
       mMemberData: newsJSON,

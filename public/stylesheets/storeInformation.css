@@ -1,7 +1,7 @@
 /* 店家資訊區塊設定 */
 
 .information {
-    height: 858px;
+    /* height: 858px; */
     /* margin-top: 40px; */
     padding-left: 74px;
     padding-top: 100px;
@@ -158,7 +158,7 @@ input[type=checkbox]:checked::after {
 
 .area {
     margin-bottom: 23px;
-    width: 135px;
+    width: 115px;
     display: inline-block;
 }
 
