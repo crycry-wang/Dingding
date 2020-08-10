@@ -137,7 +137,10 @@
                                 <li>
                                     <p class="text24B d-inline-block ">餐點名稱</p>
                                     <input type="text " class="text20RG singleText398 " placeholder="請輸入餐點名稱"
-                                        v-model.trim="productData[productIndex]">{{productData[productIndex]}}
+                                        v-model.trim="productflag.productName"> 
+        
+
+
                                 <li>
                                     <p class="text24B d-inline-block">產品類別</p>
                                     <div class="ddselect d-inline-block ">
@@ -152,13 +155,13 @@
                                 <li>
                                     <p class="text24B d-inline-block">餐點價格</p>
                                     <input type="text" class="text20RG singleText398" placeholder="請輸入餐點價格"
-                                        v-model="productData.productPrice">
+                                        v-model="productflag.productPrice">
                                 </li>
                             </ul>
                         </div>
                         <p class="text24B d-block mb-3">說明</p>
                         <textarea class="text20RG multiText398" placeholder="請輸入餐點說明"
-                            v-model="productData.productInformation"></textarea>
+                            v-model="productflag.productInformation"></textarea>
                     </div>
 
                     <div class="modal-footer">
@@ -395,7 +398,8 @@
                 productIndex: -1,
                 comfirm: '',
                 type: '',
-                categoryName: ''
+                categoryName: '',
+                productflag:''
             },
 
             // 取類別
@@ -415,6 +419,7 @@
 
                 , getIndex(index) {
                     this.productIndex = index;
+                    this.productflag = this.productData[index];
                 }
                 , clearIndex() {
                     this.productIndex = -1;
