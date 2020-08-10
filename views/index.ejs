@@ -273,11 +273,11 @@
             <div class="row">
                 <div class="col-4 pr-3 imgCard">
                     <div class="dingImgDiv" style="width:  100%">
-                        <img src="/image/store/Taichung/好好越南料理/index.jpeg" class="card-img-top dingImg" alt="...">
+                        <img src="/image/store/Taichung/鬍鬚張/index.jpeg" class="card-img-top dingImg" alt="...">
                         <i class="heart icon-heart"></i>
                         <div class="card-body">
                             <div class="d-inline-block w-75">
-                                <span class="card-text text24B shopName">太初麵食</span>
+                                <span class="card-text text24B shopName">鬍鬚張</span>
                             </div>
                             <div class="newStore">NEW</div>
                         </div>
@@ -285,11 +285,11 @@
                 </div>
                 <div class="col-4 pr-3 imgCard">
                     <div class="dingImgDiv" style="width:  100%">
-                        <img src="/image/store/Taichung/好好越南料理/index.jpeg" class="card-img-top dingImg" alt="...">
+                        <img src="/image/store/Taichung/八曜和茶_精誠門市/index.jpeg" class="card-img-top dingImg" alt="...">
                         <i class="heart icon-heart"></i>
                         <div class="card-body">
                             <div class="d-inline-block w-75">
-                                <span class="card-text text24B shopName">太初麵食</span>
+                                <span class="card-text text24B shopName">八曜和茶 精誠門市</span>
                             </div>
                             <div class="newStore">NEW</div>
                         </div>
@@ -327,8 +327,9 @@
         <div class="mContainer givePadding" style="margin-top: 66px;">
             <h3 class="text28B text28Padding">
                 推薦店家
-                <img class="lrImg" src="/image/right.png" alt="">
-                <img class="lrImg" src="/image/left.png" alt="" style="margin-right: 8px;">
+                <img class="lrImg" src="/image/right.png" alt="" @click="handleChangeRecommend(3)">
+                <img class="lrImg" src="/image/left.png" alt="" style="margin-right: 8px;"
+                    @click="handleChangeRecommend(-3)">
             </h3>
             <div class="row">
                 <div class="col-4 pr-3 imgCard" data-toggle="modal" data-target="#storeModel">
@@ -506,8 +507,13 @@
     <script src="/javascript/vue.js"></script>
     <script>
         let data = {
-            index: 0,
+            hotIndex: 0,
+            commendIndex:0,
             tab: 1,
+            loginTab: 1,
+            registeredTab: 1,
+            dbDistrick: JSON.parse('<%- a %>'),
+            dbRecommendStore: JSON.parse('<%- b %>').sort(() => Math.random() - 0.5),
             storeItem: [{
                     id: 0,
                     storeName: "肯德基 KFC 台中公益店",
@@ -1019,7 +1025,30 @@
             computed: {
 
                 filterStore() {
-                    return this.storeItem.slice(this.index, this.index + 3)
+                    return this.storeItem.slice(this.hotIndex, this.hotIndex + 3)
+                },
+                filterRecommendStore() {
+                    
+                    return this.dbRecommendStore.slice(this.commendIndex, this.commendIndex + 3)
+                },
+                countryList() {
+                    this.input.country = null
+                    let dbDistrickObj = {
+                        sort: [],
+                        map: {}
+                    }
+                    this.dbDistrick.forEach(({ country, districtName, districtID, area }, index) => {
+                        if (!dbDistrickObj.map[country]) {
+                            dbDistrickObj.sort.push(country)
+                            dbDistrickObj.map[country] = {
+                                sort: [],
+                                map: {}
+                            }
+                        }
+                        dbDistrickObj.map[country].sort.push(districtName)
+                        dbDistrickObj.map[country].map[districtName] = { index, districtID }
+                    })
+                    return dbDistrickObj
 
                 },
                 tabClass() {
@@ -1042,11 +1071,21 @@
             methods: {
                 handleChange(change) {
 
-                    this.index = this.index + change;
-                    if (this.index < 0) {
-                        this.index = this.storeItem.length - 3
-                    } else if (this.index > this.storeItem.length - 3) {
-                        this.index = 0
+                    this.hotIndex = this.hotIndex + change;
+                    if (this.hotIndex < 0) {
+                        this.hotIndex = this.storeItem.length - 3
+                    } else if (this.hotIndex > this.storeItem.length - 3) {
+                        this.hotIndex = 0
+                    }
+                    // console.log(this.storeItem[1].categoryName[0].name)
+                },
+                handleChangeRecommend(change) {
+                    console.log(this.commendIndex)
+                    this.commendIndex = this.commendIndex + change;
+                    if (this.commendIndex < 0) {
+                        this.commendIndex = this.dbRecommendStore.length - 3
+                    } else if (this.commendIndex > this.dbRecommendStore.length - 3) {
+                        this.commendIndex = 0
                     }
                     // console.log(this.storeItem[1].categoryName[0].name)
                 },

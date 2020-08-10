@@ -143,6 +143,172 @@
 
                     </div>
                 </div>
+                <!-- 店家資訊預覽彈框 -->
+                <!-- 店家彈框(有評價) -->
+                <div class="modal fade storeModel" :id="'storeModel'+ item.storeID">
+                    <div class="modal-dialog modal-dialog-scrollable">
+                        <div class="modal-content">
+                            <div class="storeModelImg align-middle"
+                                :style="'background-image: url(/image/store/' + item.storeBanner + ');'">
+                                <div style="display: inline-block;">
+                                    <div class="storeModelImgContent">
+                                        <span class="text28B mr16">{{item.storeName}}</span>
+                                        <span class="eng24R mr16" v-for="score in dbCommentScore">{{score.star}}</span>
+                                        <div class="spoon" style="display: inline-block;" v-if="item.comment == 5">
+                                            <i class="icon-spoon"></i>
+                                            <i class="icon-spoon"></i>
+                                            <i class="icon-spoon"></i>
+                                            <i class="icon-spoon"></i>
+                                            <i class="icon-spoon"></i>
+                                        </div>
+                                        <div class="spoon" style="display: inline-block;"
+                                            v-if="item.comment>4 && item.comment<5">
+                                            <i class="icon-spoon"></i>
+                                            <i class="icon-spoon"></i>
+                                            <i class="icon-spoon"></i>
+                                            <i class="icon-spoon"></i>
+                                            <i class="icon-borderspoon"></i>
+                                        </div>
+                                        <div class="spoon" style="display: inline-block;"
+                                            v-if="item.comment>3 && item.comment<4">
+                                            <i class="icon-spoon"></i>
+                                            <i class="icon-spoon"></i>
+                                            <i class="icon-spoon"></i>
+                                            <i class="icon-borderspoon"></i>
+                                            <i class="icon-borderspoon"></i>
+                                        </div>
+                                        <div class="spoon" style="display: inline-block;"
+                                            v-if="item.comment>2 && item.comment<3">
+                                            <i class="icon-spoon"></i>
+                                            <i class="icon-spoon"></i>
+                                            <i class="icon-borderspoon"></i>
+                                            <i class="icon-borderspoon"></i>
+                                            <i class="icon-borderspoon"></i>
+                                        </div>
+                                        <p class="text20RG" style="margin-top: 8px;">訂單完成率 {{item.tradeSuccess}}%
+                                        </p>
+                                        <p class="text20R" style="margin-top: 8px;">{{ item.storeAddress }}</p>
+                                    </div>
+                                    <div class="storeModelImgContentBottom">
+                                        <i class="icon-heart" style="opacity: 1;z-index: 999;"
+                                            v-on:click="handleLike(item.id)" v-if="item.likeStore"></i>
+                                        <i class="icon-heart" style="z-index: 999;" v-on:click="handleLike(item.id)"
+                                            v-else></i>
+                                        <button class="dbtn dbtnG text20R" style="float: right;">快速安排訂單</button>
+                                    </div>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <i class="storeClose icon-close"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="modal-header col-2" style="padding-right: 0px;">
+                                    <ul class="storeUl" v-if="tab === 1" v-show="tab===1">
+                                        <li v-for="(meal,index) in productList.sort">
+                                            <a class="storeContent" :href="'#title'+index">{{meal}}</a>
+                                            <!-- <a class="storeContent actMeals" :href="'#title'+meal.cid">{{meal.name}}</a> -->
+                                        </li>
+                                    </ul>
+
+
+                                </div>
+
+                                <div class="col-10 ml-n5 mr-5">
+                                    <div
+                                        style="background-color: var(--dWhite);width: 500px;height: 86px;padding-top: 40px;">
+                                        <span :class="{ act : tab == 1}" class="dTag text24RG"
+                                            v-on:click="tabClick(1)">美味餐點</span>
+                                        <span :class="{ act : tab == 2}" class="dTag text24RG"
+                                            v-on:click="tabClick(2)">詳細資訊</span>
+                                        <span :class="{ act : tab == 3}" class="dTag text24RG"
+                                            v-on:click="tabClick(3)">店家評價</span>
+                                    </div>
+                                    <br>
+                                    <!-- 美味餐點 -->
+                                    <div class="mealsScroll" v-if="tab === 1" v-show="tab===1">
+                                        <div v-for="(meal,index) in productList.sort">
+                                            <div class="text28B mt-l" style="margin-bottom: 27px;"
+                                                :id="'title'+index" :name="'title'+index">{{meal}}
+                                            </div>
+                                            <div class="meals">
+                                                <div class="mealsCard" v-for="detail in productList.map[meal].pSort">
+                                                    <div style="width: 170px; height: auto;" class="text20B mealsName">
+                                                        {{ detail.productName }}
+                                                    </div>
+                                                    <div class="mealsDetail" style="width: 170px; height: auto;">
+                                                        {{ detail.productinformation }}</div>
+                                                    <div class="mealsPrice">
+                                                        <span class="eng20R price">
+                                                            <span class=" align-middle">{{ detail.productPrice }}</span>
+                                                        </span>
+                                                    </div>
+                                                    <div class="mealsCardDiv"
+                                                        style="text-align : center;line-height: 148px;display: block;">
+                                                        <img style="margin-left: -20px;"
+                                                            :src="'/image/store/' + detail.productPhoto" alt="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- 店家簡介 -->
+                                    <div class="mealsScroll" v-if="tab === 2" v-show="tab===2">
+                                        <div class="text28B mt-l" style="margin-bottom: 11px;">店家簡介</div>
+                                        <div style="padding-right: 165px;padding-left: 16px;">
+                                            <p class="text20R" style="color: var(--dDeepGray);">
+                                                {{ item.storeIntroduction }}</p>
+                                        </div>
+                                        <div class="text28B mt-l" style="margin-bottom: 11px;">店家資訊</div>
+                                        <div style="padding-right: 165px;padding-left: 16px;">
+                                            <p class="text20R" style="color: var(--dDeepGray);margin-bottom: 7px;">
+                                                <img src="/image/Phone.png" class="storeAbout">
+                                                {{ item.storePhone }}</p>
+                                            <p class="text20R" style="color: var(--dDeepGray);margin-bottom: 7px;">
+                                                <img src="/image/Places.png" class="storeAbout">
+                                                {{ item.storeAddress }}</p>
+                                            <p class="text20R" style="color: var(--dDeepGray);margin-bottom: 15px;">
+                                                <img src="/image/Clock.png" class="storeAbout"> {{ item.storeOpen }}
+                                            </p>
+                                            <p class="text20B" style="color: var(--dRed);">公休日&nbsp;<span>週三</span>
+                                            </p>
+                                        </div>
+                                        <div class="text28B mt-l" style="margin-bottom: 11px;">配送地區</div>
+                                        <div style="padding-right: 165px;padding-left: 16px;">
+                                            <p class="text20R" style="color: var(--dDeepGray);">台中市南屯區 / 台中市西區</p>
+                                        </div>
+                                        <div class="text28B mt-l" style="margin-bottom: 11px;">注意事項</div>
+                                        <div style="padding-right: 165px;padding-left: 16px;">
+                                            <p class="text20R" style="color: var(--dDeepGray);">
+                                                {{ item.storeNotice }}</p>
+                                        </div>
+                                    </div>
+                                    <!-- 店家評論 -->
+                                    <div class="mealsScroll" v-if="tab === 3" v-show="tab===3">
+                                        <ul class="evaluationList">
+                                            <!-- 1 -->
+                                            <li class="dblock d-flex pl-0" v-for="comment in item.comments">
+                                                <!-- <span class="photo"></span> -->
+                                                <img :src="'/image/會員資料/大頭照/' + comment.memberPhoto">
+                                                <span class="content">
+                                                    <h2 class="text24B">{{ comment.member }}</h2>
+                                                    <div class="star">
+                                                        <i v-if="comment.commentScore >= 1" class="icon-spoon"></i>
+                                                        <i v-if="comment.commentScore >= 2" class="icon-spoon"></i>
+                                                        <i v-if="comment.commentScore >= 3" class="icon-spoon"></i>
+                                                        <i v-if="comment.commentScore >= 4" class="icon-spoon"></i>
+                                                        <i v-if="comment.commentScore >= 5" class="icon-spoon"></i>
+                                                        <i v-if="comment.commentScore <= 1"
+                                                            class="icon-borderspoon"></i>
+                                                        <i v-if="comment.commentScore <= 2"
+                                                            class="icon-borderspoon"></i>
+                                                        <i v-if="comment.commentScore <=3" class="icon-borderspoon"></i>
+                                                        <i v-if="comment.commentScore <=4" class="icon-borderspoon"></i>
+                                                    </div>
+                                                    <p class="text20R">
+                                                        {{ comment.commentContent }}</p>
+                                                    <p class="text16">3小時前</p>
+                                                </span>
+                                            </li>
 
 
             </div>
@@ -1167,12 +1333,17 @@
     <script src="/javascript/vue.js"></script>
     <script>
         let data = {
+            tempSelectList: [],
+            dbStoreInformation: JSON.parse('<%- a %>'),
+            dbDistrickNorth: JSON.parse('<%- b %>'),
+            dbDistrickCentral: JSON.parse('<%- c %>'),
+            dbstoreProduct: JSON.parse('<%- d %>'),
+            dbCommentScore: JSON.parse('<%- e %>'),
             tab: 1,
             active: true,
             id: 3,
             storeName: "太初麵食",
             country: "台中市",
-            // districtName: "南屯區",
             storeBanner: "Taichung/太初麵食/index.jpeg",
             tradeSuccess: 82,
             comment: "4.6",
@@ -1241,6 +1412,50 @@
             el: "#storeInformation",
             data: data,
             computed: {
+                northList() {
+                    let dbDistrickObj = {
+                        sort: [],
+                        map: {},
+                        isShow: false,
+                    }
+                    this.dbDistrickNorth.forEach(({ districtID, districtName, country, }, index) => {
+                        if (!dbDistrickObj.map[country]) {
+                            dbDistrickObj.sort.push(country)
+                            dbDistrickObj.map[country] = {
+                                sort: [],
+                                map: {},
+                                isShow: false
+                            }
+                        }
+                        dbDistrickObj.map[country].sort.push(districtName)
+                        // dbDistrickObj.map[country].sort.push({isShow: false})
+                        dbDistrickObj.map[country].map[districtName] = { districtID, index }
+                    })
+                    return dbDistrickObj
+
+
+                },
+                northDistrictList() {
+                    return this.northList.map[index]
+                },
+                
+                productList() {
+                    let productObj = {
+                        sort: [],
+                        map: {}
+                    };
+                    this.dbstoreProduct.forEach(({ categoryName, productName, productPhoto, productinformation,productPrice }, index) => {
+                        if (!productObj.map[categoryName]) {
+                            productObj.sort.push(categoryName)
+                            productObj.map[categoryName] = {
+                                pSort: [],
+                            }
+                        }
+                        productObj.map[categoryName].pSort.push({productName,productPhoto,productinformation,productPrice})
+                        // productObj.map[categoryName].map[productName] = {index,productPhoto,productinformation}
+                    });
+                    return productObj;
+                },
                 // isSelect(){
                 //     console.log(this.north[0].districtName[0].selected)
                 //     return this.north[0].districtName[0].selected
@@ -1251,16 +1466,24 @@
                     this.tab = index
                     return this.tab
                 },
-                handleSelect(index) {
+                handleSelect(index, type) {
+                    this.tempSelectList = this.dbDistrickNorth.filter(item => {
+                        if (item.country == type) return item
+                    })
+                    // console.log(this.northList[index])
                     if (this.north[index].isShow == false) {
                         this.north[index].isShow = true
                     } else if (this.north[index].isShow == true) {
                         this.north[index].isShow = false
                     }
-                }
+                },
+
             }
         })
     </script>
+
+
+   
 
 </body>
 
