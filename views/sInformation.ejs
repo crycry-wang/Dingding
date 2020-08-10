@@ -151,7 +151,7 @@
                                 <div style="display: inline-block;">
                                     <div class="storeModelImgContent">
                                         <span class="text28B mr16">{{item.storeName}}</span>
-                                        <span class="eng24R mr16">{{item.comment}}</span>
+                                        <span class="eng24R mr16" v-for="score in dbCommentScore">{{score.star}}</span>
                                         <div class="spoon" style="display: inline-block;" v-if="item.comment == 5">
                                             <i class="icon-spoon"></i>
                                             <i class="icon-spoon"></i>
@@ -202,8 +202,8 @@
                             <div class="row">
                                 <div class="modal-header col-2" style="padding-right: 0px;">
                                     <ul class="storeUl" v-if="tab === 1" v-show="tab===1">
-                                        <li v-for="meal in item.categoryName">
-                                            <a class="storeContent" :href="'#title'+meal.cid">{{meal.name}}</a>
+                                        <li v-for="(meal,index) in productList.sort">
+                                            <a class="storeContent" :href="'#title'+index">{{meal}}</a>
                                             <!-- <a class="storeContent actMeals" :href="'#title'+meal.cid">{{meal.name}}</a> -->
                                         </li>
                                     </ul>
@@ -214,24 +214,27 @@
                                 <div class="col-10 ml-n5 mr-5">
                                     <div
                                         style="background-color: var(--dWhite);width: 500px;height: 86px;padding-top: 40px;">
-                                        <span class="dTag text24RG act" v-on:click="tabClick(1)">美味餐點</span>
-                                        <span class="dTag text24RG" v-on:click="tabClick(2)">詳細資訊</span>
-                                        <span class="dTag text24RG" v-on:click="tabClick(3)">店家評價</span>
+                                        <span :class="{ act : tab == 1}" class="dTag text24RG"
+                                            v-on:click="tabClick(1)">美味餐點</span>
+                                        <span :class="{ act : tab == 2}" class="dTag text24RG"
+                                            v-on:click="tabClick(2)">詳細資訊</span>
+                                        <span :class="{ act : tab == 3}" class="dTag text24RG"
+                                            v-on:click="tabClick(3)">店家評價</span>
                                     </div>
                                     <br>
                                     <!-- 美味餐點 -->
                                     <div class="mealsScroll" v-if="tab === 1" v-show="tab===1">
-                                        <div v-for="meal in item.categoryName">
+                                        <div v-for="(meal,index) in productList.sort">
                                             <div class="text28B mt-l" style="margin-bottom: 27px;"
-                                                :id="'title'+meal.cid" :name="'title'+meal.cid">{{meal.name}}
+                                                :id="'title'+index" :name="'title'+index">{{meal}}
                                             </div>
                                             <div class="meals">
-                                                <div class="mealsCard" v-for="detail in meal.content">
+                                                <div class="mealsCard" v-for="detail in productList.map[meal].pSort">
                                                     <div style="width: 170px; height: auto;" class="text20B mealsName">
                                                         {{ detail.productName }}
                                                     </div>
                                                     <div class="mealsDetail" style="width: 170px; height: auto;">
-                                                        {{ detail.productInformation }}</div>
+                                                        {{ detail.productinformation }}</div>
                                                     <div class="mealsPrice">
                                                         <span class="eng20R price">
                                                             <span class=" align-middle">{{ detail.productPrice }}</span>
@@ -963,16 +966,17 @@
     <script src="/javascript/vue.js"></script>
     <script>
         let data = {
-            tempSelectList:[],
+            tempSelectList: [],
             dbStoreInformation: JSON.parse('<%- a %>'),
             dbDistrickNorth: JSON.parse('<%- b %>'),
             dbDistrickCentral: JSON.parse('<%- c %>'),
+            dbstoreProduct: JSON.parse('<%- d %>'),
+            dbCommentScore: JSON.parse('<%- e %>'),
             tab: 1,
             active: true,
             id: 3,
             storeName: "太初麵食",
             country: "台中市",
-            // districtName: "南屯區",
             storeBanner: "Taichung/太初麵食/index.jpeg",
             tradeSuccess: 82,
             comment: "4.6",
@@ -1093,8 +1097,25 @@
                 },
                 northDistrictList() {
                     return this.northList.map[index]
-                }
-
+                },
+                
+                productList() {
+                    let productObj = {
+                        sort: [],
+                        map: {}
+                    };
+                    this.dbstoreProduct.forEach(({ categoryName, productName, productPhoto, productinformation,productPrice }, index) => {
+                        if (!productObj.map[categoryName]) {
+                            productObj.sort.push(categoryName)
+                            productObj.map[categoryName] = {
+                                pSort: [],
+                            }
+                        }
+                        productObj.map[categoryName].pSort.push({productName,productPhoto,productinformation,productPrice})
+                        // productObj.map[categoryName].map[productName] = {index,productPhoto,productinformation}
+                    });
+                    return productObj;
+                },
                 // isSelect(){
                 //     console.log(this.north[0].districtName[0].selected)
                 //     return this.north[0].districtName[0].selected
@@ -1105,7 +1126,7 @@
                     this.tab = index
                     return this.tab
                 },
-                handleSelect(index,type) {
+                handleSelect(index, type) {
                     this.tempSelectList = this.dbDistrickNorth.filter(item => {
                         if (item.country == type) return item
                     })
@@ -1116,6 +1137,7 @@
                         this.north[index].isShow = false
                     }
                 },
+
             }
         })
 
@@ -1126,28 +1148,7 @@
     </script>
 
 
-    <!-- <script>
-    $(function() {
-            function reSelect() {
-                $('.selectTitle').removeClass('dSelectClick').addClass('dSelect');
-                $('.selectContent').removeClass('dOptionDivOn').addClass('dOptionDivOff');
-            }
-
-            function teSelect() {
-                reSelect();
-                currentCategory = $(this).text();
-                $('.ddselect').children('.selectTitle').children('.dSelectText').text(currentCategory);
-
-            }
-
-            $('.dSelectText').click(function() {
-                $('.selectTitle').removeClass('dSelect').addClass('dSelectClick');
-                $('.selectContent').removeClass('dOptionDivOff').addClass('dOptionDivOn');
-                $('.dOption').click(teSelect);
-            });
-
-        });
-</script> -->
+   
 
 </body>
 
