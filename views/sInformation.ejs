@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="/stylesheets/sider.css">
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <!-- <link rel="stylesheet" href="/stylesheets/member.css"> -->
-    <link rel="stylesheet" href="/stylesheets/sEvaluation.css">
+    <!-- <link rel="stylesheet" href="/stylesheets/sEvaluation.css"> -->
     <link rel="stylesheet" href="/stylesheets/storeInformation.css">
     <link rel="stylesheet" href="/stylesheets/sEvaluation.css">
     <link rel="stylesheet" href="/stylesheets/member.css">
@@ -66,40 +66,49 @@
             <div class="row">
                 <div class="col-8 mInfo" style="height: calc(100vh - 190px); ">
                     <div class="d-flex">
-                        <div :style="'background-image: url(/image/store/' + storeBanner + ');'" class="memberPhoto icon-photo-1">
+                        <div :style="'background-image: url(/image/store/' + item.storePhoto + ');'"
+                            class="memberPhoto icon-photo-1">
                         </div>
                     </div>
                     <!-- 左邊店家基本資訊 -->
                     <div class="information row">
-
-                        <div class=" storeTitleDiv w-100">
-                            <span class="text20B storeTitle">店家名稱</span>
-                            <input type="text" class="singleText398 text20R" placeholder="請輸入店家名稱" v-model="storeName">
-                        </div>
-                        <div class=" storeTitleDiv w-100">
-                            <span class="text20B storeTitle">店家照片</span>
-                            <span class="text20R" style="margin-right: 20px; margin-left: 20px;">index.jpeg</span>
-                            <button class="dbtn btnW text20R">上傳照片</button>
-                        </div>
-                        <div class=" storeTitleDiv w-100">
-                            <span class="text20B storeTitle">店家電話</span>
-                            <input type="text" class="singleText398 text20R" placeholder="請輸入店家電話" v-model="storePhone">
-                        </div>
-                        <div class=" storeTitleDiv w-100">
-                            <span class="text20B storeTitle">店家地址</span>
-                            <input type="text" class="singleText398 text20R" placeholder="請輸入完整地址" v-model="storeAddress">
-                        </div>
-                        <div class=" storeTitleDiv w-100">
-                            <span class="text20B storeTitle">營業時間</span>
-                            <input type="text" class="singleText398 text20R" placeholder="請輸入營業時間" v-model="storeOpen">
-                        </div>
-                        <div class=" storeTitleDiv w-100">
-                            <span class="text20B storeTitle">固定公休</span>
-                            <input type="text" class="singleText398 text20R" placeholder="請輸入公休日" v-model="storeClose">
-                        </div>
-                        <div class=" storeTitleDiv w-100">
-                            <span class="text20B storeTitle" style="display: inline-block;position: relative;bottom: 100px;">店家簡介</span>
-                            <textarea type="text" class="multiText398 text20R d-inline-block aboutTextarea" placeholder="請輸入店家簡介" v-model="storeIntroduction"></textarea>
+                        <div class="  scrollList" style="max-height: calc(100vh - 380px);">
+                            <div class=" storeTitleDiv w-100">
+                                <span class="text20B storeTitle">店家名稱</span>
+                                <input type="text" class="singleText398 text20R" placeholder="請輸入店家名稱"
+                                    v-model="item.storeName">
+                            </div>
+                            <div class=" storeTitleDiv w-100">
+                                <span class="text20B storeTitle">店家照片</span>
+                                <span class="text20R" style="margin-right: 20px; margin-left: 20px;">index.jpeg</span>
+                                <button class="dbtn btnW text20R">上傳照片</button>
+                            </div>
+                            <div class=" storeTitleDiv w-100">
+                                <span class="text20B storeTitle">店家電話</span>
+                                <input type="text" class="singleText398 text20R" placeholder="請輸入店家電話"
+                                    v-model="item.storePhone">
+                            </div>
+                            <div class=" storeTitleDiv w-100">
+                                <span class="text20B storeTitle">店家地址</span>
+                                <input type="text" class="singleText398 text20R" placeholder="請輸入完整地址"
+                                    v-model="item.storeAddress">
+                            </div>
+                            <div class=" storeTitleDiv w-100">
+                                <span class="text20B storeTitle">營業時間</span>
+                                <input type="text" class="singleText398 text20R" placeholder="請輸入營業時間"
+                                    v-model="item.storeOpen">
+                            </div>
+                            <div class=" storeTitleDiv w-100">
+                                <span class="text20B storeTitle">固定公休</span>
+                                <input type="text" class="singleText398 text20R" placeholder="請輸入公休日"
+                                    v-model="item.storeClose">
+                            </div>
+                            <div class=" storeTitleDiv w-100">
+                                <span class="text20B storeTitle"
+                                    style="display: inline-block;position: relative;bottom: 100px;">店家簡介</span>
+                                <textarea type="text" class="multiText398 text20R d-inline-block aboutTextarea"
+                                    placeholder="請輸入店家簡介" v-model="item.storeIntroduction"></textarea>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -109,22 +118,27 @@
 
                         <div class="mb-l">
                             <span class="text20B" style="margin-right: 50px;">配送地區</span>
-                            <button class="dbtn text20R" data-toggle="modal" data-target="#comfirm2BtnW1340" style="margin-bottom: 24px;background-color: var(--dLightGray);">
+                            <button class="dbtn text20R" data-toggle="modal" data-target="#comfirm2BtnW1340"
+                                style="margin-bottom: 24px;background-color: var(--dLightGray);">
                                 選擇地區
                                 <span class="ml-2">+</span>
                             </button>
                             <br>
                             <div class="w-100 scrollList" style="max-height: calc(100vh - 600px);">
-                                <button class="dbtn btnY text20B" style="margin-bottom: 20px;padding-left: 16px;padding-right: 12px;">台中市北屯區 <i
+                                <button class="dbtn btnY text20B"
+                                    style="margin-bottom: 20px;padding-left: 16px;padding-right: 12px;">台中市北屯區 <i
                                         class="icon-close"></i> </button><br>
                                 <button class="dbtn btnY text20B"
                                     style="margin-bottom: 20px;padding-left: 16px;padding-right: 12px;">台中市南屯區 <i
                                         class="icon-close"></i> </button><br>
+
                             </div>
                         </div>
                         <div style="height: 200px;">
-                            <span class="text20B" style="margin-right: 16px;">注意事項</span><span style="font-size: 16px; color: var(--dDeepGray);">(選填)</span>
-                            <textarea type="text" class="multiText398 text20R noteTextarea w-100" placeholder="填入配送注意事項" v-model="storeNotice"></textarea>
+                            <span class="text20B" style="margin-right: 16px;">注意事項</span><span
+                                style="font-size: 16px; color: var(--dDeepGray);">(選填)</span>
+                            <textarea type="text" class="multiText398 text20R noteTextarea w-100" placeholder="填入配送注意事項"
+                                v-model="storeNotice"></textarea>
                         </div>
 
                     </div>
@@ -279,102 +293,6 @@
                                                 </span>
                                             </li>
 
-                                </div>
-
-                                <div class="col-10 ml-n5 mr-5">
-                                    <div
-                                        style="background-color: var(--dWhite);width: 500px;height: 86px;padding-top: 40px;">
-                                        <span class="dTag text24RG act" v-on:click="tabClick(1)">美味餐點</span>
-                                        <span class="dTag text24RG" v-on:click="tabClick(2)">詳細資訊</span>
-                                        <span class="dTag text24RG" v-on:click="tabClick(3)">店家評價</span>
-                                    </div>
-                                    <br>
-                                    <!-- 美味餐點 -->
-                                    <div class="mealsScroll" v-if="tab === 1" v-show="tab===1">
-                                        <div v-for="meal in item.categoryName">
-                                            <div class="text28B mt-l" style="margin-bottom: 27px;"
-                                                :id="'title'+meal.cid" :name="'title'+meal.cid">{{meal.name}}
-                                            </div>
-                                            <div class="meals">
-                                                <div class="mealsCard" v-for="detail in meal.content">
-                                                    <div style="width: 170px; height: auto;" class="text20B mealsName">
-                                                        {{ detail.productName }}
-                                                    </div>
-                                                    <div class="mealsDetail" style="width: 170px; height: auto;">
-                                                        {{ detail.productInformation }}</div>
-                                                    <div class="mealsPrice">
-                                                        <span class="eng20R price">
-                                                            <span class=" align-middle">{{ detail.productPrice }}</span>
-                                                        </span>
-                                                    </div>
-                                                    <div class="mealsCardDiv"
-                                                        style="text-align : center;line-height: 148px;display: block;">
-                                                        <img style="margin-left: -20px;"
-                                                            :src="'/image/store/' + detail.productPhoto" alt="">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- 店家簡介 -->
-                                    <div class="mealsScroll" v-if="tab === 2" v-show="tab===2">
-                                        <div class="text28B mt-l" style="margin-bottom: 11px;">店家簡介</div>
-                                        <div style="padding-right: 165px;padding-left: 16px;">
-                                            <p class="text20R" style="color: var(--dDeepGray);">
-                                                {{ item.storeIntroduction }}</p>
-                                        </div>
-                                        <div class="text28B mt-l" style="margin-bottom: 11px;">店家資訊</div>
-                                        <div style="padding-right: 165px;padding-left: 16px;">
-                                            <p class="text20R" style="color: var(--dDeepGray);margin-bottom: 7px;">
-                                                <img src="/image/Phone.png" class="storeAbout">
-                                                {{ item.storePhone }}</p>
-                                            <p class="text20R" style="color: var(--dDeepGray);margin-bottom: 7px;">
-                                                <img src="/image/Places.png" class="storeAbout">
-                                                {{ item.storeAddress }}</p>
-                                            <p class="text20R" style="color: var(--dDeepGray);margin-bottom: 15px;">
-                                                <img src="/image/Clock.png" class="storeAbout"> {{ item.storeOpen }}
-                                            </p>
-                                            <p class="text20B" style="color: var(--dRed);">公休日&nbsp;<span>週三</span>
-                                            </p>
-                                        </div>
-                                        <div class="text28B mt-l" style="margin-bottom: 11px;">配送地區</div>
-                                        <div style="padding-right: 165px;padding-left: 16px;">
-                                            <p class="text20R" style="color: var(--dDeepGray);">台中市南屯區 / 台中市西區</p>
-                                        </div>
-                                        <div class="text28B mt-l" style="margin-bottom: 11px;">注意事項</div>
-                                        <div style="padding-right: 165px;padding-left: 16px;">
-                                            <p class="text20R" style="color: var(--dDeepGray);">
-                                                {{ item.storeNotice }}</p>
-                                        </div>
-                                    </div>
-                                    <!-- 店家評論 -->
-                                    <div class="mealsScroll" v-if="tab === 3" v-show="tab===3">
-                                        <ul class="evaluationList">
-                                            <!-- 1 -->
-                                            <li class="dblock d-flex pl-0" v-for="comment in item.comments">
-                                                <!-- <span class="photo"></span> -->
-                                                <img :src="'/image/會員資料/大頭照/' + comment.memberPhoto">
-                                                <span class="content">
-                                                    <h2 class="text24B">{{ comment.member }}</h2>
-                                                    <div class="star">
-                                                        <i v-if="comment.commentScore >= 1" class="icon-spoon"></i>
-                                                        <i v-if="comment.commentScore >= 2" class="icon-spoon"></i>
-                                                        <i v-if="comment.commentScore >= 3" class="icon-spoon"></i>
-                                                        <i v-if="comment.commentScore >= 4" class="icon-spoon"></i>
-                                                        <i v-if="comment.commentScore >= 5" class="icon-spoon"></i>
-                                                        <i v-if="comment.commentScore <= 1"
-                                                            class="icon-borderspoon"></i>
-                                                        <i v-if="comment.commentScore <= 2"
-                                                            class="icon-borderspoon"></i>
-                                                        <i v-if="comment.commentScore <=3" class="icon-borderspoon"></i>
-                                                        <i v-if="comment.commentScore <=4" class="icon-borderspoon"></i>
-                                                    </div>
-                                                    <p class="text20R">
-                                                        {{ comment.commentContent }}</p>
-                                                    <p class="text16">3小時前</p>
-                                                </span>
-                                            </li>
-
 
                                         </ul>
                                     </div>
@@ -424,7 +342,7 @@
                                     <div class="contry">
                                         <input type="checkbox">
                                         <label class=" text20R"
-                                            v-on:click="handleSelect(index)">{{ area.country }}</label>
+                                            v-on:click="handleSelect(index,area.country)">{{ area.country }}</label>
                                     </div>
                                     <div class="contrySelect"></div>
                                 </span>
@@ -807,381 +725,7 @@
                 </div>
             </div>
         </div>
-        <!-- 店家資訊預覽彈框 -->
-        <!-- 店家彈框(有評價) -->
-        <div class="modal fade storeModel" :id="'storeModel'+ id">
-            <div class="modal-dialog modal-dialog-scrollable">
-                <div class="modal-content">
-                    <div class="storeModelImg align-middle" :style="'background-image: url(/image/store/' + storeBanner + ');'">
-                        <div style="display: inline-block;">
-                            <div class="storeModelImgContent">
-                                <span class="text28B mr16">{{storeName}}</span>
-                                <span class="eng24R mr16">{{comment}}</span>
-                                <div class="spoon" style="display: inline-block;" v-if=" comment == 5">
-                                    <i class="icon-spoon"></i>
-                                    <i class="icon-spoon"></i>
-                                    <i class="icon-spoon"></i>
-                                    <i class="icon-spoon"></i>
-                                    <i class="icon-spoon"></i>
-                                </div>
-                                <div class="spoon" style="display: inline-block;" v-if="comment>4 && comment<5">
-                                    <i class="icon-spoon"></i>
-                                    <i class="icon-spoon"></i>
-                                    <i class="icon-spoon"></i>
-                                    <i class="icon-spoon"></i>
-                                    <i class="icon-borderspoon"></i>
-                                </div>
-                                <div class="spoon" style="display: inline-block;" v-if="comment>3 && comment<4">
-                                    <i class="icon-spoon"></i>
-                                    <i class="icon-spoon"></i>
-                                    <i class="icon-spoon"></i>
-                                    <i class="icon-borderspoon"></i>
-                                    <i class="icon-borderspoon"></i>
-                                </div>
-                                <div class="spoon" style="display: inline-block;" v-if="comment>2 && comment<3">
-                                    <i class="icon-spoon"></i>
-                                    <i class="icon-spoon"></i>
-                                    <i class="icon-borderspoon"></i>
-                                    <i class="icon-borderspoon"></i>
-                                    <i class="icon-borderspoon"></i>
-                                </div>
-                                <p class="text20RG" style="margin-top: 8px;">訂單完成率 {{tradeSuccess}}%
-                                </p>
-                                <p class="text20R" style="margin-top: 8px;">{{ storeAddress }}</p>
-                            </div>
-                            <div class="storeModelImgContentBottom">
-                                <i class="icon-heart" style="z-index: 999;"></i>
-                                <button class="dbtn dbtnG text20R" style="float: right;">快速安排訂單</button>
-                            </div>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <i class="storeClose icon-close"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="modal-header col-2" style="padding-right: 0px;">
-                            <ul class="storeUl" v-if="tab === 1" v-show="tab===1">
-                                <li>
-                                    <a class="storeContent actMeals" href="#title01">店家推薦</a>
-                                </li>
-                                <li>
-                                    <a class="storeContent" href="#title02">人氣餐點</a>
-                                </li>
-                                <li>
-                                    <a class="storeContent" href="#title03">套餐</a>
-                                </li>
-                                <li>
-                                    <a class="storeContent" href="#title04">單點</a>
-                                </li>
-                                <li>
-                                    <a class="storeContent" href="#title05">飲品</a>
-                                </li>
-                            </ul>
 
-
-                        </div>
-
-                        <div class="col-10 ml-n5 mr-5">
-                            <div style="background-color: var(--dWhite);width: 500px;height: 86px;padding-top: 40px;">
-                                <span class="dTag text24RG " :class="[active ? 'act' : '']" v-on:click="tabClick(1)">美味餐點</span>
-                                <span class="dTag text24RG" :class="[active ? 'act' : '']" v-on:click="tabClick(2)">詳細資訊</span>
-                                <span class="dTag text24RG" v-on:click="tabClick(3)">店家評價</span>
-                            </div>
-                            <br>
-                            <!-- 美味餐點 -->
-                            <div class="mealsScroll" v-if="tab === 1" v-show="tab===1">
-                                <div class="text28B mt-l" style="margin-bottom: 27px;" id="title01" name="title01">店家推薦
-                                </div>
-                                <div class="meals">
-                                    <div class="mealsCard">
-                                        <span class="text20B mealsName">無骨鹽酥雞</span>
-                                        <div class="mealsDetail">新鮮直送，鮮嫩多汁</div>
-                                        <div class="mealsPrice">
-                                            <span class="eng20R price">
-                                                <span class=" align-middle">5,000</span>
-                                            </span>
-                                        </div>
-                                        <div class="mealsCardDiv">
-                                            <img src="/image/store/Taichung/太初麵食/傳香滷肉飯套餐.jpeg" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="mealsCard">
-                                        <span class="text20B mealsName">無骨鹽酥雞</span>
-                                        <div class="mealsDetail">新鮮直送，鮮嫩多汁</div>
-                                        <div class="mealsPrice">
-                                            <span class="eng20R price">
-                                                <span class=" align-middle">5,000</span>
-                                            </span>
-                                        </div>
-                                        <div class="mealsCardDiv">
-                                            <img src="/image/store/Taichung/太初麵食/傳香滷肉飯套餐.jpeg" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="mealsCard">
-                                        <span class="text20B mealsName">無骨鹽酥雞</span>
-                                        <div class="mealsDetail">新鮮直送，鮮嫩多汁</div>
-                                        <div class="mealsPrice">
-                                            <span class="eng20R price">
-                                                <span class=" align-middle">5,000</span>
-                                            </span>
-                                        </div>
-                                        <div class="mealsCardDiv">
-                                            <img src="/image/store/Taichung/太初麵食/傳香滷肉飯套餐.jpeg" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="mealsCard">
-                                        <span class="text20B mealsName">無骨鹽酥雞</span>
-                                        <div class="mealsDetail">新鮮直送，鮮嫩多汁</div>
-                                        <div class="mealsPrice">
-                                            <span class="eng20R price">
-                                                <span class=" align-middle">5,000</span>
-                                            </span>
-                                        </div>
-                                        <div class="mealsCardDiv">
-                                            <img src="/image/store/Taichung/太初麵食/傳香滷肉飯套餐.jpeg" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="mealsCard">
-                                        <span class="text20B mealsName">無骨鹽酥雞</span>
-                                        <div class="mealsDetail">新鮮直送，鮮嫩多汁</div>
-                                        <div class="mealsPrice">
-                                            <span class="eng20R price">
-                                                <span class=" align-middle">5,000</span>
-                                            </span>
-                                        </div>
-                                        <div class="mealsCardDiv">
-                                            <img src="/image/store/Taichung/太初麵食/傳香滷肉飯套餐.jpeg" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="mealsCard">
-                                        <span class="text20B mealsName">無骨鹽酥雞</span>
-                                        <div class="mealsDetail">新鮮直送，鮮嫩多汁</div>
-                                        <div class="mealsPrice">
-                                            <span class="eng20R price">
-                                                <span class=" align-middle">5,000</span>
-                                            </span>
-                                        </div>
-                                        <div class="mealsCardDiv">
-                                            <img src="/image/store/Taichung/太初麵食/傳香滷肉飯套餐.jpeg" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="mealsCard">
-                                        <span class="text20B mealsName">無骨鹽酥雞</span>
-                                        <div class="mealsDetail">新鮮直送，鮮嫩多汁</div>
-                                        <div class="mealsPrice">
-                                            <span class="eng20R price">
-                                                <span class=" align-middle">5,000</span>
-                                            </span>
-                                        </div>
-                                        <div class="mealsCardDiv">
-                                            <img src="/image/store/Taichung/太初麵食/傳香滷肉飯套餐.jpeg" alt="">
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <div class="text28B" style="margin-bottom: 27px;" id="title02">人氣餐點</div>
-                                <div class="meals">
-                                    <div class="mealsCard">
-                                        <span class="text20B mealsName">無骨鹽酥雞</span>
-                                        <div class="mealsDetail">新鮮直送，鮮嫩多汁</div>
-                                        <div class="mealsPrice">
-                                            <span class="eng20R price">
-                                                <span class=" align-middle">5,000</span>
-                                            </span>
-                                        </div>
-                                        <div class="mealsCardDiv">
-                                            <img src="/image/store/Taichung/太初麵食/傳香滷肉飯套餐.jpeg" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="mealsCard">
-                                        <span class="text20B mealsName">無骨鹽酥雞</span>
-                                        <div class="mealsDetail">新鮮直送，鮮嫩多汁</div>
-                                        <div class="mealsPrice">
-                                            <span class="eng20R price">
-                                                <span class=" align-middle">5,000</span>
-                                            </span>
-                                        </div>
-                                        <div class="mealsCardDiv">
-                                            <img src="/image/store/Taichung/太初麵食/傳香滷肉飯套餐.jpeg" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="mealsCard">
-                                        <span class="text20B mealsName">無骨鹽酥雞</span>
-                                        <div class="mealsDetail">新鮮直送，鮮嫩多汁</div>
-                                        <div class="mealsPrice">
-                                            <span class="eng20R price">
-                                                <span class=" align-middle">5,000</span>
-                                            </span>
-                                        </div>
-                                        <div class="mealsCardDiv">
-                                            <img src="/image/store/Taichung/太初麵食/傳香滷肉飯套餐.jpeg" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="mealsCard">
-                                        <span class="text20B mealsName">無骨鹽酥雞</span>
-                                        <div class="mealsDetail">新鮮直送，鮮嫩多汁</div>
-                                        <div class="mealsPrice">
-                                            <span class="eng20R price">
-                                                <span class=" align-middle">5,000</span>
-                                            </span>
-                                        </div>
-                                        <div class="mealsCardDiv">
-                                            <img src="/image/store/Taichung/太初麵食/傳香滷肉飯套餐.jpeg" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="mealsCard">
-                                        <span class="text20B mealsName">無骨鹽酥雞</span>
-                                        <div class="mealsDetail">新鮮直送，鮮嫩多汁</div>
-                                        <div class="mealsPrice">
-                                            <span class="eng20R price">
-                                                <span class=" align-middle">5,000</span>
-                                            </span>
-                                        </div>
-                                        <div class="mealsCardDiv">
-                                            <img src="/image/store/Taichung/太初麵食/傳香滷肉飯套餐.jpeg" alt="">
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <div class="text28B" style="margin-bottom: 27px;" id="title03">套餐</div>
-                                <div class="meals">
-                                    <div class="mealsCard">
-                                        <span class="text20B mealsName">無骨鹽酥雞</span>
-                                        <div class="mealsDetail">新鮮直送，鮮嫩多汁</div>
-                                        <div class="mealsPrice">
-                                            <span class="eng20R price">
-                                                <span class=" align-middle">5,000</span>
-                                            </span>
-                                        </div>
-                                        <div class="mealsCardDiv">
-                                            <img src="/image/store/Taichung/太初麵食/傳香滷肉飯套餐.jpeg" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="mealsCard">
-                                        <span class="text20B mealsName">無骨鹽酥雞</span>
-                                        <div class="mealsDetail">新鮮直送，鮮嫩多汁</div>
-                                        <div class="mealsPrice">
-                                            <span class="eng20R price">
-                                                <span class=" align-middle">5,000</span>
-                                            </span>
-                                        </div>
-                                        <div class="mealsCardDiv">
-                                            <img src="/image/store/Taichung/太初麵食/傳香滷肉飯套餐.jpeg" alt="">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- 店家簡介 -->
-                            <div class="mealsScroll" v-if="tab === 2" v-show="tab===2">
-                                <div class="text28B mt-l" style="margin-bottom: 11px;">店家簡介</div>
-                                <div style="padding-right: 165px;padding-left: 16px;">
-                                    <p class="text20R" style="color: var(--dDeepGray);">
-                                        {{ storeIntroduction }}</p>
-                                </div>
-                                <div class="text28B mt-l" style="margin-bottom: 11px;">店家資訊</div>
-                                <div style="padding-right: 165px;padding-left: 16px;">
-                                    <p class="text20R" style="color: var(--dDeepGray);margin-bottom: 7px;">
-                                        <img src="/image/Phone.png" class="storeAbout"> {{ storePhone }}</p>
-                                    <p class="text20R" style="color: var(--dDeepGray);margin-bottom: 7px;">
-                                        <img src="/image/Places.png" class="storeAbout"> {{ storeAddress }}</p>
-                                    <p class="text20R" style="color: var(--dDeepGray);margin-bottom: 15px;">
-                                        <img src="/image/Clock.png" class="storeAbout"> {{ storeOpen }}</p>
-                                    <p class="text20B" style="color: var(--dRed);">公休日&nbsp;<span>週三</span>
-                                    </p>
-                                </div>
-                                <div class="text28B mt-l" style="margin-bottom: 11px;">配送地區</div>
-                                <div style="padding-right: 165px;padding-left: 16px;">
-                                    <p class="text20R" style="color: var(--dDeepGray);">台中市南屯區 / 台中市西區</p>
-                                </div>
-                                <div class="text28B mt-l" style="margin-bottom: 11px;">注意事項</div>
-                                <div style="padding-right: 165px;padding-left: 16px;">
-                                    <p class="text20R" style="color: var(--dDeepGray);">
-                                        {{ storeNotice }}</p>
-                                </div>
-                            </div>
-                            <!-- 店家評論 -->
-                            <div class="mealsScroll" v-if="tab === 3" v-show="tab===3">
-                                <ul class="evaluationList">
-                                    <!-- 1 -->
-                                    <li class="dblock d-flex pl-0">
-                                        <!-- <span class="photo"></span> -->
-                                        <img src="/image/message.png">
-                                        <span class="content">
-                                            <h2 class="text24B">王小華</h2>
-                                            <div class="star">
-                                                <i class=" icon-spoon"></i>
-                                                <i class=" icon-spoon"></i>
-                                                <i class=" icon-spoon"></i>
-                                                <i class=" icon-spoon"></i>
-                                                <i class=" icon-borderspoon"></i>
-                                            </div>
-                                            <p class="text20R">
-                                                上次訂餐非常準時地送到了，用完餐當天的熱暑也退得差不多了，是一次很棒的用餐體驗，下次會繼續訂訂！</p>
-                                            <p class="text16">3小時前</p>
-                                        </span>
-                                    </li>
-                                    <!-- 2 -->
-                                    <li class="dblock d-flex pl-0">
-                                        <!-- <span class="photo"></span> -->
-                                        <img src="/image/message.png">
-                                        <span class="content">
-                                            <h2 class="text24B">陳大明</h2>
-                                            <div class="star">
-                                                <i class=" icon-spoon"></i>
-                                                <i class=" icon-spoon"></i>
-                                                <i class=" icon-spoon"></i>
-                                                <i class=" icon-spoon"></i>
-                                                <i class=" icon-borderspoon"></i>
-                                            </div>
-                                            <p class="text20R">
-                                                每次不知道吃什麼的時候就會想到要吃摩斯，穩定的品質讓人吃得很放心，安心的食材把關讓人覺得開心以後會持續訂訂！</p>
-                                            <p class="text16">3小時前</p>
-                                        </span>
-                                    </li>
-                                    <!-- 3 -->
-                                    <li class="dblock d-flex pl-0">
-                                        <!-- <span class="photo"></span> -->
-                                        <img src="/image/message.png">
-                                        <span class="content">
-                                            <h2 class="text24B">陳大明</h2>
-                                            <div class="star">
-                                                <i class=" icon-spoon"></i>
-                                                <i class=" icon-spoon"></i>
-                                                <i class=" icon-spoon"></i>
-                                                <i class=" icon-spoon"></i>
-                                                <i class=" icon-borderspoon"></i>
-                                            </div>
-                                            <p class="text20R">
-                                                每次不知道吃什麼的時候就會想到要吃摩斯，穩定的品質讓人吃得很放心，安心的食材把關讓人覺得開心以後會持續訂訂！</p>
-                                            <p class="text16">3小時前</p>
-                                        </span>
-                                    </li>
-                                    <!-- 4 -->
-                                    <li class="dblock d-flex pl-0">
-                                        <!-- <span class="photo"></span> -->
-                                        <img src="/image/message.png">
-                                        <span class="content">
-                                            <h2 class="text24B">陳大明</h2>
-                                            <div class="star">
-                                                <i class=" icon-spoon"></i>
-                                                <i class=" icon-spoon"></i>
-                                                <i class=" icon-spoon"></i>
-                                                <i class=" icon-spoon"></i>
-                                                <i class=" icon-borderspoon"></i>
-                                            </div>
-                                            <p class="text20R">
-                                                每次不知道吃什麼的時候就會想到要吃摩斯，穩定的品質讓人吃得很放心，安心的食材把關讓人覺得開心以後會持續訂訂！</p>
-                                            <p class="text16">3小時前</p>
-                                        </span>
-                                    </li>
-
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 
     <script src="/javascript/vue.js"></script>
@@ -1455,6 +999,11 @@
 
 
         })
+
+        function q() {
+            var ar = document.querySelectorAll("input[type='checkbox'][class='bee']:checked");
+            console.log(ar);
+        }
     </script>
 
 
