@@ -46,7 +46,7 @@ router.get('/',async(req,res)=>{
   district = JSON.stringify(a)
   const b = await storeIndexData(req);
   storeIndex=JSON.stringify(b);
-  res.render('mIndex', { a: district,b: storeIndex });
+  res.render('mIndex', { a: district,b: storeIndex,active:'mIndex' });
   // console.log(storeIndex)
   // console.log(district)
 });
