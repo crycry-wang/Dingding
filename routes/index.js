@@ -93,8 +93,6 @@ router.post('/',(req,res)=>{
     else if(results.length > 0){
       console.log("123456456")
       return res.send('/',{message:'信箱已被使用'});
-    }else{
-      
     }
   })
 
