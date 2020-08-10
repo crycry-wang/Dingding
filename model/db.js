@@ -1,10 +1,12 @@
 var mysql = require('mysql');
+const bluebird = require('bluebird');
 
 var db = mysql.createConnection({
     host: 'localhost',
     user: 'root',
     password: '',
-    database: 'dingding'
+    database: 'dingding',
+    dateStrings:true
 });
 
 db.connect(function(err) {
@@ -12,4 +14,5 @@ db.connect(function(err) {
     console.log("Connected!");
 })
 
+bluebird.promisifyAll(db);
 module.exports = db;

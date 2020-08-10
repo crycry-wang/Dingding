@@ -28,6 +28,7 @@ var sNoticeRouter = require('./routes/sNotice');
 var sOrderRouter = require('./routes/sOrder');
 var sProductRouter = require('./routes/sProduct');
 var sStatRouter = require('./routes/sStat');
+var deleteRouter = require('./routes/delete');
 
 const { state } = require('./model/db');
 const db = require('./model/db');
@@ -68,6 +69,7 @@ app.use('/sNotice', sNoticeRouter);
 app.use('/sOrder', sOrderRouter);
 app.use('/sProduct', sProductRouter);
 app.use('/sStat', sStatRouter);
+app.use('/delete', deleteRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
