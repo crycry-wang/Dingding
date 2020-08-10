@@ -11,6 +11,12 @@ const storeID = 2;
 const storeSelect = 'select * from `store` where storeID=';
 const store = storeSelect + storeID;
 
+// 通知讀取數
+const readSelect = 'SELECT count(noticeID) countZ  FROM `notice` WHERE `toWhoType`=1 and noticeStatus=1 and `toWhoID`='
+const read = readSelect + storeID;
+
+
+
 
 // 廠商平台通知
 const dNoticeSelect = 'SELECT * FROM `notice` where noticeType=0 and toWhoType=1 and toWhoID='
@@ -41,6 +47,7 @@ const orderCaNotice = orderCaNoticeSelect + storeID;
 // 廠商接受訂單
 const orderOkNoticeSelect = `${a} =3 and a.storeID=`
 const orderOkNotice = orderOkNoticeSelect + storeID;
+
 
 const getStoreData = (req) => {
     return new Promise((resolve, reject) => {
@@ -111,6 +118,17 @@ const getOrderOkNotice = (req) => {
             });
     })
 };
+const getread = (req) => {
+    return new Promise((resolve, reject) => {
+        db.queryAsync(read)
+            .then(results => {
+                resolve(results);
+            })
+            .catch(ex => {
+                reject(ex);
+            });
+    })
+};
 
 //傳資料到表單裡
 router.get('/', async (req, res) => {
@@ -120,6 +138,7 @@ router.get('/', async (req, res) => {
     newsJSON3 = JSON.stringify(await getOrderDTNotice(req));
     newsJSON4 = JSON.stringify(await getOrderCaNotice(req));
     newsJSON5 = JSON.stringify(await getOrderOkNotice(req));
+    newsJSON6 = JSON.stringify(await getread(req));
 
     res.render('sNotice', {
         storeData: newsJSON,
@@ -128,6 +147,7 @@ router.get('/', async (req, res) => {
         orderDTNoticeData: newsJSON3,
         orderCaNoticeData: newsJSON4,
         orderOkNoticeData: newsJSON5,
+        readData: newsJSON6,
         active: 'sNotice'
     });
 });
