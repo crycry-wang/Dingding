@@ -1,6 +1,10 @@
 var express = require('express');
 var router = express.Router();
 var db = require('../model/db');
+const { resolve, reject } = require('bluebird');
+var district = '';
+var storeIndex = '';
+var store = '';
 
 //進到首頁的店家照片+店名
 let storeIndexSql = 'SELECT storeID,storeName,storeBanner FROM `store`';
