@@ -31,6 +31,7 @@ body {
     border: 4px solid #FFFFFF;
     border-radius: 50%;
     margin-top: 56px;
+    object-fit: cover;
 }
 
 
@@ -80,8 +81,10 @@ body {
 .menu i {
     margin-right: 20px;
 }
-
-.menuI .act {
+#menuUI{
+    display: none;
+}
+#menuUI .act {
     color: var(--dYellow);
     background-color: #FFFFFF;
 }
@@ -90,7 +93,7 @@ body {
     transform: scaleY(-1);
 }
 
-.menuI a {
+#menuUI a {
     padding-left: 84px;
 }
 
