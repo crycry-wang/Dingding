@@ -6,7 +6,6 @@
         transform-origin: 0.0;
     }
      */
-     
 
  :root {
     /* 主色 */
@@ -28,12 +27,6 @@
     --dBlack: #373A3C;
     /* 淡灰色用於垃圾桶、外框 */
     --moreLightGray: #DDDDDD;
-}
-
-
-
-a:hover{
-    color: var(--dYellow);
 }
 
 ul {
@@ -247,9 +240,6 @@ a {
     color: var(--dYellow);
 }
 
-.bC:hover {
-    color: var(--dBlue);
-}
 
 /* 英數字 24px 黑色 */
 
@@ -611,7 +601,6 @@ textarea {
 
 .meals {
     margin-left: 23px;
-    margin-bottom: 40px;
 }
 
 
@@ -1082,6 +1071,7 @@ textarea {
     position: relative;
     /* 100vh-需要佔的高度 */
     /* max-height: calc(100vh - 420px); */
+    /* padding-right: 20px; */
 }
 
 .scrollList::-webkit-scrollbar {

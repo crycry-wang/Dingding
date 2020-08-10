@@ -15,10 +15,12 @@
     <link rel="stylesheet" href="/stylesheets/sider.css">
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <!-- <link rel="stylesheet" href="/stylesheets/member.css"> -->
-    <link rel="stylesheet" href="/stylesheets/sEvaluation.css">
+    <!-- <link rel="stylesheet" href="/stylesheets/sEvaluation.css"> -->
     <link rel="stylesheet" href="/stylesheets/storeInformation.css">
+    <link rel="stylesheet" href="/stylesheets/sEvaluation.css">
     <link rel="stylesheet" href="/stylesheets/member.css">
     <link rel="stylesheet" href="/stylesheets/index.css">
+    <script src="/javascript/getDate.js"></script>
 
     <title>店家資訊</title>
     <style>
@@ -37,8 +39,8 @@
         <div class="slider fixed-top">
             <img src="/image/LOGO.png" class="sliderLogo">
             <br>
-            <img src="/image/photo.jpg" class="sliderPhoto">
-            <p class="name text24B">尊品原汁牛肉麵</p>
+            <img src="/image/store/Taichung/肯德基KFC_台中公益/photo.jpeg" class="sliderPhoto">
+            <p class="name text24B">肯德基 KFC 台中公益店</p>
             <div class="menu text24R ">
 
                 <a href="" class=""><i class="icon-order"></i>訂單管理</a>
@@ -51,52 +53,62 @@
             </div>
         </div>
 
-        <div class="containerRight">
+        <div class="containerRight" v-for="item in dbStoreInformation">
             <!-- 右邊內容放置區 -->
             <div class="btnDiv mb-m">
                 <div class="rightbtn">
-                    <button class="text20BW dbtn btnB" style="margin-right: 15px;" data-toggle="modal" :data-target="'#storeModel'+ id">店家資訊預覽</button>
+                    <button class="text20BW dbtn btnB" style="margin-right: 15px;" data-toggle="modal"
+                        :data-target="'#storeModel'+ item.storeID">店家資訊預覽</button>
                     <!-- <button class="text20R dbtn btnW" style="margin-right: 5px;">取消</button> -->
                     <button class="text20R dbtn btnY" data-toggle="modal" data-target="#comfirm2Btn">儲存</button>
                 </div>
             </div>
             <div class="row">
-                <div class="col-8 mInfo" style="height: 900px;">
+                <div class="col-8 mInfo" style="height: calc(100vh - 190px); ">
                     <div class="d-flex">
-                        <div :style="'background-image: url(/image/store/' + storeBanner + ');'" class="memberPhoto icon-photo-1">
+                        <div :style="'background-image: url(/image/store/' + item.storePhoto + ');'"
+                            class="memberPhoto icon-photo-1">
                         </div>
                     </div>
                     <!-- 左邊店家基本資訊 -->
                     <div class="information row">
-
-                        <div class=" storeTitleDiv w-100">
-                            <span class="text20B storeTitle">店家名稱</span>
-                            <input type="text" class="singleText398 text20R" placeholder="請輸入店家名稱" v-model="storeName">
-                        </div>
-                        <div class=" storeTitleDiv w-100">
-                            <span class="text20B storeTitle">店家照片</span>
-                            <span class="text20R" style="margin-right: 20px; margin-left: 20px;">index.jpeg</span>
-                            <button class="dbtn btnW text20R">上傳照片</button>
-                        </div>
-                        <div class=" storeTitleDiv w-100">
-                            <span class="text20B storeTitle">店家電話</span>
-                            <input type="text" class="singleText398 text20R" placeholder="請輸入店家電話" v-model="storePhone">
-                        </div>
-                        <div class=" storeTitleDiv w-100">
-                            <span class="text20B storeTitle">店家地址</span>
-                            <input type="text" class="singleText398 text20R" placeholder="請輸入完整地址" v-model="storeAddress">
-                        </div>
-                        <div class=" storeTitleDiv w-100">
-                            <span class="text20B storeTitle">營業時間</span>
-                            <input type="text" class="singleText398 text20R" placeholder="請輸入營業時間" v-model="storeOpen">
-                        </div>
-                        <div class=" storeTitleDiv w-100">
-                            <span class="text20B storeTitle">固定公休</span>
-                            <input type="text" class="singleText398 text20R" placeholder="請輸入公休日" v-model="storeClose">
-                        </div>
-                        <div class=" storeTitleDiv w-100">
-                            <span class="text20B storeTitle" style="display: inline-block;position: relative;bottom: 100px;">店家簡介</span>
-                            <textarea type="text" class="multiText398 text20R d-inline-block aboutTextarea" placeholder="請輸入店家簡介" v-model="storeIntroduction"></textarea>
+                        <div class="  scrollList" style="max-height: calc(100vh - 380px);">
+                            <div class=" storeTitleDiv w-100">
+                                <span class="text20B storeTitle">店家名稱</span>
+                                <input type="text" class="singleText398 text20R" placeholder="請輸入店家名稱"
+                                    v-model="item.storeName">
+                            </div>
+                            <div class=" storeTitleDiv w-100">
+                                <span class="text20B storeTitle">店家照片</span>
+                                <span class="text20R" style="margin-right: 20px; margin-left: 20px;">index.jpeg</span>
+                                <button class="dbtn btnW text20R">上傳照片</button>
+                            </div>
+                            <div class=" storeTitleDiv w-100">
+                                <span class="text20B storeTitle">店家電話</span>
+                                <input type="text" class="singleText398 text20R" placeholder="請輸入店家電話"
+                                    v-model="item.storePhone">
+                            </div>
+                            <div class=" storeTitleDiv w-100">
+                                <span class="text20B storeTitle">店家地址</span>
+                                <input type="text" class="singleText398 text20R" placeholder="請輸入完整地址"
+                                    v-model="item.storeAddress">
+                            </div>
+                            <div class=" storeTitleDiv w-100">
+                                <span class="text20B storeTitle">營業時間</span>
+                                <input type="text" class="singleText398 text20R" placeholder="請輸入營業時間"
+                                    v-model="item.storeOpen">
+                            </div>
+                            <div class=" storeTitleDiv w-100">
+                                <span class="text20B storeTitle">固定公休</span>
+                                <input type="text" class="singleText398 text20R" placeholder="請輸入公休日"
+                                    v-model="item.storeClose">
+                            </div>
+                            <div class=" storeTitleDiv w-100">
+                                <span class="text20B storeTitle"
+                                    style="display: inline-block;position: relative;bottom: 100px;">店家簡介</span>
+                                <textarea type="text" class="multiText398 text20R d-inline-block aboutTextarea"
+                                    placeholder="請輸入店家簡介" v-model="item.storeIntroduction"></textarea>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -106,44 +118,189 @@
 
                         <div class="mb-l">
                             <span class="text20B" style="margin-right: 50px;">配送地區</span>
-                            <button class="dbtn text20R" data-toggle="modal" data-target="#comfirm2BtnW1340" style="margin-bottom: 24px;background-color: var(--dLightGray);">
+                            <button class="dbtn text20R" data-toggle="modal" data-target="#comfirm2BtnW1340"
+                                style="margin-bottom: 24px;background-color: var(--dLightGray);">
                                 選擇地區
                                 <span class="ml-2">+</span>
                             </button>
                             <br>
                             <div class="w-100 scrollList" style="max-height: calc(100vh - 600px);">
-                                <button class="dbtn btnY text20B" style="margin-bottom: 20px;padding-left: 16px;padding-right: 12px;">台中市北屯區 <i
+                                <button class="dbtn btnY text20B"
+                                    style="margin-bottom: 20px;padding-left: 16px;padding-right: 12px;">台中市北屯區 <i
                                         class="icon-close"></i> </button><br>
-                                <button class="dbtn btnY text20B" style="margin-bottom: 20px;padding-left: 16px;padding-right: 12px;">台中市北屯區 <i
+                                <button class="dbtn btnY text20B"
+                                    style="margin-bottom: 20px;padding-left: 16px;padding-right: 12px;">台中市南屯區 <i
                                         class="icon-close"></i> </button><br>
-                                <button class="dbtn btnY text20B" style="margin-bottom: 20px;padding-left: 16px;padding-right: 12px;">台中市北屯區 <i
-                                        class="icon-close"></i> </button><br>
-                                <button class="dbtn btnY text20B" style="margin-bottom: 20px;padding-left: 16px;padding-right: 12px;">台中市北屯區 <i
-                                        class="icon-close"></i> </button><br>
-                                <button class="dbtn btnY text20B" style="margin-bottom: 20px;padding-left: 16px;padding-right: 12px;">台中市北屯區 <i
-                                        class="icon-close"></i> </button><br>
-                                <button class="dbtn btnY text20B" style="margin-bottom: 20px;padding-left: 16px;padding-right: 12px;">台中市北屯區 <i
-                                        class="icon-close"></i> </button><br>
-                                <button class="dbtn btnY text20B" style="margin-bottom: 20px;padding-left: 16px;padding-right: 12px;">台中市北屯區 <i
-                                        class="icon-close"></i> </button><br>
-                                <button class="dbtn btnY text20B" style="margin-bottom: 20px;padding-left: 16px;padding-right: 12px;">台中市北屯區 <i
-                                        class="icon-close"></i> </button><br>
-                                <button class="dbtn btnY text20B" style="margin-bottom: 20px;padding-left: 16px;padding-right: 12px;">台中市北屯區 <i
-                                        class="icon-close"></i> </button><br>
-                                <button class="dbtn btnY text20B" style="margin-bottom: 20px;padding-left: 16px;padding-right: 12px;">台中市北屯區 <i
-                                        class="icon-close"></i> </button><br>
-                                <button class="dbtn btnY text20B" style="margin-bottom: 20px;padding-left: 16px;padding-right: 12px;">台中市北屯區 <i
-                                        class="icon-close"></i> </button><br>
+
                             </div>
                         </div>
                         <div style="height: 200px;">
-                            <span class="text20B" style="margin-right: 16px;">注意事項</span><span style="font-size: 16px; color: var(--dDeepGray);">(選填)</span>
-                            <textarea type="text" class="multiText398 text20R noteTextarea w-100" placeholder="填入配送注意事項" v-model="storeNotice"></textarea>
+                            <span class="text20B" style="margin-right: 16px;">注意事項</span><span
+                                style="font-size: 16px; color: var(--dDeepGray);">(選填)</span>
+                            <textarea type="text" class="multiText398 text20R noteTextarea w-100" placeholder="填入配送注意事項"
+                                v-model="storeNotice"></textarea>
                         </div>
 
                     </div>
                 </div>
+                <!-- 店家資訊預覽彈框 -->
+                <!-- 店家彈框(有評價) -->
+                <div class="modal fade storeModel" :id="'storeModel'+ item.storeID">
+                    <div class="modal-dialog modal-dialog-scrollable">
+                        <div class="modal-content">
+                            <div class="storeModelImg align-middle"
+                                :style="'background-image: url(/image/store/' + item.storeBanner + ');'">
+                                <div style="display: inline-block;">
+                                    <div class="storeModelImgContent">
+                                        <span class="text28B mr16">{{item.storeName}}</span>
+                                        <span class="eng24R mr16">4.2</span>
+                                        <i v-for="score in dbCommentScore"
+                                            :class="score.star>=1 ? 'icon-spoon' : 'icon-borderspoon'"
+                                            class="spoon"></i>
+                                        <i v-for="score in dbCommentScore"
+                                            :class="score.star>=2 ? 'icon-spoon' : 'icon-borderspoon'"
+                                            class="spoon"></i>
+                                        <i v-for="score in dbCommentScore"
+                                            :class="score.star>=3 ? 'icon-spoon' : 'icon-borderspoon'"
+                                            class="spoon"></i>
+                                        <i v-for="score in dbCommentScore"
+                                            :class="score.star>=4 ? 'icon-spoon' : 'icon-borderspoon'"
+                                            class="spoon"></i>
+                                        <i v-for="score in dbCommentScore"
+                                            :class="score.star==5 ? 'icon-spoon' : 'icon-borderspoon'"
+                                            class="spoon"></i>
+                                        <p class="text20RG" style="margin-top: 8px;">訂單完成率 {{completeRate}}%
+                                        </p>
+                                        <p class="text20R" style="margin-top: 8px;">{{ item.storeAddress }}</p>
+                                    </div>
+                                    <div class="storeModelImgContentBottom">
+                                        <i class="icon-heart" style="opacity: 1;z-index: 999;"
+                                            v-on:click="handleLike(item.id)" v-if="item.likeStore"></i>
+                                        <i class="icon-heart" style="z-index: 999;" v-on:click="handleLike(item.id)"
+                                            v-else></i>
+                                        <button class="dbtn dbtnG text20R" style="float: right;">快速安排訂單</button>
+                                    </div>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <i class="storeClose icon-close"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="modal-header col-2" style="padding-right: 0px;">
+                                    <ul class="storeUl" v-if="tab === 1" v-show="tab===1">
+                                        <li v-for="(meal,index) in productList.sort">
+                                            <a class="storeContent" :href="'#title'+index">{{meal}}</a>
+                                            <!-- <a class="storeContent actMeals" :href="'#title'+meal.cid">{{meal.name}}</a> -->
+                                        </li>
+                                    </ul>
 
+
+                                </div>
+
+                                <div class="col-10 ml-n5 mr-5">
+                                    <div
+                                        style="background-color: var(--dWhite);width: 500px;height: 86px;padding-top: 40px;">
+                                        <span :class="{ act : tab == 1}" class="dTag text24RG"
+                                            v-on:click="tabClick(1)">美味餐點</span>
+                                        <span :class="{ act : tab == 2}" class="dTag text24RG"
+                                            v-on:click="tabClick(2)">詳細資訊</span>
+                                        <span :class="{ act : tab == 3}" class="dTag text24RG"
+                                            v-on:click="tabClick(3)">店家評價</span>
+                                    </div>
+                                    <br>
+                                    <!-- 美味餐點 -->
+                                    <div class="mealsScroll" v-if="tab === 1" v-show="tab===1">
+                                        <div v-for="(meal,index) in productList.sort">
+                                            <div class="text28B mt-l" style="margin-bottom: 27px;" :id="'title'+index"
+                                                :name="'title'+index">{{meal}}
+                                            </div>
+                                            <div class="meals">
+                                                <div class="mealsCard" v-for="detail in productList.map[meal].pSort">
+                                                    <div style="width: 170px; height: auto;" class="text20B mealsName">
+                                                        {{ detail.productName }}
+                                                    </div>
+                                                    <div class="mealsDetail" style="width: 170px; height: auto;">
+                                                        {{ detail.productinformation }}</div>
+                                                    <div class="mealsPrice">
+                                                        <span class="eng20R price">
+                                                            <span class=" align-middle">{{ detail.productPrice }}</span>
+                                                        </span>
+                                                    </div>
+                                                    <div class="mealsCardDiv"
+                                                        style="text-align : center;line-height: 148px;display: block;">
+                                                        <img style="margin-left: -20px;"
+                                                            :src="'/image/store/' + detail.productPhoto" alt="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- 店家簡介 -->
+                                    <div class="mealsScroll" v-if="tab === 2" v-show="tab===2">
+                                        <div class="text28B mt-l" style="margin-bottom: 11px;">店家簡介</div>
+                                        <div style="padding-right: 165px;padding-left: 16px;">
+                                            <p class="text20R" style="color: var(--dDeepGray);">
+                                                {{ item.storeIntroduction }}</p>
+                                        </div>
+                                        <div class="text28B mt-l" style="margin-bottom: 11px;">店家資訊</div>
+                                        <div style="padding-right: 165px;padding-left: 16px;">
+                                            <p class="text20R" style="color: var(--dDeepGray);margin-bottom: 7px;">
+                                                <img src="/image/Phone.png" class="storeAbout">
+                                                {{ item.storePhone }}</p>
+                                            <p class="text20R" style="color: var(--dDeepGray);margin-bottom: 7px;">
+                                                <img src="/image/Places.png" class="storeAbout">
+                                                {{ item.storeAddress }}</p>
+                                            <p class="text20R" style="color: var(--dDeepGray);margin-bottom: 15px;">
+                                                <img src="/image/Clock.png" class="storeAbout"> {{ item.storeOpen }}
+                                            </p>
+                                            <p class="text20B" style="color: var(--dRed);">公休日&nbsp;<span>週三</span>
+                                            </p>
+                                        </div>
+                                        <div class="text28B mt-l" style="margin-bottom: 11px;">配送地區</div>
+                                        <div style="padding-right: 165px;padding-left: 16px;">
+                                            <p class="text20R" style="color: var(--dDeepGray);">台中市南屯區 / 台中市西區</p>
+                                        </div>
+                                        <div class="text28B mt-l" style="margin-bottom: 11px;">注意事項</div>
+                                        <div style="padding-right: 165px;padding-left: 16px;">
+                                            <p class="text20R" style="color: var(--dDeepGray);">
+                                                {{ item.storeNotice }}</p>
+                                        </div>
+                                    </div>
+                                    <!-- 店家評論 -->
+                                    <div class="mealsScroll" v-if="tab === 3" v-show="tab===3">
+                                        <ul class="evaluationList">
+                                            <!-- 1 -->
+                                            <li class="dblock d-flex pl-0" v-for="comment in dbComment">
+                                                <!-- <span class="photo"></span> -->
+                                                <img :src="'/image/會員資料/大頭照/' + comment.memberPhoto">
+                                                <span class="content">
+                                                    <h2 class="text24B">{{ comment.memberName }}</h2>
+                                                    <div class="star">
+                                                        <i
+                                                            :class="comment.commentScore>=1 ? 'icon-spoon' : 'icon-borderspoon'"></i>
+                                                        <i
+                                                            :class="comment.commentScore>=2 ? 'icon-spoon' : 'icon-borderspoon'"></i>
+                                                        <i
+                                                            :class="comment.commentScore>=3 ? 'icon-spoon' : 'icon-borderspoon'"></i>
+                                                        <i
+                                                            :class="comment.commentScore>=4 ? 'icon-spoon' : 'icon-borderspoon'"></i>
+                                                        <i
+                                                            :class="comment.commentScore==5 ? 'icon-spoon' : 'icon-borderspoon'"></i>
+                                                    </div>
+                                                    <p class="text20R">
+                                                        {{ comment.commentContent }}</p>
+                                                    <p class="text16">{{comment.commentTime}}</p>
+                                                </span>
+                                            </li>
+
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
             </div>
         </div>
@@ -185,7 +342,7 @@
                                     <div class="contry">
                                         <input type="checkbox">
                                         <label class=" text20R"
-                                            v-on:click="handleSelect(index)">{{ area.country }}</label>
+                                            v-on:click="handleSelect(index,area.country)">{{ area.country }}</label>
                                     </div>
                                     <div class="contrySelect"></div>
                                 </span>
@@ -196,247 +353,27 @@
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                         <div class="mb-s">
                             <div class="text20B areaTitle">中部</div>
-                            <div class="areaSelect">
+                            <div class="areaSelect" v-for="(area,index) in middle">
                                 <span class="d-flex">
                                     <div class="contry">
                                         <input type="checkbox">
-                                        <label class=" text20R">台中市</label>
+                                        <label class=" text20R"
+                                            v-on:click="handleSelect(index,area.country)">{{ area.country }}</label>
                                     </div>
                                     <div class="contrySelect"></div>
                                 </span>
-                                <div class="dblock row areaBlock" style="display: none;">
-                                    <div class="col" style="padding-left: 0px;">
-                                        <div class="area">
-                                            <input type="checkbox" id="taichung01">
-                                            <label for="taichung01" class="text20R">北屯區</label>
-                                        </div>
-                                        <div class="area">
-                                            <input type="checkbox" id="taichung02">
-                                            <label for="taichung02" class="text20R">北區</label>
-                                        </div>
-                                        <div class="area">
-                                            <input type="checkbox" id="taichung03">
-                                            <label for="taichung03" class="text20R">西區</label>
-                                        </div>
-                                        <div class="area">
-                                            <input type="checkbox" id="taichung04">
-                                            <label for="taichung04" class="text20R">南屯區</label>
-                                        </div>
-                                    </div>
-                                    <div class="col" style="padding-left: 0px;">
-                                        <div class="area">
-                                            <input type="checkbox" id="taichung05">
-                                            <label for="taichung05" class="text20R areaMargin">大坑區</label>
-                                        </div>
-                                        <div class="area">
-                                            <input type="checkbox" id="taichung06">
-                                            <label for="taichung06" class="text20R">中區</label>
-                                        </div>
-                                        <div class="area">
-                                            <input type="checkbox" id="taichung07">
-                                            <label for="taichung07" class="text20R">西屯區</label>
-                                        </div>
-                                        <div class="area">
-                                            <input type="checkbox" id="taichung08">
-                                            <label for="taichung08" class="text20R">大雅區</label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="areaSelect">
-                                <span class="d-flex">
-                                    <div class="contry">
-                                        <input type="checkbox">
-                                        <label class=" text20R">雲林市</label>
-                                    </div>
-                                    <div class="contrySelect"></div>
-                                </span>
-                                <div class="dblock row areaBlock" style="display: none;">
-                                    <div class="col" style="padding-left: 0px;">
-                                        <div class="area">
-                                            <input type="checkbox" id="taichung01">
-                                            <label for="taichung01" class="text20R">北屯區</label>
-                                        </div>
-                                        <div class="area">
-                                            <input type="checkbox" id="taichung02">
-                                            <label for="taichung02" class="text20R">北區</label>
-                                        </div>
-                                        <div class="area">
-                                            <input type="checkbox" id="taichung03">
-                                            <label for="taichung03" class="text20R">西區</label>
-                                        </div>
-                                        <div class="area">
-                                            <input type="checkbox" id="taichung04">
-                                            <label for="taichung04" class="text20R">南屯區</label>
-                                        </div>
-                                    </div>
-                                    <div class="col" style="padding-left: 0px;">
-                                        <div class="area">
-                                            <input type="checkbox" id="taichung05">
-                                            <label for="taichung05" class="text20R areaMargin">大坑區</label>
-                                        </div>
-                                        <div class="area">
-                                            <input type="checkbox" id="taichung06">
-                                            <label for="taichung06" class="text20R">中區</label>
-                                        </div>
-                                        <div class="area">
-                                            <input type="checkbox" id="taichung07">
-                                            <label for="taichung07" class="text20R">西屯區</label>
-                                        </div>
-                                        <div class="area">
-                                            <input type="checkbox" id="taichung08">
-                                            <label for="taichung08" class="text20R">大雅區</label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="areaSelect">
-                                <span class="d-flex">
-                                    <div class="contry">
-                                        <input type="checkbox">
-                                        <label class=" text20R">苗栗縣</label>
-                                    </div>
-                                    <div class="contrySelect"></div>
-                                </span>
-                                <div class="dblock row areaBlock" style="display: none;">
-                                    <div class="col" style="padding-left: 0px;">
-                                        <div class="area">
-                                            <input type="checkbox" id="taichung01">
-                                            <label for="taichung01" class="text20R">北屯區</label>
-                                        </div>
-                                        <div class="area">
-                                            <input type="checkbox" id="taichung02">
-                                            <label for="taichung02" class="text20R">北區</label>
-                                        </div>
-                                        <div class="area">
-                                            <input type="checkbox" id="taichung03">
-                                            <label for="taichung03" class="text20R">西區</label>
-                                        </div>
-                                        <div class="area">
-                                            <input type="checkbox" id="taichung04">
-                                            <label for="taichung04" class="text20R">南屯區</label>
-                                        </div>
-                                    </div>
-                                    <div class="col" style="padding-left: 0px;">
-                                        <div class="area">
-                                            <input type="checkbox" id="taichung05">
-                                            <label for="taichung05" class="text20R areaMargin">大坑區</label>
-                                        </div>
-                                        <div class="area">
-                                            <input type="checkbox" id="taichung06">
-                                            <label for="taichung06" class="text20R">中區</label>
-                                        </div>
-                                        <div class="area">
-                                            <input type="checkbox" id="taichung07">
-                                            <label for="taichung07" class="text20R">西屯區</label>
-                                        </div>
-                                        <div class="area">
-                                            <input type="checkbox" id="taichung08">
-                                            <label for="taichung08" class="text20R">大雅區</label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="areaSelect">
-                                <span class="d-flex">
-                                    <div class="contry">
-                                        <input type="checkbox">
-                                        <label class=" text20R">彰化市</label>
-                                    </div>
-                                    <div class="contrySelect"></div>
-                                </span>
-                                <div class="dblock row areaBlock" style="display: none;">
-                                    <div class="col" style="padding-left: 0px;">
-                                        <div class="area">
-                                            <input type="checkbox" id="taichung01">
-                                            <label for="taichung01" class="text20R">北屯區</label>
-                                        </div>
-                                        <div class="area">
-                                            <input type="checkbox" id="taichung02">
-                                            <label for="taichung02" class="text20R">北區</label>
-                                        </div>
-                                        <div class="area">
-                                            <input type="checkbox" id="taichung03">
-                                            <label for="taichung03" class="text20R">西區</label>
-                                        </div>
-                                        <div class="area">
-                                            <input type="checkbox" id="taichung04">
-                                            <label for="taichung04" class="text20R">南屯區</label>
-                                        </div>
-                                    </div>
-                                    <div class="col" style="padding-left: 0px;">
-                                        <div class="area">
-                                            <input type="checkbox" id="taichung05">
-                                            <label for="taichung05" class="text20R areaMargin">大坑區</label>
-                                        </div>
-                                        <div class="area">
-                                            <input type="checkbox" id="taichung06">
-                                            <label for="taichung06" class="text20R">中區</label>
-                                        </div>
-                                        <div class="area">
-                                            <input type="checkbox" id="taichung07">
-                                            <label for="taichung07" class="text20R">西屯區</label>
-                                        </div>
-                                        <div class="area">
-                                            <input type="checkbox" id="taichung08">
-                                            <label for="taichung08" class="text20R">大雅區</label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="areaSelect" style="margin-right: 0px;">
-                                <span class="d-flex">
-                                    <div class="contry">
-                                        <input type="checkbox">
-                                        <label class=" text20R">南投市</label>
-                                    </div>
-                                    <div class="contrySelect"></div>
-                                </span>
-                                <div class="dblock row areaBlock" style="display: none;">
-                                    <div class="col" style="padding-left: 0px;">
-                                        <div class="area">
-                                            <input type="checkbox" id="taichung01">
-                                            <label for="taichung01" class="text20R">北屯區</label>
-                                        </div>
-                                        <div class="area">
-                                            <input type="checkbox" id="taichung02">
-                                            <label for="taichung02" class="text20R">北區</label>
-                                        </div>
-                                        <div class="area">
-                                            <input type="checkbox" id="taichung03">
-                                            <label for="taichung03" class="text20R">西區</label>
-                                        </div>
-                                        <div class="area">
-                                            <input type="checkbox" id="taichung04">
-                                            <label for="taichung04" class="text20R">南屯區</label>
-                                        </div>
-                                    </div>
-                                    <div class="col" style="padding-left: 0px;">
-                                        <div class="area">
-                                            <input type="checkbox" id="taichung05">
-                                            <label for="taichung05" class="text20R areaMargin">大坑區</label>
-                                        </div>
-                                        <div class="area">
-                                            <input type="checkbox" id="taichung06">
-                                            <label for="taichung06" class="text20R">中區</label>
-                                        </div>
-                                        <div class="area">
-                                            <input type="checkbox" id="taichung07">
-                                            <label for="taichung07" class="text20R">西屯區</label>
-                                        </div>
-                                        <div class="area">
-                                            <input type="checkbox" id="taichung08">
-                                            <label for="taichung08" class="text20R">大雅區</label>
-                                        </div>
+                                <div class="dblock row areaBlock" v-if="area.isShow">
+                                    <div class="area" v-for="(district,id) in area.districtName">
+                                        <input type="checkbox" :id="'north'+district.id" v-model="district.selected">
+                                        <label :for="'north'+district.id" class="text20R">{{district.name}}</label>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        
                         <div class="mb-s">
                             <div class="text20B areaTitle">南部</div>
                             <div class="areaSelect">
@@ -776,7 +713,8 @@
                         </div>
                         <div class="text20B" style="margin-top: 70px;display: inline-block;margin-right: 40px;">已選擇區域
                         </div>
-                        <button class="dbtn btnY text20B areaSelected">台北市北北區 <i class="icon-close"></i> </button>
+                        <button class="dbtn btnY text20B areaSelected">台中市北屯區 <i class="icon-close"></i> </button>
+                        <button class="dbtn btnY text20B areaSelected">台中市南屯區 <i class="icon-close"></i> </button>
 
 
                     </div>
@@ -787,392 +725,25 @@
                 </div>
             </div>
         </div>
-        <!-- 店家資訊預覽彈框 -->
-        <!-- 店家彈框(有評價) -->
-        <div class="modal fade storeModel" :id="'storeModel'+ id">
-            <div class="modal-dialog modal-dialog-scrollable">
-                <div class="modal-content">
-                    <div class="storeModelImg align-middle" :style="'background-image: url(/image/store/' + storeBanner + ');'">
-                        <div style="display: inline-block;">
-                            <div class="storeModelImgContent">
-                                <span class="text28B mr16">{{storeName}}</span>
-                                <span class="eng24R mr16">{{comment}}</span>
-                                <div class="spoon" style="display: inline-block;" v-if=" comment == 5">
-                                    <i class="icon-spoon"></i>
-                                    <i class="icon-spoon"></i>
-                                    <i class="icon-spoon"></i>
-                                    <i class="icon-spoon"></i>
-                                    <i class="icon-spoon"></i>
-                                </div>
-                                <div class="spoon" style="display: inline-block;" v-if="comment>4 && comment<5">
-                                    <i class="icon-spoon"></i>
-                                    <i class="icon-spoon"></i>
-                                    <i class="icon-spoon"></i>
-                                    <i class="icon-spoon"></i>
-                                    <i class="icon-borderspoon"></i>
-                                </div>
-                                <div class="spoon" style="display: inline-block;" v-if="comment>3 && comment<4">
-                                    <i class="icon-spoon"></i>
-                                    <i class="icon-spoon"></i>
-                                    <i class="icon-spoon"></i>
-                                    <i class="icon-borderspoon"></i>
-                                    <i class="icon-borderspoon"></i>
-                                </div>
-                                <div class="spoon" style="display: inline-block;" v-if="comment>2 && comment<3">
-                                    <i class="icon-spoon"></i>
-                                    <i class="icon-spoon"></i>
-                                    <i class="icon-borderspoon"></i>
-                                    <i class="icon-borderspoon"></i>
-                                    <i class="icon-borderspoon"></i>
-                                </div>
-                                <p class="text20RG" style="margin-top: 8px;">訂單完成率 {{tradeSuccess}}%
-                                </p>
-                                <p class="text20R" style="margin-top: 8px;">{{ storeAddress }}</p>
-                            </div>
-                            <div class="storeModelImgContentBottom">
-                                <i class="icon-heart" style="z-index: 999;"></i>
-                                <button class="dbtn dbtnG text20R" style="float: right;">快速安排訂單</button>
-                            </div>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <i class="storeClose icon-close"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="modal-header col-2" style="padding-right: 0px;">
-                            <ul class="storeUl" v-if="tab === 1" v-show="tab===1">
-                                <li>
-                                    <a class="storeContent actMeals" href="#title01">店家推薦</a>
-                                </li>
-                                <li>
-                                    <a class="storeContent" href="#title02">人氣餐點</a>
-                                </li>
-                                <li>
-                                    <a class="storeContent" href="#title03">套餐</a>
-                                </li>
-                                <li>
-                                    <a class="storeContent" href="#title04">單點</a>
-                                </li>
-                                <li>
-                                    <a class="storeContent" href="#title05">飲品</a>
-                                </li>
-                            </ul>
 
-
-                        </div>
-
-                        <div class="col-10 ml-n5 mr-5">
-                            <div style="background-color: var(--dWhite);width: 500px;height: 86px;padding-top: 40px;">
-                                <span class="dTag text24RG " :class="[active ? 'act' : '']" v-on:click="tabClick(1)">美味餐點</span>
-                                <span class="dTag text24RG" :class="[active ? 'act' : '']" v-on:click="tabClick(2)">詳細資訊</span>
-                                <span class="dTag text24RG" v-on:click="tabClick(3)">店家評價</span>
-                            </div>
-                            <br>
-                            <!-- 美味餐點 -->
-                            <div class="mealsScroll" v-if="tab === 1" v-show="tab===1">
-                                <div class="text28B mt-l" style="margin-bottom: 27px;" id="title01" name="title01">店家推薦
-                                </div>
-                                <div class="meals">
-                                    <div class="mealsCard">
-                                        <span class="text20B mealsName">無骨鹽酥雞</span>
-                                        <div class="mealsDetail">新鮮直送，鮮嫩多汁</div>
-                                        <div class="mealsPrice">
-                                            <span class="eng20R price">
-                                                <span class=" align-middle">5,000</span>
-                                            </span>
-                                        </div>
-                                        <div class="mealsCardDiv">
-                                            <img src="/image/store/Taichung/太初麵食/傳香滷肉飯套餐.jpeg" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="mealsCard">
-                                        <span class="text20B mealsName">無骨鹽酥雞</span>
-                                        <div class="mealsDetail">新鮮直送，鮮嫩多汁</div>
-                                        <div class="mealsPrice">
-                                            <span class="eng20R price">
-                                                <span class=" align-middle">5,000</span>
-                                            </span>
-                                        </div>
-                                        <div class="mealsCardDiv">
-                                            <img src="/image/store/Taichung/太初麵食/傳香滷肉飯套餐.jpeg" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="mealsCard">
-                                        <span class="text20B mealsName">無骨鹽酥雞</span>
-                                        <div class="mealsDetail">新鮮直送，鮮嫩多汁</div>
-                                        <div class="mealsPrice">
-                                            <span class="eng20R price">
-                                                <span class=" align-middle">5,000</span>
-                                            </span>
-                                        </div>
-                                        <div class="mealsCardDiv">
-                                            <img src="/image/store/Taichung/太初麵食/傳香滷肉飯套餐.jpeg" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="mealsCard">
-                                        <span class="text20B mealsName">無骨鹽酥雞</span>
-                                        <div class="mealsDetail">新鮮直送，鮮嫩多汁</div>
-                                        <div class="mealsPrice">
-                                            <span class="eng20R price">
-                                                <span class=" align-middle">5,000</span>
-                                            </span>
-                                        </div>
-                                        <div class="mealsCardDiv">
-                                            <img src="/image/store/Taichung/太初麵食/傳香滷肉飯套餐.jpeg" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="mealsCard">
-                                        <span class="text20B mealsName">無骨鹽酥雞</span>
-                                        <div class="mealsDetail">新鮮直送，鮮嫩多汁</div>
-                                        <div class="mealsPrice">
-                                            <span class="eng20R price">
-                                                <span class=" align-middle">5,000</span>
-                                            </span>
-                                        </div>
-                                        <div class="mealsCardDiv">
-                                            <img src="/image/store/Taichung/太初麵食/傳香滷肉飯套餐.jpeg" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="mealsCard">
-                                        <span class="text20B mealsName">無骨鹽酥雞</span>
-                                        <div class="mealsDetail">新鮮直送，鮮嫩多汁</div>
-                                        <div class="mealsPrice">
-                                            <span class="eng20R price">
-                                                <span class=" align-middle">5,000</span>
-                                            </span>
-                                        </div>
-                                        <div class="mealsCardDiv">
-                                            <img src="/image/store/Taichung/太初麵食/傳香滷肉飯套餐.jpeg" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="mealsCard">
-                                        <span class="text20B mealsName">無骨鹽酥雞</span>
-                                        <div class="mealsDetail">新鮮直送，鮮嫩多汁</div>
-                                        <div class="mealsPrice">
-                                            <span class="eng20R price">
-                                                <span class=" align-middle">5,000</span>
-                                            </span>
-                                        </div>
-                                        <div class="mealsCardDiv">
-                                            <img src="/image/store/Taichung/太初麵食/傳香滷肉飯套餐.jpeg" alt="">
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <div class="text28B" style="margin-bottom: 27px;" id="title02">人氣餐點</div>
-                                <div class="meals">
-                                    <div class="mealsCard">
-                                        <span class="text20B mealsName">無骨鹽酥雞</span>
-                                        <div class="mealsDetail">新鮮直送，鮮嫩多汁</div>
-                                        <div class="mealsPrice">
-                                            <span class="eng20R price">
-                                                <span class=" align-middle">5,000</span>
-                                            </span>
-                                        </div>
-                                        <div class="mealsCardDiv">
-                                            <img src="/image/store/Taichung/太初麵食/傳香滷肉飯套餐.jpeg" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="mealsCard">
-                                        <span class="text20B mealsName">無骨鹽酥雞</span>
-                                        <div class="mealsDetail">新鮮直送，鮮嫩多汁</div>
-                                        <div class="mealsPrice">
-                                            <span class="eng20R price">
-                                                <span class=" align-middle">5,000</span>
-                                            </span>
-                                        </div>
-                                        <div class="mealsCardDiv">
-                                            <img src="/image/store/Taichung/太初麵食/傳香滷肉飯套餐.jpeg" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="mealsCard">
-                                        <span class="text20B mealsName">無骨鹽酥雞</span>
-                                        <div class="mealsDetail">新鮮直送，鮮嫩多汁</div>
-                                        <div class="mealsPrice">
-                                            <span class="eng20R price">
-                                                <span class=" align-middle">5,000</span>
-                                            </span>
-                                        </div>
-                                        <div class="mealsCardDiv">
-                                            <img src="/image/store/Taichung/太初麵食/傳香滷肉飯套餐.jpeg" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="mealsCard">
-                                        <span class="text20B mealsName">無骨鹽酥雞</span>
-                                        <div class="mealsDetail">新鮮直送，鮮嫩多汁</div>
-                                        <div class="mealsPrice">
-                                            <span class="eng20R price">
-                                                <span class=" align-middle">5,000</span>
-                                            </span>
-                                        </div>
-                                        <div class="mealsCardDiv">
-                                            <img src="/image/store/Taichung/太初麵食/傳香滷肉飯套餐.jpeg" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="mealsCard">
-                                        <span class="text20B mealsName">無骨鹽酥雞</span>
-                                        <div class="mealsDetail">新鮮直送，鮮嫩多汁</div>
-                                        <div class="mealsPrice">
-                                            <span class="eng20R price">
-                                                <span class=" align-middle">5,000</span>
-                                            </span>
-                                        </div>
-                                        <div class="mealsCardDiv">
-                                            <img src="/image/store/Taichung/太初麵食/傳香滷肉飯套餐.jpeg" alt="">
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <div class="text28B" style="margin-bottom: 27px;" id="title03">套餐</div>
-                                <div class="meals">
-                                    <div class="mealsCard">
-                                        <span class="text20B mealsName">無骨鹽酥雞</span>
-                                        <div class="mealsDetail">新鮮直送，鮮嫩多汁</div>
-                                        <div class="mealsPrice">
-                                            <span class="eng20R price">
-                                                <span class=" align-middle">5,000</span>
-                                            </span>
-                                        </div>
-                                        <div class="mealsCardDiv">
-                                            <img src="/image/store/Taichung/太初麵食/傳香滷肉飯套餐.jpeg" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="mealsCard">
-                                        <span class="text20B mealsName">無骨鹽酥雞</span>
-                                        <div class="mealsDetail">新鮮直送，鮮嫩多汁</div>
-                                        <div class="mealsPrice">
-                                            <span class="eng20R price">
-                                                <span class=" align-middle">5,000</span>
-                                            </span>
-                                        </div>
-                                        <div class="mealsCardDiv">
-                                            <img src="/image/store/Taichung/太初麵食/傳香滷肉飯套餐.jpeg" alt="">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- 店家簡介 -->
-                            <div class="mealsScroll" v-if="tab === 2" v-show="tab===2">
-                                <div class="text28B mt-l" style="margin-bottom: 11px;">店家簡介</div>
-                                <div style="padding-right: 165px;padding-left: 16px;">
-                                    <p class="text20R" style="color: var(--dDeepGray);">
-                                        {{ storeIntroduction }}</p>
-                                </div>
-                                <div class="text28B mt-l" style="margin-bottom: 11px;">店家資訊</div>
-                                <div style="padding-right: 165px;padding-left: 16px;">
-                                    <p class="text20R" style="color: var(--dDeepGray);margin-bottom: 7px;">
-                                        <img src="/image/Phone.png" class="storeAbout"> {{ storePhone }}</p>
-                                    <p class="text20R" style="color: var(--dDeepGray);margin-bottom: 7px;">
-                                        <img src="/image/Places.png" class="storeAbout"> {{ storeAddress }}</p>
-                                    <p class="text20R" style="color: var(--dDeepGray);margin-bottom: 15px;">
-                                        <img src="/image/Clock.png" class="storeAbout"> {{ storeOpen }}</p>
-                                    <p class="text20B" style="color: var(--dRed);">公休日&nbsp;<span>週三</span>
-                                    </p>
-                                </div>
-                                <div class="text28B mt-l" style="margin-bottom: 11px;">配送地區</div>
-                                <div style="padding-right: 165px;padding-left: 16px;">
-                                    <p class="text20R" style="color: var(--dDeepGray);">台中市南屯區 / 台中市西區</p>
-                                </div>
-                                <div class="text28B mt-l" style="margin-bottom: 11px;">注意事項</div>
-                                <div style="padding-right: 165px;padding-left: 16px;">
-                                    <p class="text20R" style="color: var(--dDeepGray);">
-                                        {{ storeNotice }}</p>
-                                </div>
-                            </div>
-                            <!-- 店家評論 -->
-                            <div class="mealsScroll" v-if="tab === 3" v-show="tab===3">
-                                <ul class="evaluationList">
-                                    <!-- 1 -->
-                                    <li class="dblock d-flex pl-0">
-                                        <!-- <span class="photo"></span> -->
-                                        <img src="/image/message.png">
-                                        <span class="content">
-                                            <h2 class="text24B">王小華</h2>
-                                            <div class="star">
-                                                <i class=" icon-spoon"></i>
-                                                <i class=" icon-spoon"></i>
-                                                <i class=" icon-spoon"></i>
-                                                <i class=" icon-spoon"></i>
-                                                <i class=" icon-borderspoon"></i>
-                                            </div>
-                                            <p class="text20R">
-                                                上次訂餐非常準時地送到了，用完餐當天的熱暑也退得差不多了，是一次很棒的用餐體驗，下次會繼續訂訂！</p>
-                                            <p class="text16">3小時前</p>
-                                        </span>
-                                    </li>
-                                    <!-- 2 -->
-                                    <li class="dblock d-flex pl-0">
-                                        <!-- <span class="photo"></span> -->
-                                        <img src="/image/message.png">
-                                        <span class="content">
-                                            <h2 class="text24B">陳大明</h2>
-                                            <div class="star">
-                                                <i class=" icon-spoon"></i>
-                                                <i class=" icon-spoon"></i>
-                                                <i class=" icon-spoon"></i>
-                                                <i class=" icon-spoon"></i>
-                                                <i class=" icon-borderspoon"></i>
-                                            </div>
-                                            <p class="text20R">
-                                                每次不知道吃什麼的時候就會想到要吃摩斯，穩定的品質讓人吃得很放心，安心的食材把關讓人覺得開心以後會持續訂訂！</p>
-                                            <p class="text16">3小時前</p>
-                                        </span>
-                                    </li>
-                                    <!-- 3 -->
-                                    <li class="dblock d-flex pl-0">
-                                        <!-- <span class="photo"></span> -->
-                                        <img src="/image/message.png">
-                                        <span class="content">
-                                            <h2 class="text24B">陳大明</h2>
-                                            <div class="star">
-                                                <i class=" icon-spoon"></i>
-                                                <i class=" icon-spoon"></i>
-                                                <i class=" icon-spoon"></i>
-                                                <i class=" icon-spoon"></i>
-                                                <i class=" icon-borderspoon"></i>
-                                            </div>
-                                            <p class="text20R">
-                                                每次不知道吃什麼的時候就會想到要吃摩斯，穩定的品質讓人吃得很放心，安心的食材把關讓人覺得開心以後會持續訂訂！</p>
-                                            <p class="text16">3小時前</p>
-                                        </span>
-                                    </li>
-                                    <!-- 4 -->
-                                    <li class="dblock d-flex pl-0">
-                                        <!-- <span class="photo"></span> -->
-                                        <img src="/image/message.png">
-                                        <span class="content">
-                                            <h2 class="text24B">陳大明</h2>
-                                            <div class="star">
-                                                <i class=" icon-spoon"></i>
-                                                <i class=" icon-spoon"></i>
-                                                <i class=" icon-spoon"></i>
-                                                <i class=" icon-spoon"></i>
-                                                <i class=" icon-borderspoon"></i>
-                                            </div>
-                                            <p class="text20R">
-                                                每次不知道吃什麼的時候就會想到要吃摩斯，穩定的品質讓人吃得很放心，安心的食材把關讓人覺得開心以後會持續訂訂！</p>
-                                            <p class="text16">3小時前</p>
-                                        </span>
-                                    </li>
-
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 
     <script src="/javascript/vue.js"></script>
     <script>
         let data = {
+            tempSelectList: [],
+            dbStoreInformation: JSON.parse('<%- a %>'),
+            dbDistrickNorth: JSON.parse('<%- b %>'),
+            dbDistrickCentral: JSON.parse('<%- c %>'),
+            dbstoreProduct: JSON.parse('<%- d %>'),
+            dbCommentScore: JSON.parse('<%- e %>'),
+            dbComment: JSON.parse('<%- f %>'),
+            dbOrderSelect: JSON.parse('<%- g %>'),
             tab: 1,
             active: true,
             id: 3,
             storeName: "太初麵食",
             country: "台中市",
-            // districtName: "南屯區",
             storeBanner: "Taichung/太初麵食/index.jpeg",
             tradeSuccess: 82,
             comment: "4.6",
@@ -1235,32 +806,208 @@
                     id: 234
                 }],
                 isShow: false
-            }]
+            }],
+            middle: [
+                {
+                    country: "台中市",
+                    districtName: [
+                        {
+                            name: "中區",
+                            id: 65
+                        },
+                        {
+                            name: "東區",
+                            id: 66
+                        },
+                        {
+                            name: "南區",
+                            id: 67
+                        },
+                        {
+                            name: "北區",
+                            id: 68
+                        },
+                        {
+                            name: "北屯區",
+                            id: 69,
+                            selected: true
+                        },
+                        {
+                            name: "南屯區",
+                            id: 70,
+                            selected: true
+                        },
+                    ]
+
+                },
+                {
+                    country: "嘉義市",
+                    districtName: [
+                        {
+                            name: "中區",
+                            id: 65
+                        },
+                        {
+                            name: "東區",
+                            id: 66
+                        },
+                        {
+                            name: "南區",
+                            id: 67
+                        },
+                        {
+                            name: "北區",
+                            id: 68
+                        },
+                        {
+                            name: "北屯區",
+                            id: 69,
+                        },
+                        {
+                            name: "南屯區",
+                            id: 70,
+                        },
+                    ]
+
+                },
+                {
+                    country: "彰化市",
+                    districtName: [
+                        {
+                            name: "中區",
+                            id: 65
+                        },
+                        {
+                            name: "東區",
+                            id: 66
+                        },
+                        {
+                            name: "南區",
+                            id: 67
+                        },
+                        {
+                            name: "北區",
+                            id: 68
+                        },
+                        {
+                            name: "北屯區",
+                            id: 69,
+                            selected: true
+                        },
+                        {
+                            name: "南屯區",
+                            id: 70,
+                            selected: true
+                        },
+                    ]
+
+                },
+            ]
+
         }
         let storeInformation = new Vue({
             el: "#storeInformation",
             data: data,
             computed: {
+                northList() {
+                    let dbDistrickObj = {
+                        sort: [],
+                        map: {},
+                        isShow: false,
+                    }
+                    this.dbDistrickNorth.forEach(({ districtID, districtName, country, }, index) => {
+                        if (!dbDistrickObj.map[country]) {
+                            dbDistrickObj.sort.push(country)
+                            dbDistrickObj.map[country] = {
+                                sort: [],
+                                map: {},
+                                isShow: false
+                            }
+                        }
+                        dbDistrickObj.map[country].sort.push(districtName)
+                        // dbDistrickObj.map[country].sort.push({isShow: false})
+                        dbDistrickObj.map[country].map[districtName] = { districtID, index }
+                    })
+                    return dbDistrickObj
+
+
+                },
+                northDistrictList() {
+                    return this.northList.map[index]
+                },
+
+                productList() {
+                    let productObj = {
+                        sort: [],
+                        map: {}
+                    };
+                    this.dbstoreProduct.forEach(({ categoryName, productName, productPhoto, productinformation, productPrice }, index) => {
+                        if (!productObj.map[categoryName]) {
+                            productObj.sort.push(categoryName)
+                            productObj.map[categoryName] = {
+                                pSort: [],
+                            }
+                        }
+                        productObj.map[categoryName].pSort.push({ productName, productPhoto, productinformation, productPrice })
+                        // productObj.map[categoryName].map[productName] = {index,productPhoto,productinformation}
+                    });
+                    return productObj;
+                },
+
+
+                completeRate: function () {
+                    let complete = 0;
+                    let count = this.dbOrderSelect.length;
+                    for (let index = 0; index < count; index++) {
+                        if (this.dbOrderSelect[index].orderStatus > 0) {
+                            complete += 1;
+                        }
+                    }
+                    return Math.floor(complete / count * 100);
+                },
                 // isSelect(){
                 //     console.log(this.north[0].districtName[0].selected)
                 //     return this.north[0].districtName[0].selected
                 // }
+            },
+            mounted: function () {
+                let time = this.dbComment.length;
+                for (let index = 0; index < time; index++) {
+                    this.dbComment[index].commentTime = getDate(this.dbComment[index].commentTime);
+                }
             },
             methods: {
                 tabClick(index) {
                     this.tab = index
                     return this.tab
                 },
-                handleSelect(index) {
+                handleSelect(index, type) {
+                    this.tempSelectList = this.dbDistrickNorth.filter(item => {
+                        if (item.country == type) return item
+                    })
+                    // console.log(this.northList[index])
                     if (this.north[index].isShow == false) {
                         this.north[index].isShow = true
                     } else if (this.north[index].isShow == true) {
                         this.north[index].isShow = false
                     }
-                }
-            }
+                },
+
+            },
+
+
+
+
         })
+
+        function q() {
+            var ar = document.querySelectorAll("input[type='checkbox'][class='bee']:checked");
+            console.log(ar);
+        }
     </script>
+
+
+
 
 </body>
 
