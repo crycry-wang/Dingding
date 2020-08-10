@@ -129,9 +129,5 @@ router.get('/', async (req, res) => {
     res.render('sInformation', { a: storeInformation ,b:northDistrict,c:centralDistrict,d:storeProduct,e:storeComment,f:comment,g:orderSelect })
 })
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-    res.render('sInformation');
-});
 
 module.exports = router;
