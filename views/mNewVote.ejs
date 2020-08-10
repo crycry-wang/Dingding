@@ -68,10 +68,10 @@
                         <div class="col-2 mTD">
                             <span class="text20B">選擇團體</span>
                         </div>
-                        <div class="dSelect" style="width: 500px;">
+                        <div class="dSelect pr-4" style="width: 500px;">
                             <!-- <input v-model="groupName" type="text" class="text20RG singleText398"
                                 placeholder="選擇團體"> -->
-                            <select v-model="groupName" name="" id="" class="text20RG singleText398 w-75"
+                            <select v-model="groupName" name="" id="" class="text20RG singleText398 w-100"
                                 placeholder="選擇團體">
                                 <option v-for="(group,index) in groupList" class="text20RG singleText398" :value="group.groupName">
                                     {{group.groupName}}</option>
@@ -83,7 +83,7 @@
                             <span class="text20B">投票標題</span>
                         </div>
                         <div class="dSelect" style="width: 500px;">
-                            <input v-model="voteName" type="text" name="" id="" class="text20RG singleText398 w-75"
+                            <input v-model="voteName" type="text" name="" id="" class="text20RG singleText398 w-100"
                                 placeholder="輸入標題">
                             </input>
                         </div>
@@ -92,8 +92,8 @@
                         <div class="col-2 mTD">
                             <span class="text20B">票數選項</span>
                         </div>
-                        <div class="dSelect" style="width: 500px;">
-                            <select v-model="multipleSelect" name="" id="" class="text20RG singleText398 w-75"
+                        <div class="dSelect pr-4" style="width: 500px;">
+                            <select v-model="multipleSelect" name="" id="" class="text20RG singleText398 w-100"
                                 placeholder="選擇票數選項">
                                 <option class="text20RG singleText398" value="false">一人一票</option>
                                 <option class="text20RG singleText398" value="true">一人多票</option>
@@ -105,7 +105,7 @@
                             <span class="text20B">預定訂單時間</span>
                         </div>
                         <div class="dSelect" style="width: 500px;">
-                            <input v-model="scheduledOrder" type="datetime-local" class="text20RG singleText398"
+                            <input v-model="scheduledOrder" type="datetime-local" class="text20RG singleText398 w-100"
                                         placeholder="選擇日期時間">
                         </div>
                     </div>
@@ -114,7 +114,7 @@
                             <span class="text20B">投票截止時間</span>
                         </div>
                         <div class="dSelect" style="width: 500px;">
-                            <input v-model="voteDeadline" type="datetime-local" class="text20RG singleText398"
+                            <input v-model="voteDeadline" type="datetime-local" class="text20RG singleText398 w-100"
                                         placeholder="選擇日期時間">
                         </div>
                     </div>
@@ -127,7 +127,14 @@
     <script>
         let app = new Vue({
             el: "#app",
-            data: data,
+            data: {
+                groupList:JSON.parse('<%- groupList %>'),
+                groupName:"",
+                voteName:"",
+                scheduledOrder:"",
+                voteDeadline:"",
+                multipleSelect:"",
+            },
             methods:{
                 persist: function () {
                     localStorage.groupName = this.groupName;

@@ -21,6 +21,42 @@
         .orderProductItemList {
             margin: 0;
         }
+        ul{
+            margin-bottom: 0;
+        }
+        .titleHead {
+            background: var(--dYellow);
+            color: white;
+            height: 40px;
+            margin-bottom: 8px;
+            position: relative;
+            padding-left: 32px;
+            padding-right: 32px;
+        }
+        .titleHead>div:not(:first-child),
+        .orderList li>div:not(:first-child){
+            padding-left: 32px;
+        }        
+        .orderList li {
+            padding: 14px 32px;
+            border: 1px solid var(--moreLightGray);
+            border-radius: 20px;
+            
+        }
+
+
+        .orderList li+li{
+            margin-bottom: 8px;
+        }
+       
+        .orderList img {
+            width: 60px;
+            height: 60px;
+        }
+
+        .orderList{
+            max-height: calc(100vh - 306px);
+        }
     </style>
 
 </head>
@@ -58,128 +94,71 @@
             </div>
 
         </nav>
-        <div class="dblock mt-4">
+        <div class="dblock">
 
-            <div class="row">
-                <div class="col-md-12">
-                    <table class="table">
-                        <thead class="text20R">
-                            <tr>
-                                <th style="width:12%;">
-                                    訂單編號
-                                </th>
-                                <th style="width:21%;">
-                                    送餐時間
-                                </th>
-                                <th style="width:12%;">
-                                    聯絡人
-                                </th>
-                                <th style="width:13%;">
-                                    聯絡電話
-                                </th>
-                                <th style="width:14%;">
-                                    金額
-                                </th>
-                                <th>
-                                    訂單狀況
-                                </th>
-                            </tr>
-                            <tr height="8px"></tr>
-                        </thead>
+            <div class="text20R" id="sMealList">
+                <div class="titleHead col-12 row align-items-center d-flex">
+                    <div class="col-2">
+                        訂單編號
+                    </div>
+                    <div class="col-3 ml-n5">
+                        送餐時間
+                    </div>
+                    <div class="col-2">
+                        聯絡人
+                    </div>
 
-                        <tbody class="text20R list">
-                            <tr>
-                                <td>
-                                    252541
-                                </td>
-                                <td>
-                                    2020/06/18 12:00
-                                </td>
-                                <td>
-                                    阿信
-                                </td>
-                                <td>
-                                    0970333215
-                                </td>
-                                <td>
-                                    <span class="eng20R price">
-                                        <span class=" align-middle">5,000</span>
-                                    </span>
-                                </td>
-                                <td class="action d-flex align-items-center">
-                                    <!-- <p>完成</p> -->
-                                    <!-- <p class="Rcolor">取消</p> -->
-                                    <button class="text20R dbtn btnB" data-toggle="modal"
-                                        data-target="#readyOrder">完備</button>
-                                    <button class="text20R dbtn btnW ml-auto" data-toggle="modal"
-                                        data-target="#order">查看訂單</button>
-                                </td>
-                            </tr>
-                            <tr height="8px"></tr>
-
-                            <!-- 取消 -->
-                            <tr>
-                                <td>
-                                    252541
-                                </td>
-                                <td>
-                                    2020/06/18 12:00
-                                </td>
-                                <td>
-                                    阿信
-                                </td>
-                                <td>
-                                    0970333215
-                                </td>
-                                <td>
-                                    <span class="eng20R price">
-                                        <span class=" align-middle">5,000</span>
-                                    </span>
-                                </td>
-                                <td class="action d-flex align-items-center">
-                                    <!-- <p>完成</p> -->
-                                    <p class="Rcolor">取消</p>
-                                    <!-- <button class="text20R dbtn btnB" data-toggle="modal" data-target="#readyOrder">完備</button> -->
-                                    <button class="text20R dbtn btnW ml-auto" data-toggle="modal"
-                                        data-target="#order">查看訂單</button>
-                                </td>
-                            </tr>
-                            <tr height="8px"></tr>
-
-                            <!-- 完成 -->
-                            <tr>
-                                <td>
-                                    252541
-                                </td>
-                                <td>
-                                    2020/06/18 12:00
-                                </td>
-                                <td>
-                                    阿信
-                                </td>
-                                <td>
-                                    0970333215
-                                </td>
-                                <td>
-                                    <span class="eng20R price">
-                                        <span class=" align-middle">5,000</span>
-                                    </span>
-                                </td>
-                                <td class="action d-flex align-items-center">
-                                    <p>完成</p>
-                                    <!-- <p class="Rcolor">取消</p> -->
-                                    <!-- <button class="text20R dbtn btnB" data-toggle="modal" data-target="#readyOrder">完備</button> -->
-                                    <button class="text20R dbtn btnW ml-auto" data-toggle="modal"
-                                        data-target="#order">查看訂單</button>
-                                </td>
-                            </tr>
-                            <tr height="8px"></tr>
-                        </tbody>
-                    </table>
+                    <div class="col-2">
+                        金額
+                    </div>
+                    <div class="col-3">
+                        訂單狀況
+                    </div>
                 </div>
+                <ul class="scrollList orderList">
+                    <li class="row col-12 d-flex align-items-center" v-for='(item,index) in product'>
+                        <div class="col-2">
+                            25222
+                        </div>
+                        <div class="col-3 ml-n5">
+                            2020/06/18 12:00
+                        </div>
+                        <div class="col-2">
+                            阿信
+                        </div>
 
+                        <div class="col-2">
+                            <span class="eng20R price">
+                                <span class=" align-middle">5,000</span>
+                            </span>
+                        </div>
+                        <div class="col-3">
+                            <span class="action d-flex align-items-center">
+                                <!-- <p>完成</p> -->
+                                <!-- <p class="Rcolor">取消</p> -->
+                                <button class="text20R dbtn btnB" data-toggle="modal"
+                                    data-target="#readyOrder">完備</button>
+                                <button class="text20R dbtn btnW ml-auto" data-toggle="modal"
+                                    data-target="#order">查看訂單</button>
+                            </span>
+                        </div>
+
+
+                    </li>
+
+                </ul>
             </div>
+            <!-- <button type="button" class="btnY dbtn " data-toggle="modal" data-target="#comfirm">
+                成功介面
+            </button>
+            <button type="button" class="btnR dbtn " data-toggle="modal" data-target="#deleteType">
+                刪除類別介面
+            </button> -->
         </div>
+    </div>
+
+
+    </div>
     </div>
 
 
@@ -213,42 +192,7 @@
                         <div class="rightContent orderProductItemList text20B">
                             <div class="orderProductItem mb-2 d-flex justify-content-between">
                                 <div>
-                                    <img src="/image/store/Taichung/肯德基KFC_台中公益/咔啦雞腿堡.jpeg" alt=""
-                                        class="itemImg">
-                                    <span class="pl-2">
-                                        咔啦雞腿堡
-                                    </span>
-                                </div>
-                                <div>
-                                    <span class="eng20R price">
-                                        <span class=" align-middle">75</span>
-                                    </span>
-                                </div>
-                                <div>
-                                    <span class="eng20R productQuantity pr-5 align-middle">11</span>
-                                </div>
-                            </div>                            
-                            <div class="orderProductItem mb-2 d-flex justify-content-between">
-                                <div>
-                                    <img src="/image/store/Taichung/肯德基KFC_台中公益/咔啦雞腿堡.jpeg" alt=""
-                                        class="itemImg">
-                                    <span class="pl-2">
-                                        咔啦雞腿堡
-                                    </span>
-                                </div>
-                                <div>
-                                    <span class="eng20R price">
-                                        <span class=" align-middle">75</span>
-                                    </span>
-                                </div>
-                                <div>
-                                    <span class="eng20R productQuantity pr-5 align-middle">11</span>
-                                </div>
-                            </div>                            
-                            <div class="orderProductItem mb-2 d-flex justify-content-between">
-                                <div>
-                                    <img src="/image/store/Taichung/肯德基KFC_台中公益/咔啦雞腿堡.jpeg" alt=""
-                                        class="itemImg">
+                                    <img src="/image/store/Taichung/肯德基KFC_台中公益/咔啦雞腿堡.jpeg" alt="" class="itemImg">
                                     <span class="pl-2">
                                         咔啦雞腿堡
                                     </span>
@@ -262,20 +206,41 @@
                                     <span class="eng20R productQuantity pr-5 align-middle">11</span>
                                 </div>
                             </div>
-    
-                    <!-- 詳情 -->
-                    <p class="text-right" style="border-top:solid 2px var(--dBlack);">
-                        <span class="text20B">總金額
-                            <span class="eng20R price">
-                                <span class="align-middle">500</span>
-                            </span>
-                        </span>
-                    </p>
-
-                </div>
-
+                            <div class="orderProductItem mb-2 d-flex justify-content-between">
+                                <div>
+                                    <img src="/image/store/Taichung/肯德基KFC_台中公益/咔啦雞腿堡.jpeg" alt="" class="itemImg">
+                                    <span class="pl-2">
+                                        咔啦雞腿堡
+                                    </span>
+                                </div>
+                                <div>
+                                    <span class="eng20R price">
+                                        <span class=" align-middle">75</span>
+                                    </span>
+                                </div>
+                                <div>
+                                    <span class="eng20R productQuantity pr-5 align-middle">11</span>
+                                </div>
+                            </div>
+                            <div class="orderProductItem mb-2 d-flex justify-content-between">
+                                <div>
+                                    <img src="/image/store/Taichung/肯德基KFC_台中公益/咔啦雞腿堡.jpeg" alt="" class="itemImg">
+                                    <span class="pl-2">
+                                        咔啦雞腿堡
+                                    </span>
+                                </div>
+                                <div>
+                                    <span class="eng20R price">
+                                        <span class=" align-middle">75</span>
+                                    </span>
+                                </div>
+                                <div>
+                                    <span class="eng20R productQuantity pr-5 align-middle">11</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    </ul>
+
                 </div>
 
                 <!-- 詳情 -->

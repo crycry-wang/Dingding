@@ -53,8 +53,8 @@
             </div>
             <!-- 內容區塊 -->
             <div id="app" class="dblock givePadding mt-m">
-                <div class="dTag act text24RG">預定訂單</div>
-                <div class="dTag text24RG">歷史訂單</div>
+                <div :class="{act : tab == 1}" class="dTag text24RG" @click="getFuture">預定訂單</div>
+                <div :class="{act : tab == 2}" class="dTag text24RG" @click="getHistory">歷史訂單</div>
                 <div class="d-flex justify-content-end">
                     <a href="mNewOrder"><button class="text20R dbtn btnB">安排訂單<span class="ml-2">+</span></button></a>
                 </div>
@@ -68,114 +68,10 @@
                     <div v-for="(order,index) in orderList" class="row mTR text20B">
                         <div class="col-4 mTD">{{ order.groupName }}</div>
                         <div class="col-4 mTD">
-                            <img :src="orderList[index].storePhoto" alt="" class="float-left orderListimg clipCircle mr-3">{{ order.storeName }}</div>
-                        <div class="col-4 mTD">{{ order.orderArrivedTime }}<a href="mOrder" class="icon-ok float-right textG"></a></div>
+                            <img :src="'/image/store/' +order.storeBanner" alt="" class="float-left orderListimg clipCircle mr-3">{{ order.storeName }}</div>
+                        <div class="col-4 mTD">{{ order.orderArrivedTime }}<a href="#" @click="toOrderDetail(order.OrderID)" class="icon-ok float-right" :class="checkOrder(order.orderID)"></a></div>
                     </div>
-                    <!-- <div class="row mTR text20B">
-                        <div class="col-4 mTD">就愛烤肉團</div>
-                        <div class="col-4 mTD">
-                            <img src="/image/store/Taichung/朴大哥的韓式炸雞_逢甲總店/index.jpeg" alt=""
-                                class="float-left orderListimg clipCircle mr-3">八色</div>
-                        <div class="col-4 mTD">2020/06/18 13:00<i class="icon-ok float-right textY"></i></div>
-                    </div>
-                    <div class="row mTR text20B">
-                        <div class="col-4 mTD">隨便吃團</div>
-                        <div class="col-4 mTD">
-                            <img src="/image/store/Taichung/朴大哥的韓式炸雞_逢甲總店/index.jpeg" alt=""
-                                class="float-left orderListimg clipCircle mr-3">屋馬</div>
-                        <div class="col-4 mTD">2020/07/05 12:00<i class="icon-ok float-right textG"></i></div>
-                    </div>
-                    <div class="row mTR text20B">
-                        <div class="col-4 mTD">吃到飽團</div>
-                        <div class="col-4 mTD">
-                            <img src="/image/store/Taichung/朴大哥的韓式炸雞_逢甲總店/index.jpeg" alt=""
-                                class="float-left orderListimg clipCircle mr-3">萬客</div>
-                        <div class="col-4 mTD">2020/07/06 16:20<i class="icon-ok float-right textY"></i></div>
-                    </div>
-                    <div class="row mTR text20B">
-                        <div class="col-4 mTD">資策會便當團</div>
-                        <div class="col-4 mTD">
-                            <img src="/image/store/Taichung/朴大哥的韓式炸雞_逢甲總店/index.jpeg" alt=""
-                                class="float-left orderListimg clipCircle mr-3">清潭洞</div>
-                        <div class="col-4 mTD">2020/06/22 12:00<i class="icon-ok float-right textY"></i></div>
-                    </div>
-                    <div class="row mTR text20B">
-                        <div class="col-4 mTD">就愛烤肉團</div>
-                        <div class="col-4 mTD">
-                            <img src="/image/store/Taichung/朴大哥的韓式炸雞_逢甲總店/index.jpeg" alt=""
-                                class="float-left orderListimg clipCircle mr-3">八色</div>
-                        <div class="col-4 mTD">2020/06/18 13:00<i class="icon-ok float-right textY"></i></div>
-                    </div>
-                    <div class="row mTR text20B">
-                        <div class="col-4 mTD">隨便吃團</div>
-                        <div class="col-4 mTD">
-                            <img src="/image/store/Taichung/朴大哥的韓式炸雞_逢甲總店/index.jpeg" alt=""
-                                class="float-left orderListimg clipCircle mr-3">屋馬</div>
-                        <div class="col-4 mTD">2020/07/05 12:00<i class="icon-ok float-right textG"></i></div>
-                    </div>
-                    <div class="row mTR text20B">
-                        <div class="col-4 mTD">吃到飽團</div>
-                        <div class="col-4 mTD">
-                            <img src="/image/store/Taichung/朴大哥的韓式炸雞_逢甲總店/index.jpeg" alt=""
-                                class="float-left orderListimg clipCircle mr-3">萬客</div>
-                        <div class="col-4 mTD">2020/07/06 16:20<i class="icon-ok float-right textY"></i></div>
-                    </div>
-                    <div class="row mTR text20B">
-                        <div class="col-4 mTD">資策會便當團</div>
-                        <div class="col-4 mTD">
-                            <img src="/image/store/Taichung/朴大哥的韓式炸雞_逢甲總店/index.jpeg" alt=""
-                                class="float-left orderListimg clipCircle mr-3">清潭洞</div>
-                        <div class="col-4 mTD">2020/06/22 12:00<i class="icon-ok float-right textY"></i></div>
-                    </div>
-                    <div class="row mTR text20B">
-                        <div class="col-4 mTD">就愛烤肉團</div>
-                        <div class="col-4 mTD">
-                            <img src="/image/store/Taichung/朴大哥的韓式炸雞_逢甲總店/index.jpeg" alt=""
-                                class="float-left orderListimg clipCircle mr-3">八色</div>
-                        <div class="col-4 mTD">2020/06/18 13:00<i class="icon-ok float-right textY"></i></div>
-                    </div>
-                    <div class="row mTR text20B">
-                        <div class="col-4 mTD">隨便吃團</div>
-                        <div class="col-4 mTD">
-                            <img src="/image/store/Taichung/朴大哥的韓式炸雞_逢甲總店/index.jpeg" alt=""
-                                class="float-left orderListimg clipCircle mr-3">屋馬</div>
-                        <div class="col-4 mTD">2020/07/05 12:00<i class="icon-ok float-right textG"></i></div>
-                    </div>
-                    <div class="row mTR text20B">
-                        <div class="col-4 mTD">吃到飽團</div>
-                        <div class="col-4 mTD">
-                            <img src="/image/store/Taichung/朴大哥的韓式炸雞_逢甲總店/index.jpeg" alt=""
-                                class="float-left orderListimg clipCircle mr-3">萬客</div>
-                        <div class="col-4 mTD">2020/07/06 16:20<i class="icon-right-open float-right textY"></i></div>
-                    </div>
-                    <div class="row mTR text20B">
-                        <div class="col-4 mTD">資策會便當團</div>
-                        <div class="col-4 mTD">
-                            <img src="/image/store/Taichung/朴大哥的韓式炸雞_逢甲總店/index.jpeg" alt=""
-                                class="float-left orderListimg clipCircle mr-3">清潭洞</div>
-                        <div class="col-4 mTD">2020/06/22 12:00<i class="icon-ok float-right textY"></i></div>
-                    </div>
-                    <div class="row mTR text20B">
-                        <div class="col-4 mTD">就愛烤肉團</div>
-                        <div class="col-4 mTD">
-                            <img src="/image/store/Taichung/朴大哥的韓式炸雞_逢甲總店/index.jpeg" alt=""
-                                class="float-left orderListimg clipCircle mr-3">八色</div>
-                        <div class="col-4 mTD">2020/06/18 13:00<i class="icon-ok float-right textY"></i></div>
-                    </div>
-                    <div class="row mTR text20B">
-                        <div class="col-4 mTD">隨便吃團</div>
-                        <div class="col-4 mTD">
-                            <img src="/image/store/Taichung/朴大哥的韓式炸雞_逢甲總店/index.jpeg" alt=""
-                                class="float-left orderListimg clipCircle mr-3">屋馬</div>
-                        <div class="col-4 mTD">2020/07/05 12:00<i class="icon-ok float-right textG"></i></div>
-                    </div>
-                    <div class="row mTR text20B">
-                        <div class="col-4 mTD">吃到飽團</div>
-                        <div class="col-4 mTD">
-                            <img src="/image/store/Taichung/朴大哥的韓式炸雞_逢甲總店/index.jpeg" alt=""
-                                class="float-left orderListimg clipCircle mr-3">萬客</div>
-                        <div class="col-4 mTD">2020/07/06 16:20<i class="icon-right-open float-right textY"></i></div>
-                    </div> -->
+                    
                 </div>
             </div>
         </div>
@@ -186,19 +82,43 @@
         let app = new Vue({
             el: "#app",
             data: {
-                orderList: [{
-                    orderID: 1,
-                    groupName: "隨便吃團",
-                    storeName: "太初麵食",
-                    orderArrivedTime: "2020/06/22 12:00",
-                    storePhoto: "/image/store/Taichung/太初麵食/index.jpeg"
-                }, {
-                    orderID: 2,
-                    groupName: "吃到飽團",
-                    storeName: "隨主飡_法式水煮專賣",
-                    orderArrivedTime: "2020/07/06 16:20",
-                    storePhoto: "/image/store/Taichung/太初麵食/index.jpeg"
-                }],
+                orderList:JSON.parse('<%- orderList %>'),
+                orderCheck:JSON.parse('<%- orderCheck %>'),
+                tab:1,
+            },
+            methods:{
+                getFuture:function(){
+                    fetch('/mOrderList/future')
+                    .then(function(response) {
+                        return response.json();
+                    })
+                    .then((myJson) => {
+                        console.log(myJson);
+                        this.orderList= JSON.parse(myJson);
+                    });
+                    this.tab=1;
+                },
+                getHistory:function(){
+                    fetch('/mOrderList/history')
+                    .then(function(response) {
+                        return response.json();
+                    })
+                    .then((myJson) => {
+                        console.log(myJson);
+                        this.orderList= JSON.parse(myJson);
+                    });
+                    this.tab=2;
+                },
+                checkOrder:function(viewOrderID) {
+                    for (let i = 0; i < this.orderCheck.length; i++) {
+                        if(this.orderCheck[i].orderID == viewOrderID)
+                        {return "textY"}
+                    }
+                    return "textG" ;
+                },
+                toOrderDetail:function(viewOrderID){
+                    location.href="/mOrder?orderID="+viewOrderID;
+                }
             }
         })
     </script>

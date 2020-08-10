@@ -9,6 +9,7 @@
     <script src="/javascript/jquery-3.5.1.min.js"></script>
     <script src="/javascript/popper.min.js"></script>
     <script src="/javascript//bootstrap.min.js"></script>
+    <script src="/javascript/vue.js"></script>
     <link rel="stylesheet" href="/stylesheets/style.css">
     <link rel="stylesheet" href="/stylesheets/fontello.css">
     <link rel="stylesheet" href="/stylesheets/sider.css">
@@ -55,7 +56,7 @@
     </div>
 
     <!-- 右邊內容放置區 -->
-    <div class="containerRight">
+    <div id="app" class="containerRight">
         <div class="inWrapper">
             <!-- 上方頁籤 -->
             <div class="topBtnGroup topBtnPadding">
@@ -66,8 +67,8 @@
             </div>
             <!-- 內容區塊 -->
             <div class="dblock givePadding mt-m">
-                <div class="dTag act text24RG">正在投票</div>
-                <div class="dTag text24RG">歷史投票</div>
+                <div :class="{act : tab == 1}" class="dTag text24RG" @click="getFuture">正在投票</div>
+                <div :class="{act : tab == 2}" class="dTag text24RG" @click="getHistory">歷史投票</div>
                 <div class="d-flex justify-content-end">
                     <a href="mNewVote"><button class="text20R dbtn btnY">發起投票<span class="ml-2">+</span></button></a>
                 </div>
@@ -78,12 +79,10 @@
                 </div>
                 <!-- 捲軸範圍 -->
                 <div class="scrollList orderVoteList">
-                    <div class="row mTR text20B">
-                        <div class="col-4 mTD">聚餐吃什麼?</div>
-                        <div class="col-4 mTD">火鍋團</div>
-                        <div class="col-4 mTD">2020/06/22 12:00
-                            <a href="mVote" class="icon-ok float-right textG"></a>
-                        </div>
+                    <div v-for="(vote,index) in voteList" class="row mTR text20B">
+                        <div class="col-4 mTD">{{vote.voteName}}</div>
+                        <div class="col-4 mTD">{{vote.groupName}}</div>
+                        <div class="col-4 mTD">{{vote.voteDeadLine}}<a href="#" @click="toVoteDetail(vote.voteID)" class="icon-ok float-right" :class="checkVote(vote.voteID)"></a></div>
                     </div>
                     <!-- <div class="row mTR text20B">
                         <div class="col-4 mTD">阿信慶生聚會</div>
@@ -109,8 +108,52 @@
             </div>
         </div>
     </div>
+    <!-- <script src="/javascript/data.js"></script> -->
 
-
+    <script>
+        let app = new Vue({
+            el:"#app",
+            data:{
+                voteList:JSON.parse('<%- voteList %>'),
+                voteCheck:JSON.parse('<%- voteCheck %>'),
+                tab:1,
+            },
+            methods:{
+                getFuture:function(){
+                    fetch('/mVoteList/future')
+                    .then(function(response) {
+                        return response.json();
+                    })
+                    .then((myJson) => {
+                        console.log(myJson);
+                        this.voteList= JSON.parse(myJson);
+                    });
+                    this.tab=1;
+                },
+                getHistory:function(){
+                    fetch('/mVoteList/history')
+                    .then(function(response) {
+                        return response.json();
+                    })
+                    .then((myJson) => {
+                        console.log(myJson);
+                        this.voteList= JSON.parse(myJson);
+                    });
+                    this.tab=2;
+                },
+                checkVote:function(viewVoteID) {
+                    for (let i = 0; i < this.voteCheck.length; i++) {
+                        if(this.voteCheck[i].voteID == viewVoteID)
+                        {return "textB"}
+                    }
+                    return "textG" ;
+                },
+                toVoteDetail:function(viewVoteID){
+                    location.href="/mVote?voteID="+viewVoteID;
+                }
+            }
+        })
+    </script>
 
 </body>
 

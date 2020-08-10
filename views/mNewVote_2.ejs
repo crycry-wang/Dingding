@@ -60,7 +60,7 @@
             <div id="app" class="dblock givePadding mt-m">
                 <!-- 內容按鈕 -->
                 <div class="clearfix mb-s">
-                    <button class="text20RG dbtn btnG"><i class="icon-left-open mr-2"></i>返回</button>
+                    <button onclick="goback()" class="text20RG dbtn btnG"><i class="icon-left-open mr-2"></i>返回</button>
                     <a href="mVoteList"><button class="text20R dbtn btnB float-right">建立投票</button></a>
                 </div>
                 <div class="scrollList orderVoteListM">
@@ -73,9 +73,9 @@
                             <button class="text20R dbtn btnB ml-3">搜尋店家</button>
                         </div>
                         <div class="mTD">
-                            <a href="#" class="text20R text-decoration-none pr-3 textY">已選取</a><span class="textG">|</span>
+                            <a href="#" class="text20R text-decoration-none pr-3 textY">收藏</a><span class="textG">|</span>
                             <a href="#" class="text20R text-decoration-none pr-3 pl-3">推薦</a><span class="textG">|</span>
-                            <a href="#" class="text20R text-decoration-none pr-3 pl-3">收藏</a>
+                            <a href="#" class="text20R text-decoration-none pr-3 pl-3">已選取</a>
                         </div>
                     </div>
                     <!-- 水平線 -->
@@ -88,14 +88,14 @@
                             <input class="form-check-input" type="checkbox" id="blankCheckbox" value="option1"
                                 aria-label="...">
                             <div class="dingImgDiv" style="width:  100%">
-                                <img :src="storeList[index].storePhoto" class="card-img-top dingImg"
+                                <img :src="'/image/store/' +store.storeBanner" class="card-img-top dingImg"
                                     alt="...">
                                 <div class="card-body">
                                     <div class="d-inline-block w-75">
                                         <span class="card-text text24B shopName">{{ store.storeName }}</span>
                                     </div>
                                     <i class="icon-spoon float-right"></i>
-                                    <span class="card-text eng24R float-right" style="margin-right: 7px;">{{store.storeScore}}</span>
+                                    <span class="card-text eng24R float-right" style="margin-right: 7px;">{{store.star}}</span>
                                 </div>
                             </div>
                         </div>
@@ -105,11 +105,44 @@
         </div>
     </div>
 
-    <script src="/javascript/data.js"></script>
+
     <script>
+        //  document.getElementById('goback').addEventListener("click",()=>{
+        //     // location.href="/mNewVote";
+        //     console.log("get")
+        // })
+
+        function goback(){
+            location.href="/mNewVote";
+        }
+    </script>
+    <script>
+       
+
         let app = new Vue({
             el:"#app",
-            data:data
+            data:{
+                storeList:JSON.parse('<%- storeList %>'),
+            },
+            methods:{
+                getScore:function(viewStoreID){
+                    let result;
+                    
+                    fetch(`/mNewVote_2/score?storeID=${viewStoreID}`)
+                    .then(function(response) {
+                        return response.json();
+                    })
+                    .then((myJson) => {
+                        let transform;
+                        transform = JSON.parse(myJson);
+                        result = transform[0].star;
+                        console.log("fetch: "+result);                        
+                    });
+                    console.log(result);
+                    return result;
+                    // return result[0].star;
+                }
+            }
         })
     </script>
 

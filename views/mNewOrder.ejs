@@ -72,10 +72,8 @@
                                 <div class="col-2 mTD">
                                     <span class="text20B">選擇團體</span>
                                 </div>
-                                <div class="dSelect" style="width: 500px;">
-                                    <!-- <input v-model="groupName" type="text" class="text20RG singleText398"
-                                        placeholder="選擇團體"> -->
-                                    <!-- <select v-model="groupName" name="" id="" class="text20RG singleText398 w-75"
+                                <div class="dSelect pr-4" style="width: 500px;">
+                                    <select v-model="groupName" name="" id="" class="text20RG singleText398 w-100"
                                         placeholder="選擇團體">
                                         <option v-for="(group,index) in groupList" class="text20RG singleText398" value="">{{group.groupName}}</option>
                                     </select>
@@ -86,7 +84,7 @@
                                     <span class="text20B">餐點送達時間</span>
                                 </div>
                                 <div class="dSelect" style="width: 500px;">
-                                    <input v-model="orderArrivedTime" type="datetime-local" class="text20RG singleText398"
+                                    <input v-model="orderArrivedTime" type="datetime-local" class="text20RG singleText398 w-100"
                                         placeholder="選擇日期時間">
                                 </div>
                             </div>
@@ -95,22 +93,22 @@
                                     <span class="text20B">點餐截止時間</span>
                                 </div>
                                 <div class="dSelect" style="width: 500px;">
-                                    <input v-model="orderDeadline" type="datetime-local" class="text20RG singleText398"
+                                    <input v-model="orderDeadline" type="datetime-local" class="text20RG singleText398 w-100"
                                         placeholder="選擇日期時間">
                                 </div>
                             </div>
                             <div class="row mb-m mTD">
                                 <div class="dSelect" style="width: 500px;">
                                     <input v-model:trim="searchCondition" type="text" class="text20RG singleText398" placeholder="請輸入店家名稱">
-                                </div> -->
-                                <!-- <button v-on:click="searchStore" class="text20R dbtn btnY ml-3">搜尋店家</button>
+                                </div>
+                                <button v-on:click="searchStore" class="text20R dbtn btnY ml-3">搜尋店家</button>
                                 <button v-on:click="randomChoose" class="text20R dbtn btnY ml-3" type="button"
-                                    id="randomBtn">店家拉霸機</button> -->
+                                    id="randomBtn">店家拉霸機</button>
                             </div>
                             <div class="mTD">
-                                <a href="#" class="text20R text-decoration-none pr-3 textB" @click="recommand">推薦</a><span
+                                <a href="#" class="text20R text-decoration-none pr-3 textB">收藏</a><span
                                     class="textG">|</span>
-                                <a href="#" class="text20R text-decoration-none pr-3 pl-3">收藏</a><span
+                                <a href="#" class="text20R text-decoration-none pr-3 pl-3" @click="recommand">推薦</a><span
                                     class="textG">|</span>
                                 <a href="#" class="text20R text-decoration-none pr-3 pl-3">重新下訂</a><span
                                     class="textG">|</span>
@@ -122,7 +120,7 @@
                             <hr class="" style="border: 1px solid var(--dLightGray);">
                         </div>
                         <!-- 商品卡 -->
-                        <!-- <div class="row imgCardGroup">
+                        <div class="row imgCardGroup">
                             <div v-for="(store,index) in storeList" class="col-4 imgCard">
                                 <input v-model="selectedStore" class="form-check-input" type="radio" name="blankRadio"
                                     id="blankRadio1" :value="storeList[index].storeID" aria-label="...">
@@ -139,7 +137,7 @@
                                 </div>
                             </div>
                            
-                        </div> -->
+                        </div>
                     </div>
                 </div>
             </div>
@@ -150,56 +148,28 @@
 
     <script src="/javascript/data.js"></script>
     <script>
-        // let data ＝ {
-        //     groupName:"aa",
-        //     orderArrivedTime:"aa",
-        //     orderDeadline:"aa"
-        // }
-        // let countCard = document.getElementsByClassName('imgCard').length;
-        // let randaomCard;
-        // randaomCard = Math.floor(Math.random() * countCard);
-
-        // console.log(document.querySelectorAll(".form-check-input")[randaomCard])
-
+      
         let app = new Vue({
             el: "#app",
             data: {
                 data,
                 dataJson: []
             },
-            mounted() {
-                if (localStorage.groupName) {
-                    this.groupName = localStorage.groupName;
-                }
-                if (localStorage.orderArrivedTime) {
-                    this.orderArrivedTime = localStorage.orderArrivedTime;
-                }
-                if (localStorage.orderDeadline) {
-                    this.orderDeadline = localStorage.orderDeadline;
-                }
-                if (localStorage.orderDeadline) {
-                    this.selectedStore = localStorage.selectedStore;
-                }
-            },
+            // mounted() {
+            //     if (localStorage.groupName) {
+            //         this.groupName = localStorage.groupName;
+            //     }
+            //     if (localStorage.orderArrivedTime) {
+            //         this.orderArrivedTime = localStorage.orderArrivedTime;
+            //     }
+            //     if (localStorage.orderDeadline) {
+            //         this.orderDeadline = localStorage.orderDeadline;
+            //     }
+            //     if (localStorage.orderDeadline) {
+            //         this.selectedStore = localStorage.selectedStore;
+            //     }
+            // },
             computed:{
-                // searchStore(){
-                //     if(this.searchCondition){
-                //         return this.storeList
-                //     }else{
-                //         return this.storeList.filter(store => {
-                //             return this.storeList.storeName.toLowerCase().indexOf(this.searchCondition.toLowerCase()) != -1
-                //         })
-                //     }
-                // }
-                // searchStore(){
-                //     if(this.searchCondition){
-                //         return this.storeList
-                //     }else{
-                //         return this.storeList.filter(store => {
-                //             return this.storeList.storeName.toLowerCase().indexOf(this.searchCondition.toLowerCase()) != -1
-                //         })
-                //     }
-                // }
             },
             methods: {
                 randomChoose:function() {
@@ -219,17 +189,17 @@
                     localStorage.selectedStore = this.selectedStore;
                     // console.log('now pretend I did more stuff...');
                 },              
-                searchStore:function(){
-                    let finalStoreList = this.storeList;
-                    if(this.searchCondition){
-                        return this.storeList
-                    }else{
-                        finalStoreList = this.storeList.filter(store => {
-                            return this.storeList.storeName.toLowerCase().indexOf(this.searchCondition.toLowerCase()) != -1
-                        })
-                    }
-                    return finalStoreList;
-                },
+                // searchStore:function(){
+                //     let finalStoreList = this.storeList;
+                //     if(this.searchCondition){
+                //         return this.storeList
+                //     }else{
+                //         finalStoreList = this.storeList.filter(store => {
+                //             return this.storeList.storeName.toLowerCase().indexOf(this.searchCondition.toLowerCase()) != -1
+                //         })
+                //     }
+                //     return finalStoreList;
+                // },
                 recommand:function(){
                     
                     fetch('/mNewOrder/json')
