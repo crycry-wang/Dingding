@@ -17,6 +17,7 @@
     <!-- <link rel="stylesheet" href="/stylesheets/member.css"> -->
     <!-- <link rel="stylesheet" href="/stylesheets/sEvaluation.css"> -->
     <link rel="stylesheet" href="/stylesheets/storeInformation.css">
+    <link rel="stylesheet" href="/stylesheets/sEvaluation.css">
     <link rel="stylesheet" href="/stylesheets/member.css">
     <link rel="stylesheet" href="/stylesheets/index.css">
 
@@ -151,38 +152,12 @@
                                 <div style="display: inline-block;">
                                     <div class="storeModelImgContent">
                                         <span class="text28B mr16">{{item.storeName}}</span>
-                                        <span class="eng24R mr16" v-for="score in dbCommentScore">{{score.star}}</span>
-                                        <div class="spoon" style="display: inline-block;" v-if="item.comment == 5">
-                                            <i class="icon-spoon"></i>
-                                            <i class="icon-spoon"></i>
-                                            <i class="icon-spoon"></i>
-                                            <i class="icon-spoon"></i>
-                                            <i class="icon-spoon"></i>
-                                        </div>
-                                        <div class="spoon" style="display: inline-block;"
-                                            v-if="item.comment>4 && item.comment<5">
-                                            <i class="icon-spoon"></i>
-                                            <i class="icon-spoon"></i>
-                                            <i class="icon-spoon"></i>
-                                            <i class="icon-spoon"></i>
-                                            <i class="icon-borderspoon"></i>
-                                        </div>
-                                        <div class="spoon" style="display: inline-block;"
-                                            v-if="item.comment>3 && item.comment<4">
-                                            <i class="icon-spoon"></i>
-                                            <i class="icon-spoon"></i>
-                                            <i class="icon-spoon"></i>
-                                            <i class="icon-borderspoon"></i>
-                                            <i class="icon-borderspoon"></i>
-                                        </div>
-                                        <div class="spoon" style="display: inline-block;"
-                                            v-if="item.comment>2 && item.comment<3">
-                                            <i class="icon-spoon"></i>
-                                            <i class="icon-spoon"></i>
-                                            <i class="icon-borderspoon"></i>
-                                            <i class="icon-borderspoon"></i>
-                                            <i class="icon-borderspoon"></i>
-                                        </div>
+                                        <span class="eng24R mr16">4.2</span>
+                                        <i v-for="score in dbCommentScore" :class="score.star>=1 ? 'icon-spoon' : 'icon-borderspoon'" class="spoon"></i>
+                                        <i v-for="score in dbCommentScore" :class="score.star>=2 ? 'icon-spoon' : 'icon-borderspoon'" class="spoon"></i>
+                                        <i v-for="score in dbCommentScore" :class="score.star>=3 ? 'icon-spoon' : 'icon-borderspoon'" class="spoon"></i>
+                                        <i v-for="score in dbCommentScore" :class="score.star>=4 ? 'icon-spoon' : 'icon-borderspoon'" class="spoon"></i>
+                                        <i v-for="score in dbCommentScore" :class="score.star==5 ? 'icon-spoon' : 'icon-borderspoon'" class="spoon"></i>
                                         <p class="text20RG" style="margin-top: 8px;">訂單完成率 {{item.tradeSuccess}}%
                                         </p>
                                         <p class="text20R" style="margin-top: 8px;">{{ item.storeAddress }}</p>
@@ -284,24 +259,16 @@
                                     <div class="mealsScroll" v-if="tab === 3" v-show="tab===3">
                                         <ul class="evaluationList">
                                             <!-- 1 -->
-                                            <li class="dblock d-flex pl-0" v-for="comment in item.comments">
+                                            <li class="dblock d-flex pl-0" v-for="comment in dbComment">
                                                 <!-- <span class="photo"></span> -->
                                                 <img :src="'/image/會員資料/大頭照/' + comment.memberPhoto">
                                                 <span class="content">
-                                                    <h2 class="text24B">{{ comment.member }}</h2>
-                                                    <div class="star">
-                                                        <i v-if="comment.commentScore >= 1" class="icon-spoon"></i>
-                                                        <i v-if="comment.commentScore >= 2" class="icon-spoon"></i>
-                                                        <i v-if="comment.commentScore >= 3" class="icon-spoon"></i>
-                                                        <i v-if="comment.commentScore >= 4" class="icon-spoon"></i>
-                                                        <i v-if="comment.commentScore >= 5" class="icon-spoon"></i>
-                                                        <i v-if="comment.commentScore <= 1"
-                                                            class="icon-borderspoon"></i>
-                                                        <i v-if="comment.commentScore <= 2"
-                                                            class="icon-borderspoon"></i>
-                                                        <i v-if="comment.commentScore <=3" class="icon-borderspoon"></i>
-                                                        <i v-if="comment.commentScore <=4" class="icon-borderspoon"></i>
-                                                    </div>
+                                                    <h2 class="text24B">{{ comment.memberName }}</h2>
+                                                    <i :class="comment.commentScore>=1 ? 'icon-spoon' : 'icon-borderspoon'" class="spoon"></i>
+                                                    <i :class="comment.commentScore>=2 ? 'icon-spoon' : 'icon-borderspoon'" class="spoon"></i>
+                                                    <i :class="comment.commentScore>=3 ? 'icon-spoon' : 'icon-borderspoon'" class="spoon"></i>
+                                                    <i :class="comment.commentScore>=4 ? 'icon-spoon' : 'icon-borderspoon'" class="spoon"></i>
+                                                    <i :class="comment.commentScore==5 ? 'icon-spoon' : 'icon-borderspoon'" class="spoon"></i>
                                                     <p class="text20R">
                                                         {{ comment.commentContent }}</p>
                                                     <p class="text16">3小時前</p>
@@ -972,6 +939,7 @@
             dbDistrickCentral: JSON.parse('<%- c %>'),
             dbstoreProduct: JSON.parse('<%- d %>'),
             dbCommentScore: JSON.parse('<%- e %>'),
+            dbComment: JSON.parse('<%- f %>'),
             tab: 1,
             active: true,
             id: 3,
