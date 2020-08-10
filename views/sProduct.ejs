@@ -137,7 +137,8 @@
                                 <li>
                                     <p class="text24B d-inline-block ">餐點名稱</p>
                                     <input type="text " class="text20RG singleText398 " placeholder="請輸入餐點名稱"
-                                        v-model.trim="productData[productIndex]">{{productData[productIndex]}}<li>
+                                        v-model.trim="productflag.productName"> 
+                                <li>
                                     <p class="text24B d-inline-block">產品類別</p>
                                     <div class="ddselect d-inline-block ">
                                         <div class="dSelect selectTitle">
@@ -303,68 +304,6 @@
                                     </div>
                                 </div>
                             </li>
-                            <!-- <li class="align-middle row recommendItem">
-                            <div class="col-3">
-                                <p class="d-inline-block text24B align-middle mr-3">推薦</p>
-                                <span class="snd align-middle"><img src="/image/second.png"></span>
-                            </div>
-                            <div class="row col-9">
-                                <div class="ddselect col-6">
-                                    <div class="dSelect mr-3">
-                                        <div class="dSelectText text20R">選擇類別</div>
-                                    </div>
-                                    <div class="dOptionDivOff mr-3">
-                                        <div class="dOption text20R">選擇類別</div>
-                                        <div class="dOption text20R">套餐</div>
-                                        <div class="dOption text20R">漢堡</div>
-                                        <div class="dOption text20R">飲品</div>
-                                    </div>
-                                </div>
-
-                                <div class="ddselect col-6">
-                                    <div class="dSelect ml-3">
-                                        <div class="dSelectText text20R">選擇餐點</div>
-                                    </div>
-                                    <div class="dOptionDivOff ml-3">
-                                        <div class="dOption text20R">選擇餐點</div>
-                                        <div class="dOption text20R">摩絲熱狗堡</div>
-                                        <div class="dOption text20R">摩絲鱈魚堡</div>
-                                        <div class="dOption text20R">燒肉珍珠堡</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="align-middle row recommendItem">
-                            <div class="col-3">
-                                <p class="d-inline-block text24B align-middle mr-3">推薦</p>
-                                <span class="trd align-middle"><img src="/image/third.png"></span>
-                            </div>
-                            <div class="row col-9">
-                                <div class="ddselect col-6">
-                                    <div class="dSelect mr-3">
-                                        <div class="dSelectText text20R">選擇類別</div>
-                                    </div>
-                                    <div class="dOptionDivOff mr-3">
-                                        <div class="dOption text20R">選擇類別</div>
-                                        <div class="dOption text20R">套餐</div>
-                                        <div class="dOption text20R">漢堡</div>
-                                        <div class="dOption text20R">飲品</div>
-                                    </div>
-                                </div>
-
-                                <div class="ddselect col-6">
-                                    <div class="dSelect ml-3">
-                                        <div class="dSelectText text20R">選擇餐點</div>
-                                    </div>
-                                    <div class="dOptionDivOff ml-3">
-                                        <div class="dOption text20R">選擇餐點</div>
-                                        <div class="dOption text20R">摩絲熱狗堡</div>
-                                        <div class="dOption text20R">摩絲鱈魚堡</div>
-                                        <div class="dOption text20R">燒肉珍珠堡</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li> -->
 
 
                         </ul>
@@ -417,6 +356,8 @@
                 }
                 , clearIndex() {
                     this.productIndex = -1;
+                    this.productflag = this.productData[-1]='';
+                    
                 }
                 , deleteProduct() {
                     this.productData[this.productIndex].productStatus = 0;
