@@ -38,7 +38,7 @@ const getDistrictData = (req)=>{
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('mIndex', {active: 'mIndex'});
+  res.render('mIndex');
 });
 
 router.get('/',async(req,res)=>{
