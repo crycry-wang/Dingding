@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="/stylesheets/sEvaluation.css">
     <link rel="stylesheet" href="/stylesheets/member.css">
     <link rel="stylesheet" href="/stylesheets/index.css">
+    <script src="/javascript/getDate.js"></script>
 
     <title>店家資訊</title>
     <style>
@@ -274,16 +275,13 @@
                                                 <img :src="'/image/會員資料/大頭照/' + comment.memberPhoto">
                                                 <span class="content">
                                                     <h2 class="text24B">{{ comment.memberName }}</h2>
-                                                    <i :class="comment.commentScore>=1 ? 'icon-spoon' : 'icon-borderspoon'"
-                                                        class="spoon"></i>
-                                                    <i :class="comment.commentScore>=2 ? 'icon-spoon' : 'icon-borderspoon'"
-                                                        class="spoon"></i>
-                                                    <i :class="comment.commentScore>=3 ? 'icon-spoon' : 'icon-borderspoon'"
-                                                        class="spoon"></i>
-                                                    <i :class="comment.commentScore>=4 ? 'icon-spoon' : 'icon-borderspoon'"
-                                                        class="spoon"></i>
-                                                    <i :class="comment.commentScore==5 ? 'icon-spoon' : 'icon-borderspoon'"
-                                                        class="spoon"></i>
+                                                    <div class="star">
+                                                        <i :class="comment.commentScore>=1 ? 'icon-spoon' : 'icon-borderspoon'"></i>
+                                                        <i :class="comment.commentScore>=2 ? 'icon-spoon' : 'icon-borderspoon'"></i>
+                                                        <i :class="comment.commentScore>=3 ? 'icon-spoon' : 'icon-borderspoon'"></i>
+                                                        <i :class="comment.commentScore>=4 ? 'icon-spoon' : 'icon-borderspoon'"></i>
+                                                        <i :class="comment.commentScore==5 ? 'icon-spoon' : 'icon-borderspoon'"></i>
+                                                    </div>
                                                     <p class="text20R">
                                                         {{ comment.commentContent }}</p>
                                                     <p class="text16">{{comment.commentTime}}</p>
@@ -1128,7 +1126,7 @@
                 },
 
             },
-            
+
 
 
 
