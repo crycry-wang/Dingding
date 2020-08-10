@@ -153,11 +153,21 @@
                                     <div class="storeModelImgContent">
                                         <span class="text28B mr16">{{item.storeName}}</span>
                                         <span class="eng24R mr16">4.2</span>
-                                        <i v-for="score in dbCommentScore" :class="score.star>=1 ? 'icon-spoon' : 'icon-borderspoon'" class="spoon"></i>
-                                        <i v-for="score in dbCommentScore" :class="score.star>=2 ? 'icon-spoon' : 'icon-borderspoon'" class="spoon"></i>
-                                        <i v-for="score in dbCommentScore" :class="score.star>=3 ? 'icon-spoon' : 'icon-borderspoon'" class="spoon"></i>
-                                        <i v-for="score in dbCommentScore" :class="score.star>=4 ? 'icon-spoon' : 'icon-borderspoon'" class="spoon"></i>
-                                        <i v-for="score in dbCommentScore" :class="score.star==5 ? 'icon-spoon' : 'icon-borderspoon'" class="spoon"></i>
+                                        <i v-for="score in dbCommentScore"
+                                            :class="score.star>=1 ? 'icon-spoon' : 'icon-borderspoon'"
+                                            class="spoon"></i>
+                                        <i v-for="score in dbCommentScore"
+                                            :class="score.star>=2 ? 'icon-spoon' : 'icon-borderspoon'"
+                                            class="spoon"></i>
+                                        <i v-for="score in dbCommentScore"
+                                            :class="score.star>=3 ? 'icon-spoon' : 'icon-borderspoon'"
+                                            class="spoon"></i>
+                                        <i v-for="score in dbCommentScore"
+                                            :class="score.star>=4 ? 'icon-spoon' : 'icon-borderspoon'"
+                                            class="spoon"></i>
+                                        <i v-for="score in dbCommentScore"
+                                            :class="score.star==5 ? 'icon-spoon' : 'icon-borderspoon'"
+                                            class="spoon"></i>
                                         <p class="text20RG" style="margin-top: 8px;">訂單完成率 {{item.tradeSuccess}}%
                                         </p>
                                         <p class="text20R" style="margin-top: 8px;">{{ item.storeAddress }}</p>
@@ -200,8 +210,8 @@
                                     <!-- 美味餐點 -->
                                     <div class="mealsScroll" v-if="tab === 1" v-show="tab===1">
                                         <div v-for="(meal,index) in productList.sort">
-                                            <div class="text28B mt-l" style="margin-bottom: 27px;"
-                                                :id="'title'+index" :name="'title'+index">{{meal}}
+                                            <div class="text28B mt-l" style="margin-bottom: 27px;" :id="'title'+index"
+                                                :name="'title'+index">{{meal}}
                                             </div>
                                             <div class="meals">
                                                 <div class="mealsCard" v-for="detail in productList.map[meal].pSort">
@@ -264,14 +274,19 @@
                                                 <img :src="'/image/會員資料/大頭照/' + comment.memberPhoto">
                                                 <span class="content">
                                                     <h2 class="text24B">{{ comment.memberName }}</h2>
-                                                    <i :class="comment.commentScore>=1 ? 'icon-spoon' : 'icon-borderspoon'" class="spoon"></i>
-                                                    <i :class="comment.commentScore>=2 ? 'icon-spoon' : 'icon-borderspoon'" class="spoon"></i>
-                                                    <i :class="comment.commentScore>=3 ? 'icon-spoon' : 'icon-borderspoon'" class="spoon"></i>
-                                                    <i :class="comment.commentScore>=4 ? 'icon-spoon' : 'icon-borderspoon'" class="spoon"></i>
-                                                    <i :class="comment.commentScore==5 ? 'icon-spoon' : 'icon-borderspoon'" class="spoon"></i>
+                                                    <i :class="comment.commentScore>=1 ? 'icon-spoon' : 'icon-borderspoon'"
+                                                        class="spoon"></i>
+                                                    <i :class="comment.commentScore>=2 ? 'icon-spoon' : 'icon-borderspoon'"
+                                                        class="spoon"></i>
+                                                    <i :class="comment.commentScore>=3 ? 'icon-spoon' : 'icon-borderspoon'"
+                                                        class="spoon"></i>
+                                                    <i :class="comment.commentScore>=4 ? 'icon-spoon' : 'icon-borderspoon'"
+                                                        class="spoon"></i>
+                                                    <i :class="comment.commentScore==5 ? 'icon-spoon' : 'icon-borderspoon'"
+                                                        class="spoon"></i>
                                                     <p class="text20R">
                                                         {{ comment.commentContent }}</p>
-                                                    <p class="text16">3小時前</p>
+                                                    <p class="text16">{{comment.commentTime}}</p>
                                                 </span>
                                             </li>
 
@@ -1066,20 +1081,20 @@
                 northDistrictList() {
                     return this.northList.map[index]
                 },
-                
+
                 productList() {
                     let productObj = {
                         sort: [],
                         map: {}
                     };
-                    this.dbstoreProduct.forEach(({ categoryName, productName, productPhoto, productinformation,productPrice }, index) => {
+                    this.dbstoreProduct.forEach(({ categoryName, productName, productPhoto, productinformation, productPrice }, index) => {
                         if (!productObj.map[categoryName]) {
                             productObj.sort.push(categoryName)
                             productObj.map[categoryName] = {
                                 pSort: [],
                             }
                         }
-                        productObj.map[categoryName].pSort.push({productName,productPhoto,productinformation,productPrice})
+                        productObj.map[categoryName].pSort.push({ productName, productPhoto, productinformation, productPrice })
                         // productObj.map[categoryName].map[productName] = {index,productPhoto,productinformation}
                     });
                     return productObj;
@@ -1088,6 +1103,12 @@
                 //     console.log(this.north[0].districtName[0].selected)
                 //     return this.north[0].districtName[0].selected
                 // }
+            },
+            mounted: function () {
+                let time = this.dbComment.length;
+                for (let index = 0; index < time; index++) {
+                    this.dbComment[index].commentTime = getDate(this.dbComment[index].commentTime);
+                }
             },
             methods: {
                 tabClick(index) {
@@ -1106,7 +1127,11 @@
                     }
                 },
 
-            }
+            },
+            
+
+
+
         })
 
         function q() {
@@ -1116,7 +1141,7 @@
     </script>
 
 
-   
+
 
 </body>
 
