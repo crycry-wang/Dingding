@@ -11,10 +11,16 @@ var comment="";
 let storeID = 1;
 let northDistrictSql = "SELECT * FROM `district` where area='北部'";
 let centralDistrictSql = "SELECT * FROM `district` where area='中部'";
+//店家資訊
 let storeInformationSql = 'SELECT * FROM `store` where storeID='+ storeID ;
+//店家商品
 let storeProductSql = 'SELECT a.storeID,a.productID,a.productName,a.categoryID,a.productPhoto,a.productinformation,a.productPrice,b.categoryName FROM `product` a LEFT JOIN `category` b on a.categoryID=b.categoryID WHERE a.storeID='+ storeID;
+//店家評論
 let commentSql = 'SELECT a.storeID,a.memberID,a.commentContent,a.commentScore,a.commentTime,b.memberName,b.memberPhoto FROM `comment` a LEFT JOIN `member` b on a.memberID=b.memberID where storeID='+ storeID ;
+//店家評分
 let commentScoreSql = 'SELECT count(commentID) count,round(AVG(commentScore),1) star FROM `comment` WHERE storeID='+ storeID ;
+//訂單總數(算完成率用)
+let orderSelectSql = 'SELECT orderStatus FROM `order` WHERE storeId='+ storeID;
 /* GET home page. */
 
 
@@ -92,6 +98,17 @@ const commentData = (req) => {
             reject(ex);
         })
 })
+};
+const orderSelectData = (req) => {
+  return new Promise((resolve,reject) => {
+    db.queryAsync(orderSelectSql)
+        .then(results => {
+            resolve(results);
+        })
+        .catch(ex => {
+            reject(ex);
+        })
+})
 }
 router.get('/', async (req, res) => {
     const a = await storeInformationData(req);
@@ -100,14 +117,16 @@ router.get('/', async (req, res) => {
     const d = await storeProductData(req);
     const e = await commentScoreData(req);
     const f = await commentData(req);
+    const g = await orderSelectData(req);
     storeInformation = JSON.stringify(a)
     northDistrict = JSON.stringify(b)
     centralDistrict = JSON.stringify(c)
     storeProduct = JSON.stringify(d)
     storeComment = JSON.stringify(e)
     comment = JSON.stringify(f)
+    orderSelect = JSON.stringify(g)
     // console.log(northDistrict)
-    res.render('sInformation', { a: storeInformation ,b:northDistrict,c:centralDistrict,d:storeProduct,e:storeComment,f:comment })
+    res.render('sInformation', { a: storeInformation ,b:northDistrict,c:centralDistrict,d:storeProduct,e:storeComment,f:comment,g:orderSelect })
 })
 
 
