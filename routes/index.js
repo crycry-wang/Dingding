@@ -13,8 +13,54 @@ let commentSql = 'SELECT storeID,count(commentID) count,round(AVG(commentScore),
 
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index');
+
+// 首頁店家照片+店名
+const storeIndexData = (req) => {
+  return new Promise((resolve, reject) => {
+    db.queryAsync(storeIndexSql)
+      .then(results => {
+        resolve(results);
+      })
+      .catch(ex => {
+        reject(ex);
+      })
+  })
+}
+
+// 地區
+const getDistrictData = (req) => {
+  return new Promise((resolve, reject) => {
+    db.queryAsync(districtSql)
+      .then(results => {
+        resolve(results);
+      })
+      .catch(ex => {
+        reject(ex);
+      })
+  })
+}
+
+//七個表
+const getStoreData = (req) => {
+  return new Promise((resolve, reject) => {
+    db.queryAsync(storeSql)
+      .then(results => {
+        resolve(results);
+      })
+      .catch(ex => {
+        reject(ex);
+      })
+  })
+}
+
+router.get('/', async (req, res) => {
+  const a = await getDistrictData(req);
+  district = JSON.stringify(a)
+  const b = await storeIndexData(req);
+  storeIndex = JSON.stringify(b);
+  res.render('index', { a: district, b: storeIndex });
+  // console.log(storeIndex)
+  // console.log(district)
 });
 
 // router.post('/',(req,res)=>{
@@ -33,40 +79,38 @@ router.get('/', function(req, res, next) {
 // })
 // })
 
-router.post('/',(req,res)=>{
-  db.query('SELECT eMail FROM `member` WHERE eMail=?',[req.body.registeredEmail],(error,results) => {
+router.post('/', (req, res) => {
+  db.query('SELECT eMail FROM `member` WHERE eMail=?', [req.body.registeredEmail], (error, results) => {
     console.log(req.body.registeredEmail)
     console.log(results)
-    if(error){
+    if (error) {
       console.log(error);
     }
-    else if(results.length > 0){
+    else if (results.length > 0) {
       console.log("123456456")
-      return res.send('/',{message:'信箱已被使用'});
-    }else{
-      
+      return res.send('/', { message: '信箱已被使用' });
     }
   })
-
   const rSql = 'insert into `member`(`eMail`, `password`, `memberName`,`memberPhone`) VALUES (?,?,?,?)'
   db.queryAsync(rSql, [
     req.body.registeredEmail,
     req.body.registeredPassword,
     req.body.registeredName,
     req.body.registeredPhone,
-],(error,results) => {
-  if(error){
-    console.log(error)
-  } else {
-    console.log(results)
-    return res.send('/',{message:'您已成功註冊'});
-  }
-})
-})
+  ], (error, results) => {
+    if (error) {
+      console.log(error)
+    } else {
+      console.log(results)
+      return res.send('/', { message: '您已成功註冊' });
+    }
+  })
+  
+});
 
 
 // router.get('/', function (req, res, next) {
-  
+
 //   db.query(districtSql, function (err, results, fields) {
 //     if (err) console.log("ERR!!");
 //     district = JSON.stringify(results);

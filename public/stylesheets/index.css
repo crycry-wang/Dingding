@@ -261,8 +261,7 @@ nav {
     padding-bottom: 40px;
 }
 
-.spoon>.icon-spoon,
-.spoon>.icon-borderspoon {
+.spoon {
     font-size: 24px;
     color: var(--dYellow);
     margin-left: -6px;
