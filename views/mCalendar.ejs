@@ -45,7 +45,7 @@
                 </div>
             </div> -->
 
-            <div class="containerRight">
+            <div class="containerRight" id='app2'>
                 <!-- 右邊內容放置區 -->
 
                 <!-- 功能列 -->
@@ -168,6 +168,17 @@
     <script src="/javascript/calendarGenerate.js"></script>
     <script src="/javascript/calenderMemList.js"></script>
     <script src="/javascript/calendarEvent.js"></script>
+    <script >
+        let mMember = new Vue({
+                el: '#app2',
+                data: {
+                    memberData: JSON.parse('<%- mMemberData %>'),
+         
+                }
+
+            })
+
+    </script>
 
 </body>
 
