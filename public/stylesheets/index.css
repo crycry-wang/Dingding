@@ -261,8 +261,7 @@ nav {
     padding-bottom: 40px;
 }
 
-.spoon>.icon-spoon,
-.spoon>.icon-borderspoon {
+.spoon {
     font-size: 24px;
     color: var(--dYellow);
     margin-left: -6px;
@@ -355,4 +354,13 @@ li>.storeContent:hover {
     color: var(--dBlack);
     border: 1px solid #DDDDDD;
     background-color: var(--dWhite);
+}
+
+.selectContent{
+    margin-top: -20px; 
+    width: 160px;
+}
+.dOption{
+    line-height: 48px;
+    padding-top: 0px;
 }
