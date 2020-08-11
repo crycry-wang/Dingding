@@ -21,6 +21,10 @@ let commentSql = 'SELECT a.storeID,a.memberID,a.commentContent,a.commentScore,a.
 let commentScoreSql = 'SELECT count(commentID) count,round(AVG(commentScore),1) star FROM `comment` WHERE storeID='+ storeID ;
 //訂單總數(算完成率用)
 let orderSelectSql = 'SELECT orderStatus FROM `order` WHERE storeId='+ storeID;
+
+//側邊欄
+const storeSelect = 'select * from store where storeID=';
+const store = storeSelect + storeID;
 /* GET home page. */
 
 
@@ -110,6 +114,21 @@ const orderSelectData = (req) => {
         })
 })
 }
+
+//側邊欄
+const getStoreData = (req) => {
+  return new Promise((resolve, reject) => {
+      db.queryAsync(store)
+          .then(results => {
+              resolve(results);
+          })
+          .catch(ex => {
+              reject(ex);
+          });
+  })
+};
+
+
 router.get('/', async (req, res) => {
     const a = await storeInformationData(req);
     const b = await getNorthDistrictData(req);
@@ -125,8 +144,18 @@ router.get('/', async (req, res) => {
     storeComment = JSON.stringify(e)
     comment = JSON.stringify(f)
     orderSelect = JSON.stringify(g)
+    newsJSON = JSON.stringify(await getStoreData(req));
     // console.log(northDistrict)
-    res.render('sInformation', { a: storeInformation ,b:northDistrict,c:centralDistrict,d:storeProduct,e:storeComment,f:comment,g:orderSelect })
+    res.render('sInformation', {
+       a: storeInformation ,
+       b:northDistrict,
+       c:centralDistrict,
+       d:storeProduct,
+       e:storeComment,
+       f:comment,
+       g:orderSelect,
+       storeData: newsJSON,
+       active:'sInformation' })
 })
 
 

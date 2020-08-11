@@ -36,7 +36,7 @@
     <div id="storeInformation">
 
         <!-- 左邊sider -->
-        <div class="slider fixed-top">
+        <!-- <div class="slider fixed-top">
             <img src="/image/LOGO.png" class="sliderLogo">
             <br>
             <img src="/image/store/Taichung/肯德基KFC_台中公益/photo.jpeg" class="sliderPhoto">
@@ -51,7 +51,8 @@
                 <a href="sInformation" class="act"><i class="icon-about"></i>店家資訊</a>
                 <a href="" id="signOut"><i class="icon-logout"></i>登出</a>
             </div>
-        </div>
+        </div> -->
+        <%- include('sSider', {active}); %>
 
         <div class="containerRight" v-for="item in dbStoreInformation">
             <!-- 右邊內容放置區 -->
