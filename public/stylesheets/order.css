@@ -65,3 +65,28 @@ td:last-child {
 .mr-56 {
     margin-right: 56px;
 }
+
+
+/* 滾輪 */
+
+.titleHead {
+    /* width: calc(100% - 16px); */
+    position: absolute;
+    z-index: 3;
+    background: var(--dYellow);
+    color: white;
+    display: inline-block;
+    vertical-align: middle;
+    height: 40px;
+}
+
+.titleHead span {
+    display: inline-block;
+    vertical-align: middle;
+    padding-left: 32px;
+    vertical-align: middle;
+}
+
+.orderList {
+    max-height: calc(100vh - 258px);
+}

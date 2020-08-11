@@ -87,3 +87,727 @@
     border: none;
     /* line-height: 1rem; */
 }
+
+
+/* 會員前台共用 */
+
+.mTH {
+    background-color: var(--dYellow);
+    padding: 8px 32px;
+    border-right: solid 4px var(--dWhite);
+}
+
+.mTR {
+    margin-top: 4px;
+    border: 1px solid var(--moreLightGray);
+    border-radius: 10px;
+}
+
+.mInfoList li {
+    padding: 0 60px 0 32px;
+    margin-bottom: 40px;
+}
+
+.textB {
+    color: var(--dBlue);
+}
+
+.textG {
+    color: var(--moreLightGray);
+}
+
+.textY {
+    color: var(--dYellow);
+}
+
+.textR {
+    color: var(--dRed);
+}
+
+.textW {
+    color: var(--dWhite);
+}
+
+.topBtnGroup {
+    padding-left: 32px;
+}
+
+.imgBorder {
+    border-right: 18px solid var(--dWhite);
+}
+
+.itemImg {
+    height: 80px;
+    width: 80px;
+}
+
+.clipCircle {
+    clip-path: circle(50% at 50% 50%);
+}
+
+
+/* vote */
+
+.vTH {
+    background-color: var(--dBlue);
+}
+
+.voteItem {
+    padding: 16px 24px;
+    width: 100%;
+    border-radius: 20px;
+    background-color: var(--dLightGray);
+}
+
+.voteItemNo {
+    line-height: 84px;
+}
+
+.voteItemSelected {
+    border: 1px solid var(--dBlue);
+    background-color: rgba(151, 210, 214, .3);
+}
+
+.progress {
+    height: 1.25rem;
+    font-size: 0.75rem;
+    background-color: var(--moreLightGray);
+    border-radius: 0.5rem;
+}
+
+.progress-bar {
+    text-align: center;
+    white-space: nowrap;
+    background-color: var(--dBlue);
+    transition: width 0.6s ease;
+    border-radius: 0.5rem;
+}
+
+.progressSelected {
+    background-color: var(--dWhite);
+}
+
+.progress-barSelected {
+    background-color: var(--dBlue);
+}
+
+
+/* order */
+
+.orderListimg {
+    height: 28px;
+    width: 28px;
+}
+
+.orderSection {
+    background-color: #F2F2F2;
+    margin-right: -40px;
+    margin-left: -40px;
+}
+
+.orderSectionInner {
+    margin-right: 40px;
+    margin-left: 40px;
+    padding: 17px 0 13px 40px;
+    line-height: 40px;
+}
+
+.orderSectionImg {
+    height: 40px;
+    width: 40px;
+}
+
+.orderSectionMTD {
+    padding: 11px 0 11px 32px;
+}
+
+.orderProductItem {
+    background-color: var(--dLightGray);
+    border-right: solid 18px var(--dWhite);
+}
+
+.orderProductItemInner {
+    line-height: 80px;
+}
+
+.minusBg {
+    position: relative;
+    width: 32px;
+    height: 32px;
+    border-radius: 100%;
+    background-color: var(--moreLightGray);
+}
+
+.plusBg {
+    position: relative;
+    width: 32px;
+    height: 32px;
+    border-radius: 100%;
+    background-color: var(--dYellow);
+}
+
+.icon-minus {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--dDeepGray);
+}
+
+.icon-plus {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--dWhite);
+}
+
+
+/* member */
+
+.dCoinBlock {
+    width: 506px;
+    background-color: var(--dWhite);
+    padding: 8px 8px 8px 40px;
+    border-radius: 30px;
+}
+
+.mb-xxl {
+    margin-bottom: 100px !important;
+}
+
+.mInfo {
+    border-radius: 20px;
+    padding: 40px;
+    background-color: var(--dWhite);
+    position: relative;
+}
+
+.mCollection {
+    position: absolute;
+    left: 1382px;
+    width: 398px;
+    border-radius: 20px;
+    padding: 40px;
+    background-color: var(--dWhite);
+}
+
+.memberPhoto {
+    width: 150px;
+    height: 150px;
+    border: 8px solid #FFFFFF;
+    border-radius: 50%;
+    background-position: center center;
+    background-size: contain;
+    position: absolute;
+    top: -50px;
+    left: 40px;
+}
+
+.icon-photo-1::before {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    color: var(--dYellow);
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+    line-height: 34px;
+    text-align: center;
+    border-radius: 100%;
+    background-color: var(--dWhite);
+    border: 2px solid var(--dYellow);
+}
+
+.mInfo .singleText398 {
+    width: calc(100% - 222px);
+    display: inline-block;
+}
+
+.cTH {
+    background-color: #F9FAFC;
+    padding: 8px 32px;
+}
+
+.cTR {
+    border-bottom: 1px solid var(--moreLightGray);
+    padding: 12px 0;
+}
+
+.cTR .mTD {
+    padding-left: 32px;
+}
+
+.dblock .cTR:last-child {
+    border-bottom: none;
+}
+
+.dblock {
+    height: calc( 100vh - 186px);
+}
+
+
+/* 儲值 */
+
+.CoinBlock .text24B {
+    margin-right: 96px;
+}
+
+.CoinBlock {
+    background: white;
+    padding: 8px 8px 8px 40px;
+    border-radius: 30px;
+}
+
+
+/* 垃圾桶 */
+
+.memberInfo .icon-trash {
+    font-size: 30px;
+    color: var(--moreLightGray);
+    margin-left: auto;
+}
+
+.memberInfo .icon-trash:hover {
+    color: var(--dBlack);
+    cursor: pointer;
+}
+
+
+/* 會員中心-輸入內容 */
+
+.title {
+    width: 138px;
+    display: inline-block;
+}
+
+.ml-140,
+input+input {
+    margin-left: 140px;
+}
+
+.mb-100 {
+    margin-bottom: 100px;
+}
+
+.mr-20 {
+    margin-right: 20px;
+}
+
+input+input {
+    margin-top: 40px;
+    margin-right: 32px;
+}
+
+
+/* 滾輪 */
+
+.coinList {
+    overflow-y: scroll;
+    /* 100vh-需要佔的高度 */
+    max-height: calc(100vh - 420px);
+    padding-right: 20px;
+}
+
+.coinList::-webkit-scrollbar {
+    width: 8px;
+}
+
+.coinList::-webkit-scrollbar-thumb {
+    border-radius: 100px;
+    background: var(--dYellow);
+}
+
+
+/* crycry做的左邊sider */
+
+body {
+    background: var(--dLightGray);
+}
+
+
+/* 左邊sider */
+
+.slider {
+    width: 400px;
+    height: 100vh;
+    background: rgb(255, 255, 255);
+    text-align: center;
+}
+
+
+/* LOGO */
+
+.sliderLogo {
+    margin-top: 60px;
+    width: 120px;
+    height: 36px;
+}
+
+
+/* 照片 */
+
+.sliderPhoto {
+    width: 100px;
+    height: 100px;
+    box-shadow: 0px 3px 6px #00000029;
+    border: 4px solid #FFFFFF;
+    border-radius: 50%;
+    margin-top: 56px;
+}
+
+
+/* 名子 */
+
+.name {
+    margin-top: 40px;
+}
+
+
+/* menu */
+
+.menu {
+    margin-top: 48px;
+}
+
+.menu .act {
+    color: white;
+    background-color: var(--dYellow);
+    border-radius: 40px;
+}
+
+.menu a {
+    text-align: left;
+    width: 280px;
+    letter-spacing: 3px;
+    text-decoration-line: none;
+    color: black;
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 24px;
+    padding: 8px 30px 10px 30px;
+    letter-spacing: 8px;
+}
+
+#signOut {
+    position: absolute;
+    bottom: 80px;
+    left: calc(50% - 140px);
+    margin-bottom: 0;
+}
+
+.member {
+    margin-top: 200px;
+}
+
+.menu i {
+    margin-right: 20px;
+}
+
+.menuI .act {
+    color: var(--dYellow);
+    background-color: #FFFFFF;
+}
+
+.act .icon-down-open::before {
+    transform: scaleY(-1);
+}
+
+.menuI a {
+    padding-left: 84px;
+}
+
+.note {
+    text-align: right;
+    font-size: 20px;
+    padding-left: 8px;
+    border-radius: 20px;
+    background-color: var(--dYellow);
+    color: #FFFFFF;
+    margin-left: 70px;
+}
+
+.act .note {
+    color: var(--ddYellow);
+    background-color: #FFFFFF;
+}
+
+
+/* 右邊內容放置區 */
+
+.containerRight {
+    width: 100%;
+    padding-right: 140px;
+    padding-left: 480px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+
+/* crycry的notice */
+
+.topTag {
+    padding-top: 48px;
+    top: 0;
+    padding-left: 40px;
+    padding-bottom: 16px;
+}
+
+.more {
+    background: url(../image/more.png) no-repeat center;
+    width: 32px;
+    height: 32px;
+    display: inline-block;
+    margin-right: 40px;
+}
+
+.dblock {
+    margin-bottom: 40px;
+    margin-top: 24px;
+}
+
+
+/* 通知項目 */
+
+.noticeItem {
+    width: 100%;
+    border: 1px solid var(--moreLightGray);
+    border-radius: 10px 20px 20px 10px;
+    padding: 14px 40px 16px 0;
+    display: block;
+    border-left: 10px solid var(--dBlue);
+    margin-bottom: 8px;
+}
+
+.noticeItem img,
+.noticeItem .photo {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin-left: 30px;
+    margin-right: 40px;
+}
+
+.noticeItem .photo {
+    background: #BFBFBF;
+    text-align: center;
+    line-height: 60px;
+}
+
+.noticeItem .photo::after {
+    content: '訂訂';
+    color: white;
+    font-size: 16px;
+    letter-spacing: 2px;
+}
+
+
+/* 中間內容 */
+
+.noticeItem .content {
+    display: inline-block;
+    width: 662px;
+}
+
+.noticeItem.store .content {
+    display: inline-block;
+    width: 610px;
+}
+
+.noticeItem .icon-trash {
+    font-size: 30px;
+    color: var(--moreLightGray);
+    margin-left: 40px;
+}
+
+.noticeItem .icon-trash:hover {
+    font-size: 30px;
+    color: var(--dBlack);
+    cursor: pointer;
+}
+
+.text16 {
+    color: var(--dDeepGray);
+    letter-spacing: 2px;
+}
+
+.Ycolor {
+    color: var( --dYellow);
+}
+
+
+/* 右邊功能 */
+
+.noticeItem .text24B {
+    margin-bottom: 2px;
+}
+
+.noticeItem .text20R {
+    margin-bottom: 6px;
+}
+
+.noticeItem .eng20R,
+.noticeItem .text20R {
+    display: inline-block;
+}
+
+.noticeItem .eng20R::before {
+    content: '';
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    background: url(../image/coin.png) no-repeat center;
+    background-size: cover;
+    margin-right: 4px;
+}
+
+.noticeItem .actionR p.text20R {
+    margin: 0 0 0 40px;
+}
+
+.noticeItem .actionR p.text20R,
+.noticeItem .actionR button {
+    margin: 0 0 0 40px;
+}
+
+
+/* 取消訂單 */
+
+.cancel.noticeItem {
+    border: 1px solid var(--dRed);
+    border-left: 10px solid var(--dRed);
+}
+
+.cancel.noticeItem h2 {
+    color: var(--dRed);
+}
+
+
+/* 已讀訊息 */
+
+.read.noticeItem {
+    border: 1px solid rgb(221, 221, 221, 0.4);
+}
+
+.read .content,
+.read .photo,
+.read img,
+.read .actionR p,
+.read .actionR .price {
+    opacity: 0.4;
+}
+
+.read.noticeItem.cancel {
+    border: 1px solid rgb(216, 84, 79, 0.4)
+}
+
+
+/* more功能 */
+
+#moreMenu {
+    left: 170px !important;
+    top: -90px !important;
+}
+
+.dropdown-menu a {
+    line-height: 40px;
+}
+
+.dropdown-menu {
+    z-index: 1000;
+    border: none;
+    border-radius: 20px;
+    left: -90px;
+}
+
+.dropdown-menu::before {
+    z-index: 1001;
+    width: 24px;
+    height: 16px;
+    top: calc(50% - 12px);
+    content: '';
+    background: rgb(255, 255, 255);
+    display: block;
+    clip-path: polygon(100% 0, 50% 50%, 100% 100%);
+    position: absolute;
+    left: -24px;
+}
+
+.tag-wrap {
+    filter: drop-shadow(0px 4px 4px var(--moreLightGray));
+}
+
+.dropdown-item:hover,
+.dropdown-item:focus {
+    color: white;
+    background-color: var(--dYellow);
+}
+
+
+/* 處理訂單詳情 */
+
+.leftContent {
+    padding-right: 24px;
+    border-right: 2px solid var(--dYellow);
+}
+
+.rightContent {
+    padding-left: 24px;
+}
+
+.leftContent dt,
+.leftContent dd,
+.orderItem p,
+.totle p {
+    display: inline-block;
+}
+
+.leftContent dt {
+    width: 140px;
+    margin-right: 60px;
+}
+
+.leftContent dd {
+    width: 380px;
+    margin-bottom: 24px;
+}
+
+.leftContent dd:last-of-type {
+    margin-top: 36px;
+}
+
+.orderItem {
+    width: 100%;
+    background: var(--dLightGray);
+    padding: 2px;
+    margin-bottom: 8px;
+}
+
+.orderItem img {
+    width: 80px;
+    height: 80px;
+}
+
+.orderItem .text20B {
+    width: 240px;
+    margin-left: 16px;
+    letter-spacing: 4px;
+}
+
+.orderItem .price {
+    vertical-align: middle;
+    width: 200px;
+    margin-left: 16px;
+}
+
+.modal-bottom {
+    margin-top: 40px;
+    margin-bottom: 40px;
+    padding-left: 60px;
+    padding-right: 60px;
+}
+
+.w100 {
+    width: 100px;
+    margin-right: 40px;
+}

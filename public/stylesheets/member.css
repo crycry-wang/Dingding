@@ -264,7 +264,7 @@
 
 .orderProductItem {
     background-color: var(--dLightGray);
-    position: relative;
+    /* position: relative; */
 }
 
 .orderProductItemList {
@@ -303,8 +303,8 @@
 
 .productQuantity {
     position: relative;
-    top: 4px;
-    left: 55%;
+    top: 0px;
+    right: 0px;
 }
 
 .productQuantity::before {
