@@ -12,6 +12,8 @@ router.get('/', function (req, res, next) {
     orderID = 3;
     orderListSql = "select o.orderID,o.memberID,o.orderArrivedTime,o.orderStatus,m.memberName,SUM(d.quality*d.price) as totalPrice from `order` o join `member` m on o.memberID=m.memberID join `orderdetail` d on o.orderID=d.orderID where o.storeID=" + storeID + " group by d.orderID";
     orderDetailListSql = "select o.orderID,d.productID,d.price,d.quality,o.orderArrivedTime,o.orderCreateTime,m.memberName,m.memberPhone,p.productPhoto,p.productName FROM `orderdetail` d join `order` o on d.orderID=o.orderID join `member` m on m.memberID=o.memberID join `product` p on d.productID=p.productID where d.orderID=" + orderID;
+    store='select * from `store` where storeID='+storeID;
+    
     next();
 });
 
@@ -51,13 +53,29 @@ const orderDetailListData = (req) => {
 };
 
 
+
+const getStoreData = (req) => {
+    return new Promise((resolve, reject) => {
+        db.queryAsync(store)
+            .then(results => {
+                resolve(results);
+            })
+            .catch(ex => {
+                reject(ex);
+            });
+    })
+};
+
+
 /* GET home page. */
 router.get('/', async (req, res, next) => {
+    newsJSON = JSON.stringify(await getStoreData(req));
     const orderList = await getorderListData(req);
     const orderDetailList = await orderDetailListData(req);
     orderListJsonResult = JSON.stringify(orderList);
     orderDetailListJsonResult = JSON.stringify(orderDetailList);
     res.render('sOrder', {
+        storeData: newsJSON,
         orderList: orderListJsonResult,
         orderDetailList: orderDetailListJsonResult,
         active: 'sOrder'
