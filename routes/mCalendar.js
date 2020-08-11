@@ -10,26 +10,25 @@ const memberSelect = 'select * from `member` where memberID=';
 const member = memberSelect + memberId;
 
 const getMemberData = (req) => {
-  return new Promise((resolve, reject) => {
-      db.queryAsync(member)
-          .then(results => {
-              resolve(results);
-          })
-          .catch(ex => {
-              reject(ex);
-          });
-  })
+    return new Promise((resolve, reject) => {
+        db.queryAsync(member)
+            .then(results => {
+                resolve(results);
+            })
+            .catch(ex => {
+                reject(ex);
+            });
+    })
 };
 
 
 //傳資料到表單裡
 router.get('/', async (req, res) => {
-  newsJSON = JSON.stringify(await getMemberData(req));
-  
-  res.render('mCalendar', { 
-      mMemberData: newsJSON,
-      active: 'mCalendar'});
-
+    newsJSON = JSON.stringify(await getMemberData(req));
+    res.render('mCalendar', {
+        mMemberData: newsJSON,
+        active: 'mCalendar'
+    });
 });
 
 

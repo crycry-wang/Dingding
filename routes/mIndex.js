@@ -15,6 +15,8 @@ let storeIndexSql = 'SELECT storeID,storeName,storeBanner FROM `store`';
 let districtSql = 'SELECT * FROM `district`';
 
 // 首頁店家照片+店名
+
+
 const storeIndexData = (req)=>{
   return new Promise((resolve,reject)=>{
     db.queryAsync(storeIndexSql)
@@ -54,10 +56,6 @@ const getMemberData = (req) => {
 };
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('mIndex');
-});
-
 router.get('/',async(req,res)=>{
   newsJSON = JSON.stringify(await getMemberData(req));
   const a = await getDistrictData(req);
@@ -69,7 +67,8 @@ router.get('/',async(req,res)=>{
     mMemberData: newsJSON,
      a: district,
      b: storeIndex,
-     active:'mIndex'});
+     active: 'mIndex'
+    });
   console.log(newsJSON);
   // console.log(district)
 });
