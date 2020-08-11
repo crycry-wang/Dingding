@@ -14,7 +14,6 @@ let storeIndexSql = 'SELECT storeID,storeName,storeBanner FROM `store`';
 //地區
 let districtSql = 'SELECT * FROM `district`';
 
-
 // 首頁店家照片+店名
 const storeIndexData = (req)=>{
   return new Promise((resolve,reject)=>{
