@@ -1,0 +1,32 @@
+<!-- 左邊sider -->
+<div class="slider fixed-top" id="mSider">
+    <img src="/image/LOGO.png" class="sliderLogo">
+    <br>
+    <img :src="(`image/會員資料/大頭照/${ memberData[0].memberPhoto}`)" class="sliderPhoto ">
+
+
+
+    <p class="name text24B">{{memberData[0].memberName}}</p>
+    <div class="menu text24R ">
+        <a href="mIndex"><i class="icon-home"></i>首頁</a>
+        <a href="mCalendar"><i class="icon-claendar"></i>訂訂行事曆</a>
+        <a href="mMember" class="mb-2 "><i class="icon-member"></i>會員中心<i class="icon-down-open ml-3 mr-0 "
+                    style="font-size: 14px; "></i></a>
+        <span class="menuI ">
+                <a href="mMember" class="mb-0">個人資料</a>
+                <a href="mSaveCoins">我的訂訂幣</a>
+            </span>
+        <a href="mNotice.ejs" class="mt-4"><i class="icon-message"></i>通知<span class="note ">3</span></a>
+        <a href="index" id="signOut"><i class="icon-logout"></i>登出</a>
+    </div>
+</div>
+
+<script>
+    // vue資料
+    let mSider = new Vue({
+        el: '#mSider',
+        data: {
+            memberData: JSON.parse('<%- mMemberData %>')
+        }
+    })
+</script>

@@ -14,7 +14,7 @@ router.get('/', function(req, res, next) {
   next();
 });
 
-const getData = (req) => {
+const getGroupListData = (req) => {
   return new Promise((resolve, reject) => {
       // 輸入select 句型
       db.queryAsync(groupListSql)
@@ -28,7 +28,7 @@ const getData = (req) => {
 };
 
 router.get('/', async (req, res, next) => {
-  const groupList = await getData(req);
+  const groupList = await getGroupListData(req);
   groupListJsonResult = JSON.stringify(groupList);
   res.render('mNewVote', { groupList: groupListJsonResult});
   //          第一參數放ejs黨名  第二參數放需要的值

@@ -22,32 +22,14 @@
 <body>
 
     <!-- 左邊sider -->
-    <div class="slider fixed-top">
-        <img src="/image/LOGO.png" class="sliderLogo">
-        <br>
-        <img src="/image/photo.jpg" class="sliderPhoto">
-        <p class="name text24B">阿信</p>
-        <div class="menu text24R">
-            <a href=""><i class="icon-home"></i>首頁</a>
-            <a href=""><i class="icon-claendar"></i>訂訂行事曆</a>
-            <a href="" class="mb-2 act"><i class="icon-member"></i>會員中心<i class="icon-down-open ml-3 mr-0"
-                    style="font-size: 14px;"></i></a>
-            <span class="menuI">
-                <a href="" class="mb-0">個人資料</a>
-                <a href="" class="act">我的訂訂幣</a>
-            </span>
-            <a href="/mNotice" class="mt-4"><i class="icon-message"></i>通知<span class="note">3</span></a>
-            <a href="" id="signOut"><i class="icon-logout"></i>登出</a>
-        </div>
-    </div>
-
+    <%- include('mSider', {active}); %>
     <!-- 右邊內容放置區 -->
     <div class="containerRight" id='stored'>
         <div class="inWrapper">
             <div class="CoinBlock mt-m py-2 mb-l d-inline-block">
                 <span class="text24B align-middle">我的訂訂幣</span>
                 <span class="eng24R price mr-4 align-middle">
-                    <span class=" align-middle">{{(myCoin).toLocaleString('en-US')}}</span>
+                    <span class=" align-middle">{{(saveCoinData[0].saveSum-costCoinData[0].costSum).toLocaleString('en-US')}}</span>
                 </span>
                 <button class="text20R dbtn btnB align-middle">儲值</button>
             </div>
@@ -55,9 +37,9 @@
 
             <div class="dblock givePadding">
                 <nav class="topTag row">
-                    <div class=" dTag text24RG act ">儲值記錄</div>
+                    <div class=" dTag text24RG act">儲值記錄</div>
                     <a href="mCostCoins">
-                        <div class="dTag text24RG ">消費記錄</div>
+                        <div class="dTag text24RG">消費記錄</div>
                     </a>
                 </nav>
 
@@ -67,12 +49,12 @@
                     <div class="col-4 cTH ">儲值金額</div>
                 </div>
                 <div class="scrollList coinList">
-                    <div class="row cTR eng20R col-12" v-for='item in tradeDetail'>
-                        <div class="col-4 mTD ">{{item.orderCreateTime}}</div>
+                    <div class="row cTR eng20R col-12" v-for='item in savecoinData'>
+                        <div class="col-4 mTD ">{{item.saveTime}}</div>
                         <span class="col-4 mTD eng20R price ">
-                            <span class=" align-middle ">{{(item.tradeMoney).toLocaleString('en-US')}}</span>
+                            <span class=" align-middle ">{{(item.saveCoin).toLocaleString('en-US')}}</span>
                         </span>
-                        <div class="col-4 mTD ">NT{{(item.tradeMoney).toLocaleString('en-US')}}</div>
+                        <div class="col-4 mTD ">NT{{(item.saveCoin).toLocaleString('en-US')}}</div>
                     </div>
                 </div>
             </div>
@@ -80,39 +62,20 @@
     </div>
 
     <script>
-        // data資料
-        let data = {
-            memberID: 1,
-            tradeDetail: [{
-                tradeDetailID: 0,
-                tradeMoney: 5001,
-                orderCreateTime: '2020/06/26'
-            }, {
-                tradeDetailID: 1,
-                tradeMoney: 5002,
-                orderCreateTime: '2020/06/25'
-            }, {
-                tradeDetailID: 2,
-                tradeMoney: 5003,
-                orderCreateTime: '2020/06/24'
-            }, {
-                tradeDetailID: 3,
-                tradeMoney: 5004,
-                orderCreateTime: '2020/06/23'
-            }],
-            myCoin: 5000
-
-        }
-
+        // vue
         let mStored = new Vue({
             el: '#stored',
-            data: data,
-
-
+            data: {
+                memberData: JSON.parse('<%- mMemberData %>'),
+                savecoinData: JSON.parse('<%- savecoinData %>'),
+                saveCoinData:JSON.parse('<%- saveCoinData %>'),
+                costCoinData:JSON.parse('<%- costCoinData %>')
+                    
+            }
         })
+       
+
     </script>
-
-
 </body>
 
 </html>

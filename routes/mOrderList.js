@@ -9,7 +9,7 @@ let jsonResult;
 
 router.get('/', function (req, res, next) {
   memberID = 38;
-  orderListSql = "select * from `order` o inner join `store` s on o.storeID=s.storeID join `group` g on o.groupID=g.groupID join `groupmember` m on g.groupID=m.groupID where m.memberID=" + memberID + " and CURRENT_DATE >= o.orderDeadline";
+  orderListSql = "select * from `order` o inner join `store` s on o.storeID=s.storeID join `group` g on o.groupID=g.groupID join `groupmember` m on g.groupID=m.groupID where m.memberID=" + memberID + " and CURRENT_DATE <= o.orderDeadline";
   orderCheck = "select orderID,memberID from `orderdetail` where memberID=" + memberID + " group by orderID";
   next();
 });
@@ -55,7 +55,7 @@ router.get('/', async (req, res) => {
 
 // 過去的訂單
 router.get('/history', async (req, res, next) => {
-  orderListSql = "select * from `order` o inner join `store` s on o.storeID=s.storeID join `group` g on o.groupID=g.groupID join `groupmember` m on g.groupID=m.groupID where m.memberID=" + memberID + " and CURRENT_DATE < o.orderDeadline";
+  orderListSql = "select * from `order` o inner join `store` s on o.storeID=s.storeID join `group` g on o.groupID=g.groupID join `groupmember` m on g.groupID=m.groupID where m.memberID=" + memberID + " and CURRENT_DATE > o.orderDeadline";
   const orderList = await getorderListData(req);
   jsonResult = JSON.stringify(orderList);
   res.json(jsonResult);
@@ -63,7 +63,7 @@ router.get('/history', async (req, res, next) => {
 
 // 現在與未來的訂單
 router.get('/future', async (req, res, next) => {
-  orderListSql = "select * from `order` o inner join `store` s on o.storeID=s.storeID join `group` g on o.groupID=g.groupID join `groupmember` m on g.groupID=m.groupID where m.memberID=" + memberID + " and CURRENT_DATE >= o.orderDeadline";
+  orderListSql = "select * from `order` o inner join `store` s on o.storeID=s.storeID join `group` g on o.groupID=g.groupID join `groupmember` m on g.groupID=m.groupID where m.memberID=" + memberID + " and CURRENT_DATE <= o.orderDeadline";
   const orderList = await getorderListData(req);
   jsonResult = JSON.stringify(orderList);
   res.json(jsonResult);

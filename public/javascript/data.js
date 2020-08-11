@@ -25,8 +25,8 @@ let data = {
         { orderID: 2, groupName: "吃到飽團", storeName: "隨主飡_法式水煮專賣", orderArrivedTime: "2020/07/06 16:20", storePhoto: "/image/store/Taichung/太初麵食/index.jpeg" }
     ],
     voteList: [
-        { voteID: 1, voteName:"阿信慶生聚會" ,groupName: "被程式耽誤的通靈王", storeName: "太初麵食", voteDeadLine: "2020/06/22 12:00", storePhoto: "/image/store/Taichung/太初麵食/index.jpeg" },
-        { voteID: 2, voteName:"貴婦們的下午茶" ,groupName: "就愛烤肉團", storeName: "隨主飡_法式水煮專賣", voteDeadLine: "2020/07/06 16:20", storePhoto: "/image/store/Taichung/太初麵食/index.jpeg" }
+        { voteID: 1, voteName:"阿信慶生聚會" ,groupName: "被程式耽誤的通靈王", storeName: "太初麵食", voteDeadline: "2020/06/22 12:00", storePhoto: "/image/store/Taichung/太初麵食/index.jpeg" },
+        { voteID: 2, voteName:"貴婦們的下午茶" ,groupName: "就愛烤肉團", storeName: "隨主飡_法式水煮專賣", voteDeadline: "2020/07/06 16:20", storePhoto: "/image/store/Taichung/太初麵食/index.jpeg" }
     ],
     productList: [
         { productID: 1, quality:0,productName: "咔啦雞腿堡", productPrice: "65", productPhoto: "/image/store/Taichung/肯德基KFC_台中公益/咔啦雞腿堡.jpeg" },

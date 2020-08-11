@@ -38,6 +38,7 @@
     border-radius: 50%;
     margin-left: 30px;
     margin-right: 40px;
+    object-fit: cover;
 }
 
 .noticeItem .photo {
@@ -146,6 +147,7 @@
 .read img,
 .read .actionR p,
 .read .actionR .price {
+    transition:ease-out 0.3s;
     opacity: 0.4;
 }
 
@@ -186,7 +188,8 @@
 }
 
 .tag-wrap {
-    filter: drop-shadow(0px 4px 4px var(--moreLightGray));
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.2));
+   
 }
 
 .dropdown-item:hover,
