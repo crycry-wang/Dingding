@@ -47,7 +47,10 @@ router.get('/', async (req, res) => {
   const orderCheck = await orderCheckData(req);
   jsonResult = JSON.stringify(orderList);
   orderCheckResult = JSON.stringify(orderCheck);
-  res.render('mOrderList', { orderList: jsonResult, orderCheck: orderCheckResult });
+  res.render('mOrderList', { 
+    orderList: jsonResult,
+    orderCheck: orderCheckResult,
+    active:'mOrderList' });
   //          第一參數放ejs黨名  第二參數放需要的值
   // console.log(orderCheckResult);
   //測試是否成功    

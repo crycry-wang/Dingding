@@ -75,7 +75,7 @@
                                 <div class="dSelect pr-4" style="width: 500px;">
                                     <select v-model="groupName" name="" id="" class="text20RG singleText398 w-100"
                                         placeholder="選擇團體">
-                                        <option v-for="(group,index) in groupList" class="text20RG singleText398" value="">{{group.groupName}}</option>
+                                        <option v-for="(group,index) in groupList" class="text20RG singleText398" :value="group.groupName">{{group.groupName}}</option>
                                     </select>
                                 </div>
                             </div>
@@ -84,8 +84,8 @@
                                     <span class="text20B">餐點送達時間</span>
                                 </div>
                                 <div class="dSelect" style="width: 500px;">
-                                    <input v-model="orderArrivedTime" type="datetime-local" class="text20RG singleText398 w-100"
-                                        placeholder="選擇日期時間">
+                                    <input v-model="orderArrivedTime" type="datetime-local" datetime="YYYY-MM-DD hh:mm:ss" class="text20RG singleText398 w-100"
+                                        placeholder="選擇日期時間" @click=''> 
                                 </div>
                             </div>
                             <div class="row mb-s">
@@ -125,7 +125,7 @@
                                 <input v-model="selectedStore" class="form-check-input" type="radio" name="blankRadio"
                                     id="blankRadio1" :value="storeList[index].storeID" aria-label="...">
                                 <div class="dingImgDiv" style="width:  100%">
-                                    <img :src="storeList[index].storePhoto" class="card-img-top dingImg" alt="...">
+                                    <img :src="'/image/store/' +store.storeBanner" class="card-img-top dingImg" alt="...">
                                     <div class="card-body">
                                         <div class="d-inline-block w-75">
                                             <p class="card-text text24B shopName">{{ store.storeName }}</p>
@@ -152,8 +152,11 @@
         let app = new Vue({
             el: "#app",
             data: {
-                data,
-                dataJson: []
+                storeList:JSON.parse('<%- storeList %>'),
+                groupList:JSON.parse('<%- groupList %>'),
+                dataJson: [],
+                groupName:"",
+                orderArrivedTime:""
             },
             // mounted() {
             //     if (localStorage.groupName) {
@@ -183,10 +186,10 @@
                     // $(`.imgCardGroup .form-check-input`).eq(randaomCard).prop("checked", true);
                 },
                 persist: function () {
-                    localStorage.groupName = this.groupName;
-                    localStorage.orderArrivedTime = this.orderArrivedTime;
-                    localStorage.orderDeadline = this.orderDeadline;
-                    localStorage.selectedStore = this.selectedStore;
+                    // localStorage.groupName = this.groupName;
+                    // localStorage.orderArrivedTime = this.orderArrivedTime;
+                    // localStorage.orderDeadline = this.orderDeadline;
+                    // localStorage.selectedStore = this.selectedStore;
                     // console.log('now pretend I did more stuff...');
                 },              
                 // searchStore:function(){
@@ -215,17 +218,6 @@
             }
         })
 
-    //     var app1 = new Vue({
-    //     el: "#app1",
-    //     data: {
-    //         message: 'Hello Vue!'
-    //     },
-    //     methods: {
-    //         reverseMessage: function () {
-    //             this.message = this.message.split('').reverse().join('');
-    //         }
-    //     }
-    // });
 
     </script>
     <!-- <script>

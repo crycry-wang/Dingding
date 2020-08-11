@@ -5,6 +5,8 @@ const { resolve, reject } = require('bluebird');
 var district = '';
 var storeIndex = '';
 var store = '';
+var session = require('express-session');
+
 
 //進到首頁的店家照片+店名
 let storeIndexSql = 'SELECT storeID,storeName,storeBanner FROM `store`';
@@ -62,7 +64,7 @@ router.get('/', async (req, res) => {
   district = JSON.stringify(a)
   const b = await storeIndexData(req);
   storeIndex = JSON.stringify(b);
-  res.render('index', { a: district, b: storeIndex });
+  res.render('index', { a: district, b: storeIndex,userName : req.session.userName });
   // console.log(storeIndex)
   // console.log(district)
 });

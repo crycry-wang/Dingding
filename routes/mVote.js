@@ -67,7 +67,8 @@ router.get('/', async (req, res, next) => {
     res.render('mVote', { 
         vote: voteJsonResult, 
         voteItemList: voteItemJsonResult, 
-        voteCheck: voteChecksonResult
+        voteCheck: voteChecksonResult,
+        active: 'mVote'
      });
     //          第一參數放ejs黨名  第二參數放需要的值
     // console.log(voteChecksonResult);
