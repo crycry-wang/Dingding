@@ -60,7 +60,7 @@
                 <!-- 內容按鈕 -->
                 <div class="clearfix">
                     <button class="text20RG dbtn btnG"><i class="icon-left-open mr-2"></i>返回</button>
-                    <a href="mNewVote_2"><button @click="persist" class="text20R dbtn btnB float-right">下一步</button></a>
+                    <button @click="saveNewVoteData" class="text20R dbtn btnB float-right">下一步</button>
                 </div>
                 <!-- 上方內容 -->
                 <div class="mt-l ml-4">
@@ -71,9 +71,10 @@
                         <div class="dSelect pr-4" style="width: 500px;">
                             <!-- <input v-model="groupName" type="text" class="text20RG singleText398"
                                 placeholder="選擇團體"> -->
-                            <select v-model="groupName" name="" id="" class="text20RG singleText398 w-100"
+                            <select v-model="newVoteData.groupID" name="" id="" class="text20RG singleText398 w-100"
                                 placeholder="選擇團體">
-                                <option v-for="(group,index) in groupList" class="text20RG singleText398" :value="group.groupName">
+                                <option v-for="(group,index) in groupList" class="text20RG singleText398"
+                                    :value="group.groupID">
                                     {{group.groupName}}</option>
                             </select>
                         </div>
@@ -83,8 +84,8 @@
                             <span class="text20B">投票標題</span>
                         </div>
                         <div class="dSelect" style="width: 500px;">
-                            <input v-model="voteName" type="text" name="" id="" class="text20RG singleText398 w-100"
-                                placeholder="輸入標題">
+                            <input v-model="newVoteData.voteName" type="text" name="" id=""
+                                class="text20RG singleText398 w-100" placeholder="輸入標題">
                             </input>
                         </div>
                     </div>
@@ -93,8 +94,8 @@
                             <span class="text20B">票數選項</span>
                         </div>
                         <div class="dSelect pr-4" style="width: 500px;">
-                            <select v-model="multipleSelect" name="" id="" class="text20RG singleText398 w-100"
-                                placeholder="選擇票數選項">
+                            <select v-model="newVoteData.multipleSelect" name="" id=""
+                                class="text20RG singleText398 w-100" placeholder="選擇票數選項">
                                 <option class="text20RG singleText398" value="false">一人一票</option>
                                 <option class="text20RG singleText398" value="true">一人多票</option>
                             </select>
@@ -105,8 +106,8 @@
                             <span class="text20B">預定訂單時間</span>
                         </div>
                         <div class="dSelect" style="width: 500px;">
-                            <input v-model="scheduledOrder" type="datetime-local" class="text20RG singleText398 w-100"
-                                        placeholder="選擇日期時間">
+                            <input v-model="newVoteData.scheduledOrderTime" type="datetime-local"
+                                class="text20RG singleText398 w-100" placeholder="選擇日期時間">
                         </div>
                     </div>
                     <div class="row mb-s">
@@ -114,8 +115,8 @@
                             <span class="text20B">投票截止時間</span>
                         </div>
                         <div class="dSelect" style="width: 500px;">
-                            <input v-model="voteDeadline" type="datetime-local" class="text20RG singleText398 w-100"
-                                        placeholder="選擇日期時間">
+                            <input v-model="newVoteData.voteDeadline" type="datetime-local"
+                                class="text20RG singleText398 w-100" placeholder="選擇日期時間">
                         </div>
                     </div>
                 </div>
@@ -123,26 +124,33 @@
         </div>
     </div>
 
-    <script src="/javascript/data.js"></script>
     <script>
         let app = new Vue({
             el: "#app",
             data: {
-                groupList:JSON.parse('<%- groupList %>'),
-                groupName:"",
-                voteName:"",
-                scheduledOrder:"",
-                voteDeadline:"",
-                multipleSelect:"",
+                groupList: JSON.parse('<%- groupList %>'),
+                newVoteData: {
+                    groupID: "",
+                    voteName: "",
+                    scheduledOrderTime: "",
+                    voteDeadline: "",
+                    multipleSelect: "",
+                }
+
             },
-            methods:{
-                persist: function () {
-                    localStorage.groupName = this.groupName;
-                    localStorage.voteName = this.voteName;
-                    localStorage.scheduledOrder = this.scheduledOrder;
-                    localStorage.voteDeadline = this.voteDeadline;
-                    location.href="./mNewVote_2.html"
-                },  
+            methods: {
+                saveNewVoteData: function () {
+                        fetch('mNewVote/saveNewVoteData', {
+                            method: 'POST',
+                            body: JSON.stringify(this.newVoteData),
+                            headers: new Headers({
+                                'Content-Type': 'application/json'
+                            })
+                        }).then((myJson) => {
+                                // console.log(myJson);
+                                location.href = "/mNewVote_2";
+                            });
+                }
             }
         })
     </script>

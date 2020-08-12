@@ -3,21 +3,28 @@ var router = express.Router();
 var db = require('../model/db');
 
 let memberID;
-let storeListSql;
 let groupListSql;
+let addressListSql;
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
   memberID = 38;
-  storeListSql = "select s.storeID,s.storeName,s.storeBanner,count(commentID) count,round(AVG(commentScore),1) star FROM `comment` c inner join `store` s on c.storeID=s.storeID inner join `likeStore` l on s.storeID=l.storeID where l.memberID="+memberID+" group by c.storeID";
-  groupListSql = "select groupName from `group` g inner join `groupmember` m on g.groupID=m.groupID where m.memberID="+memberID;
+  groupListSql = "select g.groupName,g.groupID from `group` g inner join `groupmember` m on g.groupID=m.groupID where m.memberID="+memberID;
+  addressListSql = "select * from memberaddress where memberID = "+memberID;
   next();
 });
 
-const getStoreData = (req) => {
+
+router.post('/saveNewOrderData', function (req, res, next) {
+  req.session.newOrderData = req.body ; 
+  console.log(req.body)
+  next();
+});
+
+const getGroupListData = (req) => {
   return new Promise((resolve, reject) => {
     // 輸入select 句型
-    db.queryAsync(storeListSql)
+    db.queryAsync(groupListSql)
       .then(results => {
         resolve(results);
       })
@@ -27,10 +34,10 @@ const getStoreData = (req) => {
   })
 };
 
-const getGroupListData = (req) => {
+const getaddressListData = (req) => {
   return new Promise((resolve, reject) => {
       // 輸入select 句型
-      db.queryAsync(groupListSql)
+      db.queryAsync(addressListSql)
           .then(results => {
               resolve(results);
           })
@@ -42,15 +49,15 @@ const getGroupListData = (req) => {
 
 router.get('/', async (req, res, next) => {
   const groupList = await getGroupListData(req);
-  const storeList = await getStoreData(req);
+  const addressList = await getaddressListData(req);
   groupListJsonResult = JSON.stringify(groupList);
-  storeListJsonResult = JSON.stringify(storeList);
+  addressListJsonResult = JSON.stringify(addressList);
   res.render('mNewOrder', { 
-    storeList: storeListJsonResult,
+    addressList: addressListJsonResult,
     groupList: groupListJsonResult
    });
   //          第一參數放ejs黨名  第二參數放需要的值
-  // console.log(groupNameJsonResult);
+  // console.log(addressListJsonResult);
   //測試是否成功    
 });
 

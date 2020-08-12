@@ -61,7 +61,7 @@
                 <!-- 內容按鈕 -->
                 <div class="clearfix mb-s">
                     <button onclick="goback()" class="text20RG dbtn btnG"><i class="icon-left-open mr-2"></i>返回</button>
-                    <a href="mVoteList"><button class="text20R dbtn btnB float-right">建立投票</button></a>
+                    <button @click="newVote" class="text20R dbtn btnB float-right"  data-toggle="modal" data-target="#comfirmBtn">建立投票</button>
                 </div>
                 <div class="scrollList orderVoteListM">
                     <!-- 上方內容 -->
@@ -85,7 +85,7 @@
                     <!-- 商品卡 -->
                     <div class="row imgCardGroup">
                         <div v-for="(store,index) in storeList" class="col-4 imgCard">
-                            <input class="form-check-input" type="checkbox" id="blankCheckbox" value="option1"
+                            <input class="form-check-input" v-model="selected.storeID" type="checkbox" id="blankCheckbox" :value="store.storeID"
                                 aria-label="...">
                             <div class="dingImgDiv" style="width:  100%">
                                 <img :src="'/image/store/' +store.storeBanner" class="card-img-top dingImg"
@@ -105,12 +105,25 @@
         </div>
     </div>
 
+    <!-- 確認彈框 -->
+    <div class="modal fade sm1Btn" id="comfirmBtn">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text28B w-100 text-center ">建立投票成功</h5>
+                </div>
+
+                <div class="modal-footer">
+                    <button class="text20R dbtn btnY m-auto" onclick="toVoteList()">確定</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script>
-        //  document.getElementById('goback').addEventListener("click",()=>{
-        //     // location.href="/mNewVote";
-        //     console.log("get")
-        // })
+        function toVoteList() {
+            location.href = "/mVoteList";
+        }
 
         function goback(){
             location.href="/mNewVote";
@@ -123,25 +136,24 @@
             el:"#app",
             data:{
                 storeList:JSON.parse('<%- storeList %>'),
+                selected: {
+                    storeID:[],
+                },
             },
             methods:{
-                getScore:function(viewStoreID){
-                    let result;
-                    
-                    fetch(`/mNewVote_2/score?storeID=${viewStoreID}`)
-                    .then(function(response) {
-                        return response.json();
-                    })
-                    .then((myJson) => {
-                        let transform;
-                        transform = JSON.parse(myJson);
-                        result = transform[0].star;
-                        console.log("fetch: "+result);                        
+                newVote: function () {
+                    fetch('/mNewVote_2/newVote', {
+                        method: 'post',
+                        body: JSON.stringify(this.selected),
+                        headers: new Headers({
+                            'Content-Type': 'application/json'
+                        })
+                    }).then((myJson) => {
+                        // console.log(myJson);
+                        console.log(myJson);
+                        // location.href = "/mNewOrder_2";
                     });
-                    console.log(result);
-                    return result;
-                    // return result[0].star;
-                }
+                },
             }
         })
     </script>

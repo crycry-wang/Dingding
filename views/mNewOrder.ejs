@@ -60,22 +60,35 @@
                 <!-- 內容區塊 -->
                 <div id="app" class="dblock givePadding mt-m">
                     <!-- 內容按鈕 -->
-                    <div class="clearfix mb-s">
+                    <div class="clearfix">
                         <button class="text20RG dbtn btnG"><i class="icon-left-open mr-2"></i>返回</button>
-                       <a href="mOrderList"> <button  @click="persist" class="text20R dbtn btnY float-right">建立訂單</button></a>
+                        <button @click="saveNewOrderData" class="text20R dbtn btnY float-right">下一步</button>
                     </div>
                     <!-- 捲軸範圍 -->
                     <div class="scrollList orderVoteListM">
                         <!-- 上方內容 -->
-                        <div class="ml-4">
+                        <div class="mt-l ml-4">
                             <div class="row mb-s">
                                 <div class="col-2 mTD">
                                     <span class="text20B">選擇團體</span>
                                 </div>
                                 <div class="dSelect pr-4" style="width: 500px;">
-                                    <select v-model="groupName" name="" id="" class="text20RG singleText398 w-100"
-                                        placeholder="選擇團體">
-                                        <option v-for="(group,index) in groupList" class="text20RG singleText398" :value="group.groupName">{{group.groupName}}</option>
+                                    <select v-model="newOrderData.groupID" name="" id=""
+                                        class="text20RG singleText398 w-100" placeholder="選擇團體">
+                                        <option v-for="(group,index) in groupList" class="text20RG singleText398"
+                                            :value="group.groupID">{{group.groupName}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row mb-s">
+                                <div class="col-2 mTD">
+                                    <span class="text20B">選擇地址</span>
+                                </div>
+                                <div class="dSelect pr-4" style="width: 500px;">
+                                    <select v-model="newOrderData.deliveryAddress" name="" id=""
+                                        class="text20RG singleText398 w-100" placeholder="選擇地址">
+                                        <option v-for="(address,index) in addressList" class="text20RG singleText398"
+                                            :value="address.memberAddress">{{address.memberAddress}}</option>
                                     </select>
                                 </div>
                             </div>
@@ -84,8 +97,9 @@
                                     <span class="text20B">餐點送達時間</span>
                                 </div>
                                 <div class="dSelect" style="width: 500px;">
-                                    <input v-model="orderArrivedTime" type="datetime-local" datetime="YYYY-MM-DD hh:mm:ss" class="text20RG singleText398 w-100"
-                                        placeholder="選擇日期時間" @click=''> 
+                                    <input v-model="newOrderData.orderArrivedTime" type="datetime-local"
+                                        datetime="YYYY-MM-DD hh:mm:ss" class="text20RG singleText398 w-100"
+                                        placeholder="選擇日期時間" @click=''>
                                 </div>
                             </div>
                             <div class="row mb-s">
@@ -93,144 +107,74 @@
                                     <span class="text20B">點餐截止時間</span>
                                 </div>
                                 <div class="dSelect" style="width: 500px;">
-                                    <input v-model="orderDeadline" type="datetime-local" class="text20RG singleText398 w-100"
-                                        placeholder="選擇日期時間">
+                                    <input v-model="newOrderData.orderDeadline" type="datetime-local"
+                                        class="text20RG singleText398 w-100" placeholder="選擇日期時間">
                                 </div>
                             </div>
-                            <div class="row mb-m mTD">
-                                <div class="dSelect" style="width: 500px;">
-                                    <input v-model:trim="searchCondition" type="text" class="text20RG singleText398" placeholder="請輸入店家名稱">
-                                </div>
-                                <button v-on:click="searchStore" class="text20R dbtn btnY ml-3">搜尋店家</button>
-                                <button v-on:click="randomChoose" class="text20R dbtn btnY ml-3" type="button"
-                                    id="randomBtn">店家拉霸機</button>
-                            </div>
-                            <div class="mTD">
-                                <a href="#" class="text20R text-decoration-none pr-3 textB">收藏</a><span
-                                    class="textG">|</span>
-                                <a href="#" class="text20R text-decoration-none pr-3 pl-3" @click="recommand">推薦</a><span
-                                    class="textG">|</span>
-                                <a href="#" class="text20R text-decoration-none pr-3 pl-3">重新下訂</a><span
-                                    class="textG">|</span>
-                                <a href="#" class="text20R text-decoration-none pr-3 pl-3">最近的投票</a>
-                            </div>
-                        </div>
-                        <!-- 水平線 -->
-                        <div class="orderSection mt-n2">
-                            <hr class="" style="border: 1px solid var(--dLightGray);">
-                        </div>
-                        <!-- 商品卡 -->
-                        <div class="row imgCardGroup">
-                            <div v-for="(store,index) in storeList" class="col-4 imgCard">
-                                <input v-model="selectedStore" class="form-check-input" type="radio" name="blankRadio"
-                                    id="blankRadio1" :value="storeList[index].storeID" aria-label="...">
-                                <div class="dingImgDiv" style="width:  100%">
-                                    <img :src="'/image/store/' +store.storeBanner" class="card-img-top dingImg" alt="...">
-                                    <div class="card-body">
-                                        <div class="d-inline-block w-75">
-                                            <p class="card-text text24B shopName">{{ store.storeName }}</p>
-                                        </div>
-                                        <i class="icon-spoon float-right"></i>
-                                        <span class="card-text eng24R float-right"
-                                            style="margin-right: 7px;">{{store.storeScore}}</span>
-                                    </div>
-                                </div>
-                            </div>
-                           
+
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
 
 
-    <script src="/javascript/data.js"></script>
-    <script>
-      
-        let app = new Vue({
-            el: "#app",
-            data: {
-                storeList:JSON.parse('<%- storeList %>'),
-                groupList:JSON.parse('<%- groupList %>'),
-                dataJson: [],
-                groupName:"",
-                orderArrivedTime:""
-            },
-            // mounted() {
-            //     if (localStorage.groupName) {
-            //         this.groupName = localStorage.groupName;
-            //     }
-            //     if (localStorage.orderArrivedTime) {
-            //         this.orderArrivedTime = localStorage.orderArrivedTime;
-            //     }
-            //     if (localStorage.orderDeadline) {
-            //         this.orderDeadline = localStorage.orderDeadline;
-            //     }
-            //     if (localStorage.orderDeadline) {
-            //         this.selectedStore = localStorage.selectedStore;
-            //     }
-            // },
-            computed:{
-            },
-            methods: {
-                randomChoose:function() {
-                    this.countCard = document.getElementsByClassName('imgCard').length;
-                    this.selectedStore = "";
-                    this.randaomCard = Math.floor(Math.random() * this.countCard);
-                    console.log(this.countCard);
-                    this.selectedStore = document.querySelectorAll(".form-check-input")[this.randaomCard];
-                    this.selectedStore.checked = true;
-                    this.selectedStore = this.selectedStore.value;
-                    // $(`.imgCardGroup .form-check-input`).eq(randaomCard).prop("checked", true);
+        <script>
+
+            let app = new Vue({
+                el: "#app",
+                data: {
+                    addressList: JSON.parse('<%- addressList %>'),
+                    groupList: JSON.parse('<%- groupList %>'),
+                    newOrderData: {
+                        groupID: "",
+                        deliveryAddress: "",
+                        orderArrivedTime: "",
+                        orderDeadline: "",
+                    },
                 },
-                persist: function () {
-                    // localStorage.groupName = this.groupName;
-                    // localStorage.orderArrivedTime = this.orderArrivedTime;
-                    // localStorage.orderDeadline = this.orderDeadline;
-                    // localStorage.selectedStore = this.selectedStore;
-                    // console.log('now pretend I did more stuff...');
-                },              
-                // searchStore:function(){
-                //     let finalStoreList = this.storeList;
-                //     if(this.searchCondition){
-                //         return this.storeList
-                //     }else{
-                //         finalStoreList = this.storeList.filter(store => {
-                //             return this.storeList.storeName.toLowerCase().indexOf(this.searchCondition.toLowerCase()) != -1
-                //         })
-                //     }
-                //     return finalStoreList;
-                // },
-                recommand:function(){
-                    
-                    fetch('/mNewOrder/json')
-                    .then(function(response) {
-                        return response.json();
-                    })
-                    .then((myJson) => {
-                        console.log(myJson);
-                        this.dataJson= myJson;
-                    });
+                computed: {
+                },
+                methods: {
+                    randomChoose: function () {
+                        this.countCard = document.getElementsByClassName('imgCard').length;
+                        this.selectedStore = "";
+                        this.randaomCard = Math.floor(Math.random() * this.countCard);
+                        console.log(this.countCard);
+                        this.selectedStore = document.querySelectorAll(".form-check-input")[this.randaomCard];
+                        this.selectedStore.checked = true;
+                        this.selectedStore = this.selectedStore.value;
+                        // $(`.imgCardGroup .form-check-input`).eq(randaomCard).prop("checked", true);
+                    },
+                    saveNewOrderData: function () {
+                        fetch('mNewOrder/saveNewOrderData', {
+                            method: 'POST',
+                            body: JSON.stringify(this.newOrderData),
+                            headers: new Headers({
+                                'Content-Type': 'application/json'
+                            })
+                        }).then((myJson) => {
+                                // console.log(myJson);
+                                location.href = "/mNewOrder_2";
+                            });
+                        // console.log('conn')
+                    },
+                    recommand: function () {
+                        fetch('/mNewOrder/json')
+                            .then(function (response) {
+                                return response.json();
+                            })
+                            .then((myJson) => {
+                                console.log(myJson);
+                                this.dataJson = myJson;
+                            });
+                    }
+
                 }
-  
-            }
-        })
+            })
+        </script>
 
-
-    </script>
-    <!-- <script>
-        let countCard = document.getElementsByClassName('imgCard').length;
-        let randaomCard = Math.floor(Math.random() * countCard);
-        console.log(randaomCard);
-        console.log($(`.imgCardGroup .form-check-input`)[randaomCard]);
-
-        $("#randomBtn").click(function () {
-            randaomCard = Math.floor(Math.random() * countCard);
-            $(`.imgCardGroup .form-check-input`).eq(randaomCard).prop("checked", true);
-        });
-    </script> -->
 </body>
 
 </html>
