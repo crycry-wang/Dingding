@@ -61,9 +61,10 @@
                         </span>
                         <span class="ml-auto actionR">
                             <span class="eng20R price">
-                                <span class=" align-middle">5,000</span>
+                                <span class=" align-middle">{{item.total}}</span>
                             </span>
-                            <button class="text20R dbtn btnY" data-toggle="modal" data-target="#orderAction">
+                            <button class="text20R dbtn btnY" data-toggle="modal" data-target="#orderAction"
+                            @click="getDetail(item.orderID)">
                                 處理訂單</button>
                         </span>
                     </li>
@@ -99,7 +100,7 @@
                         </span>
                         <span class="ml-auto actionR">
                             <span class="eng20R price">
-                                <span class=" align-middle">3,400</span>
+                                <span class=" align-middle">{{item.total}}</span>
                             </span>
                             <button class="text20R dbtn btnW" data-toggle="modal" data-target="#order">查看訂單</button>
                             <button class="text20R dbtn btnY  d-none" data-toggle="modal" data-target="#orderAction">
@@ -122,7 +123,7 @@
                         </span>
                         <span class="ml-auto actionR">
                             <span class="eng20R price">
-                                <span class=" align-middle">1,850</span>
+                                <span class=" align-middle">{{item.total}}</span>
                             </span>
                             <button class="text20R dbtn btnW" data-toggle="modal" data-target="#order">查看訂單</button>
                             <button class="text20R dbtn btnY  d-none" data-toggle="modal" data-target="#orderAction">
@@ -414,22 +415,26 @@
                 dNticeData: JSON.parse('<%- dNticeData %>'),
                 orderNoticeData: JSON.parse('<%- orderNoticeData %>'),
                 orderCaNoticeData: JSON.parse('<%- orderCaNoticeData %>'),
-                orderDTNoticeData: JSON.parse('<%- orderDTNoticeData %>'),
+                orderDTNoticeData: JSON.parse('<%- orderDetailList %>'),
                 orderOkNoticeData: JSON.parse('<%- orderOkNoticeData %>'),
             },
             mounted: function () {
                 this.dNticeData.forEach(function (item) {
-                    item.noticeTime = getDate(item.noticeTime);})
+                    item.noticeTime = getDate(item.noticeTime);
+                })
 
                 this.orderNoticeData.forEach(function (item) {
-                    item.noticeTime = getDate(item.noticeTime);})
+                    item.noticeTime = getDate(item.noticeTime);
+                })
 
                 this.orderCaNoticeData.forEach(function (item) {
-                    item.noticeTime = getDate(item.noticeTime);})
-                
+                    item.noticeTime = getDate(item.noticeTime);
+                })
+
                 this.orderOkNoticeData.forEach(function (item) {
-                    item.noticeTime = getDate(item.noticeTime);})
-            
+                    item.noticeTime = getDate(item.noticeTime);
+                })
+
             },
             methods: {
                 // 已讀
@@ -445,7 +450,7 @@
                 },
                 readOkStatus(index) {
                     if (this.orderOkNoticeData[index].noticeStatus == 1) {
-                    this.orderOkNoticeData[index].noticeStatus = 2;
+                        this.orderOkNoticeData[index].noticeStatus = 2;
                     }
                 },
                 readNewStatus(index) {
@@ -461,23 +466,34 @@
                 },
                 deleteOkN(index) {
                     this.orderOkNoticeData[index].noticeStatus = 0;
+                },
+                // 明細
+                getDetail(orderID) {
+                    fetch('sNotice/getDetail?orderID=' + orderID)
+                        .then(function (response) {
+                            return response.json();
+                        })
+                        .then((myJson) => {
+                            // console.log(myJson);
+                            this.orderDTNoticeData = JSON.parse(myJson);
+                        });
+                    // console.log('conn')
+
                 }
+                // ,computed: {
+                //     orderList() {
+                //         let obj = [];
+                //         for (let index = 0; index < this.orderDTNoticeData.length; index++) {
+                //             obj.push(this.orderDTNoticeData[index].orderId);
+                //         }
+                //         obj = Array.from(new Set(obj));
+                //         return obj
+                //     }
 
-            }
-            // ,computed: {
-            //     orderList() {
-            //         let obj = [];
-            //         for (let index = 0; index < this.orderDTNoticeData.length; index++) {
-            //             obj.push(this.orderDTNoticeData[index].orderId);
-            //         }
-            //         obj = Array.from(new Set(obj));
-            //         return obj
-            //     }
-
-            // }
+                // }
 
 
-        })
+            }})
     </script>
 
 

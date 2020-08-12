@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="/stylesheets/bootstrap.min.css">
+    <script src="/javascript/jquery-3.5.1.min.js"></script>
+    <script src="/javascript/popper.min.js"></script>
+    <script src="/javascript//bootstrap.min.js"></script>
+    <script src="/javascript/vue.js"></script>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <link rel="stylesheet" href="/stylesheets/fontello.css">
+    <link rel="stylesheet" href="/stylesheets/sider.css">
+    <link rel="stylesheet" href="/stylesheets/member.css">
+
+    <title>Document</title>
+
+</head>
+
+<body>
+
+    <!-- 左邊sider -->
+    <div class="slider fixed-top">
+        <img src="/image/LOGO.png" class="sliderLogo">
+        <br>
+        <img src="/image/photo.jpg" class="sliderPhoto">
+        <p class="name text24B">阿信</p>
+        <div class="menu text24R">
+            <a href=""><i class="icon-home"></i>首頁</a>
+            <a href="" class="act"><i class="icon-claendar"></i>訂訂行事曆</a>
+            <a href="" class="mb-2"><i class="icon-member"></i>會員中心<i class="icon-down-open ml-3 mr-0"
+                    style="font-size: 14px;"></i></a>
+            <span class="menuI d-none">
+                <a href="" class="mb-0">個人資料</a>
+                <a href="">我的訂訂幣</a>
+            </span>
+            <a href="" class="mt-4"><i class="icon-message"></i>通知<span class="note">3</span></a>
+            <a href="" id="signOut"><i class="icon-logout"></i>登出</a>
+        </div>
+    </div>
+
+    <!-- 右邊內容放置區 -->
+    <div class="containerRight">
+        <div class="inWrapper">
+            <!-- 上方頁籤 -->
+            <div class="topBtnGroup topBtnPadding">
+                <button class="text20R dbtn btnGY">訂訂行事曆</button>
+                <button class="text20R dbtn btnGY">我的團體</button>
+                <button class="text20R dbtn btnGY btnY">我的訂單</button>
+                <a href="mVoteList"><button class="text20R dbtn btnGB">我的投票</button></a>
+            </div>
+            <!-- 內容區塊 -->
+            <div id="app" class="dblock givePadding mt-m">
+                <div :class="{act : tab == 1}" class="dTag text24RG" @click="getFuture">預定訂單</div>
+                <div :class="{act : tab == 2}" class="dTag text24RG" @click="getHistory">歷史訂單</div>
+                <div class="d-flex justify-content-end">
+                    <a href="mNewOrder"><button class="text20R dbtn btnB">安排訂單<span class="ml-2">+</span></button></a>
+                </div>
+                <div class="row mt-4 text20BW">
+                    <div class="col-4 mTH">團名</div>
+                    <div class="col-4 mTH">店家名稱</div>
+                    <div class="col-4 mTH">餐點送達時間</div>
+                </div>
+                <!-- 捲軸範圍 -->
+                <div class="scrollList orderVoteList">
+                    <div v-for="(order,index) in orderList" class="row mTR text20B">
+                        <div class="col-4 mTD">{{ order.groupName }}</div>
+                        <div class="col-4 mTD">
+                            <img :src="'/image/store/' +order.storeBanner" alt="" class="float-left orderListimg clipCircle mr-3">{{ order.storeName }}</div>
+                        <div class="col-4 mTD">{{ order.orderArrivedTime }}<a href="#" @click="toOrderDetail(order.OrderID)" class="icon-ok float-right" :class="checkOrder(order.orderID)"></a></div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        let app = new Vue({
+            el: "#app",
+            data: {
+                orderList:JSON.parse('<%- orderList %>'),
+                orderCheck:JSON.parse('<%- orderCheck %>'),
+                tab:1,
+            },
+            methods:{
+                getFuture:function(){
+                    fetch('/mOrderList/future')
+                    .then(function(response) {
+                        return response.json();
+                    })
+                    .then((myJson) => {
+                        console.log(myJson);
+                        this.orderList= JSON.parse(myJson);
+                    });
+                    this.tab=1;
+                },
+                getHistory:function(){
+                    fetch('/mOrderList/history')
+                    .then(function(response) {
+                        return response.json();
+                    })
+                    .then((myJson) => {
+                        console.log(myJson);
+                        this.orderList= JSON.parse(myJson);
+                    });
+                    this.tab=2;
+                },
+                checkOrder:function(viewOrderID) {
+                    for (let i = 0; i < this.orderCheck.length; i++) {
+                        if(this.orderCheck[i].orderID == viewOrderID)
+                        {return "textY"}
+                    }
+                    return "textG" ;
+                },
+                toOrderDetail:function(viewOrderID){
+                    location.href="/mOrder?orderID="+viewOrderID;
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

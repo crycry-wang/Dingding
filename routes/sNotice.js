@@ -7,46 +7,72 @@ var db = require('../model/db');
 /* GET home page. */
 
 // 店家
-const storeID = 2;
-const storeSelect = 'select * from `store` where storeID=';
-const store = storeSelect + storeID;
+let storeID;
+let store;
 
 // 通知讀取數
-const readSelect = 'SELECT count(noticeID) countZ  FROM `notice` WHERE `toWhoType`=1 and noticeStatus=1 and `toWhoID`='
-const read = readSelect + storeID;
-
-
-
+let read;
 
 // 廠商平台通知
-const dNoticeSelect = 'SELECT * FROM `notice` where noticeType=0 and toWhoType=1 and toWhoID='
-const dNotice = dNoticeSelect + storeID;
+let dNotice;
 
 // 廠商新訂單明細
-const orderDtNoticeSelect = 'SELECT a.`orderId`,c.`price`,\
-c.`quality` FROM `order` a join member b on a.`memberID`=b.`memberID` \
-join `orderdetail` c on a.`orderID`=c.`orderID` \
-join `notice` d on a.`orderID`=c.`orderID` \
-where a.orderStatus=2 and d.noticeType=1 and d.toWhoType=1 and d.toWhoID='
-const orderDtNotice = orderDtNoticeSelect + storeID;
+let orderDtNotice;
 
 // 廠商訂單
-const a = 'SELECT a.`orderID`,b.`memberName`,b.`memberPhoto`,c.`noticeStatus`,\
-c.`noticeTime`,\
-a.`orderDeadline` FROM `order` a join `member` b on a.`memberID`=b.`memberID`\
-join `notice` c on a.`orderID`=c.`noticeData` WHERE a.`orderStatus`'
+let a;
 
 // 廠商新訂單
-const orderNoticeSelect = `${a} =2 and a.storeID=`
-const orderNotice = orderNoticeSelect + storeID;
+let orderNotice;
 
 // 廠商拒絕訂單
-const orderCaNoticeSelect = `${a} =0 and a.storeID=`
-const orderCaNotice = orderCaNoticeSelect + storeID;
+let orderCaNotice;
 
 // 廠商接受訂單
-const orderOkNoticeSelect = `${a} =3 and a.storeID=`
-const orderOkNotice = orderOkNoticeSelect + storeID;
+let orderOkNotice;
+
+let orderDetailListSql;
+
+// 通知資料
+router.get('/', function (req, res, next) {
+    // 店家
+    storeID = 2;
+    store = 'select * from `store` where storeID=' + storeID;
+    // 通知讀取數
+    read = 'SELECT count(noticeID) countZ  FROM `notice` WHERE `toWhoType`=1 and noticeStatus=1 and `toWhoID`=' + storeID;
+    // 廠商平台通知
+    dNotice = 'SELECT * FROM `notice` where noticeType=0 and toWhoType=1 and toWhoID=' + storeID;
+
+    // 廠商訂單
+    a = 'SELECT a.`orderID`,b.`memberName`,b.`memberPhoto`,c.`noticeStatus`,\
+    c.`noticeTime`,sum(d.`price`*d.`quality`) total,a.`orderDeadline` FROM\
+     `order` as a ,`member` as b ,`notice` as c ,`orderdetail` as d\
+    where a.`memberID`=b.`memberID` and a.`orderID`=c.`noticeData` and a.`orderID` =d.`orderID` and a.`orderStatus`'
+    // 廠商新訂單
+    orderNotice = `${a} =2 and a.storeID=` + storeID;
+    // 廠商拒絕訂單
+    orderCaNotice = `${a} =0 and a.storeID=` + storeID;
+    // 廠商接受訂單
+    orderOkNotice = `${a} =3 and a.storeID=` + storeID;
+
+    next();
+});
+
+router.get('/getDetail', async (req, res, next) => {
+    orderID = req.query.orderID;
+        // 廠商新訂單明細
+        // orderDetailListSql = 'SELECT a.`orderId`,c.`price`,\
+        // c.`quality` FROM `order` a join member b on a.`memberID`=b.`memberID` \
+        // join `orderdetail` c on a.`orderID`=c.`orderID` \
+        // join `notice` d on a.`orderID`=c.`orderID` \
+        // where a.orderStatus=2 and d.noticeType=1 and d.toWhoType=1 and d.toWhoID=' + storeID;
+        orderDetailListSql = "select o.orderID,d.productID,d.price,d.quality,o.orderArrivedTime,o.orderCreateTime,m.memberName,m.memberPhone,p.productPhoto,p.productName FROM `orderdetail` d join `order` o on d.orderID=o.orderID join `member` m on m.memberID=o.memberID join `product` p on d.productID=p.productID where d.orderID=" + orderID;
+        const orderDetailList = await orderDetailListData(req);
+        orderDetailListJsonResult = JSON.stringify(orderDetailList);
+        res.json(orderDetailListJsonResult);
+        next();
+});
+
 
 
 const getStoreData = (req) => {
@@ -84,9 +110,22 @@ const getOrderNotice = (req) => {
             });
     })
 };
-const getOrderDTNotice = (req) => {
+// const getOrderDTNotice = (req) => {
+//     return new Promise((resolve, reject) => {
+//         db.queryAsync(orderDtNotice)
+//             .then(results => {
+//                 resolve(results);
+//             })
+//             .catch(ex => {
+//                 reject(ex);
+//             });
+//     })
+// };
+
+const orderDetailListData = (req) => {
     return new Promise((resolve, reject) => {
-        db.queryAsync(orderDtNotice)
+        // 輸入select 句型
+        db.queryAsync(orderDetailListSql)
             .then(results => {
                 resolve(results);
             })
@@ -95,6 +134,7 @@ const getOrderDTNotice = (req) => {
             });
     })
 };
+
 const getOrderCaNotice = (req) => {
     return new Promise((resolve, reject) => {
         db.queryAsync(orderCaNotice)
@@ -131,11 +171,13 @@ const getread = (req) => {
 };
 
 //傳資料到表單裡
-router.get('/', async (req, res) => {
+router.get('/', async (req, res,next) => {
     newsJSON = JSON.stringify(await getStoreData(req));
     newsJSON1 = JSON.stringify(await getDNotice(req));
     newsJSON2 = JSON.stringify(await getOrderNotice(req));
-    newsJSON3 = JSON.stringify(await getOrderDTNotice(req));
+    const orderDetailList = await orderDetailListData(req);
+    orderDetailListJsonResult = JSON.stringify(orderDetailList);
+    // newsJSON3 = JSON.stringify(await getOrderDTNotice(req));
     newsJSON4 = JSON.stringify(await getOrderCaNotice(req));
     newsJSON5 = JSON.stringify(await getOrderOkNotice(req));
     newsJSON6 = JSON.stringify(await getread(req));
@@ -144,7 +186,7 @@ router.get('/', async (req, res) => {
         storeData: newsJSON,
         dNticeData: newsJSON1,
         orderNoticeData: newsJSON2,
-        orderDTNoticeData: newsJSON3,
+        orderDetailList: orderDetailListJsonResult,
         orderCaNoticeData: newsJSON4,
         orderOkNoticeData: newsJSON5,
         readData: newsJSON6,
