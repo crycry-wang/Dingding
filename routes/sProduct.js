@@ -4,7 +4,7 @@ var db = require('../model/db');
 
 /* GET home page. */
 // 店家
-const storeID = 4;
+const storeID = 1;
 const storeSelect = 'select * from `store` where storeID=';
 const store = storeSelect + storeID;
 

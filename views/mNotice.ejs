@@ -115,13 +115,14 @@
                     </li>
 
                     <!-- 已讀取消訂單 -->
-                    <li class="noticeItem d-flex align-items-center cancel read">
-                        <span class="photo"></span>
-                        <!-- <img src="/image/message.png"> -->
+                    <span v-for='(item,index) in OderNoticeData'>
+                        <li :class="item.noticeStatus==2 ?
+                        'noticeItem d-flex align-items-center read cancel store':'noticeItem d-flex align-items-center cancel store'">
+                        <img src="/image/message.png">
                         <span class="content">
-                            <h2 class="text24B">尊品原汁牛肉麵 已取消訂單</h2>
+                            <h2 class="text24B"><span>{{item.storeName}}</span> 已取消訂單</h2>
                             <p class="text20R">店家因太忙或種種原因，而取消了訂單，我們將會退還全額給您。</p>
-                            <p class="text16">3小時前</p>
+                            <p class="text16">{{item.noticeTime}}</p>
                         </span>
 
                         <span class="ml-auto actionR d-flex align-items-center">
@@ -130,14 +131,11 @@
                             </span>
 
                             <button class="text20R dbtn btnW d-none">建立新訂單</button>
-                            <button class="text20R dbtn btnB">移動至訂單</button>
-                            <button class="text20R dbtn btnY d-none" data-toggle="modal" data-target="#comfirm2Btn">
-                                完成訂單</button>
+                            <a href="mOrder"><button class="text20R dbtn btnB">移動至訂單</button></a>
                             <i class="icon-trash"></i>
-                            <p class="text20R d-none">等待中..</p>
                         </span>
-
                     </li>
+                    </span>
                 </span>
                 <!-- 已讀取消訂單 -->
                 <span v-if='tab==2'>
@@ -198,8 +196,8 @@
             data: {
                 memberData: JSON.parse('<%- mMemberData %>'),
                 dNticeData: JSON.parse('<%- dNticeData %>'),
+                OderNoticeData: JSON.parse('<%- OderNoticeData %>'),
                 tab: 0
-
             },
             mounted: function () {
                 this.dNticeData.forEach(function (item) {

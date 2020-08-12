@@ -4,7 +4,7 @@ var db = require('../model/db');
 
 /* GET home page. */
 
-const storeID = 2;
+const storeID = 1;
 const storeSelect = 'select * from `store` where storeID=';
 const store = storeSelect + storeID;
 // 評價
