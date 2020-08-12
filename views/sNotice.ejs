@@ -62,7 +62,7 @@
                             </span>
                             <span class="ml-auto actionR">
                                 <span class="eng20R price">
-                                    <span class=" align-middle">{{item.total}}</span>
+                                    <span class=" align-middle">{{(item.total).toLocaleString('en-US')}}</span>
                                 </span>
                                 <button class="text20R dbtn btnY" data-toggle="modal" data-target="#orderAction"
                                     @click='getDetail(item.orderID,item.total)'>
@@ -101,7 +101,7 @@
                             </span>
                             <span class="ml-auto actionR">
                                 <span class="eng20R price">
-                                    <span class=" align-middle">{{item.total}}</span>
+                                    <span class=" align-middle">{{(item.total).toLocaleString('en-US')}}</span>
                                 </span>
                                 <button class="text20R dbtn btnW" data-toggle="modal" data-target="#order"
                                 @click='getDetail(item.orderID,item.total)'>查看訂單</button>
@@ -126,7 +126,7 @@
                             </span>
                             <span class="ml-auto actionR">
                                 <span class="eng20R price">
-                                    <span class=" align-middle">{{item.total}}</span>
+                                    <span class=" align-middle">{{(item.total).toLocaleString('en-US')}}</span>
                                 </span>
                                 <button class="text20R dbtn btnW" data-toggle="modal" data-target="#order"
                                 @click='getDetail(item.orderID,item.total)'>查看訂單</button>

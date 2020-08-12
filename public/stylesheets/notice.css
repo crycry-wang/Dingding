@@ -45,10 +45,6 @@
     background: #BFBFBF;
     text-align: center;
     line-height: 60px;
-}
-
-.noticeItem .photo::after {
-    content: '訂訂';
     color: white;
     font-size: 16px;
     letter-spacing: 2px;

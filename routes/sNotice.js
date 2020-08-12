@@ -42,7 +42,11 @@ router.get('/', function (req, res, next) {
     // 店家
     storeID = 2;
     orderID = 9;
-    store = 'select * from `store` where storeID=' + storeID;
+    store = 'select a.`storeID`,a.`storeName`,\
+    a.`storePhoto`,count(b.`noticeStatus`) as\
+     noticeCount from `store` as a,`notice` as\
+      b where a.`storeID`=b.`toWhoID` and b.`toWhoType`=1\
+       and b.`noticeStatus`=1 and storeID=' + storeID;
 
     // 通知讀取數
     read = 'SELECT count(noticeID) countZ  FROM `notice` WHERE `toWhoType`=1 and noticeStatus=1 and `toWhoID`=' + storeID;

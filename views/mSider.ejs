@@ -14,7 +14,7 @@
                 <a <%if(active=="mMember"){%> class="act"<%}%> href="mMember" style='margin-bottom:0;'>個人資料</a>
                 <a <%if(active=="mSaveCoins"){%> class="act"<%}%> href="mSaveCoins" style='margin-bottom:0;'>我的訂訂幣</a>
             </span>
-        <a <%if(active=="mNotice"){%> class="act"<%}%> href="mNotice" style="margin-top:24px;"><i class="icon-message"></i>通知<span class="note ">3</span></a>
+        <a <%if(active=="mNotice"){%> class="act"<%}%> href="mNotice" style="margin-top:24px;"><i class="icon-message"></i>通知<span class="note">{{memberData[0].noticeCount}}</span></a>
         <a href="index" id="signOut"><i class="icon-logout"></i>登出</a>
     </div>
 </div>
