@@ -4,10 +4,27 @@ var db = require('../model/db');
 const { resolve, reject } = require('bluebird');
 var district = '';
 var storeIndex = '';
+var session = require('express-session');
+// var mysession="";
 // 會員
-const memberId = 38;
-const memberSelect = 'select * from `member` where memberID=';
-const member = memberSelect + memberId;
+var memberId;
+var memberSelect;
+var member;
+
+router.get('/', function(req, res, next) {
+  memberId =  req.session.memberID;
+  member = memberSelect + memberId;
+  console.log("session:",req.session.memberID);
+  next();
+});
+
+// memberId = 38;
+memberSelect = 'select * from `member` where memberID=';
+
+
+
+/* GET home page. */
+
 
 //進到首頁的店家照片+店名
 let storeIndexSql = 'SELECT storeID,storeName,storeBanner FROM `store`';
@@ -62,6 +79,7 @@ router.get('/',async(req,res)=>{
   const b = await storeIndexData(req);
   district = JSON.stringify(a)
   storeIndex=JSON.stringify(b);
+  // console.log(req.session.memberID)
   
   res.render('mIndex', {
     mMemberData: newsJSON,
