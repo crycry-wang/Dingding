@@ -1,15 +1,7 @@
 let data = {
     list: [
-        { src: '../public/image/photo.jpg', memName: '阿信' },
-        { src: '../public/image/photo.jpg', memName: '怪獸' },
-        { src: '../public/image/photo.jpg', memName: '怪獸' },
-        { src: '../public/image/photo.jpg', memName: '怪獸' },
-        { src: '../public/image/photo.jpg', memName: '怪獸' },
-        { src: '../public/image/photo.jpg', memName: '怪獸' },
-        { src: '../public/image/photo.jpg', memName: '怪獸' },
-        { src: '../public/image/photo.jpg', memName: '怪獸' },
-        { src: '../public/image/photo.jpg', memName: '怪獸' },
-        { src: '../public/image/photo.jpg', memName: '怪獸' }
+        { src: '/image/photo.jpg', memName: '阿信' },
+        { src: '/image/photo.jpg', memName: '怪獸' }
     ]
 }
 

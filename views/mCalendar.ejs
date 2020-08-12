@@ -6,55 +6,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 
-    <link rel="stylesheet" href="../public/stylesheets/bootstrap.min.css">
-    <script src="../public/javascript/jquery-3.5.1.min.js"></script>
-    <script src="../public/javascript/popper.min.js"></script>
-    <script src="../public/javascript//bootstrap.min.js"></script>
-    <link rel="stylesheet" href="../public/stylesheets/style.css">
-    <link rel="stylesheet" href="../public/stylesheets/fontello.css">
+    <link rel="stylesheet" href="/stylesheets/bootstrap.min.css">
+    <script src="/javascript/jquery-3.5.1.min.js"></script>
+    <script src="/javascript/popper.min.js"></script>
+    <script src="/javascript//bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <link rel="stylesheet" href="/stylesheets/fontello.css">
+    <link rel="stylesheet" href="/stylesheets/sider.css">
+    <link rel="stylesheet" href="/stylesheets/memcalendar.css">
 
-    <link rel="stylesheet" href="../public/stylesheets/memcalendar.css">
-
-    <script src="../public/javascript/vue.js"></script>
+    <script src="/javascript/vue.js"></script>
 
 
 </head>
 
 <body>
 
+    <%- include('mSider', {active}); %>
     <div id="app" class="Wrapper">
         <div class="wrapper1920">
-            <!-- 左邊sider -->
-            <div class="slider fixed-top">
-                <img src="../public/image/LOGO.png" class="sliderLogo">
-                <br>
-                <img src="../public/image/photo.jpg" class="sliderPhoto">
-                <p class="name text24B">阿信</p>
-                <div class="menu text24R">
-                    <a href=""><i class="icon-home"></i>首頁</a>
-                    <a href="" class="act"><i class="icon-claendar"></i>訂訂行事曆</a>
-                    <a href="" class="mb-2"><i class="icon-member"></i>會員中心<i class="icon-down-open ml-3 mr-0"
-                            style="font-size: 14px;"></i></a>
-                    <span class="menuI d-none">
-                        <a href="" class="mb-0">個人資料</a>
-                        <a href="">我的訂訂幣</a>
-                    </span>
-                    <a href="" class="mt-4"><i class="icon-message"></i>通知<span class="note">3</span></a>
-                    <a href="" id="signOut"><i class="icon-logout"></i>登出</a>
-                </div>
-            </div>
 
             <div class="containerRight">
-                <!-- 右邊內容放置區 -->
-                
-                <p>{{xxx}}</p>
-                
                 <!-- 功能列 -->
                 <div class="mt-l mb-m ml-l">
-
                     <span>
                         <button class="mr-xs text20R dbtn btnGY btnY">訂訂行事曆</button>
-                        <button class="mr-xs text20R dbtn btnGY">我的團體</button>
+                        <a href="mGroup"><button class="mr-xs text20R dbtn btnGY">我的團體</button></a>
                         <button class="mr-xs text20R dbtn btnGY">我的訂單</button>
                         <button class="text20R dbtn btnGB">我的投票</button>
                     </span>
@@ -62,22 +39,22 @@
                         <input type="text" class="text20RG singleText400 mr-xs" placeholder="請輸入團號">
                         <button class="text20R dbtn btnGY btnY">加入團體</button>
                     </span>
-
                 </div>
 
                 <!-- 反白區 -->
                 <div class="dblock row">
 
-                    <div class="col-12 text-center d-flex justify-content-between align-items-center" style="margin-bottom: 32px;">
+                    <div class="col-12 text-center d-flex justify-content-between align-items-center"
+                        style="margin-bottom: 32px;">
 
-                        <img class="lrImg  btnPhoto" src="../public/image/left.png" onclick="prevM()">
+                        <img class="lrImg  btnPhoto" src="/image/left.png" onclick="prevM()">
                         <div class="d-flex align-items-center">
                             <p id="myDates" class="eng40R mr-xs"></p>
                             <p id="myMonths" class="eng30R mr-xs"></p>
                             <p id="" class="br-m"></p>
                             <p id="myYears" class="eng24R ml-xs"></p>
                         </div>
-                        <img class="lrImg btnPhoto" src="../public/image/right.png" onclick="nextM()">
+                        <img class="lrImg btnPhoto" src="/image/right.png" onclick="nextM()">
 
                     </div>
                     <table class="col-12" id="myTable">
@@ -117,16 +94,20 @@
                                                 <div class="col-4 mTH">店家名稱</div>
                                                 <div class="col-4 mTH">餐點送達時間</div>
                                             </div>
-                                            <div class="mTR text20B mr-1 d-flex align-items-center" style="height: 56px;" v-for="item in orderList">
+                                            <div class="mTR text20B mr-1 d-flex align-items-center"
+                                                style="height: 56px;" v-for="item in orderList">
                                                 <div class="col-4 pl-m mTD">
                                                     {{item.groupName}}
                                                 </div>
                                                 <div class="col-4 pl-m mTD">
-                                                    <img v-bind:src="item.src" alt="" class="float-left orderListimg clipCircle mr-3"> {{item.storeName}}
+                                                    <img v-bind:src="item.src" alt=""
+                                                        class="float-left orderListimg clipCircle mr-3">
+                                                    {{item.storeName}}
                                                 </div>
                                                 <div class="col-4 pl-xm mTD">
                                                     {{item.onTime}}
-                                                    <i class="icon-ok float-right mr-m" v-bind:class=" item.checkOn ? 'textY' : 'textG' "></i>
+                                                    <i class="icon-ok float-right mr-m"
+                                                        v-bind:class=" item.checkOn ? 'textY' : 'textG' "></i>
                                                 </div>
                                             </div>
                                             <div class="d-flex justify-content-end mr-1 mt-s">
@@ -140,7 +121,8 @@
                                                 <div class="col-4 mTH vTH">團名</div>
                                                 <div class="col-4 mTH vTH">投票截止時間 </div>
                                             </div>
-                                            <div class="mTR text20B mr-1 d-flex align-items-center" style="height: 56px;" v-for="item in voteList">
+                                            <div class="mTR text20B mr-1 d-flex align-items-center"
+                                                style="height: 56px;" v-for="item in voteList">
                                                 <div class="col-4 pl-m mTD">
                                                     {{item.titleName}}
                                                 </div>
@@ -149,7 +131,8 @@
                                                 </div>
                                                 <div class="col-4 pl-xm mTD">
                                                     {{item.timeOut}}
-                                                    <i class="icon-ok float-right mr-m" v-bind:class=" item.checkOn ? 'textB' :　'textG' "></i>
+                                                    <i class="icon-ok float-right mr-m"
+                                                        v-bind:class=" item.checkOn ? 'textB' :　'textG' "></i>
                                                 </div>
                                             </div>
                                         </div>
@@ -166,15 +149,9 @@
 
     <!-- <div id="nowDate"></div> -->
 
-    <script src="../public/javascript/calendarGenerate.js"></script>
-    <script src="../public/javascript/calenderMemList.js"></script>
-    <script src="../public/javascript/calendarEvent.js"></script>
-
-    <!-- <script>
-        $("td").click(function(){
-            console.log(td.id);
-        })
-    </script> -->
+    <script src="/javascript/calendarGenerate.js"></script>
+    <script src="/javascript/calenderMemList.js"></script>
+    <script src="/javascript/calendarEvent.js"></script>
 
 </body>
 

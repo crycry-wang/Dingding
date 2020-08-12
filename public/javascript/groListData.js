@@ -1,10 +1,10 @@
-// let data = {
-//     list: JSON.parse('<%- jsonStr %>')
-// }
+let data = {
+    list: [
+        { groupNum: '1node6', groupName: '火鍋團', groupLeader: '阿信' }
+    ]
+}
 
-let app = new Vue({
+new Vue({
     el: '#app',
-    data: {
-        list: JSON.parse('<%- jsonStr %>')
-    }
+    data: data
 })

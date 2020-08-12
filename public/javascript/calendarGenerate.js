@@ -1,5 +1,3 @@
-// 友文製
-
 // 日曆
 
 let today = new Date();
@@ -18,8 +16,6 @@ function prevM() {
     $("td").click(function() {
         $("td[id]").attr("data-toggle", "modal");
         $("td[id]").attr("data-target", "#comfirm2BtnW1340");
-
-        // console.log(event.target.id);
     })
     return (nowYear = NowYear, nowMonth = NowMonth);
 }
@@ -33,8 +29,6 @@ function nextM() {
     $("td").click(function() {
         $("td[id]").attr("data-toggle", "modal");
         $("td[id]").attr("data-target", "#comfirm2BtnW1340");
-
-        // console.log(event.target.id);
     })
     return (nowYear = NowYear, nowMonth = NowMonth);
 }
@@ -98,7 +92,7 @@ function showCalendar(month, year) {
 
                     col.className = "tdPass";
 
-                } else {
+                }else{
                     col.className = "tdFutrue";
                 }
 
@@ -116,7 +110,7 @@ function showCalendar(month, year) {
 
                     col.className = "tdPass";
 
-                } else {
+                }else{
                     col.className = "tdFutrue";
                 }
 
