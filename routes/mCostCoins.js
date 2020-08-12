@@ -4,8 +4,10 @@ var db = require('../model/db');
 
 /* GET home page. */
 const memberId = 38;
-const memberSelect = 'select * from `member` where memberID=';
-const member = memberSelect + memberId;
+const member = 'select a.`memberID`,a.`memberName`,a.`memberPhoto`,\
+count(b.`noticeStatus`) as noticeCount from `member` as a,\
+`notice` as b where a.memberID=b.toWhoID and toWhoType=2 \
+and b.noticeStatus=1 and memberID='+ memberId;
 
 const costSelect = 'select \
  d.orderDeadline,c.storeName,b.productName,sum(a.price*a.quality) sum \

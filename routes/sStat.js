@@ -6,8 +6,11 @@ var db = require('../model/db');
 
 
 const storeID = 2;
-const storeSelect = 'select * from `store` where storeID=';
-const store = storeSelect + storeID;
+const store = 'select a.`storeID`,a.`storeName`,\
+a.`storePhoto`,count(b.`noticeStatus`) as\
+ noticeCount from `store` as a,`notice` as\
+  b where a.`storeID`=b.`toWhoID` and b.`toWhoType`=1\
+   and b.`noticeStatus`=1 and storeID=' + storeID;
 
 router.get('/', function(req, res, next) {
 
