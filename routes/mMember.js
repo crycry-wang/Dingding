@@ -6,8 +6,10 @@ var db = require('../model/db');
 
 // 會員
 const memberId = 38;
-const memberSelect = 'select * from `member` where memberID=';
-const member = memberSelect + memberId;
+const member = 'select a.`memberID`,a.`memberName`,a.`memberPhoto`,\
+count(b.`noticeStatus`) as noticeCount from `member` as a,\
+`notice` as b where a.memberID=b.toWhoID and toWhoType=2 \
+and b.noticeStatus=1 and memberID='+ memberId;
 
 
 // 會員地址
@@ -30,6 +32,17 @@ const costCoin = costCoinSelect + memberId;
 
 
 const getMemberData = (req) => {
+    return new Promise((resolve, reject) => {
+        db.queryAsync(member)
+            .then(results => {
+                resolve(results);
+            })
+            .catch(ex => {
+                reject(ex);
+            });
+    })
+};
+const getAddressData = (req) => {
     return new Promise((resolve, reject) => {
         db.queryAsync(address)
             .then(results => {
@@ -80,12 +93,14 @@ router.get('/', async (req, res) => {
     newsJSON1 = JSON.stringify(await getLikestoreData(req));
     newsJSON2 = JSON.stringify(await getsaveCoinData(req));
     newsJSON3 = JSON.stringify(await getcostCoinData(req));
+    newsJSON4 = JSON.stringify(await getAddressData(req));
     
     res.render('mMember', { 
         mMemberData: newsJSON,
         memberLikestore: newsJSON1,
         saveCoinData:newsJSON2, 
         costCoinData:newsJSON3, 
+        addressData:newsJSON4, 
         active: 'mMember'});
 
 });

@@ -4,9 +4,12 @@ var db = require('../model/db');
 
 /* GET home page. */
 
-const storeID = 2;
-const storeSelect = 'select * from `store` where storeID=';
-const store = storeSelect + storeID;
+const storeID = 1;
+const store ='select a.`storeID`,a.`storeName`,\
+    a.`storePhoto`,count(b.`noticeStatus`) as\
+     noticeCount from `store` as a,`notice` as\
+      b where a.`storeID`=b.`toWhoID` and b.`toWhoType`=1\
+       and b.`noticeStatus`=1 and storeID=' + storeID;
 // 評價
 const commentSelect = 'SELECT count(commentID) count,round(AVG(commentScore),1) star FROM `comment` WHERE storeID=';
 const comment = commentSelect + storeID;

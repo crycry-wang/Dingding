@@ -67,7 +67,7 @@
                 <div class="row ">
                     <div class="col-8 mInfo">
                         <div class="d-flex">
-                            <div :style="{background: 'url(image/會員資料/大頭照/' + memberData[0].memberPhoto + ')',backgroundSize :'cover'}" class="memberPhoto icon-photo-1">
+                            <div :style="{background: 'url(image/會員資料/大頭照/' + addressData[0].memberPhoto + ')',backgroundSize :'cover'}" class="memberPhoto icon-photo-1">
                             </div>
                             <div class="ml-auto">
                                 <button class="text20R dbtn btnW  mr-3">取消</button>
@@ -78,11 +78,11 @@
                             <ul class="mt-m mInfoList w-100">
                                 <li>
                                     <span class="text20B title">帳號</span>
-                                    <span class="text20R">{{memberData[0].eMail}}</span>
+                                    <span class="text20R">{{addressData[0].eMail}}</span>
                                 </li>
                                 <li>
                                     <span class="text20B title">暱稱</span>
-                                    <input type="text" class="text20R singleText398" placeholder="請輸入暱稱" v-model.trim='memberData[0].memberName'>
+                                    <input type="text" class="text20R singleText398" placeholder="請輸入暱稱" v-model.trim='addressData[0].memberName'>
                                 </li>
                                 <li>
                                     <span class="text20B title">密碼</span>
@@ -91,15 +91,15 @@
                                 </li>
                                 <li>
                                     <span class="text20B title">手機</span>
-                                    <input type="text" class="text20R singleText398" placeholder="請輸手機" v-model.trim='memberData[0].memberPhone'>
+                                    <input type="text" class="text20R singleText398" placeholder="請輸手機" v-model.trim='addressData[0].memberPhone'>
                                 </li>
                                 <li>
                                     <span class="text20B title">常用地址</span>
-                                    <input type="text" class="text20R singleText398" placeholder="請輸入常用地址" v-model.trim='memberData[0].memberAddress'>
+                                    <input type="text" class="text20R singleText398" placeholder="請輸入常用地址" v-model.trim='addressData[0].memberAddress'>
                                 </li>
 
-                                <li class="addressList scrollList d-block" style="width: calc(100% + 8px);" v-if="memberData.length>1">
-                                    <div v-for='(item,index) in memberData'>
+                                <li class="addressList scrollList d-block" style="width: calc(100% + 8px);" v-if="addressData.length>1">
+                                    <div v-for='(item,index) in addressData'>
                                         <span v-if="index!=0">
                                         <input type="text" class="text20R singleText398 ml-140 mr-4"
                                             placeholder="請輸入常用地址" v-model.trim='item.memberAddress'>
@@ -185,6 +185,7 @@
                 el: '#memberInfo',
                 data: {
                     memberData: JSON.parse('<%- mMemberData %>'),
+                    addressData: JSON.parse('<%- addressData %>'),
                     memberLikestore: JSON.parse('<%- memberLikestore %>'),
                     saveCoinData:JSON.parse('<%- saveCoinData %>'),
                     costCoinData:JSON.parse('<%- costCoinData %>'),
@@ -192,12 +193,12 @@
                 },
                 methods: {
                     deleteItem(index) {
-                        this.memberData.splice(index, 1);
+                        this.addressData.splice(index, 1);
 
                     }
                     ,addItem() {
-                        this.memberData.push({
-                            Address: this.memberData.Address
+                        this.addressData.push({
+                            Address: this.addressData.Address
                         })
                     }
                     ,deleteStoreItem(index) {
@@ -206,7 +207,6 @@
                 }
 
             })
-            console.log(JSON.parse('<%- mMemberData %>'));
         </script>
 
 

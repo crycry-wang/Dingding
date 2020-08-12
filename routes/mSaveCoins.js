@@ -4,9 +4,11 @@ var db = require('../model/db');
 
 /* GET home page. */
 const memberId = 38;
-const memberSelect = 'select * from `member` where memberID=';
 const savecoinSelect = 'select * from `savecoin` where memberID=';
-const member = memberSelect + memberId;
+const member = 'select a.`memberID`,a.`memberName`,a.`memberPhoto`,\
+count(b.`noticeStatus`) as noticeCount from `member` as a,\
+`notice` as b where a.memberID=b.toWhoID and toWhoType=2 \
+and b.noticeStatus=1 and memberID='+ memberId;
 const savecoin = savecoinSelect + memberId+' order by saveTime desc';
 
 // 會員儲值金額

@@ -2,7 +2,7 @@
     padding-top: 48px;
     top: 0;
     padding-left: 40px;
-    padding-bottom: 16px;
+    /* padding-bottom: 16px; */
 }
 
 .more {
@@ -14,7 +14,7 @@
 }
 
 .dblock {
-    margin-bottom: 40px;
+    /* margin-bottom: 40px; */
     margin-top: 24px;
 }
 
@@ -45,10 +45,6 @@
     background: #BFBFBF;
     text-align: center;
     line-height: 60px;
-}
-
-.noticeItem .photo::after {
-    content: '訂訂';
     color: white;
     font-size: 16px;
     letter-spacing: 2px;
