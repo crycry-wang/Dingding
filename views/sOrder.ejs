@@ -193,7 +193,7 @@
                                     </div>
                                     <div>
                                         <span
-                                            class="eng20R productQuantity pr-5 align-middle">{{orderDetail.quality}}</span>
+                                            class="eng20R productQuantity pr-5 align-middle">{{orderDetail.singleQuality}}</span>
                                     </div>
                                 </div>
                                 <!-- <div class="orderProductItem mb-2 d-flex justify-content-between">
@@ -328,7 +328,7 @@
                 total: function () {
                     let sum = 0;
                     for (let i = 0; i < this.orderDetailList.length; i++) {
-                        sum = sum + (this.orderDetailList[i].price * this.orderDetailList[i].quality);
+                        sum = sum + (this.orderDetailList[i].price * this.orderDetailList[i].singleQuality);
                     }
                     return sum.toLocaleString('en-US');
                 },

@@ -11,7 +11,7 @@ router.get('/', function (req, res, next) {
     storeID = 1;
     orderID = 3;
     orderListSql = "select o.orderID,o.memberID,o.orderArrivedTime,o.orderStatus,m.memberName,SUM(d.quality*d.price) as totalPrice from `order` o join `member` m on o.memberID=m.memberID join `orderdetail` d on o.orderID=d.orderID where o.storeID=" + storeID + " group by d.orderID";
-    orderDetailListSql = "select o.orderID,d.productID,d.price,d.quality,o.orderArrivedTime,o.orderCreateTime,m.memberName,m.memberPhone,p.productPhoto,p.productName FROM `orderdetail` d join `order` o on d.orderID=o.orderID join `member` m on m.memberID=o.memberID join `product` p on d.productID=p.productID where d.orderID=" + orderID;
+    orderDetailListSql = "select sum(quality) as singleQuality,productName,orderID,orderArrivedTime,orderArrivedTime,orderCreateTime,memberName,price,memberPhone,productPhoto from (select o.orderID,d.productID,d.price,d.quality,o.orderArrivedTime,o.orderCreateTime,m.memberName,m.memberPhone,p.productPhoto,p.productName FROM `orderdetail` as d , `order` as o, `member` as m,`product` as p where d.orderID=o.orderID and m.memberID=o.memberID and d.productID=p.productID and d.orderID=" + orderID +") as tableA group by productName,price,productPhoto";
     store='select * from `store` where storeID='+storeID;
     
     next();
@@ -19,7 +19,7 @@ router.get('/', function (req, res, next) {
 
 router.get('/getDetail', async (req, res, next) => {
     orderID = req.query.orderID;
-    orderDetailListSql = "select o.orderID,d.productID,d.price,d.quality,o.orderArrivedTime,o.orderCreateTime,m.memberName,m.memberPhone,p.productPhoto,p.productName FROM `orderdetail` d join `order` o on d.orderID=o.orderID join `member` m on m.memberID=o.memberID join `product` p on d.productID=p.productID where d.orderID=" + orderID;
+    orderDetailListSql = "select sum(quality) as singleQuality,productName,orderID,orderArrivedTime,orderArrivedTime,orderCreateTime,memberName,price,memberPhone,productPhoto from (select o.orderID,d.productID,d.price,d.quality,o.orderArrivedTime,o.orderCreateTime,m.memberName,m.memberPhone,p.productPhoto,p.productName FROM `orderdetail` as d , `order` as o, `member` as m,`product` as p where d.orderID=o.orderID and m.memberID=o.memberID and d.productID=p.productID and d.orderID=" + orderID +") as tableA group by productName,price,productPhoto";
     const orderDetailList = await orderDetailListData(req);
     orderDetailListJsonResult = JSON.stringify(orderDetailList);
     res.json(orderDetailListJsonResult);
