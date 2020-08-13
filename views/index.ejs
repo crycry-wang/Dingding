@@ -410,13 +410,45 @@
                             <p class="text20B mb-2">
                                 帳號
                             </p>
-                            <input type="text" class="text20RG singleText398 " placeholder="請輸入舊密碼">
+                            <input v-model="memberLoginData.memberEmail" id="mEmail" type="text" class="text20RG singleText398 " placeholder="請輸入信箱">
                             <p class="text20B mb-2">
                                 密碼
                             </p>
-                            <input type="text" class="text20RG singleText398 " placeholder="請輸入新密碼">
+                            <input v-model="memberLoginData.memberPassword" id="mPassword" type="password" class="text20RG singleText398 " placeholder="請輸入密碼">
 
-                            <a href="mIndex"><button class="text20R dbtn btn398 " style="margin-bottom: 24px;">登入</button>
+                            <button @click="memberlogin" class="text20R dbtn btn398 "
+                                    style="margin-bottom: 24px;">登入</button>
+                                    <div v-for="data in mLoginWrongMessage">{{data.message}}</div>
+                                <div style="padding-left: 48px;margin-bottom: 80px;">
+                                    <span style="font-size: 16px; margin-right: 16px;">還沒用過訂訂嗎 ? </span>
+                                    <a href="" class="text16R">點此註冊</a>/
+                                    <a class="text16R" v-on:click="loginTabClick(3)">忘記密碼</a>
+                                </div>
+                                <div style="padding-left: 189px;margin-bottom: 20px;">
+                                    <span class="eng20R orBoder" style="color: var(--dDeepGray);">or</span>
+                                </div>
+                                <div>
+                                    <div class="fb">
+                                        Facebook登入
+                                    </div>
+                                    <div class="google">
+                                        Google登入
+                                    </div>
+                                </div>
+                        </div>
+                        <!-- 店家登入 -->
+                        <div class="modal-continer-index" v-if="loginTab == 2" v-show="loginTab == 2">
+                            <p class="text20B mb-2">
+                                帳號
+                            </p>
+                            <input v-model="storeLoginData.storeEmail" type="text" class="text20RG singleText398 " placeholder="請輸入信箱">
+                            <p class="text20B mb-2">
+                                密碼
+                            </p>
+                            <input v-model="storeLoginData.storePassword" type="password" class="text20RG singleText398 " placeholder="請輸入密碼">
+
+                            <button @click="storelogin" class="text20R dbtn btn398 " style="margin-bottom: 24px;">登入</button>
+                            <div v-for="data in sLoginWrongMessage">{{data.message}}</div>
                             <div style="padding-left: 48px;margin-bottom: 80px;">
                                 <span style="font-size: 16px; margin-right: 16px;">還沒用過訂訂嗎 ? </span>
                                 <a href="" class="text16R">點此註冊</a>/
@@ -457,32 +489,65 @@
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <i class=" icon-close"></i>
                             </button>
-                    </div>
-                    <div class="modal-continer-index">
-                        <p class="text20B mb-2">
-                            暱稱
-                        </p>
-                        <input type="text" class="text20RG singleText398 " placeholder="請輸入暱稱">
-                        <p class="text20B mb-2">
-                            帳號
-                        </p>
-                        <input type="text" class="text20RG singleText398 " placeholder="請輸入電子信箱">
-                        <p class="text20B mb-2">
-                            密碼
-                        </p>
-                        <input type="text" class="text20RG singleText398 " placeholder="請輸入密碼">
-                        <p class="text20B mb-2">
-                            手機
-                        </p>
-                        <input type="text" class="text20RG singleText398 " placeholder="請輸入手機號碼">
-
-                        <button class="text20R dbtn btn398 " style="margin-bottom: 24px;">註冊</button>
-                        <div style="padding-left: 48px;margin-bottom: 80px;">
-                            <span style="font-size: 16px; margin-right: 16px;">已經有帳號了嗎 ? </span>
-                            <a href="" class="text16R">點此切換登入頁面</a>
                         </div>
-                        <div style="padding-left: 189px;margin-bottom: 20px;">
-                            <span class="eng20R orBoder" style="color: var(--dDeepGray);">or</span>
+                        <!-- 一般會員註冊 -->
+                        <div class="modal-continer-index" v-if="registeredTab == 1">
+                            <p class="text20B mb-2">
+                                暱稱
+                            </p>
+                            <input type="text" id="rName" class="text20RG singleText398 " placeholder="請輸入暱稱">
+                            <p class="text20B mb-2">
+                                帳號
+                            </p>
+                            <input type="email" id="rEmail" class="text20RG singleText398 " placeholder="請輸入電子信箱">
+                            <p class="text20B mb-2">
+                                密碼
+                            </p>
+                            <input type="password" id="rPassword" class="text20RG singleText398 " placeholder="請輸入密碼">
+                            <p class="text20B mb-2">
+                                手機
+                            </p>
+                            <input type="text" id="rPhone" class="text20RG singleText398 " placeholder="請輸入手機號碼">
+
+                            <button @click="signup" class="text20R dbtn btn398 " style="margin-bottom: 24px;">註冊</button>
+                            
+                            <div style="padding-left: 48px;margin-bottom: 80px;">
+                                <span style="font-size: 16px; margin-right: 16px;">已經有帳號了嗎 ? </span>
+                                <a href="" class="text16R">點此切換登入頁面</a>
+                            </div>
+                            <div v-for="(data,index) in vuedata" name="refresh">{{data.message}}</div>
+                            <div style="padding-left: 189px;margin-bottom: 20px;">
+                                <span class="eng20R orBoder" style="color: var(--dDeepGray);">or</span>
+                            </div>
+                            <div>
+                                <div class="fb">
+                                    Facebook登入
+                                </div>
+                                <div class="google">
+                                    Google登入
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 企業註冊 -->
+                        <div class="modal-continer-index" v-if="registeredTab == 2">
+
+                            <p class="text20B mb-2">
+                                帳號
+                            </p>
+                            <input type="text" class="text20RG singleText398 " placeholder="請輸入電子信箱">
+                            <p class="text20B mb-2">
+                                密碼
+                            </p>
+                            <input type="text" class="text20RG singleText398 " placeholder="請輸入密碼">
+
+
+                            <button class="text20R dbtn btn398 " style="margin-bottom: 24px;">送出登記</button>
+                            <div style="padding-left: 55px;margin-bottom: 80px;">
+                                <span style="font-size: 16px; margin-right: 16px;">送出登記後，我們將有專人會與您聯絡</span>
+
+                            </div>
+
                         </div>
                         <div>
                             <div class="fb">
@@ -505,9 +570,21 @@
 
     <script src="/javascript/vue.js"></script>
     <script>
-        let data = {
-            index: 0,
+        var country = ""
+        var districk = ""
+        let store = new Vue({
+            el: "#store",
+            data: {
+                hotIndex: 0,
+            commendIndex:0,
             tab: 1,
+            loginTab: 1,
+            registeredTab: 1,
+            dbDistrick: JSON.parse('<%- a %>'),
+            dbRecommendStore: JSON.parse('<%- b %>').sort(() => Math.random() - 0.5),
+            vuedata: JSON.parse('<%- c %>'),
+            mLoginWrongMessage:[],
+            sLoginWrongMessage:[],
             storeItem: [{
                     id: 0,
                     storeName: "肯德基 KFC 台中公益店",
@@ -1012,10 +1089,21 @@
                 },
             ],
 
-        };
-        let store = new Vue({
-            el: "#store",
-            data: data,
+            input: {
+                country: country,
+                districtName: districk,
+            },
+            memberLoginData:{
+                memberEmail:"",
+                memberPassword:"",
+            },
+            storeLoginData:{
+                storeEmail:"",
+                storePassword:""
+            }
+            
+            },
+
             computed: {
 
                 filterStore() {
@@ -1069,10 +1157,165 @@
                     this.tab = index
                     return this.tab
                 },
+                // 登入頁籤切換
+                loginTabClick(a) {
+                    this.loginTab = a
+                    return this.loginTab
+                },
+                //註冊頁籤切換
+                registeredTabClick(a) {
+                    this.registeredTab = a
+                    return this.registeredTab
+                },
+                // 一般用戶登入
+                memberlogin: function() {
+                    fetch('http://localhost:3200/login', {
+                            method: 'post',
+                            body: JSON.stringify(store.memberLoginData),
+                            headers: new Headers({
+                                'Content-Type': 'application/json'
+                            })
+                        })
+                        .then(function(res) {
+                            return res.json();
+                            // console.log(JSON.stringify(input));
+                        })
+                        .then(function(actStr) {
+                            this.mLoginWrongMessage = JSON.parse(actStr);
+                            console.log("actStr",actStr)
+                            store.mLoginWrongMessage = this.mLoginWrongMessage;
+                            console.log(store.mLoginWrongMessage[0].eMail , store.memberLoginData.memberEmail);
+                            if(store.mLoginWrongMessage[0].eMail == store.memberLoginData.memberEmail){
+                                location.href="/mIndex"
+                            }
+                        })
+                        .catch(
+                            error => console.error('Error:', error)
+                        );  
+                },
+                //企業用戶登入
+                storelogin: function() {
+                    fetch('http://localhost:3200/slogin', {
+                            method: 'post',
+                            body: JSON.stringify(store.storeLoginData),
+                            headers: new Headers({
+                                'Content-Type': 'application/json'
+                            })
+                        })
+                        .then(function(res) {
+                            return res.json();
+                        })
+                        .then(function(storeActStr) {
+                            this.sLoginWrongMessage = JSON.parse(storeActStr);
+                            store.sLoginWrongMessage = this.sLoginWrongMessage;
+                            // console.log(store.sLoginWrongMessage[0].storeEMail , store.storeLoginData.storeEmail);
+                            if(store.sLoginWrongMessage[0].storeEMail == store.storeLoginData.storeEmail){
+                                location.href="/sOrder"
+                            }
+                        })
+                        .catch(
+                            error => console.error('Error:', error)
+                        );  
+                },
+                // 註冊
+                signup: function() {
+                    fetch('http://localhost:3200/signup', {
+                            method: 'post',
+                            body: JSON.stringify(registeredData),
+                            headers: new Headers({
+                                'Content-Type': 'application/json'
+                            })
+                        })
+                        .then(function(res) {
+                            return res.json();
+                            // console.log(JSON.stringify(input));
+                        })
+                        .then(function(actStr) {
+                            this.vuedata = JSON.parse(actStr);
+                            store.vuedata = this.vuedata;
+                            console.log(this.vuedata[0]);
+                            console.log(store.vuedata);
+                        })
+                        .catch(
+                            error => console.error('Error:', error)
+                        )
+                }
+            }
+        });
 
+
+        // 縣市選單
+        $(function () {
+            function reSelectCountry() {
+                $('.countrySelectTitle').removeClass('dSelectClick').addClass('dSelect');
+                $('.countrySelectContent').removeClass('dOptionDivOn').addClass('dOptionDivOff');
+            }
+
+            function teSelectCountry() {
+                reSelectCountry();
+                // country = $(this).text();
+                store.input.country = $(this).text().trim();
+                // $('.ddselect').children('.countrySelectTitle').children('.countrySelectText').text(country);
+            }
+
+            $('.countrySelectText').click(function () {
+                $('.countrySelectTitle').removeClass('dSelect').addClass('dSelectClick');
+                $('.countrySelectContent').removeClass('dOptionDivOff').addClass('dOptionDivOn');
+                $('.countryOption').click(teSelectCountry);
+            });
+
+        });
+
+        // 區域選單
+        $(function () {
+            function reSelectDistrick() {
+                $('.districkSelectTitle').removeClass('dSelectClick').addClass('dSelect');
+                $('.districkSelectContent').removeClass('dOptionDivOn').addClass('dOptionDivOff');
+            }
+
+            function teSelectDistrick() {
+                reSelectDistrick();
+                // districk = $(this).text();
+                store.input.districtName = $(this).text().trim();
+                // $('.ddselect').children('.districkSelectTitle').children('.districkSelectText').text(districk);
 
             }
-        })
+
+            $('.districkSelectText').click(function () {
+                $('.districkSelectTitle').removeClass('dSelect').addClass('dSelectClick');
+                $('.districkSelectContent').removeClass('dOptionDivOff').addClass('dOptionDivOn');
+                $('.districkOption').click(teSelectDistrick);
+            });
+
+        });
+
+        // <-------------------------------分隔線---------------------------------->
+        // 一般用戶註冊
+        let registeredData = {
+            registeredName: "",
+            registeredEmail: "",
+            registeredPassword: "",
+            registeredPhone: "",
+        };
+        document.querySelector('#rName')
+            .addEventListener("input", (e) => {
+                registeredData.registeredName = e.target.value;
+            });
+        document.querySelector('#rEmail')
+            .addEventListener("input", (e) => {
+                registeredData.registeredEmail = e.target.value;
+            });
+        document.querySelector('#rPassword')
+            .addEventListener("input", (e) => {
+                registeredData.registeredPassword = e.target.value;
+            });
+        document.querySelector('#rPhone')
+            .addEventListener("input", (e) => {
+                registeredData.registeredPhone = e.target.value;
+            });
+
+        
+
     </script>
 
 </body>
