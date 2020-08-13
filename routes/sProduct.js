@@ -18,7 +18,7 @@ b.categoryName,a.productStatus FROM `product` a  join category b\
  on a.`categoryID`=b.`categoryID` WHERE a.`storeID`='
 const product = productSelect + storeID;
 
-
+// 店家左側
 const getStoreData = (req) => {
     return new Promise((resolve, reject) => {
         db.queryAsync(store)
@@ -32,7 +32,7 @@ const getStoreData = (req) => {
 };
 
 
-
+// 店家產品
 const getProduct = (req) => {
     return new Promise((resolve, reject) => {
         db.queryAsync(product)

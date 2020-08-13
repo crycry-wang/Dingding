@@ -24,7 +24,7 @@ const order = orderSelect + storeID;
 // 訂單總筆數
 
 
-
+// 店家左側
 const getStoreData = (req) => {
     return new Promise((resolve, reject) => {
         db.queryAsync(store)
@@ -36,6 +36,7 @@ const getStoreData = (req) => {
             });
     })
 };
+// 店家評論
 const getcomment = (req) => {
     return new Promise((resolve, reject) => {
         db.queryAsync(comment)
@@ -47,6 +48,7 @@ const getcomment = (req) => {
             });
     })
 };
+// 店家接單率
 const getOrder = (req) => {
     return new Promise((resolve, reject) => {
         db.queryAsync(order)
@@ -58,6 +60,7 @@ const getOrder = (req) => {
             });
     })
 };
+// 評論會員
 const getCommentJoinMember = (req) => {
     return new Promise((resolve, reject) => {
         db.queryAsync(commentJoinMember)

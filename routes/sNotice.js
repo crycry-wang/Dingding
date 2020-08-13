@@ -94,7 +94,7 @@ router.get('/getDetail', async (req, res, next) => {
 
 
 
-
+// 店家左側
 const getStoreData = (req) => {
     return new Promise((resolve, reject) => {
         db.queryAsync(store)
@@ -107,6 +107,7 @@ const getStoreData = (req) => {
     })
 };
 
+// 店家平台通知
 const getDNotice = (req) => {
     return new Promise((resolve, reject) => {
         db.queryAsync(dNotice)
@@ -119,6 +120,7 @@ const getDNotice = (req) => {
     })
 };
 
+// 店家訂單通知
 const getOrderNotice = (req) => {
     return new Promise((resolve, reject) => {
         db.queryAsync(orderNotice)
@@ -130,6 +132,7 @@ const getOrderNotice = (req) => {
             });
     })
 };
+// 店家訂單通知詳細
 const getOrderDTNotice = (req) => {
     return new Promise((resolve, reject) => {
         db.queryAsync(orderDtNotice)
@@ -141,6 +144,8 @@ const getOrderDTNotice = (req) => {
             });
     })
 };
+
+// 店家拒絕訂單詳細
 const getOrderCaNotice = (req) => {
     return new Promise((resolve, reject) => {
         db.queryAsync(orderCaNotice)
@@ -152,7 +157,7 @@ const getOrderCaNotice = (req) => {
             });
     })
 };
-
+// 店家接單訂單詳細
 const getOrderOkNotice = (req) => {
     return new Promise((resolve, reject) => {
         db.queryAsync(orderOkNotice)
@@ -164,6 +169,7 @@ const getOrderOkNotice = (req) => {
             });
     })
 };
+// 已讀
 const getread = (req) => {
     return new Promise((resolve, reject) => {
         db.queryAsync(read)
