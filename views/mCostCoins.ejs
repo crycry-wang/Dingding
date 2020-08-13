@@ -50,7 +50,7 @@
                 </div>
                 <div class="scrollList coinList">
                     <div class="row cTR col-12" v-for='item in costData'>
-                        <div class="col-3 mTD eng20R ">{{(item.orderDeadline).slice(0,10)}}</div>
+                        <div class="col-3 mTD eng20R ">{{(item.orderDeadline).slice(0,10).replace(/-/g,'/')}}</div>
                         <div class="col-3 mTD text20R ">{{item.storeName}}</div>
                         <div class="col-3 mTD text20R ">{{item.productName}}</div>
                         <span class="co3-4 mTD eng20R price ">

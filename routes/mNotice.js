@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var db = require('../model/db');
+var session = require('express-session');
 
 /* GET home page. */
 
@@ -19,7 +20,7 @@ let group;
 
 router.get('/', function (req, res, next) {
     // 會員
-    memberId = 38;
+    memberId =  req.session.memberID;
     member = 'select a.`memberID`,a.`memberName`,a.`memberPhoto`,\
     count(b.`noticeStatus`) as noticeCount from `member` as a,\
     `notice` as b where a.memberID=b.toWhoID and toWhoType=2 \
