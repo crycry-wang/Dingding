@@ -34,7 +34,7 @@ from `orderdetail` a join `order` d on a.`orderID`=d.`orderID`\
     next();
 });
 
-
+// 會員左側資料
 const getMemberData = (req) => {
     return new Promise((resolve, reject) => {
         db.queryAsync(member)
@@ -46,6 +46,7 @@ const getMemberData = (req) => {
             });
     })
 };
+
 const getCost = (req) => {
     return new Promise((resolve, reject) => {
         db.queryAsync(cost)
@@ -57,6 +58,7 @@ const getCost = (req) => {
             });
     })
 };
+// 儲值總額
 const getsaveCoinData = (req) => {
     return new Promise((resolve, reject) => {
         db.queryAsync(saveCoin)
@@ -68,6 +70,7 @@ const getsaveCoinData = (req) => {
             });
     })
 };
+// 消費總額
 const getcostCoinData = (req) => {
     return new Promise((resolve, reject) => {
         db.queryAsync(costCoin)

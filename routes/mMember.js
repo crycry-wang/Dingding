@@ -30,7 +30,7 @@ const saveCoin = saveCoinSelect + memberId;
 const costCoinSelect = 'SELECT sum( `price`*`quality`) costSum FROM `orderdetail` WHERE memberID='
 const costCoin = costCoinSelect + memberId;
 
-
+// 會員左側
 const getMemberData = (req) => {
     return new Promise((resolve, reject) => {
         db.queryAsync(member)
@@ -42,6 +42,7 @@ const getMemberData = (req) => {
             });
     })
 };
+// 會員地址
 const getAddressData = (req) => {
     return new Promise((resolve, reject) => {
         db.queryAsync(address)
@@ -53,6 +54,7 @@ const getAddressData = (req) => {
             });
     })
 };
+// 會員喜愛的店家
 const getLikestoreData = (req) => {
     return new Promise((resolve, reject) => {
         db.queryAsync(Likestore)
@@ -64,6 +66,7 @@ const getLikestoreData = (req) => {
             });
     })
 };
+// 會員儲值金額
 const getsaveCoinData = (req) => {
     return new Promise((resolve, reject) => {
         db.queryAsync(saveCoin)
@@ -75,6 +78,7 @@ const getsaveCoinData = (req) => {
             });
     })
 };
+// 會員消費金額
 const getcostCoinData = (req) => {
     return new Promise((resolve, reject) => {
         db.queryAsync(costCoin)

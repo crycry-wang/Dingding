@@ -45,7 +45,7 @@ router.get('/', function (req, res, next) {
     next();
 })
 
-
+// 會員左側資料
 const getMemberData = (req) => {
     return new Promise((resolve, reject) => {
         db.queryAsync(member)
@@ -57,7 +57,7 @@ const getMemberData = (req) => {
             });
     })
 };
-
+// 會員平台通知
 const getDNotice = (req) => {
     return new Promise((resolve, reject) => {
         db.queryAsync(dNotice)
@@ -69,6 +69,7 @@ const getDNotice = (req) => {
             });
     })
 };
+// 會員訂單通知
 const getOderNotice = (req) => {
     return new Promise((resolve, reject) => {
         db.queryAsync(orderNotice)
@@ -80,6 +81,7 @@ const getOderNotice = (req) => {
             });
     })
 };
+// 會員團體通知
 const getGroupNotice = (req) => {
     return new Promise((resolve, reject) => {
         db.queryAsync(group)

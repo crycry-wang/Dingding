@@ -20,17 +20,17 @@ const costCoinSelect = 'SELECT sum( `price`*`quality`) costSum FROM `orderdetail
 const costCoin = costCoinSelect + memberId;
 
 
-
-const getMemberData = (req)=>{
-  return new Promise((resolve, reject)=>{ 
-      db.queryAsync(member)
-          .then(results=>{
-              resolve(results);
-          })
-          .catch(ex=>{
-              reject(ex);
-          });
-  }) 
+// 會員左側
+const getMemberData = (req) => {
+  return new Promise((resolve, reject) => {
+    db.queryAsync(member)
+      .then(results => {
+        resolve(results);
+      })
+      .catch(ex => {
+        reject(ex);
+      });
+  })
 };
 const getSaveData = (req)=>{
   return new Promise((resolve, reject)=>{ 
@@ -43,6 +43,8 @@ const getSaveData = (req)=>{
           });
   }) 
 };
+
+// 儲值
 const getsaveCoinData = (req) => {
   return new Promise((resolve, reject) => {
       db.queryAsync(saveCoin)
@@ -54,6 +56,7 @@ const getsaveCoinData = (req) => {
           });
   })
 };
+// 消費
 const getcostCoinData = (req) => {
   return new Promise((resolve, reject) => {
       db.queryAsync(costCoin)
