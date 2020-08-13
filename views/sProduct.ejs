@@ -142,7 +142,7 @@
                                     <p class="text24B d-inline-block">產品類別</p>
                                     <div class="ddselect d-inline-block ">
                                         <div class="dSelect selectTitle">
-                                            <div class="dSelectText text20R ">選擇類別</div>
+                                            <div class="dSelectText text20R">{{productflag.categoryName}}</div>
                                         </div>
                                         <div class="dOptionDivOff selectContent">
                                             <div class="dOption text20R" v-for='(item,index) in elementp'>{{item}}</div>
@@ -163,7 +163,8 @@
 
                     <div class="modal-footer">
                         <button class="text20R dbtn btnW" data-dismiss="modal">取消返回</button>
-                        <button class="text20R dbtn btnY ml-3">確定新增</button>
+                        <button class="text20R dbtn btnY ml-3" v-if='productIndex<0'>確定新增</button>
+                        <button class="text20R dbtn btnY ml-3" v-else>確定修改</button>
                     </div>
                 </div>
             </div>
@@ -332,7 +333,7 @@
                 productIndex: -1,
                 comfirm: '',
                 type: '',
-                categoryName: '',
+                categoryName: '選擇類別',
                 productflag:''
             },
 
@@ -358,6 +359,7 @@
                 , clearIndex() {
                     this.productIndex = -1;
                     this.productflag = this.productData[-1]='';
+                    this.currentCategory='選擇類別';
                     
                 }
                 , deleteProduct() {

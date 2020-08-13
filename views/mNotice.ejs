@@ -36,7 +36,8 @@
         <nav class="topTag row inWrapper position-sticky">
             <div :class="tab==0 ?'dTag text24RG act' : 'dTag text24RG'" @click='tab=0'>平台通知({{this.dNticeCount}})</div>
             <div :class="tab==1 ?'dTag text24RG act' : 'dTag text24RG'" @click='tab=1'>訂單狀況({{this.oNticeCount}})</div>
-            <div :class="tab==2 ?'dTag text24RG act' : 'dTag text24RG'" @click='tab=2'>投票、訂單通知({{this.oVNticeCount}})</div>
+            <div :class="tab==2 ?'dTag text24RG act' : 'dTag text24RG'" @click='tab=2'>投票、訂單通知({{this.oVNticeCount}})
+            </div>
             <a class="more ml-auto" href="#" role="button" id="more" data-toggle="dropdown" aria-haspopup="true"
                 aria-expanded="false">
             </a>
@@ -125,15 +126,18 @@
                             @click='readGroupStatus(index)' v-if='item.noticeStatus > 0 && item.orderStatus!==0'>
                             <span class="photo">{{(item.groupName).slice(0,2)}}</span>
                             <span class="content">
-                                <h2 class="text24B" v-if='item.noticeType==3||item.noticeType==2'>{{item.groupName}}</h2>
+                                <h2 class="text24B" v-if='item.noticeType==3||item.noticeType==2'>{{item.groupName}}
+                                </h2>
                                 <p class="text20R" v-if='item.noticeType==3'>此團體已新增訂單囉~</p>
                                 <p class="text20R" v-if='item.noticeType==2'>此團體已新增投票囉~</p>
                                 <p class="text16">{{item.noticeTime}}</p>
                             </span>
 
                             <span class="ml-auto actionR d-flex align-items-center">
-                                <a href="mVoteList"><button class="text20R dbtn btnB" v-if='item.noticeType==2'>移動至投票</button></a>
-                                <a href="mOrderList"><button class="text20R dbtn btnB" v-if='item.noticeType==3'>移動至訂單</button></a>
+                                <a href="mVoteList"><button class="text20R dbtn btnB"
+                                        v-if='item.noticeType==2'>移動至投票</button></a>
+                                <a href="mOrderList"><button class="text20R dbtn btnB"
+                                        v-if='item.noticeType==3'>移動至訂單</button></a>
                                 <i class="icon-trash" @click='deleteGroupN(index)'></i>
                             </span>
                         </li>
@@ -196,21 +200,79 @@
                     if (this.dNticeData[index].noticeStatus == 1) {
                         this.dNticeData[index].noticeStatus = 2
                     }
+                    let read = {
+                        noticeId: this.dNticeData[index].noticeID
+                    }
+                    fetch('http://localhost:3200/mNotice/read', {
+                        method: 'POST',
+                        body: JSON.stringify(read),
+                        headers: new Headers({
+                            'Content-Type': 'application/json'
+                        })
+                    })
+                        .then(
+                            location.href = "mNotice"
+                        )
+                        .catch(
+                            error => console.error('Error:', error)
+                        )
+
                 },
                 readOrderStatus(index) {
                     if (this.oderNoticeData[index].noticeStatus == 1) {
                         this.oderNoticeData[index].noticeStatus = 2;
                     }
+                    let read = {
+                        noticeId: this.oderNoticeData[index].noticeID
+                    }
+                    fetch('mNotice', {
+                        method: 'POST',
+                        body: JSON.stringify(read),
+                        headers: new Headers({
+                            'Content-Type': 'application/json'
+                        })
+                    })
+                       
+                        .catch(
+                            error => console.error('Error:', error)
+                        )
                 },
                 readOrderCaStatus(index) {
                     if (this.oderNoticeData[index].noticeStatus == 1) {
                         this.oderNoticeData[index].noticeStatus = 2;
                     }
+                    let read = {
+                        noticeId: this.oderNoticeData[index].noticeID
+                    }
+                    fetch('mNotice', {
+                        method: 'POST',
+                        body: JSON.stringify(read),
+                        headers: new Headers({
+                            'Content-Type': 'application/json'
+                        })
+                    })
+                       
+                        .catch(
+                            error => console.error('Error:', error)
+                        )
                 },
-                readGroupStatus(index){
+                readGroupStatus(index) {
                     if (this.groupNoticeData[index].noticeStatus == 1) {
                         this.groupNoticeData[index].noticeStatus = 2;
                     }
+                    let read = {
+                        noticeId: this.groupNoticeData[index].noticeID
+                    }
+                    fetch('mNotice', {
+                        method: 'POST',
+                        body: JSON.stringify(read),
+                        headers: new Headers({
+                            'Content-Type': 'application/json'
+                        })
+                    })
+                      .catch(
+                            error => console.error('Error:', error)
+                        )
                 },
 
                 // 刪除
@@ -223,7 +285,7 @@
                 deleteGroupN(index) {
                     this.groupNoticeData[index].noticeStatus = 0;
                 },
-      
+
             }, computed: {
                 // 平台通知數量
                 dNticeCount: function () {
