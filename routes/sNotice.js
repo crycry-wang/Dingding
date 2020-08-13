@@ -55,7 +55,7 @@ router.get('/', function (req, res, next) {
     dNotice = 'SELECT * FROM `notice` where noticeType=0 and toWhoType=1 and toWhoID=' + storeID;
 
     // 廠商訂單
-    a = 'SELECT a.`orderID`,b.`memberName`,b.`memberPhoto`,c.`noticeStatus`,\
+    a = 'SELECT c.`noticeID`,a.`orderID`,b.`memberName`,b.`memberPhoto`,c.`noticeStatus`,\
     c.`noticeTime`,sum(d.`price`*d.`quality`) total,a.`orderDeadline` FROM\
      `order` as a ,`member` as b ,`notice` as c ,`orderdetail` as d\
     where a.`memberID`=b.`memberID` and a.`orderID`=c.`noticeData` and a.`orderID` = d.`orderID` and a.`orderStatus`'
@@ -91,6 +91,19 @@ router.get('/getDetail', async (req, res, next) => {
     res.json(newsJSON3);
     next();
 });
+
+
+// 已讀
+router.post('/read', function(req, res, next) {
+    db.query('UPDATE `notice` set `noticeStatus`=2 where noticeID=' + req.body.noticeId,
+    function() {
+            console.log('已讀')
+        })
+        .catch(function() {
+            console.log('err');
+        })
+       
+})
 
 
 

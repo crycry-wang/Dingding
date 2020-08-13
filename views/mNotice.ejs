@@ -203,7 +203,7 @@
                     let read = {
                         noticeId: this.dNticeData[index].noticeID
                     }
-                    fetch('http://localhost:3200/mNotice/read', {
+                    fetch('mNotice/read', {
                         method: 'POST',
                         body: JSON.stringify(read),
                         headers: new Headers({
@@ -225,7 +225,7 @@
                     let read = {
                         noticeId: this.oderNoticeData[index].noticeID
                     }
-                    fetch('mNotice', {
+                    fetch('mNotice/read', {
                         method: 'POST',
                         body: JSON.stringify(read),
                         headers: new Headers({
@@ -244,7 +244,7 @@
                     let read = {
                         noticeId: this.oderNoticeData[index].noticeID
                     }
-                    fetch('mNotice', {
+                    fetch('mNotice/read', {
                         method: 'POST',
                         body: JSON.stringify(read),
                         headers: new Headers({
@@ -263,7 +263,7 @@
                     let read = {
                         noticeId: this.groupNoticeData[index].noticeID
                     }
-                    fetch('mNotice', {
+                    fetch('mNotice/read', {
                         method: 'POST',
                         body: JSON.stringify(read),
                         headers: new Headers({
