@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var db = require('../model/db');
+var session = require('express-session');
 const { resolve, reject } = require('bluebird');
 var northDistrict = "";
 var storeInformation ="";
@@ -8,23 +9,38 @@ var centralDistrict ="";
 var storeProduct="";
 var storeComment="";
 var comment="";
-let storeID = 1;
-let northDistrictSql = "SELECT * FROM `district` where area='北部'";
-let centralDistrictSql = "SELECT * FROM `district` where area='中部'";
+var storeID;
+var northDistrictSql;
+var centralDistrictSql;
 //店家資訊
-let storeInformationSql = 'SELECT * FROM `store` where storeID='+ storeID ;
+var storeInformationSql;
 //店家商品
-let storeProductSql = 'SELECT a.storeID,a.productID,a.productName,a.categoryID,a.productPhoto,a.productinformation,a.productPrice,b.categoryName FROM `product` a LEFT JOIN `category` b on a.categoryID=b.categoryID WHERE a.storeID='+ storeID;
+var storeProductSql;
 //店家評論
-let commentSql = 'SELECT a.storeID,a.memberID,a.commentContent,a.commentScore,a.commentTime,b.memberName,b.memberPhoto FROM `comment` a LEFT JOIN `member` b on a.memberID=b.memberID where storeID='+ storeID ;
+var commentSql;
 //店家評分
-let commentScoreSql = 'SELECT count(commentID) count,round(AVG(commentScore),1) star FROM `comment` WHERE storeID='+ storeID ;
+var commentScoreSql;
 //訂單總數(算完成率用)
-let orderSelectSql = 'SELECT orderStatus FROM `order` WHERE storeId='+ storeID;
+var orderSelectSql;
 
 //側邊欄
-const storeSelect = 'select * from store where storeID=';
-const store = storeSelect + storeID;
+var storeSelect = 'select * from store where storeID=';
+var store = storeSelect + storeID;
+router.get('/', function(req, res, next) {
+  storeID = 1;
+  store = storeSelect + storeID;
+  orderSelectSql = 'SELECT orderStatus FROM `order` WHERE storeId='+ storeID;
+  commentScoreSql = 'SELECT count(commentID) count,round(AVG(commentScore),1) star FROM `comment` WHERE storeID='+ storeID ;
+  commentSql = 'SELECT a.storeID,a.memberID,a.commentContent,a.commentScore,a.commentTime,b.memberName,b.memberPhoto FROM `comment` a LEFT JOIN `member` b on a.memberID=b.memberID where storeID='+ storeID ;
+  storeProductSql = 'SELECT a.storeID,a.productID,a.productName,a.categoryID,a.productPhoto,a.productinformation,a.productPrice,b.categoryName FROM `product` a LEFT JOIN `category` b on a.categoryID=b.categoryID WHERE a.storeID='+ storeID;
+  storeInformationSql = 'SELECT * FROM `store` where storeID='+ storeID ;
+  northDistrictSql = "SELECT * FROM `district` where area='北部'";
+  centralDistrictSql = "SELECT * FROM `district` where area='中部'";
+  console.log("session:",req.session.storeID);
+  next();
+});
+
+
 /* GET home page. */
 
 
@@ -103,6 +119,7 @@ const commentData = (req) => {
         })
 })
 };
+//訂單總數(算完成率用)
 const orderSelectData = (req) => {
   return new Promise((resolve,reject) => {
     db.queryAsync(orderSelectSql)
@@ -137,13 +154,13 @@ router.get('/', async (req, res) => {
     const e = await commentScoreData(req);
     const f = await commentData(req);
     const g = await orderSelectData(req);
-    storeInformation = JSON.stringify(a)
-    northDistrict = JSON.stringify(b)
-    centralDistrict = JSON.stringify(c)
-    storeProduct = JSON.stringify(d)
-    storeComment = JSON.stringify(e)
-    comment = JSON.stringify(f)
-    orderSelect = JSON.stringify(g)
+    storeInformation = JSON.stringify(a);
+    northDistrict = JSON.stringify(b);
+    centralDistrict = JSON.stringify(c);
+    storeProduct = JSON.stringify(d);
+    storeComment = JSON.stringify(e);
+    comment = JSON.stringify(f);
+    orderSelect = JSON.stringify(g);
     newsJSON = JSON.stringify(await getStoreData(req));
     // console.log(northDistrict)
     res.render('sInformation', {
