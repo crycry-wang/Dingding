@@ -26,7 +26,7 @@
 
     <!-- 左邊sider -->
     <%- include('sSider', {active}); %>
-    
+
     <div class="containerRight" id='stat'>
         <!-- 右邊內容放置區 -->
 
@@ -35,18 +35,18 @@
             <div class="dTag text24RG">月營業額</div>
         </nav>
         <ul class="statList">
-            <li>
+            <!-- <li>
                 <h2 class="text20RG">日期</h2>
-                <p class="eng24R">{{date}}</p>
+                <p class="eng24R">{{'date'}}</p>
             </li>
             <li>
                 <h2 class="text20RG">訂單量</h2>
-                <p class="eng24R">{{(orderTotle).toLocaleString('en-US')}}</p>
+                <p class="eng24R">{{'(orderTotle).toLocaleString('en-US')'}}</p>
             </li>
             <li>
                 <h2 class="text20RG">銷售總額</h2>
-                <p class="eng24R">${{(orderAmount).toLocaleString('en-US')}}</p>
-            </li>
+                <p class="eng24R">${{'(orderAmount).toLocaleString('en-US')'}}</p>
+            </li> -->
         </ul>
         <div class="d-flex align-items-center">
             <img class="lrImg" src="/image/left.png">
@@ -58,7 +58,8 @@
 
         <div class="typeButton">
             <button class="text20R dbtn btnGB">全部</button>
-            <button class=" text20R dbtn btnGB" v-for='(item,index) in category' @click='(switchbutton(index))'>{{item.categoryName}}</button>
+            <button class=" text20R dbtn btnGB" v-for='(item,index) in category'
+                @click='(switchbutton(index))'>{{'item.categoryName'}}</button>
         </div>
         <!-- <div class="typeCheckbox" id='typeCheckbox'>
             <span>
@@ -76,38 +77,70 @@
     <!-- vue -->
     <script>
         // data資料
-        let data = {
-            category: [{
-                    categoryID: '0',
-                    categoryName: '套餐',
-                    productName: 'A套餐',
-                    productName: 'B套餐',
-                    productName: 'C套餐',
-                }, {
-                    categoryID: '1',
-                    categoryName: '漢堡',
-                    productName: '摩絲熱狗堡',
-                    productName: '摩絲熱狗堡1',
-                    productName: '摩絲熱狗堡3',
-                }, {
-                    categoryID: '2',
-                    categoryName: '飲品',
-                    productName: '可樂',
-                    productName: '雪碧',
-                    productName: '玉米濃湯',
-                }
 
-            ],
-            date: '2020.07.01',
-            orderTotle: 1215,
-            orderAmount: 31245
-        }
+        // let data = {
+        //     category: [{
+        //             categoryID: '0',
+        //             categoryName: '套餐',
+        //             productName: 'A套餐',
+        //             productName: 'B套餐',
+        //             productName: 'C套餐',
+        //         }, {
+        //             categoryID: '1',
+        //             categoryName: '漢堡',
+        //             productName: '摩絲熱狗堡',
+        //             productName: '摩絲熱狗堡1',
+        //             productName: '摩絲熱狗堡3',
+        //         }, {
+        //             categoryID: '2',
+        //             categoryName: '飲品',
+        //             productName: '可樂',
+        //             productName: '雪碧',
+        //             productName: '玉米濃湯',
+        //         }
+
+        //     ],
+        //     date: '2020.07.01',
+        //     orderTotle: 1215,
+        //     orderAmount: 31245
+        // }
 
 
         //vue資料
-        let mMember = new Vue({
+       
+        let store = new Vue({
             el: '#stat',
-            data: data,
+            data: {
+                storeData: JSON.parse('<%- storeData %>'),
+                orderSumData: JSON.parse('<%- orderSumData %>'),
+                categoryNamegroup:'',
+                total:''
+            },
+            mounted: function () {
+                
+                this.categoryNamegroup = this.orderSumData.map(function (item) {
+                    categoryName = item.categoryName;
+                    return categoryName
+                })
+                this.categoryNamegroup.unshift('全部');
+
+                this.categoryOrdergroup = this.orderSumData.map(function (item) {
+                    categoryTotal = item.total;
+                    return categoryTotal
+                })
+                var allTotal=0;
+
+                this.total = this.orderSumData.forEach(function (item) {
+                   allTotal += item.total;
+                    return allTotal
+                })
+                console.log(this.total);
+                
+
+                
+                
+            },
+
             methods: {
                 switchbutton(index) {
                     var currenti = index;
@@ -117,7 +150,7 @@
             }
         })
 
-        $('button').click(function() {
+        $('button').click(function () {
             $('button').removeClass('btnB');
             $(this).addClass('btnB');
         });
@@ -127,6 +160,8 @@
     <!-- 營運統計 -->
     <script src="/javascript/Chart.min.js"></script>
     <script>
+        
+
         Chart.defaults.global.defaultFontColor = '#373A3C';
         Chart.defaults.global.defaultFontSize = 20;
         Chart.defaults.global.defaultFontFamily = ['Alata',
@@ -141,12 +176,11 @@
         var chart = new Chart(ctx, {
             type: 'bar',
             data: {
-                labels: ["全選", "套餐", "漢堡", "飲品"],
+                labels: store.categoryNamegroup,
                 datasets: [{
                     label: '訂單量',
-                    data: [500, 200, 245, 105],
+                    data: store.categoryOrdergroup,
                     backgroundColor: [
-
                         'rgba(236, 167, 42, 0.8)'
 
                         // ,'rgba(54, 162, 235, 0.7)',

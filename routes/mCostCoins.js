@@ -22,11 +22,12 @@ router.get('/', function (req, res, next) {
 count(b.`noticeStatus`) as noticeCount from `member` as a,\
 `notice` as b where a.memberID=b.toWhoID and toWhoType=2 \
 and b.noticeStatus=1 and memberID='+ memberId;
-    cost = 'select \
-d.orderDeadline,c.storeName,b.productName,sum(a.price*a.quality) sum \
-from `orderdetail` a join `order` d on a.`orderID`=d.`orderID`\
- join product b on a.productID=b.productID join store c on b.storeID=c.storeID \
- where a.memberID='+ memberId;
+    cost = 'select b.orderDeadline,d.storeName,\
+    c.productName,sum(a.price*a.quality) sum from\
+     `orderdetail` as a, `order` as b,`product` as c,\
+     `store` as d where a.`orderID`=b.`orderID` \
+     and a.`productID`=c.`productID` and c.`storeID`=d.`storeID` and\
+      a.memberID='+ memberId + ' group by a.`orderDetailID` DESC';
     saveCoin = 'SELECT SUM(saveCoin) saveSum from savecoin where memberID=' + memberId;
     costCoin = 'SELECT sum( `price`*`quality`) costSum FROM `orderdetail` WHERE memberID=' + memberId;
 

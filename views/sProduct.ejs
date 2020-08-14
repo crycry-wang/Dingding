@@ -23,6 +23,10 @@
             -webkit-line-clamp: 1;
 
         }
+
+        .dOption:hover .text20R {
+            color: white;
+        }
     </style>
 </head>
 
@@ -137,18 +141,27 @@
                                 <li>
                                     <p class="text24B d-inline-block ">餐點名稱</p>
                                     <input type="text " class="text20RG singleText398 " placeholder="請輸入餐點名稱"
-                                        v-model.trim="productflag.productName"> 
+                                        v-model.trim="productflag.productName">
+                                </li>
                                 <li>
                                     <p class="text24B d-inline-block">產品類別</p>
-                                    <div class="ddselect d-inline-block ">
+                                    <div class="ddselect d-inline-block">
                                         <div class="dSelect selectTitle">
-                                            <div class="dSelectText text20R ">選擇類別</div>
+                                            <div class="dSelectText text20R">{{categoryName}}</div>
                                         </div>
                                         <div class="dOptionDivOff selectContent">
-                                            <div class="dOption text20R" v-for='(item,index) in elementp'>{{item}}</div>
+                                            <div class="dOption" v-for='(item,index) in elementp'>
+                                                <label :for='item' class="d-block">
+                                                    <div class="text20R">
+                                                        <input type="radio" v-model="categoryName" :id='item'
+                                                            :value='item' hidden>{{item}}
+                                                    </div>
+                                                </label>
+                                            </div>
                                         </div>
                                     </div>
                                 </li>
+
                                 <li>
                                     <p class="text24B d-inline-block">餐點價格</p>
                                     <input type="text" class="text20RG singleText398" placeholder="請輸入餐點價格"
@@ -156,6 +169,7 @@
                                 </li>
                             </ul>
                         </div>
+
                         <p class="text24B d-block mb-3">說明</p>
                         <textarea class="text20RG multiText398" placeholder="請輸入餐點說明"
                             v-model="productflag.productInformation"></textarea>
@@ -163,7 +177,8 @@
 
                     <div class="modal-footer">
                         <button class="text20R dbtn btnW" data-dismiss="modal">取消返回</button>
-                        <button class="text20R dbtn btnY ml-3">確定新增</button>
+                        <button class="text20R dbtn btnY ml-3" v-if='productIndex<0'>確定新增</button>
+                        <button class="text20R dbtn btnY ml-3" v-else>確定修改</button>
                     </div>
                 </div>
             </div>
@@ -191,7 +206,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title text28B">類別管理</h5>
-                        <button type="button" class="close " data-dismiss="modal" aria-label="Close">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <i class=" icon-close"></i>
                         </button>
                     </div>
@@ -226,8 +241,8 @@
                 <div class="modal-content ">
                     <div class="modal-header ">
                         <h5 class="modal-title text28B ">是否要刪除餐點</h5>
-                        <button type="button " class="close " data-dismiss="modal" aria-label="Close ">
-                            <i class=" icon-close "></i>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <i class=" icon-close"></i>
                         </button>
                     </div>
                     <p class="modal-body text24R">
@@ -243,12 +258,12 @@
 
         <!-- 刪除類別 -->
         <div class="modal fade sm2Btn" id="deleteType">
-            <div class="modal-dialog ">
-                <div class="modal-content ">
-                    <div class="modal-header ">
-                        <h5 class="modal-title text28B ">是否要刪除類別</h5>
-                        <button type="button " class="close " data-dismiss="modal " aria-label="Close ">
-                            <i class=" icon-close "></i>
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title text28B">是否要刪除類別</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <i class=" icon-close"></i>
                         </button>
                     </div>
                     <p class="modal-body text24R">
@@ -268,8 +283,8 @@
                 <div class="modal-content ">
                     <div class="modal-header ">
                         <h5 class="modal-title text28B ">推薦產品</h5>
-                        <button type="button " class="close " data-dismiss="modal " aria-label="Close ">
-                            <i class=" icon-close "></i>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <i class=" icon-close"></i>
                         </button>
                     </div>
                     <div class="modal-body">
@@ -280,31 +295,39 @@
                                     <span class="fst align-middle"><img src="/image/first.png"></span>
                                 </div>
                                 <div class="row col-9">
-                                    <div class="ddselect col-6">
-                                        <div class="dSelect mr-3 selectTitle">
-                                            <div class="dSelectText text20R">選擇類別</div>
+                                    <div class="ddselect col-6 d-inline-block">
+                                        <div class="dSelect selectTitle">
+                                            <div class="dSelectText text20R">{{categoryName}}</div>
                                         </div>
-                                        <div class="dOptionDivOff mr-3 selectContent">
-                                            <div class="dOption text20R  w-100 d-inline-block"
-                                                v-for='(item,index) in elementp'>{{item}}</div>
+                                        <div class="dOptionDivOff selectContent w-100">
+                                            <div class="dOption" v-for='(item,index) in elementp'>
+                                                <label :for='item' class="d-block">
+                                                    <div class="text20R">
+                                                        <input type="radio" v-model="categoryName" :id='item'
+                                                            :value='item' hidden>{{item}}
+                                                    </div>
+                                                </label>
+                                            </div>
                                         </div>
                                     </div>
 
-                                    <div class="ddselect col-6 ">
-                                        <div class="dSelect ml-3 selectTitle">
-                                            <div class="dSelectText text20R clip">選擇餐點</div>
+                                    <div class="ddselect col-6 d-inline-block">
+                                        <div class="ml-3 dSelect selectTitle">
+                                            <div class="dSelectText text20R clip">{{productData[0].productName}}</div>
                                         </div>
-                                        <div class="dOptionDivOff ml-3 selectContent">
-                                            <span v-for='(item,index) in productData'>
-                                                <div class="dOption text20R w-100 d-inline-block clip"
-                                                    v-if='item.productStatus==1'>{{item.productName}}</div>
-                                            </span>
+                                        <div class="dOptionDivOff selectContent ml-3">
+                                            <div class=" dOption" v-for='(item,index) in productData'>
+                                                <label :for='item' class="d-block">
+                                                    <div class="text20R">
+                                                        <input type="radio" v-model="categoryName" :id='item'
+                                                            :value='item' hidden>{{item.productName}}
+                                                    </div>
+                                                </label>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </li>
-
-
                         </ul>
                     </div>
 
@@ -332,12 +355,15 @@
                 productIndex: -1,
                 comfirm: '',
                 type: '',
-                categoryName: '',
-                productflag:''
+                categoryName: '選擇類別',
+                recommendfir:'',
+                productflag: '',
+
             },
 
-            // 取類別
+
             mounted: function () {
+                // 取類別
                 let categoryArry = this.productData.length;
                 let element = [];
                 for (let index = 0; index < categoryArry; index++) {
@@ -354,11 +380,12 @@
                 , getIndex(index) {
                     this.productIndex = index;
                     this.productflag = this.productData[index];
+                    this.categoryName = this.productData[index].categoryName;
                 }
                 , clearIndex() {
                     this.productIndex = -1;
-                    this.productflag = this.productData[-1]='';
-                    
+                    this.productflag = this.productData[-1] = '';
+                    this.categoryName = '選擇類別';
                 }
                 , deleteProduct() {
                     this.productData[this.productIndex].productStatus = 0;
@@ -393,9 +420,8 @@
                     $('#deleteType').modal('hide');
                     this.comfirm = '刪除成功';
                     $('#comfirm').modal('show');
-
-
                 }
+
                 // 新增類別
                 , addType() {
                     this.elementpManger.push('');
@@ -422,8 +448,8 @@
                     }
                 }
 
-
-            }
+            },
+           
         })
 
 
@@ -433,19 +459,10 @@
                 $('.selectTitle').removeClass('dSelectClick').addClass('dSelect');
                 $('.selectContent').removeClass('dOptionDivOn').addClass('dOptionDivOff');
             }
-
-            function teSelect() {
-                reSelect();
-                currentCategory = $(this).text();
-                sProduct.categoryName = currentCategory;
-                $('.ddselect').children('.selectTitle').children('.dSelectText').text(currentCategory);
-
-            }
-
             $('.dSelectText').click(function () {
-                $('.selectTitle').removeClass('dSelect').addClass('dSelectClick');
-                $('.selectContent').removeClass('dOptionDivOff').addClass('dOptionDivOn');
-                $('.dOption').click(teSelect);
+                $(this).parent('.selectTitle').removeClass('dSelect').addClass('dSelectClick');
+                $(this).parent('.selectTitle').parent('.ddselect').children('.selectContent').removeClass('dOptionDivOff').addClass('dOptionDivOn');
+                $('.dOption').click(reSelect);
 
             });
         });

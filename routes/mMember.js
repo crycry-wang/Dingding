@@ -3,11 +3,9 @@ var router = express.Router();
 var db = require('../model/db');
 var session = require('express-session');
 
-
-
 /* GET home page. */
 
-// 會員
+//// 會員
 let memberId;
 let member;
 
@@ -44,6 +42,7 @@ and b.noticeStatus=1 and memberID='+ memberId;
 
     next();
 });
+
 
 
 // 會員左側
@@ -114,15 +113,14 @@ router.get('/', async (req, res) => {
     newsJSON2 = JSON.stringify(await getsaveCoinData(req));
     newsJSON3 = JSON.stringify(await getcostCoinData(req));
     newsJSON4 = JSON.stringify(await getAddressData(req));
-
-    res.render('mMember', {
+    
+    res.render('mMember', { 
         mMemberData: newsJSON,
         memberLikestore: newsJSON1,
-        saveCoinData: newsJSON2,
-        costCoinData: newsJSON3,
-        addressData: newsJSON4,
-        active: 'mMember'
-    });
+        saveCoinData:newsJSON2, 
+        costCoinData:newsJSON3, 
+        addressData:newsJSON4, 
+        active: 'mMember'});
 
 });
 

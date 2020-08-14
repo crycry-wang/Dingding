@@ -350,19 +350,86 @@
                     if (this.dNticeData[index].noticeStatus == 1) {
                         this.dNticeData[index].noticeStatus = 2
                     }
+                    
+                    let read = {
+                        noticeId: this.dNticeData[index].noticeID
+                    }
+                    fetch('sNotice/read', {
+                        method: 'POST',
+                        body: JSON.stringify(read),
+                        headers: new Headers({
+                            'Content-Type': 'application/json'
+                        })
+                    })
+                        .then(
+                            location.href = "sNotice"
+                        )
+                        .catch(
+                            error => console.error('Error:', error)
+                        )
                 },
                 readCancelStatus(index) {
                     if (this.orderCaNoticeData[index].noticeStatus == 1) {
                         this.orderCaNoticeData[index].noticeStatus = 2;
                     }
+                    let read = {
+                        noticeId: this.orderCaNoticeData[index].noticeID
+                    }
+                    fetch('sNotice/read', {
+                        method: 'POST',
+                        body: JSON.stringify(read),
+                        headers: new Headers({
+                            'Content-Type': 'application/json'
+                        })
+                    })
+                        .then(
+                            location.href = "sNotice"
+                        )
+                        .catch(
+                            error => console.error('Error:', error)
+                        )
                 },
                 readOkStatus(index) {
                     if (this.orderOkNoticeData[index].noticeStatus == 1) {
                         this.orderOkNoticeData[index].noticeStatus = 2;
                     }
+                    let read = {
+                        noticeId: this.orderOkNoticeData[index].noticeID
+                    }
+                    fetch('sNotice/read', {
+                        method: 'POST',
+                        body: JSON.stringify(read),
+                        headers: new Headers({
+                            'Content-Type': 'application/json'
+                        })
+                    })
+                        .then(
+                            location.href = "sNotice"
+                        )
+                        .catch(
+                            error => console.error('Error:', error)
+                        )
                 },
                 readNewStatus(index) {
-                    this.orderNoticeData[index].noticeStatus = 2;
+                       if (this.orderNoticeData[index].noticeStatus == 1) {
+                        this.orderNoticeData[index].noticeStatus = 2;
+                    }
+                    let read = {
+                        noticeId: this.orderNoticeData[index].noticeID
+                    }
+                    fetch('sNotice/read', {
+                        method: 'POST',
+                        body: JSON.stringify(read),
+                        headers: new Headers({
+                            'Content-Type': 'application/json'
+                        })
+                    })
+                        .then(
+                            location.href = "sNotice"
+                        )
+                        .catch(
+                            error => console.error('Error:', error)
+                        )
                 },
 
                 // 刪除

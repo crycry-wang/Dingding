@@ -2,7 +2,6 @@ var express = require('express');
 var router = express.Router();
 var db = require('../model/db');
 var session = require('express-session');
-
 /* GET home page. */
 
 // 會員
@@ -37,7 +36,7 @@ router.get('/', function (req, res, next) {
       toWhoType=2 and toWhoID=';
     orderNotice = `${orderNoticeSelect}${memberId} group by b.orderID`;
     // 團體通知
-    group='SELECT a.`noticeType`,a.`noticeTime`,a.`noticeStatus`,c.groupName from `notice` as a,\
+    group='SELECT a.`noticeID`,a.`noticeType`,a.`noticeTime`,a.`noticeStatus`,c.groupName from `notice` as a,\
      `order` as b,`group` as c where a.noticeData=b.orderID and b.groupID=c.groupID\
       and (a.noticeType=2 or a.noticeType=3) and toWhoID='+memberId
 
@@ -46,43 +45,42 @@ router.get('/', function (req, res, next) {
     next();
 })
 
-// 會員左側資料
+
+
 const getMemberData = (req) => {
     return new Promise((resolve, reject) => {
         db.queryAsync(member)
-            .then(results => {
-                resolve(results);
-            })
-            .catch(ex => {
-                reject(ex);
+        .then(results => {
+            resolve(results);
+        })
+        .catch(ex => {
+            reject(ex);
             });
-    })
+        })
 };
-// 會員平台通知
+
 const getDNotice = (req) => {
     return new Promise((resolve, reject) => {
         db.queryAsync(dNotice)
-            .then(results => {
+        .then(results => {
                 resolve(results);
             })
             .catch(ex => {
                 reject(ex);
             });
-    })
+        })
 };
-// 會員訂單通知
 const getOderNotice = (req) => {
     return new Promise((resolve, reject) => {
         db.queryAsync(orderNotice)
-            .then(results => {
-                resolve(results);
-            })
+        .then(results => {
+            resolve(results);
+        })
             .catch(ex => {
                 reject(ex);
             });
-    })
-};
-// 會員團體通知
+        })
+    };
 const getGroupNotice = (req) => {
     return new Promise((resolve, reject) => {
         db.queryAsync(group)
@@ -94,6 +92,19 @@ const getGroupNotice = (req) => {
             });
     })
 };
+
+router.post('/read', function(req, res, next) {
+    // console.log('req.body');
+    db.query('UPDATE `notice` set `noticeStatus`=2 where noticeID=' + req.body.noticeId,
+    function() {
+            console.log('已讀')
+        })
+        .catch(function() {
+            console.log('err');
+        })
+       
+})
+
 
 //傳資料到表單裡
 router.get('/', async (req, res) => {
@@ -110,6 +121,7 @@ router.get('/', async (req, res) => {
         active: 'mNotice'
     });
 });
+
 
 
 
