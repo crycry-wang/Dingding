@@ -68,8 +68,8 @@
                     <div v-for="(order,index) in orderList" class="row mTR text20B">
                         <div class="col-4 mTD">{{ order.groupName }}</div>
                         <div class="col-4 mTD">
-                            <img :src="'/image/store/' +order.storeBanner" alt="" class="float-left orderListimg clipCircle mr-3">{{ order.storeName }}</div>
-                        <div class="col-4 mTD">{{ order.orderArrivedTime }}<a href="#" @click="toOrderDetail(order.OrderID)" class="icon-ok float-right" :class="checkOrder(order.orderID)"></a></div>
+                            <img :src="'/image/store/' +order.storePhoto" alt="" class="float-left orderListimg clipCircle mr-3">{{ order.storeName }}</div>
+                        <div class="col-4 mTD">{{ order.orderArrivedTime }}<a href="#" @click="toOrderDetail(order.orderID)" class="icon-ok float-right" :class="checkOrder(order.orderID)"></a></div>
                     </div>
                     
                 </div>

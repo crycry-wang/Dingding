@@ -58,7 +58,7 @@ router.get('/', async (req, res) => {
 
 // 過去的訂單
 router.get('/history', async (req, res, next) => {
-  orderListSql = "select * from `order` o inner join `store` s on o.storeID=s.storeID join `group` g on o.groupID=g.groupID join `groupmember` m on g.groupID=m.groupID where m.memberID=" + memberID + " and CURRENT_DATE > o.orderDeadline";
+  orderListSql = "select * from `order` o inner join `store` s on o.storeID=s.storeID join `group` g on o.groupID=g.groupID join `groupmember` m on g.groupID=m.groupID where m.memberID=" + memberID + " and CURRENT_DATE > o.orderDeadline order by orderID DESC";
   const orderList = await getorderListData(req);
   jsonResult = JSON.stringify(orderList);
   res.json(jsonResult);

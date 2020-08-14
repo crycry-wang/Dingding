@@ -59,14 +59,24 @@
             <div class="dblock givePadding mt-m">
                 <!-- 內容按鈕 -->
                 <div class="clearfix mb-s">
-                    <button class="text20RG dbtn btnG"><i class="icon-left-open mr-2"></i>返回</button>
-                    <button class="text20R dbtn btnY float-right" data-toggle="modal"
+                    <button class="text20RG dbtn btnG" @click="goBack"><i class="icon-left-open mr-2"></i>返回</button>
+                    <button v-if="readyComment" type="button" class="text20R btnY dbtn float-right mr-3"
+                        data-toggle="modal" data-target="#makeComment">
+                        評價店家
+                    </button>
+                    <button v-if="(productList[0].orderDetailID)&&(!readyComment)&&(!overOrderTime)" type="button"
+                        class="text20R btnR dbtn float-right mr-3" data-toggle="modal" data-target="#cancelOrder">
+                        取消點餐
+                    </button>
+                    <button v-if="(!productList[0].orderDetailID)&&(!readyComment)&&(!overOrderTime)"
+                        class="text20R dbtn btnY float-right mr-3" data-toggle="modal"
                         data-target="#comfirmOrder">確認點餐</button>
-                    <button class="text20R dbtn btnR float-right mr-3" data-toggle="modal"
+                    <button v-if="(productList[0].orderDetailID)&&(!readyComment)&&(!overOrderTime)"
+                        class="text20R dbtn btnR float-right mr-3" data-toggle="modal"
                         data-target="#deleteOrder">刪除訂單</button>
                 </div>
                 <!-- 捲軸範圍 -->
-                <div class="scrollList orderVoteListL">
+                <div class="scrollList orderVoteListM">
                     <!-- 上方內容 -->
                     <div class="ml-4">
                         <div class="row mb-s mTD">
@@ -74,7 +84,7 @@
                                 <span class="text20B">團名名稱</span>
                             </div>
                             <div class="col-10">
-                                <span class="text20B ">{{groupName}}</span>
+                                <span class="text20B ">{{order[0].groupName}}</span>
                             </div>
                         </div>
                         <div class="row mb-s mTD">
@@ -82,15 +92,15 @@
                                 <span class="text20B">餐點送達時間</span>
                             </div>
                             <div class="col-10">
-                                <span class="text20B">{{orderArrivedTime}}</span>
+                                <span class="text20B">{{order[0].orderArrivedTime}}</span>
                             </div>
                         </div>
-                        <div class="row mb-s mTD">
+                        <div v-if="!alreadyOrder" class="row mb-s mTD">
                             <div class="col-2">
                                 <span class="text20B">點餐截止時間</span>
                             </div>
                             <div class="col-10">
-                                <span class="text20B textR">{{orderDeadline}}</span>
+                                <span class="text20B textR">{{order[0].orderDeadline}}</span>
                             </div>
                         </div>
                     </div>
@@ -100,12 +110,12 @@
                         <div class="orderSectionInner mt-s ml-4">
                             <div class="row orderSectionMTD">
                                 <div class="col-7">
-                                    <img :src="storeList[selectedStore].storePhoto" alt=""
+                                    <img :src="'/image/store/' +order[0].storePhoto" alt=""
                                         class="float-left orderSectionImg clipCircle mr-3">
-                                    <span class="text24B">{{storeList[selectedStore].storeName}}</span>
+                                    <span class="text24B">{{order[0].storeName}}</span>
                                 </div>
                                 <div class="col-3 text-right pr-3">
-                                    <span class="text20B">已選擇<span
+                                    <span v-if="(!productList[0].orderDetailID)&&(!readyComment)&&(!overOrderTime)" class="text20B">已選擇<span
                                             class="eng20R textY mr-3 ml-3">{{totalQuality}}</span>項餐點</span>
                                 </div>
                                 <div class="col-2 text-right pr-4">
@@ -115,7 +125,7 @@
                                     </span>
                                 </div>
                             </div>
-                            <div class="mTD">
+                            <div v-if="(!productList[0].orderDetailID)" class="mTD">
                                 <a href="#" class="text20R text-decoration-none pr-3 textB">店家推薦</a><span
                                     class="textG">|</span>
                                 <a href="#" class="text20R text-decoration-none pr-3 pl-3">人氣餐點</a><span
@@ -135,7 +145,7 @@
                             <div v-for="(product,index) in productList" class="col-6 itemBorder orderProductItem mb-4">
                                 <div class="row align-items-center">
                                     <div class="col-2">
-                                        <img :src="productList[index].productPhoto" alt="" class="itemImg">
+                                        <img :src="'/image/store/' +product.productPhoto" alt="" class="itemImg">
                                     </div>
                                     <div class="col-4 text20B pl-2">
                                         {{product.productName}}
@@ -147,9 +157,12 @@
 
                                     </div>
                                     <div class="col-3 countP ml-n4">
-                                        <i @click="if(product.quality>0){product.quality--}" class="icon-minus"></i>
-                                        <p class="eng20R text-center">{{product.quality}}</p>
-                                        <i @click="product.quality++" class="icon-plus"></i>
+                                        <i v-if="(!alreadyOrder)" @click="if(product.quality>0){product.quality--}"
+                                            class="icon-minus"></i>
+                                        <p class="eng20R text-center"><span v-if="alreadyOrder"
+                                                :class="alreadyOrder? 'float-left ml-5 mt-1 mr-n5':'' ">*</span>{{product.quality}}
+                                        </p>
+                                        <i v-if="!alreadyOrder" @click="product.quality++" class="icon-plus"></i>
                                     </div>
                                 </div>
                             </div>
@@ -184,7 +197,7 @@
         </div>
 
         <!-- 刪除完成彈跳框 -->
-        <button type="button" class="btnR dbtn" data-toggle="modal" data-target="#DeleteSuccess">
+        <!-- <button type="button" class="btnR dbtn" data-toggle="modal" data-target="#DeleteSuccess">
             刪除訂單
         </button>
         <div class="modal fade sm1Btn" id="DeleteSuccess">
@@ -199,7 +212,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
 
         <!-- 檢查餐點彈跳框 -->
         <div class="modal fade m2Btn" id="comfirmOrder">
@@ -213,16 +226,17 @@
                     </div>
                     <div class="orderProductItemList text20B">
                         <div class="scrollList orderVoteList">
-                            <div v-for="(product,index) in fitlterProductList" class="d-flex justify-content-between orderProductItem mb-2">
+                            <div v-for="(product,index) in fitlterProductList"
+                                class="d-flex justify-content-between orderProductItem mb-2">
                                 <div>
-                                    <img :src="product.productPhoto" alt="" class="itemImg">
+                                    <img :src="'/image/store/' +product.productPhoto" alt="" class="itemImg">
                                     <span class="pl-2">
                                         {{product.productName}}
                                     </span>
                                 </div>
                                 <div>
                                     <span class="eng20R price">
-                                    <span class="align-middle">{{product.productPrice}}</span>
+                                        <span class="align-middle">{{product.productPrice}}</span>
                                     </span>
                                 </div>
                                 <div>
@@ -240,14 +254,14 @@
                     </div>
                     <div class="modal-footer">
                         <button class="text20R dbtn btnW" data-dismiss="modal">取消返回</button>
-                        <a href="mOrderList"><button class="text20R dbtn btnY ml-3">完成訂單</button></a>
+                        <button @click="sendOrder" class="text20R dbtn btnY ml-3">完成訂單</button>
                     </div>
                 </div>
             </div>
         </div>
 
         <!-- 點餐完成彈跳框 -->
-        <button type="button" class="btnY dbtn" data-toggle="modal" data-target="#orderSuccess">
+        <!-- <button type="button" class="btnY dbtn" data-toggle="modal" data-target="#orderSuccess">
             點餐成功
         </button>
         <div class="modal fade sm1Btn" id="orderSuccess">
@@ -262,12 +276,10 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
 
         <!-- 取消點餐彈跳框 -->
-        <button type="button" class="btnR dbtn" data-toggle="modal" data-target="#cancelOrder">
-            取消點餐
-        </button>
+
         <div class="modal fade sm2Btn" id="cancelOrder">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -289,7 +301,7 @@
         </div>
 
         <!-- 訂單成立彈跳框 -->
-        <button type="button" class="btnY dbtn" data-toggle="modal" data-target="#createOrderSuccess">
+        <!-- <button type="button" class="btnY dbtn" data-toggle="modal" data-target="#createOrderSuccess">
             訂單成立
         </button>
         <div class="modal fade sm1Btn" id="createOrderSuccess">
@@ -304,80 +316,148 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
 
         <!-- 評價彈跳框-->
-        <button type="button" class="btnY dbtn" data-toggle="modal" data-target="#makeComment">
-            評價
-        </button>
         <div class="modal fade inputL" id="makeComment">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title text28B">麥當勞五權西店麥當勞</h5>
+                        <h5 class="modal-title text28B">{{order[0].storeName}}</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <i class=" icon-close"></i>
                         </button>
                     </div>
                     <div class="modal-continer">
                         <p class="text24B mb-m textY" style="font-size: 1.6rem;">
-                            <i class="mr-1 icon-spoon"></i>
-                            <i class="mr-1 icon-spoon"></i>
-                            <i class="mr-1 icon-spoon"></i>
-                            <i class="mr-1 icon-spoon"></i>
-                            <i class="mr-1 icon-borderspoon"></i>
+                            <i @click="setScore(1)" class="mr-1"
+                                :class="(newCommentData.score)>0? 'icon-spoon':'icon-borderspoon'"></i>
+                            <i @click="setScore(2)" class="mr-1"
+                                :class="(newCommentData.score)>1? 'icon-spoon':'icon-borderspoon'"></i>
+                            <i @click="setScore(3)" class="mr-1"
+                                :class="(newCommentData.score)>2? 'icon-spoon':'icon-borderspoon'"></i>
+                            <i @click="setScore(4)" class="mr-1"
+                                :class="(newCommentData.score)>3? 'icon-spoon':'icon-borderspoon'"></i>
+                            <i @click="setScore(5)" class="mr-1"
+                                :class="(newCommentData.score)>4? 'icon-spoon':'icon-borderspoon'"></i>
                         </p>
                         <p class="text24B ">
                             評價
                         </p>
-                        <textarea class="text20RG multiText398 mt-2 mb-m" placeholder="請輸入您對這次的訂購體驗"
+                        <textarea v-model="newCommentData.commentContent" class="text20RG multiText398 mt-2 mb-m" placeholder="請輸入您對這次的訂購體驗"
                             style="width: 380px;"></textarea>
-                        <button class="text20R dbtn btnY w-100">張貼評價</button>
+                        <button @click="sendComment" class="text20R dbtn btnY w-100">張貼評價</button>
                     </div>
                     <div class="modal-footer">
                     </div>
                 </div>
             </div>
         </div>
-        <script src="/javascript/data.js"></script>
-        </div>
-        <script>
-            let app = new Vue({
-                el: "#app",
-                data: data,
-                mounted() {
-                    if (localStorage.groupName) {
-                        this.groupName = localStorage.groupName;
+    </div>
+    <script>
+
+
+        let app = new Vue({
+            el: "#app",
+            data: {
+                order: JSON.parse('<%- order %>'),
+                productList: JSON.parse('<%- productList %>'),
+                newCommentData: {
+                    score: 5,
+                    commentContent: "",
+                    storeID:"",
+                }
+            },
+            mounted() {
+
+                if (this.productList.length < 1) {
+                    function needOrder() {
+                        fetch('/mOrder/needOrder')
+                            .then(function (response) {
+                                return response.json();
+                            })
+                            .then((myJson) => {
+                                // console.log(myJson);
+                                this.productList = JSON.parse(myJson);
+                                app.productList = this.productList;
+                            });
                     }
+                }
+                needOrder();
+            },
+            computed: {
+                totalQuality: function () {
+                    let sum = 0;
+                    this.productList.forEach(product => {
+                        sum = sum + product.quality
+                    });
+                    return sum;
                 },
-                computed: {
-                    totalQuality: function () {
-                        let sum = 0;
-                        this.productList.forEach(product => {
-                            sum = sum + product.quality
-                        });
-                        return sum;
-                    },
-                    total: function () {
-                        let sum = 0;
-                        this.productList.forEach(product => {
-                            sum = sum + (product.quality * product.productPrice)
-
-                        });
-                        return sum.toLocaleString('en-US');
-                    },
-                    fitlterProductList:function(){
-                        return this.productList.filter(product=>product.quality > 0)
-                    }
+                total: function () {
+                    let sum = 0;
+                    this.productList.forEach(product => {
+                        sum = sum + (product.quality * product.productPrice)
+                    });
+                    return sum.toLocaleString('en-US');
                 },
-                // methods: {
+                fitlterProductList: function () {
+                    return this.productList.filter(product => product.quality > 0)
+                },
+                readyComment: function () {
+                    let eatTime = new Date(this.order[0].orderArrivedTime);
+                    let now = new Date;
+                    return now > eatTime
+                },
+                overOrderTime: function () {
+                    let orderTime = new Date(this.order[0].orderDeadline);
+                    let now = new Date;
+                    return now > orderTime
+                },
+                alreadyOrder: function () {
+                    return this.productList[0].orderDetailID !== undefined;
+                },
+                getStoreID:function(){
+                    this.newCommentData.storeID=this.order[0].storeID
+                }
+            },
+            methods: {
+                sendOrder: function () {
+                    fetch('/mOrder/order', {
+                        method: 'post',
+                        body: JSON.stringify(this.fitlterProductList),
+                        headers: new Headers({
+                            'Content-Type': 'application/json'
+                        })
+                    }).then((myJson) => {
+                        // console.log(myJson);
+                        console.log(myJson);
+                        location.href = "/mOrderList";
+                    });
+                },
+                sendComment: function () {
+                    fetch('/mOrder/newComment', {
+                        method: 'post',
+                        body: JSON.stringify(this.newCommentData),
+                        headers: new Headers({
+                            'Content-Type': 'application/json'
+                        })
+                    }).then((myJson) => {
+                        // console.log(myJson);
+                        console.log(myJson);
+                        location.href = "/mOrderList";
+                    });
+                },
+                goBack: function () {
+                    location.href = "/mOrderList";
+                },
+                setScore:function(viewScore){
+                    this.newCommentData.score = viewScore
+                }
+            },
+        })
 
-                // },
-                // watch: {
-
-                // }
-            })
-        </script>
+        // console.log(app.order);
+    </script>
 
 </body>
 

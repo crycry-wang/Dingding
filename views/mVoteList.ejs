@@ -82,28 +82,8 @@
                     <div v-for="(vote,index) in voteList" class="row mTR text20B">
                         <div class="col-4 mTD">{{vote.voteName}}</div>
                         <div class="col-4 mTD">{{vote.groupName}}</div>
-                        <div class="col-4 mTD">{{vote.voteDeadLine}}<a href="#" @click="toVoteDetail(vote.voteID)" class="icon-ok float-right" :class="checkVote(vote.voteID)"></a></div>
+                        <div class="col-4 mTD">{{vote.voteDeadline}}<a href="#" @click="toVoteDetail(vote.voteID)" class="icon-ok float-right" :class="checkVote(vote.voteID)"></a></div>
                     </div>
-                    <!-- <div class="row mTR text20B">
-                        <div class="col-4 mTD">阿信慶生聚會</div>
-                        <div class="col-4 mTD">被程式耽誤的通靈王</div>
-                        <div class="col-4 mTD">2020/06/21 13:00<i class="icon-ok float-right textB"></i></div>
-                    </div>
-                    <div class="row mTR text20B">
-                        <div class="col-4 mTD">貴婦們的下午茶</div>
-                        <div class="col-4 mTD">就愛烤肉團</div>
-                        <div class="col-4 mTD">2020/06/21 16:00<i class="icon-ok float-right textG"></i></div>
-                    </div>
-                    <div class="row mTR text20B">
-                        <div class="col-4 mTD">大專提報午餐</div>
-                        <div class="col-4 mTD">隨便吃團</div>
-                        <div class="col-4 mTD">2020/06/19 14:00<i class="icon-right-open float-right textB"></i></div>
-                    </div>
-                    <div class="row mTR text20B">
-                        <div class="col-4 mTD">聚餐吃什麼?</div>
-                        <div class="col-4 mTD">火鍋團</div>
-                        <div class="col-4 mTD">2020/06/22 12:00<i class="icon-ok float-right textB"></i></div>
-                    </div> -->
                 </div>
             </div>
         </div>
@@ -125,7 +105,7 @@
                         return response.json();
                     })
                     .then((myJson) => {
-                        console.log(myJson);
+                        // console.log(myJson);
                         this.voteList= JSON.parse(myJson);
                     });
                     this.tab=1;
@@ -136,7 +116,7 @@
                         return response.json();
                     })
                     .then((myJson) => {
-                        console.log(myJson);
+                        // console.log(myJson);
                         this.voteList= JSON.parse(myJson);
                     });
                     this.tab=2;

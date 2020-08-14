@@ -61,7 +61,7 @@ router.get('/', async (req, res) => {
 
 // 過去的訂單
 router.get('/history', async (req, res, next) => {
-    voteListSql = "select * from `vote` v inner join `member` m on v.memberID=m.memberID join `group` g on v.groupID=g.groupID where v.memberID=" + memberID + " and CURRENT_DATE > v.voteDeadLine";
+    voteListSql = "select * from `vote` v inner join `member` m on v.memberID=m.memberID join `group` g on v.groupID=g.groupID where v.memberID=" + memberID + " and CURRENT_DATE > v.voteDeadline order by voteID DESC";
     const voteList = await getVoteListData(req);
     jsonResult = JSON.stringify(voteList);
     res.json(jsonResult);
@@ -69,7 +69,7 @@ router.get('/history', async (req, res, next) => {
 
 // 現在與未來的訂單
 router.get('/future', async (req, res, next) => {
-    voteListSql = "select * from `vote` v inner join `member` m on v.memberID=m.memberID join `group` g on v.groupID=g.groupID where v.memberID=" + memberID + " and CURRENT_DATE <= v.voteDeadLine";
+    voteListSql = "select * from `vote` v inner join `member` m on v.memberID=m.memberID join `group` g on v.groupID=g.groupID where v.memberID=" + memberID + " and CURRENT_DATE <= v.voteDeadline";
     const voteList = await getVoteListData(req);
     jsonResult = JSON.stringify(voteList);
     res.json(jsonResult);
