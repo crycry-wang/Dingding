@@ -50,7 +50,7 @@
                 </div>
                 <div class="scrollList coinList">
                     <div class="row cTR eng20R col-12" v-for='item in savecoinData'>
-                        <div class="col-4 mTD ">{{item.saveTime}}</div>
+                        <div class="col-4 mTD ">{{item.saveTime.slice(0,10).replace(/-/g,'/')}}</div>
                         <span class="col-4 mTD eng20R price ">
                             <span class=" align-middle ">{{(item.saveCoin).toLocaleString('en-US')}}</span>
                         </span>
