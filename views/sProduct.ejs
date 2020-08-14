@@ -206,7 +206,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title text28B">類別管理</h5>
-                        <button type="button" class="close " data-dismiss="modal" aria-label="Close">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <i class=" icon-close"></i>
                         </button>
                     </div>
@@ -241,8 +241,8 @@
                 <div class="modal-content ">
                     <div class="modal-header ">
                         <h5 class="modal-title text28B ">是否要刪除餐點</h5>
-                        <button type="button " class="close " data-dismiss="modal" aria-label="Close ">
-                            <i class=" icon-close "></i>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <i class=" icon-close"></i>
                         </button>
                     </div>
                     <p class="modal-body text24R">
@@ -258,12 +258,12 @@
 
         <!-- 刪除類別 -->
         <div class="modal fade sm2Btn" id="deleteType">
-            <div class="modal-dialog ">
-                <div class="modal-content ">
-                    <div class="modal-header ">
-                        <h5 class="modal-title text28B ">是否要刪除類別</h5>
-                        <button type="button " class="close " data-dismiss="modal" aria-label="Close ">
-                            <i class=" icon-close "></i>
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title text28B">是否要刪除類別</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <i class=" icon-close"></i>
                         </button>
                     </div>
                     <p class="modal-body text24R">
@@ -283,8 +283,8 @@
                 <div class="modal-content ">
                     <div class="modal-header ">
                         <h5 class="modal-title text28B ">推薦產品</h5>
-                        <button type="button " class="close " data-dismiss="modal " aria-label="Close ">
-                            <i class=" icon-close "></i>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <i class=" icon-close"></i>
                         </button>
                     </div>
                     <div class="modal-body">
@@ -313,28 +313,21 @@
 
                                     <div class="ddselect col-6 d-inline-block">
                                         <div class="ml-3 dSelect selectTitle">
-                                            <div class="dSelectText text20R clip">{{123}}</div>
+                                            <div class="dSelectText text20R clip">{{productData[0].productName}}</div>
                                         </div>
-                                        <div class="dOptionDivOff selectContent w-100">
-                                            <div class="ml-3 dOption" v-for='(item,index) in elementp'>
+                                        <div class="dOptionDivOff selectContent ml-3">
+                                            <div class=" dOption" v-for='(item,index) in productData'>
                                                 <label :for='item' class="d-block">
                                                     <div class="text20R">
                                                         <input type="radio" v-model="categoryName" :id='item'
-                                                            :value='item' hidden>{{item}}
+                                                            :value='item' hidden>{{item.productName}}
                                                     </div>
                                                 </label>
                                             </div>
                                         </div>
                                     </div>
-
-
-
-
-
                                 </div>
                             </li>
-
-
                         </ul>
                     </div>
 
@@ -363,11 +356,14 @@
                 comfirm: '',
                 type: '',
                 categoryName: '選擇類別',
-                productflag: ''
+                recommendfir:'',
+                productflag: '',
+
             },
 
-            // 取類別
+
             mounted: function () {
+                // 取類別
                 let categoryArry = this.productData.length;
                 let element = [];
                 for (let index = 0; index < categoryArry; index++) {
@@ -424,9 +420,8 @@
                     $('#deleteType').modal('hide');
                     this.comfirm = '刪除成功';
                     $('#comfirm').modal('show');
-
-
                 }
+
                 // 新增類別
                 , addType() {
                     this.elementpManger.push('');
@@ -453,8 +448,8 @@
                     }
                 }
 
-
-            }
+            },
+           
         })
 
 
