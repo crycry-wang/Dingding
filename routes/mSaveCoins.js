@@ -1,23 +1,44 @@
 var express = require('express');
 var router = express.Router();
 var db = require('../model/db');
+var session = require('express-session');
 
 /* GET home page. */
-const memberId = 38;
-const savecoinSelect = 'select * from `savecoin` where memberID=';
-const member = 'select a.`memberID`,a.`memberName`,a.`memberPhoto`,\
-count(b.`noticeStatus`) as noticeCount from `member` as a,\
-`notice` as b where a.memberID=b.toWhoID and toWhoType=2 \
-and b.noticeStatus=1 and memberID='+ memberId;
-const savecoin = savecoinSelect + memberId+' order by saveTime desc';
+
+let memberId;
+let savecoinSelect;
+let member;
+let savecoin;
 
 // 會員儲值金額
-const saveCoinSelect = 'SELECT SUM(saveCoin) saveSum from savecoin where memberID='
-const saveCoin = saveCoinSelect + memberId;
+let saveCoinSelect;
+let saveCoin;
 
 // 會員消費金額
-const costCoinSelect = 'SELECT sum( `price`*`quality`) costSum FROM `orderdetail` WHERE memberID='
-const costCoin = costCoinSelect + memberId;
+let costCoinSelect;
+let costCoin;
+
+router.get('/', function (req, res, next) {
+  memberId = req.session.memberID;
+   savecoinSelect = 'select * from `savecoin` where memberID=';
+   member = 'select a.`memberID`,a.`memberName`,a.`memberPhoto`,\
+  count(b.`noticeStatus`) as noticeCount from `member` as a,\
+  `notice` as b where a.memberID=b.toWhoID and toWhoType=2 \
+  and b.noticeStatus=1 and memberID='+ memberId;
+   savecoin = savecoinSelect + memberId+' order by saveTime desc';
+  
+  // 會員儲值金額
+   saveCoinSelect = 'SELECT SUM(saveCoin) saveSum from savecoin where memberID='
+   saveCoin = saveCoinSelect + memberId;
+  
+  // 會員消費金額
+   costCoinSelect = 'SELECT sum( `price`*`quality`) costSum FROM `orderdetail` WHERE memberID='
+   costCoin = costCoinSelect + memberId;
+
+  console.log("session:", req.session.memberID);
+  next();
+});
+
 
 
 // 會員左側
