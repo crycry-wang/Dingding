@@ -93,185 +93,171 @@
         <div class="mContainer givePadding" style="margin-top: 66px;">
             <h3 class="text28B text28Padding">
                 熱門店家
-                <img class="lrImg" src="/image/right.png" alt="" v-on:click="handleChange(3)">
+                <img class="lrImg" src="/image/right.png" alt="" @click="handleChange(3)">
                 <img class="lrImg" src="/image/left.png" alt="" style="margin-right: 8px;"
-                    v-on:click="handleChange(-3)">
+                    @click="handleChange(-3)">
             </h3>
             <div class="row">
-                <div class="col-4 pr-3 imgCard" v-for="(item,index) in filterStore" :key="index">
+                <div class="col-4 pr-3 imgCard" @click="getDetail(item.storeID)" v-for="(item,type) in filterStore" :key="item.storeID">
                     <div class="dingImgDiv" style="width:  100%">
-                        <img :src="'/image/store/' + item.storeBanner" class="card-img-top dingImg" alt="..."
-                            data-toggle="modal" :data-target="'#storeModel'+ item.id">
-                        <i class="heart icon-heart" style="opacity: 1;z-index: 999;" v-on:click="handleLike(item.id)"
-                            v-if="item.likeStore"></i>
-                        <i class="heart icon-heart" style="z-index: 999;" v-on:click="handleLike(item.id)" v-else></i>
-
+                        <img :src="'/image/store/' + item.storeBanner" class="card-img-top dingImg" alt="..." data-toggle="modal" data-target="#sstoreModel">
+                        <i class="heart icon-heart"></i>
                         <div class="card-body">
                             <div class="d-inline-block w-75">
-                                <span class="card-text text24B shopName">{{item.storeName}}</span>
+                                <span class="card-text text24B shopName">{{ item.storeName }}</span>
                             </div>
                             <i class="icon-spoon float-right"></i>
-                            <span class="card-text eng24R float-right"
-                                style="margin-right: 7px;">{{item.comment}}</span>
+                            <span class="card-text eng24R float-right" style="margin-right: 7px;">4.8</span>
 
                         </div>
                     </div>
-                    <!-- 店家彈框(有評價) -->
-                    <div class="modal fade storeModel" :id="'storeModel'+ item.id">
-                        <div class="modal-dialog modal-dialog-scrollable">
-                            <div class="modal-content">
-                                <div class="storeModelImg align-middle"
-                                    :style="'background-image: url(/image/store/' + item.storeBanner + ');'">
-                                    <div style="display: inline-block;">
-                                        <div class="storeModelImgContent">
-                                            <span class="text28B mr16">{{item.storeName}}</span>
-                                            <span class="eng24R mr16">{{item.comment}}</span>
-                                            <div class="spoon" style="display: inline-block;">
-                                                <i
-                                                            :class="item.comment>=1 ? 'icon-spoon' : 'icon-borderspoon'"></i>
-                                                        <i
-                                                            :class="item.comment>=2 ? 'icon-spoon' : 'icon-borderspoon'"></i>
-                                                        <i
-                                                            :class="item.comment>=3 ? 'icon-spoon' : 'icon-borderspoon'"></i>
-                                                        <i
-                                                            :class="item.comment>=4 ? 'icon-spoon' : 'icon-borderspoon'"></i>
-                                                        <i
-                                                            :class="item.comment==5 ? 'icon-spoon' : 'icon-borderspoon'"></i>
-                                            </div>
-                                            
-                                            <p class="text20RG" style="margin-top: 8px;">訂單完成率 {{item.tradeSuccess}}%
-                                            </p>
-                                            <p class="text20R" style="margin-top: 8px;">{{ item.storeAddress }}</p>
-                                        </div>
-                                        <div class="storeModelImgContentBottom">
-                                            <i class="icon-heart" style="opacity: 1;z-index: 999;"
-                                                v-on:click="handleLike(item.id)" v-if="item.likeStore"></i>
-                                            <i class="icon-heart" style="z-index: 999;" v-on:click="handleLike(item.id)"
-                                                v-else></i>
-                                            <button class="dbtn dbtnG text20R" style="float: right;">快速安排訂單</button>
-                                        </div>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <i class="storeClose icon-close"></i>
-                                        </button>
+                </div>
+                <!-- 店家彈框(有評價) -->
+                <div class="modal fade storeModel" id="sstoreModel">
+                    <div class="modal-dialog modal-dialog-scrollable">
+                        <div class="modal-content">
+                            <div class="storeModelImg align-middle"
+                                :style="'background-image: url(/image/store/' + dbStoreInformation[0].storeBanner + ');'">
+                                <div style="display: inline-block;">
+                                    <div class="storeModelImgContent">
+                                        <span class="text28B mr16">{{dbStoreInformation[0].storeName}}</span>
+                                        <span class="eng24R mr16">{{dbCommentScore[0].star}}</span>
+                                        <i :class="dbCommentScore[0].star>=1 ? 'icon-spoon' : 'icon-borderspoon'"
+                                            class="spoon"></i>
+                                        <i :class="dbCommentScore[0].star>=2 ? 'icon-spoon' : 'icon-borderspoon'"
+                                            class="spoon"></i>
+                                        <i :class="dbCommentScore[0].star>=3 ? 'icon-spoon' : 'icon-borderspoon'"
+                                            class="spoon"></i>
+                                        <i :class="dbCommentScore[0].star>=4 ? 'icon-spoon' : 'icon-borderspoon'"
+                                            class="spoon"></i>
+                                        <i :class="dbCommentScore[0].star==5 ? 'icon-spoon' : 'icon-borderspoon'"
+                                            class="spoon"></i>
+                                        <p class="text20RG" style="margin-top: 8px;">訂單完成率 {{completeRate}}%
+                                        </p>
+                                        <p class="text20R" style="margin-top: 8px;">{{ dbStoreInformation[0].storeAddress }}</p>
                                     </div>
+                                    <div class="storeModelImgContentBottom">
+                                        <!-- <i class="icon-heart" style="opacity: 1;z-index: 999;"
+                                            v-on:click="handleLike(item.id)" v-if="item.likeStore"></i> -->
+                                        <!-- <i class="icon-heart" style="z-index: 999;" v-on:click="handleLike(item.id)"
+                                            v-else></i> -->
+                                        <button class="dbtn dbtnG text20R" style="float: right;">快速安排訂單</button>
+                                    </div>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <i class="storeClose icon-close"></i>
+                                    </button>
                                 </div>
-                                <div class="row">
-                                    <div class="modal-header col-2" style="padding-right: 0px;">
-                                        <ul class="storeUl" v-if="tab === 1" v-show="tab===1">
-                                            <li v-for="meal in item.categoryName">
-                                                <a class="storeContent" :href="'#title'+meal.cid">{{meal.name}}</a>
-                                                <!-- <a class="storeContent actMeals" :href="'#title'+meal.cid">{{meal.name}}</a> -->
-                                            </li>
-                                        </ul>
+                            </div>
+                            <div class="row">
+                                <div class="modal-header col-2" style="padding-right: 0px;">
+                                    <ul class="storeUl" v-if="tab === 1" v-show="tab===1">
+                                        <li v-for="(meal,index) in productList.msort">
+                                            <a class="storeContent" :href="'#title'+meal.categoryID">{{meal.categoryName}}</a>
+                                        </li>
+                                    </ul>
+                                </div>
 
-
+                                <div class="col-10 ml-n5 mr-5">
+                                    <div
+                                        style="background-color: var(--dWhite);width: 500px;height: 86px;padding-top: 40px;">
+                                        <span :class="{ act : tab == 1}" class="dTag text24RG"
+                                            v-on:click="tabClick(1)">美味餐點</span>
+                                        <span :class="{ act : tab == 2}" class="dTag text24RG"
+                                            v-on:click="tabClick(2)">詳細資訊</span>
+                                        <span :class="{ act : tab == 3}" class="dTag text24RG"
+                                            v-on:click="tabClick(3)">店家評價</span>
                                     </div>
-
-                                    <div class="col-10 ml-n5 mr-5">
-                                        <div
-                                            style="background-color: var(--dWhite);width: 500px;height: 86px;padding-top: 40px;">
-                                            <span :class="{ act : tab == 1}" class="dTag text24RG" v-on:click="tabClick(1)">美味餐點</span>
-                                            <span :class="{ act : tab == 2}" class="dTag text24RG" v-on:click="tabClick(2)">詳細資訊</span>
-                                            <span :class="{ act : tab == 3}" class="dTag text24RG" v-on:click="tabClick(3)">店家評價</span>
-                                        </div>
-                                        <br>
-                                        <!-- 美味餐點 -->
-                                        <div class="mealsScroll" v-if="tab === 1" v-show="tab===1">
-                                            <div v-for="meal in item.categoryName">
-                                                <div class="text28B mt-l" style="margin-bottom: 27px;"
-                                                    :id="'title'+meal.cid" :name="'title'+meal.cid">{{meal.name}}
-                                                </div>
-                                                <div class="meals">
-                                                    <div class="mealsCard" v-for="detail in meal.content">
-                                                        <div style="width: 170px; height: auto;"
-                                                            class="text20B mealsName">{{ detail.productName }}
-                                                        </div>
-                                                        <div class="mealsDetail" style="width: 170px; height: auto;">
-                                                            {{ detail.productInformation }}</div>
-                                                        <div class="mealsPrice">
-                                                            <span class="eng20R price">
-                                                                <span
-                                                                    class=" align-middle">{{ detail.productPrice }}</span>
-                                                            </span>
-                                                        </div>
-                                                        <div class="mealsCardDiv"
-                                                            style="text-align : center;line-height: 148px;display: block;">
-                                                            <img style="margin-left: -20px;"
-                                                                :src="'/image/store/' + detail.productPhoto" alt="">
-                                                        </div>
+                                    <br>
+                                    <!-- 美味餐點 -->
+                                    <div class="mealsScroll" v-if="tab === 1" v-show="tab===1">
+                                        <div v-for="(meal,index) in productList.msort">
+                                            <div class="text28B mt-l" style="margin-bottom: 27px;" :id="'title'+meal.categoryID"
+                                                :name="'title'+meal.categoryID">{{meal.categoryName}}
+                                            </div>
+                                            <div class="meals">
+                                                <div class="mealsCard" v-for="detail in productList.map[meal.categoryName].pSort">
+                                                    <div style="width: 170px; height: auto;" class="text20B mealsName">
+                                                        {{ detail.productName }}
+                                                    </div>
+                                                    <div class="mealsDetail" style="width: 170px; height: 65px;">
+                                                        {{ detail.productinformation }}</div>
+                                                    <div class="mealsPrice">
+                                                        <span class="eng20R price">
+                                                            <span class=" align-middle">{{ detail.productPrice }}</span>
+                                                        </span>
+                                                    </div>
+                                                    <div class="mealsCardDiv"
+                                                        style="text-align : center;line-height: 148px;display: block;">
+                                                        <img style="margin-left: -20px;"
+                                                            :src="'/image/store/' + detail.productPhoto" alt="">
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <!-- 店家簡介 -->
-                                        <div class="mealsScroll" v-if="tab === 2" v-show="tab===2">
-                                            <div class="text28B mt-l" style="margin-bottom: 11px;">店家簡介</div>
-                                            <div style="padding-right: 165px;padding-left: 16px;">
-                                                <p class="text20R" style="color: var(--dDeepGray);">
-                                                    {{ item.storeIntroduction }}</p>
-                                            </div>
-                                            <div class="text28B mt-l" style="margin-bottom: 11px;">店家資訊</div>
-                                            <div style="padding-right: 165px;padding-left: 16px;">
-                                                <p class="text20R" style="color: var(--dDeepGray);margin-bottom: 7px;">
-                                                    <img src="/image/Phone.png" class="storeAbout">
-                                                    {{ item.storePhone }}</p>
-                                                <p class="text20R" style="color: var(--dDeepGray);margin-bottom: 7px;">
-                                                    <img src="/image/Places.png" class="storeAbout">
-                                                    {{ item.storeAddress }}</p>
-                                                <p class="text20R" style="color: var(--dDeepGray);margin-bottom: 15px;">
-                                                    <img src="/image/Clock.png" class="storeAbout"> {{ item.storeOpen }}
-                                                </p>
-                                                <p class="text20B" style="color: var(--dRed);">公休日&nbsp;<span>週三</span>
-                                                </p>
-                                            </div>
-                                            <div class="text28B mt-l" style="margin-bottom: 11px;">配送地區</div>
-                                            <div style="padding-right: 165px;padding-left: 16px;">
-                                                <p class="text20R" style="color: var(--dDeepGray);">台中市南屯區 / 台中市西區</p>
-                                            </div>
-                                            <div class="text28B mt-l" style="margin-bottom: 11px;">注意事項</div>
-                                            <div style="padding-right: 165px;padding-left: 16px;">
-                                                <p class="text20R" style="color: var(--dDeepGray);">
-                                                    {{ item.storeNotice }}</p>
-                                            </div>
+                                    </div>
+                                    <!-- 店家簡介 -->
+                                    <div class="mealsScroll" v-if="tab === 2" v-show="tab===2">
+                                        <div class="text28B mt-l" style="margin-bottom: 11px;">店家簡介</div>
+                                        <div style="padding-right: 165px;padding-left: 16px;">
+                                            <p class="text20R" style="color: var(--dDeepGray);">
+                                                {{ dbStoreInformation[0].storeIntroduction }}</p>
                                         </div>
-                                        <!-- 店家評論 -->
-                                        <div class="mealsScroll" v-if="tab === 3" v-show="tab===3">
-                                            <ul class="evaluationList">
-                                                <!-- 1 -->
-                                                <li class="dblock d-flex pl-0" v-for="comment in item.comments">
-                                                    <!-- <span class="photo"></span> -->
-                                                    
-                                                        <img :src="'/image/會員資料/大頭照/' + comment.memberPhoto">
-                                                
-                                                    <span class="content">
-                                                        <h2 class="text24B">{{ comment.member }}</h2>
-                                                        <div class="star">
-                                                            <i
-                                                                :class="comment.commentScore>=1 ? 'icon-spoon' : 'icon-borderspoon'"></i>
-                                                            <i
-                                                                :class="comment.commentScore>=2 ? 'icon-spoon' : 'icon-borderspoon'"></i>
-                                                            <i
-                                                                :class="comment.commentScore>=3 ? 'icon-spoon' : 'icon-borderspoon'"></i>
-                                                            <i
-                                                                :class="comment.commentScore>=4 ? 'icon-spoon' : 'icon-borderspoon'"></i>
-                                                            <i
-                                                                :class="comment.commentScore==5 ? 'icon-spoon' : 'icon-borderspoon'"></i>
-                                                        </div>
-                                                        <p class="text20R">
-                                                            {{ comment.commentContent }}</p>
-                                                        <p class="text16">3小時前</p>
-                                                    </span>
-                                                </li>
-
-
-                                            </ul>
+                                        <div class="text28B mt-l" style="margin-bottom: 11px;">店家資訊</div>
+                                        <div style="padding-right: 165px;padding-left: 16px;">
+                                            <p class="text20R" style="color: var(--dDeepGray);margin-bottom: 7px;">
+                                                <img src="/image/Phone.png" class="storeAbout">
+                                                {{ dbStoreInformation[0].storePhone }}</p>
+                                            <p class="text20R" style="color: var(--dDeepGray);margin-bottom: 7px;">
+                                                <img src="/image/Places.png" class="storeAbout">
+                                                {{ dbStoreInformation[0].storeAddress }}</p>
+                                            <p class="text20R" style="color: var(--dDeepGray);margin-bottom: 15px;">
+                                                <img src="/image/Clock.png" class="storeAbout"> {{ dbStoreInformation[0].storeOpen }}
+                                            </p>
+                                            <p class="text20B" style="color: var(--dRed);">公休日&nbsp;<span>週三</span>
+                                            </p>
                                         </div>
+                                        <div class="text28B mt-l" style="margin-bottom: 11px;">配送地區</div>
+                                        <div style="padding-right: 165px;padding-left: 16px;">
+                                            <p class="text20R" style="color: var(--dDeepGray);">台中市南屯區 / 台中市西區</p>
+                                        </div>
+                                        <div class="text28B mt-l" style="margin-bottom: 11px;">注意事項</div>
+                                        <div style="padding-right: 165px;padding-left: 16px;">
+                                            <p class="text20R" style="color: var(--dDeepGray);">
+                                                {{ dbStoreInformation[0].storeNotice }}</p>
+                                        </div>
+                                    </div>
+                                    <!-- 店家評論 -->
+                                    <div class="mealsScroll" v-if="tab === 3" v-show="tab===3">
+                                        <ul class="evaluationList">
+                                            <!-- 1 -->
+                                            <li class="dblock d-flex pl-0" v-for="comment in dbComment">
+                                                <img :src="'/image/會員資料/大頭照/' + comment.memberPhoto">
+                                                <span class="content">
+                                                    <h2 class="text24B">{{ comment.memberName }}</h2>
+                                                    <div class="star">
+                                                        <i
+                                                            :class="comment.commentScore>=1 ? 'icon-spoon' : 'icon-borderspoon'"></i>
+                                                        <i
+                                                            :class="comment.commentScore>=2 ? 'icon-spoon' : 'icon-borderspoon'"></i>
+                                                        <i
+                                                            :class="comment.commentScore>=3 ? 'icon-spoon' : 'icon-borderspoon'"></i>
+                                                        <i
+                                                            :class="comment.commentScore>=4 ? 'icon-spoon' : 'icon-borderspoon'"></i>
+                                                        <i
+                                                            :class="comment.commentScore==5 ? 'icon-spoon' : 'icon-borderspoon'"></i>
+                                                    </div>
+                                                    <p class="text20R">
+                                                        {{ comment.commentContent }}</p>
+                                                    <p class="text16">{{comment.commentTime}}</p>
+                                                </span>
+                                            </li>
+
+                                        </ul>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-
                 </div>
 
 
@@ -401,13 +387,10 @@
                             <div class="row">
                                 <div class="modal-header col-2" style="padding-right: 0px;">
                                     <ul class="storeUl" v-if="tab === 1" v-show="tab===1">
-                                        <li v-for="(meal,index) in productList.sort">
-                                            <a class="storeContent" :href="'#title'+index">{{meal}}</a>
-                                            
+                                        <li v-for="(meal,index) in productList.msort">
+                                            <a class="storeContent" :href="'#title'+meal.categoryID">{{meal.categoryName}}</a>
                                         </li>
                                     </ul>
-
-
                                 </div>
 
                                 <div class="col-10 ml-n5 mr-5">
@@ -423,16 +406,16 @@
                                     <br>
                                     <!-- 美味餐點 -->
                                     <div class="mealsScroll" v-if="tab === 1" v-show="tab===1">
-                                        <div v-for="(meal,index) in productList.sort">
-                                            <div class="text28B mt-l" style="margin-bottom: 27px;" :id="'title'+index"
-                                                :name="'title'+index">{{meal}}
+                                        <div v-for="(meal,index) in productList.msort">
+                                            <div class="text28B mt-l" style="margin-bottom: 27px;" :id="'title'+meal.categoryID"
+                                                :name="'title'+meal.categoryID">{{meal.categoryName}}
                                             </div>
                                             <div class="meals">
-                                                <div class="mealsCard" v-for="detail in productList.map[meal].pSort">
+                                                <div class="mealsCard" v-for="detail in productList.map[meal.categoryName].pSort">
                                                     <div style="width: 170px; height: auto;" class="text20B mealsName">
                                                         {{ detail.productName }}
                                                     </div>
-                                                    <div class="mealsDetail" style="width: 170px; height: auto;">
+                                                    <div class="mealsDetail" style="width: 170px; height: 65px;">
                                                         {{ detail.productinformation }}</div>
                                                     <div class="mealsPrice">
                                                         <span class="eng20R price">
@@ -512,9 +495,6 @@
                         </div>
                     </div>
                 </div>
-
-
-
             </div>
         </div>
         <!-- footer -->
@@ -755,12 +735,20 @@
             loginTab: 1,
             registeredTab: 1,
             dbDistrick: JSON.parse('<%- a %>'),
+            // 推薦店家
             dbRecommendStore: JSON.parse('<%- b %>').sort(() => Math.random() - 0.5),
+            // 熱門店家
+            dbHotStore: JSON.parse('<%- b %>'),
             vuedata: JSON.parse('<%- c %>'),
+            // 店家資訊
             dbStoreInformation:JSON.parse('<%- d %>'),
+            // 店家評分
             dbCommentScore:JSON.parse('<%- e %>'),
+            // 店家評論
             dbComment: JSON.parse('<%- f %>'),
+            // 店家接單率
             dbOrderFinish:JSON.parse('<%- g %>'),
+            // 店家商品
             dbstoreProduct: JSON.parse('<%- h %>'),
             mLoginWrongMessage:[],
             sLoginWrongMessage:[],
@@ -1267,29 +1255,28 @@
 
             },
             ],
-
+            // 搜尋欄縣市
             input: {
                 country: country,
                 districtName: districk,
             },
+            // 一般會員登入資料
             memberLoginData:{
                 memberEmail:"",
                 memberPassword:"",
             },
+            // 店家登入資料
             storeLoginData:{
                 storeEmail:"",
                 storePassword:""
             },
-            list:[]
-            
             },
 
             computed: {
                 filterStore() {
-                    return this.storeItem.slice(this.hotIndex, this.hotIndex + 3)
+                    return this.dbHotStore.slice(this.hotIndex, this.hotIndex + 3)
                 },
                 filterRecommendStore() {
-                    
                     return this.dbRecommendStore.slice(this.commendIndex, this.commendIndex + 3)
                 },
                 countryList() {
@@ -1335,12 +1322,14 @@
                 // 菜單
                 productList() {
                     let productObj = {
+                        msort:[],
                         sort: [],
                         map: {}
                     };
-                    this.dbstoreProduct.forEach(({ categoryName, productName, productPhoto, productinformation, productPrice }, index) => {
+                    this.dbstoreProduct.forEach(({ categoryName,categoryID, productName, productPhoto, productinformation, productPrice }, index) => {
                         if (!productObj.map[categoryName]) {
                             productObj.sort.push(categoryName)
+                            productObj.msort.push({categoryID, categoryName})
                             productObj.map[categoryName] = {
                                 pSort: [],
                             }
@@ -1352,6 +1341,7 @@
                 },
 
             },
+            // 評論時間
             mounted: function () {
                 let time = this.dbComment.length;
                 for (let index = 0; index < time; index++) {
@@ -1359,13 +1349,21 @@
                 }
 
             },
+            // 監聽評論資料被替換，重作評論時間
+            watch:{
+                dbComment:function(){
+                    let time = this.dbComment.length;
+                for (let index = 0; index < time; index++) {
+                    this.dbComment[index].commentTime = getDate(this.dbComment[index].commentTime);
+                }
+                }
+            },
             methods: {
                 handleChange(change) {
-
                     this.hotIndex = this.hotIndex + change;
                     if (this.hotIndex < 0) {
-                        this.hotIndex = this.storeItem.length - 3
-                    } else if (this.hotIndex > this.storeItem.length - 3) {
+                        this.hotIndex = this.dbHotStore.length - 3
+                    } else if (this.hotIndex > this.dbHotStore.length - 3) {
                         this.hotIndex = 0
                     }
                     // console.log(this.storeItem[1].categoryName[0].name)
@@ -1388,9 +1386,7 @@
                     } else if (this.storeItem[e].likeStore == true) {
                         this.storeItem[e].likeStore = false
                     }
-
                     console.log(e);
-
                 },
                 //頁籤切換
                 tabClick(index) {
@@ -1493,6 +1489,7 @@
                             this.dbOrderFinish = JSON.parse(e.orderFinish);
                             this.dbComment = JSON.parse(e.comment);
                             this.dbstoreProduct = JSON.parse(e.storeProduct);
+                            
                         })
                 }
             
