@@ -16,7 +16,7 @@ let orderSum;
 
 
 router.get('/', function (req, res, next) {
-    storeID = 4;
+    storeID = 2;
     store = 'select a.`storeID`,a.`storeName`,\
     a.`storePhoto`,count(b.`noticeStatus`) as\
      noticeCount from `store` as a,`notice` as\
@@ -24,18 +24,19 @@ router.get('/', function (req, res, next) {
        and b.`noticeStatus`=1 and storeID=' + storeID;
 
     // 類別訂單量
-    dateStart = '"2020-06-01"';
-    dateEnd = '"2020-08-31"';
+    dateStart = '"2020.06.01"';
+    dateEnd = '"2020.08.31"';
 
     allType='SELECT a.`categoryName`,b.productName,a.`categoryID` FROM `category` as a,\
     `product` as b where a.categoryID=b.categoryID and a.storeId='+ storeID;
 
-    orderSum = 'SELECT d.`categoryName`,c.productName,c.`categoryID`,sum(b.`quality`) total\
+    orderSum = 'SELECT d.`categoryName`,c.productName,c.`categoryID`,\
+    sum(b.`quality`) total,sum(b.price*b.`quality`) totalPrice\
       FROM `order` as a, `orderdetail` as b,`product` as c,\
      `category` as d WHERE a.orderID=b.orderID and b.`productID`=c.`productID`\
       and c.`categoryID`=d.`categoryID` and a.`orderStatus`=5 and a.storeID='+ storeID +
         ' and a.`orderDeadline`>= ' + dateStart + ' and a.`orderDeadline`< ' + dateEnd +
-        'GROUP by c.productName'
+        ' GROUP by c.productName'
     console.log(orderSum);
 
 

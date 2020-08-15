@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="/stylesheets/sider.css">
     <link rel="stylesheet" href="/stylesheets/sStat.css">
     <script src="/javascript/vue.js"></script>
-
+    <script src="/javascript/Chart.min.js"></script>
 
     <title>Document</title>
 
@@ -35,31 +35,31 @@
             <div class="dTag text24RG">月營業額</div>
         </nav>
         <ul class="statList">
-            <!-- <li>
+            <li>
                 <h2 class="text20RG">日期</h2>
-                <p class="eng24R">{{'date'}}</p>
+                <p class="eng24R">{{date}}</p>
             </li>
             <li>
                 <h2 class="text20RG">訂單量</h2>
-                <p class="eng24R">{{'(orderTotle).toLocaleString('en-US')'}}</p>
+                <p class="eng24R">{{orderTotal.count}}</p>
             </li>
             <li>
                 <h2 class="text20RG">銷售總額</h2>
-                <p class="eng24R">${{'(orderAmount).toLocaleString('en-US')'}}</p>
-            </li> -->
+                <p class="eng24R">{{orderTotal.price}}</p>
+            </li>
         </ul>
         <div class="d-flex align-items-center">
-            <img class="lrImg" src="/image/left.png">
+            <img class="lrImg" src="/image/left.png" @click='backDate'>
             <div class="dblock mt-4 col-10">
                 <canvas id="chart" width="800" height="400"></canvas>
             </div>
-            <img class="lrImg" src="/image/right.png">
+            <img class="lrImg" src="/image/right.png" @click='addDate'>
         </div>
 
         <div class="typeButton">
             <span v-for='(item,index) in categoryNameGroup'>
                 <button :class='currentIndex==index?  "text20R dbtn  btnGB btnB":"text20R dbtn btnGB"'
-                 @click='(switchbutton(index))'>{{item}}</button>
+                    @click='(switchbutton(index))'>{{item}}</button>
             </span>
         </div>
         <!-- <div class="typeCheckbox" id='typeCheckbox'>
@@ -108,6 +108,8 @@
 
 
         //vue資料
+        // 今日時間
+        var date = new Date();
         var allTotal = 0;
         let store = new Vue({
             el: '#stat',
@@ -118,61 +120,215 @@
                 categoryNameGroup: '',
                 currentGroup: '',
                 categoryOrdergroup: '',
-                currentIndex: 0
-
+                currentIndex: 0,
+                orderTotal: {},
+                date: date.getFullYear() + '.' + (date.getMonth() + 1) + '.'
+                    + date.getDate()
             },
             mounted: function () {
-                // 類型標籤
-                this.categoryNameGroup = this.allTypeData.map(function (item) {
+                // 全類型標籤
+                var categoryNameGroup = this.allTypeData.map((item) => {
                     categoryName = item.categoryName;
                     return categoryName
                 })
-                this.categoryNameGroup.unshift('全部');
+                categoryNameGroup = [...(new Set(categoryNameGroup))];
 
+                this.categoryNameGroup = categoryNameGroup;
 
+                // 全商品訂單數量
+                let { allTypeData, orderSumData } = this;
+
+                allTypeData.forEach((item) => {
+                    item['total'] = 0;
+                })
+                allTypeData.forEach((item) => {
+                    for (let i = 0; i < orderSumData.length; i++) {
+                        if (item.productName === orderSumData[i].productName) {
+                            item.total = orderSumData[i].total;
+                        }
+                    }
+                })
                 // 營運統計用
                 // 群組標籤
-                this.currentGroup = this.orderSumData.map(function (item) {
-                    categoryName = item.categoryName;
-                    return categoryName
+                var currentGroup = [];
+                this.categoryNameGroup.forEach((item) => {
+                    currentGroup.push(item);
                 })
-                this.currentGroup.unshift('全部');
+                this.currentGroup = currentGroup;
 
 
+                var arry = [];
                 // 營運統計用
-                // 數量標籤
-                this.categoryOrdergroup = this.orderSumData.map(function (item) {
-                    categoryTotal = item.total;
-                    return categoryTotal
-                })
 
-                this.orderSumData.forEach(function (item) {
+                // 數量標籤,核對currentGroup與allTypeData的重疊項目
+                for (let i = 0; i < this.currentGroup.length; i++) {
+                    let text = 0;
+                    for (let j = 0; j < allTypeData.length; j++) {
+                        if (this.currentGroup[i] === allTypeData[j].categoryName) {
+                            text += allTypeData[j].total
+                        }
+                    }
+                    arry.push(text);
+                }
+                this.categoryOrdergroup = arry;
+                orderSumData.forEach((item) => {
                     allTotal += item.total;
                     return allTotal
                 })
+                categoryNameGroup.unshift('全部');
                 this.categoryOrdergroup.unshift(allTotal);
+                this.currentGroup.unshift('全部');
 
 
 
-
+                // 取總量
+                // 取總訂單量
+                let totalPrice = 0;
+                this.orderTotal['count'] = this.categoryOrdergroup[0].toLocaleString('en-US');
+                // 取總訂單價格
+                this.orderSumData.forEach((item) => {
+                    totalPrice += item.totalPrice
+                })
+                this.orderTotal['price'] = totalPrice.toLocaleString('en-US');
 
 
             },
 
             methods: {
                 switchbutton(index) {
-                    this.currentIndex=index;
+                    this.currentIndex = index;
+                    if (index > 0) {
+                        let { currentIndex, categoryNameGroup, allTypeData, orderSumData } = this;
+
+                        // 群組標籤
+                        currentGroup = [];
+                        tagName = categoryNameGroup[index];
+                        allTypeData.map((item) => {
+                            if (item.categoryName == tagName) {
+                                currentGroup.push(item.productName)
+                            }
+                        })
+                        this.currentGroup = currentGroup;
+                        this.currentGroup.unshift('全部');
+
+
+                        // 數量陣列
+                        var arry = [];
+
+                        for (let i = 0; i < this.currentGroup.length; i++) {
+                            let text = 0;
+                            for (let j = 0; j < allTypeData.length; j++) {
+                                if (this.currentGroup[i] === allTypeData[j].productName) {
+                                    text += allTypeData[j].total
+                                }
+                            }
+                            arry.push(text);
+                        }
+                        this.categoryOrdergroup = arry;
+                        orderSumData.forEach((item) => {
+                            allTotal += item.total;
+                            return allTotal
+                        })
+
+                        // 總數量
+                        let alltotal = 0;
+                        this.categoryOrdergroup.forEach((item) => {
+                            alltotal += item;
+                        })
+                        this.categoryOrdergroup[0] = alltotal;
+
+
+
+                    } else {
+                        var categoryNameGroup = this.allTypeData.map((item) => {
+                            categoryName = item.categoryName;
+                            return categoryName
+                        })
+                        categoryNameGroup = [...(new Set(categoryNameGroup))];
+
+                        this.categoryNameGroup = categoryNameGroup;
+
+                        // 全商品訂單數量
+                        let { allTypeData, orderSumData } = this;
+
+                        allTypeData.forEach((item) => {
+                            item['total'] = 0;
+                        })
+                        allTypeData.forEach((item) => {
+                            for (let i = 0; i < orderSumData.length; i++) {
+                                if (item.productName === orderSumData[i].productName) {
+                                    item.total = orderSumData[i].total;
+                                }
+                            }
+                        })
+                        // 營運統計用
+                        // 群組標籤
+                        var currentGroup = [];
+                        this.categoryNameGroup.forEach((item) => {
+                            currentGroup.push(item);
+                        })
+                        this.currentGroup = currentGroup;
+
+
+                        var arry = [];
+                        // 營運統計用
+
+                        // 數量標籤,核對currentGroup與allTypeData的重疊項目
+                        for (let i = 0; i < this.currentGroup.length; i++) {
+                            let text = 0;
+                            for (let j = 0; j < allTypeData.length; j++) {
+                                if (this.currentGroup[i] === allTypeData[j].categoryName) {
+                                    text += allTypeData[j].total
+                                }
+                            }
+                            arry.push(text);
+                        }
+                        let allTotal = 0;
+                        this.categoryOrdergroup = arry;
+                        orderSumData.forEach((item) => {
+                            allTotal += item.total;
+                            return allTotal
+                        })
+                        categoryNameGroup.unshift('全部');
+                        this.categoryOrdergroup.unshift(allTotal);
+                        this.currentGroup.unshift('全部');
+
+                    }
+                    function updateConfigByMutating(chart) {
+                        chart.data.labels = store.currentGroup;
+                        chart.data.datasets[0].data = store.categoryOrdergroup;
+                        chart.update();
+                    }
+                    updateConfigByMutating(chart);
+
+                },
+                backDate() {
+                    date -= 86400000;
+                    date = new Date(date);
+                    this.date=date.getFullYear() + '.' + (date.getMonth() + 1) + '.'
+                    + date.getDate();
+                    console.log(date);
+                },
+                addDate() {
+                    date=date.setDate(date.getDate()+1);
+                    date = new Date(date);
+                    this.date=date.getFullYear() + '.' + (date.getMonth() + 1) + '.'
+                    + date.getDate();
                 }
-            }
+                 
+
+
+
+            },
+
+
         })
 
 
-    </script>
 
 
-    <!-- 營運統計 -->
-    <script src="/javascript/Chart.min.js"></script>
-    <script>
+
+        // 統計圖表
         Chart.defaults.global.defaultFontColor = '#373A3C';
         Chart.defaults.global.defaultFontSize = 20;
         Chart.defaults.global.defaultFontFamily = ['Alata',
@@ -191,19 +347,10 @@
                     backgroundColor: [
                         'rgba(236, 167, 42, 0.8)'
 
-                        // ,'rgba(54, 162, 235, 0.7)',
-                        // 'rgba(255, 206, 86, 0.7)',
-                        // 'rgba(75, 192, 192, 0.7)',
-                        // 'rgba(153, 102, 255, 0.7)',
-                        // 'rgba(255, 159, 64, 0.7)'
                     ],
                     borderColor: [
                         'rgba(236, 167, 42,1)'
-                        // ,'rgba(54, 162, 235, 1)',
-                        // 'rgba(255, 206, 86, 1)',
-                        // 'rgba(75, 192, 192, 1)',
-                        // 'rgba(153, 102, 255, 1)',
-                        // 'rgba(255, 159, 64, 1)'
+
                     ],
                     borderWidth: 1,
                     maxBarThickness: 2
@@ -215,6 +362,13 @@
                         ticks: {
                             fontSize: 16,
                             maxTicksLimit: 8,
+                            beginAtZero: true,
+                            userCallback: function (label, index, labels) {
+                                // when the floored value is the same as the value we have a whole number 
+                                if (Math.floor(label) === label) {
+                                    return label;
+                                }
+                            }
                         }
                     }],
                     xAxes: [{
@@ -227,7 +381,10 @@
                 }
             }
         });
+
+
     </script>
+
 </body>
 
 </html>
