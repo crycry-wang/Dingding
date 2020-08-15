@@ -57,9 +57,10 @@
         </div>
 
         <div class="typeButton">
-            <button class="text20R dbtn btnGB">全部</button>
-            <button class=" text20R dbtn btnGB" v-for='(item,index) in category'
-                @click='(switchbutton(index))'>{{'item.categoryName'}}</button>
+            <span v-for='(item,index) in categoryNameGroup'>
+                <button :class='currentIndex==index?  "text20R dbtn  btnGB btnB":"text20R dbtn btnGB"'
+                 @click='(switchbutton(index))'>{{item}}</button>
+            </span>
         </div>
         <!-- <div class="typeCheckbox" id='typeCheckbox'>
             <span>
@@ -107,61 +108,71 @@
 
 
         //vue資料
-       
+        var allTotal = 0;
         let store = new Vue({
             el: '#stat',
             data: {
                 storeData: JSON.parse('<%- storeData %>'),
                 orderSumData: JSON.parse('<%- orderSumData %>'),
-                categoryNamegroup:'',
-                total:''
+                allTypeData: JSON.parse('<%- allTypeData %>'),
+                categoryNameGroup: '',
+                currentGroup: '',
+                categoryOrdergroup: '',
+                currentIndex: 0
+
             },
             mounted: function () {
-                
-                this.categoryNamegroup = this.orderSumData.map(function (item) {
+                // 類型標籤
+                this.categoryNameGroup = this.allTypeData.map(function (item) {
                     categoryName = item.categoryName;
                     return categoryName
                 })
-                this.categoryNamegroup.unshift('全部');
+                this.categoryNameGroup.unshift('全部');
 
+
+                // 營運統計用
+                // 群組標籤
+                this.currentGroup = this.orderSumData.map(function (item) {
+                    categoryName = item.categoryName;
+                    return categoryName
+                })
+                this.currentGroup.unshift('全部');
+
+
+                // 營運統計用
+                // 數量標籤
                 this.categoryOrdergroup = this.orderSumData.map(function (item) {
                     categoryTotal = item.total;
                     return categoryTotal
                 })
-                var allTotal=0;
 
-                this.total = this.orderSumData.forEach(function (item) {
-                   allTotal += item.total;
+                this.orderSumData.forEach(function (item) {
+                    allTotal += item.total;
                     return allTotal
                 })
-                console.log(this.total);
-                
+                this.categoryOrdergroup.unshift(allTotal);
 
-                
-                
+
+
+
+
+
             },
 
             methods: {
                 switchbutton(index) {
-                    var currenti = index;
-                    console.log(currenti);
-
+                    this.currentIndex=index;
                 }
             }
         })
 
-        $('button').click(function () {
-            $('button').removeClass('btnB');
-            $(this).addClass('btnB');
-        });
+
     </script>
 
 
     <!-- 營運統計 -->
     <script src="/javascript/Chart.min.js"></script>
     <script>
-        
-
         Chart.defaults.global.defaultFontColor = '#373A3C';
         Chart.defaults.global.defaultFontSize = 20;
         Chart.defaults.global.defaultFontFamily = ['Alata',
@@ -169,14 +180,11 @@
         ];
 
         var ctx = document.getElementById('chart').getContext('2d');
-
-
-
         // bar
         var chart = new Chart(ctx, {
             type: 'bar',
             data: {
-                labels: store.categoryNamegroup,
+                labels: store.currentGroup,
                 datasets: [{
                     label: '訂單量',
                     data: store.categoryOrdergroup,
@@ -188,7 +196,6 @@
                         // 'rgba(75, 192, 192, 0.7)',
                         // 'rgba(153, 102, 255, 0.7)',
                         // 'rgba(255, 159, 64, 0.7)'
-
                     ],
                     borderColor: [
                         'rgba(236, 167, 42,1)'
@@ -200,8 +207,6 @@
                     ],
                     borderWidth: 1,
                     maxBarThickness: 2
-
-
                 }]
             },
             options: {
@@ -210,25 +215,17 @@
                         ticks: {
                             fontSize: 16,
                             maxTicksLimit: 8,
-
                         }
-
                     }],
                     xAxes: [{
                         gridLines: {
                             display: false,
                             color: "black"
                         },
-
                         maxBarThickness: 80
-
-
                     }]
                 }
             }
-
-
-
         });
     </script>
 </body>
