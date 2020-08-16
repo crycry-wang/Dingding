@@ -27,8 +27,7 @@ router.get('/', function (req, res, next) {
 
     // 時間
     date = new Date();
-    dateStart = date.getFullYear() + '.' + (date.getMonth() + 1) + '.'
-        + date.getDate();
+    dateStart = '2020.08.16'
 
     dateEnd = '2020.08.31';
 
@@ -65,7 +64,7 @@ router.get('/getDate', async (req, res, next) => {
     // console.log(dateEnd);
     // console.log(dateEnd);
     res.json(newsJSON1);
-    next();
+  
     
 });
 
