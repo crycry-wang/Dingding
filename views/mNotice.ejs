@@ -42,7 +42,7 @@
                 aria-expanded="false">
             </a>
             <div class="dropdown-menu text-center tag-wrap" aria-labelledby="more" id='moreMenu'>
-                <a class="dropdown-item text20R" href="#">全部已讀</a>
+                <a class="dropdown-item text20R" href="#" @click='allRead'>全部已讀</a>
                 <a class="dropdown-item text20R" href="#">全部刪除</a>
 
             </div>
@@ -72,102 +72,116 @@
                 <!-- 店家新訊息 -->
                 <span v-if='tab==1'>
                     <!-- 正常訂單-->
-                    <span v-for='(item,index) in oderNoticeData'>
-                        <li :class="item.noticeStatus==2 ?
+                    <span v-if='oderNoticeData[0].noticeID!=null'>
+                        <span v-for='(item,index) in oderNoticeData'>
+                            <li :class="item.noticeStatus==2 ?
                         'noticeItem d-flex align-items-center read':'noticeItem d-flex align-items-center'"
-                            @click='readOrderStatus(index)' v-if='item.noticeStatus > 0 && item.orderStatus!==0'>
-                            <img :src="(`/image/store/${item.storePhoto}`)">
-                            <span class="content">
-                                <h2 class="text24B" v-if='item.orderStatus==5'><span>{{item.storeName}}</span> 已完成訂單
-                                </h2>
-                                <h2 class="text24B" v-if='item.orderStatus==2'>已向 <span>{{item.storeName}}</span> 送出訂單
-                                </h2>
-                                <p class="text20R" v-if='item.orderStatus==5'>您已經完成訂單了，期待您的下次訂購。</p>
-                                <p class="text20R" v-if='item.orderStatus==2'>
-                                    已向<span>{{item.storeName}}</span>送出訂單申請了，請稍後。</p>
-                                <p class="text16">{{item.noticeTime}}</p>
-                            </span>
-                            <span class="ml-auto actionR d-flex align-items-center">
-                                <span class="eng20R price">
-                                    <span class=" align-middle">{{(item.total).toLocaleString('en-US')}}</span>
+                                @click='readOrderStatus(index)' v-if='item.noticeStatus > 0 && item.orderStatus!==0'>
+                                <img :src="(`/image/store/${item.storePhoto}`)">
+                                <span class="content">
+                                    <h2 class="text24B" v-if='item.orderStatus==5'><span>{{item.storeName}}</span> 已完成訂單
+                                    </h2>
+                                    <h2 class="text24B" v-if='item.orderStatus==3'><span>{{item.storeName}}</span> 已接受訂單
+                                    </h2>
+                                    <h2 class="text24B" v-if='item.orderStatus==2'>已向 <span>{{item.storeName}}</span>
+                                        送出訂單
+                                    </h2>
+                                    <p class="text20R" v-if='item.orderStatus==3|item.orderStatus==4'>
+                                        <span>{{item.storeName}}</span> 已接受訂單，當餐點送達後，請點擊完成訂單按鈕
+                                        </ps>
+                                    <p class="text20R" v-if='item.orderStatus==5'>您已經完成訂單了，期待您的下次訂購。</p>
+                                    <p class="text20R" v-if='item.orderStatus==2'>
+                                        已向<span>{{item.storeName}}</span>送出訂單申請了，請稍後。</p>
+                                    <p class="text16">{{item.noticeTime}}</p>
                                 </span>
-                                <button class="text20R dbtn btnY" data-toggle="modal" data-target="#comfirm2Btn"
-                                    v-if='item.orderStatus==5'>
-                                    完成訂單</button>
-                                <i v-if='item.orderStatus==5' class="icon-trash"></i>
-                                <p v-if='item.orderStatus==2' class="text20R">等待中..</p>
-                            </span>
-                        </li>
+                                <span class="ml-auto actionR d-flex align-items-center">
+                                    <span class="eng20R price">
+                                        <span class=" align-middle">{{(item.total).toLocaleString('en-US')}}</span>
+                                    </span>
+                                    <button class="text20R dbtn btnY" data-toggle="modal" data-target="#comfirm2Btn"
+                                        v-if='item.orderStatus==3|item.orderStatus==4' @click='setOrderID(index)'>
+                                        完成訂單</button>
+                                    <i v-if='item.orderStatus!=3&item.orderStatus!=4&item.orderStatus!=2'
+                                        class="icon-trash"></i>
+                                    <p v-if='item.orderStatus==2' class="text20R">等待中..</p>
+                                </span>
+                            </li>
+                        </span>
                     </span>
                     <!-- 取消訂單 -->
-                    <span v-for='(item,index) in oderNoticeData'>
-                        <li :class="item.noticeStatus==2 ?
+                    <span v-if='oderNoticeData[0].noticeID!=null'>
+                        <span v-for='(item,index) in oderNoticeData'>
+                            <li :class="item.noticeStatus==2 ?
                         'noticeItem d-flex align-items-center read cancel store':'noticeItem d-flex align-items-center cancel store'"
-                            @click='readOrderCaStatus(index)' v-if='item.noticeStatus > 0 && item.orderStatus==0'>
-                            <img :src="(`/image/store/${item.storePhoto}`)">
-                            <span class="content">
-                                <h2 class="text24B"><span>{{item.storeName}}</span> 已取消訂單</h2>
-                                <p class="text20R">店家因太忙或種種原因，而取消了訂單，我們將會退還全額給您。</p>
-                                <p class="text16">{{item.noticeTime}}</p>
-                            </span>
+                                @click='readOrderCaStatus(index)' v-if='item.noticeStatus > 0 && item.orderStatus==0'>
+                                <img :src="(`/image/store/${item.storePhoto}`)">
+                                <span class="content">
+                                    <h2 class="text24B"><span>{{item.storeName}}</span> 已取消訂單</h2>
+                                    <p class="text20R">店家因太忙或種種原因，而取消了訂單，我們將會退還全額給您。</p>
+                                    <p class="text16">{{item.noticeTime}}</p>
+                                </span>
 
-                            <span class="ml-auto actionR d-flex align-items-center">
-                                <a href="mOrderList"><button class="text20R dbtn btnW">建立新訂單</button></a>
-                                <i class="icon-trash" @click='deleteOrderN(index)'></i>
-                            </span>
-                        </li>
+                                <span class="ml-auto actionR d-flex align-items-center">
+                                    <a href="mOrderList"><button class="text20R dbtn btnW">建立新訂單</button></a>
+                                    <i class="icon-trash" @click='deleteOrderN(index)'></i>
+                                </span>
+                            </li>
+                        </span>
                     </span>
                 </span>
                 <!-- 投票通知 -->
-                <span v-if='tab==2'>
-                    <span v-for='(item,index) in groupNoticeData'>
-                        <li :class="item.noticeStatus==2 ?
+                <span v-if='groupNoticeData[0].noticeID!=null'>
+                    <span v-if='tab==2'>
+                        <span v-for='(item,index) in groupNoticeData'>
+                            <li :class="item.noticeStatus==2 ?
                         'noticeItem d-flex align-items-center read':'noticeItem d-flex align-items-center'"
-                            @click='readGroupStatus(index)' v-if='item.noticeStatus > 0 && item.orderStatus!==0'>
-                            <span class="photo">{{(item.groupName).slice(0,2)}}</span>
-                            <span class="content">
-                                <h2 class="text24B" v-if='item.noticeType==3||item.noticeType==2'>{{item.groupName}}
-                                </h2>
-                                <p class="text20R" v-if='item.noticeType==3'>此團體已新增訂單囉~</p>
-                                <p class="text20R" v-if='item.noticeType==2'>此團體已新增投票囉~</p>
-                                <p class="text16">{{item.noticeTime}}</p>
-                            </span>
+                                @click='readGroupStatus(index)' v-if='item.noticeStatus > 0 && item.orderStatus!==0'>
+                                <span class="photo">{{(item.groupName).slice(0,2)}}</span>
+                                <span class="content">
+                                    <h2 class="text24B" v-if='item.noticeType==3||item.noticeType==2'>{{item.groupName}}
+                                    </h2>
+                                    <p class="text20R" v-if='item.noticeType==3'>此團體已新增訂單囉~</p>
+                                    <p class="text20R" v-if='item.noticeType==2'>此團體已新增投票囉~</p>
+                                    <p class="text16">{{item.noticeTime}}</p>
+                                </span>
 
-                            <span class="ml-auto actionR d-flex align-items-center">
-                                <a href="mVoteList"><button class="text20R dbtn btnB"
-                                        v-if='item.noticeType==2'>移動至投票</button></a>
-                                <a href="mOrderList"><button class="text20R dbtn btnB"
-                                        v-if='item.noticeType==3'>移動至訂單</button></a>
-                                <i class="icon-trash" @click='deleteGroupN(index)'></i>
-                            </span>
-                        </li>
+                                <span class="ml-auto actionR d-flex align-items-center">
+                                    <a href="mVoteList"><button class="text20R dbtn btnB"
+                                            v-if='item.noticeType==2'>移動至投票</button></a>
+                                    <a href="mOrderList"><button class="text20R dbtn btnB"
+                                            v-if='item.noticeType==3'>移動至訂單</button></a>
+                                    <i class="icon-trash" @click='deleteGroupN(index)'></i>
+                                </span>
+                            </li>
+                        </span>
                     </span>
                 </span>
 
             </ul>
         </div>
-    </div>
-
-    <!-- 完成訂單) -->
-    <div class="modal fade sm2Btn" id="comfirm2Btn">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title text28B">完成訂單</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <i class=" icon-close"></i>
-                    </button>
-                </div>
-                <p class="modal-body text24R">
-                    請確認餐點無誤，我們將撥款給店家
-                </p>
-                <div class="modal-footer">
-                    <button class="text20R dbtn btnW" data-dismiss="modal">取消返回</button>
-                    <button class="text20R dbtn btnY ml-3">完成訂單</button>
+        <!-- 完成訂單) -->
+        <div class="modal fade sm2Btn" id="comfirm2Btn">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title text28B">完成訂單</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <i class="icon-close"></i>
+                        </button>
+                    </div>
+                    <p class="modal-body text24R">
+                        請確認餐點無誤，我們將撥款給店家
+                    </p>
+                    <div class="modal-footer">
+                        <button class="text20R dbtn btnW" data-dismiss="modal">取消返回</button>
+                        <button class="text20R dbtn btnY ml-3" @click='setComplete'>完成訂單</button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+
+
     <script>
 
         // vue資料
@@ -178,7 +192,8 @@
                 dNticeData: JSON.parse('<%- dNticeData %>'),
                 oderNoticeData: JSON.parse('<%- oderNoticeData %>'),
                 groupNoticeData: JSON.parse('<%- groupNoticeData %>'),
-                tab: 0
+                tab: 0,
+                orderID: ''
             },
             mounted: function () {
                 this.dNticeData.forEach(function (item) {
@@ -199,13 +214,95 @@
                 readStatus(index) {
                     if (this.dNticeData[index].noticeStatus == 1) {
                         this.dNticeData[index].noticeStatus = 2
+
+                        let read = {
+                            noticeId: this.dNticeData[index].noticeID
+                        }
+                        fetch('mNotice/read', {
+                            method: 'POST',
+                            body: JSON.stringify(read),
+                            headers: new Headers({
+                                'Content-Type': 'application/json'
+                            })
+                        })
+                            .then(
+                                location.href = "mNotice"
+                            )
+                            .catch(
+                                error => console.error('Error:', error)
+                            )
                     }
-                    let read = {
+
+                },
+                readOrderStatus(index) {
+                    if (this.oderNoticeData[index].noticeStatus == 1) {
+                        this.oderNoticeData[index].noticeStatus = 2;
+                        mSider.memberData[0].noticeCount--;
+
+                        let read = {
+                            noticeId: this.oderNoticeData[index].noticeID
+                        }
+                        fetch('mNotice/read', {
+                            method: 'POST',
+                            body: JSON.stringify(read),
+                            headers: new Headers({
+                                'Content-Type': 'application/json'
+                            })
+                        })
+
+                            .catch(
+                                error => console.error('Error:', error)
+                            )
+                    }
+                },
+                readOrderCaStatus(index) {
+                    if (this.oderNoticeData[index].noticeStatus == 1) {
+                        this.oderNoticeData[index].noticeStatus = 2;
+                        mSider.memberData[0].noticeCount--;
+                        let read = {
+                            noticeId: this.oderNoticeData[index].noticeID
+                        }
+                        fetch('mNotice/read', {
+                            method: 'POST',
+                            body: JSON.stringify(read),
+                            headers: new Headers({
+                                'Content-Type': 'application/json'
+                            })
+                        })
+
+                            .catch(
+                                error => console.error('Error:', error)
+                            )
+                    }
+                },
+                readGroupStatus(index) {
+                    if (this.groupNoticeData[index].noticeStatus == 1) {
+                        this.groupNoticeData[index].noticeStatus = 2;
+                        mSider.memberData[0].noticeCount--;
+                        let read = {
+                            noticeId: this.groupNoticeData[index].noticeID
+                        }
+                        fetch('mNotice/read', {
+                            method: 'POST',
+                            body: JSON.stringify(read),
+                            headers: new Headers({
+                                'Content-Type': 'application/json'
+                            })
+                        })
+                            .catch(
+                                error => console.error('Error:', error)
+                            )
+                    }
+                },
+
+                // 刪除
+                deleteDN(index) {
+                    let deleteN = {
                         noticeId: this.dNticeData[index].noticeID
                     }
-                    fetch('mNotice/read', {
+                    fetch('mNotice/deleteN', {
                         method: 'POST',
-                        body: JSON.stringify(read),
+                        body: JSON.stringify(deleteN),
                         headers: new Headers({
                             'Content-Type': 'application/json'
                         })
@@ -218,75 +315,91 @@
                         )
 
                 },
-                readOrderStatus(index) {
-                    if (this.oderNoticeData[index].noticeStatus == 1) {
-                        this.oderNoticeData[index].noticeStatus = 2;
-                    }
-                    let read = {
-                        noticeId: this.oderNoticeData[index].noticeID
-                    }
-                    fetch('mNotice/read', {
-                        method: 'POST',
-                        body: JSON.stringify(read),
-                        headers: new Headers({
-                            'Content-Type': 'application/json'
-                        })
-                    })
-                       
-                        .catch(
-                            error => console.error('Error:', error)
-                        )
-                },
-                readOrderCaStatus(index) {
-                    if (this.oderNoticeData[index].noticeStatus == 1) {
-                        this.oderNoticeData[index].noticeStatus = 2;
-                    }
-                    let read = {
-                        noticeId: this.oderNoticeData[index].noticeID
-                    }
-                    fetch('mNotice/read', {
-                        method: 'POST',
-                        body: JSON.stringify(read),
-                        headers: new Headers({
-                            'Content-Type': 'application/json'
-                        })
-                    })
-                       
-                        .catch(
-                            error => console.error('Error:', error)
-                        )
-                },
-                readGroupStatus(index) {
-                    if (this.groupNoticeData[index].noticeStatus == 1) {
-                        this.groupNoticeData[index].noticeStatus = 2;
-                    }
-                    let read = {
-                        noticeId: this.groupNoticeData[index].noticeID
-                    }
-                    fetch('mNotice/read', {
-                        method: 'POST',
-                        body: JSON.stringify(read),
-                        headers: new Headers({
-                            'Content-Type': 'application/json'
-                        })
-                    })
-                      .catch(
-                            error => console.error('Error:', error)
-                        )
-                },
-
-                // 刪除
-                deleteDN(index) {
-                    this.dNticeData[index].noticeStatus = 0;
-                },
                 deleteOrderN(index) {
                     this.oderNoticeData[index].noticeStatus = 0;
+                    let deleteN = {
+                        noticeId: this.oderNoticeData[index].noticeID
+                    }
+                    fetch('mNotice/deleteN', {
+                        method: 'POST',
+                        body: JSON.stringify(deleteN),
+                        headers: new Headers({
+                            'Content-Type': 'application/json'
+                        })
+                    })
+                        .catch(
+                            error => console.error('Error:', error)
+                        )
                 },
                 deleteGroupN(index) {
                     this.groupNoticeData[index].noticeStatus = 0;
+                    let deleteN = {
+                        noticeId: this.groupNoticeData[index].noticeID
+                    }
+                    fetch('mNotice/deleteN', {
+                        method: 'POST',
+                        body: JSON.stringify(deleteN),
+                        headers: new Headers({
+                            'Content-Type': 'application/json'
+                        })
+                    })
+                        .catch(
+                            error => console.error('Error:', error)
+                        )
+                },
+                // 取得第幾個
+                setOrderID(index) {
+                    this.orderID = this.oderNoticeData[index].orderID;
                 },
 
-            }, computed: {
+                // 完成
+                setComplete() {
+                    this.oderNoticeData.forEach((item) => {
+                        if (item.orderID == this.orderID) {
+                            item.orderStatus = 5;
+                        }
+                    })
+
+                    $('#comfirm2Btn').modal('hide');
+                    let setComplete = {
+                        orderID: this.orderID
+                    }
+                    fetch('mNotice/setComplete', {
+                        method: 'POST',
+                        body: JSON.stringify(setComplete),
+                        headers: new Headers({
+                            'Content-Type': 'application/json'
+                        })
+                    })
+                        .catch(
+                            error => console.error('Error:', error)
+                        )
+                },
+                // 全部已讀
+                allRead() {
+                    let setMember = {
+                        memberId: this.memberData[0].memberID
+                    }
+                    fetch('mNotice/allRead', {
+                        method: 'POST',
+                        body: JSON.stringify(setMember),
+                        headers: new Headers({
+                            'Content-Type': 'application/json'
+                        })
+                    }).then(
+                        location.href = "mNotice"
+                    )
+                        .catch(
+                            error => console.error('Error:', error)
+                        )
+                }
+
+
+            },
+
+
+
+            computed: {
                 // 平台通知數量
                 dNticeCount: function () {
                     let a = 0;

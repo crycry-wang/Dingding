@@ -44,6 +44,61 @@ and b.noticeStatus=1 and memberID='+ memberId;
 });
 
 
+// 刪除喜愛店家
+router.post('/deleteStore', function (req, res, next) {
+    db.query('delete from likestore where memberID =' + req.body.memberID + ' and `storeID`=' + req.body.storeID,
+        function () {
+            console.log('刪除喜愛店家')
+        })
+        .catch(function () {
+            console.log('err');
+        })
+
+})
+
+// 刪除地址
+// router.post('/saveInfo', function (req, res, next) {
+//     db.query('delete from memberaddress where memberID =' + req.body.memberID,
+//         function () {
+//             console.log('刪除地址')
+//         })
+//         .catch(function () {
+//             console.log('err');
+//         })
+//     next();
+// })
+// // 增加地址
+// router.post('/saveInfo', function (req, res, next) {
+//     let arr = req.body.memberInfo;
+//     arr.forEach(item => {
+//         db.query('insert into memberaddress (`memberID`,`memberAddress`)VALUES (?,?)',
+//             [req.body.memberID,
+//                 item],
+//             function () {
+//                 console.log('增加地址')
+//             })
+//             .catch(function () {
+//                 console.log('err');
+//             })
+//             next();
+//     });
+// })
+// 修改暱稱與電話
+router.post('/saveInfo', function (req, res, next) {
+    db.query('update `member` set `memberName`= "' + req.body.memberName +
+        '", memberPhone="' + req.body.memberPhone + '" where `memberID`=' + req.body.memberID,
+        function () {
+            console.log('修改暱稱與電話')
+        })
+        .catch(function () {
+            console.log('err');
+        })
+
+})
+
+
+
+
 
 // 會員左側
 const getMemberData = (req) => {
@@ -113,14 +168,15 @@ router.get('/', async (req, res) => {
     newsJSON2 = JSON.stringify(await getsaveCoinData(req));
     newsJSON3 = JSON.stringify(await getcostCoinData(req));
     newsJSON4 = JSON.stringify(await getAddressData(req));
-    
-    res.render('mMember', { 
+
+    res.render('mMember', {
         mMemberData: newsJSON,
         memberLikestore: newsJSON1,
-        saveCoinData:newsJSON2, 
-        costCoinData:newsJSON3, 
-        addressData:newsJSON4, 
-        active: 'mMember'});
+        saveCoinData: newsJSON2,
+        costCoinData: newsJSON3,
+        addressData: newsJSON4,
+        active: 'mMember'
+    });
 
 });
 

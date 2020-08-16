@@ -42,7 +42,7 @@
                     aria-expanded="false">
                 </a>
                 <div class="dropdown-menu text-center tag-wrap" aria-labelledby="more" id='moreMenu'>
-                    <a class="dropdown-item text20R" href="#">全部已讀</a>
+                    <a class="dropdown-item text20R" href="#" @click='allRead'>全部已讀</a>
                     <a class="dropdown-item text20R" href="#">全部刪除</a>
 
                 </div>
@@ -50,101 +50,99 @@
             <div class="dblock mt-4">
                 <ul class="scrollList noticeList">
                     <!-- 處理訂單通知 -->
-                    <span v-for='(item,index) in orderNoticeData'>
-                        <li :class="item.noticeStatus==2 ?
+                    <span v-if='orderNoticeData[0].noticeID!=null'>
+                        <span v-for='(item,index) in orderNoticeData'>
+                            <li :class="item.noticeStatus==2 ?
                     'noticeItem d-flex align-items-center read store':'noticeItem d-flex align-items-center store'"
-                            @click='readNewStatus(index)'>
-                            <img :src="(`image/會員資料/大頭照/${item.memberPhoto}`)">
-                            <span class="content">
-                                <h2 class="text24B">新訂單通知</h2>
-                                <p class="text20R">有一筆來自<span>{{item.memberName}}<span>的新訂單，快去處理吧！</p>
-                                <p class="text16">{{item.noticeTime}}</p>
-                            </span>
-                            <span class="ml-auto actionR">
-                                <span class="eng20R price">
-                                    <span class=" align-middle">{{(item.total).toLocaleString('en-US')}}</span>
-                                </span>
-                                <button class="text20R dbtn btnY" data-toggle="modal" data-target="#orderAction"
-                                    @click='getDetail(item.orderID,item.total)'>
-                                    處理訂單</button>
-                            </span>
-                        </li>
-                    </span>
-                    <!-- 系統通知 -->
-                    <span v-for='(item,index) in dNticeData'>
-                        <span v-if='item.noticeStatus > 0'>
-                            <li :class="item.noticeStatus== 2 ? 'noticeItem d-flex align-items-center read':'noticeItem d-flex align-items-center'"
-                                @click='readStatus(index)'>
-                                <img src="/image/message.png">
+                                @click='readNewStatus(index)'>
+                                <img :src="(`image/會員資料/大頭照/${item.memberPhoto}`)">
                                 <span class="content">
-                                    <h2 class="text24B">訂訂系統通知</h2>
-                                    <p class="text20R">{{item.noticeContent}}</p>
+                                    <h2 class="text24B">新訂單通知</h2>
+                                    <p class="text20R">有一筆來自<span>{{item.memberName}}<span>的新訂單，快去處理吧！</p>
                                     <p class="text16">{{item.noticeTime}}</p>
                                 </span>
                                 <span class="ml-auto actionR">
-                                    <i class="icon-trash" @click='deleteDN(index)'></i>
+                                    <span class="eng20R price">
+                                        <span class=" align-middle">{{(item.total).toLocaleString('en-US')}}</span>
+                                    </span>
+                                    <button class="text20R dbtn btnY" data-toggle="modal" data-target="#orderAction"
+                                        @click='getDetail(item.orderID,item.total)'>
+                                        處理訂單</button>
                                 </span>
                             </li>
                         </span>
                     </span>
-
+                    <!-- 系統通知 -->
+                    <span v-if='dNticeData[0].noticeID!=null'>
+                        <span v-for='(item,index) in dNticeData'>
+                            <span v-if='item.noticeStatus > 0'>
+                                <li :class="item.noticeStatus== 2 ? 'noticeItem d-flex align-items-center read':'noticeItem d-flex align-items-center'"
+                                    @click='readStatus(index)'>
+                                    <img src="/image/message.png">
+                                    <span class="content">
+                                        <h2 class="text24B">訂訂系統通知</h2>
+                                        <p class="text20R">{{item.noticeContent}}</p>
+                                        <p class="text16">{{item.noticeTime}}</p>
+                                    </span>
+                                    <span class="ml-auto actionR">
+                                        <i class="icon-trash" @click='deleteDN(index)'></i>
+                                    </span>
+                                </li>
+                            </span>
+                        </span>
+                    </span>
                     <!-- 拒絕訂單 -->
-                    <span v-for='(item,index) in orderCaNoticeData'>
-                        <li :class="item.noticeStatus==2 ?
+                    <span v-if='orderCaNoticeData[0].noticeID!=null'>
+                        <span v-for='(item,index) in orderCaNoticeData'>
+                            <li :class="item.noticeStatus==2 ?
                      'noticeItem d-flex align-items-center read cancel store':'noticeItem d-flex align-items-center cancel store'"
-                            @click='readCancelStatus(index)' v-if='item.noticeStatus > 0'>
-                            <img :src="(`image/會員資料/大頭照/${item.memberPhoto}`)">
-                            <span class="content">
-                                <h2 class="text24B">已拒絕 來自<span>{{item.memberName}}<span>的訂單</h2>
-                                <p class="text20R">您已拒絕來自<span>{{item.memberName}}</span>的訂單，已新增訂單至歷史訂單。</p>
-                                <p class="text16">{{item.noticeTime}}</p>
-                            </span>
-                            <span class="ml-auto actionR">
-                                <span class="eng20R price">
-                                    <span class=" align-middle">{{(item.total).toLocaleString('en-US')}}</span>
+                                @click='readCancelStatus(index)' v-if='item.noticeStatus > 0'>
+                                <img :src="(`image/會員資料/大頭照/${item.memberPhoto}`)">
+                                <span class="content">
+                                    <h2 class="text24B">已拒絕 來自<span>{{item.memberName}}<span>的訂單</h2>
+                                    <p class="text20R">您已拒絕來自<span>{{item.memberName}}</span>的訂單，已新增訂單至歷史訂單。</p>
+                                    <p class="text16">{{item.noticeTime}}</p>
                                 </span>
-                                <button class="text20R dbtn btnW" data-toggle="modal" data-target="#order"
-                                @click='getDetail(item.orderID,item.total)'>查看訂單</button>
-                                <button class="text20R dbtn btnY  d-none" data-toggle="modal"
-                                    data-target="#orderAction">
-                                    處理訂單</button>
-                                <i class="icon-trash" @click='deleteCaN(index)'></i>
-                            </span>
-                        </li>
+                                <span class="ml-auto actionR">
+                                    <span class="eng20R price">
+                                        <span class=" align-middle">{{(item.total).toLocaleString('en-US')}}</span>
+                                    </span>
+                                    <button class="text20R dbtn btnW" data-toggle="modal" data-target="#order"
+                                        @click='getDetail(item.orderID,item.total)'>查看訂單</button>
+                                    <button class="text20R dbtn btnY  d-none" data-toggle="modal"
+                                        data-target="#orderAction">
+                                        處理訂單</button>
+                                    <i class="icon-trash" @click='deleteCaN(index)'></i>
+                                </span>
+                            </li>
+                        </span>
                     </span>
-
                     <!-- 接受訂單 -->
-                    <span v-for='(item,index) in orderOkNoticeData'>
-                        <li :class="item.noticeStatus==2 ? 'noticeItem d-flex align-items-center read':'noticeItem d-flex align-items-center'"
-                            @click='readOkStatus(index)' v-if='item.noticeStatus > 0'>
-                            <img :src="(`image/會員資料/大頭照/${item.memberPhoto}`)">
-                            <span class="content">
-                                <h2 class="text24B">已接受 來自<span>{{item.memberName}}</span>的訂單</h2>
-                                <p class="text20R">已新增至訂單管理，請於<span class="Ycolor">
-                                        {{(item.orderDeadline).slice(0,16).replace(/&#45/g,'/')}}</span>準時送達餐點。</p>
-                                <p class="text16">{{item.noticeTime}}</p>
-                            </span>
-                            <span class="ml-auto actionR">
-                                <span class="eng20R price">
-                                    <span class=" align-middle">{{(item.total).toLocaleString('en-US')}}</span>
+                    <span v-if='orderOkNoticeData[0].noticeID!=null'>
+                        <span v-for='(item,index) in orderOkNoticeData'>
+                            <li :class="item.noticeStatus==2 ? 'noticeItem d-flex align-items-center read':'noticeItem d-flex align-items-center'"
+                                @click='readOkStatus(index)' v-if='item.noticeStatus > 0'>
+                                <img :src="(`image/會員資料/大頭照/${item.memberPhoto}`)">
+                                <span class="content">
+                                    <h2 class="text24B">已接受 來自<span>{{item.memberName}}</span>的訂單</h2>
+                                    <p class="text20R">已新增至訂單管理，請於<span class="Ycolor">
+                                            {{(item.orderDeadline).slice(0,16).replace(/&#45/g,'/')}}</span>準時送達餐點。</p>
+                                    <p class="text16">{{item.noticeTime}}</p>
                                 </span>
-                                <button class="text20R dbtn btnW" data-toggle="modal" data-target="#order"
-                                @click='getDetail(item.orderID,item.total)'>查看訂單</button>
-                                <button class="text20R dbtn btnY  d-none" data-toggle="modal"
-                                    data-target="#orderAction">
-                                    處理訂單</button>
-                                <i class="icon-trash" @click='deleteOkN(index)'></i>
-                            </span>
-                        </li>
+                                <span class="ml-auto actionR">
+                                    <span class="eng20R price">
+                                        <span class=" align-middle">{{(item.total).toLocaleString('en-US')}}</span>
+                                    </span>
+                                    <button class="text20R dbtn btnW" data-toggle="modal" data-target="#order"
+                                        @click='getDetail(item.orderID,item.total)'>查看訂單</button>
+                                    <button class="text20R dbtn btnY  d-none" data-toggle="modal"
+                                        data-target="#orderAction">
+                                        處理訂單</button>
+                                    <i class="icon-trash" @click='deleteOkN(index)'></i>
+                                </span>
+                            </li>
+                        </span>
                     </span>
-
-
-                    <button type="button" class="btnY dbtn" data-toggle="modal" data-target="#comfirmBtn">
-                        確認型彈跳框(1按鈕型)
-                    </button>
-                    <button type="button" class="btnR dbtn" data-toggle="modal" data-target="#delete2Btn">
-                        刪除型彈跳框(2按鈕型)
-                    </button>
 
                 </ul>
 
@@ -208,8 +206,8 @@
                             <p class="eng20R price">{{total}}</p>
                         </div>
                         <div class="modal-footer">
-                            <button class="text20R dbtn btnR">拒絕訂單</button>
-                            <button class="text20R dbtn btnY ml-3">接受訂單</button>
+                            <button class="text20R dbtn btnR" @click='refuse'>拒絕訂單</button>
+                            <button class="text20R dbtn btnY ml-3" @click='accept'>接受訂單</button>
                         </div>
                     </div>
 
@@ -232,7 +230,8 @@
                         <div class="d-inline-block col-6">
                             <dl class="leftContent">
                                 <dt class="text20B">餐點送達時間</dt>
-                                <dd class="text20R"> {{(orderDTNoticeData[0].orderArrivedTime).slice(0,16).replace(/-/g,'/')}}</dd>
+                                <dd class="text20R">
+                                    {{(orderDTNoticeData[0].orderArrivedTime).slice(0,16).replace(/-/g,'/')}}</dd>
                                 <dt class="text20B">聯絡人</dt>
                                 <dd class="text20R">{{orderDTNoticeData[0].memberName}}</dd>
                                 <dt class="text20B">聯絡電話</dt>
@@ -240,21 +239,22 @@
                                 <dt class="text20B">配送地址</dt>
                                 <dd class="text20R">{{orderDTNoticeData[0].deliveryAddress}}</dd>
                                 <dt class="text20B">訂單建立日期</dt>
-                                <dd class="text20R">{{(orderDTNoticeData[0].orderCreateTime).slice(0,16).replace(/-/g,'/')}}</dd>
+                                <dd class="text20R">
+                                    {{(orderDTNoticeData[0].orderCreateTime).slice(0,16).replace(/-/g,'/')}}</dd>
                             </dl>
                         </div>
                         <div class="d-inline-block col-6">
                             <ul class="rightContent  scrollList orderList d-block">
                                 <li class="orderItem d-flex align-items-center"
-                                v-for='(item,index) in orderDTNoticeData'>
-                                <img :src="(`image/store/${item.productPhoto}`)">
+                                    v-for='(item,index) in orderDTNoticeData'>
+                                    <img :src="(`image/store/${item.productPhoto}`)">
                                     <p class="text20B align-middle">{{item.productName}}</p>
                                     <span class="eng20R price">
                                         <span class=" align-middle">{{item.price}}</span>
                                     </span>
                                     <p class="eng20R w100 text-right">x{{item.sum}}</p>
                                 </li>
-                               
+
                             </ul>
                         </div>
                     </div>
@@ -272,23 +272,23 @@
         </div>
 
 
-        <!-- 確認型彈跳框 -->
+        <!-- 接受彈跳框 -->
         <div class="modal fade sm1Btn" id="comfirmBtn">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title text28B w-100 text-center ">已接受訂單</h5>
+                        <h5 class="modal-title text28B w-100 text-center">已接受訂單</h5>
                     </div>
 
                     <div class="modal-footer">
-                        <button class="text20R dbtn btnY m-auto">確定</button>
+                        <button class="text20R dbtn btnY m-auto" @click='setAccept'>確定</button>
                     </div>
                 </div>
             </div>
         </div>
 
 
-        <!-- 刪除型彈跳框(2按鈕型) -->
+        <!-- 拒絕彈跳框 -->
         <div class="modal fade sm2Btn" id="delete2Btn">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -305,7 +305,7 @@
                     </p>
                     <div class="modal-footer">
                         <button class="text20R dbtn btnW" data-dismiss="modal">返回離開</button>
-                        <button class="text20R dbtn btnR ml-3">拒絕訂單</button>
+                        <button class="text20R dbtn btnR ml-3" @click='setRefuse'>拒絕訂單</button>
                     </div>
                 </div>
             </div>
@@ -324,7 +324,8 @@
                 orderCaNoticeData: JSON.parse('<%- orderCaNoticeData %>'),
                 orderOkNoticeData: JSON.parse('<%- orderOkNoticeData %>'),
                 orderDTNoticeData: JSON.parse('<%- orderDTNoticeData %>'),
-                total:''
+                total: '',
+
             },
             mounted: function () {
                 this.dNticeData.forEach(function (item) {
@@ -349,103 +350,155 @@
                 readStatus(index) {
                     if (this.dNticeData[index].noticeStatus == 1) {
                         this.dNticeData[index].noticeStatus = 2
-                    }
-                    
-                    let read = {
-                        noticeId: this.dNticeData[index].noticeID
-                    }
-                    fetch('sNotice/read', {
-                        method: 'POST',
-                        body: JSON.stringify(read),
-                        headers: new Headers({
-                            'Content-Type': 'application/json'
+
+
+                        let read = {
+                            noticeId: this.dNticeData[index].noticeID
+                        }
+                        fetch('sNotice/read', {
+                            method: 'POST',
+                            body: JSON.stringify(read),
+                            headers: new Headers({
+                                'Content-Type': 'application/json'
+                            })
                         })
-                    })
-                        .then(
-                            location.href = "sNotice"
-                        )
-                        .catch(
-                            error => console.error('Error:', error)
-                        )
+                            .then(
+                                location.href = "sNotice"
+                            )
+                            .catch(
+                                error => console.error('Error:', error)
+                            )
+                    }
                 },
                 readCancelStatus(index) {
                     if (this.orderCaNoticeData[index].noticeStatus == 1) {
                         this.orderCaNoticeData[index].noticeStatus = 2;
-                    }
-                    let read = {
-                        noticeId: this.orderCaNoticeData[index].noticeID
-                    }
-                    fetch('sNotice/read', {
-                        method: 'POST',
-                        body: JSON.stringify(read),
-                        headers: new Headers({
-                            'Content-Type': 'application/json'
+
+                        let read = {
+                            noticeId: this.orderCaNoticeData[index].noticeID
+                        }
+                        fetch('sNotice/read', {
+                            method: 'POST',
+                            body: JSON.stringify(read),
+                            headers: new Headers({
+                                'Content-Type': 'application/json'
+                            })
                         })
-                    })
-                        .then(
-                            location.href = "sNotice"
-                        )
-                        .catch(
-                            error => console.error('Error:', error)
-                        )
+                            .then(
+                                location.href = "sNotice"
+                            )
+                            .catch(
+                                error => console.error('Error:', error)
+                            )
+                    }
                 },
                 readOkStatus(index) {
                     if (this.orderOkNoticeData[index].noticeStatus == 1) {
                         this.orderOkNoticeData[index].noticeStatus = 2;
-                    }
-                    let read = {
-                        noticeId: this.orderOkNoticeData[index].noticeID
-                    }
-                    fetch('sNotice/read', {
-                        method: 'POST',
-                        body: JSON.stringify(read),
-                        headers: new Headers({
-                            'Content-Type': 'application/json'
+
+                        let read = {
+                            noticeId: this.orderOkNoticeData[index].noticeID
+                        }
+                        fetch('sNotice/read', {
+                            method: 'POST',
+                            body: JSON.stringify(read),
+                            headers: new Headers({
+                                'Content-Type': 'application/json'
+                            })
                         })
-                    })
-                        .then(
-                            location.href = "sNotice"
-                        )
-                        .catch(
-                            error => console.error('Error:', error)
-                        )
+                            .then(
+                                location.href = "sNotice"
+                            )
+                            .catch(
+                                error => console.error('Error:', error)
+                            )
+                    }
                 },
                 readNewStatus(index) {
-                       if (this.orderNoticeData[index].noticeStatus == 1) {
+                    if (this.orderNoticeData[index].noticeStatus == 1) {
                         this.orderNoticeData[index].noticeStatus = 2;
-                    }
-                    let read = {
-                        noticeId: this.orderNoticeData[index].noticeID
-                    }
-                    fetch('sNotice/read', {
-                        method: 'POST',
-                        body: JSON.stringify(read),
-                        headers: new Headers({
-                            'Content-Type': 'application/json'
+
+                        let read = {
+                            noticeId: this.orderNoticeData[index].noticeID
+                        }
+                        fetch('sNotice/read', {
+                            method: 'POST',
+                            body: JSON.stringify(read),
+                            headers: new Headers({
+                                'Content-Type': 'application/json'
+                            })
                         })
-                    })
-                        .then(
-                            location.href = "sNotice"
-                        )
-                        .catch(
-                            error => console.error('Error:', error)
-                        )
+                            .then(
+                                location.href = "sNotice"
+                            )
+                            .catch(
+                                error => console.error('Error:', error)
+                            )
+                    }
                 },
 
                 // 刪除
                 deleteDN(index) {
-                    this.dNticeData[index].noticeStatus = 0;
+                    let deleteN = {
+                        noticeId: this.dNticeData[index].noticeID
+                    }
+                    fetch('sNotice/deleteN', {
+                        method: 'POST',
+                        body: JSON.stringify(deleteN),
+                        headers: new Headers({
+                            'Content-Type': 'application/json'
+                        })
+                    })
+                        .then(
+                            location.href = "sNotice"
+                        )
+                        .catch(
+                            error => console.error('Error:', error)
+                        )
                 },
+
                 deleteCaN(index) {
-                    this.orderCaNoticeData[index].noticeStatus = 0;
+                    let deleteN = {
+                        noticeId: this.orderCaNoticeData[index].noticeID
+                    }
+                    fetch('sNotice/deleteN', {
+                        method: 'POST',
+                        body: JSON.stringify(deleteN),
+                        headers: new Headers({
+                            'Content-Type': 'application/json'
+                        })
+                    })
+                        .then(
+                            location.href = "sNotice"
+                        )
+                        .catch(
+                            error => console.error('Error:', error)
+                        )
+
+
                 },
                 deleteOkN(index) {
-                    this.orderOkNoticeData[index].noticeStatus = 0;
+                    let deleteN = {
+                        noticeId: this.orderOkNoticeData[index].noticeID
+                    }
+                    fetch('sNotice/deleteN', {
+                        method: 'POST',
+                        body: JSON.stringify(deleteN),
+                        headers: new Headers({
+                            'Content-Type': 'application/json'
+                        })
+                    })
+                        .then(
+                            location.href = "sNotice"
+                        )
+                        .catch(
+                            error => console.error('Error:', error)
+                        )
                 },
 
                 // 明細
-                getDetail(orderID,total) {
-                    this.total=total;
+                getDetail(orderID, total) {
+                    this.total = total;
                     fetch('sNotice/getDetail?orderID=' + orderID)
                         .then(function (response) {
                             return response.json();
@@ -454,8 +507,76 @@
                             // console.log(myJson);
                             this.orderDTNoticeData = JSON.parse(myJson);
                         });
+                },
+                accept() {
+                    $('#orderAction').modal('hide');
+                    $('#comfirmBtn').modal('show');
 
+                },
+                refuse() {
+                    $('#orderAction').modal('hide');
+                    $('#delete2Btn').modal('show');
+
+                },
+                setAccept() {
+                    let setAppect = {
+                        orderID: this.orderDTNoticeData[0].orderID
+                    }
+                    console.log(setAppect.orderID)
+                    fetch('sNotice/setAppect', {
+                        method: 'POST',
+                        body: JSON.stringify(setAppect),
+                        headers: new Headers({
+                            'Content-Type': 'application/json'
+                        })
+                    })
+                        .then(
+                            location.href = "sNotice"
+                        )
+                        .catch(
+                            error => console.error('Error:', error)
+                        )
+
+                },
+                setRefuse() {
+                    let setRefuse = {
+                        orderID: this.orderDTNoticeData[0].orderID
+                    }
+                    fetch('sNotice/setRefuse', {
+                        method: 'POST',
+                        body: JSON.stringify(setRefuse),
+                        headers: new Headers({
+                            'Content-Type': 'application/json'
+                        })
+                    })
+                        .then(
+                            location.href = "sNotice"
+                        )
+                        .catch(
+                            error => console.error('Error:', error)
+                        )
+
+                },
+                // 全部已讀
+                allRead() {
+                    let setStore = {
+                        storeID: this.storeData[0].storeID
+                    }
+                    fetch('sNotice/allRead', {
+                        method: 'POST',
+                        body: JSON.stringify(setStore),
+                        headers: new Headers({
+                            'Content-Type': 'application/json'
+                        })
+                    }).then(
+                        location.href = "sNotice"
+                    )
+                        .catch(
+                            error => console.error('Error:', error)
+                        )
                 }
+
+
 
 
 

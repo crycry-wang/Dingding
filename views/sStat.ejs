@@ -123,9 +123,12 @@
                 currentIndex: 0,
                 orderTotal: {},
                 date: date.getFullYear() + '.' + (date.getMonth() + 1) + '.'
-                    + date.getDate()
+                    + date.getDate(),
+                dateEnd: date.getFullYear() + '.' + (date.getMonth() + 1) + '.'
+                    + (date.getDate() + 1)
             },
             mounted: function () {
+
                 // 全類型標籤
                 var categoryNameGroup = this.allTypeData.map((item) => {
                     categoryName = item.categoryName;
@@ -178,7 +181,6 @@
                 categoryNameGroup.unshift('全部');
                 this.categoryOrdergroup.unshift(allTotal);
                 this.currentGroup.unshift('全部');
-
 
 
                 // 取總量
@@ -302,25 +304,44 @@
                     updateConfigByMutating(chart);
 
                 },
+
                 backDate() {
                     date -= 86400000;
                     date = new Date(date);
-                    this.date=date.getFullYear() + '.' + (date.getMonth() + 1) + '.'
-                    + date.getDate();
-                    console.log(date);
+
+                    dateStart = date.getFullYear() + '.' + (date.getMonth() + 1) + '.'
+                        + date.getDate();
+
+                    this.date = dateStart;
+                    dateEnd = date.getFullYear() + '.' + (date.getMonth() + 1) + '.'
+                        + (date.getDate() + 1);
+
+                    this.dateEnd = dateEnd;
+
+                    let dateRang = {
+                        dateStart: dateStart,
+                        dateEnd: dateEnd
+                    }
+
+                    fetch('sStat/getDate?dateStart=' + dateStart + '&dateEnd=' + dateEnd)
+                        .then(function (response) {
+                            return response.json();
+                        })
+
+                        .then((myJson) => {
+                            this.orderSumData = JSON.parse(myJson);
+                            console.log(JSON.parse(myJson));
+                        });
+
                 },
                 addDate() {
-                    date=date.setDate(date.getDate()+1);
+                    date = date.setDate(date.getDate() + 1);
                     date = new Date(date);
-                    this.date=date.getFullYear() + '.' + (date.getMonth() + 1) + '.'
-                    + date.getDate();
+                    this.dateEnd = date.getFullYear() + '.' + (date.getMonth() + 1) + '.'
+                        + date.getDate();
                 }
-                 
 
-
-
-            },
-
+            }
 
         })
 

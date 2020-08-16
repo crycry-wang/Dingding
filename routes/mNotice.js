@@ -29,7 +29,7 @@ router.get('/', function (req, res, next) {
     dNotice = 'SELECT * FROM `notice` where noticeType=0 and toWhoType=2 and toWhoID=' + memberId;
     // 會員訂單通知
     orderNoticeSelect = 'SELECT a.noticeID,a.noticeTime,b.`orderStatus`,\
-    a.`noticeStatus`,c.storeName,c.storePhoto,\
+    b.orderID,a.`noticeStatus`,c.storeName,c.storePhoto,\
     sum(d.`price`*d.`quality`) total FROM `notice` as a,`order` as b,\
     `store` as c ,`orderdetail` as d where a.noticeData=b.orderID and\
      noticeType=1 and b.storeID=c.storeID and a.noticeData=d.orderID and\
@@ -44,8 +44,41 @@ router.get('/', function (req, res, next) {
 
     next();
 })
+// 刪除
+router.post('/deleteN', function(req, res, next) {
+    db.query('UPDATE `notice` set `noticeStatus`=0 where noticeID=' + req.body.noticeId,
+    function() {
+            console.log('刪除')
+        })
+        .catch(function() {
+            console.log('err');
+        })
+       
+        
+})
 
+// 完成訂單
+router.post('/setComplete', function(req, res, next) {
+    db.query('UPDATE `order` set `orderStatus`=5 where orderID=' + req.body.orderID,
+    function() {
+            console.log('完成訂單')
+        })
+        .catch(function() {
+            console.log('err');
+        })
+})
 
+// 全部已讀
+router.post('/allRead', function(req, res, next) {
+    db.query('UPDATE `notice` set `noticeStatus`=2 where `toWhoType`=2 and toWhoID=' +  req.body.memberId,
+    function() {
+            console.log('全部已讀')
+        })
+        .catch(function() {
+            console.log('err');
+        })
+       
+})
 
 const getMemberData = (req) => {
     return new Promise((resolve, reject) => {

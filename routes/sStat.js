@@ -16,7 +16,7 @@ let orderSum;
 
 
 router.get('/', function (req, res, next) {
-    storeID = 2;
+    storeID = 4;
     store = 'select a.`storeID`,a.`storeName`,\
     a.`storePhoto`,count(b.`noticeStatus`) as\
      noticeCount from `store` as a,`notice` as\
@@ -24,10 +24,15 @@ router.get('/', function (req, res, next) {
        and b.`noticeStatus`=1 and storeID=' + storeID;
 
     // 類別訂單量
-    dateStart = '"2020.06.01"';
-    dateEnd = '"2020.08.31"';
 
-    allType='SELECT a.`categoryName`,b.productName,a.`categoryID` FROM `category` as a,\
+    // 時間
+    date = new Date();
+    dateStart = date.getFullYear() + '.' + (date.getMonth() + 1) + '.'
+        + date.getDate();
+
+    dateEnd = '2020.08.31';
+
+    allType = 'SELECT a.`categoryName`,b.productName,a.`categoryID` FROM `category` as a,\
     `product` as b where a.categoryID=b.categoryID and a.storeId='+ storeID;
 
     orderSum = 'SELECT d.`categoryName`,c.productName,c.`categoryID`,\
@@ -35,19 +40,36 @@ router.get('/', function (req, res, next) {
       FROM `order` as a, `orderdetail` as b,`product` as c,\
      `category` as d WHERE a.orderID=b.orderID and b.`productID`=c.`productID`\
       and c.`categoryID`=d.`categoryID` and a.`orderStatus`=5 and a.storeID='+ storeID +
-        ' and a.`orderDeadline`>= ' + dateStart + ' and a.`orderDeadline`< ' + dateEnd +
-        ' GROUP by c.productName'
-    console.log(orderSum);
-
-
-
+        ' and a.`orderDeadline`>= "' + dateStart + '" and a.`orderDeadline`< "' + dateEnd +
+        '" GROUP by c.productName'
+    // console.log(orderSum);
 
     next();
 
-
-
-
 });
+
+
+router.get('/getDate', async (req, res, next) => {
+
+    dateStart = req.query.dateStart;
+    dateEnd = req.query.dateEnd;
+    orderSum = 'SELECT d.`categoryName`,c.productName,c.`categoryID`,\
+    sum(b.`quality`) total,sum(b.price*b.`quality`) totalPrice\
+      FROM `order` as a, `orderdetail` as b,`product` as c,\
+     `category` as d WHERE a.orderID=b.orderID and b.`productID`=c.`productID`\
+      and c.`categoryID`=d.`categoryID` and a.`orderStatus`=5 and a.storeID='+ storeID +
+        ' and a.`orderDeadline`>= "' + dateStart + '" and a.`orderDeadline`< "' + dateEnd +
+        '" GROUP by c.productName'
+    newsJSON1 = JSON.stringify(await getOrderSum(req));
+    // console.log(dateStart);
+    // console.log(dateEnd);
+    // console.log(dateEnd);
+    res.json(newsJSON1);
+    next();
+    
+});
+
+
 
 const getStoreData = (req) => {
     return new Promise((resolve, reject) => {
@@ -94,6 +116,7 @@ router.get('/', async (req, res) => {
         allTypeData: newsJSON2,
         active: 'sStat'
     });
+    
 });
 
 
