@@ -63,7 +63,8 @@ a:hover,
 .lrImg:hover,
 .icon-heart:hover,
 .storeContent:hover,
-.dTag:hover {
+.dTag:hover,
+.countPoint:hover {
     cursor: pointer;
 }
 

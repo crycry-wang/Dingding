@@ -26,7 +26,7 @@ var orderFinishSql;
 
 router.get('/',function(req,res,next){
   storeID = 1;
-  storeIndexSql = 'SELECT storeID,storeName,storeBanner FROM `store`';
+  storeIndexSql = 'select s.storeID,s.storeName,s.storeBanner,count(commentID) count,round(AVG(commentScore),1) star FROM `comment` c inner join `store` s on c.storeID=s.storeID inner join `likeStore` l on s.storeID=l.storeID group by c.storeID';
   districtSql = 'SELECT * FROM `district`';
   orderFinishSql = 'SELECT orderStatus FROM `order` WHERE storeId='+ storeID;
   commentScoreSql = 'SELECT count(commentID) count,round(AVG(commentScore),1) star FROM `comment` WHERE storeID='+ storeID ;

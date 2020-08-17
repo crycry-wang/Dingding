@@ -21,11 +21,21 @@
     <link rel="stylesheet" href="/stylesheets/member.css">
     <link rel="stylesheet" href="/stylesheets/index.css">
     <script src="/javascript/getDate.js"></script>
+    <link rel="Shortcut Icon" type="image/x-icon" href="/image/favicon.png">
 
     <title>店家資訊</title>
     <style>
         .dblock:first-child {
             margin-top: 0;
+        }
+
+        .countrySelect {
+            background-color: var(--dYellow);
+            border: 1px solid var(--dYellow);
+        }
+
+        .countrySelectText {
+            color: var(--dWhite);
         }
     </style>
 
@@ -107,13 +117,12 @@
                             </button>
                             <br>
                             <div class="w-100 scrollList" style="max-height: calc(100vh - 600px);">
-                                <button class="dbtn btnY text20B"
-                                    style="margin-bottom: 20px;padding-left: 16px;padding-right: 12px;">台中市北屯區 <i
-                                        class="icon-close"></i> </button><br>
-                                <button class="dbtn btnY text20B"
-                                    style="margin-bottom: 20px;padding-left: 16px;padding-right: 12px;">台中市南屯區 <i
-                                        class="icon-close"></i> </button><br>
-
+                                <div v-for="delivery in dbStoreDelivery">
+                                    <button class="dbtn btnY text20B"
+                                        style="margin-bottom: 20px;padding-left: 16px;padding-right: 12px;">{{ delivery.country }}{{ delivery.districtName }}
+                                        <i class="icon-close"></i>
+                                    </button><br>
+                                </div>
                             </div>
                         </div>
                         <div style="height: 200px;">
@@ -148,7 +157,8 @@
                                             class="spoon"></i>
                                         <p class="text20RG" style="margin-top: 8px;">訂單完成率 {{completeRate}}%
                                         </p>
-                                        <p class="text20R" style="margin-top: 8px;">{{ dbStoreInformation[0].storeAddress }}</p>
+                                        <p class="text20R" style="margin-top: 8px;">
+                                            {{ dbStoreInformation[0].storeAddress }}</p>
                                     </div>
                                     <div class="storeModelImgContentBottom">
                                         <i class="icon-heart" style="opacity: 1;z-index: 999;"
@@ -228,7 +238,8 @@
                                                 <img src="/image/Places.png" class="storeAbout">
                                                 {{ dbStoreInformation[0].storeAddress }}</p>
                                             <p class="text20R" style="color: var(--dDeepGray);margin-bottom: 15px;">
-                                                <img src="/image/Clock.png" class="storeAbout"> {{ dbStoreInformation[0].storeOpen }}
+                                                <img src="/image/Clock.png" class="storeAbout">
+                                                {{ dbStoreInformation[0].storeOpen }}
                                             </p>
                                             <p class="text20B" style="color: var(--dRed);">公休日&nbsp;<span>週三</span>
                                             </p>
@@ -281,441 +292,154 @@
                 </ul>
             </div>
         </div>
-    </div>
-    </div>
-    </div>
-    </div>
 
-    </div>
-    </div>
-    <!-- 儲存彈框 -->
-    <div class="modal fade sm2Btn" id="comfirm2Btn">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title text28B">確認修改</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <i class=" icon-close"></i>
-                    </button>
-                </div>
-                <p class="modal-body text24R">
-                    點選確認修改後將會為您即時更新資料
-                </p>
-                <div class="modal-footer">
-                    <button class="text20R dbtn btnW" data-dismiss="modal">取消返回</button>
-                    <button class="text20R dbtn btnY ml-3">確認修改</button>
+
+        <!-- 儲存彈框 -->
+        <div class="modal fade sm2Btn" id="comfirm2Btn">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title text28B">確認修改</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <i class=" icon-close"></i>
+                        </button>
+                    </div>
+                    <p class="modal-body text24R">
+                        點選確認修改後將會為您即時更新資料
+                    </p>
+                    <div class="modal-footer">
+                        <button class="text20R dbtn btnW" data-dismiss="modal">取消返回</button>
+                        <button class="text20R dbtn btnY ml-3">確認修改</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <!-- 選擇地區彈框 -->
-    <div class="modal fade xl2Btn" id="comfirm2BtnW1340">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title text28B w-100 text-center">配送地區</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <i class=" icon-close"></i>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="mb-s">
-                        <div class="text20B areaTitle">北部</div>
-                        <div class="areaSelect" v-for="(area,index) in north">
-                            <span class="d-flex">
-                                <div class="contry">
-                                    <input type="checkbox">
-                                    <label class=" text20R"
-                                        v-on:click="handleSelect(index,area.country)">{{ area.country }}</label>
-                                </div>
-                                <div class="contrySelect"></div>
-                            </span>
-                            <div class="dblock row areaBlock" v-if="area.isShow">
-                                <div class="area" v-for="(district,id) in area.districtName">
-                                    <input type="checkbox" :id="'north'+district.id" v-model="district.selected">
-                                    <label :for="'north'+district.id" class="text20R">{{district.name}}</label>
+        <!-- 選擇地區彈框 -->
+        <div class="modal fade xl2Btn" id="comfirm2BtnW1340">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title text28B w-100 text-center">配送地區</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <i class=" icon-close"></i>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- 北部 -->
+                        <div class="mb-s">
+                            <div class="text20B areaTitle">北部</div>
+                            <div class="areaSelect" v-for="(area,index) in northList.sort">
+                                <span class="d-flex">
+                                    <div class="contry" :class="{countrySelect : area==tempSelectList[0].country}">
+                                        <input type="checkbox" @click="countryCheck(area)">
+                                        <label class=" text20R countPoint"
+                                            :class="{countrySelectText : area==tempSelectList[0].country}"
+                                            @click="handleSelect(index,area)">{{ area }}</label>
+                                    </div>
+                                    <div class="contrySelect"></div>
+                                </span>
+                                <div class="dblock row areaBlock" v-if="area==tempSelectList[0].country">
+                                    <div class="area" v-for="a in tempSelectList">
+                                        <input type="checkbox" :id="'north'+a.districtID" v-model="a.isSelect">
+                                        <label :for="'north'+a.districtID" class="text20R">{{a.districtName}}</label>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="mb-s">
-                        <div class="text20B areaTitle">中部</div>
-                        <div class="areaSelect" v-for="(area,index) in middle">
-                            <span class="d-flex">
-                                <div class="contry">
-                                    <input type="checkbox">
-                                    <label class=" text20R"
-                                        v-on:click="handleSelect(index,area.country)">{{ area.country }}</label>
-                                </div>
-                                <div class="contrySelect"></div>
-                            </span>
-                            <div class="dblock row areaBlock" v-if="area.isShow">
-                                <div class="area" v-for="(district,id) in area.districtName">
-                                    <input type="checkbox" :id="'north'+district.id" v-model="district.selected">
-                                    <label :for="'north'+district.id" class="text20R">{{district.name}}</label>
+                        <!-- 中部 -->
+                        <div class="mb-s">
+                            <div class="text20B areaTitle">中部</div>
+                            <div class="areaSelect" v-for="(area,index) in centralList.sort">
+                                <span class="d-flex">
+                                    <div class="contry" :class="{countrySelect : area==tempSelectList[0].country}">
+                                        <input type="checkbox" @click="countryCheck(area)">
+                                        <label class=" text20R countPoint"
+                                            :class="{countrySelectText : area==tempSelectList[0].country}"
+                                            v-on:click="handleSelect(index,area)">{{ area }}</label>
+                                    </div>
+                                    <div class="contrySelect"></div>
+                                </span>
+                                <div class="dblock row areaBlock" v-if="area==tempSelectList[0].country">
+                                    <div class="area" v-for="a in tempSelectList">
+                                        <input type="checkbox" :id="'north'+a.districtID" v-model="a.isSelect">
+                                        <label :for="'north'+a.districtID" class="text20R">{{a.districtName}}</label>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-
-                    <div class="mb-s">
-                        <div class="text20B areaTitle">南部</div>
-                        <div class="areaSelect">
-                            <span class="d-flex">
-                                <div class="contry">
-                                    <input type="checkbox">
-                                    <label class=" text20R">高雄市</label>
-                                </div>
-                                <div class="contrySelect"></div>
-                            </span>
-                            <div class="dblock row areaBlock" style="display: none;">
-                                <div class="col" style="padding-left: 0px;">
-                                    <div class="area">
-                                        <input type="checkbox" id="taichung01">
-                                        <label for="taichung01" class="text20R">北屯區</label>
+                        <!-- 南部 -->
+                        <div class="mb-s">
+                            <div class="text20B areaTitle">南部</div>
+                            <div class="areaSelect" v-for="(area,index) in southList.sort">
+                                <span class="d-flex">
+                                    <div class="contry" :class="{countrySelect : area==tempSelectList[0].country}">
+                                        <input type="checkbox" @click="countryCheck(area)">
+                                        <label class=" text20R countPoint"
+                                            :class="{countrySelectText : area==tempSelectList[0].country}"
+                                            v-on:click="handleSelect(index,area)">{{ area }}</label>
                                     </div>
-                                    <div class="area">
-                                        <input type="checkbox" id="taichung02">
-                                        <label for="taichung02" class="text20R">北區</label>
-                                    </div>
-                                    <div class="area">
-                                        <input type="checkbox" id="taichung03">
-                                        <label for="taichung03" class="text20R">西區</label>
-                                    </div>
-                                    <div class="area">
-                                        <input type="checkbox" id="taichung04">
-                                        <label for="taichung04" class="text20R">南屯區</label>
+                                    <div class="contrySelect"></div>
+                                </span>
+                                <div class="dblock row areaBlock" v-if="area==tempSelectList[0].country">
+                                    <div class="area" v-for="a in tempSelectList">
+                                        <input type="checkbox" :id="'north'+a.districtID" v-model="a.isSelect">
+                                        <label :for="'north'+a.districtID" class="text20R">{{a.districtName}}</label>
                                     </div>
                                 </div>
-                                <div class="col" style="padding-left: 0px;">
-                                    <div class="area">
-                                        <input type="checkbox" id="taichung05">
-                                        <label for="taichung05" class="text20R areaMargin">大坑區</label>
+                            </div>
+                        </div>
+                        <!-- 東部 -->
+                        <div class="mb-s">
+                            <div class="text20B areaTitle">東部</div>
+                            <div class="areaSelect" v-for="(area,index) in eastList.sort">
+                                <span class="d-flex">
+                                    <div class="contry" :class="{countrySelect : area==tempSelectList[0].country}">
+                                        <input type="checkbox" @click="countryCheck(area)">
+                                        <label class=" text20R countPoint"
+                                            :class="{countrySelectText : area==tempSelectList[0].country}"
+                                            v-on:click="handleSelect(index,area)">{{ area }}</label>
                                     </div>
-                                    <div class="area">
-                                        <input type="checkbox" id="taichung06">
-                                        <label for="taichung06" class="text20R">中區</label>
-                                    </div>
-                                    <div class="area">
-                                        <input type="checkbox" id="taichung07">
-                                        <label for="taichung07" class="text20R">西屯區</label>
-                                    </div>
-                                    <div class="area">
-                                        <input type="checkbox" id="taichung08">
-                                        <label for="taichung08" class="text20R">大雅區</label>
+                                    <div class="contrySelect"></div>
+                                </span>
+                                <div class="dblock row areaBlock" v-if="area==tempSelectList[0].country">
+                                    <div class="area" v-for="tempSelect in tempSelectList">
+                                        <input type="checkbox" :id="'north'+tempSelect.districtID"
+                                            :value="tempSelect.districtID" v-model="selectedDelivery.districkID">
+                                        <label :for="'north'+tempSelect.districtID"
+                                            class="text20R">{{tempSelect.districtName}}</label>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="areaSelect">
-                            <span class="d-flex">
-                                <div class="contry">
-                                    <input type="checkbox">
-                                    <label class=" text20R">嘉義市</label>
-                                </div>
-                                <div class="contrySelect"></div>
-                            </span>
-                            <div class="dblock row areaBlock" style="display: none;">
-                                <div class="col" style="padding-left: 0px;">
-                                    <div class="area">
-                                        <input type="checkbox" id="taichung01">
-                                        <label for="taichung01" class="text20R">北屯區</label>
-                                    </div>
-                                    <div class="area">
-                                        <input type="checkbox" id="taichung02">
-                                        <label for="taichung02" class="text20R">北區</label>
-                                    </div>
-                                    <div class="area">
-                                        <input type="checkbox" id="taichung03">
-                                        <label for="taichung03" class="text20R">西區</label>
-                                    </div>
-                                    <div class="area">
-                                        <input type="checkbox" id="taichung04">
-                                        <label for="taichung04" class="text20R">南屯區</label>
-                                    </div>
-                                </div>
-                                <div class="col" style="padding-left: 0px;">
-                                    <div class="area">
-                                        <input type="checkbox" id="taichung05">
-                                        <label for="taichung05" class="text20R areaMargin">大坑區</label>
-                                    </div>
-                                    <div class="area">
-                                        <input type="checkbox" id="taichung06">
-                                        <label for="taichung06" class="text20R">中區</label>
-                                    </div>
-                                    <div class="area">
-                                        <input type="checkbox" id="taichung07">
-                                        <label for="taichung07" class="text20R">西屯區</label>
-                                    </div>
-                                    <div class="area">
-                                        <input type="checkbox" id="taichung08">
-                                        <label for="taichung08" class="text20R">大雅區</label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="areaSelect">
-                            <span class="d-flex">
-                                <div class="contry">
-                                    <input type="checkbox">
-                                    <label class=" text20R">嘉義縣</label>
-                                </div>
-                                <div class="contrySelect"></div>
-                            </span>
-                            <div class="dblock row areaBlock" style="display: none;">
-                                <div class="col" style="padding-left: 0px;">
-                                    <div class="area">
-                                        <input type="checkbox" id="taichung01">
-                                        <label for="taichung01" class="text20R">北屯區</label>
-                                    </div>
-                                    <div class="area">
-                                        <input type="checkbox" id="taichung02">
-                                        <label for="taichung02" class="text20R">北區</label>
-                                    </div>
-                                    <div class="area">
-                                        <input type="checkbox" id="taichung03">
-                                        <label for="taichung03" class="text20R">西區</label>
-                                    </div>
-                                    <div class="area">
-                                        <input type="checkbox" id="taichung04">
-                                        <label for="taichung04" class="text20R">南屯區</label>
-                                    </div>
-                                </div>
-                                <div class="col" style="padding-left: 0px;">
-                                    <div class="area">
-                                        <input type="checkbox" id="taichung05">
-                                        <label for="taichung05" class="text20R areaMargin">大坑區</label>
-                                    </div>
-                                    <div class="area">
-                                        <input type="checkbox" id="taichung06">
-                                        <label for="taichung06" class="text20R">中區</label>
-                                    </div>
-                                    <div class="area">
-                                        <input type="checkbox" id="taichung07">
-                                        <label for="taichung07" class="text20R">西屯區</label>
-                                    </div>
-                                    <div class="area">
-                                        <input type="checkbox" id="taichung08">
-                                        <label for="taichung08" class="text20R">大雅區</label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="areaSelect">
-                            <span class="d-flex">
-                                <div class="contry">
-                                    <input type="checkbox">
-                                    <label class=" text20R">台南市</label>
-                                </div>
-                                <div class="contrySelect"></div>
-                            </span>
-                            <div class="dblock row areaBlock" style="display: none;">
-                                <div class="col" style="padding-left: 0px;">
-                                    <div class="area">
-                                        <input type="checkbox" id="taichung01">
-                                        <label for="taichung01" class="text20R">北屯區</label>
-                                    </div>
-                                    <div class="area">
-                                        <input type="checkbox" id="taichung02">
-                                        <label for="taichung02" class="text20R">北區</label>
-                                    </div>
-                                    <div class="area">
-                                        <input type="checkbox" id="taichung03">
-                                        <label for="taichung03" class="text20R">西區</label>
-                                    </div>
-                                    <div class="area">
-                                        <input type="checkbox" id="taichung04">
-                                        <label for="taichung04" class="text20R">南屯區</label>
-                                    </div>
-                                </div>
-                                <div class="col" style="padding-left: 0px;">
-                                    <div class="area">
-                                        <input type="checkbox" id="taichung05">
-                                        <label for="taichung05" class="text20R areaMargin">大坑區</label>
-                                    </div>
-                                    <div class="area">
-                                        <input type="checkbox" id="taichung06">
-                                        <label for="taichung06" class="text20R">中區</label>
-                                    </div>
-                                    <div class="area">
-                                        <input type="checkbox" id="taichung07">
-                                        <label for="taichung07" class="text20R">西屯區</label>
-                                    </div>
-                                    <div class="area">
-                                        <input type="checkbox" id="taichung08">
-                                        <label for="taichung08" class="text20R">大雅區</label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="areaSelect" style="margin-right: 0px;">
-                            <span class="d-flex">
-                                <div class="contry">
-                                    <input type="checkbox">
-                                    <label class=" text20R">屏東縣</label>
-                                </div>
-                                <div class="contrySelect"></div>
-                            </span>
-                            <div class="dblock row areaBlock" style="display: none;">
-                                <div class="col" style="padding-left: 0px;">
-                                    <div class="area">
-                                        <input type="checkbox" id="taichung01">
-                                        <label for="taichung01" class="text20R">北屯區</label>
-                                    </div>
-                                    <div class="area">
-                                        <input type="checkbox" id="taichung02">
-                                        <label for="taichung02" class="text20R">北區</label>
-                                    </div>
-                                    <div class="area">
-                                        <input type="checkbox" id="taichung03">
-                                        <label for="taichung03" class="text20R">西區</label>
-                                    </div>
-                                    <div class="area">
-                                        <input type="checkbox" id="taichung04">
-                                        <label for="taichung04" class="text20R">南屯區</label>
-                                    </div>
-                                </div>
-                                <div class="col" style="padding-left: 0px;">
-                                    <div class="area">
-                                        <input type="checkbox" id="taichung05">
-                                        <label for="taichung05" class="text20R areaMargin">大坑區</label>
-                                    </div>
-                                    <div class="area">
-                                        <input type="checkbox" id="taichung06">
-                                        <label for="taichung06" class="text20R">中區</label>
-                                    </div>
-                                    <div class="area">
-                                        <input type="checkbox" id="taichung07">
-                                        <label for="taichung07" class="text20R">西屯區</label>
-                                    </div>
-                                    <div class="area">
-                                        <input type="checkbox" id="taichung08">
-                                        <label for="taichung08" class="text20R">大雅區</label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="mb-s">
-                        <div class="text20B areaTitle">南部</div>
-                        <div class="areaSelect">
-                            <span class="d-flex">
-                                <div class="contry">
-                                    <input type="checkbox">
-                                    <label class=" text20R">花蓮市</label>
-                                </div>
-                                <div class="contrySelect"></div>
-                            </span>
-                            <div class="dblock row areaBlock" style="display: none;">
-                                <div class="col" style="padding-left: 0px;">
-                                    <div class="area">
-                                        <input type="checkbox" id="taichung01">
-                                        <label for="taichung01" class="text20R">北屯區</label>
-                                    </div>
-                                    <div class="area">
-                                        <input type="checkbox" id="taichung02">
-                                        <label for="taichung02" class="text20R">北區</label>
-                                    </div>
-                                    <div class="area">
-                                        <input type="checkbox" id="taichung03">
-                                        <label for="taichung03" class="text20R">西區</label>
-                                    </div>
-                                    <div class="area">
-                                        <input type="checkbox" id="taichung04">
-                                        <label for="taichung04" class="text20R">南屯區</label>
-                                    </div>
-                                </div>
-                                <div class="col" style="padding-left: 0px;">
-                                    <div class="area">
-                                        <input type="checkbox" id="taichung05">
-                                        <label for="taichung05" class="text20R areaMargin">大坑區</label>
-                                    </div>
-                                    <div class="area">
-                                        <input type="checkbox" id="taichung06">
-                                        <label for="taichung06" class="text20R">中區</label>
-                                    </div>
-                                    <div class="area">
-                                        <input type="checkbox" id="taichung07">
-                                        <label for="taichung07" class="text20R">西屯區</label>
-                                    </div>
-                                    <div class="area">
-                                        <input type="checkbox" id="taichung08">
-                                        <label for="taichung08" class="text20R">大雅區</label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="areaSelect">
-                            <span class="d-flex">
-                                <div class="contry">
-                                    <input type="checkbox">
-                                    <label class=" text20R">台中市</label>
-                                </div>
-                                <div class="contrySelect"></div>
-                            </span>
-                            <div class="dblock row areaBlock" style="display: none;">
-                                <div class="col" style="padding-left: 0px;">
-                                    <div class="area">
-                                        <input type="checkbox" id="taichung01">
-                                        <label for="taichung01" class="text20R">北屯區</label>
-                                    </div>
-                                    <div class="area">
-                                        <input type="checkbox" id="taichung02">
-                                        <label for="taichung02" class="text20R">北區</label>
-                                    </div>
-                                    <div class="area">
-                                        <input type="checkbox" id="taichung03">
-                                        <label for="taichung03" class="text20R">西區</label>
-                                    </div>
-                                    <div class="area">
-                                        <input type="checkbox" id="taichung04">
-                                        <label for="taichung04" class="text20R">南屯區</label>
-                                    </div>
-                                </div>
-                                <div class="col" style="padding-left: 0px;">
-                                    <div class="area">
-                                        <input type="checkbox" id="taichung05">
-                                        <label for="taichung05" class="text20R areaMargin">大坑區</label>
-                                    </div>
-                                    <div class="area">
-                                        <input type="checkbox" id="taichung06">
-                                        <label for="taichung06" class="text20R">中區</label>
-                                    </div>
-                                    <div class="area">
-                                        <input type="checkbox" id="taichung07">
-                                        <label for="taichung07" class="text20R">西屯區</label>
-                                    </div>
-                                    <div class="area">
-                                        <input type="checkbox" id="taichung08">
-                                        <label for="taichung08" class="text20R">大雅區</label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="text20B" style="margin-top: 70px;display: inline-block;margin-right: 40px;">已選擇區域
-                    </div>
-                    <button class="dbtn btnY text20B areaSelected">台中市北屯區 <i class="icon-close"></i> </button>
-                    <button class="dbtn btnY text20B areaSelected">台中市南屯區 <i class="icon-close"></i> </button>
 
 
-                </div>
-                <div class="modal-footer">
-                    <button class="text20R dbtn btnW" data-dismiss="modal">取消返回</button>
-                    <button class="text20R dbtn btnY ml-3">確認修改</button>
+
+                        <div class="text20B" style="margin-top: 70px;display: inline-block;margin-right: 40px;">已選擇區域
+                        </div>
+                        <button v-for="delivery in dbStoreDelivery"
+                            class="dbtn btnY text20B areaSelected">{{ delivery.country }}{{ delivery.districtName }}<i
+                                class="icon-close"></i> </button>
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <button class="text20R dbtn btnW" data-dismiss="modal">取消返回</button>
+                        <button class="text20R dbtn btnY ml-3">確認修改</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-
     </div>
 
     <script src="/javascript/vue.js"></script>
     <script>
         let data = {
-            tempSelectList: [],
+            deliveryList: [],
+            selectedDelivery: {
+                districkID: []
+            },
+            tempSelectList: [{ country: "無" }],
             dbStoreInformation: JSON.parse('<%- a %>'),
             dbDistrickNorth: JSON.parse('<%- b %>'),
             dbDistrickCentral: JSON.parse('<%- c %>'),
@@ -723,6 +447,10 @@
             dbCommentScore: JSON.parse('<%- e %>'),
             dbComment: JSON.parse('<%- f %>'),
             dbOrderSelect: JSON.parse('<%- g %>'),
+            dbDistrickSouth: JSON.parse('<%- h %>'),
+            dbDistrickEast: JSON.parse('<%- i %>'),
+            dbDistrick: JSON.parse('<%- j %>'),
+            dbStoreDelivery: JSON.parse('<%- k %>'),
             tab: 1,
             active: true,
             id: 3,
@@ -880,33 +608,86 @@
             el: "#storeInformation",
             data: data,
             computed: {
+                // 北部
                 northList() {
                     let dbDistrickObj = {
                         sort: [],
                         map: {},
-                        isShow: false,
                     }
-                    this.dbDistrickNorth.forEach(({ districtID, districtName, country, }, index) => {
+                    this.dbDistrickNorth.forEach(({ districtID, districtName, country, isSelect }, index) => {
                         if (!dbDistrickObj.map[country]) {
                             dbDistrickObj.sort.push(country)
                             dbDistrickObj.map[country] = {
                                 sort: [],
                                 map: {},
-                                isShow: false
                             }
                         }
-                        dbDistrickObj.map[country].sort.push(districtName)
+                        dbDistrickObj.map[country].sort.push({ districtName, districtID, isSelect })
                         // dbDistrickObj.map[country].sort.push({isShow: false})
-                        dbDistrickObj.map[country].map[districtName] = { districtID, index }
+                        dbDistrickObj.map[country].map[districtName] = { districtID, isSelect }
                     })
                     return dbDistrickObj
-
-
                 },
-                northDistrictList() {
-                    return this.northList.map[index]
+                // 中部
+                centralList() {
+                    let dbDistrickObj = {
+                        sort: [],
+                        map: {},
+                    }
+                    this.dbDistrickCentral.forEach(({ districtID, districtName, country, isSelect }, index) => {
+                        if (!dbDistrickObj.map[country]) {
+                            dbDistrickObj.sort.push(country)
+                            dbDistrickObj.map[country] = {
+                                sort: [],
+                                map: {},
+                            }
+                        }
+                        dbDistrickObj.map[country].sort.push({ districtName, districtID, isSelect })
+                        // dbDistrickObj.map[country].sort.push({isShow: false})
+                        dbDistrickObj.map[country].map[districtName] = { districtID, isSelect }
+                    })
+                    return dbDistrickObj
                 },
-
+                // 南部
+                southList() {
+                    let dbDistrickObj = {
+                        sort: [],
+                        map: {},
+                    }
+                    this.dbDistrickSouth.forEach(({ districtID, districtName, country, isSelect }, index) => {
+                        if (!dbDistrickObj.map[country]) {
+                            dbDistrickObj.sort.push(country)
+                            dbDistrickObj.map[country] = {
+                                sort: [],
+                                map: {},
+                            }
+                        }
+                        dbDistrickObj.map[country].sort.push({ districtName, districtID, isSelect })
+                        // dbDistrickObj.map[country].sort.push({isShow: false})
+                        dbDistrickObj.map[country].map[districtName] = { districtID, isSelect }
+                    })
+                    return dbDistrickObj
+                },
+                // 東部
+                eastList() {
+                    let dbDistrickObj = {
+                        sort: [],
+                        map: {},
+                    }
+                    this.dbDistrickEast.forEach(({ districtID, districtName, country, isSelect }, index) => {
+                        if (!dbDistrickObj.map[country]) {
+                            dbDistrickObj.sort.push(country)
+                            dbDistrickObj.map[country] = {
+                                sort: [],
+                                map: {},
+                            }
+                        }
+                        dbDistrickObj.map[country].sort.push({ districtName, districtID, isSelect })
+                        // dbDistrickObj.map[country].sort.push({isShow: false})
+                        dbDistrickObj.map[country].map[districtName] = { districtID, isSelect }
+                    })
+                    return dbDistrickObj
+                },
                 productList() {
                     let productObj = {
                         sort: [],
@@ -952,18 +733,33 @@
                     this.tab = index
                     return this.tab
                 },
-                handleSelect(index, type) {
-                    this.tempSelectList = this.dbDistrickNorth.filter(item => {
-                        if (item.country == type) return item
-                    })
-                    // console.log(this.northList[index])
-                    if (this.north[index].isShow == false) {
-                        this.north[index].isShow = true
-                    } else if (this.north[index].isShow == true) {
-                        this.north[index].isShow = false
+                // 區選單
+                handleSelect(index, area) {
+                    if (area == this.tempSelectList[0].country) {
+                        this.tempSelectList = [{ country: "無" }]
+                    } else {
+                        this.tempSelectList = this.dbDistrick.filter(item => {
+                            if (item.country == area) return item
+                        })
                     }
-                },
+                    // console.log(area)
 
+
+                },
+                countryCheck(area) {
+                    var allCheck = this.dbDistrick.filter(item => {
+                        if (item.country == area) return item
+                    })
+                    if (event.target.checked == true) {
+                        allCheck.forEach(item => {
+                            item.isSelect = true
+                        })
+                    } else {
+                        allCheck.forEach(item => {
+                            item.isSelect = false
+                        })
+                    }
+                }
             },
 
 

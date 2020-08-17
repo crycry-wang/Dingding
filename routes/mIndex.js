@@ -24,11 +24,16 @@ var commentSql;
 var commentScoreSql;
 //訂單總數(算完成率用)
 var orderFinishSql;
+// 會員收藏店家
+var likeStoreSql;
 
 router.get('/', function(req, res, next) {
   memberId =  req.session.memberID;
   member = memberSelect + memberId;
-  memberSelect = 'select * from `member` where memberID=';
+  memberSelect = 'select a.`memberID`,a.`memberName`,a.`memberPhoto`,\
+  count(b.`noticeStatus`) as noticeCount from `member` as a,\
+  `notice` as b where a.memberID=b.toWhoID and toWhoType=2 \
+  and b.noticeStatus=1 and memberID=';
   storeID = 1;
   storeIndexSql = 'SELECT storeID,storeName,storeBanner FROM `store`';
   districtSql = 'SELECT * FROM `district`';
@@ -37,6 +42,7 @@ router.get('/', function(req, res, next) {
   commentSql = 'SELECT a.storeID,a.memberID,a.commentContent,a.commentScore,a.commentTime,b.memberName,b.memberPhoto FROM `comment` a LEFT JOIN `member` b on a.memberID=b.memberID where storeID='+ storeID ;
   storeProductSql = 'SELECT a.storeID,a.productID,a.productName,a.categoryID,a.productPhoto,a.productinformation,a.productPrice,b.categoryName FROM `product` a LEFT JOIN `category` b on a.categoryID=b.categoryID WHERE a.storeID='+ storeID;
   storeInformationSql = 'SELECT * FROM `store` where storeID='+ storeID ;
+  likeStoreSql = 'SELECT a.memberID,a.storeID,b.storeName from `likestore` a left join `store` b on a.storeID=b.storeID where a.memberID='+ memberId ;
 
   next();
 });
@@ -47,6 +53,7 @@ router.get('/', function(req, res, next) {
 
 
 /* GET home page. */
+// 抓店家彈框資訊
 router.get('/getDetail',async(req,res,next) => {
   storeID=req.query.storeID;
   // 店家資訊
@@ -164,6 +171,18 @@ const getDistrictData = (req)=>{
       })
   })
 };
+// 會員收藏店家
+const getLikeStoreData = (req)=>{
+  return new Promise((resolve,reject)=>{
+    db.queryAsync(likeStoreSql)
+      .then(results=>{
+        resolve(results);
+      })
+      .catch(ex=>{
+        reject(ex);
+      })
+  })
+};
 // 一般會員資料
 const getLoginData = (req) => {
   return new Promise((resolve, reject) => {
@@ -176,6 +195,7 @@ const getLoginData = (req) => {
       })
   })
 };
+
 
 //側邊欄
 const getMemberData = (req) => {
@@ -201,6 +221,7 @@ router.get('/',async(req,res)=>{
   const f = await commentData(req);
   const g = await orderFinishData(req);
   const h = await storeProductData(req);
+  const i = await getLikeStoreData(req);
   district = JSON.stringify(a)
   storeIndex = JSON.stringify(b);
   memberLogin = JSON.stringify(c);
@@ -209,6 +230,7 @@ router.get('/',async(req,res)=>{
   comment = JSON.stringify(f);
   orderFinish = JSON.stringify(g);
   storeProduct = JSON.stringify(h);
+  likeStore = JSON.stringify(i);
   // console.log(req.session.memberID)
   
   res.render('mIndex', {
@@ -221,6 +243,7 @@ router.get('/',async(req,res)=>{
     f:comment,
     g:orderFinish,
     h:storeProduct,
+    i:likeStore,
      active: 'mIndex'
     });
   console.log(newsJSON);

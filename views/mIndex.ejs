@@ -17,8 +17,9 @@
     <link rel="stylesheet" href="/stylesheets/index.css">
     <script src="/javascript/vue.js"></script>
     <script src="/javascript/getDate.js"></script>
+    <link rel="Shortcut Icon" type="image/x-icon" href="/image/favicon.png">
 
-    <title>Document</title>
+    <title>dingding</title>
 
 
     <style>
@@ -33,6 +34,9 @@
 
         .dingImg {
             max-height: 250px;
+        }
+        .heartSelect{
+            opacity: 1;
         }
     </style>
 
@@ -82,10 +86,11 @@
                                     <div class="dOption text20R districkOption" v-for="districk in districkList.sort">
                                         {{ districk }}</div>
                                 </div>
-                            <div class="d-inline-block">
-                                <button class=" dbtn btnY d-inline-block"
-                                    style="font-size: 16px;line-height: 30px;">尋找食物</button>
-                            </div>
+                            
+                        </div>
+                        <div class="d-inline-block">
+                            <button class=" dbtn btnY d-inline-block"
+                                style="font-size: 16px;line-height: 30px;">尋找食物</button>
                         </div>
                     </div>
 
@@ -112,10 +117,10 @@
                     @click="handleChange(-3)">
             </h3>
             <div class="row">
-                <div class="col-4 pr-3 imgCard" @click="getDetail(item.storeID)" v-for="(item,type) in filterStore" :key="item.storeID">
+                <div class="col-4 pr-3 imgCard" @click="getDetail(item.storeID)" v-for="(item,index) in filterStore" :key="item.storeID">
                     <div class="dingImgDiv" style="width:  100%">
                         <img :src="'/image/store/' + item.storeBanner" class="card-img-top dingImg" alt="..." data-toggle="modal" data-target="#sstoreModel">
-                        <i class="heart icon-heart"></i>
+                        <i class="heart icon-heart" @click="likeStore(item.storeID)" :class="likeStoreStyle(item.storeID)"></i>
                         <div class="card-body">
                             <div class="d-inline-block w-75">
                                 <span class="card-text text24B shopName">{{ item.storeName }}</span>
@@ -908,6 +913,8 @@
                 dbOrderFinish: JSON.parse('<%- g %>'),
                 // 店家商品
                 dbstoreProduct: JSON.parse('<%- h %>'),
+                //收藏店家
+                dbLikeStore: JSON.parse('<%- i %>'),
                 // 搜尋欄縣市
                 input: {
                     country: country,
@@ -1049,6 +1056,24 @@
                             
                         })
                 },
+
+                likeStoreStyle(storeID){
+                    for (let i = 0; i < this.dbLikeStore.length; i++) {
+                        if (this.dbLikeStore[i].storeID == storeID) {
+                            return "heartSelect";
+                        }
+                    }
+                },
+                likeStore(storeID){
+                    console.log(storeID)
+                    for (let i = 0; i < this.dbLikeStore.length; i++) {
+                        if (this.dbLikeStore[i].storeID == storeID) {
+                            console.log("已收藏")
+                        }else{
+                            console.log("未收藏")
+                        }
+                    }
+                }
             }
 
 
