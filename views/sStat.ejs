@@ -31,13 +31,14 @@
         <!-- 右邊內容放置區 -->
 
         <nav class="topTag row inWrapper position-sticky">
-            <div class="dTag text24RG act">日營業額</div>
-            <div class="dTag text24RG">月營業額</div>
+            <div :class="tab==0 ?'dTag text24RG act':'dTag text24RG'" @click='tab=0'>日營業額</div>
+            <div :class="tab==1 ?'dTag text24RG act':'dTag text24RG'" @click='month'>月營業額</div>
         </nav>
         <ul class="statList">
             <li>
                 <h2 class="text20RG">日期</h2>
-                <p class="eng24R">{{date}}</p>
+                <p class="eng24R" v-if='tab==0'>{{date}}</p>
+                <p class="eng24R" v-if='tab==1'>{{(date).slice(0,6)}}月</p>
             </li>
             <li>
                 <h2 class="text20RG">訂單量</h2>
@@ -49,11 +50,13 @@
             </li>
         </ul>
         <div class="d-flex align-items-center">
-            <img class="lrImg" src="/image/left.png" @click='backDate'>
+            <img class="lrImg" src="/image/left.png" v-if='tab==0' @click='backDate'>
+            <img class="lrImg" src="/image/left.png" v-if='tab==1' @click='backMonth'>
             <div class="dblock mt-4 col-10">
                 <canvas id="chart" width="800" height="400"></canvas>
             </div>
-            <img class="lrImg" src="/image/right.png" @click='addDate'>
+            <img class="lrImg" src="/image/right.png" v-if='tab==0' @click='addDate'>
+            <img class="lrImg" src="/image/right.png" v-if='tab==1' @click='backMonth'>
         </div>
 
         <div class="typeButton">
@@ -75,38 +78,8 @@
  -->
 
     </div>
-    <!-- vue -->
+
     <script>
-        // data資料
-
-        // let data = {
-        //     category: [{
-        //             categoryID: '0',
-        //             categoryName: '套餐',
-        //             productName: 'A套餐',
-        //             productName: 'B套餐',
-        //             productName: 'C套餐',
-        //         }, {
-        //             categoryID: '1',
-        //             categoryName: '漢堡',
-        //             productName: '摩絲熱狗堡',
-        //             productName: '摩絲熱狗堡1',
-        //             productName: '摩絲熱狗堡3',
-        //         }, {
-        //             categoryID: '2',
-        //             categoryName: '飲品',
-        //             productName: '可樂',
-        //             productName: '雪碧',
-        //             productName: '玉米濃湯',
-        //         }
-
-        //     ],
-        //     date: '2020.07.01',
-        //     orderTotle: 1215,
-        //     orderAmount: 31245
-        // }
-
-
         //vue資料
         // 今日時間
         var date = new Date();
@@ -125,7 +98,8 @@
                 date: date.getFullYear() + '.' + (date.getMonth() + 1) + '.'
                     + date.getDate(),
                 dateEnd: date.getFullYear() + '.' + (date.getMonth() + 1) + '.'
-                    + (date.getDate() + 1)
+                    + (date.getDate() + 1),
+                tab: '0'
             },
             mounted: function () {
 
@@ -308,21 +282,80 @@
                 backDate() {
                     date -= 86400000;
                     date = new Date(date);
-
+                    // 開始時間
                     dateStart = date.getFullYear() + '.' + (date.getMonth() + 1) + '.'
                         + date.getDate();
-
                     this.date = dateStart;
+
+                    // 結束時間
                     dateEnd = date.getFullYear() + '.' + (date.getMonth() + 1) + '.'
                         + (date.getDate() + 1);
-
                     this.dateEnd = dateEnd;
-
                     let dateRang = {
                         dateStart: dateStart,
                         dateEnd: dateEnd
                     }
+                    this.fetchTime();
 
+
+                },
+                addDate() {
+                    date = date.setDate(date.getDate() + 1);
+                    date = new Date(date);
+                    // 開始時間
+                    dateStart = date.getFullYear() + '.' + (date.getMonth() + 1) + '.'
+                        + date.getDate();
+                    this.date = dateStart;
+
+                    // 結束時間
+                    dateEnd = date.getFullYear() + '.' + (date.getMonth() + 1) + '.'
+                        + (date.getDate() + 1);
+                    this.dateEnd = dateEnd;
+                    let dateRang = {
+                        dateStart: dateStart,
+                        dateEnd: dateEnd
+                    }
+                    this.fetchTime();
+                    // 月份
+                }, month() {
+                    this.tab = 1;
+                    date = new Date();
+                    y = date.getFullYear(), m = date.getMonth();
+                    // 第一天
+                    date = new Date(y, m, 1);
+                    this.date = date.getFullYear() + '.' + (date.getMonth() + 1) + '.'
+                        + date.getDate()
+                    // 最後一天
+                    y = date.getFullYear(), m = date.getMonth();
+                    date = new Date(y, m + 1, 0);
+
+                }, backMonth() {
+
+                    // 開始時間
+                    date = date.setMonth(date.getMonth() - 1);
+                    date = new Date(date)
+                    y = date.getFullYear(), m = date.getMonth();
+                    date = new Date(y, m, 1);
+                    dateStart = date.getFullYear() + '.' + (date.getMonth() + 1) + '.'
+                        + date.getDate()
+                    this.date = dateStart;
+
+                    // 結束時間
+                    y = date.getFullYear(), m = date.getMonth();
+                    date1 = new Date(y, m + 1, 0);
+                    dateEnd = date1.getFullYear() + '.' + (date1.getMonth() + 1) + '.'
+                        + date1.getDate();
+                    this.dateEnd = dateEnd;
+                    let dateRang = {
+                        dateStart: dateStart,
+                        dateEnd: dateEnd
+                    }
+                    this.fetchTime();
+                }, addMonth() {
+
+
+                }, fetchTime() {
+                    // fetch時間
                     fetch('sStat/getDate?dateStart=' + dateStart + '&dateEnd=' + dateEnd)
                         .then(function (response) {
                             return response.json();
@@ -330,15 +363,8 @@
                         .then((myJson) => {
                             this.orderSumData = JSON.parse(myJson);
                             console.log(JSON.parse(myJson));
-                   
-                        });
 
-                },
-                addDate() {
-                    date = date.setDate(date.getDate() + 1);
-                    date = new Date(date);
-                    this.dateEnd = date.getFullYear() + '.' + (date.getMonth() + 1) + '.'
-                        + date.getDate();
+                        });
                 }
 
             }

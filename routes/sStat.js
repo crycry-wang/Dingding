@@ -30,7 +30,8 @@ router.get('/', function (req, res, next) {
     dateStart = date.getFullYear() + '.' + (date.getMonth() + 1) + '.'
         + date.getDate();
     dateEnd = date.getFullYear() + '.' + (date.getMonth() + 1) + '.'
-        + date.getDate()+1;
+        + (date.getDate() + 1);
+    // console.log(dateEnd)
 
     allType = 'SELECT a.`categoryName`,b.productName,a.`categoryID` FROM `category` as a,\
     `product` as b where a.categoryID=b.categoryID and a.storeId='+ storeID;
@@ -42,7 +43,7 @@ router.get('/', function (req, res, next) {
       and c.`categoryID`=d.`categoryID` and a.`orderStatus`=5 and a.storeID='+ storeID +
         ' and a.`orderDeadline`>= "' + dateStart + '" and a.`orderDeadline`< "' + dateEnd +
         '" GROUP by productName,categoryName,categoryID'
-    // console.log(orderSum);
+    console.log(orderSum);
     next();
 
 });
