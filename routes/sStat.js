@@ -41,7 +41,7 @@ router.get('/', function (req, res, next) {
      `category` as d WHERE a.orderID=b.orderID and b.`productID`=c.`productID`\
       and c.`categoryID`=d.`categoryID` and a.`orderStatus`=5 and a.storeID='+ storeID +
         ' and a.`orderDeadline`>= "' + dateStart + '" and a.`orderDeadline`< "' + dateEnd +
-        '" GROUP by c.productName'
+        '" GROUP by productName,categoryName,categoryID'
     // console.log(orderSum);
     next();
 

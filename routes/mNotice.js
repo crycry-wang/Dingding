@@ -34,7 +34,7 @@ router.get('/', function (req, res, next) {
     `store` as c ,`orderdetail` as d where a.noticeData=b.orderID and\
      noticeType=1 and b.storeID=c.storeID and a.noticeData=d.orderID and\
       toWhoType=2 and toWhoID=';
-    orderNotice = `${orderNoticeSelect}${memberId} group by b.orderID`;
+    orderNotice = `${orderNoticeSelect}${memberId} group by noticeID,noticeTime,orderStatus,orderID,storeName,storePhoto`;
     // 團體通知
     group='SELECT a.`noticeID`,a.`noticeType`,a.`noticeTime`,a.`noticeStatus`,c.groupName from `notice` as a,\
      `order` as b,`group` as c where a.noticeData=b.orderID and b.groupID=c.groupID\
