@@ -178,7 +178,7 @@
                     <div class="modal-footer">
                         <button class="text20R dbtn btnW" data-dismiss="modal">取消返回</button>
                         <button class="text20R dbtn btnY ml-3" v-if='productIndex<0'>確定新增</button>
-                        <button class="text20R dbtn btnY ml-3" v-else>確定修改</button>
+                        <button class="text20R dbtn btnY ml-3" v-else @click='setcheck'>確定修改</button>
                     </div>
                 </div>
             </div>
@@ -194,7 +194,7 @@
                     </div>
 
                     <div class="modal-footer">
-                        <button class="text20R dbtn btnY m-auto">確定</button>
+                        <button class="text20R dbtn btnY m-auto" @click='setInfo'>確定</button>
                     </div>
                 </div>
             </div>
@@ -333,8 +333,8 @@
 
 
                     <div class="modal-footer">
-                        <button class="text20R dbtn btnW " data-dismiss="modal ">取消返回</button>
-                        <button class="text20R dbtn btnY ml-3 ">確定修改</button>
+                        <button class="text20R dbtn btnW" data-dismiss="modal">取消返回</button>
+                        <button class="text20R dbtn btnY ml-3">確定修改</button>
                     </div>
                 </div>
             </div>
@@ -356,7 +356,7 @@
                 comfirm: '',
                 type: '',
                 categoryName: '選擇類別',
-                recommendfir:'',
+                recommendfir: '',
                 productflag: '',
 
             },
@@ -433,6 +433,33 @@
                     $('#comfirm').modal('show');
 
                 }
+                // 修改產品
+                ,setcheck(){
+                    this.comfirm='修改成功'
+                    $('#product').modal('hide');
+                    $('#comfirm').modal('show');
+
+                }
+                , setInfo() {
+                    let index = this.productIndex;
+                    let product = this.productData[index];
+                    product.categoryName = this.categoryName;
+                   
+                    fetch('sProduct/setInfo', {
+                        method: 'POST',
+                        body: JSON.stringify(product),
+                        headers: new Headers({
+                            'Content-Type': 'application/json'
+                        })
+                    })
+                        .then(
+                            location.href = "sProduct"
+                        )
+                        .catch(
+                            error => console.error('Error:', error)
+                        )
+
+                }
                 // 函式庫
                 , mTransE() {
                     il = 0;
@@ -449,7 +476,7 @@
                 }
 
             },
-           
+
         })
 
 

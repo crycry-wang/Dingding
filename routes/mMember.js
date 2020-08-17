@@ -70,6 +70,18 @@ router.post('/deleteStore', function (req, res, next) {
 // })
 
 // 增加地址
+
+// 修改暱稱與電話
+router.post('/saveInfo', function (req, res, next) {
+    db.query('update `member` set `memberName`= "' + req.body.memberName +
+        '", memberPhone="' + req.body.memberPhone + '" where `memberID`=' + req.body.memberID,
+        function () {
+            console.log('修改暱稱與電話')
+        })
+
+        next();
+})
+
 router.post('/saveInfo', function (req, res, next) {
     let arr = req.body.memberInfo;
     console.log(arr)
@@ -80,28 +92,9 @@ router.post('/saveInfo', function (req, res, next) {
             function () {
                 console.log('增加地址')
             })
-            .catch(function () {
-                console.log('err');
-            })
-
-        next();
-
+           
     }
 })
-
-// 修改暱稱與電話
-router.post('/saveInfo', function (req, res, next) {
-    db.query('update `member` set `memberName`= "' + req.body.memberName +
-        '", memberPhone="' + req.body.memberPhone + '" where `memberID`=' + req.body.memberID,
-        function () {
-            console.log('修改暱稱與電話')
-        })
-        .catch(function () {
-            console.log('err');
-        })
-
-})
-
 
 
 

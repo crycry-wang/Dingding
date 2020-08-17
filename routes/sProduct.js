@@ -13,10 +13,32 @@ a.`storePhoto`,count(b.`noticeStatus`) as\
 
 // 產品
 const productSelect = 'SELECT a.`productName`,a.`productPhoto`,\
-a.`productInformation`,a.`productPrice`,a.`recommendProduct`,\
+a.`productInformation`,a.`productPrice`,a.productID,a.`recommendProduct`,\
 b.categoryName,a.productStatus FROM `product` a  join category b\
  on a.`categoryID`=b.`categoryID` WHERE a.`storeID`='
 const product = productSelect + storeID;
+
+
+
+// 設定產品
+router.post('/setInfo', function(req, res, next) {
+    db.query('UPDATE `product` set `productName`="'+req.body.productName
+    +'" ,`productPrice`="'+req.body.productPrice
+    +'" ,`productInformation`="'+req.body.productInformation+'" where `productID` = '+
+    req.body.productID,
+    function() {
+            console.log('設定產品')
+        })
+        .catch(function() {
+            console.log('err');
+        })
+       
+
+})
+
+
+
+
 
 // 店家左側
 const getStoreData = (req) => {
@@ -30,6 +52,8 @@ const getStoreData = (req) => {
             });
     })
 };
+
+
 
 
 // 店家產品
