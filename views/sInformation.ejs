@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="/stylesheets/index.css">
     <script src="/javascript/getDate.js"></script>
     <link rel="Shortcut Icon" type="image/x-icon" href="/image/favicon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css" />
 
     <title>店家資訊</title>
     <style>
@@ -309,7 +310,7 @@
                     </p>
                     <div class="modal-footer">
                         <button class="text20R dbtn btnW" data-dismiss="modal">取消返回</button>
-                        <button class="text20R dbtn btnY ml-3">確認修改</button>
+                        <button class="text20R dbtn btnY ml-3" data-dismiss="modal" aria-label="Close" @click="setInformation()">確認修改</button>
                     </div>
                 </div>
             </div>
@@ -332,7 +333,7 @@
                                 <span class="d-flex">
                                     <div class="contry" :class="{countrySelect : area==tempSelectList[0].country}">
                                         <input type="checkbox" @click="countryCheck(area)">
-                                        <label class=" text20R countPoint"
+                                        <label class=" text20R"
                                             :class="{countrySelectText : area==tempSelectList[0].country}"
                                             @click="handleSelect(index,area)">{{ area }}</label>
                                     </div>
@@ -353,7 +354,7 @@
                                 <span class="d-flex">
                                     <div class="contry" :class="{countrySelect : area==tempSelectList[0].country}">
                                         <input type="checkbox" @click="countryCheck(area)">
-                                        <label class=" text20R countPoint"
+                                        <label class=" text20R"
                                             :class="{countrySelectText : area==tempSelectList[0].country}"
                                             v-on:click="handleSelect(index,area)">{{ area }}</label>
                                     </div>
@@ -374,7 +375,7 @@
                                 <span class="d-flex">
                                     <div class="contry" :class="{countrySelect : area==tempSelectList[0].country}">
                                         <input type="checkbox" @click="countryCheck(area)">
-                                        <label class=" text20R countPoint"
+                                        <label class=" text20R"
                                             :class="{countrySelectText : area==tempSelectList[0].country}"
                                             v-on:click="handleSelect(index,area)">{{ area }}</label>
                                     </div>
@@ -395,7 +396,7 @@
                                 <span class="d-flex">
                                     <div class="contry" :class="{countrySelect : area==tempSelectList[0].country}">
                                         <input type="checkbox" @click="countryCheck(area)">
-                                        <label class=" text20R countPoint"
+                                        <label class=" text20R"
                                             :class="{countrySelectText : area==tempSelectList[0].country}"
                                             v-on:click="handleSelect(index,area)">{{ area }}</label>
                                     </div>
@@ -439,6 +440,15 @@
             selectedDelivery: {
                 districkID: []
             },
+            informationData:{
+                storeName:"",
+                storePhone:"",
+                storeAddress:"",
+                storeOpen:"",
+                storeClose:"",
+                storeIntroduction:"",
+                storeNotice:""
+            },
             tempSelectList: [{ country: "無" }],
             dbStoreInformation: JSON.parse('<%- a %>'),
             dbDistrickNorth: JSON.parse('<%- b %>'),
@@ -454,154 +464,7 @@
             tab: 1,
             active: true,
             id: 3,
-            north: [{
-                country: "台北市",
-                districtName: [{
-                    name: "中山區",
-                    id: 104,
-                    selected: true
-                }, {
-                    name: "中正區",
-                    id: 100,
-                    selected: false
-                }, {
-                    name: "松山區",
-                    id: 105,
-                    selected: false
-                }, {
-                    name: "信義區",
-                    id: 110,
-                    selected: false
-                }, {
-                    name: "大安區",
-                    id: 106,
-                    selected: false
-                }, {
-                    name: "士林區",
-                    id: 111,
-                    selected: false
-                }],
-                isShow: false,
-                isSelect: []
-            }, {
-                country: "新北市",
-                districtName: [{
-                    name: "板橋區",
-                    id: 220
-                }, {
-                    name: "汐止區",
-                    id: 221
-                }, {
-                    name: "深坑區",
-                    id: 222
-                }, {
-                    name: "新店區",
-                    id: 231
-                }, {
-                    name: "三重區",
-                    id: 241
-                }, {
-                    name: "永和區",
-                    id: 234
-                }],
-                isShow: false
-            }],
-            middle: [
-                {
-                    country: "台中市",
-                    districtName: [
-                        {
-                            name: "中區",
-                            id: 65
-                        },
-                        {
-                            name: "東區",
-                            id: 66
-                        },
-                        {
-                            name: "南區",
-                            id: 67
-                        },
-                        {
-                            name: "北區",
-                            id: 68
-                        },
-                        {
-                            name: "北屯區",
-                            id: 69,
-                            selected: true
-                        },
-                        {
-                            name: "南屯區",
-                            id: 70,
-                            selected: true
-                        },
-                    ]
-
-                },
-                {
-                    country: "嘉義市",
-                    districtName: [
-                        {
-                            name: "中區",
-                            id: 65
-                        },
-                        {
-                            name: "東區",
-                            id: 66
-                        },
-                        {
-                            name: "南區",
-                            id: 67
-                        },
-                        {
-                            name: "北區",
-                            id: 68
-                        },
-                        {
-                            name: "北屯區",
-                            id: 69,
-                        },
-                        {
-                            name: "南屯區",
-                            id: 70,
-                        },
-                    ]
-
-                },
-                {
-                    country: "彰化市",
-                    districtName: [
-                        {
-                            name: "中區",
-                            id: 65
-                        },
-                        {
-                            name: "東區",
-                            id: 66
-                        },
-                        {
-                            name: "南區",
-                            id: 67
-                        },
-                        {
-                            name: "北區",
-                            id: 68
-                        },
-                        {
-                            name: "北屯區",
-                            id: 69,
-                            selected: true
-                        },
-                        {
-                            name: "南屯區",
-                            id: 70,
-                            selected: true
-                        },
-                    ]
-
-                },
-            ]
+            
 
         }
         let storeInformation = new Vue({
@@ -721,6 +584,8 @@
                 //     console.log(this.north[0].districtName[0].selected)
                 //     return this.north[0].districtName[0].selected
                 // }
+
+                
             },
             mounted: function () {
                 let time = this.dbComment.length;
@@ -759,7 +624,32 @@
                             item.isSelect = false
                         })
                     }
-                }
+                },
+                setInformation(){
+                // console.log(this.dbStoreInformation[0].storeName) 
+                this.informationData.storeName=this.dbStoreInformation[0].storeName
+                this.informationData.storePhone=this.dbStoreInformation[0].storePhone
+                this.informationData.storeAddress=this.dbStoreInformation[0].storeAddress
+                this.informationData.storeOpen=this.dbStoreInformation[0].storeOpen
+                this.informationData.storeClose=this.dbStoreInformation[0].storeClose
+                this.informationData.storeIntroduction=this.dbStoreInformation[0].storeIntroduction
+                this.informationData.storeNotice=this.dbStoreInformation[0].storeNotice
+                console.log(this.informationData);
+                fetch('http://localhost:3200/sInformation/update',{
+                    method: 'put',
+                        body: JSON.stringify(this.informationData),
+                        headers: new Headers({
+                            'Content-Type': 'application/json'
+                        })
+                })
+                .then(function (res) {
+                        return res.json();
+                        console.log(res.json());
+                        // location.href = "/sInformation"
+                    })
+            }
+            
+            
             },
 
 

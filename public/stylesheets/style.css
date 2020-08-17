@@ -1083,3 +1083,21 @@ textarea {
     border-radius: 100px;
     background: var(--dYellow);
 }
+/* 進場延遲 */
+#loading {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    width: 100vw;
+    height: 100vh;
+    background-color:#FAFDFF;
+    background-image: url("../image/loading2.gif");
+    background-size: 200px auto;
+    background-repeat: no-repeat;
+    background-position: center;
+        }
+ .load{
+     display: none;
+ }   

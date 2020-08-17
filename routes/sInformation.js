@@ -191,7 +191,7 @@ const orderSelectData = (req) => {
             reject(ex);
         })
 })
-}
+};
 
 //側邊欄
 const getStoreData = (req) => {
@@ -205,6 +205,20 @@ const getStoreData = (req) => {
           });
   })
 };
+
+router.put('/update',async(req,res,next) => {
+  console.log(req.body)
+  db.query('update `store` set storeName=?,storePhone=?,storeAddress=?,storeOpen=?,storeClose=?,storeIntroduction=?,storeNotice=? where storeID='+storeID,[
+    req.body.storeName,
+    req.body.storePhone,
+    req.body.storeAddress,
+    req.body.storeOpen,
+    req.body.storeClose,
+    req.body.storeIntroduction,
+    req.body.storeNotice,
+  ])
+  next();
+})
 
 
 router.get('/', async (req, res) => {
