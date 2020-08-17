@@ -14,30 +14,37 @@ a.`storePhoto`,count(b.`noticeStatus`) as\
 // 產品
 const productSelect = 'SELECT a.`productName`,a.`productPhoto`,\
 a.`productInformation`,a.`productPrice`,a.productID,a.`recommendProduct`,\
-b.categoryName,a.productStatus FROM `product` a  join category b\
+b.`categoryID`,b.categoryName,a.productStatus FROM `product` a  join category b\
  on a.`categoryID`=b.`categoryID` WHERE a.`storeID`='
 const product = productSelect + storeID;
 
 
 
 // 設定產品
-router.post('/setInfo', function(req, res, next) {
-    db.query('UPDATE `product` set `productName`="'+req.body.productName
-    +'" ,`productPrice`="'+req.body.productPrice
-    +'" ,`productInformation`="'+req.body.productInformation+'" where `productID` = '+
-    req.body.productID,
-    function() {
+router.post('/setInfo', function (req, res, next) {
+    db.query('UPDATE `product` set `productName`="' + req.body.productName
+        + '" ,`productPrice`="' + req.body.productPrice
+        + '" ,`productInformation`="' + req.body.productInformation + '" where `productID` = ' +
+        req.body.productID,
+        function () {
             console.log('設定產品')
         })
-        .catch(function() {
+        .catch(function () {
             console.log('err');
         })
-       
-
 })
 
 
-
+// 刪除產品
+router.post('/deleteInfo', function (req, res, next) {
+    db.query('UPDATE `product` set `productStatus`=0  where `productID`=' + req.body.productID,
+        function () {
+            console.log('刪除產品')
+        })
+        .catch(function () {
+            console.log('err');
+        })
+})
 
 
 // 店家左側

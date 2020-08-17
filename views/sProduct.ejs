@@ -32,7 +32,6 @@
 
 
 <body>
-    <!-- 左邊sider -->
     <%- include('sSider', {active}); %>
     <span id='sProduct'>
         <div class="containerRight">
@@ -190,11 +189,13 @@
             <div class="modal-dialog ">
                 <div class="modal-content ">
                     <div class="modal-header ">
-                        <h5 class="modal-title text28B w-100 text-center ">{{comfirm}}</h5>
+                        <h5 class="modal-title text28B w-100 text-center" v-if='comfirm==-1'>刪除成功</h5>
+                        <h5 class="modal-title text28B w-100 text-center" v-if='comfirm==1'>修改成功</h5>
                     </div>
 
                     <div class="modal-footer">
-                        <button class="text20R dbtn btnY m-auto" @click='setInfo'>確定</button>
+                        <button class="text20R dbtn btnY m-auto" v-if='comfirm==1' @click='setInfo'>確定</button>
+                        <button class="text20R dbtn btnY m-auto" v-if='comfirm==-1' @click='deleteInfo'>確定</button>
                     </div>
                 </div>
             </div>
@@ -246,7 +247,7 @@
                         </button>
                     </div>
                     <p class="modal-body text24R">
-                        <span class="redColor"> 刪除餐點</span>後，動作將無法被還原。
+                        <span class="redColor">刪除餐點</span>後，動作將無法被還原。
                     </p>
                     <div class="modal-footer">
                         <button class="text20R dbtn btnW" data-dismiss="modal">返回離開</button>
@@ -387,11 +388,33 @@
                     this.productflag = this.productData[-1] = '';
                     this.categoryName = '選擇類別';
                 }
+                // 刪除產品
                 , deleteProduct() {
                     this.productData[this.productIndex].productStatus = 0;
                     $('#deleteMeal').modal('hide');
-                    this.comfirm = '刪除成功';
+                    this.comfirm = -1;
                     $('#comfirm').modal('show');
+
+
+                }, deleteInfo() {
+                    $('#comfirm').modal('hide');
+                    let index = this.productIndex;
+                    let product = {
+                        productID: this.productData[index].productID
+                    }
+                    fetch('sProduct/deleteInfo', {
+                        method: 'POST',
+                        body: JSON.stringify(product),
+                        headers: new Headers({
+                            'Content-Type': 'application/json'
+                        })
+                    })
+                        .then(
+                            location.href = "sProduct"
+                        )
+                        .catch(
+                            error => console.error('Error:', error)
+                        )
                     this.productIndex = -1;
                 }
                 // 類別
@@ -407,7 +430,6 @@
                     $('#deleteType').modal('show');
                 }
                 , deletetype() {
-
                     for (let i = 0; i < this.productData.length; i++) {
                         if (this.productData[i].categoryName == this.elementpManger[this.type]) {
                             this.productData[i].categoryName = '';
@@ -418,7 +440,7 @@
                     this.eTransM();
 
                     $('#deleteType').modal('hide');
-                    this.comfirm = '刪除成功';
+                    this.comfirm = -1;
                     $('#comfirm').modal('show');
                 }
 
@@ -429,13 +451,13 @@
                 , typeEdit() {
                     this.eTransM();
                     $('#typeManager').modal('hide');
-                    this.comfirm = '修改成功';
+                    this.comfirm = 1;
                     $('#comfirm').modal('show');
 
                 }
                 // 修改產品
-                ,setcheck(){
-                    this.comfirm='修改成功'
+                , setcheck() {
+                    this.comfirm = 1;
                     $('#product').modal('hide');
                     $('#comfirm').modal('show');
 
@@ -444,7 +466,7 @@
                     let index = this.productIndex;
                     let product = this.productData[index];
                     product.categoryName = this.categoryName;
-                   
+
                     fetch('sProduct/setInfo', {
                         method: 'POST',
                         body: JSON.stringify(product),

@@ -27,9 +27,10 @@ router.get('/', function (req, res, next) {
 
     // 時間
     date = new Date();
-    dateStart = '2020.08.16'
-
-    dateEnd = '2020.08.31';
+    dateStart = date.getFullYear() + '.' + (date.getMonth() + 1) + '.'
+        + date.getDate();
+    dateEnd = date.getFullYear() + '.' + (date.getMonth() + 1) + '.'
+        + date.getDate()+1;
 
     allType = 'SELECT a.`categoryName`,b.productName,a.`categoryID` FROM `category` as a,\
     `product` as b where a.categoryID=b.categoryID and a.storeId='+ storeID;
@@ -42,7 +43,6 @@ router.get('/', function (req, res, next) {
         ' and a.`orderDeadline`>= "' + dateStart + '" and a.`orderDeadline`< "' + dateEnd +
         '" GROUP by c.productName'
     // console.log(orderSum);
-
     next();
 
 });
@@ -64,8 +64,8 @@ router.get('/getDate', async (req, res, next) => {
     // console.log(dateEnd);
     // console.log(dateEnd);
     res.json(newsJSON1);
-  
-    
+
+
 });
 
 
@@ -115,7 +115,7 @@ router.get('/', async (req, res) => {
         allTypeData: newsJSON2,
         active: 'sStat'
     });
-    
+
 });
 
 
