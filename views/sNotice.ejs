@@ -51,7 +51,7 @@
             <div class="dblock mt-4">
                 <ul class="scrollList noticeList">
                     <!-- 處理訂單通知 -->
-                    <span v-if='orderNoticeData[0].noticeID!=null'>
+                    <span v-if='!orderNoticeData'>
                         <span v-for='(item,index) in orderNoticeData'>
                             <li :class="item.noticeStatus==2 ?
                     'noticeItem d-flex align-items-center read store':'noticeItem d-flex align-items-center store'"
