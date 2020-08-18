@@ -1,6 +1,8 @@
+// 友文製
+
 // 日曆
 
-// const { json } = require("express");
+// const e = require("express");
 
 let today = new Date();
 let nowMonth = today.getMonth();
@@ -15,10 +17,6 @@ function prevM() {
     let NowYear = (nowMonth === 0) ? nowYear - 1 : nowYear;
     let NowMonth = (nowMonth === 0) ? 11 : nowMonth - 1;
     showCalendar(NowMonth, NowYear);
-    clickTd();
-    clickId();
-    addfake()
-
     return (nowYear = NowYear, nowMonth = NowMonth);
 }
 
@@ -28,10 +26,6 @@ function nextM() {
     let NowYear = (nowMonth === 11) ? nowYear + 1 : nowYear;
     let NowMonth = (nowMonth + 1) % 12;
     showCalendar(NowMonth, NowYear);
-    clickTd();
-    clickId();
-    addfake()
-
     return (nowYear = NowYear, nowMonth = NowMonth);
 }
 
@@ -88,8 +82,6 @@ function showCalendar(month, year) {
                 col.appendChild(cellText);
                 row.appendChild(col);
 
-                col.id = date;
-
                 if ((date < todayDate && year == today.getFullYear() && month == today.getMonth()) || year < today.getFullYear() || (year == today.getFullYear() && month < today.getMonth())) {
 
                     col.className = "tdPass";
@@ -105,8 +97,6 @@ function showCalendar(month, year) {
                 let cellText = document.createTextNode(date);
                 col.appendChild(cellText);
                 row.appendChild(col);
-
-                col.id = date;
 
                 if ((date < todayDate && year == today.getFullYear() && month == today.getMonth()) || year < today.getFullYear() || (year == today.getFullYear() && month < today.getMonth())) {
 
@@ -125,6 +115,9 @@ function showCalendar(month, year) {
                 let cellText = document.createTextNode("");
                 col.appendChild(cellText);
                 row.appendChild(col);
+
+                // col.className = "tdPass";
+
             }
 
         }
@@ -133,94 +126,15 @@ function showCalendar(month, year) {
 
     }
 
+    // if (month <= nowMonth && date < today) {
+
+    //     col.className = "tdPass";
+
+    // } else {
+    //     col.className = "tdFutrue";
+    // }
+
 }
 
-// 呼叫當日彈框
 
-function clickTd() {
-    $("td").click(function() {
-        $("td[id]").attr("data-toggle", "modal");
-        $("td[id]").attr("data-target", "#comfirm2BtnW1340");
-    })
-}
-
-clickTd();
-
-// 列印當天資料
-
-function clickId() {
-
-    let tdDate = {
-        clickDate: "",
-        sqlDate: "",
-        furDate: ""
-    };
-
-    $("td").click(function() {
-
-        // console.log($(this).attr("id"));
-        var date = $(this).attr("id");
-        var nowDay = parseInt(date)
-
-        // console.log(nowYear + "-" + (nowMonth + 1) + "-" + date);
-        tdDate.sqlDate = nowYear + "-" + (nowMonth + 1) + "-" + nowDay;
-        tdDate.clickDate = nowYear + "/" + (nowMonth + 1) + "/" + nowDay;
-        tdDate.furDate = nowYear + "-" + (nowMonth + 1) + "-" + (nowDay + 1);
-        // console.log(tdDate);
-
-        fetch('http://localhost:3000/mCalendar/matterList', {
-                method: "post",
-                body: JSON.stringify(tdDate),
-                headers: new Headers({
-                    'Content-Type': 'application/json'
-                })
-            })
-            .then(function(res) {
-                app.clickDate = tdDate.clickDate;
-                // console.log(app.clickDate);
-                return res.json();
-            })
-            .then(function({ OrderList, RealOrder, VoteList, RealVote }) {
-                this.orderList = JSON.parse(OrderList);
-                // console.log(this.orderList);
-                // console.log(typeof(this.orderList));
-                app.orderList = this.orderList;
-
-                this.realOrder = JSON.parse(RealOrder);
-                // console.log(this.realOrder);
-                app.realOrder = this.realOrder;
-
-                this.voteList = JSON.parse(VoteList);
-                // console.log(this.VoteList);
-                // console.log(typeof(this.VoteList));
-                app.voteList = this.voteList;
-
-                this.realVote = JSON.parse(RealVote);
-                app.realVote = this.realVote;
-            })
-            .catch((err) => {
-                console.log('load data err!!');
-            })
-            // console.log(app.orderList);
-            // console.log(app.realOrder);
-            // console.log(app.realVote);
-    })
-}
-
-clickId();
-
-// 放置假圖標
-
-function addfake(){
-    var testa = document.getElementById("myDates").innerHTML;
-    console.log(testa);
-    if(testa==='8'){
-        var tempfake = document.getElementById('21');
-        var para = document.createElement("div");
-        
-        tempfake.appendChild(para);
-        para.innerHTML = '<i class="icon-vote textG" style="font-size:36px"></i><i class="icon-vote textY" style="font-size:36px"></i><i class=" icon-claenderstatus textG" style="font-size:36px"></i><i class=" icon-claenderstatus textB" style="font-size:36px"></i>';
-    }
-}
-
-addfake();
+// calender.insertAdjacentHTML(`beforeend`, `<div class="day"></div>`);

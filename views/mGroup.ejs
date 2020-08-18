@@ -64,28 +64,35 @@
 
                     <div class="col-12">
                         <span class="float-right">
-                            <input type="text" class="text20RG singleText398 mr-xs" placeholder="請輸入團號"
-                                style="width: 228px;" data-toggle="modal" data-target="#inputS">
+                            <input id="detectAccount" type="text" class="text20RG singleText398 mr-xs"
+                                placeholder="請輸入團號" style="width: 228px;" data-toggle="modal" data-target="#inputS">
 
-                            <button type="button" class="text20R dbtn btnY mr-xs" data-toggle="modal"
+                            <button @click="joinGroup" type="button" class="text20R dbtn btnY mr-xs" data-toggle="modal"
                                 data-target="#joinThisG">
                                 加入團體</button>
                             <div class="modal fade inputS" id="joinThisG">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title text28B w-100 text-center">就愛烤肉團</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <i class=" icon-close"></i>
-                                            </button>
-                                        </div>
-                                        <div class="modal-continer">
-                                            <h5 class="modal-title text24RG w-100 text-center">團長 ： Stark</h5>
+                                        <div v-for="item in joinMessage">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title text28B w-100 text-center">{{item.groupName}}
+                                                </h5>
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                    aria-label="Close">
+                                                    <i class=" icon-close"></i>
+                                                </button>
+                                            </div>
+                                            <div class="modal-continer">
+                                                <h5 class="modal-title text24RG w-100 text-center"
+                                                    v-show="item.memberName">團長 ：{{item.memberName}}</h5>
+                                                <h5 class="modal-title text24RG w-100 text-center">{{item.Message}}</h5>
+                                            </div>
                                         </div>
                                         <div class="modal-footer m-auto">
                                             <button type="button" class="dbtn btnW text20R" data-dismiss="modal"
                                                 style="margin-right: 24px;">取消返回</button>
-                                            <button type="button" class="dbtn btnY text20R">加入此團</button>
+                                            <button @click="insertGroup" type="button"
+                                                class="dbtn btnY text20R">加入此團</button>
                                         </div>
                                     </div>
                                 </div>
@@ -93,26 +100,29 @@
 
                             <button type="button" class="text20R dbtn btnB" data-toggle="modal" data-target="#addThisG">
                                 建立團體<span class="ml-2">+</span>
-                        </button>
-                        <div class="modal fade inputS" id="addThisG">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title text28B w-100 text-center">建立新團體</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            </button>
+                            <div class="modal fade inputS" id="addThisG">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title text28B w-100 text-center">建立新團體</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <i class=" icon-close"></i>
                                             </button>
-                                    </div>
-                                    <div class="modal-continer">
-                                        <input type="text" class="text20RG singleText398 " placeholder="請輸入團體名稱">
-                                    </div>
-                                    <div class="modal-footer m-auto">
-                                        <button type="button" class="dbtn btnW text20R" data-dismiss="modal" style="margin-right: 24px;">取消返回</button>
-                                        <a href="mNewGroup"><button type="button" class="dbtn btnY text20R">建立團體</button></a>
+                                        </div>
+                                        <div class="modal-continer">
+                                            <input id="buildGroup" type="text" class="text20RG singleText398 "
+                                                placeholder="請輸入團體名稱">
+                                        </div>
+                                        <div class="modal-footer m-auto">
+                                            <button type="button" class="dbtn btnW text20R" data-dismiss="modal"
+                                                style="margin-right: 24px;">取消返回</button>
+                                            <button @click="createGroup" type="button"
+                                                    class="dbtn btnY text20R">建立團體</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
 
                         </span>
                     </div>
@@ -124,10 +134,13 @@
                         </div>
                         <div>
                             <div class="scrollList orderVoteList">
-                                <div class="row mTR d-flex align-items-center" style="height: 56px;" v-for="item in list">
-                                    <div class="col-2 pl-m eng20R">{{item.groupNum}}</div>
+                                <div class="row mTR d-flex align-items-center" style="height: 56px;"
+                                    v-for="item in groupList">
+                                    <div class="col-2 pl-m eng20R">{{item.groupID}}</div>
                                     <div class="col-5 pl-m text20B">{{item.groupName}}</div>
-                                    <div class="col-5 pl-xm text20B">{{item.groupLeader}}<i class="icon-right-open float-right textY mr-m"></i>
+                                    <div class="col-5 pl-xm text20B" v-for="items in groupAdmin"
+                                        v-show="item.groupID===items.groupID">{{items.memberName}}<i
+                                            class="icon-right-open float-right textY mr-m"></i>
                                     </div>
                                 </div>
                             </div>
@@ -138,7 +151,78 @@
         </div>
     </div>
 
-    <script src="/javascript/groListData.js"></script>
+    <script>
+        let app = new Vue({
+            el: '#app',
+            data: {
+                groupList: JSON.parse('<%- GroupList %>'),
+                groupAdmin: JSON.parse('<%- GroupAdmin %>'),
+                joinMessage: ""
+            },
+            methods: {
+                joinGroup: function () {
+                    fetch('http://localhost:3000/mGroup/joinGroup', {
+                        method: "post",
+                        body: JSON.stringify(input),
+                        headers: new Headers({
+                            'Content-Type': 'application/json'
+                        })
+                    })
+                        .then(function (res) {
+                            return res.json();
+                        })
+                        .then(function (backMessage) {
+                            this.joinMessage = JSON.parse(backMessage);
+                            console.log(this.joinMessage);
+                            app.joinMessage = this.joinMessage;
+                        })
+                        .catch(
+                            error => console.error('Error:', error)
+                        )
+                },
+                insertGroup: function () {
+                    fetch('http://localhost:3000/mGroup/insertGroup', {
+                        method: "post",
+                        body: JSON.stringify(input),
+                        headers: new Headers({
+                            'Content-Type': 'application/json'
+                        })
+                    })
+                        .then(
+                            location.href = "mGroup"
+                        )
+                },
+                createGroup:function(){
+                    fetch('http://localhost:3000/mGroup/createGroup',{
+                        method:"post",
+                        body: JSON.stringify(input),
+                        headers: new Headers({
+                            'Content-Type': 'application/json'
+                        })
+                    })
+                    .then(
+                        location.href = "mNewGroup"
+                    )
+                }
+            }
+        })
+
+        let input = {
+            groupNum: "",
+            buildgroupName: ""
+        }
+
+        document.querySelector("#detectAccount")
+            .addEventListener("input", function (e) {
+                input.groupNum = e.target.value;
+            })
+
+        document.querySelector("#buildGroup")
+            .addEventListener("input", function (e) {
+                input.buildgroupName = e.target.value;
+            })
+
+    </script>
 
 </body>
 
