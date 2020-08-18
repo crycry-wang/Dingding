@@ -1,13 +1,22 @@
 var express = require('express');
 var router = express.Router();
 var db = require('../model/db');
-
+var session = require('express-session');
 /* GET users listing. */
 
 // 會員
-const memberId = 38;
-const memberSelect = 'select * from `member` where memberID=';
-const member = memberSelect + memberId;
+let memberId;
+let member;
+router.get('/', function (req, res, next) {
+    memberId = req.session.memberID;
+    member = 'select a.`memberID`,a.`memberName`,a.`memberPhoto`,\
+count(b.`noticeStatus`) as noticeCount from `member` as a,\
+`notice` as b where a.memberID=b.toWhoID and toWhoType=2 \
+and b.noticeStatus=1 and memberID='+ memberId;
+    
+    next();
+});
+
 
 const getMemberData = (req) => {
     return new Promise((resolve, reject) => {
