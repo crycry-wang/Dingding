@@ -134,7 +134,7 @@
                     </span>
                 </span>
                 <!-- 投票通知 -->
-                <span v-if='groupNoticeData.noticeID!=null'>
+                <span v-if='groupNoticeData.length>0'>
                     <span v-if='tab==2'>
                         <span v-for='(item,index) in groupNoticeData'>
                             <li :class="item.noticeStatus==2 ?

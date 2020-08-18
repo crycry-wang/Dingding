@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>訂訂行事曆</title>
 
     <link rel="stylesheet" href="/stylesheets/bootstrap.min.css">
     <script src="/javascript/jquery-3.5.1.min.js"></script>
@@ -15,8 +15,9 @@
     <link rel="stylesheet" href="/stylesheets/fontello.css">
     <link rel="stylesheet" href="/stylesheets/sider.css">
     <link rel="stylesheet" href="/stylesheets/memcalendar.css">
-
+    <script src="/javascript/loading.js"></script>
     <script src="/javascript/vue.js"></script>
+    <link rel="Shortcut Icon" type="image/x-icon" href="/image/favicon.png">
 
 
 </head>
@@ -24,7 +25,7 @@
 <body>
 
     <%- include('mSider', {active}); %>
-        <div id="app" class="Wrapper">
+        <div id="app" class="Wrapper load">
             <div class="wrapper1920">
 
                 <div class="containerRight">
@@ -159,6 +160,7 @@
                 </div>
             </div>
         </div>
+        <div id="loading"></div>
 
         <script>
             let app = new Vue({

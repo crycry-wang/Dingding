@@ -168,7 +168,7 @@ function clickId() {
         tdDate.furDate = nowYear + "-" + (nowMonth + 1) + "-" + (nowDay + 1);
         // console.log(tdDate);
 
-        fetch('http://localhost:3000/mCalendar/matterList', {
+        fetch('http://localhost:3200/mCalendar/matterList', {
                 method: "post",
                 body: JSON.stringify(tdDate),
                 headers: new Headers({

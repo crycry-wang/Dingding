@@ -46,8 +46,8 @@ router.post('/newOrder', function (req, res, next) {
     [newOrderData.groupID,
       memberID,
     req.body.storeID,
-    newOrderData.orderArrivedTime,
     newOrderData.orderDeadline,
+    newOrderData.orderArrivedTime,
     newOrderData.deliveryAddress,],
     function (err, results) {
       if (err) console.log("ERR!!");
