@@ -25,11 +25,12 @@ let costCoin;
 router.get('/', function (req, res, next) {
     memberId = req.session.memberID;
 
-    member = 'select a.`memberID`,a.`memberName`,a.`memberPhoto`,\
-count(b.`noticeStatus`) as noticeCount from `member` as a,\
-`notice` as b where a.memberID=b.toWhoID and toWhoType=2 \
-and b.noticeStatus=1 and memberID='+ memberId;
-    address = 'select * from memberaddress a inner join member b on a.memberID=b.memberID where a.memberID=' + memberId;
+    member = 'select a.`memberID`,a.`memberName`,a.`memberPhoto`,a.`eMail`,\
+     a.`password`,a.`memberPhone`, count(b.`noticeStatus`) as noticeCount \
+     from `member` as a, `notice` as b where a.memberID=b.toWhoID and \
+     toWhoType=2 and b.noticeStatus=1 and memberID='+ memberId;
+
+    address = 'select `memberAddressID`,`memberAddress` from memberaddress where memberID=' + memberId;
 
     Likestore = 'select\
     c.`storeID`,c.`storeName`, c.`storePhoto` from member a \
@@ -42,6 +43,60 @@ and b.noticeStatus=1 and memberID='+ memberId;
 
     next();
 });
+
+
+// 刪除喜愛店家
+router.post('/deleteStore', function (req, res, next) {
+    db.query('delete from likestore where memberID =' + req.body.memberID + ' and `storeID`=' + req.body.storeID,
+        function () {
+            console.log('刪除喜愛店家')
+        })
+        .catch(function () {
+            console.log('err');
+        })
+
+})
+
+// 刪除地址
+// router.post('/saveInfo', function (req, res, next) {
+//     db.query('delete from memberaddress where memberID =' + req.body.memberID,
+//         function () {
+//             console.log('刪除地址')
+//         })
+//         .catch(function () {
+//             console.log('err');
+//         })
+//     next();
+// })
+
+// 增加地址
+
+// 修改暱稱與電話
+router.post('/saveInfo', function (req, res, next) {
+    db.query('update `member` set `memberName`= "' + req.body.memberName +
+        '", memberPhone="' + req.body.memberPhone + '" where `memberID`=' + req.body.memberID,
+        function () {
+            console.log('修改暱稱與電話')
+        })
+
+        next();
+})
+
+router.post('/saveInfo', function (req, res, next) {
+    let arr = req.body.memberInfo;
+    console.log(arr)
+    console.log(req.body.memberID)
+    for (let index = 0; index < arr.length; index++) {
+        db.query('insert into memberaddress (`memberID`,`memberAddress`) VALUES (?,?)',
+            [memberID,arr[index]],
+            function () {
+                console.log('增加地址')
+            })
+           
+    }
+})
+
+
 
 
 
@@ -113,14 +168,15 @@ router.get('/', async (req, res) => {
     newsJSON2 = JSON.stringify(await getsaveCoinData(req));
     newsJSON3 = JSON.stringify(await getcostCoinData(req));
     newsJSON4 = JSON.stringify(await getAddressData(req));
-    
-    res.render('mMember', { 
+
+    res.render('mMember', {
         mMemberData: newsJSON,
         memberLikestore: newsJSON1,
-        saveCoinData:newsJSON2, 
-        costCoinData:newsJSON3, 
-        addressData:newsJSON4, 
-        active: 'mMember'});
+        saveCoinData: newsJSON2,
+        costCoinData: newsJSON3,
+        addressData: newsJSON4,
+        active: 'mMember'
+    });
 
 });
 

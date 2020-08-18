@@ -18,7 +18,10 @@ router.get('/', function (req, res, next) {
     // 側邊欄 
     memberId = req.session.memberID;
     member = memberSelect + memberId;
-    memberSelect = 'select * from `member` where memberID=';
+    memberSelect = 'select a.`memberID`,a.`memberName`,a.`memberPhoto`,\
+    count(b.`noticeStatus`) as noticeCount from `member` as a,\
+    `notice` as b where a.memberID=b.toWhoID and toWhoType=2 \
+    and b.noticeStatus=1 and memberID=';
 
     memberID = req.session.memberID;
     voteID = req.query.voteID;

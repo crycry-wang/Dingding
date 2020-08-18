@@ -13,8 +13,9 @@
     <link rel="stylesheet" href="/stylesheets/fontello.css">
     <link rel="stylesheet" href="/stylesheets/sider.css">
     <link rel="stylesheet" href="/stylesheets/sStat.css">
+    <link rel="Shortcut Icon" type="image/x-icon" href="/image/favicon.png">
     <script src="/javascript/vue.js"></script>
-
+    <script src="/javascript/Chart.min.js"></script>
 
     <title>Document</title>
 
@@ -31,35 +32,39 @@
         <!-- 右邊內容放置區 -->
 
         <nav class="topTag row inWrapper position-sticky">
-            <div class="dTag text24RG act">日營業額</div>
-            <div class="dTag text24RG">月營業額</div>
+            <div :class="tab==0 ?'dTag text24RG act':'dTag text24RG'" @click='dateStat'>日營業額</div>
+            <div :class="tab==1 ?'dTag text24RG act':'dTag text24RG'" @click='monthStat'>月營業額</div>
         </nav>
         <ul class="statList">
-            <!-- <li>
+            <li>
                 <h2 class="text20RG">日期</h2>
-                <p class="eng24R">{{'date'}}</p>
+                <p class="eng24R" v-if='tab==0'>{{date}}</p>
+                <p class="eng24R" v-if='tab==1'>{{(date).slice(0,6)}}月</p>
             </li>
             <li>
                 <h2 class="text20RG">訂單量</h2>
-                <p class="eng24R">{{'(orderTotle).toLocaleString('en-US')'}}</p>
+                <p class="eng24R">{{orderTotal.count}}</p>
             </li>
             <li>
                 <h2 class="text20RG">銷售總額</h2>
-                <p class="eng24R">${{'(orderAmount).toLocaleString('en-US')'}}</p>
-            </li> -->
+                <p class="eng24R">{{orderTotal.price}}</p>
+            </li>
         </ul>
         <div class="d-flex align-items-center">
-            <img class="lrImg" src="/image/left.png">
+            <img class="lrImg" src="/image/left.png" v-if='tab==0' @click='backDate'>
+            <img class="lrImg" src="/image/left.png" v-if='tab==1' @click='backMonth'>
             <div class="dblock mt-4 col-10">
                 <canvas id="chart" width="800" height="400"></canvas>
             </div>
-            <img class="lrImg" src="/image/right.png">
+            <img class="lrImg" src="/image/right.png" v-if='tab==0' @click='addDate'>
+            <img class="lrImg" src="/image/right.png" v-if='tab==1' @click='backMonth'>
         </div>
 
         <div class="typeButton">
-            <button class="text20R dbtn btnGB">全部</button>
-            <button class=" text20R dbtn btnGB" v-for='(item,index) in category'
-                @click='(switchbutton(index))'>{{'item.categoryName'}}</button>
+            <span v-for='(item,index) in categoryNameGroup'>
+                <button :class='currentIndex==index?  "text20R dbtn  btnGB btnB":"text20R dbtn btnGB"'
+                    @click='(switchbutton(index))'>{{item}}</button>
+            </span>
         </div>
         <!-- <div class="typeCheckbox" id='typeCheckbox'>
             <span>
@@ -74,94 +79,312 @@
  -->
 
     </div>
-    <!-- vue -->
+
     <script>
-        // data資料
-
-        // let data = {
-        //     category: [{
-        //             categoryID: '0',
-        //             categoryName: '套餐',
-        //             productName: 'A套餐',
-        //             productName: 'B套餐',
-        //             productName: 'C套餐',
-        //         }, {
-        //             categoryID: '1',
-        //             categoryName: '漢堡',
-        //             productName: '摩絲熱狗堡',
-        //             productName: '摩絲熱狗堡1',
-        //             productName: '摩絲熱狗堡3',
-        //         }, {
-        //             categoryID: '2',
-        //             categoryName: '飲品',
-        //             productName: '可樂',
-        //             productName: '雪碧',
-        //             productName: '玉米濃湯',
-        //         }
-
-        //     ],
-        //     date: '2020.07.01',
-        //     orderTotle: 1215,
-        //     orderAmount: 31245
-        // }
-
-
         //vue資料
-       
+        // 今日時間
+        var date = new Date();
+        var allTotal = 0;
         let store = new Vue({
             el: '#stat',
             data: {
                 storeData: JSON.parse('<%- storeData %>'),
                 orderSumData: JSON.parse('<%- orderSumData %>'),
-                categoryNamegroup:'',
-                total:''
+                allTypeData: JSON.parse('<%- allTypeData %>'),
+                categoryNameGroup: '',
+                currentGroup: '',
+                categoryOrdergroup: '',
+                currentIndex: 0,
+                orderTotal: {},
+                date: date.getFullYear() + '.' + (date.getMonth() + 1) + '.'
+                    + date.getDate(),
+                dateEnd: date.getFullYear() + '.' + (date.getMonth() + 1) + '.'
+                    + (date.getDate() + 1),
+                tab: '0'
             },
             mounted: function () {
-                
-                this.categoryNamegroup = this.orderSumData.map(function (item) {
+
+                // 全類型標籤
+                var categoryNameGroup = this.allTypeData.map((item) => {
                     categoryName = item.categoryName;
                     return categoryName
                 })
-                this.categoryNamegroup.unshift('全部');
+                categoryNameGroup = [...(new Set(categoryNameGroup))];
 
-                this.categoryOrdergroup = this.orderSumData.map(function (item) {
-                    categoryTotal = item.total;
-                    return categoryTotal
+                this.categoryNameGroup = categoryNameGroup;
+
+                // 全商品訂單數量
+                let { allTypeData, orderSumData } = this;
+
+                allTypeData.forEach((item) => {
+                    item['total'] = 0;
                 })
-                var allTotal=0;
+                allTypeData.forEach((item) => {
+                    for (let i = 0; i < orderSumData.length; i++) {
+                        if (item.productName === orderSumData[i].productName) {
+                            item.total = orderSumData[i].total;
+                        }
+                    }
+                })
+                // 營運統計用
+                // 群組標籤
+                var currentGroup = [];
+                this.categoryNameGroup.forEach((item) => {
+                    currentGroup.push(item);
+                })
+                this.currentGroup = currentGroup;
 
-                this.total = this.orderSumData.forEach(function (item) {
-                   allTotal += item.total;
+
+                var arry = [];
+                // 營運統計用
+
+                // 數量標籤,核對currentGroup與allTypeData的重疊項目
+                for (let i = 0; i < this.currentGroup.length; i++) {
+                    let text = 0;
+                    for (let j = 0; j < allTypeData.length; j++) {
+                        if (this.currentGroup[i] === allTypeData[j].categoryName) {
+                            text += allTypeData[j].total
+                        }
+                    }
+                    arry.push(text);
+                }
+                this.categoryOrdergroup = arry;
+                orderSumData.forEach((item) => {
+                    allTotal += item.total;
                     return allTotal
                 })
-                console.log(this.total);
-                
+                categoryNameGroup.unshift('全部');
+                this.categoryOrdergroup.unshift(allTotal);
+                this.currentGroup.unshift('全部');
 
-                
-                
+
+                // 取總量
+                // 取總訂單量
+                let totalPrice = 0;
+                this.orderTotal['count'] = this.categoryOrdergroup[0].toLocaleString('en-US');
+                // 取總訂單價格
+                this.orderSumData.forEach((item) => {
+                    totalPrice += item.totalPrice
+                })
+                this.orderTotal['price'] = totalPrice.toLocaleString('en-US');
+
+
             },
 
             methods: {
                 switchbutton(index) {
-                    var currenti = index;
-                    console.log(currenti);
+                    this.currentIndex = index;
+                    if (index > 0) {
+                        let { currentIndex, categoryNameGroup, allTypeData, orderSumData } = this;
 
+                        // 群組標籤
+                        currentGroup = [];
+                        tagName = categoryNameGroup[index];
+                        allTypeData.map((item) => {
+                            if (item.categoryName == tagName) {
+                                currentGroup.push(item.productName)
+                            }
+                        })
+                        this.currentGroup = currentGroup;
+                        this.currentGroup.unshift('全部');
+
+
+                        // 數量陣列
+                        var arry = [];
+
+                        for (let i = 0; i < this.currentGroup.length; i++) {
+                            let text = 0;
+                            for (let j = 0; j < allTypeData.length; j++) {
+                                if (this.currentGroup[i] === allTypeData[j].productName) {
+                                    text += allTypeData[j].total
+                                }
+                            }
+                            arry.push(text);
+                        }
+                        this.categoryOrdergroup = arry;
+                        orderSumData.forEach((item) => {
+                            allTotal += item.total;
+                            return allTotal
+                        })
+
+                        // 總數量
+                        let alltotal = 0;
+                        this.categoryOrdergroup.forEach((item) => {
+                            alltotal += item;
+                        })
+                        this.categoryOrdergroup[0] = alltotal;
+
+
+
+                    } else {
+                        var categoryNameGroup = this.allTypeData.map((item) => {
+                            categoryName = item.categoryName;
+                            return categoryName
+                        })
+                        categoryNameGroup = [...(new Set(categoryNameGroup))];
+
+                        this.categoryNameGroup = categoryNameGroup;
+
+                        // 全商品訂單數量
+                        let { allTypeData, orderSumData } = this;
+
+                        allTypeData.forEach((item) => {
+                            item['total'] = 0;
+                        })
+                        allTypeData.forEach((item) => {
+                            for (let i = 0; i < orderSumData.length; i++) {
+                                if (item.productName === orderSumData[i].productName) {
+                                    item.total = orderSumData[i].total;
+                                }
+                            }
+                        })
+                        // 營運統計用
+                        // 群組標籤
+                        var currentGroup = [];
+                        this.categoryNameGroup.forEach((item) => {
+                            currentGroup.push(item);
+                        })
+                        this.currentGroup = currentGroup;
+
+
+                        var arry = [];
+                        // 營運統計用
+
+                        // 數量標籤,核對currentGroup與allTypeData的重疊項目
+                        for (let i = 0; i < this.currentGroup.length; i++) {
+                            let text = 0;
+                            for (let j = 0; j < allTypeData.length; j++) {
+                                if (this.currentGroup[i] === allTypeData[j].categoryName) {
+                                    text += allTypeData[j].total
+                                }
+                            }
+                            arry.push(text);
+                        }
+                        let allTotal = 0;
+                        this.categoryOrdergroup = arry;
+                        orderSumData.forEach((item) => {
+                            allTotal += item.total;
+                            return allTotal
+                        })
+                        categoryNameGroup.unshift('全部');
+                        this.categoryOrdergroup.unshift(allTotal);
+                        this.currentGroup.unshift('全部');
+
+                    }
+                    function updateConfigByMutating(chart) {
+                        chart.data.labels = store.currentGroup;
+                        chart.data.datasets[0].data = store.categoryOrdergroup;
+                        chart.update();
+                    }
+                    updateConfigByMutating(chart);
+
+                },
+
+                backDate() {
+                    date -= 86400000;
+                    date = new Date(date);
+                    // 開始時間
+                    dateStart = date.getFullYear() + '.' + (date.getMonth() + 1) + '.'
+                        + date.getDate();
+                    this.date = dateStart;
+
+                    // 結束時間
+                    dateEnd = date.getFullYear() + '.' + (date.getMonth() + 1) + '.'
+                        + (date.getDate() + 1);
+                    this.dateEnd = dateEnd;
+                    let dateRang = {
+                        dateStart: dateStart,
+                        dateEnd: dateEnd
+                    }
+                    this.fetchTime();
+
+
+                },
+                addDate() {
+                    date = date.setDate(date.getDate() + 1);
+                    date = new Date(date);
+                    // 開始時間
+                    dateStart = date.getFullYear() + '.' + (date.getMonth() + 1) + '.'
+                        + date.getDate();
+                    this.date = dateStart;
+
+                    // 結束時間
+                    dateEnd = date.getFullYear() + '.' + (date.getMonth() + 1) + '.'
+                        + (date.getDate() + 1);
+                    this.dateEnd = dateEnd;
+                    let dateRang = {
+                        dateStart: dateStart,
+                        dateEnd: dateEnd
+                    }
+                    this.fetchTime();
+                    // 月份
+                }, monthStat() {
+                    this.tab = 1;
+                    date = new Date();
+                    y = date.getFullYear(), m = date.getMonth();
+                    // 第一天
+                    date = new Date(y, m, 1);
+                    this.date = date.getFullYear() + '.' + (date.getMonth() + 1) + '.'
+                        + date.getDate()
+                    // 最後一天
+                    y = date.getFullYear(), m = date.getMonth();
+                    date = new Date(y, m + 1, 0);
+
+                },dateStat(){
+                    this.tab = 0;
+                    // 返回今天第一天
+                    date= new Date();
+                    this.date=date.getFullYear() + '.' + (date.getMonth() + 1) + '.'
+                    + date.getDate(),
+                    this.dateEnd= date.getFullYear() + '.' + (date.getMonth() + 1) + '.'
+                    + (date.getDate() + 1)
+                },
+                 backMonth() {
+                    // 開始時間
+                    date = date.setMonth(date.getMonth() - 1);
+                    date = new Date(date)
+                    y = date.getFullYear(), m = date.getMonth();
+                    date = new Date(y, m, 1);
+                    dateStart = date.getFullYear() + '.' + (date.getMonth() + 1) + '.'
+                        + date.getDate()
+                    this.date = dateStart;
+
+                    // 結束時間
+                    y = date.getFullYear(), m = date.getMonth();
+                    date1 = new Date(y, m + 1, 0);
+                    dateEnd = date1.getFullYear() + '.' + (date1.getMonth() + 1) + '.'
+                        + date1.getDate();
+                    this.dateEnd = dateEnd;
+                    let dateRang = {
+                        dateStart: dateStart,
+                        dateEnd: dateEnd
+                    }
+                    this.fetchTime();
+                }, addMonth() {
+
+
+                }, fetchTime() {
+                    // fetch時間
+                    fetch('sStat/getDate?dateStart=' + dateStart + '&dateEnd=' + dateEnd)
+                        .then(function (response) {
+                            return response.json();
+                        })
+                        .then((myJson) => {
+                            this.orderSumData = JSON.parse(myJson);
+                            console.log(JSON.parse(myJson));
+
+                        });
                 }
+
             }
+
         })
 
-        $('button').click(function () {
-            $('button').removeClass('btnB');
-            $(this).addClass('btnB');
-        });
-    </script>
 
 
-    <!-- 營運統計 -->
-    <script src="/javascript/Chart.min.js"></script>
-    <script>
-        
 
+
+        // 統計圖表
         Chart.defaults.global.defaultFontColor = '#373A3C';
         Chart.defaults.global.defaultFontSize = 20;
         Chart.defaults.global.defaultFontFamily = ['Alata',
@@ -169,39 +392,24 @@
         ];
 
         var ctx = document.getElementById('chart').getContext('2d');
-
-
-
         // bar
         var chart = new Chart(ctx, {
             type: 'bar',
             data: {
-                labels: store.categoryNamegroup,
+                labels: store.currentGroup,
                 datasets: [{
                     label: '訂單量',
                     data: store.categoryOrdergroup,
                     backgroundColor: [
                         'rgba(236, 167, 42, 0.8)'
 
-                        // ,'rgba(54, 162, 235, 0.7)',
-                        // 'rgba(255, 206, 86, 0.7)',
-                        // 'rgba(75, 192, 192, 0.7)',
-                        // 'rgba(153, 102, 255, 0.7)',
-                        // 'rgba(255, 159, 64, 0.7)'
-
                     ],
                     borderColor: [
                         'rgba(236, 167, 42,1)'
-                        // ,'rgba(54, 162, 235, 1)',
-                        // 'rgba(255, 206, 86, 1)',
-                        // 'rgba(75, 192, 192, 1)',
-                        // 'rgba(153, 102, 255, 1)',
-                        // 'rgba(255, 159, 64, 1)'
+
                     ],
                     borderWidth: 1,
                     maxBarThickness: 2
-
-
                 }]
             },
             options: {
@@ -210,27 +418,29 @@
                         ticks: {
                             fontSize: 16,
                             maxTicksLimit: 8,
-
+                            beginAtZero: true,
+                            userCallback: function (label, index, labels) {
+                                // when the floored value is the same as the value we have a whole number 
+                                if (Math.floor(label) === label) {
+                                    return label;
+                                }
+                            }
                         }
-
                     }],
                     xAxes: [{
                         gridLines: {
                             display: false,
                             color: "black"
                         },
-
                         maxBarThickness: 80
-
-
                     }]
                 }
             }
-
-
-
         });
+
+
     </script>
+
 </body>
 
 </html>

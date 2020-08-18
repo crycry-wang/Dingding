@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var db = require('../model/db');
+var session = require('express-session');
 
 
 
@@ -40,7 +41,7 @@ let orderID;
 // 通知資料
 router.get('/', function (req, res, next) {
     // 店家
-    storeID = 2;
+    storeID = req.session.storeID;
     orderID = 9;
     store = 'select a.`storeID`,a.`storeName`,\
     a.`storePhoto`,count(b.`noticeStatus`) as\
@@ -57,14 +58,17 @@ router.get('/', function (req, res, next) {
     // 廠商訂單
     a = 'SELECT c.`noticeID`,a.`orderID`,b.`memberName`,b.`memberPhoto`,c.`noticeStatus`,\
     c.`noticeTime`,sum(d.`price`*d.`quality`) total,a.`orderDeadline` FROM\
-     `order` as a ,`member` as b ,`notice` as c ,`orderdetail` as d\
-    where a.`memberID`=b.`memberID` and a.`orderID`=c.`noticeData` and a.`orderID` = d.`orderID` and a.`orderStatus`'
+     `order` as a ,`member` as b ,`notice` as c ,`orderdetail` as d \
+    where a.`memberID`=b.`memberID` and  a.`orderID`=c.`noticeData` and\
+     a.`orderID` = d.`orderID` and (a.`orderStatus`'
     // 廠商新訂單
-    orderNotice = `${a} =2 and a.storeID=${storeID}` ;
+    orderNotice = `${a} =2 ) and c.toWhoID=${storeID} group by noticeID,orderID,memberName,memberPhoto,noticeTime,orderDeadline`;
     // 廠商拒絕訂單
-    orderCaNotice = `${a} =0 and a.storeID=${storeID}`;
+    orderCaNotice = `${a} =0 ) and c.toWhoID=${storeID}` + ' group by `noticeID`,`orderID`,`storeID`,`deliveryAddress`,\
+    `orderDeadline`,`orderArrivedTime`,`orderCreateTime`';
     // 廠商接受訂單
-    orderOkNotice = `${a} =3 and a.storeID=${storeID}`;
+    orderOkNotice = `${a} =3 or a.orderStatus=4 or a.orderStatus=5 )and c.toWhoID=${storeID}` + ' group by `noticeID`\
+,`orderID`,`memberName`,`memberPhoto`,`noticeStatus`,`noticeTime`,`orderDeadline`';
 
     // // 訂單詳情
     orderDtNoticeSelect = 'select o.orderID,d.productID,d.price,sum(d.quality) sum,\
@@ -73,8 +77,8 @@ router.get('/', function (req, res, next) {
      `orderdetail` d , `order` o , `member` m , `product` p where\
       o.orderID=d.orderID and d.productID=p.productID and m.memberID=o.memberID\
        and d.orderID='
-    orderDtNotice = `${orderDtNoticeSelect}${orderID} group by p.productName`;
-   
+    orderDtNotice = `${orderDtNoticeSelect}${orderID} group by productID,price,productPhoto,productName`;
+
     next();
 });
 
@@ -86,23 +90,72 @@ router.get('/getDetail', async (req, res, next) => {
      `orderdetail` d , `order` o , `member` m , `product` p where\
       o.orderID=d.orderID and d.productID=p.productID and m.memberID=o.memberID\
        and d.orderID='
-    orderDtNotice = `${orderDtNoticeSelect}${orderID} group by p.productName`;
+    orderDtNotice = `${orderDtNoticeSelect}${orderID} group by productID,price,productPhoto,productName`;
     newsJSON3 = JSON.stringify(await getOrderDTNotice(req));
     res.json(newsJSON3);
     next();
 });
 
-
-// 已讀
-router.post('/read', function(req, res, next) {
-    db.query('UPDATE `notice` set `noticeStatus`=2 where noticeID=' + req.body.noticeId,
-    function() {
-            console.log('已讀')
+// 接受
+router.post('/setAppect', function (req, res, next) {
+    db.query('UPDATE `order` set `orderStatus`=3 where orderID=' + req.body.orderID,
+        function () {
+            console.log('已接受')
         })
-        .catch(function() {
+        .catch(function () {
             console.log('err');
         })
-       
+
+})
+
+// 拒絕
+router.post('/setRefuse', function (req, res, next) {
+    db.query('UPDATE `order` set `orderStatus`=0 where orderID=' + req.body.orderID,
+        function () {
+            console.log('已拒絕')
+        })
+        .catch(function () {
+            console.log('err');
+        })
+
+})
+
+
+// 已讀
+router.post('/read', function (req, res, next) {
+    db.query('UPDATE `notice` set `noticeStatus`=2 where noticeID=' + req.body.noticeId,
+        function () {
+            console.log('已讀')
+        })
+        .catch(function () {
+            console.log('err');
+        })
+
+
+})
+// 全部已讀
+router.post('/allRead', function (req, res, next) {
+    db.query('UPDATE `notice` set `noticeStatus`=2 where `toWhoType`=1 and toWhoID=' + req.body.storeID,
+        function () {
+            console.log('全部已讀')
+        })
+        .catch(function () {
+            console.log('err');
+        })
+
+})
+
+// 刪除
+router.post('/deleteN', function (req, res, next) {
+    db.query('UPDATE `notice` set `noticeStatus`=0 where noticeID=' + req.body.noticeId,
+        function () {
+            console.log('刪除')
+        })
+        .catch(function () {
+            console.log('err');
+        })
+
+
 })
 
 

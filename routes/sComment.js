@@ -1,31 +1,48 @@
 var express = require('express');
 var router = express.Router();
 var db = require('../model/db');
+var session = require('express-session');
 
 /* GET home page. */
 
-const storeID = 1;
-const store ='select a.`storeID`,a.`storeName`,\
-    a.`storePhoto`,count(b.`noticeStatus`) as\
-     noticeCount from `store` as a,`notice` as\
-      b where a.`storeID`=b.`toWhoID` and b.`toWhoType`=1\
-       and b.`noticeStatus`=1 and storeID=' + storeID;
+let storeID;
+
+let store;
 // 評價
-const commentSelect = 'SELECT count(commentID) count,round(AVG(commentScore),1) star FROM `comment` WHERE storeID=';
-const comment = commentSelect + storeID;
-const commentJoinMemberSelect='SELECT a.commentID,a.commentScore,b.memberName,b.memberPhoto,a.commentContent,a.commentTime FROM `comment` a join member b on a.memberID=b.memberID WHERE a.storeID=';
-const commentJoinMember=commentJoinMemberSelect+storeID;
+let commentSelect;
+let comment;
+let commentJoinMemberSelect;
+let commentJoinMember;
 
 
 // 訂單完成數
 // 訂單總筆數
-const orderSelect = 'SELECT orderStatus FROM `order` WHERE storeId=';
-const order = orderSelect + storeID;
+let order;
 // 訂單總筆數
 
 
+
+router.get('/', function (req, res, next) {
+    storeID = req.session.storeID;
+    store ='select a.`storeID`,a.`storeName`,\
+    a.`storePhoto`,count(b.`noticeStatus`) as\
+     noticeCount from `store` as a,`notice` as\
+      b where a.`storeID`=b.`toWhoID` and b.`toWhoType`=1\
+       and b.`noticeStatus`=1 and storeID=' + storeID;
+       comment = 'SELECT count(commentID) count,round(AVG(commentScore),1) star FROM `comment` WHERE storeID=' + storeID;
+       commentJoinMember='SELECT a.commentID,a.commentScore,b.memberName,b.memberPhoto,a.commentContent,a.commentTime FROM `comment` a join member b on a.memberID=b.memberID WHERE a.storeID='+storeID;
+       order = 'SELECT orderStatus FROM `order` WHERE storeId='+ storeID;
+
+    next();
+
+});
+
+
+
+
+
 // 店家左側
-const getStoreData = (req) => {
+let getStoreData = (req) => {
     return new Promise((resolve, reject) => {
         db.queryAsync(store)
             .then(results => {

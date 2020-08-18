@@ -25,7 +25,10 @@ router.get('/', function (req, res, next) {
   // 側邊欄 
   memberId = req.session.memberID;
   member = memberSelect + memberId;
-  memberSelect = 'select * from `member` where memberID=';
+  memberSelect = 'select a.`memberID`,a.`memberName`,a.`memberPhoto`,\
+  count(b.`noticeStatus`) as noticeCount from `member` as a,\
+  `notice` as b where a.memberID=b.toWhoID and toWhoType=2 \
+  and b.noticeStatus=1 and memberID=';
 
   memberID = req.session.memberID;
   storeListSql = "select s.storeID,s.storeName,s.storeBanner,count(commentID) count,round(AVG(commentScore),1) star FROM `comment` c inner join `store` s on c.storeID=s.storeID inner join `likeStore` l on s.storeID=l.storeID where l.memberID=" + memberID + " group by c.storeID";
