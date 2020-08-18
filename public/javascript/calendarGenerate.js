@@ -219,7 +219,8 @@ function addfake(){
         var para = document.createElement("div");
         
         tempfake.appendChild(para);
-        para.innerHTML = '<i class="icon-vote textG" style="font-size:36px"></i><i class="icon-vote textY" style="font-size:36px"></i><i class=" icon-claenderstatus textG" style="font-size:36px"></i><i class=" icon-claenderstatus textB" style="font-size:36px"></i>';
+        para.innerHTML = '<i class="icon-vote textY" style="font-size:36px"></i><i class=" icon-claenderstatus textB" style="font-size:36px"></i>';
+        // para.innerHTML = '<i class="icon-vote textG" style="font-size:36px"></i><i class="icon-vote textY" style="font-size:36px"></i><i class=" icon-claenderstatus textG" style="font-size:36px"></i><i class=" icon-claenderstatus textB" style="font-size:36px"></i>';
     }
 }
 

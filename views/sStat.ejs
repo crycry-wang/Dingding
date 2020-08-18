@@ -330,14 +330,16 @@
                     y = date.getFullYear(), m = date.getMonth();
                     // 第一天
                     date = new Date(y, m, 1);
-                    
+
                     this.date = date.getFullYear() + '.' + (date.getMonth() + 1) + '.'
-                        + date.getDate()
+                        + date.getDate();
                     // 最後一天
                     y = date.getFullYear(), m = date.getMonth();
-                    date1= new Date(y, m + 1, 0);
+                    date1 = new Date(y, m + 1, 0);
                     this.dateEnd = date1.getFullYear() + '.' + (date1.getMonth() + 1) + '.'
-                        + date1.getDate()
+                        + date1.getDate();
+
+                    this.fetchTime();
 
                 }, dateStat() {
                     this.tab = 0;
@@ -369,6 +371,7 @@
                         dateEnd: dateEnd
                     }
                     this.fetchTime();
+
                 }, addMonth() {
                     date = date.setMonth(date.getMonth() + 1);
                     date = new Date(date);
