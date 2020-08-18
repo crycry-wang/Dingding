@@ -53,7 +53,7 @@
                     <span>
                         <button class="mr-xs text20R dbtn btnGY">訂訂行事曆</button>
                         <button class="mr-xs text20R dbtn btnGY btnY">我的團體</button>
-                       <button class="mr-xs text20R dbtn btnGY">我的訂單</button>
+                        <button class="mr-xs text20R dbtn btnGY">我的訂單</button>
                         <button class="text20R dbtn btnGB">我的投票</button>
                     </span>
 
@@ -65,13 +65,13 @@
                         <button class="dbtn btnLG text20RG icon-left-open">返回</button><br>
                         <a href="mGroup"><button class="dbtn btnY text20R">儲存</button></a>
                     </div>
-                    <div class="ml-m" style="margin-top: 43px;">
+                    <div class="ml-m" style="margin-top: 43px;" v-for="item in groupData">
                         <div class="d-flex mb-m">
                             <span class="mr-m">
                                 <p class="text20R">邀請團號</p>
                             </span>
                             <span>
-                                <p class="eng20R">G2K5631</p>
+                                <p class="eng20R">{{item.groupID}}</p>
                             </span>
                         </div>
                         <div class="d-flex mb-m align-items-center">
@@ -79,27 +79,30 @@
                                 <p class="text20R">團體名稱</p>
                             </span>
                             <span><input class="singleText398 text20R" type="text" placeholder="請輸入團體名稱"
-                                    value="資策會"></span>
+                                    v-bind:value="item.groupName"></span>
                         </div>
                         <div class="d-flex mb-l align-items-center">
                             <span class="mr-m">
                                 <p class="text20R">邀請團員</p>
                             </span>
-                            <span><input class="singleText398 mr-xs text20R" type="text" placeholder="請輸入團員電子信箱"></span>
-                            <span><button class="dbtn btnY text20R">邀請</button></span>
+                            <span><input id="addMemberEmail" class="singleText398 mr-xs text20R" type="text"
+                                    placeholder="請輸入團員電子信箱"></span>
+                            <span><button @click="inviteMember" class="dbtn btnY text20R">邀請</button></span>
                         </div>
                         <div class="d-flex flex-wrap">
-                            <div v-for="(item, index) in list" v-if="index < 1">
+                            <div v-for="(item, index) in groupList" v-if="index < 1">
                                 <button class="dbtnMem btnB d-flex align-items-center mr-xs text20R">
-                                    <img v-bind:src="item.src" alt="" class="btnPhoto mr-xs">
-                                    <p class="mr-xxs">{{item.memName}}</p>
+                                    <img v-bind:src="(`image/會員資料/大頭照/${item.memberPhoto}`)" alt=""
+                                        class="btnPhoto mr-xs">
+                                    <p class="mr-xxs">{{item.memberName}}</p>
                                     <p>(團長)</p>
                                 </button>
                             </div>
-                            <div v-for="(item, index) in list" v-if="index != 0" class="mb-3">
+                            <div v-for="(item, index) in groupList" v-if="index != 0" class="mb-3">
                                 <button type="button" class="dbtnMem btnLG d-flex align-items-center text20R" id="more" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <img v-bind:src="item.src" alt="" class="btnPhoto mr-xs">
-                                    <p>{{item.memName}}</p>
+                                    <img v-bind:src="(`image/會員資料/大頭照/${item.memberPhoto}`)" alt=""
+                                        class="btnPhoto mr-xs">
+                                    <p>{{item.memberName}}</p>
                                 </button>
                                 <div class="dropdown-menu text-center tag-wrap" aria-labelledby="more" id='moreMenu'>
                                     <a class="dropdown-item text20R" href="#">移交團長</a>
@@ -108,15 +111,44 @@
                             </div>
                         </div>
                     </div>
-
-
                 </div>
-
             </div>
         </div>
     </div>
 
-    <script src="/javascript/addGroMemList.js"></script>
+    <script>
+        let app = new Vue({
+            el: '#app',
+            data: {
+                groupData: JSON.parse('<%- groupData %>'),
+                groupList: JSON.parse('<%- groupList %>')
+            },
+            methods: {
+                inviteMember: function() {
+                    fetch('http://localhost:3000/mNewGroup/inviteMember', {
+                            method: "post",
+                            body: JSON.stringify(input),
+                            headers: new Headers({
+                                'Content-Type': 'application/json'
+                            })
+                        })
+                        .then(
+                            location.href = "mNewGroup"
+                        )
+
+                }
+            }
+        })
+
+        let input = {
+            memberEmail: ""
+        }
+
+        document.querySelector("#addMemberEmail")
+            .addEventListener("input", function(e) {
+                input.memberEmail = e.target.value;
+            })
+    </script>
 
 </body>
 
