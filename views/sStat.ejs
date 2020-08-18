@@ -38,7 +38,7 @@
             <li>
                 <h2 class="text20RG">日期</h2>
                 <p class="eng24R" v-if='tab==0'>{{date}}</p>
-                <p class="eng24R" v-if='tab==1'>{{(date).slice(0,6)}}月</p>
+                <p class="eng24R" v-if='tab==1'>{{(date).slice(0,7)}}月</p>
             </li>
             <li>
                 <h2 class="text20RG">訂單量</h2>
@@ -56,7 +56,7 @@
                 <canvas id="chart" width="800" height="400"></canvas>
             </div>
             <img class="lrImg" src="/image/right.png" v-if='tab==0' @click='addDate'>
-            <img class="lrImg" src="/image/right.png" v-if='tab==1' @click='backMonth'>
+            <img class="lrImg" src="/image/right.png" v-if='tab==1' @click='addMonth'>
         </div>
 
         <div class="typeButton">
@@ -159,6 +159,7 @@
 
                 // 取總量
                 // 取總訂單量
+
                 let totalPrice = 0;
                 this.orderTotal['count'] = this.categoryOrdergroup[0].toLocaleString('en-US');
                 // 取總訂單價格
@@ -295,7 +296,9 @@
                         dateStart: dateStart,
                         dateEnd: dateEnd
                     }
+
                     this.fetchTime();
+
 
 
                 },
@@ -316,6 +319,7 @@
                         dateEnd: dateEnd
                     }
                     this.fetchTime();
+
                     // 月份
                 }, monthStat() {
                     this.tab = 1;
@@ -323,22 +327,25 @@
                     y = date.getFullYear(), m = date.getMonth();
                     // 第一天
                     date = new Date(y, m, 1);
+                    
                     this.date = date.getFullYear() + '.' + (date.getMonth() + 1) + '.'
                         + date.getDate()
                     // 最後一天
                     y = date.getFullYear(), m = date.getMonth();
-                    date = new Date(y, m + 1, 0);
+                    date1= new Date(y, m + 1, 0);
+                    this.dateEnd = date1.getFullYear() + '.' + (date1.getMonth() + 1) + '.'
+                        + date1.getDate()
 
-                },dateStat(){
+                }, dateStat() {
                     this.tab = 0;
                     // 返回今天第一天
-                    date= new Date();
-                    this.date=date.getFullYear() + '.' + (date.getMonth() + 1) + '.'
-                    + date.getDate(),
-                    this.dateEnd= date.getFullYear() + '.' + (date.getMonth() + 1) + '.'
-                    + (date.getDate() + 1)
+                    date = new Date();
+                    this.date = date.getFullYear() + '.' + (date.getMonth() + 1) + '.'
+                        + date.getDate();
+                    this.dateEnd = date.getFullYear() + '.' + (date.getMonth() + 1) + '.'
+                        + (date.getDate() + 1);
                 },
-                 backMonth() {
+                backMonth() {
                     // 開始時間
                     date = date.setMonth(date.getMonth() - 1);
                     date = new Date(date)
@@ -360,7 +367,25 @@
                     }
                     this.fetchTime();
                 }, addMonth() {
+                    date = date.setMonth(date.getMonth() + 1);
+                    date = new Date(date);
+                    y = date.getFullYear(), m = date.getMonth();
+                    date = new Date(y, m, 1);
+                    dateStart = date.getFullYear() + '.' + (date.getMonth() + 1) + '.'
+                        + date.getDate()
+                    this.date = dateStart;
 
+                    // 結束時間
+                    y = date.getFullYear(), m = date.getMonth();
+                    date1 = new Date(y, m + 1, 0);
+                    dateEnd = date1.getFullYear() + '.' + (date1.getMonth() + 1) + '.'
+                        + date1.getDate();
+                    this.dateEnd = dateEnd;
+                    let dateRang = {
+                        dateStart: dateStart,
+                        dateEnd: dateEnd
+                    }
+                    this.fetchTime();
 
                 }, fetchTime() {
                     // fetch時間
@@ -371,8 +396,17 @@
                         .then((myJson) => {
                             this.orderSumData = JSON.parse(myJson);
                             console.log(JSON.parse(myJson));
-
+                            this.switchbutton(0);
+                            this.reOrderTotal();
                         });
+                }, reOrderTotal() {
+                    let totalPrice = 0;
+                    this.orderTotal['count'] = this.categoryOrdergroup[0].toLocaleString('en-US');
+                    // 取總訂單價格
+                    this.orderSumData.forEach((item) => {
+                        totalPrice += item.totalPrice
+                    })
+                    this.orderTotal['price'] = totalPrice.toLocaleString('en-US');
                 }
 
             }
