@@ -329,6 +329,84 @@
                                     </div>
                                 </div>
                             </li>
+                            <li class="align-middle row recommendItem">
+                                <div class="col-3">
+                                    <p class="d-inline-block text24B align-middle mr-3">推薦</p>
+                                    <span class="snd align-middle "><img src="/image/second.png "></span>
+                                </div>
+                                <div class="row col-9">
+                                    <div class="ddselect col-6 d-inline-block">
+                                        <div class="dSelect selectTitle">
+                                            <div class="dSelectText text20R">{{categoryName}}</div>
+                                        </div>
+                                        <div class="dOptionDivOff selectContent w-100">
+                                            <div class="dOption" v-for='(item,index) in elementp'>
+                                                <label :for='item' class="d-block">
+                                                    <div class="text20R">
+                                                        <input type="radio" v-model="categoryName" :id='item'
+                                                            :value='item' hidden>{{item}}
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="ddselect col-6 d-inline-block">
+                                        <div class="ml-3 dSelect selectTitle">
+                                            <div class="dSelectText text20R clip">{{productData[0].productName}}</div>
+                                        </div>
+                                        <div class="dOptionDivOff selectContent ml-3">
+                                            <div class=" dOption" v-for='(item,index) in productData'>
+                                                <label :for='item' class="d-block">
+                                                    <div class="text20R">
+                                                        <input type="radio" v-model="categoryName" :id='item'
+                                                            :value='item' hidden>{{item.productName}}
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="align-middle row recommendItem">
+                                <div class="col-3">
+                                    <p class="d-inline-block text24B align-middle mr-3">推薦</p>
+                                    <span class="trd align-middle "><img src="/image/third.png "></span>
+                                </div>
+                                <div class="row col-9">
+                                    <div class="ddselect col-6 d-inline-block">
+                                        <div class="dSelect selectTitle">
+                                            <div class="dSelectText text20R">{{categoryName}}</div>
+                                        </div>
+                                        <div class="dOptionDivOff selectContent w-100">
+                                            <div class="dOption" v-for='(item,index) in elementp'>
+                                                <label :for='item' class="d-block">
+                                                    <div class="text20R">
+                                                        <input type="radio" v-model="categoryName" :id='item'
+                                                            :value='item' hidden>{{item}}
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="ddselect col-6 d-inline-block">
+                                        <div class="ml-3 dSelect selectTitle">
+                                            <div class="dSelectText text20R clip">{{productData[0].productName}}</div>
+                                        </div>
+                                        <div class="dOptionDivOff selectContent ml-3">
+                                            <div class=" dOption" v-for='(item,index) in productData'>
+                                                <label :for='item' class="d-block">
+                                                    <div class="text20R">
+                                                        <input type="radio" v-model="categoryName" :id='item'
+                                                            :value='item' hidden>{{item.productName}}
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
                         </ul>
                     </div>
 
