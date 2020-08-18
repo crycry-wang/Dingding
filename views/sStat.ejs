@@ -31,8 +31,8 @@
         <!-- 右邊內容放置區 -->
 
         <nav class="topTag row inWrapper position-sticky">
-            <div :class="tab==0 ?'dTag text24RG act':'dTag text24RG'" @click='tab=0'>日營業額</div>
-            <div :class="tab==1 ?'dTag text24RG act':'dTag text24RG'" @click='month'>月營業額</div>
+            <div :class="tab==0 ?'dTag text24RG act':'dTag text24RG'" @click='dateStat'>日營業額</div>
+            <div :class="tab==1 ?'dTag text24RG act':'dTag text24RG'" @click='monthStat'>月營業額</div>
         </nav>
         <ul class="statList">
             <li>
@@ -317,7 +317,7 @@
                     }
                     this.fetchTime();
                     // 月份
-                }, month() {
+                }, monthStat() {
                     this.tab = 1;
                     date = new Date();
                     y = date.getFullYear(), m = date.getMonth();
@@ -329,8 +329,16 @@
                     y = date.getFullYear(), m = date.getMonth();
                     date = new Date(y, m + 1, 0);
 
-                }, backMonth() {
-
+                },dateStat(){
+                    this.tab = 0;
+                    // 返回今天第一天
+                    date= new Date();
+                    this.date=date.getFullYear() + '.' + (date.getMonth() + 1) + '.'
+                    + date.getDate(),
+                    this.dateEnd= date.getFullYear() + '.' + (date.getMonth() + 1) + '.'
+                    + (date.getDate() + 1)
+                },
+                 backMonth() {
                     // 開始時間
                     date = date.setMonth(date.getMonth() - 1);
                     date = new Date(date)
