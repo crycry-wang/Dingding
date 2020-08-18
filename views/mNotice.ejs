@@ -52,6 +52,7 @@
             <ul class="scrollList noticeList">
                 <!-- 系統通知 -->
                 <span v-if='tab==0'>
+                    <span v-if='dNticeData.length>0'>
                     <span v-for='(item,index) in dNticeData'>
                         <span v-if='item.noticeStatus > 0'>
                             <li :class="item.noticeStatus== 2 ? 'noticeItem d-flex align-items-center read':'noticeItem d-flex align-items-center'"
@@ -69,11 +70,12 @@
                         </span>
                     </span>
                 </span>
+                </span>
 
                 <!-- 店家新訊息 -->
                 <span v-if='tab==1'>
                     <!-- 正常訂單-->
-                    <span v-if='oderNoticeData[0].noticeID!=null'>
+                    <span v-if='oderNoticeData.length>0'>
                         <span v-for='(item,index) in oderNoticeData'>
                             <li :class="item.noticeStatus==2 ?
                         'noticeItem d-flex align-items-center read':'noticeItem d-flex align-items-center'"
@@ -110,7 +112,7 @@
                         </span>
                     </span>
                     <!-- 取消訂單 -->
-                    <span v-if='oderNoticeData[0].noticeID!=null'>
+                    <span v-if='oderNoticeData.length>0'>
                         <span v-for='(item,index) in oderNoticeData'>
                             <li :class="item.noticeStatus==2 ?
                         'noticeItem d-flex align-items-center read cancel store':'noticeItem d-flex align-items-center cancel store'"

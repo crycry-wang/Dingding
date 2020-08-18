@@ -51,7 +51,7 @@
             <div class="dblock mt-4">
                 <ul class="scrollList noticeList">
                     <!-- 處理訂單通知 -->
-                    <span v-if='!orderNoticeData'>
+                    <span v-if='orderNoticeData.length>0'>
                         <span v-for='(item,index) in orderNoticeData'>
                             <li :class="item.noticeStatus==2 ?
                     'noticeItem d-flex align-items-center read store':'noticeItem d-flex align-items-center store'"
@@ -74,7 +74,7 @@
                         </span>
                     </span>
                     <!-- 系統通知 -->
-                    <span v-if='dNticeData[0].noticeID!=null'>
+                    <span v-if='dNticeData.length>0'>
                         <span v-for='(item,index) in dNticeData'>
                             <span v-if='item.noticeStatus > 0'>
                                 <li :class="item.noticeStatus== 2 ? 'noticeItem d-flex align-items-center read':'noticeItem d-flex align-items-center'"
@@ -93,7 +93,7 @@
                         </span>
                     </span>
                     <!-- 拒絕訂單 -->
-                    <span v-if='orderCaNoticeData[0].noticeID!=null'>
+                    <span v-if='orderCaNoticeData.length>0'>
                         <span v-for='(item,index) in orderCaNoticeData'>
                             <li :class="item.noticeStatus==2 ?
                      'noticeItem d-flex align-items-center read cancel store':'noticeItem d-flex align-items-center cancel store'"
@@ -119,7 +119,7 @@
                         </span>
                     </span>
                     <!-- 接受訂單 -->
-                    <span v-if='orderOkNoticeData[0].noticeID!=null'>
+                    <span v-if='orderOkNoticeData.length>0'>
                         <span v-for='(item,index) in orderOkNoticeData'>
                             <li :class="item.noticeStatus==2 ? 'noticeItem d-flex align-items-center read':'noticeItem d-flex align-items-center'"
                                 @click='readOkStatus(index)' v-if='item.noticeStatus > 0'>
