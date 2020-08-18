@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="/stylesheets/meal.css">
     <link rel="Shortcut Icon" type="image/x-icon" href="/image/favicon.png">
     <script src="/javascript/vue.js"></script>
+    <script src="/javascript/loading.js"></script>
     <title>餐點清單</title>
     <style>
         .clip {
@@ -34,7 +35,7 @@
 
 <body>
     <%- include('sSider', {active}); %>
-    <span id='sProduct'>
+    <span id='sProduct' class="load">
         <div class="containerRight">
             <!-- 右邊內容放置區 -->
             <nav class="topTag d-flex row inWrapper align-items-start">
@@ -421,6 +422,8 @@
         </div>
 
     </span>
+
+    <div id="loading"></div>
     <script>
         //vue資料
         let il;

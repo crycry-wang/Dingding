@@ -16,6 +16,7 @@
     <link rel="Shortcut Icon" type="image/x-icon" href="/image/favicon.png">
     <script src="/javascript/vue.js"></script>
     <script src="/javascript/Chart.min.js"></script>
+    <script src="/javascript/loading.js"></script>
 
     <title>營運統計</title>
 
@@ -28,7 +29,7 @@
     <!-- 左邊sider -->
     <%- include('sSider', {active}); %>
 
-    <div class="containerRight" id='stat'>
+    <div class="containerRight load" id='stat'>
         <!-- 右邊內容放置區 -->
 
         <nav class="topTag row inWrapper position-sticky">
@@ -79,6 +80,7 @@
  -->
 
     </div>
+    <div id="loading"></div>
 
     <script>
         //vue資料

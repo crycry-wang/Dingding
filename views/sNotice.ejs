@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="/stylesheets/notice.css">
     <link rel="Shortcut Icon" type="image/x-icon" href="/image/favicon.png">
     <script src="/javascript/vue.js"></script>
+    <script src="/javascript/loading.js"></script>
 
     <title>通知</title>
 
@@ -36,7 +37,7 @@
     <%- include('sSider', {active}); %>
 
     <!-- 右邊內容放置區 -->
-    <div id='app'>
+    <div id='app' class="load">
         <div class="containerRight" id="noticeList">
             <nav class="topTag row inWrapper">
                 <a class="more ml-auto" href="#" role="button" id="more" data-toggle="dropdown" aria-haspopup="true"
@@ -313,7 +314,7 @@
         </div>
     </div>
 
-
+    <div id="loading"></div>
     <script>
         // Vue資料
         let mMember = new Vue({

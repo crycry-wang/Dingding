@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="/stylesheets/member.css">
     <link rel="stylesheet" href="/stylesheets/index.css">
     <script src="/javascript/getDate.js"></script>
+    <script src="/javascript/loading.js"></script>
     <link rel="Shortcut Icon" type="image/x-icon" href="/image/favicon.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css" />
 
@@ -45,7 +46,7 @@
 
 <body>
     <%- include('sSider', {active}); %>
-    <div id="storeInformation">
+    <div id="storeInformation" class="load">
         <div class="containerRight" v-for="item in dbStoreInformation">
             <!-- 右邊內容放置區 -->
             <div class="btnDiv mb-m">
@@ -432,6 +433,7 @@
             </div>
         </div>
     </div>
+    <div id="loading"></div>
 
     <script src="/javascript/vue.js"></script>
     <script>

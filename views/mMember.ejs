@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="/stylesheets/member.css">
     <link rel="Shortcut Icon" type="image/x-icon" href="/image/favicon.png">
     <script src="/javascript/vue.js"></script>
+    <script src="/javascript/loading.js"></script>
 
     <title>會員中心</title>
     <style>
@@ -36,7 +37,7 @@
 <body>
 
     <%- include('mSider', {active}); %>
-
+<div class="load">
     <div class="containerRight memberInfo" id='memberInfo'>
         <div class="inWrapper">
             <div class="CoinBlock mt-m py-2 mb-100 d-inline-block ">
@@ -156,7 +157,8 @@
             </div>
         </div>
     </div>
-
+</div>
+<div id="loading"></div>
 
 
     <script>

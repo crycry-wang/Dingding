@@ -15,6 +15,8 @@
     <link rel="stylesheet" href="/stylesheets/member.css">
     <link rel="Shortcut Icon" type="image/x-icon" href="/image/favicon.png">
     <script src="/javascript/vue.js"></script>
+    <script src="/javascript/loading.js"></script>
+    
 
     <title>我的訂訂幣</title>
 
@@ -26,7 +28,7 @@
     <%- include('mSider', {active}); %>
 
     <!-- 右邊內容放置區 -->
-    <div class="containerRight" id="purchased">
+    <div class="containerRight load" id="purchased">
         <div class="inWrapper">
             <div class="CoinBlock mt-m py-2 mb-l d-inline-block">
                 <span class="text24B align-middle">我的訂訂幣</span>
@@ -63,7 +65,7 @@
         </div>
     </div>
 
-
+<div id="loading"></div>
 
     <script>
         // vue資料

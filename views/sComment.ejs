@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="/stylesheets/sEvaluation.css">
     <link rel="Shortcut Icon" type="image/x-icon" href="/image/favicon.png">
     <script src="/javascript/vue.js"></script>
+    <script src="/javascript/loading.js"></script>
 
     <title>店家評價</title>
 
@@ -28,7 +29,7 @@
 
     <%- include('sSider', {active}); %>
 
-    <div class="containerRight" id='store'>
+    <div class="containerRight load" id='store'>
         <!-- 右邊內容放置區 -->
         <nav class="topTag title row inWrapper position-sticky mb-m">
             <span class="eng24R">{{commentData[0].star}}</span>
@@ -62,6 +63,8 @@
         </ul>
     </div>
 
+    
+    <div id="loading"></div>
     <!-- vue -->
     <script>
        

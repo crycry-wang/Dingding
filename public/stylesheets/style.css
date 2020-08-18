@@ -42,6 +42,7 @@ ul {
     font-family: 'Alata', 'Noto Sans TC' !important;
     /* font-family: , sans-serif !important; */
     /* Regular 是400，Bold是700 */
+    cursor: url(../image/網頁游標-2-02.cur), auto;
 }
 
 
@@ -65,7 +66,7 @@ a:hover,
 .storeContent:hover,
 .dTag:hover,
 .countryPoint:hover {
-    cursor: pointer;
+    cursor:url(../image/網頁游標-1-02.cur), pointer;
 }
 
 
@@ -1084,7 +1085,7 @@ textarea {
     background: var(--dYellow);
 }
 /* 進場延遲 */
-#loading {
+#indexLoading {
     display: block;
     position: absolute;
     top: 0;
@@ -1092,12 +1093,27 @@ textarea {
     z-index: 100;
     width: 100vw;
     height: 100vh;
-    background-color:#FAFDFF;
+    background-color:var(--dLightGray);
     background-image: url("../image/loading2.gif");
     background-size: 200px auto;
     background-repeat: no-repeat;
     background-position: center;
-        }
- .load{
+}
+#loading{
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 100;
+    width: calc(100vw - 400px);
+    height: 100vh;
+    background-color:var(--dLightGray);
+    background-image: url("../image/loading2.gif");
+    background-size: 200px auto;
+    background-repeat: no-repeat;
+    background-position: center;
+    /* float: right; */
+}
+.load{
      display: none;
- }   
+}   

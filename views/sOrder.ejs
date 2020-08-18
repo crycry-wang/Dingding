@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="/stylesheets/member.css">
     <link rel="stylesheet" href="/stylesheets/order.css">
     <link rel="Shortcut Icon" type="image/x-icon" href="/image/favicon.png">
+    <script src="/javascript/loading.js"></script>
 
     <title>訂單管理</title>
     <style>
@@ -75,7 +76,7 @@
     <!-- 左邊sider -->
     <%- include('sSider', {active}); %>
 
-    <div id="app">
+    <div id="app" class="load">
         <div class="containerRight">
             <!-- 右邊內容放置區 -->
 
@@ -323,6 +324,7 @@
             </div>
         </div>
     </div>
+    <div id="loading"></div>
 
     <script>
         let app = new Vue({
