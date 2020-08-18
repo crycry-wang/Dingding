@@ -22,41 +22,24 @@
 <body>
 
     <!-- 左邊sider -->
-    <div class="slider fixed-top">
-        <img src="/image/LOGO.png" class="sliderLogo">
-        <br>
-        <img src="/image/photo.jpg" class="sliderPhoto">
-        <p class="name text24B">阿信</p>
-        <div class="menu text24R">
-            <a href=""><i class="icon-home"></i>首頁</a>
-            <a href="" class="act"><i class="icon-claendar"></i>訂訂行事曆</a>
-            <a href="" class="mb-2"><i class="icon-member"></i>會員中心<i class="icon-down-open ml-3 mr-0"
-                    style="font-size: 14px;"></i></a>
-            <span class="menuI d-none">
-                <a href="" class="mb-0">個人資料</a>
-                <a href="">我的訂訂幣</a>
-            </span>
-            <a href="" class="mt-4"><i class="icon-message"></i>通知<span class="note">3</span></a>
-            <a href="" id="signOut"><i class="icon-logout"></i>登出</a>
-        </div>
-    </div>
+    <%- include('mSider', {active}); %>
 
     <!-- 右邊內容放置區 -->
-    <div class="containerRight">
+    <div id="app" class="containerRight">
         <div class="inWrapper">
             <!-- 上方頁籤 -->
             <div class="topBtnGroup topBtnPadding">
-                <button class="text20R dbtn btnGY">訂訂行事曆</button>
-                <button class="text20R dbtn btnGY">我的團體</button>
-                <button class="text20R dbtn btnGY btnY">我的訂單</button>
-                <a href="mVoteList"><button class="text20R dbtn btnGB">我的投票</button></a>
+                <button @click="goTo(1)" class="text20R dbtn btnGY">訂訂行事曆</button>
+                <button @click="goTo(2)" class="text20R dbtn btnGY">我的團體</button>
+                <button @click="goTo(3)" class="text20R dbtn btnGY btnY">我的訂單</button>
+                <button @click="goTo(4)" class="text20R dbtn btnGB">我的投票</button>
             </div>
             <!-- 內容區塊 -->
-            <div id="app" class="dblock givePadding mt-m">
+            <div class="dblock givePadding mt-m">
                 <div :class="{act : tab == 1}" class="dTag text24RG" @click="getFuture">預定訂單</div>
                 <div :class="{act : tab == 2}" class="dTag text24RG" @click="getHistory">歷史訂單</div>
                 <div class="d-flex justify-content-end">
-                    <a href="mNewOrder"><button class="text20R dbtn btnB">安排訂單<span class="ml-2">+</span></button></a>
+                    <button @click="goTo(5)" class="text20R dbtn btnB">安排訂單<span class="ml-2">+</span></button>
                 </div>
                 <div class="row mt-4 text20BW">
                     <div class="col-4 mTH">團名</div>
@@ -64,12 +47,23 @@
                     <div class="col-4 mTH">餐點送達時間</div>
                 </div>
                 <!-- 捲軸範圍 -->
-                <div class="scrollList orderVoteList">
-                    <div v-for="(order,index) in orderList" class="row mTR text20B">
+                <!-- 預定訂單 -->
+                <div class="scrollList orderVoteList" v-if="tab==1">
+                    <div v-for="(order,index) in orderList"  @click="toOrderDetail(order.orderID)" class="row mTR text20B" style="cursor:pointer">
                         <div class="col-4 mTD">{{ order.groupName }}</div>
                         <div class="col-4 mTD">
                             <img :src="'/image/store/' +order.storePhoto" alt="" class="float-left orderListimg clipCircle mr-3">{{ order.storeName }}</div>
-                        <div class="col-4 mTD">{{ order.orderArrivedTime }}<a href="#" @click="toOrderDetail(order.orderID)" class="icon-ok float-right" :class="checkOrder(order.orderID)"></a></div>
+                        <div class="col-4 mTD">{{ order.orderArrivedTime }}<i class="icon-ok float-right" :class="checkOrder(order.orderID)"></i></div>
+                    </div>
+                    
+                </div>
+                <!-- 歷史訂單 -->
+                <div class="scrollList orderVoteList" v-if="tab==2">
+                    <div v-for="(order,index) in orderList"  @click="toOrderDetail(order.orderID)" class="row mTR text20B" style="cursor:pointer" :class="checkOrder2(order.orderID)">
+                        <div class="col-4 mTD">{{ order.groupName }}</div>
+                        <div class="col-4 mTD">
+                            <img :src="'/image/store/' +order.storePhoto" alt="" class="float-left orderListimg clipCircle mr-3">{{ order.storeName }}</div>
+                        <div class="col-4 mTD">{{ order.orderArrivedTime }}<i class="icon-right-open float-right textY"></i></div>
                     </div>
                     
                 </div>
@@ -82,6 +76,7 @@
         let app = new Vue({
             el: "#app",
             data: {
+                memberData: JSON.parse('<%- mMemberData %>'),
                 orderList:JSON.parse('<%- orderList %>'),
                 orderCheck:JSON.parse('<%- orderCheck %>'),
                 tab:1,
@@ -93,7 +88,7 @@
                         return response.json();
                     })
                     .then((myJson) => {
-                        console.log(myJson);
+                        // console.log(myJson);
                         this.orderList= JSON.parse(myJson);
                     });
                     this.tab=1;
@@ -104,7 +99,7 @@
                         return response.json();
                     })
                     .then((myJson) => {
-                        console.log(myJson);
+                        // console.log(myJson);
                         this.orderList= JSON.parse(myJson);
                     });
                     this.tab=2;
@@ -116,9 +111,36 @@
                     }
                     return "textG" ;
                 },
+                checkOrder2:function(viewOrderID) {
+                    for (let i = 0; i < this.orderCheck.length; i++) {
+                        if(this.orderCheck[i].orderID == viewOrderID)
+                        return
+                    }
+                    return "d-none" ;
+                },
                 toOrderDetail:function(viewOrderID){
                     location.href="/mOrder?orderID="+viewOrderID;
-                }
+                },
+                goTo: function (tab) {
+                    console.log("!!!");
+                    switch (tab) {
+                        case 1:
+                            location.href = "/mCalendar";
+                            break;
+                        case 2:
+                            location.href = "/mGroup";
+                            break;
+                        case 3:
+                            location.href = "/mOrderList";
+                            break;
+                        case 4:
+                            location.href = "/mVoteList";
+                            break;
+                        case 5:
+                            location.href = "/mNewOrder";
+                            break;
+                    }
+                },
             }
         })
     </script>

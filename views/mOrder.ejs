@@ -20,40 +20,27 @@
         .dblock {
             height: calc(100vh - 186px);
         }
+
+        .borderList:last-child{
+            /* opacity: 0; */
+        }
     </style>
 
 </head>
 
 <body>
     <!-- 左邊sider -->
-    <div class="slider fixed-top">
-        <img src="/image/LOGO.png" class="sliderLogo">
-        <br>
-        <img src="/image/photo.jpg" class="sliderPhoto">
-        <p class="name text24B">阿信</p>
-        <div class="menu text24R">
-            <a href=""><i class="icon-home"></i>首頁</a>
-            <a href="" class="act"><i class="icon-claendar"></i>訂訂行事曆</a>
-            <a href="" class="mb-2"><i class="icon-member"></i>會員中心<i class="icon-down-open ml-3 mr-0"
-                    style="font-size: 14px;"></i></a>
-            <span class="menuI d-none">
-                <a href="" class="mb-0">個人資料</a>
-                <a href="">我的訂訂幣</a>
-            </span>
-            <a href="" class="mt-4"><i class="icon-message"></i>通知<span class="note">3</span></a>
-            <a href="" id="signOut"><i class="icon-logout"></i>登出</a>
-        </div>
-    </div>
+    <%- include('mSider', {active}); %>
 
     <!-- 右邊內容放置區 -->
     <div id="app" class="containerRight">
         <div class="inWrapper">
             <!-- 上方頁籤 -->
             <div class="topBtnGroup topBtnPadding">
-                <button class="text20R dbtn btnGY">訂訂行事曆</button>
-                <button class="text20R dbtn btnGY">我的團體</button>
-                <button class="text20R dbtn btnGY btnY">我的訂單</button>
-                <button class="text20R dbtn btnGB">我的投票</button>
+                <button @click="goTo(1)" class="text20R dbtn btnGY">訂訂行事曆</button>
+                <button @click="goTo(2)" class="text20R dbtn btnGY">我的團體</button>
+                <button @click="goTo(3)" class="text20R dbtn btnGY btnY">我的訂單</button>
+                <button @click="goTo(4)" class="text20R dbtn btnGB">我的投票</button>
             </div>
             <!-- 內容區塊 -->
             <div class="dblock givePadding mt-m">
@@ -115,7 +102,8 @@
                                     <span class="text24B">{{order[0].storeName}}</span>
                                 </div>
                                 <div class="col-3 text-right pr-3">
-                                    <span v-if="(!productList[0].orderDetailID)&&(!readyComment)&&(!overOrderTime)" class="text20B">已選擇<span
+                                    <span v-if="(!productList[0].orderDetailID)&&(!readyComment)&&(!overOrderTime)"
+                                        class="text20B">已選擇<span
                                             class="eng20R textY mr-3 ml-3">{{totalQuality}}</span>項餐點</span>
                                 </div>
                                 <div class="col-2 text-right pr-4">
@@ -125,16 +113,10 @@
                                     </span>
                                 </div>
                             </div>
+                             <!-- 中間頁籤 -->
                             <div v-if="(!productList[0].orderDetailID)" class="mTD">
-                                <a href="#" class="text20R text-decoration-none pr-3 textB">店家推薦</a><span
-                                    class="textG">|</span>
-                                <a href="#" class="text20R text-decoration-none pr-3 pl-3">人氣餐點</a><span
-                                    class="textG">|</span>
-                                <a href="#" class="text20R text-decoration-none pr-3 pl-3">套餐</a><span
-                                    class="textG">|</span>
-                                <a href="#" class="text20R text-decoration-none pr-3 pl-3">套餐</a><span
-                                    class="textG">|</span>
-                                <a href="#" class="text20R text-decoration-none pr-3 pl-3">飲品</a>
+                                <span ><span :class="{textB:tab==-1}" @click="changeTab(-1,-1)" style="cursor:pointer" class="text20R text-decoration-none pr-3 pl-3 borderRight">全部</span><span class="textG borderList">|</span></span>
+                                <span v-for="(category,index) in categoryList"><span :class="{textB:index==tab}" @click="changeTab(category.categoryID,index)" style="cursor:pointer" class="text20R text-decoration-none pr-3 pl-3 borderRight">{{category.categoryName}}</span><span class="textG borderList">|</span></span>
                             </div>
                         </div>
                     </div>
@@ -344,8 +326,8 @@
                         <p class="text24B ">
                             評價
                         </p>
-                        <textarea v-model="newCommentData.commentContent" class="text20RG multiText398 mt-2 mb-m" placeholder="請輸入您對這次的訂購體驗"
-                            style="width: 380px;"></textarea>
+                        <textarea v-model="newCommentData.commentContent" class="text20RG multiText398 mt-2 mb-m"
+                            placeholder="請輸入您對這次的訂購體驗" style="width: 380px;"></textarea>
                         <button @click="sendComment" class="text20R dbtn btnY w-100">張貼評價</button>
                     </div>
                     <div class="modal-footer">
@@ -360,13 +342,16 @@
         let app = new Vue({
             el: "#app",
             data: {
+                memberData: JSON.parse('<%- mMemberData %>'),
                 order: JSON.parse('<%- order %>'),
+                categoryList: JSON.parse('<%- categoryList %>'),
                 productList: JSON.parse('<%- productList %>'),
                 newCommentData: {
                     score: 5,
                     commentContent: "",
-                    storeID:"",
-                }
+                    storeID: "",
+                },
+                tab:-1,
             },
             mounted() {
 
@@ -416,11 +401,22 @@
                 alreadyOrder: function () {
                     return this.productList[0].orderDetailID !== undefined;
                 },
-                getStoreID:function(){
-                    this.newCommentData.storeID=this.order[0].storeID
+                getStoreID: function () {
+                    this.newCommentData.storeID = this.order[0].storeID
                 }
             },
             methods: {
+                changeTab: function (categoryID,tab) {
+                    fetch('/mOrder/tab?tab='+categoryID)
+                        .then(function (response) {
+                            return response.json();
+                        })
+                        .then((myJson) => {
+                            // console.log(myJson);
+                            this.productList = JSON.parse(myJson);
+                        });
+                        this.tab=tab
+                },
                 sendOrder: function () {
                     fetch('/mOrder/order', {
                         method: 'post',
@@ -450,8 +446,24 @@
                 goBack: function () {
                     location.href = "/mOrderList";
                 },
-                setScore:function(viewScore){
+                setScore: function (viewScore) {
                     this.newCommentData.score = viewScore
+                },
+                goTo: function (tab) {
+                    switch (tab) {
+                        case 1:
+                            location.href = "/mCalendar";
+                            break;
+                        case 2:
+                            location.href = "/mGroup";
+                            break;
+                        case 3:
+                            location.href = "/mOrderList";
+                            break;
+                        case 4:
+                            location.href = "/mVoteList";
+                            break;
+                    }
                 }
             },
         })

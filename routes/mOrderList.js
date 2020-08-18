@@ -7,8 +7,18 @@ let orderListSql;
 let orderCheck;
 let jsonResult;
 
+// 側邊欄 
+var memberId;
+var memberSelect;
+var member;
+
 router.get('/', function (req, res, next) {
-  memberID = 38;
+  // 側邊欄 
+  memberId = req.session.memberID;
+  member = memberSelect + memberId;
+  memberSelect = 'select * from `member` where memberID=';
+
+  memberID = req.session.memberID;
   orderListSql = "select * from `order` o inner join `store` s on o.storeID=s.storeID join `group` g on o.groupID=g.groupID join `groupmember` m on g.groupID=m.groupID where m.memberID=" + memberID + " and CURRENT_DATE <= o.orderDeadline";
   orderCheck = "select orderID,memberID from `orderdetail` where memberID=" + memberID + " group by orderID";
   next();
@@ -41,16 +51,32 @@ const orderCheckData = (req) => {
   })
 };
 
+//側邊欄
+const getMemberData = (req) => {
+  return new Promise((resolve, reject) => {
+      db.queryAsync(member)
+          .then(results => {
+              resolve(results);
+          })
+          .catch(ex => {
+              reject(ex);
+          });
+  })
+};
+
 //傳資料到表單裡
 router.get('/', async (req, res) => {
+  newsJSON = JSON.stringify(await getMemberData(req));
   const orderList = await getorderListData(req);
   const orderCheck = await orderCheckData(req);
   jsonResult = JSON.stringify(orderList);
   orderCheckResult = JSON.stringify(orderCheck);
   res.render('mOrderList', { 
+    mMemberData: newsJSON,
     orderList: jsonResult,
     orderCheck: orderCheckResult,
-    active:'mOrderList' });
+    active: 'mCalendar', 
+  });
   //          第一參數放ejs黨名  第二參數放需要的值
   // console.log(orderCheckResult);
   //測試是否成功    

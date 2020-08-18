@@ -36,7 +36,7 @@ a.`storePhoto`,count(b.`noticeStatus`) as\
    and b.`noticeStatus`=1 and storeID=';
 var store = storeSelect + storeID;
 router.get('/', function(req, res, next) {
-  storeID = 1;
+  storeID = req.session.storeID;
   store = storeSelect + storeID;
   orderSelectSql = 'SELECT orderStatus FROM `order` WHERE storeId='+ storeID;
   commentScoreSql = 'SELECT count(commentID) count,round(AVG(commentScore),1) star FROM `comment` WHERE storeID='+ storeID ;

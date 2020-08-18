@@ -28,42 +28,25 @@
 <body>
 
     <!-- 左邊sider -->
-    <div class="slider fixed-top">
-        <img src="/image/LOGO.png" class="sliderLogo">
-        <br>
-        <img src="/image/photo.jpg" class="sliderPhoto">
-        <p class="name text24B">阿信</p>
-        <div class="menu text24R">
-            <a href="" class="act"><i class="icon-home"></i>首頁</a>
-            <a href=""><i class="icon-claendar"></i>訂訂行事曆</a>
-            <a href="" class="mb-2"><i class="icon-member"></i>會員中心<i class="icon-down-open ml-3 mr-0"
-                    style="font-size: 14px;"></i></a>
-            <span class="menuI d-none">
-                <a href="" class="mb-0">個人資料</a>
-                <a href="">我的訂訂幣</a>
-            </span>
-            <a href="" class="mt-4"><i class="icon-message"></i>通知<span class="note">3</span></a>
-            <a href="" id="signOut"><i class="icon-logout"></i>登出</a>
-        </div>
-    </div>
+    <%- include('mSider', {active}); %>
 
     <!-- 右邊內容放置區 -->
-    <div class="containerRight">
+    <div id="app" class="containerRight">
         <div class="inWrapper">
             <!-- 上方頁籤 -->
             <div class="topBtnGroup topBtnPadding">
-                <button class="text20R dbtn btnGY">訂訂行事曆</button>
-                <button class="text20R dbtn btnGY">我的團體</button>
-                <button class="text20R dbtn btnGY">我的訂單</button>
-                <button class="text20R dbtn btnGB btnB">我的投票</button>
+                <button @click="goTo(1)" class="text20R dbtn btnGY">訂訂行事曆</button>
+                <button @click="goTo(2)" class="text20R dbtn btnGY">我的團體</button>
+                <button @click="goTo(3)" class="text20R dbtn btnGY">我的訂單</button>
+                <button @click="goTo(4)" class="text20R dbtn btnGB btnB">我的投票</button>
             </div>
             <!-- 內容區塊 -->
-            <div id="app" class="dblock givePadding mt-m">
+            <div class="dblock givePadding mt-m">
                 <!-- 內容按鈕 -->
                 <div class="clearfix mb-s">
-                    <button class="text20RG dbtn btnG"><i class="icon-left-open mr-2"></i>返回</button>
-                    <button class="text20R dbtn btnB float-right" data-toggle="modal"
-                        data-target="#comfirmBtn">確認投票</button>
+                    <button @click="goTo(4)" class="text20RG dbtn btnG"><i class="icon-left-open mr-2"></i>返回</button>
+                    <button @click="sendVote" v-if="!alreadyVote" class="text20R dbtn btnB float-right"
+                        data-toggle="modal" data-target="#comfirmBtn">確認投票</button>
                 </div>
                 <!-- 捲軸範圍 -->
                 <div class="scrollList orderVoteListM">
@@ -107,7 +90,48 @@
                         </div>
                         <!-- 下方投票區 -->
                         <div class="mTD givePadding">
-                            <div class="row">
+                            <!-- 未投 -->
+                            <div class="row" v-if="!alreadyVote">
+                                <div v-for="(voteItem,index) in voteItemList" class="col-6  itemBorder mb-xs">
+                                    <input :id="voteItem.voteItemID" type="checkbox" name="store"
+                                        class="float-left d-none" :value="voteItem.voteItemID"
+                                        v-model="selected.voteItemID" @click="select(index)">
+                                    <label :for="voteItem.voteItemID" class="voteItem"
+                                        :class="selected.voteItemID.indexOf(voteItem.voteItemID) != -1 ?'voteItemSelected':''">
+                                        <div class="row">
+                                            <div class="col-1 pr-1">
+                                                <span class="eng20R voteItemNo">{{padLeft(index+1,2)}}</span>
+                                            </div>
+                                            <div class="col-2">
+                                                <img :src="'/image/store/' + voteItem.storePhoto" alt=""
+                                                    class="itemImg clipCircle">
+                                            </div>
+                                            <div class="col-9 pl-3">
+                                                <p class="text20B mb-3 mt-1">{{voteItem.storeName}}</p>
+                                                <div class="row">
+                                                    <div class="col-8 pt-2">
+                                                        <div class="progress">
+                                                            <div class="progress-bar" role="progressbar"
+                                                                :style="Percentage(voteItem.sumVote)" aria-valuenow="25"
+                                                                aria-valuemin="0" aria-valuemax="100">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-4 text-right mt-n1 mt-n1">
+                                                        <span
+                                                            class="eng20R">{{(voteItem.sumVote)==null ?0:(voteItem.sumVote)}}</span>/<span>{{voteTotalpeople}}</span>
+                                                        <!-- <span
+                                                            class="eng20R">{{sumVoteFormat1(voteItem.sumVote,voteItem.voteItemID,index)}}</span> -->
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                            <!-- 已投 -->
+                            <div class="row" v-if="alreadyVote">
                                 <div v-for="(voteItem,index) in voteItemList" class="col-6  itemBorder mb-xs">
                                     <div class="voteItem" :class="checkVote(voteItem.voteItemID)">
                                         <div class="row">
@@ -169,13 +193,21 @@
         let app = new Vue({
             el: "#app",
             data: {
+                memberData: JSON.parse('<%- mMemberData %>'),
                 vote: JSON.parse('<%- vote %>'),
                 voteItemList: JSON.parse('<%- voteItemList %>'),
                 voteCheck: JSON.parse('<%- voteCheck %>'),
-                voteName:"",
-                voteDeadLine:"",
-                groupName:"",
-                scheduledOrderTime:"",
+                voteName: "",
+                voteDeadLine: "",
+                groupName: "",
+                scheduledOrderTime: "",
+                selected: {
+                    voteItemID: []
+                },
+                singleSelect: -1,
+            },
+            mounted: function () {
+                this.sumVoteFormat();
             },
             computed: {
                 voteTotalpeople: function () {
@@ -188,8 +220,42 @@
                         return "一人一票";
                     }
                 },
+                alreadyVote() {
+                    return this.voteCheck.length > 0
+                },
             },
             methods: {
+                sendVote: function () {
+                    fetch('/mVote/vote', {
+                        body: JSON.stringify(this.selected),
+                        method: 'post',
+                        headers: new Headers({
+                            'Content-Type': 'application/json'
+                        })
+                    }).then((myJson) => {
+                        // console.log(myJson);
+                        // location.href = "/mOrderList";
+                    });
+                },
+                select: function (i) {
+                    if (this.vote[0].MultipleSelect == 1) {
+                        if (!this.voteItemList[i].selected) {
+                            this.voteItemList[i].sumVote++;
+                            this.voteItemList[i].selected = true
+                        } else {
+                            this.voteItemList[i].sumVote--;
+                            this.voteItemList[i].selected = false
+                        }
+
+                    } else {
+                        this.selected.voteItemID = [];
+                        if (this.singleSelect > -1) {
+                            this.voteItemList[this.singleSelect].sumVote--;
+                        }
+                        this.voteItemList[i].sumVote++;
+                        this.singleSelect = i;
+                    }
+                },
                 Percentage: function (num) {
                     let result;
                     let total = this.voteTotalpeople;
@@ -203,18 +269,35 @@
                     return { width: result }
                 },
                 // 數字補零
-                padLeft: function(str, len) {
+                padLeft: function (str, len) {
                     str = '' + str;
                     return str.length >= len ? str : new Array(len - str.length + 1).join("0") + str;
                 },
                 // 確認有投票的加上樣式
-                checkVote:function(viewItemID){
+                checkVote: function (viewItemID) {
                     for (let i = 0; i < this.voteCheck.length; i++) {
-                        if(this.voteCheck[i].voteItemID == viewItemID){
+                        if (this.voteCheck[i].voteItemID == viewItemID) {
                             return "voteItemSelected";
-                        }else{
-                            return ;
                         }
+                    }
+                },
+                sumVoteFormat: function () {
+                    var a = this.voteItemList.map(item => item.selected = false);
+                },
+                goTo: function (tab) {
+                    switch (tab) {
+                        case 1:
+                            location.href = "/mCalendar";
+                            break;
+                        case 2:
+                            location.href = "/mGroup";
+                            break;
+                        case 3:
+                            location.href = "/mOrderList";
+                            break;
+                        case 4:
+                            location.href = "/mVoteList";
+                            break;
                     }
                 }
             }

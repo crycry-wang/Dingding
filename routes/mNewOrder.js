@@ -6,9 +6,19 @@ let memberID;
 let groupListSql;
 let addressListSql;
 
+// 側邊欄 
+var memberId;
+var memberSelect;
+var member;
+
 /* GET home page. */
 router.get('/', function (req, res, next) {
-  memberID = 38;
+  // 側邊欄 
+  memberId = req.session.memberID;
+  member = memberSelect + memberId;
+  memberSelect = 'select * from `member` where memberID=';
+
+  memberID =  req.session.memberID;
   groupListSql = "select g.groupName,g.groupID from `group` g inner join `groupmember` m on g.groupID=m.groupID where m.memberID="+memberID;
   addressListSql = "select * from memberaddress where memberID = "+memberID;
   next();
@@ -17,7 +27,6 @@ router.get('/', function (req, res, next) {
 
 router.post('/saveNewOrderData', function (req, res, next) {
   req.session.newOrderData = req.body ; 
-  console.log(req.body)
   next();
 });
 
@@ -47,14 +56,30 @@ const getaddressListData = (req) => {
   })
 };
 
+//側邊欄
+const getMemberData = (req) => {
+  return new Promise((resolve, reject) => {
+      db.queryAsync(member)
+          .then(results => {
+              resolve(results);
+          })
+          .catch(ex => {
+              reject(ex);
+          });
+  })
+};
+
 router.get('/', async (req, res, next) => {
+  newsJSON = JSON.stringify(await getMemberData(req));
   const groupList = await getGroupListData(req);
   const addressList = await getaddressListData(req);
   groupListJsonResult = JSON.stringify(groupList);
   addressListJsonResult = JSON.stringify(addressList);
   res.render('mNewOrder', { 
+    mMemberData: newsJSON,
     addressList: addressListJsonResult,
-    groupList: groupListJsonResult
+    groupList: groupListJsonResult,
+    active: 'mCalendar'
    });
   //          第一參數放ejs黨名  第二參數放需要的值
   // console.log(addressListJsonResult);

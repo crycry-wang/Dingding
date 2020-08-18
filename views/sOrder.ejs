@@ -62,6 +62,10 @@
         .orderList {
             max-height: calc(100vh - 306px);
         }
+
+        .modal .scrollList {
+            padding-right: 0;
+        }
     </style>
 
 </head>
@@ -69,16 +73,16 @@
 <body>
     <!-- 左邊sider -->
     <%- include('sSider', {active}); %>
-    
+
     <div id="app">
         <div class="containerRight">
             <!-- 右邊內容放置區 -->
 
             <nav class="topTag row inWrapper position-sticky">
-                <div class="dTag text24RG act">今日訂單</div>
-                <div class="dTag text24RG">完備訂單</div>
-                <div class="dTag text24RG">預定訂單</div>
-                <div class="dTag text24RG">歷史訂單</div>
+                <div @click="changeTab(1)" :class="{act : tab == 1}" class="dTag text24RG">今日訂單</div>
+                <div @click="changeTab(2)" :class="{act : tab == 2}" class="dTag text24RG">完備訂單</div>
+                <div @click="changeTab(3)" :class="{act : tab == 3}" class="dTag text24RG">預定訂單</div>
+                <div @click="changeTab(4)" :class="{act : tab == 4}" class="dTag text24RG">歷史訂單</div>
                 <div class="ml-auto inputSearch">
                     <i class="icon-search"></i>
                     <input type="text" class="form-control-sm text20RG " placeholder="請輸入關鍵字">
@@ -102,14 +106,14 @@
                         <div class="col-2">
                             金額
                         </div>
-                        <div class="col-3">
+                        <div v-if="(tab==1)||(tab==4)" class="col-3">
                             訂單狀況
                         </div>
                     </div>
                     <ul class="scrollList orderList">
                         <li class="row col-12 d-flex align-items-center mb-2" v-for='(order,index) in orderList'>
                             <div class="col-2">
-                                25222
+                                {{order.orderID}}
                             </div>
                             <div class="col-3 ml-n5">
                                 {{order.orderArrivedTime}}
@@ -125,9 +129,10 @@
                             </div>
                             <div class="col-3">
                                 <span class="action d-flex align-items-center">
-                                    <p v-if="order.orderStatus == 4">完成</p>
+                                    <p v-if="order.orderStatus == 5">完成</p>
                                     <p v-if="order.orderStatus == 0" class="Rcolor">取消</p>
-                                    <button v-if="order.orderStatus == 5" class="text20R dbtn btnB" data-toggle="modal"
+                                    <button @click="saveData(order.orderID,index)" v-if="tab == 1"
+                                        class="text20R dbtn btnB" data-toggle="modal"
                                         data-target="#readyOrder">完備</button>
                                     <button class="text20R dbtn btnW ml-auto" data-toggle="modal" data-target="#order"
                                         @click="getDetail(order.orderID)">查看訂單</button>
@@ -170,7 +175,7 @@
                                 <dt class="text20B">聯絡電話</dt>
                                 <dd class="text20R">{{orderDetailList[0].memberPhone}}</dd>
                                 <dt class="text20B">配送地址</dt>
-                                <dd class="text20R">台中市西區公益路二段81號</dd>
+                                <dd class="text20R">{{orderDetailList[0].deliveryAddress}}</dd>
                                 <dt class="text20B">訂單建立日期</dt>
                                 <dd class="text20R">{{orderDetailList[0].orderCreateTime}}</dd>
                             </dl>
@@ -257,7 +262,7 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <i class=" icon-close"></i>
                     </button>
-                    <div class="modal-body text24R mb-m">
+                    <div v-if="orderList.length>0" class="modal-body text24R mb-m">
                         <div class="row">
                             <div class="col-md-12">
                                 <table class="table">
@@ -286,20 +291,21 @@
                                     <tbody class="text20R list">
                                         <tr>
                                             <td>
-                                                252541
+                                                {{orderList[dateToPrepared.index].orderID}}
                                             </td>
                                             <td>
-                                                2020/06/18 12:00
+                                                {{orderList[dateToPrepared.index].orderArrivedTime}}
                                             </td>
                                             <td>
-                                                阿信
+                                                {{orderList[dateToPrepared.index].memberName}}
                                             </td>
                                             <td>
-                                                0970333215
+                                                {{orderList[dateToPrepared.index].memberPhone}}
                                             </td>
                                             <td>
                                                 <span class="eng20R price">
-                                                    <span class=" align-middle">5,000</span>
+                                                    <span
+                                                        class=" align-middle">{{orderList[dateToPrepared.index].totalPrice.toLocaleString('en-US')}}</span>
                                                 </span>
                                             </td>
                                         </tr>
@@ -310,7 +316,7 @@
                     </div>
                     <div class="modal-footer ">
                         <button class="text20R dbtn btnW" data-dismiss="modal">尚未完成</button>
-                        <button class="text20R dbtn btnY ml-3">確認完備</button>
+                        <button @click="prepareOK" class="text20R dbtn btnY ml-3" data-dismiss="modal">確認完備</button>
                     </div>
                 </div>
             </div>
@@ -323,6 +329,11 @@
             data: {
                 orderList: JSON.parse('<%- orderList %>'),
                 orderDetailList: JSON.parse('<%- orderDetailList %>'),
+                dateToPrepared: {
+                    orderID: "0",
+                    index: "0",
+                },
+                tab: 1
             },
             computed: {
                 total: function () {
@@ -332,7 +343,8 @@
                     }
                     return sum.toLocaleString('en-US');
                 },
-            }, methods: {
+            },
+            methods: {
                 getDetail: function (orderID) {
                     fetch('sOrder/getDetail?orderID=' + orderID)
                         .then(function (response) {
@@ -342,8 +354,36 @@
                             // console.log(myJson);
                             this.orderDetailList = JSON.parse(myJson);
                         });
-                    // console.log('conn')
-
+                },
+                changeTab: function (tab) {
+                    fetch('sOrder/order?orderTab=' + tab)
+                        .then(function (response) {
+                            return response.json();
+                        })
+                        .then((myJson) => {
+                            // console.log(myJson);
+                            this.orderList = JSON.parse(myJson);
+                        });
+                        this.tab=tab
+                },
+                saveData: function (orderID, index) {
+                    this.dateToPrepared.orderID = orderID;
+                    this.dateToPrepared.index = index;
+                },
+                prepareOK: function () {
+                    fetch('/sOrder/prepared', {
+                        method: 'post',
+                        body: JSON.stringify(this.dateToPrepared),
+                        headers: new Headers({
+                            'Content-Type': 'application/json'
+                        })
+                    }).then(function (response) {
+                        return response.json();
+                    }).then((myJson) => {
+                        this.orderList = JSON.parse(myJson);
+                        // console.log(myJson);
+                    });
+                    // this.tab=1;
                 },
             }
 

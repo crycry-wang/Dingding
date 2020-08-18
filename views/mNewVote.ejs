@@ -26,37 +26,21 @@
 <body>
 
     <!-- 左邊sider -->
-    <div class="slider fixed-top">
-        <img src="/image/LOGO.png" class="sliderLogo">
-        <br>
-        <img src="/image/photo.jpg" class="sliderPhoto">
-        <p class="name text24B">阿信</p>
-        <div class="menu text24R">
-            <a href=""><i class="icon-home"></i>首頁</a>
-            <a href="" class="act"><i class="icon-claendar"></i>訂訂行事曆</a>
-            <a href="" class="mb-2"><i class="icon-member"></i>會員中心<i class="icon-down-open ml-3 mr-0"
-                    style="font-size: 14px;"></i></a>
-            <span class="menuI d-none">
-                <a href="" class="mb-0">個人資料</a>
-                <a href="">我的訂訂幣</a>
-            </span>
-            <a href="" class="mt-4"><i class="icon-message"></i>通知<span class="note">3</span></a>
-            <a href="" id="signOut"><i class="icon-logout"></i>登出</a>
-        </div>
-    </div>
+    <%- include('mSider', {active}); %>
+
 
     <!-- 右邊內容放置區 -->
-    <div class="containerRight">
+    <div id="app" class="containerRight">
         <div class="inWrapper">
             <!-- 上方頁籤 -->
             <div class="topBtnGroup topBtnPadding">
-                <button class="text20R dbtn btnGY">訂訂行事曆</button>
-                <button class="text20R dbtn btnGY">我的團體</button>
-                <button class="text20R dbtn btnGY">我的訂單</button>
-                <button class="text20R dbtn btnGB btnB">我的投票</button>
+                <button @click="goTo(1)" class="text20R dbtn btnGY">訂訂行事曆</button>
+                <button @click="goTo(2)" class="text20R dbtn btnGY">我的團體</button>
+                <button @click="goTo(3)" class="text20R dbtn btnGY">我的訂單</button>
+                <button @click="goTo(4)" class="text20R dbtn btnGB btnB">我的投票</button>
             </div>
             <!-- 內容區塊 -->
-            <div id="app" class="dblock givePadding mt-m">
+            <div class="dblock givePadding mt-m">
                 <!-- 內容按鈕 -->
                 <div class="clearfix">
                     <button class="text20RG dbtn btnG"><i class="icon-left-open mr-2"></i>返回</button>
@@ -94,10 +78,10 @@
                             <span class="text20B">票數選項</span>
                         </div>
                         <div class="dSelect pr-4" style="width: 500px;">
-                            <select v-model="newVoteData.multipleSelect" name="" id=""
+                            <select v-model="newVoteData.MultipleSelect" name="" id=""
                                 class="text20RG singleText398 w-100" placeholder="選擇票數選項">
-                                <option class="text20RG singleText398" value="false">一人一票</option>
-                                <option class="text20RG singleText398" value="true">一人多票</option>
+                                <option class="text20RG singleText398" value="0">一人一票</option>
+                                <option class="text20RG singleText398" value="1">一人多票</option>
                             </select>
                         </div>
                     </div>
@@ -128,6 +112,7 @@
         let app = new Vue({
             el: "#app",
             data: {
+                memberData: JSON.parse('<%- mMemberData %>'),
                 groupList: JSON.parse('<%- groupList %>'),
                 newVoteData: {
                     groupID: "",
@@ -150,6 +135,22 @@
                                 // console.log(myJson);
                                 location.href = "/mNewVote_2";
                             });
+                },
+                goTo: function (tab) {
+                    switch (tab) {
+                        case 1:
+                            location.href = "/mCalendar";
+                            break;
+                        case 2:
+                            location.href = "/mGroup";
+                            break;
+                        case 3:
+                            location.href = "/mOrderList";
+                            break;
+                        case 4:
+                            location.href = "/mVoteList";
+                            break;
+                    }
                 }
             }
         })

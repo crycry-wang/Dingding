@@ -36,34 +36,17 @@
 <body>
 
     <!-- 左邊sider -->
-    <div class="slider fixed-top">
-        <img src="/image/LOGO.png" class="sliderLogo">
-        <br>
-        <img src="/image/photo.jpg" class="sliderPhoto">
-        <p class="name text24B">阿信</p>
-        <div class="menu text24R">
-            <a href=""><i class="icon-home"></i>首頁</a>
-            <a href="" class="act"><i class="icon-claendar"></i>訂訂行事曆</a>
-            <a href="mMember" class="mb-2"><i class="icon-member"></i>會員中心<i class="icon-down-open ml-3 mr-0"
-                    style="font-size: 14px;"></i></a>
-            <span class="menuI d-none">
-                <a href="" class="mb-0">個人資料</a>
-                <a href="">我的訂訂幣</a>
-            </span>
-            <a href="" class="mt-4"><i class="icon-message"></i>通知<span class="note">3</span></a>
-            <a href="/" id="signOut"><i class="icon-logout"></i>登出</a>
-        </div>
-    </div>
+    <%- include('mSider', {active}); %>
 
     <!-- 右邊內容放置區 -->
     <div id="app" class="containerRight">
         <div class="inWrapper">
             <!-- 上方頁籤 -->
             <div class="topBtnGroup topBtnPadding">
-                <button class="text20R dbtn btnGY">訂訂行事曆</button>
-                <button class="text20R dbtn btnGY">我的團體</button>
-                <button class="text20R dbtn btnGY">我的訂單</button>
-                <button class="text20R dbtn btnGB btnB">我的投票</button>
+                <button @click="goTo(1)" class="text20R dbtn btnGY">訂訂行事曆</button>
+                <button @click="goTo(2)" class="text20R dbtn btnGY">我的團體</button>
+                <button @click="goTo(3)" class="text20R dbtn btnGY">我的訂單</button>
+                <button @click="goTo(4)" class="text20R dbtn btnGB btnB">我的投票</button>
             </div>
             <!-- 內容區塊 -->
             <div class="dblock givePadding mt-m">
@@ -78,11 +61,18 @@
                     <div class="col-4 mTH vTH">投票截止時間 </div>
                 </div>
                 <!-- 捲軸範圍 -->
-                <div class="scrollList orderVoteList">
-                    <div v-for="(vote,index) in voteList" class="row mTR text20B">
+                <div class="scrollList orderVoteList" v-if="tab==1">
+                    <div v-for="(vote,index) in voteList" @click="toVoteDetail(vote.voteID)" class="row mTR text20B" style="cursor:pointer">
                         <div class="col-4 mTD">{{vote.voteName}}</div>
                         <div class="col-4 mTD">{{vote.groupName}}</div>
-                        <div class="col-4 mTD">{{vote.voteDeadline}}<a href="#" @click="toVoteDetail(vote.voteID)" class="icon-ok float-right" :class="checkVote(vote.voteID)"></a></div>
+                        <div class="col-4 mTD">{{vote.voteDeadline}}<i class="icon-ok float-right" :class="checkVote(vote.voteID)"></i></div>
+                    </div>
+                </div>
+                <div class="scrollList orderVoteList" v-if="tab==2">
+                    <div v-for="(vote,index) in voteList"  @click="toVoteDetail(vote.voteID)" class="row mTR text20B" style="cursor:pointer" :class="checkVote2(vote.voteID)">
+                        <div class="col-4 mTD">{{vote.voteName}}</div>
+                        <div class="col-4 mTD">{{vote.groupName}}</div>
+                        <div class="col-4 mTD">{{vote.voteDeadline}}<i class="icon-right-open float-right textB"></i></div>
                     </div>
                 </div>
             </div>
@@ -94,6 +84,7 @@
         let app = new Vue({
             el:"#app",
             data:{
+                memberData: JSON.parse('<%- mMemberData %>'),
                 voteList:JSON.parse('<%- voteList %>'),
                 voteCheck:JSON.parse('<%- voteCheck %>'),
                 tab:1,
@@ -128,8 +119,31 @@
                     }
                     return "textG" ;
                 },
+                checkVote2:function(viewVoteID) {
+                    for (let i = 0; i < this.voteCheck.length; i++) {
+                        if(this.voteCheck[i].voteID == viewVoteID)
+                        return
+                    }
+                    return "d-none" ;
+                },
                 toVoteDetail:function(viewVoteID){
                     location.href="/mVote?voteID="+viewVoteID;
+                },
+                goTo: function (tab) {
+                    switch (tab) {
+                        case 1:
+                            location.href = "/mCalendar";
+                            break;
+                        case 2:
+                            location.href = "/mGroup";
+                            break;
+                        case 3:
+                            location.href = "/mOrderList";
+                            break;
+                        case 4:
+                            location.href = "/mVoteList";
+                            break;
+                    }
                 }
             }
         })

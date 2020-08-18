@@ -1,16 +1,26 @@
 var express = require('express');
 var router = express.Router();
 var db = require('../model/db');
-  
+
 let memberID;
 let voteID;
-let voteSql; 
+let voteSql;
 let voteItemSql;
 let voteCheckSql;
 let voteJsonResult;
 
+// 側邊欄 
+var memberId;
+var memberSelect;
+var member;
+
 router.get('/', function (req, res, next) {
-    memberID = 38;
+    // 側邊欄 
+    memberId = req.session.memberID;
+    member = memberSelect + memberId;
+    memberSelect = 'select * from `member` where memberID=';
+
+    memberID = req.session.memberID;
     voteID = req.query.voteID;
     voteSql = "select * from `vote` v inner join `groupmember` m on v.groupID=m.groupID join `group` g on v.groupID=g.groupID where v.voteID=" + voteID;
     // voteItemSql = "select r.voteItemID,s.storeName,s.storeBanner,SUM(r.votes) as sumVote from `voteitem` i inner join `vote` v on i.voteID=v.voteID join `voterecord` r on i.voteitemID=r.voteitemID join `store` s on s.storeID=i.storeID where v.voteID=" + voteID + " group by r.voteItemID";
@@ -19,6 +29,18 @@ router.get('/', function (req, res, next) {
     next();
 });
 
+router.post('/vote', function (req, res, next) {
+    for (let i = 0; i < req.body.voteItemID.length; i++) {
+        db.query('insert into `voterecord`(`voteItemID`, `voteID`, `memberID`) VALUES (?,?,?)',
+            [req.body.voteItemID[i],
+                voteID,
+                memberID,],
+            function (err, results) {
+                if (err) console.log("ERR!!");
+            })
+    }
+    next();
+});
 
 const getVoteData = (req) => {
     return new Promise((resolve, reject) => {
@@ -58,20 +80,35 @@ const getCheckData = (req) => {
     })
 };
 
+//側邊欄
+const getMemberData = (req) => {
+    return new Promise((resolve, reject) => {
+        db.queryAsync(member)
+            .then(results => {
+                resolve(results);
+            })
+            .catch(ex => {
+                reject(ex);
+            });
+    })
+};
+
 /* GET home page. */
 router.get('/', async (req, res, next) => {
+    newsJSON = JSON.stringify(await getMemberData(req));
     const vote = await getVoteData(req);
     const voteItem = await getVoteItemData(req);
     const voteCheck = await getCheckData(req);
     voteJsonResult = JSON.stringify(vote);
     voteItemJsonResult = JSON.stringify(voteItem);
     voteChecksonResult = JSON.stringify(voteCheck);
-    res.render('mVote', { 
-        vote: voteJsonResult, 
-        voteItemList: voteItemJsonResult, 
+    res.render('mVote', {
+        mMemberData: newsJSON,
+        vote: voteJsonResult,
+        voteItemList: voteItemJsonResult,
         voteCheck: voteChecksonResult,
-        active: 'mVote'
-     });
+        active: 'mCalendar'
+    });
     //          第一參數放ejs黨名  第二參數放需要的值
     // console.log(voteChecksonResult);
     //測試是否成功    

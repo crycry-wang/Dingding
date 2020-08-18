@@ -27,41 +27,24 @@
 <body>
     <div>
         <!-- 左邊sider -->
-        <div class="slider fixed-top">
-            <img src="/image/LOGO.png" class="sliderLogo">
-            <br>
-            <img src="/image/photo.jpg" class="sliderPhoto">
-            <p class="name text24B">阿信</p>
-            <div class="menu text24R">
-                <a href="" class="act"><i class="icon-home"></i>首頁</a>
-                <a href=""><i class="icon-claendar"></i>訂訂行事曆</a>
-                <a href="" class="mb-2"><i class="icon-member"></i>會員中心<i class="icon-down-open ml-3 mr-0"
-                        style="font-size: 14px;"></i></a>
-                <span class="menuI d-none">
-                    <a href="" class="mb-0">個人資料</a>
-                    <a href="">我的訂訂幣</a>
-                </span>
-                <a href="" class="mt-4"><i class="icon-message"></i>通知<span class="note">3</span></a>
-                <a href="" id="signOut"><i class="icon-logout"></i>登出</a>
-            </div>
-        </div>
+        <%- include('mSider', {active}); %>
 
         <!-- 右邊內容放置區 -->
-        <div class="containerRight">
+        <div id="app" class="containerRight">
             <div class="inWrapper">
                 <!-- 上方頁籤 -->
                 <div class="topBtnGroup topBtnPadding">
-                    <a href=""></a>
-                    <a href="" class="text20R dbtn btnGY">訂訂行事曆</a>
-                    <a href="" class="text20R dbtn btnGY">我的團體</a>
-                    <a href="./mOrderList.html" class="text20R dbtn btnGY btnY">我的訂單</a>
-                    <a href="" class="text20R dbtn btnGB">我的投票</a>
+                    <button @click="goTo(1)" class="text20R dbtn btnGY">訂訂行事曆</button>
+                    <button @click="goTo(2)" class="text20R dbtn btnGY">我的團體</button>
+                    <button @click="goTo(3)" class="text20R dbtn btnGY btnY">我的訂單</button>
+                    <button @click="goTo(4)" class="text20R dbtn btnGB">我的投票</button>
                 </div>
                 <!-- 內容區塊 -->
-                <div id="app" class="dblock givePadding mt-m">
+                <div class="dblock givePadding mt-m">
                     <!-- 內容按鈕 -->
                     <div class="clearfix mb-s">
-                        <button @click="goBack" class="text20RG dbtn btnG"><i class="icon-left-open mr-2"></i>返回</button>
+                        <button @click="goTo(5)" class="text20RG dbtn btnG"><i
+                                class="icon-left-open mr-2"></i>返回</button>
                         <button @click="newOrder" class="text20R dbtn btnY float-right" data-toggle="modal"
                             data-target="#comfirmBtn">建立訂單</button>
                     </div>
@@ -71,21 +54,22 @@
                         <div class="ml-4">
                             <div class="row mb-m mTD">
                                 <div class="dSelect" style="width: 500px;">
-                                    <input v-model:trim="searchCondition" type="text" class="text20RG singleText398"
+                                    <input v-model:trim="searching" type="text" class="text20RG singleText398"
                                         placeholder="請輸入店家名稱">
                                 </div>
-                                <button class="text20R dbtn btnY ml-3">搜尋店家</button>
+                                <button @click="searchingStore" class="text20R dbtn btnY ml-3">搜尋店家</button>
                                 <button v-on:click="randomChoose" class="text20R dbtn btnY ml-3" type="button"
                                     id="randomBtn">店家拉霸機</button>
                             </div>
                             <div class="mTD">
-                                <a href="#" class="text20R text-decoration-none pr-3 textB">收藏</a><span
-                                    class="textG">|</span>
-                                <a href="#" class="text20R text-decoration-none pr-3 pl-3"
-                                    @click="recommand">推薦</a><span class="textG">|</span>
-                                <a href="#" class="text20R text-decoration-none pr-3 pl-3">重新下訂</a><span
-                                    class="textG">|</span>
-                                <a href="#" class="text20R text-decoration-none pr-3 pl-3">最近的投票</a>
+                                <span class="text20R text-decoration-none pr-3" :class="{textB:tab==1}"
+                                    @click="changeTab(1)" style="cursor:pointer">收藏</span><span class="textG">|</span>
+                                <span class="text20R text-decoration-none pr-3 pl-3" :class="{textB:tab==2}"
+                                    @click="changeTab(2)" style="cursor:pointer">推薦</span><span class="textG">|</span>
+                                <span class="text20R text-decoration-none pr-3 pl-3" :class="{textB:tab==3}"
+                                    @click="changeTab(3)" style="cursor:pointer">重新下訂</span><span class="textG">|</span>
+                                <span class="text20R text-decoration-none pr-3 pl-3" :class="{textB:tab==4}"
+                                    @click="changeTab(4)" style="cursor:pointer">最近的投票</span>
                             </div>
                         </div>
                         <!-- 水平線 -->
@@ -106,7 +90,7 @@
                                         </div>
                                         <i class="icon-spoon float-right"></i>
                                         <span class="card-text eng24R float-right"
-                                            style="margin-right: 7px;">{{store.storeScore}}</span>
+                                            style="margin-right: 7px;">{{store.star}}</span>
                                     </div>
                                 </div>
                             </div>
@@ -144,23 +128,36 @@
         let app = new Vue({
             el: "#app",
             data: {
+                memberData: JSON.parse('<%- mMemberData %>'),
                 storeList: JSON.parse('<%- storeList %>'),
                 searchCondition: "",
                 selected: {
-                    storeID:"",
+                    storeID: "",
                 },
+                searching:"",
+                tab: 1,
             },
             computed: {
             },
             methods: {
                 randomChoose: function () {
-                    this.countCard = document.getElementsByClassName('imgCard').length;
-                    this.selected.storeID = "";
-                    this.randaomCard = Math.floor(Math.random() * this.countCard);
-                    console.log(this.countCard);
-                    this.selected.storeID = document.querySelectorAll(".form-check-input")[this.randaomCard];
-                    this.selected.storeID.checked = true;
-                    this.selected.storeID = this.selected.storeID.value;
+                    fetch('/mNewOrder_2/tab?tab=0')
+                        .then(function (response) {
+                            return response.json();
+                        })
+                        .then((myJson) => {
+                            this.storeList = JSON.parse(myJson);
+                            // this.countCard = document.getElementsByClassName('imgCard').length;
+                            // this.selected.storeID = "";
+                            // this.randaomCard = Math.floor(Math.random() * this.countCard);
+                            // console.log(this.countCard);
+                            // this.selected.storeID = document.querySelectorAll(".form-check-input")[this.randaomCard];
+                            // this.selected.storeID.checked = true;
+                            // this.selected.storeID = this.selected.storeID.value;
+                            this.selected.storeID = this.storeList[0].storeID;
+                        });
+                    this.tab = -1
+
                     // $(`.imgCardGroup .form-check-input`).eq(randaomCard).prop("checked", true);
                 },
                 newOrder: function () {
@@ -176,19 +173,47 @@
                         // location.href = "/mNewOrder_2";
                     });
                 },
-                recommand: function () {
-                    fetch('/mNewOrder/json')
+                changeTab: function (tab) {
+                    fetch('/mNewOrder_2/tab?tab=' + tab)
                         .then(function (response) {
                             return response.json();
                         })
                         .then((myJson) => {
-                            console.log(myJson);
-                            this.dataJson = myJson;
+                            // console.log(myJson);
+                            this.storeList = JSON.parse(myJson);
                         });
+                    this.tab = tab
                 },
-                goBack: function () {
-                        location.href = "/mOrderList";
+                searchingStore: function () {
+                    fetch('/mNewOrder_2/tab?search='+this.searching)
+                        .then(function (response) {
+                            return response.json();
+                        })
+                        .then((myJson) => {
+                            // console.log(myJson);
+                            this.storeList = JSON.parse(myJson);
+                        });
+                        this.tab=0
+                },
+                goTo: function (tab) {
+                    switch (tab) {
+                        case 1:
+                            location.href = "/mCalendar";
+                            break;
+                        case 2:
+                            location.href = "/mGroup";
+                            break;
+                        case 3:
+                            location.href = "/mOrderList";
+                            break;
+                        case 4:
+                            location.href = "/mVoteList";
+                            break;
+                        case 5:
+                            location.href = "/mNewOrder";
+                            break;
                     }
+                }
             }
         })
 
