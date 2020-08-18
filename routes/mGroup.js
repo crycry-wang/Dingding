@@ -4,6 +4,80 @@ var db = require('../model/db');
 const { text } = require('express');
 var session = require('express-session');
 
+// 會員
+var memberId;
+var memberSelect;
+var member;
+
+router.get('/', function (req, res, next) {
+    // 側邊欄 
+    memberId = req.session.memberID;
+    member = memberSelect + memberId;
+    memberSelect = 'select a.`memberID`,a.`memberName`,a.`memberPhoto`,\
+count(b.`noticeStatus`) as noticeCount from `member` as a,\
+`notice` as b where a.memberID=b.toWhoID and toWhoType=2 \
+and b.noticeStatus=1 and memberID=';
+
+    next();
+});
+
+
+//側邊欄
+const getMemberData = (req) => {
+    return new Promise((resolve, reject) => {
+        db.queryAsync(member)
+            .then(results => {
+                resolve(results);
+            })
+            .catch(ex => {
+                reject(ex);
+            });
+    })
+};
+
+
+//傳資料到表單裡
+router.get('/', async (req, res) => {
+    newsJSON = JSON.stringify(await getMemberData(req));
+    console.log(newsJSON);
+    // res.render('mGroup', {
+    //     mMemberData: newsJSON,
+    //     active: 'mGroup'
+    // });
+
+    var sql = 'SELECT a.groupMemberID,a.memberID,a.groupAdmin,a.groupID,b.groupName,c.memberName FROM `groupmember` a inner join `group` b on a.groupID = b.groupID inner join `member` c on a.memberID=c.memberID WHERE a.memberID=38';
+    db.query(sql, function (err, results) {
+        if (err) console.log('query data err!!')
+        // console.log(results);
+        GroupList = JSON.stringify(results);
+        checkGroupList = JSON.parse(GroupList);
+        checkGroup = checkGroupList.map(item => item.groupID);
+
+
+        var sql = 'SELECT * FROM `groupmember` a inner join `member` b on a.memberID = b.memberID where groupAdmin=1'
+        db.query(sql, function (err, results) {
+            if (err) console.log('err!!')
+            // console.log(results);
+            GroupAdmin = JSON.stringify(results);
+            checkAdminList = JSON.parse(GroupAdmin);
+            checkAdmin = checkAdminList.map(item => item.groupID);
+
+            // console.log(checkGroup);
+            // console.log(checkAdminList);
+
+            res.render('mGroup', {
+                mMemberData: newsJSON,
+                GroupList, GroupAdmin,
+                mMemberData: newsJSON,
+                active: 'mCalendar'
+            });
+        })
+
+
+    })
+
+});
+
 /* GET home page. */
 router.get('/', function (req, res, next) {
     var sql = 'SELECT a.groupMemberID,a.memberID,a.groupAdmin,a.groupID,b.groupName,c.memberName FROM `groupmember` a inner join `group` b on a.groupID = b.groupID inner join `member` c on a.memberID=c.memberID WHERE a.memberID=38';
@@ -102,7 +176,7 @@ router.post('/createGroup', function (req, res, next) {
 
             req.session.tempgroupID = tempgroupID;
             // res.locals.tempgroupID = req.session.tempgroupID;
-            console.log("mGroup"+req.session.tempgroupID);
+            console.log("mGroup" + req.session.tempgroupID);
 
             var sql = 'insert into `groupmember` (groupID,memberID,groupAdmin) values (?,38,1)';
             db.query(sql, [tempgroupID], function (err, results) {

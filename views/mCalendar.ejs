@@ -31,10 +31,10 @@
                     <!-- 功能列 -->
                     <div class="mt-l mb-m ml-l">
                         <span>
-                        <button class="mr-xs text20R dbtn btnGY btnY">訂訂行事曆</button>
-                        <a href="mGroup"><button class="mr-xs text20R dbtn btnGY">我的團體</button></a>
-                        <button class="mr-xs text20R dbtn btnGY">我的訂單</button>
-                        <button class="text20R dbtn btnGB">我的投票</button>
+                        <button @click="goTo(1)" class="mr-xs text20R dbtn btnGY btnY">訂訂行事曆</button>
+                        <button @click="goTo(2)" class="mr-xs text20R dbtn btnGY">我的團體</button>
+                        <button @click="goTo(3)" class="mr-xs text20R dbtn btnGY">我的訂單</button>
+                        <button @click="goTo(4)" class="text20R dbtn btnGB">我的投票</button>
                     </span>
                         <span class="float-right">
                         <input type="text" class="text20RG singleText400 mr-xs" placeholder="請輸入團號">
@@ -170,6 +170,24 @@
                     voteList: "",
                     realVote: ""
 
+                },
+                methods:{
+                    goTo: function (tab) {
+                    switch (tab) {
+                        case 1:
+                            location.href = "/mCalendar";
+                            break;
+                        case 2:
+                            location.href = "/mGroup";
+                            break;
+                        case 3:
+                            location.href = "/mOrderList";
+                            break;
+                        case 4:
+                            location.href = "/mVoteList";
+                            break;
+                    }
+                }
                 }
             })
         </script>

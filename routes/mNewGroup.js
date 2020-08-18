@@ -3,8 +3,43 @@ var router = express.Router();
 var db = require('../model/db');
 var session = require('express-session');
 
+// 側邊欄 
+var memberId;
+var memberSelect;
+var member;
+
+router.get('/', function (req, res, next) {
+    // 側邊欄 
+    memberId = req.session.memberID;
+    member = memberSelect + memberId;
+    memberSelect = 'select a.`memberID`,a.`memberName`,a.`memberPhoto`,\
+    count(b.`noticeStatus`) as noticeCount from `member` as a,\
+    `notice` as b where a.memberID=b.toWhoID and toWhoType=2 \
+    and b.noticeStatus=1 and memberID=';
+
+    next();
+  });
+  
+//側邊欄
+const getMemberData = (req) => {
+    return new Promise((resolve, reject) => {
+        db.queryAsync(member)
+            .then(results => {
+                resolve(results);
+            })
+            .catch(ex => {
+                reject(ex);
+            });
+    })
+  };
+  
+
+
 /* GET home page. */
-router.get('/', function(req, res, next) {
+router.get('/', async(req, res, next) =>{
+    // 側邊欄
+  newsJSON = JSON.stringify(await getMemberData(req));
+
 
    var a = req.session.tempgroupID;
     // res.locals.tempgroupID;
@@ -18,7 +53,11 @@ router.get('/', function(req, res, next) {
         var sql = 'SELECT a.groupID,a.groupAdmin,a.memberID,b.memberName,b.memberPhoto FROM `groupmember` a inner join `member` b on a.memberID=b.memberID where a.groupID=?';
         db.query(sql,[5], function(err, results) {
             groupList = JSON.stringify(results);
-            res.render('mNewGroup', { groupData: groupData, groupList: groupList });
+            res.render('mNewGroup', { groupData: groupData,
+                                    groupList: groupList,
+                                    mMemberData: newsJSON,
+                                    active: 'mCalendar'
+            });
         })
 
     })
