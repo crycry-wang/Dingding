@@ -4,6 +4,7 @@ var db = require('../model/db');
 
 let memberID;
 let orderID;
+let storeID;
 let orderSql;
 let productListSql;
 let categoryListSql;
@@ -61,7 +62,7 @@ const getMemberData = (req) => {
 
 router.post('/newComment', function (req, res, next) {
   db.query('insert into `comment`(`storeID`, `memberID`, `commentContent`, `commentScore`) VALUES (?,?,?,?)',
-    [req.body.storeID,
+    [storeID,
       memberID,
     req.body.commentContent,
     req.body.score,],
@@ -152,7 +153,8 @@ router.get('/', async (req, res, next) => {
     active: 'mCalendar'
   });
   //          第一參數放ejs黨名  第二參數放需要的值
-  // console.log(productListJsonResult);
+  storeID=order[0].storeID
+  // console.log(storeID);
   //測試是否成功    
 });
 

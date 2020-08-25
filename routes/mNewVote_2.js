@@ -98,7 +98,7 @@ router.get('/tab', async (req, res, next) => {
       storeListSql = "select s.storeID,s.storeName,s.storeBanner,count(commentID) count,round(AVG(commentScore),1) star FROM `comment` c inner join `store` s on c.storeID=s.storeID inner join `likeStore` l on s.storeID=l.storeID group by c.storeID order by rand() limit 10";
       break;
     case "3":
-      storeListSql = "select s.storeID,s.storeName,s.storeBanner,count(commentID) count,round(AVG(commentScore),1) star FROM `comment` c inner join `store` s on c.storeID=s.storeID inner join `order` o on s.storeID=o.storeID group by c.storeID";
+      storeListSql = "select s.storeID,s.storeName,s.storeBanner,count(commentID) count,round(AVG(commentScore),1) star FROM `comment` c inner join `store` s on c.storeID=s.storeID inner join `likeStore` l on s.storeID=l.storeID group by c.storeID";
       break;
   }
   const storeList = await getStoreData(req);

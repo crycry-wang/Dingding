@@ -350,7 +350,6 @@
                 newCommentData: {
                     score: 5,
                     commentContent: "",
-                    storeID: "",
                 },
                 tab:-1,
             },
@@ -402,9 +401,6 @@
                 alreadyOrder: function () {
                     return this.productList[0].orderDetailID !== undefined;
                 },
-                getStoreID: function () {
-                    this.newCommentData.storeID = this.order[0].storeID
-                }
             },
             methods: {
                 changeTab: function (categoryID,tab) {
